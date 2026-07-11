@@ -1,0 +1,236 @@
+# OpenMetaphysics — Schema 设计
+
+> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：设计 v1 (2026-07-04)。
+
+## 1. 设计规则
+
+- **一个信封，多个载荷。** 每个智能体返回相同的 AgentOutput 信封；只有 esult 载荷类型按智能体变化。
+- 输入扩展 AgentInput；输出扩展 AgentOutput 并带有类型化 esult。
+- 枚举是封闭字符串基的（JSON 跨版本稳定）。
+- 所有日期时间都是时区感知的 ISO-8601。出生地点可选。
+- 每个 schema 都可以通过 Model.model_json_schema() 导出为 JSON Schema，并通过 API 在 GET /agents/{name}/schema 发布。
+- 公共契约中永远不会有 Any 类型；不透明扩展使用 metadata (dict[str, str | int | float | bool]) 并记录键。
+
+## 2. 共享核心 (openmetaphysics.core.schemas)
+
+### 2.1 基础类型
+
+`python
+class Gender(str, Enum):
+    MALE = "male"
+    FEMALE = "female"
+    UNKNOWN = "unknown"
+
+class GeoPoint(BaseModel):
+    latitude: float = Field(ge=-90, le=90)
+    longitude: float = Field(ge=-180, le=180)
+    elevation_m: float | None = None
+    timezone: str | None = None      # IANA 时区，例如 "Asia/Hong_Kong"
+
+class SexagenaryComponent(BaseModel):
+    """干支（天干地支对），八字/奇门的原子单元。"""
+    heavenly_stem: str               # 甲乙丙丁戊己庚辛壬癸之一
+    earthly_branch: str              # 子丑寅卯辰巳午未申酉戌亥之一
+    stem_index: int = Field(ge=0, le=9)
+    branch_index: int = Field(ge=0, le=11)
+`
+
+### 2.2 输入信封
+
+`python
+class AgentInput(BaseModel):
+    request_id: str
+    born_at: datetime                 # 时区感知
+    born_location: GeoPoint | None = None
+    gender: Gender = Gender.UNKNOWN
+    question: str | None = None       # 自由文本占卜问题
+    locale: str = "zh-CN"
+    seed: int | None = None           # 确定性 RNG 种子（六爻起卦）
+    client_nonce: str | None = None   # 幂等/重放密钥
+`
+
+### 2.3 输出信封
+
+`python
+class ReasoningStep(BaseModel):
+    step: int
+    rule_ref: str                     # 例如 "bazi.month_pillar.solar_term"
+    description: str
+    inputs: dict[str, str | int | float]
+    outputs: dict[str, str | int | float]
+
+class ConfidenceScore(BaseModel):
+    value: float = Field(ge=0.0, le=1.0)
+    method: str                       # "rule_coverage" | "data_quality" | ...
+    factors: dict[str, float]         # 例如 {"solar_term_resolution": 0.98}
+
+class AgentOutput(BaseModel):
+    request_id: str
+    agent: str                        # "bazi" | "ziwei" | "qimen" | "liuyao"
+    engine_version: str               # 确定性引擎的语义版本
+    input_hash: str                   # 规范输入 sha256 → 重放密钥
+    computed_at: datetime
+    confidence: ConfidenceScore
+    reasoning_trace: list[ReasoningStep]
+    metadata: dict[str, str | int | float | bool]
+    result: dict                      # 智能体特定；子类验证
+`
+
+## 3. 智能体特定载荷
+
+### 3.1 八字 (gents.bazi)
+
+输入：BaziInput(AgentInput) — 无额外字段（出生日时分 + 性别驱动大运方向）。
+
+输出 esult: BaziChart:
+
+`python
+class Pillar(BaseModel):
+    position: Literal["year","month","day","hour"]
+    stem_branch: SexagenaryComponent
+    hidden_stems: list[str]           # 藏干
+    nayin: str                        # 纳音 (例如 "海中金")
+    ten_gods_stem: str | None = None  # 天干相对于日主的十神
+
+class DaYun(BaseModel):               # 大运（十年运）
+    start_age: int
+    end_age: int
+    stem_branch: SexagenaryComponent
+    start_at: datetime
+
+class BaziChart(BaseModel):
+    day_master: str                   # 日主（日干）
+    pillars: list[Pillar]             # 恰好 4 柱
+    dayun: list[DaYun]
+    ten_gods_map: dict[str, str]      # 天干/地支 → 十神
+    solar_term_boundary: str          # 例如 "立春"
+`
+
+### 3.2 紫微斗数 (gents.ziwei)
+
+输入：ZiweiInput(AgentInput) — 出生日时分 + 性别（阴阳 + 年干决定命局/紫微 placement）。
+支持显式提供 lunar_month: int | None / lunar_day: int | None 用于重放。
+
+输出 esult: ZiweiChart:
+
+`python
+class Palace(BaseModel):
+    index: int = Field(ge=0, le=11)   # 0..11，寅=0 符合惯例
+    name: str                         # 命宫/财帛/...
+    earthly_branch: str
+    heavenly_stem: str
+    main_stars: list[str]             # 紫微/天机/... (14 主星已完成)
+    auxiliary_stars: list[str]        # 辅星 (未来阶段)
+    is_fate_palace: bool = False
+    is_body_palace: bool = False
+    calendar_note: str | None = None  # 历法说明（闰月等）
+
+class ZiweiChart(BaseModel):
+    fate_palace_index: int
+    body_palace_index: int
+    yin_yang: Literal["yin","yang"]
+    wuxing_ju: str                    # 五行局 例如 "水二局"
+    palaces: list[Palace]             # 12 宫
+    calendar_note: str | None = None  # 历法说明
+`
+
+### 3.3 奇门遁甲 (gents.qimen)
+
+输入：QimenInput(AgentInput) — 使用 orn_at（或选定的问卦时间）构建时家奇门盘。
+
+输出 esult: QimenBoard:
+
+`python
+class QimenCell(BaseModel):
+    palace: int = Field(ge=1, le=9)   # 后天八卦 宫位 1..9
+    name: str                         # 坎/坤/震/巽/中宫/乾/兑/艮/离
+    sky_plate: str | None = None      # 天盘
+    earth_plate: str | None = None    # 地盘
+    eight_gods: str | None = None    # 八神
+    nine_stars: str | None = None    # 九星
+    eight_doors: str | None = None   # 八门
+    three_qi: str | None = None       # 三奇
+    is_void: bool = False             # 空亡
+    is_central: bool = False
+
+class QimenBoard(BaseModel):
+    solar_term: str | None = None
+    ju: int                           # 局 (1..9)
+    dun_type: Literal["yang","yin"]   # 阳遁/阴遁
+    cells: list[QimenCell]            # 9 宫格 (宫位 1..9)
+`
+
+### 3.4 六爻 (gents.liuyao)
+
+输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 andom()）。
+
+`python
+class YaoLine(BaseModel):
+    position: int = Field(ge=1, le=6) # 初爻..上爻
+    is_yin: bool                      # True=阴爻，False=阳爻
+    is_changing: bool                 # 动爻
+    cast_value: int                   # 6,7,8,9 (老阴/少阳/少阴/老阳)
+
+class LiuyaoChart(BaseModel):
+    original: list[YaoLine]           # 本卦 (6 线，下→上)
+    changed: list[YaoLine]            # 变卦 (不变爻位置为空)
+    mutual: list[YaoLine]             # 互卦
+    original_hexagram: int            # 文王卦序 1..64
+    changed_hexagram: int | None
+    najia: list[str]                  # 每爻纳甲（干支）
+    liu_qin: list[str]                # 每爻六亲（父母/兄弟/子孙/妻财/官鬼）
+    liu_shen: list[str]               # 六神 (青龙/朱雀/勾陈/螣蛇/白虎/玄武)
+    shi_position: int                 # 世爻 位置 1..6
+    ying_position: int                # 应爻 位置 1..6
+    yong_shen: str | None = None      # 用神
+`
+
+### 3.5 共识 (gents.consensus)
+
+输入：ConsensusInput:
+
+`python
+class ConsensusInput(BaseModel):
+    request_id: str
+    agent_outputs: list[AgentOutput]  # 1..N 验证过的信封
+    strategy: Literal["weighted","majority","all"] = "weighted"
+`
+
+输出 esult: ConsensusReport:
+
+`python
+class AgentContribution(BaseModel):
+    agent: str
+    confidence: float
+    weight: float
+    summary: str
+
+class Conflict(BaseModel):
+    agents: list[str]
+    field: str
+    values: list[str]
+    severity: Literal["low","medium","high"]
+
+class ConsensusReport(BaseModel):
+    overall_confidence: float
+    contributions: list[AgentContribution]
+    agreement_matrix: dict[str, dict[str, float]]
+    conflicts: list[Conflict]
+    synthesis: str                    # 结构化自然语言总结（确定性）
+    recommendation: str | None = None
+`
+
+## 4. JSON Schema 发布
+
+AgentRegistry 对每个智能体暴露：
+
+`python
+{
+  "name": "liuyao",
+  "input_schema":  LiuyaoInput.model_json_schema(),
+  "output_schema": LiuyaoOutput.model_json_schema(),
+  "engine_version": "0.1.0"
+}
+`
+
+这是 FastAPI 层、MCP 桩和任何外部客户端消费的唯一真相来源。Schemas 在测试中对照示例 fixtures 验证。
