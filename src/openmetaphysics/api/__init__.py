@@ -1,0 +1,1 @@
+"""OpenMetaphysics subpackage."""
