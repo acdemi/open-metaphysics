@@ -1,0 +1,21 @@
+rule:
+  id: rule:bazi:has_zheng_yin:v1
+  name: 命中有正印
+  system: bazi
+  rule_type: pattern_recognition
+  if:
+    field: ten_gods_map.values
+    operator: contains
+    value: 正印
+    description: 命局中有正印
+  then:
+    - domain: personality
+      conclusion: 命中有正印
+      weight: 0.5
+      direction: neutral
+  priority: 50
+  source:
+    text: 滴天髓
+    credibility: 0.9
+  confidence: 0.9
+  version: 1.0.0

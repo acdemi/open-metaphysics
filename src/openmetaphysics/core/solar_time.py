@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import math
 from datetime import datetime, timedelta, timezone
+
 from pydantic import BaseModel, ConfigDict
 
 from . import calendar as c
-
 
 """Deterministic True Solar Time (真太阳时) calculation.
 
@@ -36,9 +36,12 @@ def equation_of_time(jd: float) -> float:
     # mean longitude of the Sun
     l0 = 280.46646 + 36000.76983 * t + 0.0003032 * t * t
     # Sun's true longitude
-    alpha = l0 + (1.914602 - 0.004817 * t - 0.000014 * t * t) * math.sin(m_rad) \
-            + (0.019993 - 0.000101 * t) * math.sin(2 * m_rad) \
-            + 0.000289 * math.sin(3 * m_rad)
+    alpha = (
+        l0
+        + (1.914602 - 0.004817 * t - 0.000014 * t * t) * math.sin(m_rad)
+        + (0.019993 - 0.000101 * t) * math.sin(2 * m_rad)
+        + 0.000289 * math.sin(3 * m_rad)
+    )
     # reduce alpha to 0-360
     alpha = alpha % 360
     alpha_rad = math.radians(alpha)

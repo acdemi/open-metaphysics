@@ -1,0 +1,464 @@
+[
+  {
+    "description": "",
+    "expected_output": {
+      "conclusions": [
+        {
+          "conclusion": "羊刃格",
+          "conclusion_id": "cc:overall:4c3cfa5dd216",
+          "confidence": 0.85,
+          "direction": null,
+          "domain": "overall",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:overall:d6bd0056e5b1"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.85,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "retain_all",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "conclusion_id": "cc:personality:07260d58a75b",
+          "confidence": 0.9,
+          "direction": "positive",
+          "domain": "personality",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:personality:fb618c6c457f"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.9,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "retain_all",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        }
+      ],
+      "conflicts": [],
+      "domains": [
+        "overall",
+        "personality"
+      ],
+      "evidence_ids": [
+        "ev:overall:d6bd0056e5b1",
+        "ev:personality:fb618c6c457f"
+      ],
+      "metadata": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_cross_system_bonus": 0.3,
+        "strategy": "retain_all",
+        "total_conclusions": 2,
+        "total_conflicts": 0,
+        "total_evidence": 2
+      },
+      "overall_confidence": 0.875,
+      "report_id": "cr:0573dbc8b402",
+      "version": "1.0.0"
+    },
+    "input": {
+      "config": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_confidence": 1.0,
+        "max_cross_system_bonus": 0.3,
+        "min_confidence": 0.0,
+        "strategy": "retain_all"
+      },
+      "evidence": [
+        {
+          "conclusion": "羊刃格",
+          "confidence": 0.85,
+          "domain": "overall",
+          "evidence_id": "ev:overall:d6bd0056e5b1",
+          "items": [
+            {
+              "conclusion": "羊刃格",
+              "confidence": 0.85,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:9f30ae9d4391",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 1,
+                "knowledge_node_ids": [],
+                "matched_rule_count": 1,
+                "source_name": "羊刃格"
+              },
+              "source_id": "pattern:bazi:yang_ren_ge:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:yang_ren_ge:v1",
+                "rule:bazi:yang_ren_ge:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.85
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:fb618c6c457f",
+          "items": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "confidence": 0.9,
+              "direction": "positive",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:0b26fbdfa7fa",
+              "metadata": {
+                "conclusion_node_id": "kn:personality:resolute",
+                "credibility": 0.8,
+                "priority": 60,
+                "result_index": 0,
+                "source_name": "rule:bazi:yang_ren_ge:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:yang_ren_ge:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:yang_ren_ge:v1",
+                "kn:personality:resolute"
+              ],
+              "version": "1.0.0",
+              "weight": 0.75
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "layer": "consensus",
+    "name": "consensus_retain_all",
+    "vector_id": "gv:consensus:354a58974b99"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "conclusions": [
+        {
+          "conclusion": "羊刃格",
+          "conclusion_id": "cc:overall:4c3cfa5dd216",
+          "confidence": 0.85,
+          "direction": null,
+          "domain": "overall",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:overall:d6bd0056e5b1"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.85,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "highest_confidence",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "conclusion_id": "cc:personality:07260d58a75b",
+          "confidence": 0.9,
+          "direction": "positive",
+          "domain": "personality",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:personality:fb618c6c457f"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.9,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "highest_confidence",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        }
+      ],
+      "conflicts": [],
+      "domains": [
+        "overall",
+        "personality"
+      ],
+      "evidence_ids": [
+        "ev:overall:d6bd0056e5b1",
+        "ev:personality:fb618c6c457f"
+      ],
+      "metadata": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_cross_system_bonus": 0.3,
+        "strategy": "highest_confidence",
+        "total_conclusions": 2,
+        "total_conflicts": 0,
+        "total_evidence": 2
+      },
+      "overall_confidence": 0.875,
+      "report_id": "cr:0573dbc8b402",
+      "version": "1.0.0"
+    },
+    "input": {
+      "config": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_confidence": 1.0,
+        "max_cross_system_bonus": 0.3,
+        "min_confidence": 0.0,
+        "strategy": "highest_confidence"
+      },
+      "evidence": [
+        {
+          "conclusion": "羊刃格",
+          "confidence": 0.85,
+          "domain": "overall",
+          "evidence_id": "ev:overall:d6bd0056e5b1",
+          "items": [
+            {
+              "conclusion": "羊刃格",
+              "confidence": 0.85,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:9f30ae9d4391",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 1,
+                "knowledge_node_ids": [],
+                "matched_rule_count": 1,
+                "source_name": "羊刃格"
+              },
+              "source_id": "pattern:bazi:yang_ren_ge:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:yang_ren_ge:v1",
+                "rule:bazi:yang_ren_ge:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.85
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:fb618c6c457f",
+          "items": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "confidence": 0.9,
+              "direction": "positive",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:0b26fbdfa7fa",
+              "metadata": {
+                "conclusion_node_id": "kn:personality:resolute",
+                "credibility": 0.8,
+                "priority": 60,
+                "result_index": 0,
+                "source_name": "rule:bazi:yang_ren_ge:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:yang_ren_ge:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:yang_ren_ge:v1",
+                "kn:personality:resolute"
+              ],
+              "version": "1.0.0",
+              "weight": 0.75
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "layer": "consensus",
+    "name": "consensus_highest_confidence",
+    "vector_id": "gv:consensus:6c064781e8cc"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "conclusions": [
+        {
+          "conclusion": "羊刃格",
+          "conclusion_id": "cc:overall:4c3cfa5dd216",
+          "confidence": 0.85,
+          "direction": null,
+          "domain": "overall",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:overall:d6bd0056e5b1"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.85,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "majority",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "conclusion_id": "cc:personality:07260d58a75b",
+          "confidence": 0.9,
+          "direction": "positive",
+          "domain": "personality",
+          "evidence_count": 1,
+          "evidence_ids": [
+            "ev:personality:fb618c6c457f"
+          ],
+          "is_conflict": false,
+          "metadata": {
+            "base_confidence": 0.9,
+            "cross_system_bonus": 0.0,
+            "system_count": 1
+          },
+          "strategy": "majority",
+          "systems": [
+            "bazi"
+          ],
+          "version": "1.0.0"
+        }
+      ],
+      "conflicts": [],
+      "domains": [
+        "overall",
+        "personality"
+      ],
+      "evidence_ids": [
+        "ev:overall:d6bd0056e5b1",
+        "ev:personality:fb618c6c457f"
+      ],
+      "metadata": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_cross_system_bonus": 0.3,
+        "strategy": "majority",
+        "total_conclusions": 2,
+        "total_conflicts": 0,
+        "total_evidence": 2
+      },
+      "overall_confidence": 0.875,
+      "report_id": "cr:0573dbc8b402",
+      "version": "1.0.0"
+    },
+    "input": {
+      "config": {
+        "cross_system_bonus_per_system": 0.1,
+        "max_confidence": 1.0,
+        "max_cross_system_bonus": 0.3,
+        "min_confidence": 0.0,
+        "strategy": "majority"
+      },
+      "evidence": [
+        {
+          "conclusion": "羊刃格",
+          "confidence": 0.85,
+          "domain": "overall",
+          "evidence_id": "ev:overall:d6bd0056e5b1",
+          "items": [
+            {
+              "conclusion": "羊刃格",
+              "confidence": 0.85,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:9f30ae9d4391",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 1,
+                "knowledge_node_ids": [],
+                "matched_rule_count": 1,
+                "source_name": "羊刃格"
+              },
+              "source_id": "pattern:bazi:yang_ren_ge:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:yang_ren_ge:v1",
+                "rule:bazi:yang_ren_ge:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.85
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:fb618c6c457f",
+          "items": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "confidence": 0.9,
+              "direction": "positive",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:0b26fbdfa7fa",
+              "metadata": {
+                "conclusion_node_id": "kn:personality:resolute",
+                "credibility": 0.8,
+                "priority": 60,
+                "result_index": 0,
+                "source_name": "rule:bazi:yang_ren_ge:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:yang_ren_ge:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:yang_ren_ge:v1",
+                "kn:personality:resolute"
+              ],
+              "version": "1.0.0",
+              "weight": 0.75
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "layer": "consensus",
+    "name": "consensus_majority",
+    "vector_id": "gv:consensus:226f9e95eca7"
+  }
+]

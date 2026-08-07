@@ -1,0 +1,46 @@
+rule:
+  id: rule:bazi:shang_guan_pei_yin:v1
+  name: 伤官佩印
+  name_en: wounded_officer_adorned_by_seal
+  system: bazi
+  rule_type: pattern_recognition
+
+  if:
+    all:
+      - field: ten_gods_map.values
+        operator: contains
+        value: 伤官
+        description: 命局中有伤官
+      - field: ten_gods_map.values
+        operator: contains
+        value: 正印
+        description: 命局中有正印
+      - field: day_master_strength
+        operator: less_than
+        value: 0.4
+        description: 日主偏弱
+
+  then:
+    - domain: career
+      conclusion: 适合科研
+      conclusion_node_id: kn:career:research
+      weight: 0.91
+      direction: positive
+    - domain: personality
+      conclusion: 聪慧好学
+      conclusion_node_id: kn:personality:intellectual
+      weight: 0.85
+      direction: positive
+
+  priority: 80
+  scope:
+    systems: [bazi]
+  conflicts:
+    - rule:bazi:shang_guan_jian_sha:v1
+  conflict_strategy: retain_all
+  source:
+    text: 滴天髓
+    chapter: 伤官
+    credibility: 0.95
+  confidence: 1.0
+  version: 1.0.0

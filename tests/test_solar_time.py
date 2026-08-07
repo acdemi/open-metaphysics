@@ -113,4 +113,3 @@ def test_all_outputs_timezone_aware():
     assert result["standard_time"].tzinfo is not None
     assert result["local_mean_time"].tzinfo is not None
     assert result["true_solar_time"].tzinfo is not None
-

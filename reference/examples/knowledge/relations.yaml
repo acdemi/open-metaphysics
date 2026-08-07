@@ -1,0 +1,113 @@
+relations:
+  - id: rel:wuxing:mu:sheng:huo:v1
+    source_node_id: kn:wuxing:mu
+    target_node_id: kn:wuxing:huo
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: 木生火，木为火之母，火为木之子
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:wuxing:huo:sheng:tu:v1
+    source_node_id: kn:wuxing:huo
+    target_node_id: kn:wuxing:tu
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: 火生土，火为土之母
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:wuxing:tu:sheng:jin:v1
+    source_node_id: kn:wuxing:tu
+    target_node_id: kn:wuxing:jin
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: 土生金，土为金之母
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:wuxing:jin:sheng:shui:v1
+    source_node_id: kn:wuxing:jin
+    target_node_id: kn:wuxing:shui
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: 金生水，金为水之母
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:wuxing:shui:sheng:mu:v1
+    source_node_id: kn:wuxing:shui
+    target_node_id: kn:wuxing:mu
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: 水生木，水为木之母
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:wuxing:mu:ke:tu:v1
+    source_node_id: kn:wuxing:mu
+    target_node_id: kn:wuxing:tu
+    relation_type: ke
+    direction: directed
+    weight: 0.9
+    evidence:
+      - description: 木克土，木为土之所不胜
+        source:
+          text: 尚书·洪范
+          credibility: 1.0
+        weight: 1.0
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+
+  - id: rel:pattern:sgpy:zhixiang:sg:v1
+    source_node_id: kn:pattern:shang_guan_pei_yin
+    target_node_id: kn:ten_god:shang_guan
+    relation_type: zhixiang
+    direction: directed
+    weight: 0.95
+    evidence:
+      - description: 伤官佩印格局指向伤官十神
+        source:
+          text: 滴天髓
+          chapter: 伤官
+          credibility: 0.95
+        weight: 1.0
+    source:
+      text: 滴天髓
+      credibility: 0.95

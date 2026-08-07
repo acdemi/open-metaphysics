@@ -1,11 +1,14 @@
 # OpenMetaphysics — Schema 设计
 
-> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：设计 v1 (2026-07-04)。
+> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Reference Freeze Candidate (2026-07-14)。
+> Schema 是跨语言契约（Python / Rust / Go），由 Reference Runtime 定义。
 
 ## 1. 设计规则
 
-- **一个信封，多个载荷。** 每个智能体返回相同的 AgentOutput 信封；只有 esult 载荷类型按智能体变化。
-- 输入扩展 AgentInput；输出扩展 AgentOutput 并带有类型化 esult。
+- **一个信封，多个载荷。** 每个智能体返回相同的 AgentOutput 信封；只有 
+esult 载荷类型按智能体变化。
+- 输入扩展 AgentInput；输出扩展 AgentOutput 并带有类型化 
+esult。
 - 枚举是封闭字符串基的（JSON 跨版本稳定）。
 - 所有日期时间都是时区感知的 ISO-8601。出生地点可选。
 - 每个 schema 都可以通过 Model.model_json_schema() 导出为 JSON Schema，并通过 API 在 GET /agents/{name}/schema 发布。
@@ -82,7 +85,8 @@ class AgentOutput(BaseModel):
 
 输入：BaziInput(AgentInput) — 无额外字段（出生日时分 + 性别驱动大运方向）。
 
-输出 esult: BaziChart:
+输出 
+esult: BaziChart:
 
 `python
 class Pillar(BaseModel):
@@ -111,7 +115,8 @@ class BaziChart(BaseModel):
 输入：ZiweiInput(AgentInput) — 出生日时分 + 性别（阴阳 + 年干决定命局/紫微 placement）。
 支持显式提供 lunar_month: int | None / lunar_day: int | None 用于重放。
 
-输出 esult: ZiweiChart:
+输出 
+esult: ZiweiChart:
 
 `python
 class Palace(BaseModel):
@@ -138,7 +143,8 @@ class ZiweiChart(BaseModel):
 
 输入：QimenInput(AgentInput) — 使用 orn_at（或选定的问卦时间）构建时家奇门盘。
 
-输出 esult: QimenBoard:
+输出 
+esult: QimenBoard:
 
 `python
 class QimenCell(BaseModel):
@@ -162,7 +168,8 @@ class QimenBoard(BaseModel):
 
 ### 3.4 六爻 (gents.liuyao)
 
-输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 andom()）。
+输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 
+andom()）。
 
 `python
 class YaoLine(BaseModel):
@@ -196,7 +203,8 @@ class ConsensusInput(BaseModel):
     strategy: Literal["weighted","majority","all"] = "weighted"
 `
 
-输出 esult: ConsensusReport:
+输出 
+esult: ConsensusReport:
 
 `python
 class AgentContribution(BaseModel):
@@ -234,3 +242,63 @@ AgentRegistry 对每个智能体暴露：
 `
 
 这是 FastAPI 层、MCP 桩和任何外部客户端消费的唯一真相来源。Schemas 在测试中对照示例 fixtures 验证。
+
+---
+
+## 5. Reference Runtime 与 Production Runtime 的关系
+
+### 5.1 双重 Schema 体系
+
+OpenMetaphysics 存在两套 Schema：
+
+| Schema 体系 | 位置 | 用途 | 状态 |
+|-------------|------|------|------|
+| Production Schema | `src/openmetaphysics/core/schemas` | API 层、智能体信封 | 设计完成，部分实现 |
+| Reference Schema | `reference/models.py` 等 | 行为规范、Contract | 完成，已冻结 |
+
+**Reference Schema 是行为规范的唯一来源。** Production Schema 必须与
+Reference Schema 保持兼容。
+
+### 5.2 映射关系
+
+    Production Schema (src/)           Reference Schema (reference/)
+    AgentOutput                        RuleEvaluation / Evidence / ConsensusReport
+    AgentInput                         chart_data (dict)
+    ConfidenceScore                    confidence (float)
+    ReasoningStep                      trace (list[str])
+
+Production Schema 关注 API 层的信封结构（request_id, computed_at 等）。
+Reference Schema 关注推理结果的确定性结构（RuleEvaluation, Evidence,
+ConsensusReport）。
+
+---
+
+## 6. Schema 作为跨语言契约
+
+### 6.1 跨语言一致性
+
+Schema 不仅是 Python Pydantic 模型，更是**跨语言契约**：
+
+- **Python**: Pydantic v2 模型（Reference Runtime + AI Layer）
+- **Rust**: serde struct（计算核心、Rule Engine、Calendar）
+- **Go**: struct + JSON tags（API、Consensus、Worker）
+
+所有实现必须对同一输入产生**字节相同的 JSON 输出**。
+
+### 6.2 契约验证
+
+跨语言一致性通过以下机制保证：
+
+1. **Contract JSON**（`reference/contracts/*.json`）：由 Reference Runtime
+   自动生成，包含 golden examples。
+2. **Golden Vectors**（`reference/conformance/golden/*.json`）：由
+   Reference Runtime 自动生成，用于 Conformance Suite 验证。
+3. **Conformance Suite**（`reference/conformance_runner.py`）：验证
+   Production Runtime 输出与 Reference Runtime 完全一致。
+
+### 6.3 JSON 序列化规则（跨语言通用）
+
+- `ensure_ascii=False`：保留 Unicode（中文不转义）
+- `sort_keys=True`：键名字典序排列
+- 无 trailing whitespace，无 pretty-printing
+- 详见 `docs/specification/CONFORMANCE_SPEC.md` CF-001 ~ CF-003

@@ -1,0 +1,21 @@
+pattern:
+  pattern_id: pattern:cross:gang_yi_jin_dun:v1
+  name: 刚毅金遁
+  description: 八字羊刃格与奇门阳遁金局同时出现，主刚毅果断
+  category: cross_system
+  confidence: 0.80
+  systems: [bazi, qimen]
+  rule_ids:
+    - rule:bazi:yang_ren_ge:v1
+    - rule:qimen:yang_dun_jin:v1
+  knowledge_node_ids:
+    - kn:cross:gang_yi
+  requirements:
+    - rule_ids:
+        - rule:bazi:yang_ren_ge:v1
+        - rule:qimen:yang_dun_jin:v1
+      logic: all
+  source:
+    text: 综合
+    credibility: 0.75
+  version: 1.0.0

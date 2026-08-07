@@ -1,17 +1,15 @@
 from __future__ import annotations
 
-import json
-from typing import Any, Dict, List
+from typing import Any
 
 from jinja2 import Template
 
 from ..core.schemas import AgentOutput, Gender
 from ..inference.explainer import Explainer
-from .ziwei import ZiweiChart, Palace
-
+from .ziwei import ZiweiChart
 
 # 辅星权重映射，值越小优先级越高
-AUX_STAR_WEIGHT: Dict[str, int] = {
+AUX_STAR_WEIGHT: dict[str, int] = {
     # 四化
     "化禄": 1,
     "化权": 2,
@@ -36,12 +34,12 @@ AUX_STAR_WEIGHT: Dict[str, int] = {
 }
 
 
-def _sort_aux_stars(stars: List[str]) -> List[str]:
+def _sort_aux_stars(stars: list[str]) -> list[str]:
     """按权重优先级排序辅星，高优先级在前"""
     return sorted(stars, key=lambda s: AUX_STAR_WEIGHT.get(s, 999))
 
 
-def _format_aux_stars(stars: List[str]) -> str:
+def _format_aux_stars(stars: list[str]) -> str:
     """格式化辅星展示：取前3个高优先级，超过3个显示等X颗"""
     if not stars:
         return "无"
@@ -150,12 +148,14 @@ class ZiweiExplainer(Explainer):
         core_palaces = []
         for name in core_palace_names:
             p = pillars_by_pos[name]
-            core_palaces.append({
-                "name": name,
-                "stars": "、".join(p.main_stars) if p.main_stars else "无主星",
-                "aux_stars": _format_aux_stars(p.auxiliary_stars),
-                "ganzhi": p.heavenly_stem + p.earthly_branch
-            })
+            core_palaces.append(
+                {
+                    "name": name,
+                    "stars": "、".join(p.main_stars) if p.main_stars else "无主星",
+                    "aux_stars": _format_aux_stars(p.auxiliary_stars),
+                    "ganzhi": p.heavenly_stem + p.earthly_branch,
+                }
+            )
 
         # 星曜分布
         stars_dist = []
@@ -165,16 +165,26 @@ class ZiweiExplainer(Explainer):
         stars_distribution = "\n".join(stars_dist)
 
         # 性别
-        gender_text = "男" if output.input_payload.get("gender") == Gender.MALE else "女" if output.input_payload.get("gender") == Gender.FEMALE else "未知"
+        gender_text = (
+            "男"
+            if output.input_payload.get("gender") == Gender.MALE
+            else "女"
+            if output.input_payload.get("gender") == Gender.FEMALE
+            else "未知"
+        )
         question = output.input_payload.get("question", "分析此紫微斗数命盘")
 
         return {
             "wuxing_ju": chart.wuxing_ju,
             "fate_palace_name": fate_palace.name,
             "fate_palace_ganzhi": fate_palace.heavenly_stem + fate_palace.earthly_branch,
-            "fate_palace_stars": "、".join(fate_palace.main_stars) if fate_palace.main_stars else "无主星",
+            "fate_palace_stars": "、".join(fate_palace.main_stars)
+            if fate_palace.main_stars
+            else "无主星",
             "body_palace_name": body_palace.name,
-            "body_palace_stars": "、".join(body_palace.main_stars) if body_palace.main_stars else "无主星",
+            "body_palace_stars": "、".join(body_palace.main_stars)
+            if body_palace.main_stars
+            else "无主星",
             "patterns_list": patterns_list,
             "gender_text": gender_text,
             "question": question,

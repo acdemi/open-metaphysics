@@ -1,0 +1,123 @@
+[
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "conclusion": "羊刃格",
+        "confidence": 0.85,
+        "domain": "overall",
+        "evidence_id": "ev:overall:d6bd0056e5b1",
+        "items": [
+          {
+            "conclusion": "羊刃格",
+            "confidence": 0.85,
+            "direction": null,
+            "domain": "overall",
+            "evidence_id": "ev:bazi:9f30ae9d4391",
+            "metadata": {
+              "category": "geju",
+              "evidence_count": 1,
+              "knowledge_node_ids": [],
+              "matched_rule_count": 1,
+              "source_name": "羊刃格"
+            },
+            "source_id": "pattern:bazi:yang_ren_ge:v1",
+            "source_type": "pattern",
+            "system": "bazi",
+            "timestamp": null,
+            "trace": [
+              "pattern:bazi:yang_ren_ge:v1",
+              "rule:bazi:yang_ren_ge:v1"
+            ],
+            "version": "1.0.0",
+            "weight": 0.85
+          }
+        ],
+        "system": "bazi",
+        "version": "1.0.0"
+      },
+      {
+        "conclusion": "性格刚毅果敢",
+        "confidence": 0.9,
+        "domain": "personality",
+        "evidence_id": "ev:personality:fb618c6c457f",
+        "items": [
+          {
+            "conclusion": "性格刚毅果敢",
+            "confidence": 0.9,
+            "direction": "positive",
+            "domain": "personality",
+            "evidence_id": "ev:bazi:0b26fbdfa7fa",
+            "metadata": {
+              "conclusion_node_id": "kn:personality:resolute",
+              "credibility": 0.8,
+              "priority": 60,
+              "result_index": 0,
+              "source_name": "rule:bazi:yang_ren_ge:v1",
+              "source_ref": ""
+            },
+            "source_id": "rule:bazi:yang_ren_ge:v1",
+            "source_type": "rule",
+            "system": "bazi",
+            "timestamp": null,
+            "trace": [
+              "rule:bazi:yang_ren_ge:v1",
+              "kn:personality:resolute"
+            ],
+            "version": "1.0.0",
+            "weight": 0.75
+          }
+        ],
+        "system": "bazi",
+        "version": "1.0.0"
+      }
+    ],
+    "input": {
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "matches": [
+        {
+          "category": "geju",
+          "confidence": 0.85,
+          "evidence": [
+            {
+              "conclusions": [
+                "性格刚毅果敢"
+              ],
+              "matched": true,
+              "rule_id": "rule:bazi:yang_ren_ge:v1",
+              "system": "bazi"
+            }
+          ],
+          "knowledge_node_ids": [],
+          "matched": true,
+          "matched_by": "bazi",
+          "matched_rule_ids": [
+            "rule:bazi:yang_ren_ge:v1"
+          ],
+          "pattern_id": "pattern:bazi:yang_ren_ge:v1",
+          "pattern_name": "羊刃格"
+        }
+      ],
+      "system": "bazi"
+    },
+    "layer": "evidence",
+    "name": "single_rule_evidence",
+    "vector_id": "gv:evidence:001"
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "description": "",
+    "expected_output": {
+      "category": "geju",
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "conclusions": [
+            "性格刚毅果敢"
+          ],
+          "matched": true,
+          "rule_id": "rule:bazi:yang_ren_ge:v1",
+          "system": "bazi"
+        }
+      ],
+      "knowledge_node_ids": [],
+      "matched": true,
+      "matched_by": "bazi",
+      "matched_rule_ids": [
+        "rule:bazi:yang_ren_ge:v1"
+      ],
+      "pattern_id": "pattern:bazi:yang_ren_ge:v1",
+      "pattern_name": "羊刃格"
+    },
+    "input": {
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "pattern_yaml": "pattern:\n  pattern_id: pattern:bazi:yang_ren_ge:v1\n  name: 羊刃格\n  description: 命局中有羊刃，主性格刚毅果敢\n  category: geju\n  confidence: 0.85\n  systems: [bazi]\n  rule_ids:\n    - rule:bazi:yang_ren_ge:v1\n  knowledge_node_ids: []\n  requirements:\n    - rule_ids: [rule:bazi:yang_ren_ge:v1]\n      logic: all\n  source:\n    text: 三命通会\n    credibility: 0.85\n  version: 1.0.0\n",
+      "system": "bazi"
+    },
+    "layer": "pattern",
+    "name": "01_single_rule",
+    "vector_id": "gv:pattern:ff3a31f5d59d"
+  },
+  {
+    "description": "",
+    "expected_output": null,
+    "input": {
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "pattern_yaml": "pattern:\n  pattern_id: pattern:bazi:shang_guan_pei_yin_geju:v1\n  name: 伤官佩印格局\n  description: 伤官配印且日主偏弱，构成伤官佩印格局\n  category: geju\n  confidence: 0.92\n  systems: [bazi]\n  rule_ids:\n    - rule:bazi:has_shang_guan:v1\n    - rule:bazi:has_zheng_yin:v1\n    - rule:bazi:weak_day_master:v1\n  knowledge_node_ids:\n    - kn:pattern:shang_guan_pei_yin\n  requirements:\n    - rule_ids:\n        - rule:bazi:has_shang_guan:v1\n        - rule:bazi:has_zheng_yin:v1\n        - rule:bazi:weak_day_master:v1\n      logic: all\n  source:\n    text: 滴天髓\n    chapter: 伤官\n    credibility: 0.95\n  version: 1.0.0\n",
+      "system": "bazi"
+    },
+    "layer": "pattern",
+    "name": "02_multi_rule",
+    "vector_id": "gv:pattern:d5a0303cb50d"
+  },
+  {
+    "description": "",
+    "expected_output": null,
+    "input": {
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "pattern_yaml": "pattern:\n  pattern_id: pattern:bazi:wealth_indicator:v1\n  name: 财星指示\n  description: 命中有正财或偏财，指示财运\n  category: shensha\n  confidence: 0.75\n  systems: [bazi]\n  rule_ids:\n    - rule:bazi:cai_xing_ge:v1#1\n    - rule:bazi:cai_xing_ge:v1#2\n  knowledge_node_ids: []\n  requirements:\n    - rule_ids:\n        - rule:bazi:cai_xing_ge:v1#1\n        - rule:bazi:cai_xing_ge:v1#2\n      logic: any\n      min_matches: 1\n  source:\n    text: 子平真诠\n    credibility: 0.90\n  version: 1.0.0\n",
+      "system": "bazi"
+    },
+    "layer": "pattern",
+    "name": "03_any_logic",
+    "vector_id": "gv:pattern:2ab2241969bf"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "category": "cross_system",
+      "confidence": 0.8,
+      "evidence": [
+        {
+          "conclusions": [
+            "性格刚毅果敢"
+          ],
+          "matched": true,
+          "rule_id": "rule:bazi:yang_ren_ge:v1",
+          "system": "bazi"
+        },
+        {
+          "conclusions": [
+            "阳遁金局，主肃杀果断"
+          ],
+          "matched": true,
+          "rule_id": "rule:qimen:yang_dun_jin:v1",
+          "system": "qimen"
+        }
+      ],
+      "knowledge_node_ids": [
+        "kn:cross:gang_yi"
+      ],
+      "matched": true,
+      "matched_by": "cross_system",
+      "matched_rule_ids": [
+        "rule:bazi:yang_ren_ge:v1",
+        "rule:qimen:yang_dun_jin:v1"
+      ],
+      "pattern_id": "pattern:cross:gang_yi_jin_dun:v1",
+      "pattern_name": "刚毅金遁"
+    },
+    "input": {
+      "evaluations_by_system": {
+        "bazi": [
+          {
+            "confidence": 0.9,
+            "matched": true,
+            "priority": 60,
+            "results": [
+              {
+                "conclusion": "性格刚毅果敢",
+                "conclusion_node_id": "kn:personality:resolute",
+                "direction": "positive",
+                "domain": "personality",
+                "weight": 0.75
+              }
+            ],
+            "rule_id": "rule:bazi:yang_ren_ge:v1"
+          }
+        ],
+        "qimen": [
+          {
+            "confidence": 0.8,
+            "matched": true,
+            "priority": 55,
+            "results": [
+              {
+                "conclusion": "阳遁金局，主肃杀果断",
+                "conclusion_node_id": null,
+                "direction": "neutral",
+                "domain": "overall",
+                "weight": 0.65
+              }
+            ],
+            "rule_id": "rule:qimen:yang_dun_jin:v1"
+          }
+        ]
+      },
+      "pattern_yaml": "pattern:\n  pattern_id: pattern:cross:gang_yi_jin_dun:v1\n  name: 刚毅金遁\n  description: 八字羊刃格与奇门阳遁金局同时出现，主刚毅果断\n  category: cross_system\n  confidence: 0.80\n  systems: [bazi, qimen]\n  rule_ids:\n    - rule:bazi:yang_ren_ge:v1\n    - rule:qimen:yang_dun_jin:v1\n  knowledge_node_ids:\n    - kn:cross:gang_yi\n  requirements:\n    - rule_ids:\n        - rule:bazi:yang_ren_ge:v1\n        - rule:qimen:yang_dun_jin:v1\n      logic: all\n  source:\n    text: 综合\n    credibility: 0.75\n  version: 1.0.0\n"
+    },
+    "layer": "pattern",
+    "name": "04_cross_system",
+    "vector_id": "gv:pattern:2c2f49633975"
+  },
+  {
+    "description": "",
+    "expected_output": null,
+    "input": {
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "pattern_yaml": "pattern:\n  pattern_id: pattern:bazi:shang_guan_wu_yin_geju:v1\n  name: 伤官无印格局\n  description: 伤官无印，主傲慢不羁\n  category: geju\n  confidence: 0.70\n  systems: [bazi]\n  rule_ids:\n    - rule:bazi:shang_guan_wu_yin:v1\n  knowledge_node_ids: []\n  requirements:\n    - rule_ids: [rule:bazi:shang_guan_wu_yin:v1]\n      logic: all\n  source:\n    text: 滴天髓\n    credibility: 0.95\n  version: 1.0.0\n",
+      "system": "bazi"
+    },
+    "layer": "pattern",
+    "name": "05_no_match",
+    "vector_id": "gv:pattern:bf38fc8407f0"
+  }
+]

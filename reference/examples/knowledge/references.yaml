@@ -1,0 +1,69 @@
+references:
+  - reference_id: ref:classic:shangshu_hongfan_mu
+    target_type: node
+    target_id: kn:wuxing:mu
+    ref_type: classic_text
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    passage: 五行：一曰水，二曰火，三曰木，四曰金，五曰土。木曰曲直。
+    school: null
+    credibility: 1.0
+
+  - reference_id: ref:classic:shangshu_hongfan_huo
+    target_type: node
+    target_id: kn:wuxing:huo
+    ref_type: classic_text
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    passage: 火曰炎上。
+    school: null
+    credibility: 1.0
+
+  - reference_id: ref:school:ziping_shang_guan
+    target_type: node
+    target_id: kn:ten_god:shang_guan
+    ref_type: school_commentary
+    source:
+      text: 滴天髓
+      chapter: 伤官
+      credibility: 0.95
+    passage: 伤官佩印为贵格，伤官见官为祸端。
+    school: 子平
+    credibility: 0.95
+
+  - reference_id: ref:classic:ditianshui_pattern
+    target_type: node
+    target_id: kn:pattern:shang_guan_pei_yin
+    ref_type: classic_text
+    source:
+      text: 滴天髓
+      chapter: 伤官
+      credibility: 0.95
+    passage: 伤官配印，其人必聪慧好学。
+    school: null
+    credibility: 0.95
+
+  - reference_id: ref:school:ziping_yang_ren
+    target_type: node
+    target_id: kn:shen_sha:yang_ren
+    ref_type: school_commentary
+    source:
+      text: 三命通会
+      chapter: 羊刃
+      credibility: 0.85
+    passage: 羊刃主刚毅果敢，然易刑伤血光。
+    school: 子平
+    credibility: 0.85
+
+  - reference_id: ref:classic:suwen_mu_sheng_huo
+    target_type: relation
+    target_id: rel:wuxing:mu:sheng:huo:v1
+    ref_type: classic_text
+    source:
+      text: 素问·阴阳应象大论
+      credibility: 0.95
+    passage: 东方生风，风生木，木生酸，酸生肝，肝生筋，筋生心。
+    school: null
+    credibility: 0.95
