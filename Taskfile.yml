@@ -1,0 +1,120 @@
+version: "3"
+
+vars:
+  PYTHON_PKG: src/openmetaphysics
+  RUST_CRATES: crates/*
+
+tasks:
+  bootstrap:
+    desc: "Install all toolchains and dependencies"
+    cmds:
+      - task: bootstrap:python
+      - task: bootstrap:rust
+      - task: bootstrap:go
+      - task: bootstrap:hooks
+
+  bootstrap:python:
+    desc: "Install Python dependencies via uv"
+    cmds:
+      - "uv sync --all-extras || pip install -e '.[dev]'"
+
+  bootstrap:rust:
+    desc: "Install Rust dependencies"
+    cmds:
+      - "cargo fetch"
+
+  bootstrap:go:
+    desc: "Install Go dependencies"
+    cmds:
+      - "cd services/gateway && go mod download"
+
+  bootstrap:hooks:
+    desc: "Install pre-commit hooks"
+    cmds:
+      - "pre-commit install || echo 'pre-commit not installed, skipping hooks'"
+
+  lint:
+    desc: "Run linters for all languages"
+    cmds:
+      - task: lint:python
+      - task: lint:rust
+      - task: lint:go
+      - task: lint:proto
+
+  lint:python:
+    cmds:
+      - "ruff check src/ tests/"
+      - "ruff format --check src/ tests/"
+
+  lint:rust:
+    cmds:
+      - "cargo clippy --workspace --all-targets -- -D warnings"
+
+  lint:go:
+    cmds:
+      - "cd services/gateway && go vet ./..."
+
+  lint:proto:
+    cmds:
+      - "buf lint || echo 'buf not installed, skipping proto lint'"
+
+  test:
+    desc: "Run tests for all languages"
+    cmds:
+      - task: test:python
+      - task: test:rust
+      - task: test:go
+
+  test:python:
+    cmds:
+      - "pytest -q"
+
+  test:rust:
+    cmds:
+      - "cargo test --workspace"
+
+  test:go:
+    cmds:
+      - "cd services/gateway && go test ./..."
+
+  fmt:
+    desc: "Format code for all languages"
+    cmds:
+      - task: fmt:python
+      - task: fmt:rust
+      - task: fmt:go
+
+  fmt:python:
+    cmds:
+      - "ruff format src/ tests/"
+
+  fmt:rust:
+    cmds:
+      - "cargo fmt --all"
+
+  fmt:go:
+    cmds:
+      - "cd services/gateway && gofmt -w ."
+
+  proto:
+    desc: "Generate code from protobuf definitions"
+    cmds:
+      - "buf generate || echo 'buf not installed, run: go install github.com/bufbuild/buf/cmd/buf@latest'"
+
+  docker:up:
+    desc: "Start infrastructure services"
+    cmds:
+      - "docker compose up -d"
+
+  docker:down:
+    desc: "Stop infrastructure services"
+    cmds:
+      - "docker compose down"
+
+  clean:
+    desc: "Clean build artifacts"
+    cmds:
+      - "rm -rf .ruff_cache .pytest_cache __pycache__"
+      - "find . -type d -name __pycache__ -exec rm -rf {} + || true"
+      - "cargo clean || true"
+      - "cd services/gateway && go clean || true"

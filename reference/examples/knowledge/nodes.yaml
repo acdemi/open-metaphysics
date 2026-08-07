@@ -1,0 +1,187 @@
+nodes:
+  - id: kn:wuxing:mu
+    node_type: wuxing
+    name_cn: 木
+    name_en: wood
+    systems: [bazi, ziwei, qimen, liuyao]
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    interpretation: 木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。
+    tags: [阳, 东方, 春季, 肝胆]
+    confidence: 1.0
+    schools:
+      - school: 子平
+        interpretation: 甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。
+        source:
+          text: 滴天髓
+          credibility: 0.95
+        weight: 1.0
+    attributes:
+      yin_yang: 阳
+      season: 春
+      direction: 东
+      color: 青
+      organ: 肝胆
+
+  - id: kn:wuxing:huo
+    node_type: wuxing
+    name_cn: 火
+    name_en: fire
+    systems: [bazi, ziwei, qimen, liuyao]
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    interpretation: 火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。
+    tags: [阳, 南方, 夏季, 心小肠]
+    confidence: 1.0
+    attributes:
+      yin_yang: 阳
+      season: 夏
+      direction: 南
+      color: 赤
+      organ: 心小肠
+
+  - id: kn:wuxing:tu
+    node_type: wuxing
+    name_cn: 土
+    name_en: earth
+    systems: [bazi, ziwei, qimen, liuyao]
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    interpretation: 土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。
+    tags: [中央, 长夏, 脾胃]
+    confidence: 1.0
+    attributes:
+      yin_yang: 阳
+      season: 长夏
+      direction: 中
+      color: 黄
+      organ: 脾胃
+
+  - id: kn:wuxing:jin
+    node_type: wuxing
+    name_cn: 金
+    name_en: metal
+    systems: [bazi, ziwei, qimen, liuyao]
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    interpretation: 金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。
+    tags: [阴, 西方, 秋季, 肺大肠]
+    confidence: 1.0
+    attributes:
+      yin_yang: 阴
+      season: 秋
+      direction: 西
+      color: 白
+      organ: 肺大肠
+
+  - id: kn:wuxing:shui
+    node_type: wuxing
+    name_cn: 水
+    name_en: water
+    systems: [bazi, ziwei, qimen, liuyao]
+    source:
+      text: 尚书·洪范
+      credibility: 1.0
+    interpretation: 水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。
+    tags: [阴, 北方, 冬季, 肾膀胱]
+    confidence: 1.0
+    attributes:
+      yin_yang: 阴
+      season: 冬
+      direction: 北
+      color: 黑
+      organ: 肾膀胱
+
+  - id: kn:ten_god:shang_guan
+    node_type: ten_god
+    name_cn: 伤官
+    name_en: shang_guan
+    systems: [bazi]
+    source:
+      text: 滴天髓
+      chapter: 伤官
+      credibility: 0.95
+    interpretation: 伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。
+    tags: [才智, 秀气]
+    confidence: 0.9
+    schools:
+      - school: 子平
+        interpretation: 伤官佩印为贵格，伤官见官为祸端。
+        source:
+          text: 滴天髓
+          credibility: 0.95
+        weight: 1.0
+      - school: 盲派
+        interpretation: 伤官重象不重理，看其在命局中的刑冲合害。
+        source:
+          text: 盲师口传
+          credibility: 0.7
+        weight: 0.8
+    attributes:
+      relation_to_day_master: 我生
+      element: varies
+      polarity: yin
+
+  - id: kn:ten_god:zheng_yin
+    node_type: ten_god
+    name_cn: 正印
+    name_en: zheng_yin
+    systems: [bazi]
+    source:
+      text: 滴天髓
+      credibility: 0.95
+    interpretation: 正印为生日主之异性之物，主慈慧学问，主庇护。
+    tags: [慈慧, 学问]
+    confidence: 0.9
+    attributes:
+      relation_to_day_master: 生我
+      element: varies
+      polarity: yang
+
+  - id: kn:shen_sha:yang_ren
+    node_type: shen_sha
+    name_cn: 羊刃
+    name_en: yang_ren
+    systems: [bazi, ziwei]
+    source:
+      text: 三命通会
+      chapter: 羊刃
+      credibility: 0.85
+    interpretation: 羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。
+    tags: [刚毅, 果敢, 刑伤]
+    confidence: 0.85
+    attributes:
+      star_type: di_wang
+
+  - id: kn:pattern:shang_guan_pei_yin
+    node_type: pattern
+    name_cn: 伤官佩印
+    name_en: shang_guan_pei_yin
+    systems: [bazi]
+    source:
+      text: 滴天髓
+      chapter: 伤官
+      credibility: 0.95
+    interpretation: 伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。
+    tags: [格局, 聪慧]
+    confidence: 0.92
+    attributes:
+      requires: [伤官, 正印, 日主偏弱]
+
+  - id: kn:personality:resolute
+    node_type: personality
+    name_cn: 刚毅果敢
+    name_en: resolute
+    systems: [bazi, ziwei]
+    source:
+      text: 三命通会
+      credibility: 0.85
+    interpretation: 性格刚毅果敢，行事果断，有领导之才。
+    tags: [性格, 刚毅]
+    confidence: 0.8
+    attributes:
+      direction: positive

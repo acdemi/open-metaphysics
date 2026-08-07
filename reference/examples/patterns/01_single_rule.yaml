@@ -1,0 +1,17 @@
+pattern:
+  pattern_id: pattern:bazi:yang_ren_ge:v1
+  name: 羊刃格
+  description: 命局中有羊刃，主性格刚毅果敢
+  category: geju
+  confidence: 0.85
+  systems: [bazi]
+  rule_ids:
+    - rule:bazi:yang_ren_ge:v1
+  knowledge_node_ids: []
+  requirements:
+    - rule_ids: [rule:bazi:yang_ren_ge:v1]
+      logic: all
+  source:
+    text: 三命通会
+    credibility: 0.85
+  version: 1.0.0

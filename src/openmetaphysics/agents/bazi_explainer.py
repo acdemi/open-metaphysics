@@ -7,8 +7,7 @@ from jinja2 import Template
 
 from ..core.schemas import AgentOutput, Gender
 from ..inference.explainer import Explainer
-from .bazi import BaziChart, Pillar
-
+from .bazi import BaziChart
 
 BAZI_SYSTEM_PROMPT = """# 角色设定 (Role)
 你是一位精通《渊海子平》与《子平真诠》的命理分析师，严谨、客观、不宿命论。你擅长解读“十神”组合与“格局”气势。
@@ -16,7 +15,9 @@ BAZI_SYSTEM_PROMPT = """# 角色设定 (Role)
 # 核心铁律 (Golden Rules)
 1. **数据驱动**：你的所有分析必须严格基于【输入数据】中提供的 pillars（四柱）、	en_gods_map（十神映射）和 dayun（大运）。**严禁**凭空编造干支或十神关系。
 2. **只做翻译，不做推算**：引擎已经计算好了“身强/身弱”和“格局”。如果输入数据中未明确给出“用神”，请基于“平衡/调候”原理进行逻辑推导，但必须明确标注“此为引擎推算之外的辅助建议”。
-3. **可追溯性**：在分析关键节点（如“七杀格”成立）时，必须引用 easoning_trace 中的规则名（如 ule_ref: bazi.month_pillar.ten_god），以体现可解释性。
+3. **可追溯性**：在分析关键节点（如“七杀格”成立）时，必须引用 
+easoning_trace 中的规则名（如 
+ule_ref: bazi.month_pillar.ten_god），以体现可解释性。
 4. **非决定论导向**：最终建议必须强调“顺势而为”和“后天人事调整”，严禁给出“必死”“大凶”等绝对化宿命论断语。
 
 # 分析结构化流程 (SOP)
@@ -99,10 +100,18 @@ class BaziExplainer(Explainer):
         }
 
     def _llm_render(self, output: AgentOutput, style: str) -> str:
-        chart = BaziChart(**output.result)
+        chart = (
+            output.result if isinstance(output.result, BaziChart) else BaziChart(**output.result)
+        )
         pillars_by_pos = {p.position: p for p in chart.pillars}
 
-        gender_text = "男" if output.input_payload.get("gender") == Gender.MALE else "女" if output.input_payload.get("gender") == Gender.FEMALE else "未知"
+        gender_text = (
+            "男"
+            if output.input_payload.get("gender") == Gender.MALE
+            else "女"
+            if output.input_payload.get("gender") == Gender.FEMALE
+            else "未知"
+        )
         question = output.input_payload.get("question", "分析此八字")
 
         # Format pillars
@@ -131,7 +140,9 @@ class BaziExplainer(Explainer):
             "hour_hidden": "、".join(hp.hidden_stems),
             "hour_god": hp.ten_god,
             "ten_gods_map_json": json.dumps(chart.ten_gods_map, ensure_ascii=False, indent=2),
-            "dayun_list": "\n".join([f"- {d.stem}{d.branch} ({d.start_age}-{d.end_age}岁)" for d in chart.dayun]),
+            "dayun_list": "\n".join(
+                [f"- {d.stem}{d.branch} ({d.start_age}-{d.end_age}岁)" for d in chart.dayun]
+            ),
             "confidence_value": output.confidence.value,
             "confidence_factors": ", ".join(output.confidence.factors),
             **pattern_info,
@@ -154,7 +165,11 @@ class BaziExplainer(Explainer):
     def _fallback(output: AgentOutput, style: str, note: str = "") -> str:
         """Deterministic fallback when LLM is not available or fails."""
         try:
-            chart = BaziChart(**output.result)
+            chart = (
+                output.result
+                if isinstance(output.result, BaziChart)
+                else BaziChart(**output.result)
+            )
             pillars_by_pos = {p.position: p for p in chart.pillars}
             mp = pillars_by_pos["month"]
             hidden_stems = mp.hidden_stems
@@ -166,7 +181,7 @@ class BaziExplainer(Explainer):
 
             fallback = (
                 f"此命造日主【{chart.day_master}】生于【{mp.stem}{mp.branch}】，"
-                f"月令主气为【{dominant_hidden}】，定【{pattern_ten_god}】。"
+                f"月令主气为【{dominant_hidden}】，定【{pattern_ten_god}】格局。"
                 f"当前大运【{current_dayun}】。"
             )
             if note:
@@ -175,4 +190,3 @@ class BaziExplainer(Explainer):
         except Exception:
             # Ultimate fallback to generic output
             return Explainer._fallback(output, style, note)
-

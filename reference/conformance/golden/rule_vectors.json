@@ -1,0 +1,229 @@
+[
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 0.9,
+        "matched": true,
+        "priority": 60,
+        "results": [
+          {
+            "conclusion": "性格刚毅果敢",
+            "conclusion_node_id": "kn:personality:resolute",
+            "direction": "positive",
+            "domain": "personality",
+            "weight": 0.75
+          }
+        ],
+        "rule_id": "rule:bazi:yang_ren_ge:v1"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "day_master_strength": 0.35,
+        "shen_sha_list": [
+          "羊刃",
+          "天乙贵人"
+        ],
+        "ten_gods_map": {
+          "values": [
+            "伤官",
+            "正印",
+            "比肩"
+          ]
+        }
+      },
+      "rule_yaml": "rule:\n  id: rule:bazi:yang_ren_ge:v1\n  name: 羊刃格\n  name_en: yang_blade_pattern\n  system: bazi\n  rule_type: pattern_recognition\n\n  if:\n    field: shen_sha_list\n    operator: contains\n    value: 羊刃\n    description: 命局中有羊刃\n\n  then:\n    - domain: personality\n      conclusion: 性格刚毅果敢\n      conclusion_node_id: kn:personality:resolute\n      weight: 0.75\n      direction: positive\n\n  priority: 60\n  source:\n    text: 三命通会\n    chapter: 羊刃\n    credibility: 0.85\n  confidence: 0.9\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "01_single_condition",
+    "vector_id": "gv:rule:4ac4eda17425"
+  },
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 1.0,
+        "matched": true,
+        "priority": 80,
+        "results": [
+          {
+            "conclusion": "适合科研",
+            "conclusion_node_id": "kn:career:research",
+            "direction": "positive",
+            "domain": "career",
+            "weight": 0.91
+          },
+          {
+            "conclusion": "聪慧好学",
+            "conclusion_node_id": "kn:personality:intellectual",
+            "direction": "positive",
+            "domain": "personality",
+            "weight": 0.85
+          }
+        ],
+        "rule_id": "rule:bazi:shang_guan_pei_yin:v1"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "day_master_strength": 0.35,
+        "shen_sha_list": [
+          "羊刃",
+          "天乙贵人"
+        ],
+        "ten_gods_map": {
+          "values": [
+            "伤官",
+            "正印",
+            "比肩"
+          ]
+        }
+      },
+      "rule_yaml": "rule:\n  id: rule:bazi:shang_guan_pei_yin:v1\n  name: 伤官佩印\n  name_en: wounded_officer_adorned_by_seal\n  system: bazi\n  rule_type: pattern_recognition\n\n  if:\n    all:\n      - field: ten_gods_map.values\n        operator: contains\n        value: 伤官\n        description: 命局中有伤官\n      - field: ten_gods_map.values\n        operator: contains\n        value: 正印\n        description: 命局中有正印\n      - field: day_master_strength\n        operator: less_than\n        value: 0.4\n        description: 日主偏弱\n\n  then:\n    - domain: career\n      conclusion: 适合科研\n      conclusion_node_id: kn:career:research\n      weight: 0.91\n      direction: positive\n    - domain: personality\n      conclusion: 聪慧好学\n      conclusion_node_id: kn:personality:intellectual\n      weight: 0.85\n      direction: positive\n\n  priority: 80\n  scope:\n    systems: [bazi]\n  conflicts:\n    - rule:bazi:shang_guan_jian_sha:v1\n  conflict_strategy: retain_all\n  source:\n    text: 滴天髓\n    chapter: 伤官\n    credibility: 0.95\n  confidence: 1.0\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "02_and",
+    "vector_id": "gv:rule:d1cfeadcf8fd"
+  },
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 0.85,
+        "matched": false,
+        "priority": 65,
+        "results": [],
+        "rule_id": "rule:bazi:cai_xing_ge:v1#1"
+      },
+      {
+        "confidence": 0.85,
+        "matched": false,
+        "priority": 65,
+        "results": [],
+        "rule_id": "rule:bazi:cai_xing_ge:v1#2"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "day_master_strength": 0.35,
+        "shen_sha_list": [
+          "羊刃",
+          "天乙贵人"
+        ],
+        "ten_gods_map": {
+          "values": [
+            "伤官",
+            "正印",
+            "比肩"
+          ]
+        }
+      },
+      "rule_yaml": "rule:\n  id: rule:bazi:cai_xing_ge:v1\n  name: 财星格\n  name_en: wealth_star_pattern\n  system: bazi\n  rule_type: pattern_recognition\n\n  if:\n    any:\n      - field: ten_gods_map.values\n        operator: contains\n        value: 正财\n        description: 命局中有正财\n      - field: ten_gods_map.values\n        operator: contains\n        value: 偏财\n        description: 命局中有偏财\n\n  then:\n    - domain: wealth\n      conclusion: 命中有财星，主财运\n      conclusion_node_id: kn:wealth:star_present\n      weight: 0.80\n      direction: positive\n\n  priority: 65\n  source:\n    text: 子平真诠\n    chapter: 论财\n    credibility: 0.90\n  confidence: 0.85\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "03_or",
+    "vector_id": "gv:rule:3ebcd503fc10"
+  },
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 0.85,
+        "matched": false,
+        "priority": 70,
+        "results": [],
+        "rule_id": "rule:bazi:shang_guan_wu_yin:v1"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "day_master_strength": 0.35,
+        "shen_sha_list": [
+          "羊刃",
+          "天乙贵人"
+        ],
+        "ten_gods_map": {
+          "values": [
+            "伤官",
+            "正印",
+            "比肩"
+          ]
+        }
+      },
+      "rule_yaml": "rule:\n  id: rule:bazi:shang_guan_wu_yin:v1\n  name: 伤官无印\n  name_en: wounded_officer_without_seal\n  system: bazi\n  rule_type: pattern_recognition\n\n  if:\n    all:\n      - field: ten_gods_map.values\n        operator: contains\n        value: 伤官\n        description: 命局中有伤官\n      - not:\n          field: ten_gods_map.values\n          operator: contains\n          value: 正印\n          description: 命局中无正印\n\n  then:\n    - domain: personality\n      conclusion: 伤官无印，傲慢不羁\n      conclusion_node_id: kn:personality:arrogant\n      weight: 0.70\n      direction: negative\n\n  priority: 70\n  conflicts:\n    - rule:bazi:shang_guan_pei_yin:v1\n  conflict_strategy: retain_all\n  source:\n    text: 滴天髓\n    chapter: 伤官\n    credibility: 0.95\n  confidence: 0.85\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "04_not",
+    "vector_id": "gv:rule:444c283318cb"
+  },
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 0.8,
+        "matched": true,
+        "priority": 55,
+        "results": [
+          {
+            "conclusion": "阳遁金局，主肃杀果断",
+            "conclusion_node_id": null,
+            "direction": "neutral",
+            "domain": "overall",
+            "weight": 0.65
+          }
+        ],
+        "rule_id": "rule:qimen:yang_dun_jin:v1"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "dun_type": "yang",
+        "ju": 6
+      },
+      "rule_yaml": "rule:\n  id: rule:qimen:yang_dun_jin:v1\n  name: 阳遁金局\n  name_en: yang_dun_metal_ju\n  system: qimen\n  rule_type: pattern_recognition\n\n  if:\n    all:\n      - field: dun_type\n        operator: equals\n        value: yang\n        description: 阳遁\n      - field: ju\n        operator: in\n        value: [6, 7]\n        description: 六七局（金）\n\n  then:\n    - domain: overall\n      conclusion: 阳遁金局，主肃杀果断\n      weight: 0.65\n      direction: neutral\n\n  priority: 55\n  scope:\n    systems: [qimen]\n    gender: [male]\n    age_range: [25, 60]\n    lunar_month_range: [1, 6]\n  source:\n    text: 烟波钓叟歌\n    credibility: 0.80\n  confidence: 0.80\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "05_scope",
+    "vector_id": "gv:rule:0267c2520ff9"
+  },
+  {
+    "description": "",
+    "expected_output": [
+      {
+        "confidence": 0.85,
+        "matched": false,
+        "priority": 75,
+        "results": [],
+        "rule_id": "rule:bazi:guan_sha_hun:v1#1"
+      },
+      {
+        "confidence": 0.85,
+        "matched": false,
+        "priority": 75,
+        "results": [],
+        "rule_id": "rule:bazi:guan_sha_hun:v1#2"
+      }
+    ],
+    "input": {
+      "chart_data": {
+        "day_master_strength": 0.35,
+        "shen_sha_list": [
+          "羊刃",
+          "天乙贵人"
+        ],
+        "ten_gods_map": {
+          "values": [
+            "伤官",
+            "正印",
+            "比肩"
+          ]
+        }
+      },
+      "rule_yaml": "rule:\n  id: rule:bazi:guan_sha_hun:v1\n  name: 官杀混杂\n  name_en: mixed_official_and_killer\n  system: bazi\n  rule_type: pattern_recognition\n\n  if:\n    all:\n      - any:\n          - field: ten_gods_map.values\n            operator: contains\n            value: 正官\n            description: 命局中有正官\n          - field: ten_gods_map.values\n            operator: contains\n            value: 七杀\n            description: 命局中有七杀\n      - not:\n          field: shen_sha_list\n          operator: contains\n          value: 天乙贵人\n          description: 无天乙贵人化解\n\n  then:\n    - domain: career\n      conclusion: 官杀混杂，事业多变动\n      conclusion_node_id: kn:career:unstable\n      weight: 0.72\n      direction: negative\n    - domain: marriage\n      conclusion: 感情复杂，易有纠葛\n      conclusion_node_id: kn:marriage:complicated\n      weight: 0.68\n      direction: negative\n\n  priority: 75\n  conflicts:\n    - rule:bazi:guan_yin_xiang_sheng:v1\n  conflict_strategy: retain_all\n  source:\n    text: 子平真诠\n    chapter: 论官杀\n    credibility: 0.90\n  confidence: 0.85\n  version: 1.0.0\n"
+    },
+    "layer": "rule",
+    "name": "06_complex",
+    "vector_id": "gv:rule:4d2e76c99076"
+  }
+]

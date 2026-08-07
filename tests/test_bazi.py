@@ -90,11 +90,12 @@ def test_gender_assumed_flag():
 
 
 def test_bazi_explainer_fallback():
-    from openmetaphysics.agents import BaziExplainer
-    from openmetaphysics.core.schemas import AgentOutput, ConfidenceScore, Gender, GeoPoint
-    from openmetaphysics.agents.bazi import BaziAgent, BaziInput
     from datetime import datetime
     from zoneinfo import ZoneInfo
+
+    from openmetaphysics.agents import BaziExplainer
+    from openmetaphysics.agents.bazi import BaziAgent, BaziInput
+    from openmetaphysics.core.schemas import Gender, GeoPoint
 
     agent = BaziAgent()
     inp = BaziInput(
@@ -117,11 +118,12 @@ def test_bazi_explainer_fallback():
 
 
 def test_bazi_explainer_pattern_extraction():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
     from openmetaphysics.agents import BaziExplainer
     from openmetaphysics.agents.bazi import BaziAgent, BaziInput
     from openmetaphysics.core.schemas import Gender, GeoPoint
-    from datetime import datetime
-    from zoneinfo import ZoneInfo
 
     agent = BaziAgent()
     inp = BaziInput(
@@ -139,5 +141,5 @@ def test_bazi_explainer_pattern_extraction():
     assert pattern_info["month_earthly_branch"] == "申"
     assert "庚" in pattern_info["month_hidden_stems"]
     assert pattern_info["dominant_hidden"] == "庚"
-    # 乙日主，庚是正官
-    assert pattern_info["pattern_ten_god"] == "正官"
+    # 丙日主，庚是偏财
+    assert pattern_info["pattern_ten_god"] == "偏财"

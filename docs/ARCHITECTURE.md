@@ -1,7 +1,42 @@
 # OpenMetaphysics — 架构设计
 
 > 完全本地运行、隐私保护、多智能体命理推理框架
-> 状态：设计 v1 (2026-07-04)
+> 状态：Reference Freeze Candidate (2026-07-14)
+> Reference Runtime 已成为行为规范（Normative Reference Implementation）
+
+## 0. 当前架构状态（Reference Freeze Candidate）
+
+OpenMetaphysics 项目当前处于 **Reference Freeze Candidate** 阶段。
+
+Reference Runtime（`reference/`，Python，内存实现，确定性）已成为整个项目的
+**行为规范**（Normative Reference Implementation）。所有正式实现
+（Rust / Go / Python / WASM）必须以 Reference Runtime 的 Contract 和 Behavior
+为唯一标准。
+
+### Reference Runtime 已完成层
+
+| 层 | 模块 | 文件 | 状态 |
+|----|------|------|------|
+| Rule | DSL Parser -> RuleEngine -> RuleEvaluation | `reference/parser.py`, `reference/engine.py` | 完成 |
+| Pattern | PatternMatcher -> PatternMatch | `reference/pattern_matcher.py` | 完成 |
+| Evidence | EvidenceBuilder -> Evidence | `reference/evidence_builder.py` | 完成 |
+| Knowledge | KnowledgeStore -> KnowledgeResult | `reference/knowledge_query.py` | 完成 |
+| Consensus | ConsensusBuilder -> ConsensusReport | `reference/consensus_builder.py` | 完成 |
+| Conformance | ConformanceRunner -> ConformanceResult | `reference/conformance_runner.py` | 完成 |
+
+### Governance 层级
+
+    Reference Runtime (reference/)              ← 最高优先级，行为规范
+           ↑ Conformance Suite 验证
+    Production Runtime (src/, crates/, services/) ← 必须符合 Reference
+
+- **Reference Runtime 优先于 Production Runtime**。任何正式实现必须以
+  Reference Runtime 的 Contract 和 Behavior 为唯一标准。
+- 如果正式实现产生不同输出，**实现有 bug**，不是 Reference Runtime。
+- Reference Runtime 不得为了适配实现而修改，除非通过 ACP 批准。
+- 详见 `docs/specification/REFERENCE_RUNTIME_SPEC.md`。
+
+---
 
 ## 1. 目标与原则
 
@@ -116,7 +151,8 @@ open-metaphysics/
 
 ## 8. 可观测性与可解释性
 
-- 每个 AgentOutput 都携带 easoning_trace：有序的 ReasoningStep 记录（规则引用、输入、输出、描述）。这是审计追踪。
+- 每个 AgentOutput 都携带 
+easoning_trace：有序的 ReasoningStep 记录（规则引用、输入、输出、描述）。这是审计追踪。
 - confidence 被分解 (ConfidenceScore: 值 + 方法 + 因子)，因此用户可以看到为什么一个数字是例如 0.82，而不仅仅知道它是。
 - LangGraph 将状态转换作为事件发出，用于追踪/调试。
 
@@ -125,3 +161,35 @@ open-metaphysics/
 - API 边缘输入验证 (Pydantic) 拒绝格式错误/过大输入。
 - 出生地点是可选的；如果缺失，时区来自 orn_at 的偏移或提供的 	imezone 字符串（永远不通过大语言模型推断）。
 - 解释器是唯一可联网的路径，默认关闭。
+---
+
+## 10. Architecture Governance
+
+### 10.1 Reference Runtime Supremacy
+
+Reference Runtime 拥有**最高优先级**。
+
+| 层级 | 职责 | 优先级 |
+|------|------|--------|
+| Reference Runtime | 行为规范、Contract、Behavior | 最高 |
+| Conformance Suite | 验证 Production Runtime | 高 |
+| Production Runtime | 正式实现 | 服从 Reference |
+
+### 10.2 ACP（Architecture Change Proposal）
+
+如果实现过程中发现 Reference Runtime 存在问题：
+
+1. **停止**修改。
+2. 输出 ACP，描述不足之处、原因、提议修改、对 Behavior Contract 的影响。
+3. 等待批准后，Reference Runtime 先修改，随后所有实现同步修改。
+
+### 10.3 Merge Gate
+
+任何 Production Runtime 实现合并前必须：
+
+1. Golden Tests 通过（`tests/test_reference_*.py`）。
+2. Contract Diff 无意外变化。
+3. Conformance Suite 100% 通过。
+4. Behavior Validation 确认无 Behavior Contract 违规。
+
+详见 `docs/specification/CONFORMANCE_SPEC.md` Section 8。

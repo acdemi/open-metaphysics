@@ -1,0 +1,440 @@
+{
+  "contract_name": "evidence",
+  "contract_version": "1.0.0",
+  "description": "Reference Runtime Evidence Layer Contract. Generated from golden examples. All future implementations must conform to this contract.",
+  "domains": [
+    "career",
+    "personality",
+    "marriage",
+    "health",
+    "wealth",
+    "education",
+    "family",
+    "travel",
+    "legal",
+    "overall"
+  ],
+  "evidence_types": [
+    "rule",
+    "pattern",
+    "knowledge_node",
+    "relation"
+  ],
+  "generated_by": "reference.evidence_builder.export_evidence_contract",
+  "golden_examples": [
+    {
+      "description": "A single matched rule produces Evidence with one item.",
+      "evidence": [
+        {
+          "conclusion": "性格刚毅果敢",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:fb618c6c457f",
+          "items": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "confidence": 0.9,
+              "direction": "positive",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:0b26fbdfa7fa",
+              "metadata": {
+                "conclusion_node_id": "kn:personality:resolute",
+                "credibility": 0.8,
+                "priority": 60,
+                "result_index": 0,
+                "source_name": "rule:bazi:yang_ren_ge:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:yang_ren_ge:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:yang_ren_ge:v1",
+                "kn:personality:resolute"
+              ],
+              "version": "1.0.0",
+              "weight": 0.75
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ],
+      "input_type": "rule_evaluation",
+      "name": "single_rule_to_evidence"
+    },
+    {
+      "description": "Three matched rules trigger a pattern, producing pattern Evidence.",
+      "evidence": [
+        {
+          "conclusion": "伤官佩印格局",
+          "confidence": 0.92,
+          "domain": "overall",
+          "evidence_id": "ev:overall:c9f117c8b091",
+          "items": [
+            {
+              "conclusion": "伤官佩印格局",
+              "confidence": 0.92,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:320eb1e30789",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 3,
+                "knowledge_node_ids": [
+                  "kn:pattern:shang_guan_pei_yin"
+                ],
+                "matched_rule_count": 3,
+                "source_name": "伤官佩印格局"
+              },
+              "source_id": "pattern:bazi:shang_guan_pei_yin_geju:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:shang_guan_pei_yin_geju:v1",
+                "rule:bazi:has_shang_guan:v1",
+                "rule:bazi:has_zheng_yin:v1",
+                "rule:bazi:weak_day_master:v1",
+                "kn:pattern:shang_guan_pei_yin"
+              ],
+              "version": "1.0.0",
+              "weight": 0.92
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ],
+      "input_type": "pattern_match",
+      "name": "multi_rule_pattern_to_evidence"
+    },
+    {
+      "description": "Rules and patterns combined produce grouped Evidence.",
+      "evidence": [
+        {
+          "conclusion": "伤官佩印格局",
+          "confidence": 0.92,
+          "domain": "overall",
+          "evidence_id": "ev:overall:c9f117c8b091",
+          "items": [
+            {
+              "conclusion": "伤官佩印格局",
+              "confidence": 0.92,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:320eb1e30789",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 3,
+                "knowledge_node_ids": [
+                  "kn:pattern:shang_guan_pei_yin"
+                ],
+                "matched_rule_count": 3,
+                "source_name": "伤官佩印格局"
+              },
+              "source_id": "pattern:bazi:shang_guan_pei_yin_geju:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:shang_guan_pei_yin_geju:v1",
+                "rule:bazi:has_shang_guan:v1",
+                "rule:bazi:has_zheng_yin:v1",
+                "rule:bazi:weak_day_master:v1",
+                "kn:pattern:shang_guan_pei_yin"
+              ],
+              "version": "1.0.0",
+              "weight": 0.92
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "日主偏弱",
+          "confidence": 0.85,
+          "domain": "overall",
+          "evidence_id": "ev:overall:33212f475717",
+          "items": [
+            {
+              "conclusion": "日主偏弱",
+              "confidence": 0.85,
+              "direction": "neutral",
+              "domain": "overall",
+              "evidence_id": "ev:bazi:1c2e0d815765",
+              "metadata": {
+                "conclusion_node_id": null,
+                "credibility": 0.8,
+                "priority": 50,
+                "result_index": 0,
+                "source_name": "rule:bazi:weak_day_master:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:weak_day_master:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:weak_day_master:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.5
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "羊刃格",
+          "confidence": 0.85,
+          "domain": "overall",
+          "evidence_id": "ev:overall:d6bd0056e5b1",
+          "items": [
+            {
+              "conclusion": "羊刃格",
+              "confidence": 0.85,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:bazi:9f30ae9d4391",
+              "metadata": {
+                "category": "geju",
+                "evidence_count": 1,
+                "knowledge_node_ids": [],
+                "matched_rule_count": 1,
+                "source_name": "羊刃格"
+              },
+              "source_id": "pattern:bazi:yang_ren_ge:v1",
+              "source_type": "pattern",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "pattern:bazi:yang_ren_ge:v1",
+                "rule:bazi:yang_ren_ge:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.85
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "命中有伤官",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:7cdd5fe771c2",
+          "items": [
+            {
+              "conclusion": "命中有伤官",
+              "confidence": 0.9,
+              "direction": "neutral",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:917fc7e672e1",
+              "metadata": {
+                "conclusion_node_id": null,
+                "credibility": 0.8,
+                "priority": 50,
+                "result_index": 0,
+                "source_name": "rule:bazi:has_shang_guan:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:has_shang_guan:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:has_shang_guan:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.5
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "命中有正印",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:f6ee544729d3",
+          "items": [
+            {
+              "conclusion": "命中有正印",
+              "confidence": 0.9,
+              "direction": "neutral",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:430a31380b09",
+              "metadata": {
+                "conclusion_node_id": null,
+                "credibility": 0.8,
+                "priority": 50,
+                "result_index": 0,
+                "source_name": "rule:bazi:has_zheng_yin:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:has_zheng_yin:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:has_zheng_yin:v1"
+              ],
+              "version": "1.0.0",
+              "weight": 0.5
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        },
+        {
+          "conclusion": "性格刚毅果敢",
+          "confidence": 0.9,
+          "domain": "personality",
+          "evidence_id": "ev:personality:fb618c6c457f",
+          "items": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "confidence": 0.9,
+              "direction": "positive",
+              "domain": "personality",
+              "evidence_id": "ev:bazi:0b26fbdfa7fa",
+              "metadata": {
+                "conclusion_node_id": "kn:personality:resolute",
+                "credibility": 0.8,
+                "priority": 60,
+                "result_index": 0,
+                "source_name": "rule:bazi:yang_ren_ge:v1",
+                "source_ref": ""
+              },
+              "source_id": "rule:bazi:yang_ren_ge:v1",
+              "source_type": "rule",
+              "system": "bazi",
+              "timestamp": null,
+              "trace": [
+                "rule:bazi:yang_ren_ge:v1",
+                "kn:personality:resolute"
+              ],
+              "version": "1.0.0",
+              "weight": 0.75
+            }
+          ],
+          "system": "bazi",
+          "version": "1.0.0"
+        }
+      ],
+      "input_type": "combined",
+      "name": "combined_rule_pattern_evidence"
+    },
+    {
+      "description": "A cross-system pattern produces Evidence spanning bazi + qimen.",
+      "evidence": [
+        {
+          "conclusion": "刚毅金遁",
+          "confidence": 0.8,
+          "domain": "overall",
+          "evidence_id": "ev:overall:b174ee04e627",
+          "items": [
+            {
+              "conclusion": "刚毅金遁",
+              "confidence": 0.8,
+              "direction": null,
+              "domain": "overall",
+              "evidence_id": "ev:cross_system:ab6d31177ed4",
+              "metadata": {
+                "category": "cross_system",
+                "evidence_count": 2,
+                "knowledge_node_ids": [
+                  "kn:cross:gang_yi"
+                ],
+                "matched_rule_count": 2,
+                "source_name": "刚毅金遁"
+              },
+              "source_id": "pattern:cross:gang_yi_jin_dun:v1",
+              "source_type": "pattern",
+              "system": "cross_system",
+              "timestamp": null,
+              "trace": [
+                "pattern:cross:gang_yi_jin_dun:v1",
+                "rule:bazi:yang_ren_ge:v1",
+                "rule:qimen:yang_dun_jin:v1",
+                "kn:cross:gang_yi"
+              ],
+              "version": "1.0.0",
+              "weight": 0.8
+            }
+          ],
+          "system": "cross_system",
+          "version": "1.0.0"
+        }
+      ],
+      "input_type": "pattern_match",
+      "name": "cross_system_evidence"
+    },
+    {
+      "description": "A non-matched rule produces no Evidence (empty list).",
+      "evidence": [],
+      "input_type": "rule_evaluation",
+      "name": "no_match_no_evidence"
+    }
+  ],
+  "models": {
+    "Evidence": {
+      "field_types": {
+        "conclusion": "string",
+        "confidence": "number [0,1]",
+        "domain": "enum",
+        "evidence_id": "string",
+        "items": "array<EvidenceItem>",
+        "system": "string",
+        "version": "string"
+      },
+      "required": [
+        "evidence_id",
+        "domain",
+        "conclusion",
+        "confidence",
+        "system",
+        "items",
+        "version"
+      ],
+      "type": "object"
+    },
+    "EvidenceItem": {
+      "field_types": {
+        "conclusion": "string",
+        "confidence": "number [0,1]",
+        "direction": "enum | null",
+        "domain": "enum",
+        "evidence_id": "string",
+        "metadata": "object",
+        "source_id": "string",
+        "source_type": "enum",
+        "system": "string",
+        "timestamp": "string | null",
+        "trace": "array<string>",
+        "version": "string",
+        "weight": "number [0,1]"
+      },
+      "optional": [
+        "direction",
+        "weight",
+        "timestamp"
+      ],
+      "required": [
+        "evidence_id",
+        "source_type",
+        "source_id",
+        "system",
+        "domain",
+        "confidence",
+        "conclusion",
+        "trace",
+        "metadata",
+        "version"
+      ],
+      "type": "object"
+    }
+  }
+}

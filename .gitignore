@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -13,3 +14,37 @@ venv/
 htmlcov/
 *.db
 *.sqlite3
+
+# Rust
+target/
+
+# Go
+services/gateway/gateway
+*.exe
+
+# Node.js / Frontend
+node_modules/
+frontend/dist/
+frontend/.svelte-kit/
+packages/*/dist/
+
+# Proto generated
+packages/proto-go/gen/
+crates/proto-rs/gen/
+python/proto_gen/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+.pg_data/
+.qdrant_data/
+
+# Misc
+*.log

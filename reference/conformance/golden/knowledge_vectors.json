@@ -1,0 +1,3509 @@
+[
+  {
+    "description": "",
+    "expected_output": {
+      "found": true,
+      "metadata": {
+        "node_id": "kn:wuxing:mu",
+        "query_type": "find_by_id"
+      },
+      "nodes": [
+        {
+          "attributes": {
+            "color": "青",
+            "direction": "东",
+            "organ": "肝胆",
+            "season": "春",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:mu",
+          "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+          "name_cn": "木",
+          "name_en": "wood",
+          "node_type": "wuxing",
+          "schools": [
+            {
+              "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+              "school": "子平",
+              "source": {
+                "author": null,
+                "chapter": null,
+                "credibility": 0.95,
+                "page": null,
+                "text": "滴天髓",
+                "url": null
+              },
+              "weight": 1.0
+            }
+          ],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阳",
+            "东方",
+            "春季",
+            "肝胆"
+          ]
+        }
+      ],
+      "query_type": "find_by_id",
+      "references": [],
+      "relations": [],
+      "version": "1.0.0"
+    },
+    "input": {
+      "query": {
+        "direction": null,
+        "node_id": "kn:wuxing:mu",
+        "node_type": null,
+        "query_type": "find_by_id",
+        "relation_type": null,
+        "system": null,
+        "tag": null,
+        "target_id": null
+      },
+      "store": {
+        "nodes": [
+          {
+            "attributes": {
+              "requires": [
+                "伤官",
+                "正印",
+                "日主偏弱"
+              ]
+            },
+            "confidence": 0.92,
+            "id": "kn:pattern:shang_guan_pei_yin",
+            "interpretation": "伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。",
+            "name_cn": "伤官佩印",
+            "name_en": "shang_guan_pei_yin",
+            "node_type": "pattern",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "格局",
+              "聪慧"
+            ]
+          },
+          {
+            "attributes": {
+              "direction": "positive"
+            },
+            "confidence": 0.8,
+            "id": "kn:personality:resolute",
+            "interpretation": "性格刚毅果敢，行事果断，有领导之才。",
+            "name_cn": "刚毅果敢",
+            "name_en": "resolute",
+            "node_type": "personality",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "性格",
+              "刚毅"
+            ]
+          },
+          {
+            "attributes": {
+              "star_type": "di_wang"
+            },
+            "confidence": 0.85,
+            "id": "kn:shen_sha:yang_ren",
+            "interpretation": "羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。",
+            "name_cn": "羊刃",
+            "name_en": "yang_ren",
+            "node_type": "shen_sha",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "刚毅",
+              "果敢",
+              "刑伤"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yin",
+              "relation_to_day_master": "我生"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:shang_guan",
+            "interpretation": "伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。",
+            "name_cn": "伤官",
+            "name_en": "shang_guan",
+            "node_type": "ten_god",
+            "schools": [
+              {
+                "interpretation": "伤官佩印为贵格，伤官见官为祸端。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              },
+              {
+                "interpretation": "伤官重象不重理，看其在命局中的刑冲合害。",
+                "school": "盲派",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.7,
+                  "page": null,
+                  "text": "盲师口传",
+                  "url": null
+                },
+                "weight": 0.8
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "才智",
+              "秀气"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yang",
+              "relation_to_day_master": "生我"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:zheng_yin",
+            "interpretation": "正印为生日主之异性之物，主慈慧学问，主庇护。",
+            "name_cn": "正印",
+            "name_en": "zheng_yin",
+            "node_type": "ten_god",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "慈慧",
+              "学问"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "赤",
+              "direction": "南",
+              "organ": "心小肠",
+              "season": "夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:huo",
+            "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+            "name_cn": "火",
+            "name_en": "fire",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "南方",
+              "夏季",
+              "心小肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "白",
+              "direction": "西",
+              "organ": "肺大肠",
+              "season": "秋",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:jin",
+            "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+            "name_cn": "金",
+            "name_en": "metal",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "西方",
+              "秋季",
+              "肺大肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "青",
+              "direction": "东",
+              "organ": "肝胆",
+              "season": "春",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:mu",
+            "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+            "name_cn": "木",
+            "name_en": "wood",
+            "node_type": "wuxing",
+            "schools": [
+              {
+                "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "东方",
+              "春季",
+              "肝胆"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黑",
+              "direction": "北",
+              "organ": "肾膀胱",
+              "season": "冬",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:shui",
+            "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+            "name_cn": "水",
+            "name_en": "water",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "北方",
+              "冬季",
+              "肾膀胱"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黄",
+              "direction": "中",
+              "organ": "脾胃",
+              "season": "长夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:tu",
+            "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+            "name_cn": "土",
+            "name_en": "earth",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "中央",
+              "长夏",
+              "脾胃"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "credibility": 0.95,
+            "passage": "伤官配印，其人必聪慧好学。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:ditianshui_pattern",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:pattern:shang_guan_pei_yin",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "火曰炎上。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:huo",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "五行：一曰水，二曰火，三曰木，四曰金，五曰土。木曰曲直。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_mu",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:mu",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "东方生风，风生木，木生酸，酸生肝，肝生筋，筋生心。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:suwen_mu_sheng_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "target_id": "rel:wuxing:mu:sheng:huo:v1",
+            "target_type": "relation"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "伤官佩印为贵格，伤官见官为祸端。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_shang_guan",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:ten_god:shang_guan",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.85,
+            "passage": "羊刃主刚毅果敢，然易刑伤血光。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_yang_ren",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "target_id": "kn:shen_sha:yang_ren",
+            "target_type": "node"
+          }
+        ],
+        "relations": [
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "伤官佩印格局指向伤官十神",
+                "source": {
+                  "author": null,
+                  "chapter": "伤官",
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:pattern:sgpy:zhixiang:sg:v1",
+            "relation_type": "zhixiang",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "source_node_id": "kn:pattern:shang_guan_pei_yin",
+            "target_node_id": "kn:ten_god:shang_guan",
+            "weight": 0.95
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "火生土，火为土之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:huo:sheng:tu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:huo",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "金生水，金为水之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:jin:sheng:shui:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:jin",
+            "target_node_id": "kn:wuxing:shui",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木克土，木为土之所不胜",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:ke:tu:v1",
+            "relation_type": "ke",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 0.9
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木生火，木为火之母，火为木之子",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:sheng:huo:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:huo",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "水生木，水为木之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:shui:sheng:mu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:shui",
+            "target_node_id": "kn:wuxing:mu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "土生金，土为金之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:tu:sheng:jin:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:tu",
+            "target_node_id": "kn:wuxing:jin",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "layer": "knowledge",
+    "name": "knowledge_find_by_id",
+    "vector_id": "gv:knowledge:6e4104f93542"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "found": true,
+      "metadata": {
+        "node_type": "wuxing",
+        "query_type": "find_by_type",
+        "total": 5
+      },
+      "nodes": [
+        {
+          "attributes": {
+            "color": "赤",
+            "direction": "南",
+            "organ": "心小肠",
+            "season": "夏",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:huo",
+          "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+          "name_cn": "火",
+          "name_en": "fire",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阳",
+            "南方",
+            "夏季",
+            "心小肠"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "白",
+            "direction": "西",
+            "organ": "肺大肠",
+            "season": "秋",
+            "yin_yang": "阴"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:jin",
+          "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+          "name_cn": "金",
+          "name_en": "metal",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阴",
+            "西方",
+            "秋季",
+            "肺大肠"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "青",
+            "direction": "东",
+            "organ": "肝胆",
+            "season": "春",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:mu",
+          "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+          "name_cn": "木",
+          "name_en": "wood",
+          "node_type": "wuxing",
+          "schools": [
+            {
+              "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+              "school": "子平",
+              "source": {
+                "author": null,
+                "chapter": null,
+                "credibility": 0.95,
+                "page": null,
+                "text": "滴天髓",
+                "url": null
+              },
+              "weight": 1.0
+            }
+          ],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阳",
+            "东方",
+            "春季",
+            "肝胆"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "黑",
+            "direction": "北",
+            "organ": "肾膀胱",
+            "season": "冬",
+            "yin_yang": "阴"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:shui",
+          "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+          "name_cn": "水",
+          "name_en": "water",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阴",
+            "北方",
+            "冬季",
+            "肾膀胱"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "黄",
+            "direction": "中",
+            "organ": "脾胃",
+            "season": "长夏",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:tu",
+          "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+          "name_cn": "土",
+          "name_en": "earth",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "中央",
+            "长夏",
+            "脾胃"
+          ]
+        }
+      ],
+      "query_type": "find_by_type",
+      "references": [],
+      "relations": [],
+      "version": "1.0.0"
+    },
+    "input": {
+      "query": {
+        "direction": null,
+        "node_id": null,
+        "node_type": "wuxing",
+        "query_type": "find_by_type",
+        "relation_type": null,
+        "system": null,
+        "tag": null,
+        "target_id": null
+      },
+      "store": {
+        "nodes": [
+          {
+            "attributes": {
+              "requires": [
+                "伤官",
+                "正印",
+                "日主偏弱"
+              ]
+            },
+            "confidence": 0.92,
+            "id": "kn:pattern:shang_guan_pei_yin",
+            "interpretation": "伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。",
+            "name_cn": "伤官佩印",
+            "name_en": "shang_guan_pei_yin",
+            "node_type": "pattern",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "格局",
+              "聪慧"
+            ]
+          },
+          {
+            "attributes": {
+              "direction": "positive"
+            },
+            "confidence": 0.8,
+            "id": "kn:personality:resolute",
+            "interpretation": "性格刚毅果敢，行事果断，有领导之才。",
+            "name_cn": "刚毅果敢",
+            "name_en": "resolute",
+            "node_type": "personality",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "性格",
+              "刚毅"
+            ]
+          },
+          {
+            "attributes": {
+              "star_type": "di_wang"
+            },
+            "confidence": 0.85,
+            "id": "kn:shen_sha:yang_ren",
+            "interpretation": "羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。",
+            "name_cn": "羊刃",
+            "name_en": "yang_ren",
+            "node_type": "shen_sha",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "刚毅",
+              "果敢",
+              "刑伤"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yin",
+              "relation_to_day_master": "我生"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:shang_guan",
+            "interpretation": "伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。",
+            "name_cn": "伤官",
+            "name_en": "shang_guan",
+            "node_type": "ten_god",
+            "schools": [
+              {
+                "interpretation": "伤官佩印为贵格，伤官见官为祸端。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              },
+              {
+                "interpretation": "伤官重象不重理，看其在命局中的刑冲合害。",
+                "school": "盲派",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.7,
+                  "page": null,
+                  "text": "盲师口传",
+                  "url": null
+                },
+                "weight": 0.8
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "才智",
+              "秀气"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yang",
+              "relation_to_day_master": "生我"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:zheng_yin",
+            "interpretation": "正印为生日主之异性之物，主慈慧学问，主庇护。",
+            "name_cn": "正印",
+            "name_en": "zheng_yin",
+            "node_type": "ten_god",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "慈慧",
+              "学问"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "赤",
+              "direction": "南",
+              "organ": "心小肠",
+              "season": "夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:huo",
+            "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+            "name_cn": "火",
+            "name_en": "fire",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "南方",
+              "夏季",
+              "心小肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "白",
+              "direction": "西",
+              "organ": "肺大肠",
+              "season": "秋",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:jin",
+            "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+            "name_cn": "金",
+            "name_en": "metal",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "西方",
+              "秋季",
+              "肺大肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "青",
+              "direction": "东",
+              "organ": "肝胆",
+              "season": "春",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:mu",
+            "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+            "name_cn": "木",
+            "name_en": "wood",
+            "node_type": "wuxing",
+            "schools": [
+              {
+                "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "东方",
+              "春季",
+              "肝胆"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黑",
+              "direction": "北",
+              "organ": "肾膀胱",
+              "season": "冬",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:shui",
+            "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+            "name_cn": "水",
+            "name_en": "water",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "北方",
+              "冬季",
+              "肾膀胱"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黄",
+              "direction": "中",
+              "organ": "脾胃",
+              "season": "长夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:tu",
+            "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+            "name_cn": "土",
+            "name_en": "earth",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "中央",
+              "长夏",
+              "脾胃"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "credibility": 0.95,
+            "passage": "伤官配印，其人必聪慧好学。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:ditianshui_pattern",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:pattern:shang_guan_pei_yin",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "火曰炎上。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:huo",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "五行：一曰水，二曰火，三曰木，四曰金，五曰土。木曰曲直。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_mu",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:mu",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "东方生风，风生木，木生酸，酸生肝，肝生筋，筋生心。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:suwen_mu_sheng_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "target_id": "rel:wuxing:mu:sheng:huo:v1",
+            "target_type": "relation"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "伤官佩印为贵格，伤官见官为祸端。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_shang_guan",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:ten_god:shang_guan",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.85,
+            "passage": "羊刃主刚毅果敢，然易刑伤血光。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_yang_ren",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "target_id": "kn:shen_sha:yang_ren",
+            "target_type": "node"
+          }
+        ],
+        "relations": [
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "伤官佩印格局指向伤官十神",
+                "source": {
+                  "author": null,
+                  "chapter": "伤官",
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:pattern:sgpy:zhixiang:sg:v1",
+            "relation_type": "zhixiang",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "source_node_id": "kn:pattern:shang_guan_pei_yin",
+            "target_node_id": "kn:ten_god:shang_guan",
+            "weight": 0.95
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "火生土，火为土之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:huo:sheng:tu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:huo",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "金生水，金为水之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:jin:sheng:shui:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:jin",
+            "target_node_id": "kn:wuxing:shui",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木克土，木为土之所不胜",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:ke:tu:v1",
+            "relation_type": "ke",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 0.9
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木生火，木为火之母，火为木之子",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:sheng:huo:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:huo",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "水生木，水为木之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:shui:sheng:mu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:shui",
+            "target_node_id": "kn:wuxing:mu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "土生金，土为金之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:tu:sheng:jin:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:tu",
+            "target_node_id": "kn:wuxing:jin",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "layer": "knowledge",
+    "name": "knowledge_find_by_type",
+    "vector_id": "gv:knowledge:3cc4c91e8dc2"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "found": true,
+      "metadata": {
+        "query_type": "find_by_system",
+        "system": "bazi",
+        "total": 10
+      },
+      "nodes": [
+        {
+          "attributes": {
+            "requires": [
+              "伤官",
+              "正印",
+              "日主偏弱"
+            ]
+          },
+          "confidence": 0.92,
+          "id": "kn:pattern:shang_guan_pei_yin",
+          "interpretation": "伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。",
+          "name_cn": "伤官佩印",
+          "name_en": "shang_guan_pei_yin",
+          "node_type": "pattern",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": "伤官",
+            "credibility": 0.95,
+            "page": null,
+            "text": "滴天髓",
+            "url": null
+          },
+          "systems": [
+            "bazi"
+          ],
+          "tags": [
+            "格局",
+            "聪慧"
+          ]
+        },
+        {
+          "attributes": {
+            "direction": "positive"
+          },
+          "confidence": 0.8,
+          "id": "kn:personality:resolute",
+          "interpretation": "性格刚毅果敢，行事果断，有领导之才。",
+          "name_cn": "刚毅果敢",
+          "name_en": "resolute",
+          "node_type": "personality",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 0.85,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei"
+          ],
+          "tags": [
+            "性格",
+            "刚毅"
+          ]
+        },
+        {
+          "attributes": {
+            "star_type": "di_wang"
+          },
+          "confidence": 0.85,
+          "id": "kn:shen_sha:yang_ren",
+          "interpretation": "羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。",
+          "name_cn": "羊刃",
+          "name_en": "yang_ren",
+          "node_type": "shen_sha",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": "羊刃",
+            "credibility": 0.85,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei"
+          ],
+          "tags": [
+            "刚毅",
+            "果敢",
+            "刑伤"
+          ]
+        },
+        {
+          "attributes": {
+            "element": "varies",
+            "polarity": "yin",
+            "relation_to_day_master": "我生"
+          },
+          "confidence": 0.9,
+          "id": "kn:ten_god:shang_guan",
+          "interpretation": "伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。",
+          "name_cn": "伤官",
+          "name_en": "shang_guan",
+          "node_type": "ten_god",
+          "schools": [
+            {
+              "interpretation": "伤官佩印为贵格，伤官见官为祸端。",
+              "school": "子平",
+              "source": {
+                "author": null,
+                "chapter": null,
+                "credibility": 0.95,
+                "page": null,
+                "text": "滴天髓",
+                "url": null
+              },
+              "weight": 1.0
+            },
+            {
+              "interpretation": "伤官重象不重理，看其在命局中的刑冲合害。",
+              "school": "盲派",
+              "source": {
+                "author": null,
+                "chapter": null,
+                "credibility": 0.7,
+                "page": null,
+                "text": "盲师口传",
+                "url": null
+              },
+              "weight": 0.8
+            }
+          ],
+          "source": {
+            "author": null,
+            "chapter": "伤官",
+            "credibility": 0.95,
+            "page": null,
+            "text": "滴天髓",
+            "url": null
+          },
+          "systems": [
+            "bazi"
+          ],
+          "tags": [
+            "才智",
+            "秀气"
+          ]
+        },
+        {
+          "attributes": {
+            "element": "varies",
+            "polarity": "yang",
+            "relation_to_day_master": "生我"
+          },
+          "confidence": 0.9,
+          "id": "kn:ten_god:zheng_yin",
+          "interpretation": "正印为生日主之异性之物，主慈慧学问，主庇护。",
+          "name_cn": "正印",
+          "name_en": "zheng_yin",
+          "node_type": "ten_god",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 0.95,
+            "page": null,
+            "text": "滴天髓",
+            "url": null
+          },
+          "systems": [
+            "bazi"
+          ],
+          "tags": [
+            "慈慧",
+            "学问"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "赤",
+            "direction": "南",
+            "organ": "心小肠",
+            "season": "夏",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:huo",
+          "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+          "name_cn": "火",
+          "name_en": "fire",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阳",
+            "南方",
+            "夏季",
+            "心小肠"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "白",
+            "direction": "西",
+            "organ": "肺大肠",
+            "season": "秋",
+            "yin_yang": "阴"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:jin",
+          "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+          "name_cn": "金",
+          "name_en": "metal",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阴",
+            "西方",
+            "秋季",
+            "肺大肠"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "青",
+            "direction": "东",
+            "organ": "肝胆",
+            "season": "春",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:mu",
+          "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+          "name_cn": "木",
+          "name_en": "wood",
+          "node_type": "wuxing",
+          "schools": [
+            {
+              "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+              "school": "子平",
+              "source": {
+                "author": null,
+                "chapter": null,
+                "credibility": 0.95,
+                "page": null,
+                "text": "滴天髓",
+                "url": null
+              },
+              "weight": 1.0
+            }
+          ],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阳",
+            "东方",
+            "春季",
+            "肝胆"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "黑",
+            "direction": "北",
+            "organ": "肾膀胱",
+            "season": "冬",
+            "yin_yang": "阴"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:shui",
+          "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+          "name_cn": "水",
+          "name_en": "water",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "阴",
+            "北方",
+            "冬季",
+            "肾膀胱"
+          ]
+        },
+        {
+          "attributes": {
+            "color": "黄",
+            "direction": "中",
+            "organ": "脾胃",
+            "season": "长夏",
+            "yin_yang": "阳"
+          },
+          "confidence": 1.0,
+          "id": "kn:wuxing:tu",
+          "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+          "name_cn": "土",
+          "name_en": "earth",
+          "node_type": "wuxing",
+          "schools": [],
+          "source": {
+            "author": null,
+            "chapter": null,
+            "credibility": 1.0,
+            "page": null,
+            "text": "尚书·洪范",
+            "url": null
+          },
+          "systems": [
+            "bazi",
+            "ziwei",
+            "qimen",
+            "liuyao"
+          ],
+          "tags": [
+            "中央",
+            "长夏",
+            "脾胃"
+          ]
+        }
+      ],
+      "query_type": "find_by_system",
+      "references": [],
+      "relations": [],
+      "version": "1.0.0"
+    },
+    "input": {
+      "query": {
+        "direction": null,
+        "node_id": null,
+        "node_type": null,
+        "query_type": "find_by_system",
+        "relation_type": null,
+        "system": "bazi",
+        "tag": null,
+        "target_id": null
+      },
+      "store": {
+        "nodes": [
+          {
+            "attributes": {
+              "requires": [
+                "伤官",
+                "正印",
+                "日主偏弱"
+              ]
+            },
+            "confidence": 0.92,
+            "id": "kn:pattern:shang_guan_pei_yin",
+            "interpretation": "伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。",
+            "name_cn": "伤官佩印",
+            "name_en": "shang_guan_pei_yin",
+            "node_type": "pattern",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "格局",
+              "聪慧"
+            ]
+          },
+          {
+            "attributes": {
+              "direction": "positive"
+            },
+            "confidence": 0.8,
+            "id": "kn:personality:resolute",
+            "interpretation": "性格刚毅果敢，行事果断，有领导之才。",
+            "name_cn": "刚毅果敢",
+            "name_en": "resolute",
+            "node_type": "personality",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "性格",
+              "刚毅"
+            ]
+          },
+          {
+            "attributes": {
+              "star_type": "di_wang"
+            },
+            "confidence": 0.85,
+            "id": "kn:shen_sha:yang_ren",
+            "interpretation": "羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。",
+            "name_cn": "羊刃",
+            "name_en": "yang_ren",
+            "node_type": "shen_sha",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "刚毅",
+              "果敢",
+              "刑伤"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yin",
+              "relation_to_day_master": "我生"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:shang_guan",
+            "interpretation": "伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。",
+            "name_cn": "伤官",
+            "name_en": "shang_guan",
+            "node_type": "ten_god",
+            "schools": [
+              {
+                "interpretation": "伤官佩印为贵格，伤官见官为祸端。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              },
+              {
+                "interpretation": "伤官重象不重理，看其在命局中的刑冲合害。",
+                "school": "盲派",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.7,
+                  "page": null,
+                  "text": "盲师口传",
+                  "url": null
+                },
+                "weight": 0.8
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "才智",
+              "秀气"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yang",
+              "relation_to_day_master": "生我"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:zheng_yin",
+            "interpretation": "正印为生日主之异性之物，主慈慧学问，主庇护。",
+            "name_cn": "正印",
+            "name_en": "zheng_yin",
+            "node_type": "ten_god",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "慈慧",
+              "学问"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "赤",
+              "direction": "南",
+              "organ": "心小肠",
+              "season": "夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:huo",
+            "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+            "name_cn": "火",
+            "name_en": "fire",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "南方",
+              "夏季",
+              "心小肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "白",
+              "direction": "西",
+              "organ": "肺大肠",
+              "season": "秋",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:jin",
+            "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+            "name_cn": "金",
+            "name_en": "metal",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "西方",
+              "秋季",
+              "肺大肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "青",
+              "direction": "东",
+              "organ": "肝胆",
+              "season": "春",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:mu",
+            "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+            "name_cn": "木",
+            "name_en": "wood",
+            "node_type": "wuxing",
+            "schools": [
+              {
+                "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "东方",
+              "春季",
+              "肝胆"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黑",
+              "direction": "北",
+              "organ": "肾膀胱",
+              "season": "冬",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:shui",
+            "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+            "name_cn": "水",
+            "name_en": "water",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "北方",
+              "冬季",
+              "肾膀胱"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黄",
+              "direction": "中",
+              "organ": "脾胃",
+              "season": "长夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:tu",
+            "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+            "name_cn": "土",
+            "name_en": "earth",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "中央",
+              "长夏",
+              "脾胃"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "credibility": 0.95,
+            "passage": "伤官配印，其人必聪慧好学。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:ditianshui_pattern",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:pattern:shang_guan_pei_yin",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "火曰炎上。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:huo",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "五行：一曰水，二曰火，三曰木，四曰金，五曰土。木曰曲直。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_mu",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:mu",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "东方生风，风生木，木生酸，酸生肝，肝生筋，筋生心。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:suwen_mu_sheng_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "target_id": "rel:wuxing:mu:sheng:huo:v1",
+            "target_type": "relation"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "伤官佩印为贵格，伤官见官为祸端。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_shang_guan",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:ten_god:shang_guan",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.85,
+            "passage": "羊刃主刚毅果敢，然易刑伤血光。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_yang_ren",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "target_id": "kn:shen_sha:yang_ren",
+            "target_type": "node"
+          }
+        ],
+        "relations": [
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "伤官佩印格局指向伤官十神",
+                "source": {
+                  "author": null,
+                  "chapter": "伤官",
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:pattern:sgpy:zhixiang:sg:v1",
+            "relation_type": "zhixiang",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "source_node_id": "kn:pattern:shang_guan_pei_yin",
+            "target_node_id": "kn:ten_god:shang_guan",
+            "weight": 0.95
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "火生土，火为土之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:huo:sheng:tu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:huo",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "金生水，金为水之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:jin:sheng:shui:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:jin",
+            "target_node_id": "kn:wuxing:shui",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木克土，木为土之所不胜",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:ke:tu:v1",
+            "relation_type": "ke",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 0.9
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木生火，木为火之母，火为木之子",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:sheng:huo:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:huo",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "水生木，水为木之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:shui:sheng:mu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:shui",
+            "target_node_id": "kn:wuxing:mu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "土生金，土为金之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:tu:sheng:jin:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:tu",
+            "target_node_id": "kn:wuxing:jin",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "layer": "knowledge",
+    "name": "knowledge_find_by_system",
+    "vector_id": "gv:knowledge:7e2df940e121"
+  },
+  {
+    "description": "",
+    "expected_output": {
+      "found": false,
+      "metadata": {
+        "query_type": "find_by_tag",
+        "tag": "yang",
+        "total": 0
+      },
+      "nodes": [],
+      "query_type": "find_by_tag",
+      "references": [],
+      "relations": [],
+      "version": "1.0.0"
+    },
+    "input": {
+      "query": {
+        "direction": null,
+        "node_id": null,
+        "node_type": null,
+        "query_type": "find_by_tag",
+        "relation_type": null,
+        "system": null,
+        "tag": "yang",
+        "target_id": null
+      },
+      "store": {
+        "nodes": [
+          {
+            "attributes": {
+              "requires": [
+                "伤官",
+                "正印",
+                "日主偏弱"
+              ]
+            },
+            "confidence": 0.92,
+            "id": "kn:pattern:shang_guan_pei_yin",
+            "interpretation": "伤官配印且日主偏弱，构成伤官佩印格局，主聪慧好学。",
+            "name_cn": "伤官佩印",
+            "name_en": "shang_guan_pei_yin",
+            "node_type": "pattern",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "格局",
+              "聪慧"
+            ]
+          },
+          {
+            "attributes": {
+              "direction": "positive"
+            },
+            "confidence": 0.8,
+            "id": "kn:personality:resolute",
+            "interpretation": "性格刚毅果敢，行事果断，有领导之才。",
+            "name_cn": "刚毅果敢",
+            "name_en": "resolute",
+            "node_type": "personality",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "性格",
+              "刚毅"
+            ]
+          },
+          {
+            "attributes": {
+              "star_type": "di_wang"
+            },
+            "confidence": 0.85,
+            "id": "kn:shen_sha:yang_ren",
+            "interpretation": "羊刃为帝旺之星，主刚毅果敢，然易刑伤血光。",
+            "name_cn": "羊刃",
+            "name_en": "yang_ren",
+            "node_type": "shen_sha",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei"
+            ],
+            "tags": [
+              "刚毅",
+              "果敢",
+              "刑伤"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yin",
+              "relation_to_day_master": "我生"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:shang_guan",
+            "interpretation": "伤官为日主所生异性之物，主才智秀气，然易傲慢冲动。",
+            "name_cn": "伤官",
+            "name_en": "shang_guan",
+            "node_type": "ten_god",
+            "schools": [
+              {
+                "interpretation": "伤官佩印为贵格，伤官见官为祸端。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              },
+              {
+                "interpretation": "伤官重象不重理，看其在命局中的刑冲合害。",
+                "school": "盲派",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.7,
+                  "page": null,
+                  "text": "盲师口传",
+                  "url": null
+                },
+                "weight": 0.8
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "才智",
+              "秀气"
+            ]
+          },
+          {
+            "attributes": {
+              "element": "varies",
+              "polarity": "yang",
+              "relation_to_day_master": "生我"
+            },
+            "confidence": 0.9,
+            "id": "kn:ten_god:zheng_yin",
+            "interpretation": "正印为生日主之异性之物，主慈慧学问，主庇护。",
+            "name_cn": "正印",
+            "name_en": "zheng_yin",
+            "node_type": "ten_god",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "systems": [
+              "bazi"
+            ],
+            "tags": [
+              "慈慧",
+              "学问"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "赤",
+              "direction": "南",
+              "organ": "心小肠",
+              "season": "夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:huo",
+            "interpretation": "火主礼，性急，主炎热向上，对应南方、夏季、赤色、心小肠。",
+            "name_cn": "火",
+            "name_en": "fire",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "南方",
+              "夏季",
+              "心小肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "白",
+              "direction": "西",
+              "organ": "肺大肠",
+              "season": "秋",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:jin",
+            "interpretation": "金主义，性刚，主肃杀收敛，对应西方、秋季、白色、肺大肠。",
+            "name_cn": "金",
+            "name_en": "metal",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "西方",
+              "秋季",
+              "肺大肠"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "青",
+              "direction": "东",
+              "organ": "肝胆",
+              "season": "春",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:mu",
+            "interpretation": "木主仁，性直，主生长升发，对应东方、春季、青色、肝胆。",
+            "name_cn": "木",
+            "name_en": "wood",
+            "node_type": "wuxing",
+            "schools": [
+              {
+                "interpretation": "甲木为参天大树，乙木为花草藤萝。木旺需金伐成材，木弱需水滋生。",
+                "school": "子平",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阳",
+              "东方",
+              "春季",
+              "肝胆"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黑",
+              "direction": "北",
+              "organ": "肾膀胱",
+              "season": "冬",
+              "yin_yang": "阴"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:shui",
+            "interpretation": "水主智，性柔，主润下流动，对应北方、冬季、黑色、肾膀胱。",
+            "name_cn": "水",
+            "name_en": "water",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "阴",
+              "北方",
+              "冬季",
+              "肾膀胱"
+            ]
+          },
+          {
+            "attributes": {
+              "color": "黄",
+              "direction": "中",
+              "organ": "脾胃",
+              "season": "长夏",
+              "yin_yang": "阳"
+            },
+            "confidence": 1.0,
+            "id": "kn:wuxing:tu",
+            "interpretation": "土主信，性厚，主承载化育，对应中央、长夏、黄色、脾胃。",
+            "name_cn": "土",
+            "name_en": "earth",
+            "node_type": "wuxing",
+            "schools": [],
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "systems": [
+              "bazi",
+              "ziwei",
+              "qimen",
+              "liuyao"
+            ],
+            "tags": [
+              "中央",
+              "长夏",
+              "脾胃"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "credibility": 0.95,
+            "passage": "伤官配印，其人必聪慧好学。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:ditianshui_pattern",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:pattern:shang_guan_pei_yin",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "火曰炎上。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:huo",
+            "target_type": "node"
+          },
+          {
+            "credibility": 1.0,
+            "passage": "五行：一曰水，二曰火，三曰木，四曰金，五曰土。木曰曲直。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:shangshu_hongfan_mu",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 1.0,
+              "page": null,
+              "text": "尚书·洪范",
+              "url": null
+            },
+            "target_id": "kn:wuxing:mu",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "东方生风，风生木，木生酸，酸生肝，肝生筋，筋生心。",
+            "ref_type": "classic_text",
+            "reference_id": "ref:classic:suwen_mu_sheng_huo",
+            "school": null,
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "target_id": "rel:wuxing:mu:sheng:huo:v1",
+            "target_type": "relation"
+          },
+          {
+            "credibility": 0.95,
+            "passage": "伤官佩印为贵格，伤官见官为祸端。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_shang_guan",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "伤官",
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "target_id": "kn:ten_god:shang_guan",
+            "target_type": "node"
+          },
+          {
+            "credibility": 0.85,
+            "passage": "羊刃主刚毅果敢，然易刑伤血光。",
+            "ref_type": "school_commentary",
+            "reference_id": "ref:school:ziping_yang_ren",
+            "school": "子平",
+            "source": {
+              "author": null,
+              "chapter": "羊刃",
+              "credibility": 0.85,
+              "page": null,
+              "text": "三命通会",
+              "url": null
+            },
+            "target_id": "kn:shen_sha:yang_ren",
+            "target_type": "node"
+          }
+        ],
+        "relations": [
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "伤官佩印格局指向伤官十神",
+                "source": {
+                  "author": null,
+                  "chapter": "伤官",
+                  "credibility": 0.95,
+                  "page": null,
+                  "text": "滴天髓",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:pattern:sgpy:zhixiang:sg:v1",
+            "relation_type": "zhixiang",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "滴天髓",
+              "url": null
+            },
+            "source_node_id": "kn:pattern:shang_guan_pei_yin",
+            "target_node_id": "kn:ten_god:shang_guan",
+            "weight": 0.95
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "火生土，火为土之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:huo:sheng:tu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:huo",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "金生水，金为水之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:jin:sheng:shui:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:jin",
+            "target_node_id": "kn:wuxing:shui",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木克土，木为土之所不胜",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:ke:tu:v1",
+            "relation_type": "ke",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:tu",
+            "weight": 0.9
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "木生火，木为火之母，火为木之子",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:mu:sheng:huo:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:mu",
+            "target_node_id": "kn:wuxing:huo",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "水生木，水为木之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:shui:sheng:mu:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:shui",
+            "target_node_id": "kn:wuxing:mu",
+            "weight": 1.0
+          },
+          {
+            "conditions": [],
+            "direction": "directed",
+            "evidence": [
+              {
+                "description": "土生金，土为金之母",
+                "source": {
+                  "author": null,
+                  "chapter": null,
+                  "credibility": 1.0,
+                  "page": null,
+                  "text": "尚书·洪范",
+                  "url": null
+                },
+                "weight": 1.0
+              }
+            ],
+            "id": "rel:wuxing:tu:sheng:jin:v1",
+            "relation_type": "sheng",
+            "source": {
+              "author": null,
+              "chapter": null,
+              "credibility": 0.95,
+              "page": null,
+              "text": "素问·阴阳应象大论",
+              "url": null
+            },
+            "source_node_id": "kn:wuxing:tu",
+            "target_node_id": "kn:wuxing:jin",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "layer": "knowledge",
+    "name": "knowledge_find_by_tag",
+    "vector_id": "gv:knowledge:2f438d2bcf4f"
+  }
+]

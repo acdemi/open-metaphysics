@@ -1,0 +1,21 @@
+rule:
+  id: rule:bazi:weak_day_master:v1
+  name: 日主偏弱
+  system: bazi
+  rule_type: element_balance
+  if:
+    field: day_master_strength
+    operator: less_than
+    value: 0.4
+    description: 日主偏弱
+  then:
+    - domain: overall
+      conclusion: 日主偏弱
+      weight: 0.5
+      direction: neutral
+  priority: 50
+  source:
+    text: 滴天髓
+    credibility: 0.9
+  confidence: 0.85
+  version: 1.0.0

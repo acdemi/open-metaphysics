@@ -1,0 +1,17 @@
+pattern:
+  pattern_id: pattern:bazi:shang_guan_wu_yin_geju:v1
+  name: 伤官无印格局
+  description: 伤官无印，主傲慢不羁
+  category: geju
+  confidence: 0.70
+  systems: [bazi]
+  rule_ids:
+    - rule:bazi:shang_guan_wu_yin:v1
+  knowledge_node_ids: []
+  requirements:
+    - rule_ids: [rule:bazi:shang_guan_wu_yin:v1]
+      logic: all
+  source:
+    text: 滴天髓
+    credibility: 0.95
+  version: 1.0.0

@@ -1,0 +1,36 @@
+rule:
+  id: rule:bazi:shang_guan_wu_yin:v1
+  name: 伤官无印
+  name_en: wounded_officer_without_seal
+  system: bazi
+  rule_type: pattern_recognition
+
+  if:
+    all:
+      - field: ten_gods_map.values
+        operator: contains
+        value: 伤官
+        description: 命局中有伤官
+      - not:
+          field: ten_gods_map.values
+          operator: contains
+          value: 正印
+          description: 命局中无正印
+
+  then:
+    - domain: personality
+      conclusion: 伤官无印，傲慢不羁
+      conclusion_node_id: kn:personality:arrogant
+      weight: 0.70
+      direction: negative
+
+  priority: 70
+  conflicts:
+    - rule:bazi:shang_guan_pei_yin:v1
+  conflict_strategy: retain_all
+  source:
+    text: 滴天髓
+    chapter: 伤官
+    credibility: 0.95
+  confidence: 0.85
+  version: 1.0.0

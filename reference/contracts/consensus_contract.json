@@ -1,0 +1,549 @@
+{
+  "contract_name": "consensus",
+  "contract_version": "1.0.0",
+  "description": "Reference Runtime Consensus Layer Contract. Generated from golden examples. All future implementations must conform to this contract.",
+  "generated_by": "reference.consensus_builder.export_consensus_contract",
+  "golden_examples": [
+    {
+      "description": "A single Evidence produces one conclusion.",
+      "input_type": "single_evidence",
+      "name": "single_evidence_consensus",
+      "report": {
+        "conclusions": [
+          {
+            "conclusion": "性格刚毅果敢",
+            "conclusion_id": "cc:personality:07260d58a75b",
+            "confidence": 0.9,
+            "direction": "positive",
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:fb618c6c457f"
+            ],
+            "is_conflict": false,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "conflicts": [],
+        "domains": [
+          "personality"
+        ],
+        "evidence_ids": [
+          "ev:personality:fb618c6c457f"
+        ],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "retain_all",
+          "total_conclusions": 1,
+          "total_conflicts": 0,
+          "total_evidence": 1
+        },
+        "overall_confidence": 0.9,
+        "report_id": "cr:e5ff41361651",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "Multiple Evidence (rules + patterns) produce multiple conclusions.",
+      "input_type": "multiple_evidence",
+      "name": "multiple_evidence_consensus",
+      "report": {
+        "conclusions": [
+          {
+            "conclusion": "伤官佩印格局",
+            "conclusion_id": "cc:overall:507588957a3b",
+            "confidence": 0.92,
+            "direction": null,
+            "domain": "overall",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:overall:c9f117c8b091"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.92,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "日主偏弱",
+            "conclusion_id": "cc:overall:c42d891227c1",
+            "confidence": 0.85,
+            "direction": "neutral",
+            "domain": "overall",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:overall:33212f475717"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.85,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "羊刃格",
+            "conclusion_id": "cc:overall:4c3cfa5dd216",
+            "confidence": 0.85,
+            "direction": null,
+            "domain": "overall",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:overall:d6bd0056e5b1"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.85,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "命中有伤官",
+            "conclusion_id": "cc:personality:7ac0c7ced65a",
+            "confidence": 0.9,
+            "direction": "neutral",
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:7cdd5fe771c2"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "命中有正印",
+            "conclusion_id": "cc:personality:c278438b6260",
+            "confidence": 0.9,
+            "direction": "neutral",
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:f6ee544729d3"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "性格刚毅果敢",
+            "conclusion_id": "cc:personality:07260d58a75b",
+            "confidence": 0.9,
+            "direction": "positive",
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:fb618c6c457f"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "conflicts": [],
+        "domains": [
+          "overall",
+          "personality"
+        ],
+        "evidence_ids": [
+          "ev:overall:33212f475717",
+          "ev:overall:c9f117c8b091",
+          "ev:overall:d6bd0056e5b1",
+          "ev:personality:7cdd5fe771c2",
+          "ev:personality:f6ee544729d3",
+          "ev:personality:fb618c6c457f"
+        ],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "retain_all",
+          "total_conclusions": 6,
+          "total_conflicts": 0,
+          "total_evidence": 6
+        },
+        "overall_confidence": 0.886667,
+        "report_id": "cr:4fa7ac6d7061",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "Evidence from bazi and cross_system produces conclusions with cross-system bonus.",
+      "input_type": "cross_system",
+      "name": "cross_system_consensus",
+      "report": {
+        "conclusions": [
+          {
+            "conclusion": "刚毅金遁",
+            "conclusion_id": "cc:overall:a164d5354cfc",
+            "confidence": 0.8,
+            "direction": null,
+            "domain": "overall",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:overall:b174ee04e627"
+            ],
+            "is_conflict": false,
+            "metadata": {
+              "base_confidence": 0.8,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "cross_system"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "性格刚毅果敢",
+            "conclusion_id": "cc:personality:07260d58a75b",
+            "confidence": 0.9,
+            "direction": "positive",
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:fb618c6c457f"
+            ],
+            "is_conflict": false,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "conflicts": [],
+        "domains": [
+          "overall",
+          "personality"
+        ],
+        "evidence_ids": [
+          "ev:overall:b174ee04e627",
+          "ev:personality:fb618c6c457f"
+        ],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "retain_all",
+          "total_conclusions": 2,
+          "total_conflicts": 0,
+          "total_evidence": 2
+        },
+        "overall_confidence": 0.85,
+        "report_id": "cr:39f0ac869ad8",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "Two conflicting conclusions in personality domain, retain_all keeps both.",
+      "input_type": "conflict",
+      "name": "conflict_retain_all",
+      "report": {
+        "conclusions": [
+          {
+            "conclusion": "性格刚毅",
+            "conclusion_id": "cc:personality:c96f5c84337e",
+            "confidence": 0.9,
+            "direction": null,
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:conflict_a"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          },
+          {
+            "conclusion": "性格柔顺",
+            "conclusion_id": "cc:personality:e7dedbdf7ddd",
+            "confidence": 0.8,
+            "direction": null,
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:conflict_b"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.8,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "retain_all",
+            "systems": [
+              "ziwei"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "conflicts": [],
+        "domains": [
+          "personality"
+        ],
+        "evidence_ids": [
+          "ev:personality:conflict_a",
+          "ev:personality:conflict_b"
+        ],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "retain_all",
+          "total_conclusions": 2,
+          "total_conflicts": 0,
+          "total_evidence": 2
+        },
+        "overall_confidence": 0.85,
+        "report_id": "cr:210b13ee1894",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "Same conflict, highest_confidence keeps only the stronger conclusion.",
+      "input_type": "conflict",
+      "name": "conflict_highest_confidence",
+      "report": {
+        "conclusions": [
+          {
+            "conclusion": "性格刚毅",
+            "conclusion_id": "cc:personality:c96f5c84337e",
+            "confidence": 0.9,
+            "direction": null,
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:conflict_a"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.9,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "highest_confidence",
+            "systems": [
+              "bazi"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "conflicts": [
+          {
+            "conclusion": "性格柔顺",
+            "conclusion_id": "cc:personality:e7dedbdf7ddd",
+            "confidence": 0.8,
+            "direction": null,
+            "domain": "personality",
+            "evidence_count": 1,
+            "evidence_ids": [
+              "ev:personality:conflict_b"
+            ],
+            "is_conflict": true,
+            "metadata": {
+              "base_confidence": 0.8,
+              "cross_system_bonus": 0.0,
+              "system_count": 1
+            },
+            "strategy": "highest_confidence",
+            "systems": [
+              "ziwei"
+            ],
+            "version": "1.0.0"
+          }
+        ],
+        "domains": [
+          "personality"
+        ],
+        "evidence_ids": [
+          "ev:personality:conflict_a",
+          "ev:personality:conflict_b"
+        ],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "highest_confidence",
+          "total_conclusions": 1,
+          "total_conflicts": 1,
+          "total_evidence": 2
+        },
+        "overall_confidence": 0.9,
+        "report_id": "cr:5b22b81e59d7",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "Empty Evidence list produces an empty report.",
+      "input_type": "empty",
+      "name": "empty_input",
+      "report": {
+        "conclusions": [],
+        "conflicts": [],
+        "domains": [],
+        "evidence_ids": [],
+        "metadata": {
+          "cross_system_bonus_per_system": 0.1,
+          "max_cross_system_bonus": 0.3,
+          "strategy": "retain_all",
+          "total_conclusions": 0,
+          "total_conflicts": 0,
+          "total_evidence": 0
+        },
+        "overall_confidence": 0.0,
+        "report_id": "cr:2e1cfa82b035",
+        "version": "1.0.0"
+      }
+    }
+  ],
+  "models": {
+    "ConsensusConclusion": {
+      "field_types": {
+        "conclusion": "string",
+        "conclusion_id": "string (pattern: cc:<domain>:<hash>)",
+        "confidence": "number [0,1]",
+        "direction": "enum | null",
+        "domain": "enum (10 values)",
+        "evidence_count": "integer",
+        "evidence_ids": "array<string>",
+        "is_conflict": "boolean",
+        "metadata": "object",
+        "strategy": "enum",
+        "systems": "array<string>",
+        "version": "string"
+      },
+      "optional": [
+        "direction"
+      ],
+      "required": [
+        "conclusion_id",
+        "domain",
+        "conclusion",
+        "confidence",
+        "evidence_ids",
+        "evidence_count",
+        "systems",
+        "is_conflict",
+        "strategy",
+        "metadata",
+        "version"
+      ],
+      "type": "object"
+    },
+    "ConsensusConfig": {
+      "field_types": {
+        "cross_system_bonus_per_system": "number [0,1]",
+        "max_confidence": "number [0,1]",
+        "max_cross_system_bonus": "number [0,1]",
+        "min_confidence": "number [0,1]",
+        "strategy": "enum (retain_all|highest_confidence|majority)"
+      },
+      "required": [
+        "strategy"
+      ],
+      "type": "object"
+    },
+    "ConsensusInput": {
+      "field_types": {
+        "config": "ConsensusConfig",
+        "evidence": "array<Evidence>"
+      },
+      "required": [
+        "evidence",
+        "config"
+      ],
+      "type": "object"
+    },
+    "ConsensusReport": {
+      "field_types": {
+        "conclusions": "array<ConsensusConclusion>",
+        "conflicts": "array<ConsensusConclusion>",
+        "domains": "array<enum>",
+        "evidence_ids": "array<string>",
+        "metadata": "object",
+        "overall_confidence": "number [0,1]",
+        "report_id": "string (pattern: cr:<hash>)",
+        "version": "string"
+      },
+      "required": [
+        "report_id",
+        "overall_confidence",
+        "domains",
+        "conclusions",
+        "conflicts",
+        "evidence_ids",
+        "metadata",
+        "version"
+      ],
+      "type": "object"
+    }
+  },
+  "strategies": [
+    "retain_all",
+    "highest_confidence",
+    "majority"
+  ]
+}

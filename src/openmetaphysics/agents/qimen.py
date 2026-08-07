@@ -5,7 +5,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..core.calendar import solar_term_time, month_boundary_before
+from ..core.calendar import month_boundary_before, solar_term_time
 from ..core.engines import BaseAgent, DeterministicEngine
 from ..core.schemas import AgentInput, AgentOutput
 
@@ -61,6 +61,8 @@ LIUJIA = [
     ("甲辰", "壬"),
     ("甲寅", "癸"),
 ]
+
+
 # 节气三元: 每个节气分 上元/中元/下元 → 局数
 # 上元: 1-10 日 → 阴/阳 局+0
 # 中元: 11-20 日 → 阴/阳 局+3
@@ -77,6 +79,7 @@ def ju_from_day_of_month(day: int) -> int:
 
 class QimenInput(AgentInput):
     """奇门遁甲排盘输入。默认使用时家奇门：排盘时间 = 问卦时间。"""
+
     pass
 
 
@@ -116,15 +119,35 @@ class QimenOutput(AgentOutput):
 # 阳遁顺排六仪，阴遁逆排
 
 SOLAR_TERMS_YANGDUN = [
-    "冬至", "小寒", "大寒", "立春", "雨水", "惊蛰",
-    "春分", "清明", "谷雨", "立夏", "小满", "芒种",
+    "冬至",
+    "小寒",
+    "大寒",
+    "立春",
+    "雨水",
+    "惊蛰",
+    "春分",
+    "清明",
+    "谷雨",
+    "立夏",
+    "小满",
+    "芒种",
 ]
 SOLAR_TERMS_YINDUN = [
-    "夏至", "小暑", "大暑", "立秋", "处暑", "白露",
-    "秋分", "寒露", "霜降", "立冬", "小雪", "大雪",
+    "夏至",
+    "小暑",
+    "大暑",
+    "立秋",
+    "处暑",
+    "白露",
+    "秋分",
+    "寒露",
+    "霜降",
+    "立冬",
+    "小雪",
+    "大雪",
 ]
-JU_PER_TERM_YANG = {term: i+1 for i, term in enumerate(SOLAR_TERMS_YANGDUN)}
-JU_PER_TERM_YIN = {term: i+1 for i, term in enumerate(SOLAR_TERMS_YINDUN)}
+JU_PER_TERM_YANG = {term: i + 1 for i, term in enumerate(SOLAR_TERMS_YANGDUN)}
+JU_PER_TERM_YIN = {term: i + 1 for i, term in enumerate(SOLAR_TERMS_YINDUN)}
 
 
 def dun_type_and_base_ju(utc_dt: datetime.datetime) -> tuple[Literal["yang", "yin"], int]:
@@ -136,6 +159,7 @@ def dun_type_and_base_ju(utc_dt: datetime.datetime) -> tuple[Literal["yang", "yi
     """
     y = utc_dt.astimezone(datetime.timezone.utc).year
     from openmetaphysics.core.models import SOLAR_TERMS_24
+
     terms = []
     for name, _, lon in SOLAR_TERMS_24:
         terms.append((name, solar_term_time(y, lon)))
@@ -153,7 +177,9 @@ def dun_type_and_base_ju(utc_dt: datetime.datetime) -> tuple[Literal["yang", "yi
         return "yin", JU_PER_TERM_YIN[current_term]
 
 
-def build_palaces(dun_type: Literal["yang", "yin"], base_ju: int, day_of_month: int) -> tuple[list[QimenCell], int, int]:
+def build_palaces(
+    dun_type: Literal["yang", "yin"], base_ju: int, day_of_month: int
+) -> tuple[list[QimenCell], int, int]:
     """Build the full 9-palace Qimen board with all placements.
 
     Algorithm (时家奇门 转盘法):
