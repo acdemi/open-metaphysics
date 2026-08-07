@@ -1,0 +1,21 @@
+pattern:
+  pattern_id: pattern:bazi:wealth_indicator:v1
+  name: 财星指示
+  description: 命中有正财或偏财，指示财运
+  category: shensha
+  confidence: 0.75
+  systems: [bazi]
+  rule_ids:
+    - rule:bazi:cai_xing_ge:v1#1
+    - rule:bazi:cai_xing_ge:v1#2
+  knowledge_node_ids: []
+  requirements:
+    - rule_ids:
+        - rule:bazi:cai_xing_ge:v1#1
+        - rule:bazi:cai_xing_ge:v1#2
+      logic: any
+      min_matches: 1
+  source:
+    text: 子平真诠
+    credibility: 0.90
+  version: 1.0.0

@@ -1,0 +1,24 @@
+pattern:
+  pattern_id: pattern:bazi:shang_guan_pei_yin_geju:v1
+  name: 伤官佩印格局
+  description: 伤官配印且日主偏弱，构成伤官佩印格局
+  category: geju
+  confidence: 0.92
+  systems: [bazi]
+  rule_ids:
+    - rule:bazi:has_shang_guan:v1
+    - rule:bazi:has_zheng_yin:v1
+    - rule:bazi:weak_day_master:v1
+  knowledge_node_ids:
+    - kn:pattern:shang_guan_pei_yin
+  requirements:
+    - rule_ids:
+        - rule:bazi:has_shang_guan:v1
+        - rule:bazi:has_zheng_yin:v1
+        - rule:bazi:weak_day_master:v1
+      logic: all
+  source:
+    text: 滴天髓
+    chapter: 伤官
+    credibility: 0.95
+  version: 1.0.0

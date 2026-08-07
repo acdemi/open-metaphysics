@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package openmetaphysics.v1;
+
+// Rule Engine service -- deterministic rule evaluation.
+// Phase 6.8: Interface definition only. No implementation.
+// See: docs/engineering/14_polyglot_architecture.md (Rust Layer)
+
+service RuleEngineService {
+  rpc Evaluate(EvaluateRequest) returns (EvaluateResponse);
+  rpc BatchEvaluate(BatchEvaluateRequest) returns (BatchEvaluateResponse);
+}
+
+message EvaluateRequest {
+  string chart_json = 1;
+  repeated RuleData rules = 2;
+}
+
+message RuleData {
+  string id = 1;
+  string rule_type = 2;
+  string system = 3;
+  int32 priority = 4;
+  string conditions_json = 5;
+  string results_json = 6;
+  string scope_json = 7;
+}
+
+message RuleEvaluation {
+  string rule_id = 1;
+  bool matched = 2;
+  string results_json = 3;
+}
+
+message EvaluateResponse {
+  repeated RuleEvaluation evaluations = 1;
+}
+
+message BatchEvaluateRequest {
+  repeated EvaluateRequest requests = 1;
+}
+
+message BatchEvaluateResponse {
+  repeated EvaluateResponse responses = 1;
+}

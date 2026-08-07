@@ -1,0 +1,35 @@
+rule:
+  id: rule:qimen:yang_dun_jin:v1
+  name: 阳遁金局
+  name_en: yang_dun_metal_ju
+  system: qimen
+  rule_type: pattern_recognition
+
+  if:
+    all:
+      - field: dun_type
+        operator: equals
+        value: yang
+        description: 阳遁
+      - field: ju
+        operator: in
+        value: [6, 7]
+        description: 六七局（金）
+
+  then:
+    - domain: overall
+      conclusion: 阳遁金局，主肃杀果断
+      weight: 0.65
+      direction: neutral
+
+  priority: 55
+  scope:
+    systems: [qimen]
+    gender: [male]
+    age_range: [25, 60]
+    lunar_month_range: [1, 6]
+  source:
+    text: 烟波钓叟歌
+    credibility: 0.80
+  confidence: 0.80
+  version: 1.0.0

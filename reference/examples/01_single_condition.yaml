@@ -1,0 +1,27 @@
+rule:
+  id: rule:bazi:yang_ren_ge:v1
+  name: 羊刃格
+  name_en: yang_blade_pattern
+  system: bazi
+  rule_type: pattern_recognition
+
+  if:
+    field: shen_sha_list
+    operator: contains
+    value: 羊刃
+    description: 命局中有羊刃
+
+  then:
+    - domain: personality
+      conclusion: 性格刚毅果敢
+      conclusion_node_id: kn:personality:resolute
+      weight: 0.75
+      direction: positive
+
+  priority: 60
+  source:
+    text: 三命通会
+    chapter: 羊刃
+    credibility: 0.85
+  confidence: 0.9
+  version: 1.0.0

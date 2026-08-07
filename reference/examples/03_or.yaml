@@ -1,0 +1,32 @@
+rule:
+  id: rule:bazi:cai_xing_ge:v1
+  name: 财星格
+  name_en: wealth_star_pattern
+  system: bazi
+  rule_type: pattern_recognition
+
+  if:
+    any:
+      - field: ten_gods_map.values
+        operator: contains
+        value: 正财
+        description: 命局中有正财
+      - field: ten_gods_map.values
+        operator: contains
+        value: 偏财
+        description: 命局中有偏财
+
+  then:
+    - domain: wealth
+      conclusion: 命中有财星，主财运
+      conclusion_node_id: kn:wealth:star_present
+      weight: 0.80
+      direction: positive
+
+  priority: 65
+  source:
+    text: 子平真诠
+    chapter: 论财
+    credibility: 0.90
+  confidence: 0.85
+  version: 1.0.0

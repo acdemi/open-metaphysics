@@ -1,0 +1,46 @@
+rule:
+  id: rule:bazi:guan_sha_hun:v1
+  name: 官杀混杂
+  name_en: mixed_official_and_killer
+  system: bazi
+  rule_type: pattern_recognition
+
+  if:
+    all:
+      - any:
+          - field: ten_gods_map.values
+            operator: contains
+            value: 正官
+            description: 命局中有正官
+          - field: ten_gods_map.values
+            operator: contains
+            value: 七杀
+            description: 命局中有七杀
+      - not:
+          field: shen_sha_list
+          operator: contains
+          value: 天乙贵人
+          description: 无天乙贵人化解
+
+  then:
+    - domain: career
+      conclusion: 官杀混杂，事业多变动
+      conclusion_node_id: kn:career:unstable
+      weight: 0.72
+      direction: negative
+    - domain: marriage
+      conclusion: 感情复杂，易有纠葛
+      conclusion_node_id: kn:marriage:complicated
+      weight: 0.68
+      direction: negative
+
+  priority: 75
+  conflicts:
+    - rule:bazi:guan_yin_xiang_sheng:v1
+  conflict_strategy: retain_all
+  source:
+    text: 子平真诠
+    chapter: 论官杀
+    credibility: 0.90
+  confidence: 0.85
+  version: 1.0.0

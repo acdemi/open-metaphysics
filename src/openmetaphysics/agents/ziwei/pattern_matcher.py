@@ -1,19 +1,20 @@
 """Ziwei pattern matcher — deterministic rule-based pattern recognition.
 All patterns are matched via canonical rules, no LLM involved.
 """
-from __future__ import annotations
 
-from typing import List, Set, Tuple
+from __future__ import annotations
 
 from ..ziwei import Palace
 
 
-def _palace_has_stars(palace: Palace, stars: Set[str]) -> bool:
+def _palace_has_stars(palace: Palace, stars: set[str]) -> bool:
     """Check if palace has all specified stars."""
     return all(s in palace.main_stars for s in stars)
 
 
-def _sanfang_sizheng(palaces: list[Palace], center_idx: int) -> Tuple[Palace, Palace, Palace, Palace]:
+def _sanfang_sizheng(
+    palaces: list[Palace], center_idx: int
+) -> tuple[Palace, Palace, Palace, Palace]:
     """Get 三方四正 palaces relative to center index: [命宫，三方1，三方2，对宫]"""
     # 三方：+4, +8 modulo 12; 对宫：+6 modulo 12
     return (
@@ -24,7 +25,7 @@ def _sanfang_sizheng(palaces: list[Palace], center_idx: int) -> Tuple[Palace, Pa
     )
 
 
-def match_patterns(palaces: List[Palace]) -> List[str]:
+def match_patterns(palaces: list[Palace]) -> list[str]:
     """Match all deterministic patterns from the given 12 palaces.
     Returns list of pattern names in Chinese.
     """
@@ -44,8 +45,9 @@ def match_patterns(palaces: List[Palace]) -> List[str]:
     # -----------------------------------------------------------------------
     # 格局 2: 府相朝垣 (天府在命宫，天相在对宫；或天相在命宫，天府在对宫)
     # -----------------------------------------------------------------------
-    if ({"天府"}.issubset(ming.main_stars) and {"天相"}.issubset(dui.main_stars)) or \
-       ({"天相"}.issubset(ming.main_stars) and {"天府"}.issubset(dui.main_stars)):
+    if ({"天府"}.issubset(ming.main_stars) and {"天相"}.issubset(dui.main_stars)) or (
+        {"天相"}.issubset(ming.main_stars) and {"天府"}.issubset(dui.main_stars)
+    ):
         patterns.append("府相朝垣")
 
     # -----------------------------------------------------------------------
@@ -85,7 +87,9 @@ def match_patterns(palaces: List[Palace]) -> List[str]:
     # -----------------------------------------------------------------------
     # 格局 7: 紫府朝垣 (紫微、天府在三方朝拱命宫)
     # -----------------------------------------------------------------------
-    if {"紫微", "天府"}.issubset(all_sanfang_stars) and not any({"紫微", "天府"}.issubset(p.main_stars) for p in [ming]):
+    if {"紫微", "天府"}.issubset(all_sanfang_stars) and not any(
+        {"紫微", "天府"}.issubset(p.main_stars) for p in [ming]
+    ):
         patterns.append("紫府朝垣")
 
     # -----------------------------------------------------------------------
@@ -102,4 +106,3 @@ def match_patterns(palaces: List[Palace]) -> List[str]:
 
     # 去重返回
     return list(set(patterns))
-

@@ -1,9 +1,45 @@
 # OpenMetaphysics — 开发路线图
 
-> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。设计 v1 (2026-07-04)。
+> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-07-14)。
+> 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
+> 当前开发位置：Reference Runtime Sprint 5.5 完成，Documentation Refresh 进行中。
+
+## A. 两条时间线
+
+OpenMetaphysics 有两条并行的时间线，不得混淆：
+
+### A.1 Product Roadmap（Phase 0 ~ Phase 9）
+
+产品交付路线图。定义正式实现（`src/`, `crates/`, `services/`）的分阶段
+开发计划。每个 Phase 交付可运行的产品功能。
+
+### A.2 Reference Runtime（Sprint 1 ~ Sprint 5.5）
+
+参考实现路线图。定义 Reference Runtime（`reference/`）的分 Sprint 开发
+计划。每个 Sprint 交付一个领域的行为规范 + Contract + Golden Tests。
+
+| Sprint | 领域 | 状态 | 测试数 |
+|--------|------|------|--------|
+| Sprint 1 | Rule (DSL -> RuleEngine -> RuleEvaluation) | 完成 | 29 |
+| Sprint 2 | Pattern (PatternMatcher -> PatternMatch) | 完成 | 31 |
+| Sprint 3 | Evidence (EvidenceBuilder -> Evidence) | 完成 | 46 |
+| Sprint 3.5 | Normative Specification + Behavior Contracts | 完成 | - |
+| Sprint 4 | Knowledge (KnowledgeStore -> KnowledgeResult) | 完成 | 71 |
+| Sprint 5 | Consensus (ConsensusBuilder -> ConsensusReport) | 完成 | 70 |
+| Sprint 5.5 | Conformance Framework (ConformanceRunner) | 完成 | 57 |
+| Doc Refresh | Documentation Refresh (Architecture Governance) | 进行中 | - |
+
+**当前开发位置**: Reference Runtime Sprint 5.5 完成，Documentation Refresh
+进行中。Production Runtime 尚未开始。
+
+**关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
+实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。
+
+---
 
 ## Phase 0 — 脚手架
-- pyproject.toml (PEP 621, src 布局), uff + pytest, .gitignore。
+- pyproject.toml (PEP 621, src 布局), 
+uff + pytest, .gitignore。
 - src/openmetaphysics/ 下的包骨架，空的 	ests/。
 - **完成标准：** python -m pip install -e . 成功，pytest 可以运行（0 测试）。
 

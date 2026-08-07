@@ -110,7 +110,3 @@ __all__ = [
     "true_solar_time",
     "TrueSolarTimeResult",
 ]
-
-
-
-

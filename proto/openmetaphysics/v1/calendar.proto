@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package openmetaphysics.v1;
+
+// Calendar service -- deterministic luni-solar calendar computation.
+// Phase 6.8: Interface definition only. No implementation.
+// See: docs/engineering/14_polyglot_architecture.md (Rust Layer)
+
+service CalendarService {
+  rpc SolarTerms(YearRequest) returns (SolarTermsResponse);
+  rpc LunarDate(SolarDateRequest) returns (LunarDateResponse);
+  rpc TrueSolarTime(TimeRequest) returns (TrueSolarTimeResponse);
+}
+
+message YearRequest {
+  int32 year = 1;
+}
+
+message SolarTerm {
+  string name = 1;
+  int32 target_longitude = 2;
+  string utc_time = 3;
+}
+
+message SolarTermsResponse {
+  int32 year = 1;
+  repeated SolarTerm terms = 2;
+}
+
+message SolarDateRequest {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message LunarDateResponse {
+  int32 lunar_year = 1;
+  int32 lunar_month = 2;
+  int32 lunar_day = 3;
+  bool is_leap_month = 4;
+}
+
+message TimeRequest {
+  string utc_time = 1;
+  double longitude = 2;
+  bool daylight_saving = 3;
+}
+
+message TrueSolarTimeResponse {
+  string utc_time = 1;
+  string true_solar_time = 2;
+  double equation_of_time_minutes = 3;
+  double longitude_offset_minutes = 4;
+}
