@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qimen:contract:manifest:schema:v1",
+  "title": "QimenContractManifest",
+  "description": "Qimen Behavior Contract v1.0.0 的机器可读清单 (Frozen).",
+  "type": "object",
+  "properties": {
+    "contract_id": {
+      "const": "qimen:behavior:v1.0.0"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "status": {
+      "const": "Frozen"
+    },
+    "system": {
+      "const": "qimen"
+    },
+    "engine_version": {
+      "const": "0.3.0"
+    },
+    "rule_set_version": {
+      "const": "0.3.0"
+    },
+    "frozen_rules": {
+      "type": "array",
+      "minItems": 14,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "D1", "D3", "D4", "D5", "D6", "D7", "D8",
+          "D9", "D10", "D11", "D12", "D13", "D14"
+        ]
+      }
+    },
+    "deferred_rules": {
+      "type": "array",
+      "maxItems": 0,
+      "items": {
+        "enum": []
+      }
+    },
+    "qc_ids": {
+      "type": "array",
+      "minItems": 14,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "QC-001", "QC-002", "QC-003", "QC-004", "QC-005", "QC-006", "QC-007",
+          "QC-008", "QC-009", "QC-010", "QC-011", "QC-012", "QC-013", "QC-014"
+        ]
+      }
+    },
+    "golden_vector_count": {
+      "const": 24
+    },
+    "vector_classification": {
+      "const": "normative_fixture"
+    },
+    "vector_store": {
+      "type": "string"
+    },
+    "contract_doc": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_id", "version", "status", "system", "engine_version",
+    "rule_set_version", "frozen_rules", "deferred_rules", "qc_ids",
+    "golden_vector_count", "vector_classification", "vector_store", "contract_doc"
+  ],
+  "additionalProperties": false
+}
