@@ -1,14 +1,14 @@
 # OpenMetaphysics — Schema 设计
 
-> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Reference Freeze Candidate (2026-07-14)。
+> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Reference Freeze Candidate (2026-08-09)。
 > Schema 是跨语言契约（Python / Rust / Go），由 Reference Runtime 定义。
 
 ## 1. 设计规则
 
-- **一个信封，多个载荷。** 每个智能体返回相同的 AgentOutput 信封；只有 
-esult 载荷类型按智能体变化。
-- 输入扩展 AgentInput；输出扩展 AgentOutput 并带有类型化 
-esult。
+- **一个信封，多个载荷。** 每个智能体返回相同的 AgentOutput 信封；只有
+result 载荷类型按智能体变化。
+- 输入扩展 AgentInput；输出扩展 AgentOutput 并带有类型化
+result。
 - 枚举是封闭字符串基的（JSON 跨版本稳定）。
 - 所有日期时间都是时区感知的 ISO-8601。出生地点可选。
 - 每个 schema 都可以通过 Model.model_json_schema() 导出为 JSON Schema，并通过 API 在 GET /agents/{name}/schema 发布。
@@ -81,12 +81,12 @@ class AgentOutput(BaseModel):
 
 ## 3. 智能体特定载荷
 
-### 3.1 八字 (gents.bazi)
+### 3.1 八字 (agents.bazi)
 
 输入：BaziInput(AgentInput) — 无额外字段（出生日时分 + 性别驱动大运方向）。
 
-输出 
-esult: BaziChart:
+输出
+result: BaziChart:
 
 `python
 class Pillar(BaseModel):
@@ -110,13 +110,13 @@ class BaziChart(BaseModel):
     solar_term_boundary: str          # 例如 "立春"
 `
 
-### 3.2 紫微斗数 (gents.ziwei)
+### 3.2 紫微斗数 (agents.ziwei)
 
 输入：ZiweiInput(AgentInput) — 出生日时分 + 性别（阴阳 + 年干决定命局/紫微 placement）。
 支持显式提供 lunar_month: int | None / lunar_day: int | None 用于重放。
 
-输出 
-esult: ZiweiChart:
+输出
+result: ZiweiChart:
 
 `python
 class Palace(BaseModel):
@@ -139,12 +139,12 @@ class ZiweiChart(BaseModel):
     calendar_note: str | None = None  # 历法说明
 `
 
-### 3.3 奇门遁甲 (gents.qimen)
+### 3.3 奇门遁甲 (agents.qimen)
 
-输入：QimenInput(AgentInput) — 使用 orn_at（或选定的问卦时间）构建时家奇门盘。
+输入：QimenInput(AgentInput) — 使用 born_at（或选定的问卦时间）构建时家奇门盘。
 
-输出 
-esult: QimenBoard:
+输出
+result: QimenBoard:
 
 `python
 class QimenCell(BaseModel):
@@ -166,10 +166,9 @@ class QimenBoard(BaseModel):
     cells: list[QimenCell]            # 9 宫格 (宫位 1..9)
 `
 
-### 3.4 六爻 (gents.liuyao)
+### 3.4 六爻 (agents.liuyao)
 
-输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 
-andom()）。
+输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 random()）。
 
 `python
 class YaoLine(BaseModel):
@@ -192,7 +191,7 @@ class LiuyaoChart(BaseModel):
     yong_shen: str | None = None      # 用神
 `
 
-### 3.5 共识 (gents.consensus)
+### 3.5 共识 (agents.consensus)
 
 输入：ConsensusInput:
 
@@ -203,8 +202,8 @@ class ConsensusInput(BaseModel):
     strategy: Literal["weighted","majority","all"] = "weighted"
 `
 
-输出 
-esult: ConsensusReport:
+输出
+result: ConsensusReport:
 
 `python
 class AgentContribution(BaseModel):
