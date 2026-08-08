@@ -1,8 +1,8 @@
 # OpenMetaphysics — 开发路线图
 
-> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-07-14)。
+> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：Reference Runtime Sprint 5.5 完成，Documentation Refresh 进行中。
+> 当前开发位置：Reference Runtime Sprint 5.5 完成，Repository Hygiene 进行中。
 
 ## A. 两条时间线
 
@@ -27,10 +27,11 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Sprint 4 | Knowledge (KnowledgeStore -> KnowledgeResult) | 完成 | 71 |
 | Sprint 5 | Consensus (ConsensusBuilder -> ConsensusReport) | 完成 | 70 |
 | Sprint 5.5 | Conformance Framework (ConformanceRunner) | 完成 | 57 |
-| Doc Refresh | Documentation Refresh (Architecture Governance) | 进行中 | - |
+| Doc Refresh | Documentation Refresh (Architecture Governance) | 完成 | - |
+| Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
 
 **当前开发位置**: Reference Runtime Sprint 5.5 完成，Documentation Refresh
-进行中。Production Runtime 尚未开始。
+完成，Repository Hygiene 进行中。Production Runtime 尚未开始。
 
 **关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
 实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。
@@ -38,9 +39,8 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 ---
 
 ## Phase 0 — 脚手架
-- pyproject.toml (PEP 621, src 布局), 
-uff + pytest, .gitignore。
-- src/openmetaphysics/ 下的包骨架，空的 	ests/。
+- pyproject.toml (PEP 621, src 布局), ruff + pytest, .gitignore。
+- src/openmetaphysics/ 下的包骨架，空的 tests/。
 - **完成标准：** python -m pip install -e . 成功，pytest 可以运行（0 测试）。
 
 ## Phase 1 — 基础

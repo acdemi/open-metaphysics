@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-07-14
+> **最后更新**: 2026-08-07
 > **项目阶段**: Reference Freeze Candidate
 
 ---
@@ -82,7 +82,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Phase 0 | 脚手架 | 完成 | pyproject.toml, src 布局 |
 | Phase 1 | 基础 (schemas, models, calendar, engines) | 部分完成 | core 模块骨架已建立 |
 | Phase 2 | 六爻 | 部分完成 | 卦表、纳甲、六亲已实现 |
-| Phase 3 | 八字 | 部分完成 | 四柱引擎已实现，2 个测试失败（pre-existing） |
+| Phase 3 | 八字 | 部分完成 | 四柱引擎已实现，全部测试通过 |
 | Phase 4 | 紫微斗数 | 部分完成 | 宫位 + 十四主星已完成 |
 | Phase 5 | 奇门遁甲 | 骨架 | Schema 完整，核心 placement 待完成 |
 | Phase 6 | 共识智能体 | 未开始 | - |
@@ -90,10 +90,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Phase 8 | 推理 + RAG | 未开始 | - |
 | Phase 9 | 运维 + 可扩展性 | 未开始 | - |
 
-**Production Runtime 测试总计**: 77 个（75 通过，2 失败）。
-
-> 注: `tests/test_bazi.py` 中 2 个失败为 pre-existing 问题，与 Reference
-> Runtime 无关。
+**Production Runtime 测试总计**: 77 个，全部通过。
 
 ---
 
@@ -105,8 +102,8 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 |------|--------|------|------|
 | Reference Runtime | 304 | 304 | 0 |
 | Conformance Suite | 57 (测试) / 135 (检查) | 57 / 135 | 0 |
-| Pre-existing (Production) | 77 | 75 | 2 |
-| **总计** | **381** | **379** | **2** |
+| Production | 77 | 77 | 0 |
+| **总计** | **381** | **381** | **0** |
 
 ### 5.2 测试文件明细
 
@@ -119,7 +116,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_reference_consensus.py` | 70 | 全部通过 |
 | `tests/test_reference_conformance.py` | 57 | 全部通过 |
 | `tests/test_api.py` | 7 | 全部通过 |
-| `tests/test_bazi.py` | 11 | 9 通过, 2 失败 |
+| `tests/test_bazi.py` | 11 | 全部通过 |
 | `tests/test_calendar.py` | 6 | 全部通过 |
 | `tests/test_consensus.py` | 3 | 全部通过 |
 | `tests/test_determinism.py` | 4 | 全部通过 |
@@ -170,16 +167,17 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint**: Documentation Refresh（Architecture Governance）
+**当前 Sprint**: Repository Hygiene（标准环境搭建 + 文档刷新）
 
-**目标**: 同步现有文档与当前实现状态。
+**目标**: 建立可复现的标准环境，同步文档与当前实现状态。
 
 **交付物**:
+- 补全 `pyproject.toml` 缺失依赖（pyyaml / sxtwl / jinja2）
+- 固定 Python 3.11（`.python-version`），`uv sync --all-extras` 一键搭建
+- 验证全量测试 381/381 通过（含此前被依赖缺失阻塞的 bazi / ziwei / api）
+- 刷新 `docs/PROJECT_STATUS.md` 与 `context/` 笔记
 - 更新 `docs/ARCHITECTURE.md`（Reference Freeze Candidate + Governance）
-- 更新 `docs/SCHEMAS.md`（跨语言契约 + Reference/Production 关系）
-- 更新 `docs/INTERFACES.md`（Reference Runtime 接口位置）
-- 更新 `docs/ROADMAP.md`（双时间线）
-- 新建 `docs/PROJECT_STATUS.md`（本文件）
+- 更新 `docs/SCHEMAS.md` / `INTERFACES.md` / `ROADMAP.md`
 - 补充 `docs/specification/IMPLEMENTATION_GUIDE.md`（Sprint 5.5 遗留）
 
 ---
@@ -212,3 +210,28 @@ Proposal (ACP)。
 | Contracts | `reference/contracts/` | 自动生成的 Architecture Contract |
 | Golden Vectors | `reference/conformance/golden/` | 自动生成的 Conformance 向量 |
 | Golden Tests | `tests/test_reference_*.py` | Reference Runtime 验证 |
+
+---
+
+## 10. Standard Environment（uv）
+
+本项目使用 uv 管理可复现的 Python 环境。
+
+| 项 | 值 |
+|----|-----|
+| Python | 3.11（`.python-version` 固定） |
+| 包管理 | uv（`uv sync --all-extras`） |
+| 锁文件 | `uv.lock` |
+| 核心依赖 | pydantic / fastapi / uvicorn / langgraph / httpx / pyyaml / jinja2 / sxtwl |
+
+> **sxtwl 说明**: 农历计算依赖 `sxtwl`。其最新版（2.0.7）仅提供 Python 3.11
+> 的 Windows 预编译 wheel（3.12 / 3.13 需 MSVC 从源码编译）。因此项目固定
+> Python 3.11，保证 `uv sync` 在 Windows 上一键成功，无需编译工具链。核心
+> 计算（Reference Runtime）不依赖 sxtwl，可完全离线测试。
+
+### 搭建步骤
+
+```bash
+uv sync --all-extras                         # 创建 .venv 并安装全部依赖
+.venv/Scripts/python -m pytest -q            # 运行全量测试（381/381）
+```
