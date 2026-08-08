@@ -1,7 +1,7 @@
 # OpenMetaphysics — 架构设计
 
 > 完全本地运行、隐私保护、多智能体命理推理框架
-> 状态：Reference Freeze Candidate (2026-07-14)
+> 状态：Reference Freeze Candidate (2026-08-09)
 > Reference Runtime 已成为行为规范（Normative Reference Implementation）
 
 ## 0. 当前架构状态（Reference Freeze Candidate）
@@ -91,7 +91,7 @@ OpenMetaphysics 通过 **确定性规则引擎** 计算中国命理图表（八�
 - DeterministicEngine 是抽象基类，其 calculate() 是 **纯函数**：相同输入 ⇒ 字节相同的输出，无I/O，无时钟，除了种子PRNG（种子来自输入，例如六爻起卦）之外没有随机数。
 - 智能体暴露两个严格分离的方法：
   - compute(input) -> AgentOutput — 仅确定性计算。
-  - xplain(output, style) -> str — 可选，大语言模型支持；接收*已经计算好*的 AgentOutput，只能返回散文。它无法访问引擎。
+  - explain(output, style) -> str — 可选，大语言模型支持；接收*已经计算好*的 AgentOutput，只能返回散文。它无法访问引擎。
 - metadata.engine_version + metadata.input_hash 使每个结果都可审计、可重放。@frozen_engine 装饰器冻结引擎配置，版本变更必须显式。
 - 测试包含 **黄金向量/重放套件**：记录的（输入，输出）对每次运行都断言，捕捉非确定性或回归。
 
@@ -122,6 +122,7 @@ OpenMetaphysics 通过 **确定性规则引擎** 计算中国命理图表（八�
 | 关注点         | 选型           | 理由                                       |
 |----------------|----------------|--------------------------------------------|
 | 语言           | Python 3.11    | 要求；丰富的类型提示 + Pydantic            |
+| 环境管理       | uv              | 标准环境（`.python-version` + `uv.lock`），`uv sync --all-extras` 一键搭建 |
 | API            | FastAPI        | 异步，自动 OpenAPI/JSON Schema             |
 | 编排           | LangGraph      | 显式状态图，可观测                         |
 | 验证           | Pydantic v2    | Schema + JSON Schema 导出                  |
@@ -135,31 +136,45 @@ OpenMetaphysics 通过 **确定性规则引擎** 计算中国命理图表（八�
 ## 7. 打包与目录结构
 
 `
-open-metaphysics/
-├── pyproject.toml
-├── docs/                     # 架构、Schema、接口、路线图
-├── src/openmetaphysics/
-│   ├── core/                 # schemas, models, calendar, engines, config
-│   ├── agents/               # base + bazi/ziwei/qimen/liuyao/consensus
-│   ├── inference/            # providers (ollama/qwen/deepseek), explainer
-│   ├── rag/                  # qdrant client + retriever
-│   ├── orchestration/        # langgraph graph
-│   ├── api/                  # fastapi app + routes
-│   └── mcp/                  # future MCP server stub
-└── tests/                    # unit + golden replay + API tests
+open-metaphysics/                    # Monorepo（单仓多语言）
+├── .python-version                  # 固定 Python 3.11（标准环境）
+├── pyproject.toml                   # Python 工作区 + uv 锁文件 (uv.lock)
+├── AGENTS.md                        # 长期规则（Sprint Discipline 等）
+├── context/                         # 项目状态笔记（快速参考）
+├── docs/
+│   ├── design/phase6/               # Phase 6 架构冻结（不可修改）
+│   ├── engineering/                 # 工程冻结 + 技术选型
+│   └── specification/               # 行为规范 + Contract 治理
+├── reference/                       # ★ 行为规范（Normative Reference Runtime）
+│   ├── contracts/                   # 自动生成 Architecture Contract (JSON)
+│   ├── conformance/golden/          # 自动生成 Golden Vectors
+│   └── *.py                         # Rule/Pattern/Evidence/Knowledge/Consensus/Conformance
+├── src/openmetaphysics/             # Production Python
+│   ├── core/                        # schemas, models, calendar, engines, config
+│   ├── agents/                      # base + bazi/ziwei/qimen/liuyao/consensus
+│   ├── inference/                   # providers (ollama/qwen/deepseek), explainer
+│   ├── rag/                         # qdrant client + retriever
+│   ├── orchestration/               # langgraph graph
+│   ├── api/                         # fastapi app + routes
+│   └── mcp/                         # future MCP server stub
+├── crates/                          # Production Rust（om-calendar 等）
+├── services/                        # Production Go
+├── proto/                           # gRPC/Protobuf 契约
+├── packages/  apps/  frontend/      # 其他语言/应用（占位）
+├── tests/                           # Golden Tests + unit + replay + API
+└── scripts/  tools/                 # 工具脚本
 `
 
 ## 8. 可观测性与可解释性
 
-- 每个 AgentOutput 都携带 
-easoning_trace：有序的 ReasoningStep 记录（规则引用、输入、输出、描述）。这是审计追踪。
+- 每个 AgentOutput 都携带 reasoning_trace：有序的 ReasoningStep 记录（规则引用、输入、输出、描述）。这是审计追踪。
 - confidence 被分解 (ConfidenceScore: 值 + 方法 + 因子)，因此用户可以看到为什么一个数字是例如 0.82，而不仅仅知道它是。
 - LangGraph 将状态转换作为事件发出，用于追踪/调试。
 
 ## 9. 安全边界
 
 - API 边缘输入验证 (Pydantic) 拒绝格式错误/过大输入。
-- 出生地点是可选的；如果缺失，时区来自 orn_at 的偏移或提供的 	imezone 字符串（永远不通过大语言模型推断）。
+- 出生地点是可选的；如果缺失，时区来自 born_at 的偏移或提供的 timezone 字符串（永远不通过大语言模型推断）。
 - 解释器是唯一可联网的路径，默认关闭。
 ---
 

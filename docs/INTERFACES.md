@@ -1,6 +1,6 @@
 # OpenMetaphysics — 接口设计
 
-> 层与层之间的契约。下面每个接口都是 Python Protocol/ABC，由 Pydantic 模型实现，并覆盖测试。Reference Freeze Candidate (2026-07-14)。
+> 层与层之间的契约。下面每个接口都是 Python Protocol/ABC，由 Pydantic 模型实现，并覆盖测试。Reference Freeze Candidate (2026-08-09)。
 > Reference Runtime 接口已实现，Production Runtime 接口待实现。
 
 ## 0. Reference Runtime 接口位置
@@ -80,7 +80,7 @@ Production Runtime 必须实现等价接口并通过 Conformance Suite 验证。
 ## 1. 智能体契约
 
 每个智能体都实现 AgentProtocol。两个严格分离的接口：
-compute()（确定性，无大语言模型）和 xplain()（可选大语言模型，仅文本）。
+compute()（确定性，无大语言模型）和 explain()（可选大语言模型，仅文本）。
 
 `python
 class AgentProtocol(Protocol):
@@ -131,7 +131,7 @@ class BaseAgent(ABC):
         return self.explainer.render(output, style=style)
 `
 
-这种分离通过测试强制：compute() 不能碰任何 InferenceProvider；xplain() 不能修改 output.result。
+这种分离通过测试强制：compute() 不能碰任何 InferenceProvider；explain() 不能修改 output.result。
 
 ## 2. 确定性引擎接口
 
@@ -146,9 +146,9 @@ class DeterministicEngine(ABC):
     # 子类在 RuleRegistry 中注册规则，便于追踪。
 `
 
-RuleRegistry 将 
-ule_ref 字符串映射到可调用对象；每个规则调用追加一个 ReasoningStep。这使得引擎逻辑可以逐条检查和测试，并自动生成 
-easoning_trace。
+RuleRegistry 将
+rule_ref 字符串映射到可调用对象；每个规则调用追加一个 ReasoningStep。这使得引擎逻辑可以逐条检查和测试，并自动生成
+reasoning_trace。
 
 ## 3. 推理提供者接口（隔离）
 
@@ -177,7 +177,7 @@ class KnowledgeRetriever(Protocol):
     def retrieve(self, query: str, *, k: int = 5) -> list[KnowledgeChunk]: ...
 `
 
-仅被 xplain()/解释用于注入权威引用。它不能改变排盘数字。本地由 Qdrant 支持；内存后备保证测试无依赖。
+仅被 explain()/解释用于注入权威引用。它不能改变排盘数字。本地由 Qdrant 支持；内存后备保证测试无依赖。
 
 ## 5. 编排接口 (LangGraph)
 
@@ -194,7 +194,7 @@ class OrchestrationRequest(BaseModel):
     explain: bool = False                # 启用大语言模型文本层
 `
 
-图节点：alidate → route → fan_out(agents) → consensus → (explain?) → respond。
+图节点：validate → route → fan_out(agents) → consensus → (explain?) → respond。
 状态是 Pydantic 模型；边是确定性的（路由可以咨询大语言模型进行*选择*，由配置控制）。
 
 ## 6. API 接口 (FastAPI)
