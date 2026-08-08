@@ -1,0 +1,4153 @@
+{
+ "rule_set_version": "0.3.0",
+ "engine_version": "0.3.0",
+ "frozen_rules": [
+  "D1",
+  "D3",
+  "D4",
+  "D5",
+  "D6",
+  "D7",
+  "D8",
+  "D9",
+  "D10",
+  "D11",
+  "D12",
+  "D13"
+ ],
+ "deferred_rules": [
+  "D2",
+  "D14"
+ ],
+ "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+ "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+ "vectors": [
+  {
+   "id": "G1",
+   "input": {
+    "request_id": "GV-G1",
+    "born_at": "2024-02-15T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立春",
+    "ju": 7,
+    "dun_type": "yang",
+    "day_of_month": 15,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "六合",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "白虎",
+      "nine_stars": "天芮",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "玄武",
+      "nine_stars": "天辅",
+      "eight_doors": "生门",
+      "three_qi": "丁",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天禽",
+      "eight_doors": "景门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天心",
+      "eight_doors": "休门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天柱",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju7",
+    "zhuanpan_rotation",
+    "lichun"
+   ]
+  },
+  {
+   "id": "G2",
+   "input": {
+    "request_id": "GV-G2",
+    "born_at": "2024-08-15T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立秋",
+    "ju": 7,
+    "dun_type": "yin",
+    "day_of_month": 15,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "太阴",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "六合",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": "乙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "九地",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "九天",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "值符",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yin_dun",
+    "ju7",
+    "no_rotation",
+    "jia_shichen",
+    "liqiu"
+   ]
+  },
+  {
+   "id": "G3",
+   "input": {
+    "request_id": "GV-G3",
+    "born_at": "2024-08-14T00:30:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立秋",
+    "ju": 7,
+    "dun_type": "yin",
+    "day_of_month": 14,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "癸",
+      "earth_plate": "庚",
+      "eight_gods": "九天",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "壬",
+      "earth_plate": "己",
+      "eight_gods": "值符",
+      "nine_stars": "天任",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "辛",
+      "earth_plate": "戊",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天英",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "庚",
+      "earth_plate": "乙",
+      "eight_gods": "太阴",
+      "nine_stars": "天蓬",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "己",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天芮",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "戊",
+      "earth_plate": "丁",
+      "eight_gods": "六合",
+      "nine_stars": "天冲",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "乙",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": "乙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丙",
+      "earth_plate": "壬",
+      "eight_gods": "玄武",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "丁",
+      "earth_plate": "辛",
+      "eight_gods": "九地",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yin_dun",
+    "ju7",
+    "zhifu_zhonggong",
+    "jigong",
+    "zishi",
+    "liqiu"
+   ]
+  },
+  {
+   "id": "Y_ju1_zhishi_zhonggong",
+   "input": {
+    "request_id": "GV-Y_ju1_zhishi_zhonggong",
+    "born_at": "2024-01-01T08:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "冬至",
+    "ju": 1,
+    "dun_type": "yang",
+    "day_of_month": 1,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天蓬",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天芮",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "太阴",
+      "nine_stars": "天冲",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "六合",
+      "nine_stars": "天辅",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天心",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天柱",
+      "eight_doors": "开门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天任",
+      "eight_doors": "惊门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天英",
+      "eight_doors": "生门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju1",
+    "zhishi_zhonggong",
+    "jigong",
+    "jiazichen"
+   ],
+   "plan": {
+    "hour_stem": "戊",
+    "hour_branch": "辰",
+    "xun": "甲子",
+    "xun_palace": 1,
+    "hour_stem_palace": 1,
+    "zhi_fu_star": "天蓬",
+    "zhi_fu_palace": 1,
+    "zhi_shi_door": "休门",
+    "zhi_shi_palace": 2,
+    "void_palaces": [
+     6
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "Y_ju2_sanqi_adjacent",
+   "input": {
+    "request_id": "GV-Y_ju2_sanqi_adjacent",
+    "born_at": "2024-01-07T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "小寒",
+    "ju": 2,
+    "dun_type": "yang",
+    "day_of_month": 7,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "癸",
+      "earth_plate": "乙",
+      "eight_gods": "白虎",
+      "nine_stars": "天柱",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "丁",
+      "earth_plate": "戊",
+      "eight_gods": "玄武",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": "丁",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "丙",
+      "earth_plate": "己",
+      "eight_gods": "九地",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "乙",
+      "earth_plate": "庚",
+      "eight_gods": "九天",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "戊",
+      "earth_plate": "辛",
+      "eight_gods": null,
+      "nine_stars": "天芮",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "己",
+      "earth_plate": "壬",
+      "eight_gods": "值符",
+      "nine_stars": "天冲",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "庚",
+      "earth_plate": "癸",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天辅",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "辛",
+      "earth_plate": "丁",
+      "eight_gods": "太阴",
+      "nine_stars": "天禽",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "壬",
+      "earth_plate": "丙",
+      "eight_gods": "六合",
+      "nine_stars": "天心",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju2",
+    "sanqi_adjacent_234"
+   ],
+   "plan": {
+    "hour_stem": "壬",
+    "hour_branch": "午",
+    "xun": "甲戌",
+    "xun_palace": 3,
+    "hour_stem_palace": 6,
+    "zhi_fu_star": "天冲",
+    "zhi_fu_palace": 6,
+    "zhi_shi_door": "伤门",
+    "zhi_shi_palace": 2,
+    "void_palaces": [
+     2,
+     7
+    ],
+    "offset": 3
+   }
+  },
+  {
+   "id": "Y_ju3",
+   "input": {
+    "request_id": "GV-Y_ju3",
+    "born_at": "2024-06-06T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "芒种",
+    "ju": 3,
+    "dun_type": "yang",
+    "day_of_month": 6,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "玄武",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "值符",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "太阴",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "六合",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju3"
+   ],
+   "plan": {
+    "hour_stem": "甲",
+    "hour_branch": "午",
+    "xun": "甲午",
+    "xun_palace": 6,
+    "hour_stem_palace": 6,
+    "zhi_fu_star": "天心",
+    "zhi_fu_palace": 6,
+    "zhi_shi_door": "开门",
+    "zhi_shi_palace": 6,
+    "void_palaces": [
+     4
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "Y_ju4",
+   "input": {
+    "request_id": "GV-Y_ju4",
+    "born_at": "2024-02-05T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立春",
+    "ju": 4,
+    "dun_type": "yang",
+    "day_of_month": 5,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "白虎",
+      "nine_stars": "天任",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "玄武",
+      "nine_stars": "天英",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "九地",
+      "nine_stars": "天蓬",
+      "eight_doors": "惊门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "九天",
+      "nine_stars": "天芮",
+      "eight_doors": "生门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "六合",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju4",
+    "lichun_shangyuan"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "午",
+    "xun": "甲子",
+    "xun_palace": 4,
+    "hour_stem_palace": 6,
+    "zhi_fu_star": "天辅",
+    "zhi_fu_palace": 6,
+    "zhi_shi_door": "杜门",
+    "zhi_shi_palace": 1,
+    "void_palaces": [
+     6
+    ],
+    "offset": 2
+   }
+  },
+  {
+   "id": "Y_ju5",
+   "input": {
+    "request_id": "GV-Y_ju5",
+    "born_at": "2024-03-01T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "雨水",
+    "ju": 5,
+    "dun_type": "yang",
+    "day_of_month": 1,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "六合",
+      "nine_stars": "天任",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "白虎",
+      "nine_stars": "天英",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "玄武",
+      "nine_stars": "天蓬",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "九地",
+      "nine_stars": "天芮",
+      "eight_doors": "生门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": "乙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju5"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "午",
+    "xun": "甲子",
+    "xun_palace": 5,
+    "hour_stem_palace": 7,
+    "zhi_fu_star": "天禽",
+    "zhi_fu_palace": 7,
+    "zhi_shi_door": "死门",
+    "zhi_shi_palace": 8,
+    "void_palaces": [
+     6
+    ],
+    "offset": 2
+   }
+  },
+  {
+   "id": "Y_ju6",
+   "input": {
+    "request_id": "GV-Y_ju6",
+    "born_at": "2024-03-06T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "惊蛰",
+    "ju": 6,
+    "dun_type": "yang",
+    "day_of_month": 6,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "六合",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "白虎",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "玄武",
+      "nine_stars": "天芮",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天辅",
+      "eight_doors": "生门",
+      "three_qi": "丙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天禽",
+      "eight_doors": "景门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天心",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天柱",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju6"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "午",
+    "xun": "甲子",
+    "xun_palace": 6,
+    "hour_stem_palace": 8,
+    "zhi_fu_star": "天心",
+    "zhi_fu_palace": 8,
+    "zhi_shi_door": "开门",
+    "zhi_shi_palace": 3,
+    "void_palaces": [
+     6
+    ],
+    "offset": 2
+   }
+  },
+  {
+   "id": "Y_ju7_winter_solstice",
+   "input": {
+    "request_id": "GV-Y_ju7_winter_solstice",
+    "born_at": "2023-12-23T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "冬至",
+    "ju": 7,
+    "dun_type": "yang",
+    "day_of_month": 23,
+    "triple_offset": 6,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "戊",
+      "earth_plate": "辛",
+      "eight_gods": "九天",
+      "nine_stars": "天柱",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "己",
+      "earth_plate": "壬",
+      "eight_gods": "值符",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "庚",
+      "earth_plate": "癸",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "辛",
+      "earth_plate": "丁",
+      "eight_gods": "太阴",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "壬",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天芮",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "癸",
+      "earth_plate": "乙",
+      "eight_gods": "六合",
+      "nine_stars": "天冲",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丁",
+      "earth_plate": "戊",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "生门",
+      "three_qi": "丁",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丙",
+      "earth_plate": "己",
+      "eight_gods": "玄武",
+      "nine_stars": "天禽",
+      "eight_doors": "景门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "乙",
+      "earth_plate": "庚",
+      "eight_gods": "九地",
+      "nine_stars": "天心",
+      "eight_doors": "休门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju7",
+    "winter_solstice"
+   ],
+   "plan": {
+    "hour_stem": "壬",
+    "hour_branch": "午",
+    "xun": "甲戌",
+    "xun_palace": 8,
+    "hour_stem_palace": 2,
+    "zhi_fu_star": "天任",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "生门",
+    "zhi_shi_palace": 7,
+    "void_palaces": [
+     2,
+     7
+    ],
+    "offset": 3
+   }
+  },
+  {
+   "id": "Y_ju8",
+   "input": {
+    "request_id": "GV-Y_ju8",
+    "born_at": "2024-04-05T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "清明",
+    "ju": 8,
+    "dun_type": "yang",
+    "day_of_month": 5,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天任",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天英",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天蓬",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "六合",
+      "nine_stars": "天芮",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "玄武",
+      "nine_stars": "天禽",
+      "eight_doors": "伤门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天心",
+      "eight_doors": "杜门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天柱",
+      "eight_doors": "开门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju8"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "午",
+    "xun": "甲子",
+    "xun_palace": 8,
+    "hour_stem_palace": 1,
+    "zhi_fu_star": "天任",
+    "zhi_fu_palace": 1,
+    "zhi_shi_door": "生门",
+    "zhi_shi_palace": 2,
+    "void_palaces": [
+     6
+    ],
+    "offset": 2
+   }
+  },
+  {
+   "id": "Y_ju9",
+   "input": {
+    "request_id": "GV-Y_ju9",
+    "born_at": "2024-01-21T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "大寒",
+    "ju": 9,
+    "dun_type": "yang",
+    "day_of_month": 21,
+    "triple_offset": 6,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天任",
+      "eight_doors": "杜门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天英",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天蓬",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天芮",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": null,
+      "nine_stars": "天冲",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "六合",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "玄武",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yang_dun",
+    "ju9"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "午",
+    "xun": "甲子",
+    "xun_palace": 9,
+    "hour_stem_palace": 2,
+    "zhi_fu_star": "天英",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "景门",
+    "zhi_shi_palace": 6,
+    "void_palaces": [
+     6
+    ],
+    "offset": 2
+   }
+  },
+  {
+   "id": "Z_yin2_zhifu_zhonggong",
+   "input": {
+    "request_id": "GV-Z_yin2_zhifu_zhonggong",
+    "born_at": "2024-07-10T10:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "小暑",
+    "ju": 2,
+    "dun_type": "yin",
+    "day_of_month": 10,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "癸",
+      "earth_plate": "丙",
+      "eight_gods": "九天",
+      "nine_stars": "天冲",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "壬",
+      "earth_plate": "丁",
+      "eight_gods": "值符",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "辛",
+      "earth_plate": "癸",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "庚",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "己",
+      "earth_plate": "辛",
+      "eight_gods": null,
+      "nine_stars": "天柱",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "戊",
+      "earth_plate": "庚",
+      "eight_gods": "六合",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "乙",
+      "earth_plate": "己",
+      "eight_gods": "白虎",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": "乙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "丙",
+      "earth_plate": "戊",
+      "eight_gods": "玄武",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "丁",
+      "earth_plate": "乙",
+      "eight_gods": "九地",
+      "nine_stars": "天芮",
+      "eight_doors": "惊门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yin_dun",
+    "ju2",
+    "zhifu_zhonggong",
+    "jigong",
+    "xinsi_shi"
+   ],
+   "plan": {
+    "hour_stem": "辛",
+    "hour_branch": "巳",
+    "xun": "甲戌",
+    "xun_palace": 7,
+    "hour_stem_palace": 5,
+    "zhi_fu_star": "天柱",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "惊门",
+    "zhi_shi_palace": 9,
+    "void_palaces": [
+     2,
+     7
+    ],
+    "offset": 7
+   }
+  },
+  {
+   "id": "Z_yin5_dual_zhonggong",
+   "input": {
+    "request_id": "GV-Z_yin5_dual_zhonggong",
+    "born_at": "2024-07-18T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "小暑",
+    "ju": 5,
+    "dun_type": "yin",
+    "day_of_month": 18,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "戊",
+      "earth_plate": "壬",
+      "eight_gods": "九天",
+      "nine_stars": "天禽",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "乙",
+      "earth_plate": "辛",
+      "eight_gods": "值符",
+      "nine_stars": "天心",
+      "eight_doors": "景门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "丙",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天柱",
+      "eight_doors": "休门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "丁",
+      "earth_plate": "己",
+      "eight_gods": "太阴",
+      "nine_stars": "天任",
+      "eight_doors": "死门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "癸",
+      "earth_plate": "戊",
+      "eight_gods": null,
+      "nine_stars": "天英",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "壬",
+      "earth_plate": "乙",
+      "eight_gods": "六合",
+      "nine_stars": "天蓬",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "辛",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天芮",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "庚",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天冲",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "己",
+      "earth_plate": "癸",
+      "eight_gods": "九地",
+      "nine_stars": "天辅",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yin_dun",
+    "ju5",
+    "zhifu_zhonggong",
+    "zhishi_zhonggong",
+    "jigong"
+   ],
+   "plan": {
+    "hour_stem": "戊",
+    "hour_branch": "午",
+    "xun": "甲寅",
+    "xun_palace": 9,
+    "hour_stem_palace": 5,
+    "zhi_fu_star": "天英",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "景门",
+    "zhi_shi_palace": 2,
+    "void_palaces": [
+     1,
+     8
+    ],
+    "offset": 5
+   }
+  },
+  {
+   "id": "Z_yin3_daxue",
+   "input": {
+    "request_id": "GV-Z_yin3_daxue",
+    "born_at": "2024-12-08T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "大雪",
+    "ju": 3,
+    "dun_type": "yin",
+    "day_of_month": 8,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "九地",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "九天",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "值符",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "太阴",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "六合",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "yin_dun",
+    "ju3",
+    "daxue"
+   ],
+   "plan": {
+    "hour_stem": "甲",
+    "hour_branch": "午",
+    "xun": "甲午",
+    "xun_palace": 4,
+    "hour_stem_palace": 4,
+    "zhi_fu_star": "天辅",
+    "zhi_fu_palace": 4,
+    "zhi_shi_door": "杜门",
+    "zhi_shi_palace": 4,
+    "void_palaces": [
+     4
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "B_summer_before",
+   "input": {
+    "request_id": "GV-B_summer_before",
+    "born_at": "2024-06-21T03:30:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "芒种",
+    "ju": 9,
+    "dun_type": "yang",
+    "day_of_month": 21,
+    "triple_offset": 6,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "九天",
+      "nine_stars": "天蓬",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "值符",
+      "nine_stars": "天芮",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天冲",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "太阴",
+      "nine_stars": "天辅",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "六合",
+      "nine_stars": "天心",
+      "eight_doors": "景门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "白虎",
+      "nine_stars": "天柱",
+      "eight_doors": "休门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "玄武",
+      "nine_stars": "天任",
+      "eight_doors": "死门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "九地",
+      "nine_stars": "天英",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "summer_solstice_before",
+    "term_switch"
+   ],
+   "plan": {
+    "hour_stem": "庚",
+    "hour_branch": "寅",
+    "xun": "甲申",
+    "xun_palace": 2,
+    "hour_stem_palace": 2,
+    "zhi_fu_star": "天芮",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "死门",
+    "zhi_shi_palace": 8,
+    "void_palaces": [
+     2,
+     9
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "B_summer_after",
+   "input": {
+    "request_id": "GV-B_summer_after",
+    "born_at": "2024-06-21T06:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "夏至",
+    "ju": 7,
+    "dun_type": "yin",
+    "day_of_month": 21,
+    "triple_offset": 6,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "己",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天芮",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "戊",
+      "earth_plate": "己",
+      "eight_gods": "太阴",
+      "nine_stars": "天冲",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "乙",
+      "earth_plate": "戊",
+      "eight_gods": "六合",
+      "nine_stars": "天辅",
+      "eight_doors": "休门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "丙",
+      "earth_plate": "乙",
+      "eight_gods": "白虎",
+      "nine_stars": "天禽",
+      "eight_doors": "死门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丁",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天心",
+      "eight_doors": null,
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "癸",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "壬",
+      "earth_plate": "癸",
+      "eight_gods": "九地",
+      "nine_stars": "天任",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "辛",
+      "earth_plate": "壬",
+      "eight_gods": "九天",
+      "nine_stars": "天英",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "庚",
+      "earth_plate": "辛",
+      "eight_gods": "值符",
+      "nine_stars": "天蓬",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "summer_solstice_after",
+    "term_switch"
+   ],
+   "plan": {
+    "hour_stem": "辛",
+    "hour_branch": "卯",
+    "xun": "甲申",
+    "xun_palace": 1,
+    "hour_stem_palace": 9,
+    "zhi_fu_star": "天蓬",
+    "zhi_fu_palace": 9,
+    "zhi_shi_door": "休门",
+    "zhi_shi_palace": 3,
+    "void_palaces": [
+     2,
+     9
+    ],
+    "offset": 8
+   }
+  },
+  {
+   "id": "B_lichun_before",
+   "input": {
+    "request_id": "GV-B_lichun_before",
+    "born_at": "2024-02-04T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "大寒",
+    "ju": 3,
+    "dun_type": "yang",
+    "day_of_month": 4,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "辛",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "壬",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "癸",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "丁",
+      "earth_plate": "己",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丙",
+      "earth_plate": "庚",
+      "eight_gods": null,
+      "nine_stars": "天蓬",
+      "eight_doors": null,
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "乙",
+      "earth_plate": "辛",
+      "eight_gods": "太阴",
+      "nine_stars": "天芮",
+      "eight_doors": "休门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "戊",
+      "earth_plate": "壬",
+      "eight_gods": "六合",
+      "nine_stars": "天冲",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "己",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "庚",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天禽",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "lichun_before",
+    "term_switch"
+   ],
+   "plan": {
+    "hour_stem": "戊",
+    "hour_branch": "午",
+    "xun": "甲寅",
+    "xun_palace": 8,
+    "hour_stem_palace": 3,
+    "zhi_fu_star": "天任",
+    "zhi_fu_palace": 3,
+    "zhi_shi_door": "生门",
+    "zhi_shi_palace": 3,
+    "void_palaces": [
+     1,
+     8
+    ],
+    "offset": 4
+   }
+  },
+  {
+   "id": "B_lichun_after",
+   "input": {
+    "request_id": "GV-B_lichun_after",
+    "born_at": "2024-02-05T01:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立春",
+    "ju": 4,
+    "dun_type": "yang",
+    "day_of_month": 5,
+    "triple_offset": 0,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "太阴",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "六合",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "lichun_after",
+    "term_switch"
+   ],
+   "plan": {
+    "hour_stem": "甲",
+    "hour_branch": "子",
+    "xun": "甲子",
+    "xun_palace": 4,
+    "hour_stem_palace": 4,
+    "zhi_fu_star": "天辅",
+    "zhi_fu_palace": 4,
+    "zhi_shi_door": "杜门",
+    "zhi_shi_palace": 4,
+    "void_palaces": [
+     6
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "B_zishi",
+   "input": {
+    "request_id": "GV-B_zishi",
+    "born_at": "2024-03-16T00:30:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "惊蛰",
+    "ju": 9,
+    "dun_type": "yang",
+    "day_of_month": 16,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "太阴",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "六合",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "白虎",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": "丁",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "zishi",
+    "jiazishi",
+    "no_rotation"
+   ],
+   "plan": {
+    "hour_stem": "甲",
+    "hour_branch": "子",
+    "xun": "甲子",
+    "xun_palace": 9,
+    "hour_stem_palace": 9,
+    "zhi_fu_star": "天英",
+    "zhi_fu_palace": 9,
+    "zhi_shi_door": "景门",
+    "zhi_shi_palace": 9,
+    "void_palaces": [
+     6
+    ],
+    "offset": 0
+   }
+  },
+  {
+   "id": "B_truesolar_cross_shichen",
+   "input": {
+    "request_id": "GV-B_truesolar_cross_shichen",
+    "born_at": "2024-02-15T11:20:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立春",
+    "ju": 7,
+    "dun_type": "yang",
+    "day_of_month": 15,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "庚",
+      "earth_plate": "辛",
+      "eight_gods": "太阴",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "辛",
+      "earth_plate": "壬",
+      "eight_gods": "六合",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "壬",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天芮",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "癸",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天冲",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丁",
+      "earth_plate": "丙",
+      "eight_gods": null,
+      "nine_stars": "天辅",
+      "eight_doors": null,
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丙",
+      "earth_plate": "乙",
+      "eight_gods": "九地",
+      "nine_stars": "天禽",
+      "eight_doors": "景门",
+      "three_qi": "丙",
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "乙",
+      "earth_plate": "戊",
+      "eight_gods": "九天",
+      "nine_stars": "天心",
+      "eight_doors": "休门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "戊",
+      "earth_plate": "己",
+      "eight_gods": "值符",
+      "nine_stars": "天柱",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "己",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天任",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "true_solar_cross",
+    "si_shi"
+   ],
+   "plan": {
+    "hour_stem": "己",
+    "hour_branch": "巳",
+    "xun": "甲子",
+    "xun_palace": 7,
+    "hour_stem_palace": 8,
+    "zhi_fu_star": "天柱",
+    "zhi_fu_palace": 8,
+    "zhi_shi_door": "惊门",
+    "zhi_shi_palace": 3,
+    "void_palaces": [
+     6
+    ],
+    "offset": 1
+   }
+  },
+  {
+   "id": "N_chunfen",
+   "input": {
+    "request_id": "GV-N_chunfen",
+    "born_at": "2024-03-20T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "春分",
+    "ju": 1,
+    "dun_type": "yang",
+    "day_of_month": 20,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "癸",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "丁",
+      "earth_plate": "己",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "丙",
+      "earth_plate": "庚",
+      "eight_gods": "太阴",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "乙",
+      "earth_plate": "辛",
+      "eight_gods": "六合",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "戊",
+      "earth_plate": "壬",
+      "eight_gods": null,
+      "nine_stars": "天蓬",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "己",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天芮",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "庚",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天冲",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "辛",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天辅",
+      "eight_doors": "伤门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "壬",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天禽",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "chunfen",
+    "yang_dun",
+    "ju1",
+    "jia_yin_xun"
+   ],
+   "plan": {
+    "hour_stem": "戊",
+    "hour_branch": "午",
+    "xun": "甲寅",
+    "xun_palace": 6,
+    "hour_stem_palace": 1,
+    "zhi_fu_star": "天心",
+    "zhi_fu_palace": 1,
+    "zhi_shi_door": "开门",
+    "zhi_shi_palace": 1,
+    "void_palaces": [
+     1,
+     8
+    ],
+    "offset": 4
+   }
+  },
+  {
+   "id": "N_qiufen",
+   "input": {
+    "request_id": "GV-N_qiufen",
+    "born_at": "2024-09-23T12:00:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "秋分",
+    "ju": 4,
+    "dun_type": "yin",
+    "day_of_month": 23,
+    "triple_offset": 6,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "庚",
+      "earth_plate": "癸",
+      "eight_gods": "九天",
+      "nine_stars": "天辅",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "己",
+      "earth_plate": "壬",
+      "eight_gods": "值符",
+      "nine_stars": "天禽",
+      "eight_doors": "休门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "戊",
+      "earth_plate": "辛",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天心",
+      "eight_doors": "死门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "乙",
+      "earth_plate": "庚",
+      "eight_gods": "太阴",
+      "nine_stars": "天柱",
+      "eight_doors": "伤门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "丙",
+      "earth_plate": "己",
+      "eight_gods": null,
+      "nine_stars": "天任",
+      "eight_doors": null,
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "丁",
+      "earth_plate": "戊",
+      "eight_gods": "六合",
+      "nine_stars": "天英",
+      "eight_doors": "杜门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "癸",
+      "earth_plate": "乙",
+      "eight_gods": "白虎",
+      "nine_stars": "天蓬",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "壬",
+      "earth_plate": "丙",
+      "eight_gods": "玄武",
+      "nine_stars": "天芮",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "辛",
+      "earth_plate": "丁",
+      "eight_gods": "九地",
+      "nine_stars": "天冲",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "qiufen",
+    "yin_dun",
+    "ju4",
+    "xun_zhonggong",
+    "zhifu_tianqin"
+   ],
+   "plan": {
+    "hour_stem": "壬",
+    "hour_branch": "午",
+    "xun": "甲戌",
+    "xun_palace": 5,
+    "hour_stem_palace": 2,
+    "zhi_fu_star": "天禽",
+    "zhi_fu_palace": 2,
+    "zhi_shi_door": "死门",
+    "zhi_shi_palace": 3,
+    "void_palaces": [
+     2,
+     7
+    ],
+    "offset": 6
+   }
+  },
+  {
+   "id": "N_late_zishi",
+   "input": {
+    "request_id": "GV-N_late_zishi",
+    "born_at": "2024-05-15T23:30:00+08:00",
+    "gender": "unknown",
+    "born_location": {
+     "latitude": 39.9,
+     "longitude": 116.4,
+     "timezone": "Asia/Shanghai"
+    }
+   },
+   "expected_board": {
+    "solar_term": "立夏",
+    "ju": 4,
+    "dun_type": "yang",
+    "day_of_month": 15,
+    "triple_offset": 3,
+    "cells": [
+     {
+      "palace": 1,
+      "name": "坎",
+      "sky_plate": "丁",
+      "earth_plate": "丁",
+      "eight_gods": "玄武",
+      "nine_stars": "天蓬",
+      "eight_doors": "休门",
+      "three_qi": "丁",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 2,
+      "name": "坤",
+      "sky_plate": "丙",
+      "earth_plate": "丙",
+      "eight_gods": "九地",
+      "nine_stars": "天芮",
+      "eight_doors": "死门",
+      "three_qi": "丙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 3,
+      "name": "震",
+      "sky_plate": "乙",
+      "earth_plate": "乙",
+      "eight_gods": "九天",
+      "nine_stars": "天冲",
+      "eight_doors": "伤门",
+      "three_qi": "乙",
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 4,
+      "name": "巽",
+      "sky_plate": "戊",
+      "earth_plate": "戊",
+      "eight_gods": "值符",
+      "nine_stars": "天辅",
+      "eight_doors": "杜门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 5,
+      "name": "中宫",
+      "sky_plate": "己",
+      "earth_plate": "己",
+      "eight_gods": null,
+      "nine_stars": "天禽",
+      "eight_doors": null,
+      "three_qi": null,
+      "is_void": false,
+      "is_central": true
+     },
+     {
+      "palace": 6,
+      "name": "乾",
+      "sky_plate": "庚",
+      "earth_plate": "庚",
+      "eight_gods": "螣蛇",
+      "nine_stars": "天心",
+      "eight_doors": "开门",
+      "three_qi": null,
+      "is_void": true,
+      "is_central": false
+     },
+     {
+      "palace": 7,
+      "name": "兑",
+      "sky_plate": "辛",
+      "earth_plate": "辛",
+      "eight_gods": "太阴",
+      "nine_stars": "天柱",
+      "eight_doors": "惊门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 8,
+      "name": "艮",
+      "sky_plate": "壬",
+      "earth_plate": "壬",
+      "eight_gods": "六合",
+      "nine_stars": "天任",
+      "eight_doors": "生门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     },
+     {
+      "palace": 9,
+      "name": "离",
+      "sky_plate": "癸",
+      "earth_plate": "癸",
+      "eight_gods": "白虎",
+      "nine_stars": "天英",
+      "eight_doors": "景门",
+      "three_qi": null,
+      "is_void": false,
+      "is_central": false
+     }
+    ]
+   },
+   "engine_version": "0.3.0",
+   "rule_set_version": "0.3.0",
+   "frozen_rules": [
+    "D1",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13"
+   ],
+   "deferred_rules": [
+    "D2",
+    "D14"
+   ],
+   "assumptions_reference": "docs/qimen/QIMEN_ALGORITHM_ASSUMPTIONS.md",
+   "decision_reference": "docs/qimen/QIMEN_RULE_DECISION.md",
+   "classification": "normative_fixture",
+   "coverage": [
+    "late_zishi",
+    "yang_dun",
+    "ju4",
+    "no_rollover",
+    "jiazishi"
+   ],
+   "plan": {
+    "hour_stem": "甲",
+    "hour_branch": "子",
+    "xun": "甲子",
+    "xun_palace": 4,
+    "hour_stem_palace": 4,
+    "zhi_fu_star": "天辅",
+    "zhi_fu_palace": 4,
+    "zhi_shi_door": "杜门",
+    "zhi_shi_palace": 4,
+    "void_palaces": [
+     6
+    ],
+    "offset": 0
+   }
+  }
+ ],
+ "status": "normative_fixtures",
+ "contract_reference": "docs/specification/QIMEN_BEHAVIOR_CONTRACT.md",
+ "promotion_version": "1.0.0",
+ "immutable": true
+}

@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qimen:contract:instance:schema:v1",
+  "title": "QimenContractInstance",
+  "description": "QIMEN_BEHAVIOR_CONTRACT.md 的机器可读提取层 (Phase 5.8A)。全部内容基于契约 v1.0.0 文档, 不新增任何 QC 编号或行为定义。x-contract 为提取产物注解 (JSON Schema 2020-12 注解关键字, 不影响校验)。",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0",
+      "description": "契约版本 (SemVer)"
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 14,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^QC-\\d{3}$",
+            "enum": [
+              "QC-001", "QC-002", "QC-003", "QC-004", "QC-005", "QC-006", "QC-007",
+              "QC-008", "QC-009", "QC-010", "QC-011", "QC-012", "QC-013", "QC-014"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": ["frozen", "draft", "deprecated"]
+          },
+          "observable_inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "observable_outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["id", "name", "status", "observable_inputs", "observable_outputs"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["contract_version", "rules"],
+  "additionalProperties": false,
+  "x-contract": {
+    "contract_version": "1.0.0",
+    "rules": [
+      {
+        "id": "QC-001",
+        "name": "Deterministic Output",
+        "status": "frozen",
+        "observable_inputs": [
+          "valid QimenInput",
+          "born_at timezone-aware",
+          "born_location optional"
+        ],
+        "observable_outputs": [
+          "same input twice -> QimenBoard.model_dump(mode=json) byte-identical (computed_at excluded)"
+        ]
+      },
+      {
+        "id": "QC-002",
+        "name": "Nine Palace Completeness",
+        "status": "frozen",
+        "observable_inputs": [
+          "any valid input"
+        ],
+        "observable_outputs": [
+          "len(cells) == 9",
+          "palace unique covering 1..9",
+          "palace names = 坎坤震巽中宫乾兑艮离"
+        ]
+      },
+      {
+        "id": "QC-003",
+        "name": "Dun Type",
+        "status": "frozen",
+        "observable_inputs": [
+          "input within 24-solar-term calendar range (previous + current year scan)"
+        ],
+        "observable_outputs": [
+          "governing term in {冬至..芒种} -> dun_type == yang",
+          "governing term in {夏至..大雪} -> dun_type == yin",
+          "winter solstice instant itself -> yang; summer solstice instant itself -> yin"
+        ]
+      },
+      {
+        "id": "QC-004",
+        "name": "Ju Calculation",
+        "status": "frozen",
+        "observable_inputs": [
+          "input within solar-term calendar range"
+        ],
+        "observable_outputs": [
+          "ju in [1,9]",
+          "triple_offset in {0,3,6}",
+          "day_of_month == input clock day"
+        ]
+      },
+      {
+        "id": "QC-005",
+        "name": "Earth Plate",
+        "status": "frozen",
+        "observable_inputs": [
+          "ju determined (QC-004)"
+        ],
+        "observable_outputs": [
+          "each cell earth_plate exactly one stem",
+          "9-stem set = {戊己庚辛壬癸丁丙乙}, distinct"
+        ]
+      },
+      {
+        "id": "QC-006",
+        "name": "Heaven Plate",
+        "status": "frozen",
+        "observable_inputs": [
+          "earth plate and 值符 determined"
+        ],
+        "observable_outputs": [
+          "each cell sky_plate exactly one stem, 9 distinct",
+          "sky set == earth set"
+        ]
+      },
+      {
+        "id": "QC-007",
+        "name": "Zhi Fu（值符）",
+        "status": "frozen",
+        "observable_inputs": [
+          "hour pillar and 旬首 determined"
+        ],
+        "observable_outputs": [
+          "值符 god palace == 值符落宫 (after 寄宫)",
+          "值符星 palace sky stem == 旬首仪"
+        ]
+      },
+      {
+        "id": "QC-008",
+        "name": "Zhi Shi（值使）",
+        "status": "frozen",
+        "observable_inputs": [
+          "旬首 and hour branch determined"
+        ],
+        "observable_outputs": [
+          "值使门 palace == 值使落宫"
+        ]
+      },
+      {
+        "id": "QC-009",
+        "name": "Nine Stars",
+        "status": "frozen",
+        "observable_inputs": [],
+        "observable_outputs": [
+          "each cell nine_stars non-null",
+          "star set = {天蓬天芮天冲天辅天禽天心天柱天任天英}, distinct"
+        ]
+      },
+      {
+        "id": "QC-010",
+        "name": "Eight Doors",
+        "status": "frozen",
+        "observable_inputs": [
+          "值使 palace determined"
+        ],
+        "observable_outputs": [
+          "central eight_doors is None",
+          "non-central all non-null",
+          "door set = {休死伤杜开惊生景}, distinct"
+        ]
+      },
+      {
+        "id": "QC-011",
+        "name": "Eight Gods",
+        "status": "frozen",
+        "observable_inputs": [
+          "值符 palace determined"
+        ],
+        "observable_outputs": [
+          "central eight_gods is None",
+          "non-central all non-null",
+          "god set = {值符螣蛇太阴六合白虎玄武九地九天}, distinct"
+        ]
+      },
+      {
+        "id": "QC-012",
+        "name": "Three Qi",
+        "status": "frozen",
+        "observable_inputs": [
+          "sky plate determined"
+        ],
+        "observable_outputs": [
+          "exactly 3 cells three_qi non-null",
+          "set = {乙丙丁}",
+          "三奇落宫互异"
+        ]
+      },
+      {
+        "id": "QC-013",
+        "name": "Void Palace",
+        "status": "frozen",
+        "observable_inputs": [
+          "hour pillar determined"
+        ],
+        "observable_outputs": [
+          "is_void palaces 1~2 (two void branches may share a palace), rest false"
+        ]
+      },
+      {
+        "id": "QC-014",
+        "name": "Central Palace Handling",
+        "status": "frozen",
+        "observable_inputs": [],
+        "observable_outputs": [
+          "is_central exactly one palace (5)",
+          "寄宫 behavior per QC-007/QC-008"
+        ]
+      }
+    ]
+  }
+}
