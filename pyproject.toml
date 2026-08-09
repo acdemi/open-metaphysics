@@ -33,7 +33,7 @@ openmetaphysics = "openmetaphysics.api.__main__:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "reference/tests"]
 pythonpath = ["src", "reference"]
 addopts = "-q"
 
