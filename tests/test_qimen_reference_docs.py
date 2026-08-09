@@ -1,11 +1,10 @@
-"""Qimen Reference Domain 文档测试 (Phase 5.7).
+"""Qimen Reference Domain 文档测试 (Phase 5.7 + 5.9B 自主 Sprint 更新).
 
-验证 reference/qimen/ 建模层:
+验证 reference/qimen/ 域:
 - 目录结构完整 (README / runtime_vs_reference / concepts/*)
-- 纯文档层: 无 *.py 运行时文件
-- Markdown 相对链接全部可解析 (link check)
-- 外部引用 (契约 / 规范向量) 路径存在
+- 文档链接可解析 (link check) / 外部引用存在
 - 流派差异记录完整 (S1-S8)
+- 实现层: domain.py 存在 (5.9B 起, 依契约实现; 验收见 test_reference_qimen.py)
 """
 
 import re
@@ -41,11 +40,13 @@ def test_domain_structure_exists():
     assert actual == EXPECTED_CONCEPTS, f"concepts mismatch: {actual}"
 
 
-def test_modeling_layer_purity_no_runtime_code():
-    """建模层纯文档: reference/qimen 下不得有可执行代码。"""
-    for p in QIMEN_REF.rglob("*"):
-        if p.is_file() and p.suffix in {".py", ".yaml", ".json"}:
-            raise AssertionError(f"runtime file in modeling layer: {p}")
+def test_implementation_layer_present():
+    """5.9B 起: 契约实现存在于 reference/qimen/domain.py (依契约 v1.0.0)."""
+    domain = QIMEN_REF / "domain.py"
+    assert domain.is_file(), "reference/qimen/domain.py missing (contract implementation)"
+    text = domain.read_text(encoding="utf-8")
+    assert "QIMEN_BEHAVIOR_CONTRACT.md" in text, "domain.py must reference the frozen contract"
+    assert "def compute(" in text, "domain.py must expose compute() entry"
 
 
 def test_markdown_links_resolve():
@@ -77,7 +78,7 @@ def test_external_references_exist():
 
 def test_readme_defines_boundary():
     readme = (QIMEN_REF / "README.md").read_text(encoding="utf-8")
-    for keyword in ("边界", "契约", "normative", "纯文档", "*.py"):
+    for keyword in ("边界", "契约", "normative", "domain.py", "*.py"):
         assert keyword in readme, f"README missing boundary keyword: {keyword}"
 
 

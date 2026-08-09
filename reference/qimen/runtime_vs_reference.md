@@ -12,7 +12,7 @@
 | 行为契约 | `docs/specification/QIMEN_BEHAVIOR_CONTRACT.md` | 行为唯一权威（QC-001~014） | **Frozen v1.0.0** |
 | 规范向量 | `docs/qimen/golden_vectors.json` | 规范回归装置（24, immutable） | **normative fixtures** |
 | Product Runtime | `src/openmetaphysics/agents/qimen.py` | 正式实现（engine v0.3.0） | 契约绑定 |
-| Reference Qimen Domain | `reference/qimen/`（本层） | 领域建模；未来 Reference 实现锚点 | **建模中（无代码）** |
+| Reference Qimen Domain | `reference/qimen/`（本层） | 契约实现（domain.py） | **已实现（24/24 向量一致）** |
 | Reference Runtime（既有域） | `reference/*.py` | Rule/Pattern/Evidence/Knowledge/Consensus | 完成（不属本域） |
 
 ## 2. 行为一致性约定
@@ -20,8 +20,8 @@
 - **Reference 优先级原则**（AGENTS.md §7）：Reference 优先于 Production。
   但**奇门域尚无 Reference 实现** —— 当前行为基准 = 冻结契约 v1.0.0 +
   规范向量，Product Runtime 已与其对齐（408 tests，含 24/24 向量校验）。
-- 未来 Reference Qimen 实现 Sprint 的验收标准：实现输出与
-  `golden_vectors.json`（24 向量）**逐字节一致**，并满足契约全部 QC 条款。
+- Reference Qimen 实现验收（Phase 5.9B 已达成）：`reference/qimen/domain.py`
+  输出与 `golden_vectors.json`（24 向量）**逐字节一致**，满足契约全部 QC 条款。
 - 若未来 Reference 与 Runtime 产生分歧：**契约 v1.0.0 为最终裁判**；
   实现差异按 ACP 处理，不得静默修改契约（约束 2）。
 
@@ -48,7 +48,7 @@
 
 - ✅ 领域概念文档（[concepts/](concepts/)）—— 建模语言与结构
 - ✅ 流派差异记录（[concepts/schools.md](concepts/schools.md)）
-- ❌ 无实现代码（`*.py` 禁止，待契约化 Sprint）
+- ✅ 契约实现 `domain.py`（Phase 5.9B，24/24 向量验收通过）
 - ❌ 不定义新行为 / 新概念 —— 一切以契约为准
 
 ## 5. 差异处理流程
