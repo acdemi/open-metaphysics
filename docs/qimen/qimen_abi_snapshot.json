@@ -1,0 +1,297 @@
+{
+ "abi": "qimen_runtime_abi",
+ "contract_version": "1.0.0",
+ "runtime_version": "0.3.0",
+ "source": "src/openmetaphysics/domain/qimen/types.py",
+ "types": {
+  "QimenInput": {
+   "type": [
+    "object"
+   ],
+   "required": [
+    "request_id",
+    "born_at",
+    "gender"
+   ],
+   "properties": {
+    "request_id": {
+     "type": [
+      "string"
+     ]
+    },
+    "born_at": {
+     "type": [
+      "string"
+     ]
+    },
+    "born_location": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "latitude": {
+       "type": [
+        "number"
+       ]
+      },
+      "longitude": {
+       "type": [
+        "number"
+       ]
+      },
+      "elevation_m": {
+       "type": [
+        "number",
+        "null"
+       ]
+      },
+      "timezone": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     },
+     "required": [
+      "latitude",
+      "longitude"
+     ]
+    },
+    "gender": {
+     "type": [
+      "string"
+     ],
+     "enum": [
+      "male",
+      "female",
+      "unknown"
+     ]
+    },
+    "question": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "locale": {
+     "type": [
+      "string"
+     ]
+    },
+    "seed": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "client_nonce": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "QimenPalace": {
+   "type": [
+    "object"
+   ],
+   "required": [
+    "palace",
+    "name",
+    "sky_plate",
+    "earth_plate",
+    "eight_gods",
+    "nine_stars",
+    "eight_doors",
+    "three_qi",
+    "is_void",
+    "is_central"
+   ],
+   "properties": {
+    "palace": {
+     "type": [
+      "integer"
+     ]
+    },
+    "name": {
+     "type": [
+      "string"
+     ]
+    },
+    "sky_plate": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "earth_plate": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "eight_gods": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "nine_stars": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "eight_doors": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "three_qi": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "is_void": {
+     "type": [
+      "boolean"
+     ]
+    },
+    "is_central": {
+     "type": [
+      "boolean"
+     ]
+    }
+   }
+  },
+  "QimenOutput": {
+   "type": [
+    "object"
+   ],
+   "required": [
+    "solar_term",
+    "ju",
+    "dun_type",
+    "day_of_month",
+    "triple_offset",
+    "cells"
+   ],
+   "properties": {
+    "solar_term": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "ju": {
+     "type": [
+      "integer"
+     ]
+    },
+    "dun_type": {
+     "type": [
+      "string"
+     ],
+     "enum": [
+      "yang",
+      "yin"
+     ]
+    },
+    "day_of_month": {
+     "type": [
+      "integer"
+     ]
+    },
+    "triple_offset": {
+     "type": [
+      "integer"
+     ]
+    },
+    "cells": {
+     "type": [
+      "array"
+     ],
+     "items": {
+      "type": [
+       "object"
+      ],
+      "required": [
+       "palace",
+       "name",
+       "sky_plate",
+       "earth_plate",
+       "eight_gods",
+       "nine_stars",
+       "eight_doors",
+       "three_qi",
+       "is_void",
+       "is_central"
+      ],
+      "properties": {
+       "palace": {
+        "type": [
+         "integer"
+        ]
+       },
+       "name": {
+        "type": [
+         "string"
+        ]
+       },
+       "sky_plate": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "earth_plate": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "eight_gods": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "nine_stars": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "eight_doors": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "three_qi": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "is_void": {
+        "type": [
+         "boolean"
+        ]
+       },
+       "is_central": {
+        "type": [
+         "boolean"
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}
