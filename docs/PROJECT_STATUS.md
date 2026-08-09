@@ -1,7 +1,8 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-07
+> **最后更新**: 2026-08-09
 > **项目阶段**: Reference Freeze Candidate
+> **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 
 ---
 
@@ -14,6 +15,9 @@
 | Behavior Version | 1.0.0 |
 | Contract Version | 1.0.0 |
 | Conformance Version | 1.0.0 |
+| **Qimen Behavior Contract** | **1.0.0（Frozen + Certified）** |
+| **Qimen Reference** | **Certified Independent Implementation** |
+| **Qimen Golden Vectors** | **24（Frozen Verification Artifacts）** |
 
 ---
 
@@ -30,6 +34,7 @@
 | Contract JSON | **Frozen** | 3 份 Contract，v1.0.0 |
 | Conformance Rules | **Frozen** | CF-001~020，不可修改 |
 | Golden Vectors | **Auto-generated** | 19 个向量，自动发现 |
+| **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | Production Runtime | **Draft** | 尚未开始 |
 
 ---
@@ -84,13 +89,13 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Phase 2 | 六爻 | 部分完成 | 卦表、纳甲、六亲已实现 |
 | Phase 3 | 八字 | 部分完成 | 四柱引擎已实现，全部测试通过 |
 | Phase 4 | 紫微斗数 | 部分完成 | 宫位 + 十四主星已完成 |
-| Phase 5 | 奇门遁甲 | 骨架 | Schema 完整，核心 placement 待完成 |
+| Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
 | Phase 6 | 共识智能体 | 未开始 | - |
 | Phase 7 | 编排 + API | 部分完成 | FastAPI 骨架已建立 |
 | Phase 8 | 推理 + RAG | 未开始 | - |
 | Phase 9 | 运维 + 可扩展性 | 未开始 | - |
 
-**Production Runtime 测试总计**: 77 个，全部通过。
+**Production Runtime 测试总计**: 457 个，全部通过（含 Qimen 系列：排盘 33 + 契约 8 + 回归 26 + 适配器 7 + 契约适配 7 + ABI 5 + Reference 文档 7）。
 
 ---
 
@@ -103,7 +108,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Reference Runtime | 304 | 304 | 0 |
 | Conformance Suite | 57 (测试) / 135 (检查) | 57 / 135 | 0 |
 | Production | 77 | 77 | 0 |
-| **总计** | **381** | **381** | **0** |
+| **总计** | **457** | **457** | **0** |
 
 ### 5.2 测试文件明细
 
@@ -123,7 +128,13 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_liuyao.py` | 6 | 全部通过 |
 | `tests/test_models.py` | 7 | 全部通过 |
 | `tests/test_orchestration.py` | 4 | 全部通过 |
-| `tests/test_qimen.py` | 10 | 全部通过 |
+| `tests/test_qimen.py` | 33 | 全部通过 |
+| `tests/test_qimen_contract.py` | 8 | 全部通过 |
+| `tests/test_qimen_regression.py` | 26 | 全部通过 (24/24 向量) |
+| `tests/test_qimen_adapter.py` | 7 | 全部通过 |
+| `tests/test_qimen_contract_adapter.py` | 7 | 全部通过 |
+| `tests/test_qimen_abi.py` | 5 | 全部通过 |
+| `tests/test_qimen_reference_docs.py` | 7 | 全部通过 |
 | `tests/test_solar_time.py` | 7 | 全部通过 |
 | `tests/test_ziwei.py` | 12 | 全部通过 |
 
@@ -137,6 +148,12 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Knowledge | 4 | `reference/conformance/golden/knowledge_vectors.json` |
 | Consensus | 3 | `reference/conformance/golden/consensus_vectors.json` |
 | **总计** | **19** | 自动发现，禁止人工维护 |
+
+**Qimen Golden Vectors（Frozen Verification Artifacts）**:
+
+| 向量集 | 向量数 | 状态 |
+|--------|--------|------|
+| `docs/qimen/golden_vectors.json` | **24** | **Frozen**，normative fixtures，机器回归 24/24，迁移须 ACP |
 
 ### 5.4 Conformance Suite 结果
 
@@ -167,18 +184,29 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint**: Repository Hygiene（标准环境搭建 + 文档刷新）
+**当前 Sprint**: Phase 6.0 — Domain Capability Framework Standardization
+（生命周期标准 `CAPABILITY_LIFECYCLE.md` + 模板 `DOMAIN_CAPABILITY_TEMPLATE.md`
++ 领域审计 `CAPABILITY_STATUS.md`；治理文档标准化评审，无功能实现）
 
-**目标**: 建立可复现的标准环境，同步文档与当前实现状态。
+**Qimen Domain 状态**: **Frozen and Certified**（Integration Ready）
 
-**交付物**:
-- 补全 `pyproject.toml` 缺失依赖（pyyaml / sxtwl / jinja2）
-- 固定 Python 3.11（`.python-version`），`uv sync --all-extras` 一键搭建
-- 验证全量测试 381/381 通过（含此前被依赖缺失阻塞的 bazi / ziwei / api）
-- 刷新 `docs/PROJECT_STATUS.md` 与 `context/` 笔记
-- 更新 `docs/ARCHITECTURE.md`（Reference Freeze Candidate + Governance）
-- 更新 `docs/SCHEMAS.md` / `INTERFACES.md` / `ROADMAP.md`
-- 补充 `docs/specification/IMPLEMENTATION_GUIDE.md`（Sprint 5.5 遗留）
+| 项 | 值 |
+|----|-----|
+| 契约版本 | **v1.0.0**（`docs/specification/QIMEN_BEHAVIOR_CONTRACT.md`, Frozen） |
+| Reference 认证 | **Certified Independent Implementation**（`docs/qimen/reference_certification.md`, 2026-08-09） |
+| Golden Vectors | **24 / 24 通过**（Frozen Verification Artifacts, 机器回归） |
+| 双实现验证 | Product Runtime + Reference Runtime 双实现逐字节一致（30/30 等价, E017） |
+| 测试 | 全仓库 green（含 reference/tests 独立套件） |
+
+**已交付（历史 Sprint）**:
+- Phase 5.7（对齐 Sprint）: Reference 自包含实现（astronomy.py 移植, 无 src 导入）+ 独立测试套件 38 例 + 审计/等价证明/认证工件（14/14 QC Full, 30/30 等价, E016/E017）
+- Phase 5: 时家奇门转盘排盘核心（engine 0.3.0）
+- Phase 5.1~5.4: 算法审查 / 规则裁定（12 Freeze）/ 向量扩充（24）/ Freeze Review（PASS）
+- Phase 5.5~5.6: 契约草稿 → **契约正式冻结 v1.0.0**（D2/D14 政策裁定 + 向量提升 normative）
+- Phase 5.7: Reference Qimen Domain 建模（reference/qimen/ 纯文档层）
+- Phase 5.8/5.8A/5.8B/5.8C: 契约适配层（contracts 包）/ 契约 Schema 提取 / Runtime Adapter / Golden Vector 机器回归（E014）
+- Phase 5.9A: Runtime 类型边界（TypedDict + ABI snapshot）
+- 全量测试 530+ 通过（含 reference/tests 独立套件）
 
 ---
 
@@ -187,9 +215,9 @@ Proposal (ACP)。
 **待定**。等待用户明确指示。
 
 可能的方向：
+- 其他领域（八字/紫微/六爻）契约化路径复用 Qimen 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；状态: `docs/governance/CAPABILITY_STATUS.md`）
+- Qimen 功能扩展（格局判断 / 用神，需新授权）
 - Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
-- Production Runtime Sprint 1（Rust/Go 正式实现启动）
-- 其他领域扩展
 
 ---
 
@@ -210,6 +238,8 @@ Proposal (ACP)。
 | Contracts | `reference/contracts/` | 自动生成的 Architecture Contract |
 | Golden Vectors | `reference/conformance/golden/` | 自动生成的 Conformance 向量 |
 | Golden Tests | `tests/test_reference_*.py` | Reference Runtime 验证 |
+| Governance | `docs/governance/` | 领域能力标准（CAPABILITY_LIFECYCLE.md）+ 登记模板（DOMAIN_CAPABILITY_TEMPLATE.md）+ 状态登记（CAPABILITY_STATUS.md） |
+| Qimen 认证工件 | `docs/qimen/reference_certification.md` | Qimen Reference 认证记录 |
 
 ---
 
