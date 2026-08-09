@@ -8,7 +8,7 @@
 
 - **八字 (Bazi)** - 基于二十四节气分界的八字排盘，支持大运
 - **紫微斗数 (Ziwei)** - 紫微斗数十二宫、十四主星定局
-- **奇门遁甲 (Qimen)** - 时家奇门排盘
+- **奇门遁甲 (Qimen)** - 时家奇门排盘（✅ **Frozen and Certified** — 契约 v1.0.0 + Reference 认证 + 双实现验证）
 - **六爻 (Liuyao)** - 六爻起卦，确定性纳甲
 - **共识 (Consensus)** - Evidence-Based 证据聚合，多结论并存
 
@@ -134,6 +134,7 @@ open-metaphysics/
 | `docs/SCHEMAS.md` | Schema 设计 + 跨语言契约 |
 | `docs/INTERFACES.md` | 接口设计 + Reference Runtime 接口位置 |
 | `docs/PROJECT_STATUS.md` | 项目状态总览 |
+| `docs/governance/CAPABILITY_STATUS.md` | 领域能力成熟度跟踪（Qimen: Certified Frozen） |
 | `docs/specification/` | 行为规范 + Contract 治理（7 份文档） |
 
 ## License

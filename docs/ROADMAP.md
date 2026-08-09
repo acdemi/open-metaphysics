@@ -2,7 +2,7 @@
 
 > 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：Reference Runtime Sprint 5.5 完成，Repository Hygiene 进行中。
+> 当前开发位置：**Qimen Domain Frozen and Certified**（契约 v1.0.0 + Reference 认证 + 双实现验证）。
 
 ## A. 两条时间线
 
@@ -27,11 +27,15 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Sprint 4 | Knowledge (KnowledgeStore -> KnowledgeResult) | 完成 | 71 |
 | Sprint 5 | Consensus (ConsensusBuilder -> ConsensusReport) | 完成 | 70 |
 | Sprint 5.5 | Conformance Framework (ConformanceRunner) | 完成 | 57 |
+| Qimen 域 | 契约冻结 v1.0.0 + Reference 对齐 + 认证（双实现验证） | **完成（Certified）** | 38（reference/tests 独立套件） |
 | Doc Refresh | Documentation Refresh (Architecture Governance) | 完成 | - |
+| Governance Sync | Governance Synchronization（Qimen 冻结后状态同步） | 完成 | - |
+| Phase 6.0 | Domain Capability Framework Standardization（生命周期标准 + 状态模型 + 模板 + 领域审计） | 完成 | - |
 | Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
 
-**当前开发位置**: Reference Runtime Sprint 5.5 完成，Documentation Refresh
-完成，Repository Hygiene 进行中。Production Runtime 尚未开始。
+**当前开发位置**: **Qimen Domain Frozen and Certified**（Integration Ready）。
+**领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /
+5 阶段），其他领域（BaZi/Ziwei/Liuyào）均处于 Implemented，按标准逐级契约化。
 
 **关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
 实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。
@@ -68,10 +72,14 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 - v1: 宫位骨架 + 紫微/天府排布；剩余星分步完成。
 - ✅ **完成：** 宫位布局 + 十四主星 紫微定局测试绿色。农历转换 via sxtwl。
 
-## Phase 5 — 奇门遁甲（骨架 → 部分完成）
+## Phase 5 — 奇门遁甲（✅ 完成 → Certified Frozen Capability）
 - 时家奇门: 节气 → 阴/阳遁 → 局(1..9)，天/地盘，八神/九星/八门/三奇。
-- v1: 盘骨架 + 宫位/神煞 placement 核心。
-- **完成标准：** 遁类型/局数 + 盘结构测试绿色。
+- 转盘法核心 + 值符/值使/空亡/中宫寄宫 + 真太阳时。
+- **契约**: `docs/specification/QIMEN_BEHAVIOR_CONTRACT.md` v1.0.0 (Frozen)；24 规范向量；D2/D14 政策裁定。
+- **认证**: Reference Runtime 认证（`docs/qimen/reference_certification.md`）+ 双实现验证（Product == Reference, 30/30 等价）。
+- **配套**: contracts 适配层 / domain Runtime Adapter / 类型边界 + ABI snapshot / Golden Vector 机器回归。
+- **完成标准：** ✅ 契约冻结 + Reference 认证 + 双实现验证（独立测试套件 + 30/30 等价 + 认证工件）。
+- **变更政策**: 任何算法/规则/向量变更须 **ACP** + 契约版本递增 + Golden Vector 迁移 + Reference 更新（详见 `docs/governance/CAPABILITY_STATUS.md`）。
 
 ## Phase 6 — 共识智能体
 - ConsensusAgent: 加权聚合，一致矩阵，冲突检测。
@@ -96,5 +104,5 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 
 ## 当前交付范围
 
-当前迭代完整执行 Phases 0-4，Phase 5 进行中，Consensus + API 作为可运行垂直切片（六爻从 /orchestrate 端到端），八字、紫微斗数核心完成。奇门遁甲以 Schema 完整骨架交付，核心 placement 逻辑，明确标记为 Phase 5 待完成。所有重型服务保持可选；核心完全可以离线测试。
+当前迭代完整执行 Phases 0-4；**Phase 5 奇门遁甲已冻结并认证**（v1.0.0 契约 + Reference 认证 + 双实现验证），附带适配层/ABI/回归防护网。Consensus + API 作为可运行垂直切片，八字、紫微斗数核心完成。所有重型服务保持可选；核心完全可以离线测试。
 
