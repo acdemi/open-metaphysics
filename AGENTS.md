@@ -116,6 +116,32 @@ When the current Sprint's deliverables are complete and all tests pass:
 
 ---
 
+## Conversation Workflow Convention (MANDATORY — every conversation)
+
+**每次对话都必须遵守以下约定：**
+
+### 1. 输出归档
+
+每次对话（每轮会话）结束前，MUST 将本轮输出追加记录到 `context/归档.md`：
+
+- 记录内容：日期、分支名、本轮产出文件清单（代码/文档/配置）、各自状态（待合并 / 已合并）、遗留事项。
+- 格式：追加式，每次对话追加一条记录（`## 2026-XX-XX <主题>` 小节），不覆盖历史。
+- 归档记录本身也是产出，必须先写归档再结束对话。
+
+### 2. 分支工作流
+
+- 每次对话的所有代码/文档输出 MUST 在独立分支上进行，命名：`work/<领域>/<主题>`。
+- 禁止直接在主分支（main）上做代码或文档输出。
+- 分支上的工作可以 commit，但 **禁止 merge 到 main**。
+
+### 3. 用户把控合并
+
+- 每轮对话结束汇报：分支名、变更文件、diff 摘要、建议（合并/关闭）。
+- **是否合并、是否进入下一步，由用户决定。** 未获明确指令不得合并、不得推送。
+- 用户同意后，合并由用户执行或明确授权后执行。
+
+---
+
 ## Quick Reference: Key Directories
 
 | Path | Purpose |
