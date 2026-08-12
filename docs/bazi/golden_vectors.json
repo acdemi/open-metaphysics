@@ -1,0 +1,3809 @@
+{
+  "metadata": {
+    "domain": "bazi",
+    "engine_version": "0.1.0",
+    "status": "candidate",
+    "rule_set": "draft",
+    "generated_at": "2026-08-09T00:00:00+00:00",
+    "total_vectors": 24,
+    "day_rollover_policy": "23:00 local time",
+    "true_solar_time": "not used (clock time)"
+  },
+  "vectors": [
+    {
+      "id": "B_basic_001",
+      "description": "Ordinary spring date",
+      "input": {
+        "born_at": "2024-03-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "城头土",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 7,
+            "end_age": 17,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 17,
+            "end_age": 27,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 27,
+            "end_age": 37,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 37,
+            "end_age": 47,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 47,
+            "end_age": 57,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 57,
+            "end_age": 67,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 67,
+            "end_age": 77,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 77,
+            "end_age": 87,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_basic_002",
+      "description": "Summer birth",
+      "input": {
+        "born_at": "2024-06-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 6,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "庚",
+          "branch": "午"
+        },
+        "day_pillar": {
+          "stem": "庚",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "辛",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "己",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "劫财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "丁",
+            "己"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "路旁土",
+          "day": "钗钏金",
+          "hour": "白蜡金"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 7,
+            "end_age": 17,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 2,
+            "start_age": 17,
+            "end_age": 27,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 3,
+            "start_age": 27,
+            "end_age": 37,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 4,
+            "start_age": 37,
+            "end_age": 47,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 5,
+            "start_age": 47,
+            "end_age": 57,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 6,
+            "start_age": 57,
+            "end_age": 67,
+            "stem": "丙",
+            "branch": "子"
+          },
+          {
+            "index": 7,
+            "start_age": 67,
+            "end_age": 77,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 8,
+            "start_age": 77,
+            "end_age": 87,
+            "stem": "戊",
+            "branch": "寅"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_basic_003",
+      "description": "Autumn birth",
+      "input": {
+        "born_at": "2024-09-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 9,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "癸",
+          "branch": "酉"
+        },
+        "day_pillar": {
+          "stem": "壬",
+          "branch": "午"
+        },
+        "hour_pillar": {
+          "stem": "乙",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "己",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "正印"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "辛"
+          ],
+          "day": [
+            "丁",
+            "己"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "剑锋金",
+          "day": "杨柳木",
+          "hour": "覆灯火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 8,
+            "end_age": 18,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 2,
+            "start_age": 18,
+            "end_age": 28,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 3,
+            "start_age": 28,
+            "end_age": 38,
+            "stem": "丙",
+            "branch": "子"
+          },
+          {
+            "index": 4,
+            "start_age": 38,
+            "end_age": 48,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 5,
+            "start_age": 48,
+            "end_age": 58,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 6,
+            "start_age": 58,
+            "end_age": 68,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 7,
+            "start_age": 68,
+            "end_age": 78,
+            "stem": "庚",
+            "branch": "辰"
+          },
+          {
+            "index": 8,
+            "start_age": 78,
+            "end_age": 88,
+            "stem": "辛",
+            "branch": "巳"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_basic_004",
+      "description": "Winter birth",
+      "input": {
+        "born_at": "2024-12-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 12,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "甲",
+          "branch": "子"
+        },
+        "day_pillar": {
+          "stem": "癸",
+          "branch": "丑"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "己",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "偏印"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "癸"
+          ],
+          "day": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "海中金",
+          "day": "桑柘木",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 7,
+            "end_age": 17,
+            "stem": "乙",
+            "branch": "丑"
+          },
+          {
+            "index": 2,
+            "start_age": 17,
+            "end_age": 27,
+            "stem": "丙",
+            "branch": "寅"
+          },
+          {
+            "index": 3,
+            "start_age": 27,
+            "end_age": 37,
+            "stem": "丁",
+            "branch": "卯"
+          },
+          {
+            "index": 4,
+            "start_age": 37,
+            "end_age": 47,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 5,
+            "start_age": 47,
+            "end_age": 57,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 6,
+            "start_age": 57,
+            "end_age": 67,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 7,
+            "start_age": 67,
+            "end_age": 77,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 8,
+            "start_age": 77,
+            "end_age": 87,
+            "stem": "壬",
+            "branch": "申"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_basic_005",
+      "description": "Day master Wood (search date)",
+      "input": {
+        "born_at": "2024-05-01T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 5,
+        "day": 1,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "戊",
+          "branch": "辰"
+        },
+        "day_pillar": {
+          "stem": "乙",
+          "branch": "丑"
+        },
+        "hour_pillar": {
+          "stem": "辛",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "己",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "七杀"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "day": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "大林木",
+          "day": "海中金",
+          "hour": "白蜡金"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 1,
+            "end_age": 11,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 2,
+            "start_age": 11,
+            "end_age": 21,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 21,
+            "end_age": 31,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 4,
+            "start_age": 31,
+            "end_age": 41,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 41,
+            "end_age": 51,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 6,
+            "start_age": 51,
+            "end_age": 61,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 7,
+            "start_age": 61,
+            "end_age": 71,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 8,
+            "start_age": 71,
+            "end_age": 81,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_basic_006",
+      "description": "Day master Metal (search date)",
+      "input": {
+        "born_at": "2024-08-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 8,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "壬",
+          "branch": "申"
+        },
+        "day_pillar": {
+          "stem": "辛",
+          "branch": "亥"
+        },
+        "hour_pillar": {
+          "stem": "癸",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "比肩"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "庚",
+            "壬",
+            "戊"
+          ],
+          "day": [
+            "壬",
+            "甲"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "剑锋金",
+          "day": "钗钏金",
+          "hour": "长流水"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 8,
+            "end_age": 18,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 2,
+            "start_age": 18,
+            "end_age": 28,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 3,
+            "start_age": 28,
+            "end_age": 38,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 4,
+            "start_age": 38,
+            "end_age": 48,
+            "stem": "丙",
+            "branch": "子"
+          },
+          {
+            "index": 5,
+            "start_age": 48,
+            "end_age": 58,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 6,
+            "start_age": 58,
+            "end_age": 68,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 7,
+            "start_age": 68,
+            "end_age": 78,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 8,
+            "start_age": 78,
+            "end_age": 88,
+            "stem": "庚",
+            "branch": "辰"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_term_001",
+      "description": "Before Li Chun 2024 -> prev year",
+      "input": {
+        "born_at": "2024-02-04T13:21:25.784365+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 13,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "癸",
+          "branch": "卯"
+        },
+        "month_pillar": {
+          "stem": "癸",
+          "branch": "丑"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "己",
+          "branch": "未"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "己",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "伤官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "乙"
+          ],
+          "month": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "己",
+            "丁",
+            "乙"
+          ]
+        },
+        "nayin": {
+          "year": "金箔金",
+          "month": "桑柘木",
+          "day": "平地木",
+          "hour": "天上火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "壬",
+            "branch": "子"
+          },
+          {
+            "index": 2,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "辛",
+            "branch": "亥"
+          },
+          {
+            "index": 3,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "庚",
+            "branch": "戌"
+          },
+          {
+            "index": 4,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "己",
+            "branch": "酉"
+          },
+          {
+            "index": 5,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "戊",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "丁",
+            "branch": "未"
+          },
+          {
+            "index": 7,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "丙",
+            "branch": "午"
+          },
+          {
+            "index": 8,
+            "start_age": 80,
+            "end_age": 90,
+            "stem": "乙",
+            "branch": "巳"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": "lichun boundary UTC compare"
+    },
+    {
+      "id": "B_term_002",
+      "description": "After Li Chun 2024 -> new year",
+      "input": {
+        "born_at": "2024-02-04T19:21:25.784365+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 19,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丙",
+          "branch": "寅"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "壬",
+          "branch": "戌"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "伤官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "戊",
+            "辛",
+            "丁"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "平地木",
+          "hour": "大海水"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "丁",
+            "branch": "卯"
+          },
+          {
+            "index": 2,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 3,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 4,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 5,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 6,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 7,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 8,
+            "start_age": 80,
+            "end_age": 90,
+            "stem": "甲",
+            "branch": "戌"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": "lichun boundary UTC compare"
+    },
+    {
+      "id": "B_term_003",
+      "description": "Before Qingming -> month still 卯",
+      "input": {
+        "born_at": "2024-04-04T11:55:32.343611+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 4,
+        "day": 4,
+        "hour": 11,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "戊",
+          "branch": "午"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "己",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "伤官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "丁",
+            "己"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "平地木",
+          "hour": "天上火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 0,
+            "end_age": 10,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_term_004",
+      "description": "After Qingming -> month 辰",
+      "input": {
+        "born_at": "2024-04-04T17:55:32.343611+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 4,
+        "day": 4,
+        "hour": 17,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "戊",
+          "branch": "辰"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "辛",
+          "branch": "酉"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "伤官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "辛"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "大林木",
+          "day": "平地木",
+          "hour": "石榴木"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 2,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 4,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 6,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 7,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 8,
+            "start_age": 80,
+            "end_age": 90,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_term_005",
+      "description": "Before Li Dong -> month 戌",
+      "input": {
+        "born_at": "2024-11-07T03:17:13.534959+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 11,
+        "day": 7,
+        "hour": 3,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "甲",
+          "branch": "戌"
+        },
+        "day_pillar": {
+          "stem": "乙",
+          "branch": "亥"
+        },
+        "hour_pillar": {
+          "stem": "戊",
+          "branch": "寅"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "七杀"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "day": [
+            "壬",
+            "甲"
+          ],
+          "hour": [
+            "甲",
+            "丙",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "山头火",
+          "day": "山头火",
+          "hour": "城头土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 0,
+            "end_age": 10,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 2,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "丙",
+            "branch": "子"
+          },
+          {
+            "index": 3,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 4,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 5,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 6,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "庚",
+            "branch": "辰"
+          },
+          {
+            "index": 7,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "辛",
+            "branch": "巳"
+          },
+          {
+            "index": 8,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "壬",
+            "branch": "午"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_term_006",
+      "description": "After Li Dong -> month 亥",
+      "input": {
+        "born_at": "2024-11-07T09:17:13.534959+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 11,
+        "day": 7,
+        "hour": 9,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "乙",
+          "branch": "亥"
+        },
+        "day_pillar": {
+          "stem": "乙",
+          "branch": "亥"
+        },
+        "hour_pillar": {
+          "stem": "辛",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "七杀"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "壬",
+            "甲"
+          ],
+          "day": [
+            "壬",
+            "甲"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "山头火",
+          "day": "山头火",
+          "hour": "白蜡金"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 10,
+            "end_age": 20,
+            "stem": "丙",
+            "branch": "子"
+          },
+          {
+            "index": 2,
+            "start_age": 20,
+            "end_age": 30,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 3,
+            "start_age": 30,
+            "end_age": 40,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 4,
+            "start_age": 40,
+            "end_age": 50,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 5,
+            "start_age": 50,
+            "end_age": 60,
+            "stem": "庚",
+            "branch": "辰"
+          },
+          {
+            "index": 6,
+            "start_age": 60,
+            "end_age": 70,
+            "stem": "辛",
+            "branch": "巳"
+          },
+          {
+            "index": 7,
+            "start_age": 70,
+            "end_age": 80,
+            "stem": "壬",
+            "branch": "午"
+          },
+          {
+            "index": 8,
+            "start_age": 80,
+            "end_age": 90,
+            "stem": "癸",
+            "branch": "未"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_late_001",
+      "description": "22:59 before day rollover",
+      "input": {
+        "born_at": "2024-05-01T22:59:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 5,
+        "day": 1,
+        "hour": 22,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "戊",
+          "branch": "辰"
+        },
+        "day_pillar": {
+          "stem": "乙",
+          "branch": "丑"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "亥"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "己",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "七杀"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "day": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "hour": [
+            "壬",
+            "甲"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "大林木",
+          "day": "海中金",
+          "hour": "屋上土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 1,
+            "end_age": 11,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 2,
+            "start_age": 11,
+            "end_age": 21,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 21,
+            "end_age": 31,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 4,
+            "start_age": 31,
+            "end_age": 41,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 41,
+            "end_age": 51,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 6,
+            "start_age": 51,
+            "end_age": 61,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 7,
+            "start_age": 61,
+            "end_age": 71,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 8,
+            "start_age": 71,
+            "end_age": 81,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B3",
+        "B4"
+      ],
+      "risk_flagged": false,
+      "note": "day_rollover_policy: 23:00 local time"
+    },
+    {
+      "id": "B_late_002",
+      "description": "23:00 exact boundary",
+      "input": {
+        "born_at": "2024-05-01T23:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 5,
+        "day": 1,
+        "hour": 23,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "戊",
+          "branch": "辰"
+        },
+        "day_pillar": {
+          "stem": "丙",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "戊",
+          "branch": "子"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "癸"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "大林木",
+          "day": "炉中火",
+          "hour": "霹雳火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 1,
+            "end_age": 11,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 2,
+            "start_age": 11,
+            "end_age": 21,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 21,
+            "end_age": 31,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 4,
+            "start_age": 31,
+            "end_age": 41,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 41,
+            "end_age": 51,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 6,
+            "start_age": 51,
+            "end_age": 61,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 7,
+            "start_age": 61,
+            "end_age": 71,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 8,
+            "start_age": 71,
+            "end_age": 81,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B3",
+        "B4"
+      ],
+      "risk_flagged": false,
+      "note": "day_rollover_policy: 23:00 local time"
+    },
+    {
+      "id": "B_late_003",
+      "description": "23:30 after rollover",
+      "input": {
+        "born_at": "2024-05-01T23:30:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 5,
+        "day": 1,
+        "hour": 23,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "戊",
+          "branch": "辰"
+        },
+        "day_pillar": {
+          "stem": "丙",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "戊",
+          "branch": "子"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "癸"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "大林木",
+          "day": "炉中火",
+          "hour": "霹雳火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 1,
+            "end_age": 11,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 2,
+            "start_age": 11,
+            "end_age": 21,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 21,
+            "end_age": 31,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 4,
+            "start_age": 31,
+            "end_age": 41,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 41,
+            "end_age": 51,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 6,
+            "start_age": 51,
+            "end_age": 61,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 7,
+            "start_age": 61,
+            "end_age": 71,
+            "stem": "乙",
+            "branch": "亥"
+          },
+          {
+            "index": 8,
+            "start_age": 71,
+            "end_age": 81,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B3",
+        "B4"
+      ],
+      "risk_flagged": false,
+      "note": "day_rollover_policy: 23:00 local time"
+    },
+    {
+      "id": "B_dayun_001",
+      "description": "Male yang year -> forward",
+      "input": {
+        "born_at": "2024-03-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "城头土",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 7,
+            "end_age": 17,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 17,
+            "end_age": 27,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 27,
+            "end_age": 37,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 37,
+            "end_age": 47,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 47,
+            "end_age": 57,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 57,
+            "end_age": 67,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 67,
+            "end_age": 77,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 77,
+            "end_age": 87,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_dayun_002",
+      "description": "Female yang year -> reverse",
+      "input": {
+        "born_at": "2024-03-15T10:00:00+08:00",
+        "gender": "female",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "城头土",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 3,
+            "end_age": 13,
+            "stem": "丙",
+            "branch": "寅"
+          },
+          {
+            "index": 2,
+            "start_age": 13,
+            "end_age": 23,
+            "stem": "乙",
+            "branch": "丑"
+          },
+          {
+            "index": 3,
+            "start_age": 23,
+            "end_age": 33,
+            "stem": "甲",
+            "branch": "子"
+          },
+          {
+            "index": 4,
+            "start_age": 33,
+            "end_age": 43,
+            "stem": "癸",
+            "branch": "亥"
+          },
+          {
+            "index": 5,
+            "start_age": 43,
+            "end_age": 53,
+            "stem": "壬",
+            "branch": "戌"
+          },
+          {
+            "index": 6,
+            "start_age": 53,
+            "end_age": 63,
+            "stem": "辛",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 63,
+            "end_age": 73,
+            "stem": "庚",
+            "branch": "申"
+          },
+          {
+            "index": 8,
+            "start_age": 73,
+            "end_age": 83,
+            "stem": "己",
+            "branch": "未"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B5",
+        "B6"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_dayun_003",
+      "description": "UNKNOWN gender -> treated male",
+      "input": {
+        "born_at": "2024-03-15T10:00:00+08:00",
+        "gender": "unknown",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "戊",
+          "branch": "寅"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "甲",
+            "丙",
+            "戊"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "城头土",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 7,
+            "end_age": 17,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 17,
+            "end_age": 27,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 27,
+            "end_age": 37,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 37,
+            "end_age": 47,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 47,
+            "end_age": 57,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 57,
+            "end_age": 67,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 67,
+            "end_age": 77,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 77,
+            "end_age": 87,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": true
+      },
+      "coverage": [
+        "B5",
+        "B6"
+      ],
+      "risk_flagged": true,
+      "note": null
+    },
+    {
+      "id": "B_dayun_004",
+      "description": "days/3 = 1.5 (banker's rounding -> 2)",
+      "input": {
+        "born_at": "2024-03-31T02:55:32.343611+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 31,
+        "hour": 2,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "甲",
+          "branch": "午"
+        },
+        "hour_pillar": {
+          "stem": "乙",
+          "branch": "丑"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "己",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "正官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "丁",
+            "己"
+          ],
+          "hour": [
+            "己",
+            "癸",
+            "辛"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "砂中金",
+          "hour": "海中金"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 2,
+            "end_age": 12,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 12,
+            "end_age": 22,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 22,
+            "end_age": 32,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 32,
+            "end_age": 42,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 42,
+            "end_age": 52,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 52,
+            "end_age": 62,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 62,
+            "end_age": 72,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 72,
+            "end_age": 82,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": "round(4.5days/3)=round(1.5)=2 banker's"
+    },
+    {
+      "id": "B_dayun_005",
+      "description": "fractional days days/3=1.333 -> 1",
+      "input": {
+        "born_at": "2024-03-31T14:55:32.343611+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 3,
+        "day": 31,
+        "hour": 14,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "甲",
+          "branch": "辰"
+        },
+        "month_pillar": {
+          "stem": "丁",
+          "branch": "卯"
+        },
+        "day_pillar": {
+          "stem": "甲",
+          "branch": "午"
+        },
+        "hour_pillar": {
+          "stem": "辛",
+          "branch": "未"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "己",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "正官"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "戊",
+            "乙",
+            "癸"
+          ],
+          "month": [
+            "乙"
+          ],
+          "day": [
+            "丁",
+            "己"
+          ],
+          "hour": [
+            "己",
+            "丁",
+            "乙"
+          ]
+        },
+        "nayin": {
+          "year": "覆灯火",
+          "month": "炉中火",
+          "day": "砂中金",
+          "hour": "路旁土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 1,
+            "end_age": 11,
+            "stem": "戊",
+            "branch": "辰"
+          },
+          {
+            "index": 2,
+            "start_age": 11,
+            "end_age": 21,
+            "stem": "己",
+            "branch": "巳"
+          },
+          {
+            "index": 3,
+            "start_age": 21,
+            "end_age": 31,
+            "stem": "庚",
+            "branch": "午"
+          },
+          {
+            "index": 4,
+            "start_age": 31,
+            "end_age": 41,
+            "stem": "辛",
+            "branch": "未"
+          },
+          {
+            "index": 5,
+            "start_age": 41,
+            "end_age": 51,
+            "stem": "壬",
+            "branch": "申"
+          },
+          {
+            "index": 6,
+            "start_age": 51,
+            "end_age": 61,
+            "stem": "癸",
+            "branch": "酉"
+          },
+          {
+            "index": 7,
+            "start_age": 61,
+            "end_age": 71,
+            "stem": "甲",
+            "branch": "戌"
+          },
+          {
+            "index": 8,
+            "start_age": 71,
+            "end_age": 81,
+            "stem": "乙",
+            "branch": "亥"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": "round(1.333)=1"
+    },
+    {
+      "id": "B_tz_001",
+      "description": "China Standard Time (UTC+8) classic",
+      "input": {
+        "born_at": "1985-08-15T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 1985,
+        "month": 8,
+        "day": 15,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "乙",
+          "branch": "丑"
+        },
+        "month_pillar": {
+          "stem": "甲",
+          "branch": "申"
+        },
+        "day_pillar": {
+          "stem": "丙",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "癸",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "己",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "month": [
+            "庚",
+            "壬",
+            "戊"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "海中金",
+          "month": "泉中水",
+          "day": "屋上土",
+          "hour": "长流水"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 2,
+            "end_age": 12,
+            "stem": "癸",
+            "branch": "未"
+          },
+          {
+            "index": 2,
+            "start_age": 12,
+            "end_age": 22,
+            "stem": "壬",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 22,
+            "end_age": 32,
+            "stem": "辛",
+            "branch": "巳"
+          },
+          {
+            "index": 4,
+            "start_age": 32,
+            "end_age": 42,
+            "stem": "庚",
+            "branch": "辰"
+          },
+          {
+            "index": 5,
+            "start_age": 42,
+            "end_age": 52,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 6,
+            "start_age": 52,
+            "end_age": 62,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 7,
+            "start_age": 62,
+            "end_age": 72,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 8,
+            "start_age": 72,
+            "end_age": 82,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_tz_002",
+      "description": "Same instant at UTC+0",
+      "input": {
+        "born_at": "1985-08-15T02:00:00+00:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "UTC"
+        },
+        "year": 1985,
+        "month": 8,
+        "day": 15,
+        "hour": 2,
+        "timezone": 0
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "乙",
+          "branch": "丑"
+        },
+        "month_pillar": {
+          "stem": "甲",
+          "branch": "申"
+        },
+        "day_pillar": {
+          "stem": "丙",
+          "branch": "戌"
+        },
+        "hour_pillar": {
+          "stem": "己",
+          "branch": "丑"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "己",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "辛",
+            "ten_god": "正财"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "己",
+            "癸",
+            "辛"
+          ],
+          "month": [
+            "庚",
+            "壬",
+            "戊"
+          ],
+          "day": [
+            "戊",
+            "辛",
+            "丁"
+          ],
+          "hour": [
+            "己",
+            "癸",
+            "辛"
+          ]
+        },
+        "nayin": {
+          "year": "海中金",
+          "month": "泉中水",
+          "day": "屋上土",
+          "hour": "霹雳火"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 2,
+            "end_age": 12,
+            "stem": "癸",
+            "branch": "未"
+          },
+          {
+            "index": 2,
+            "start_age": 12,
+            "end_age": 22,
+            "stem": "壬",
+            "branch": "午"
+          },
+          {
+            "index": 3,
+            "start_age": 22,
+            "end_age": 32,
+            "stem": "辛",
+            "branch": "巳"
+          },
+          {
+            "index": 4,
+            "start_age": 32,
+            "end_age": 42,
+            "stem": "庚",
+            "branch": "辰"
+          },
+          {
+            "index": 5,
+            "start_age": 42,
+            "end_age": 52,
+            "stem": "己",
+            "branch": "卯"
+          },
+          {
+            "index": 6,
+            "start_age": 52,
+            "end_age": 62,
+            "stem": "戊",
+            "branch": "寅"
+          },
+          {
+            "index": 7,
+            "start_age": 62,
+            "end_age": 72,
+            "stem": "丁",
+            "branch": "丑"
+          },
+          {
+            "index": 8,
+            "start_age": 72,
+            "end_age": 82,
+            "stem": "丙",
+            "branch": "子"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B3",
+        "B4"
+      ],
+      "risk_flagged": false,
+      "note": "clock time; hour pillar differs"
+    },
+    {
+      "id": "B_tz_003",
+      "description": "Dec 31 Gregorian year boundary",
+      "input": {
+        "born_at": "2023-12-31T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2023,
+        "month": 12,
+        "day": 31,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "癸",
+          "branch": "卯"
+        },
+        "month_pillar": {
+          "stem": "壬",
+          "branch": "子"
+        },
+        "day_pillar": {
+          "stem": "癸",
+          "branch": "亥"
+        },
+        "hour_pillar": {
+          "stem": "丁",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丁",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "丙",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "正印"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "正官"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "伤官"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "比肩"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "乙"
+          ],
+          "month": [
+            "癸"
+          ],
+          "day": [
+            "壬",
+            "甲"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "金箔金",
+          "month": "桑柘木",
+          "day": "大海水",
+          "hour": "沙中土"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 8,
+            "end_age": 18,
+            "stem": "辛",
+            "branch": "亥"
+          },
+          {
+            "index": 2,
+            "start_age": 18,
+            "end_age": 28,
+            "stem": "庚",
+            "branch": "戌"
+          },
+          {
+            "index": 3,
+            "start_age": 28,
+            "end_age": 38,
+            "stem": "己",
+            "branch": "酉"
+          },
+          {
+            "index": 4,
+            "start_age": 38,
+            "end_age": 48,
+            "stem": "戊",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 48,
+            "end_age": 58,
+            "stem": "丁",
+            "branch": "未"
+          },
+          {
+            "index": 6,
+            "start_age": 58,
+            "end_age": 68,
+            "stem": "丙",
+            "branch": "午"
+          },
+          {
+            "index": 7,
+            "start_age": 68,
+            "end_age": 78,
+            "stem": "乙",
+            "branch": "巳"
+          },
+          {
+            "index": 8,
+            "start_age": 78,
+            "end_age": 88,
+            "stem": "甲",
+            "branch": "辰"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": null
+    },
+    {
+      "id": "B_tz_004",
+      "description": "Jan 1 calendar conversion (bazi year unchanged)",
+      "input": {
+        "born_at": "2024-01-01T10:00:00+08:00",
+        "gender": "male",
+        "born_location": {
+          "timezone": "Asia/Shanghai"
+        },
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 10,
+        "timezone": 8
+      },
+      "expected": {
+        "year_pillar": {
+          "stem": "癸",
+          "branch": "卯"
+        },
+        "month_pillar": {
+          "stem": "壬",
+          "branch": "子"
+        },
+        "day_pillar": {
+          "stem": "甲",
+          "branch": "子"
+        },
+        "hour_pillar": {
+          "stem": "己",
+          "branch": "巳"
+        },
+        "ten_gods": [
+          {
+            "stem": "丙",
+            "ten_god": "食神"
+          },
+          {
+            "stem": "乙",
+            "ten_god": "劫财"
+          },
+          {
+            "stem": "壬",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "己",
+            "ten_god": "正财"
+          },
+          {
+            "stem": "庚",
+            "ten_god": "七杀"
+          },
+          {
+            "stem": "戊",
+            "ten_god": "偏财"
+          },
+          {
+            "stem": "甲",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "癸",
+            "ten_god": "正印"
+          }
+        ],
+        "hidden_stems": {
+          "year": [
+            "乙"
+          ],
+          "month": [
+            "癸"
+          ],
+          "day": [
+            "癸"
+          ],
+          "hour": [
+            "丙",
+            "庚",
+            "戊"
+          ]
+        },
+        "nayin": {
+          "year": "金箔金",
+          "month": "桑柘木",
+          "day": "海中金",
+          "hour": "大林木"
+        },
+        "dayun": [
+          {
+            "index": 1,
+            "start_age": 8,
+            "end_age": 18,
+            "stem": "辛",
+            "branch": "亥"
+          },
+          {
+            "index": 2,
+            "start_age": 18,
+            "end_age": 28,
+            "stem": "庚",
+            "branch": "戌"
+          },
+          {
+            "index": 3,
+            "start_age": 28,
+            "end_age": 38,
+            "stem": "己",
+            "branch": "酉"
+          },
+          {
+            "index": 4,
+            "start_age": 38,
+            "end_age": 48,
+            "stem": "戊",
+            "branch": "申"
+          },
+          {
+            "index": 5,
+            "start_age": 48,
+            "end_age": 58,
+            "stem": "丁",
+            "branch": "未"
+          },
+          {
+            "index": 6,
+            "start_age": 58,
+            "end_age": 68,
+            "stem": "丙",
+            "branch": "午"
+          },
+          {
+            "index": 7,
+            "start_age": 68,
+            "end_age": 78,
+            "stem": "乙",
+            "branch": "巳"
+          },
+          {
+            "index": 8,
+            "start_age": 78,
+            "end_age": 88,
+            "stem": "甲",
+            "branch": "辰"
+          }
+        ],
+        "gender_assumed": false
+      },
+      "coverage": [
+        "B1",
+        "B2"
+      ],
+      "risk_flagged": false,
+      "note": "bazi year follows Li Chun, not Jan 1"
+    }
+  ]
+}
