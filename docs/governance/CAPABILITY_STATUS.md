@@ -19,6 +19,9 @@
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
+> **Phase 6.1**: BaZi 迁移评估完成（`docs/governance/bazi/Bazi_CAPABILITY_ASSESSMENT.md`）,
+> 状态维持 Implemented（无虚报）。模板领域无关性审查:
+> `docs/governance/CAPABILITY_TEMPLATE_REVIEW.md`。
 
 ---
 
@@ -73,29 +76,37 @@ LLM Reasoning / RAG Knowledge / Consensus Decision。Qimen 域只产生
 
 **Status**:
 
-Implemented（Stage 1 完成；未进入 Contract Candidate）
+Implemented（Stage 1 完成；**未升级** — Contract Candidate 需契约草案 + Freeze Review, 均未完成）
+> 评估依据: `docs/governance/bazi/Bazi_CAPABILITY_ASSESSMENT.md`（Phase 6.1）
+> Phase 6.2 稳定化工件（Draft, 未冻结）: `docs/bazi/BAZI_ALGORITHM_ASSUMPTIONS.md` /
+> `docs/bazi/BAZI_RULE_DECISION.md` / `docs/bazi/BAZI_GOLDEN_VECTOR_PLAN.md` /
+> `docs/bazi/BAZI_TEST_COVERAGE_REVIEW.md`
+> Phase 6.3 证据（Candidate, 未升级）: **Golden Vector Candidate 24 向量**
+> （`docs/bazi/golden_vectors.json`, engine 0.1.0, status=candidate）+
+> `docs/bazi/BAZI_FREEZE_BOUNDARY.md` + `tests/test_bazi_golden_vectors.py`（7 例）+
+> 审计报告 `docs/governance/bazi/BAZI_GOLDEN_VECTOR_REPORT.md`
 
 **Calculation Layer**:
 
-- 算法: `src/openmetaphysics/agents/bazi.py`（四柱引擎, 十神/藏干/纳音/大运）
+- 算法: `src/openmetaphysics/agents/bazi.py`（BaziEngine v0.1.0: 四柱, 十神/藏干/纳音/大运）
 - 确定性: 是（无 LLM 参与；determinism 测试覆盖）
-- Schema: 共享 `AgentInput`/`AgentOutput` 信封（`src/openmetaphysics/core/schemas.py`）；
-  无领域专属 Schema
-- 测试: `tests/test_bazi.py`（11 例通过）
+- Schema: 领域专属 `BaziInput`/`BaziChart`/`Pillar`/`DaYun`（`extra="forbid"`,
+  位于 `agents/bazi.py`）；**未登记 SCHEMAS.md / 未导出 JSON Schema**
+- 测试: `tests/test_bazi.py`（11 例通过, 含立春界/晚子时/大运方向边界用例）
 
 **Contract Layer**:
 
-无（无契约、无 Golden Vectors、无冻结规则）
+无（无契约、无领域 Golden Vectors、无规则裁定、无 Freeze Review）
 
 **Reference Layer**:
 
 无（无 `reference/bazi/` 独立实现）
 
-**下一步（迁移前置）**:
+**下一步（迁移前置, 见评估文档 §4）**:
 
-- 领域专属 Schema 定义（Stage 1 退出标准）
-- 规则清单 + 向量草案 → Freeze Review → 契约化（复用 Qimen 流程,
-  见 `CAPABILITY_LIFECYCLE.md` §5）
+- 算法假设文档（approx_1min / 立春界 / 23:00 换日显式化）
+- 规则裁定文档（冻结规则清单）→ 向量草案 → 契约草案 → Freeze Review
+  （复用 Qimen 流程, 见 `CAPABILITY_LIFECYCLE.md` §5）
 
 ---
 
