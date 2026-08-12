@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-09
+> **最后更新**: 2026-08-12
 > **项目阶段**: Reference Freeze Candidate
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 
@@ -265,3 +265,29 @@ Proposal (ACP)。
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
 .venv/Scripts/python -m pytest -q            # 运行全量测试（381/381）
 ```
+
+---
+
+## 11. 开发流程约定（2026-08-12）
+
+### 对话工作流约定
+
+每次对话 MUST 遵守：输出归档 + 分支工作流 + 用户把控合并。
+
+- 每轮对话结束前，将本轮产出追加归档至 `context/归档.md`（追加式，不覆盖历史）。
+- 所有代码/文档输出在独立分支 `work/<领域>/<主题>` 上进行，禁止直接改 main。
+- 是否合并、是否进入下一步，由用户决定。
+
+细则见 `AGENTS.md` → Conversation Workflow Convention。
+
+### 工具链编码约定（Windows UTF-8 修复）
+
+系统活动代码页为 936 (GBK)，工具子进程输出曾被误读为乱码。已修复：
+
+- opencode shell 改为 UTF-8 wrapper（`~/.config/opencode/opencode.json` 的 `shell` 指向
+  `C:\Users\lkl\AppData\Local\Programs\opencode-utf8\pwsh.exe`，注入 `chcp 65001` +
+  UTF-8 编码引导后转发真实 pwsh）。
+- 本仓库 `.git/config` 已设置 `core.quotepath false`（git 中文文件名正常显示）。
+
+> 备注：`HKCU\Console\CodePage` 注册表方案与 pwsh profile 方案对工具子进程均无效
+> （opencode 强制 `-NoProfile` 且管道化 spawn），详见 `context/归档.md` 首条记录。
