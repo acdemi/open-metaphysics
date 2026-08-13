@@ -82,7 +82,7 @@ Production Runtime 必须实现等价接口并通过 Conformance Suite 验证。
 每个智能体都实现 AgentProtocol。两个严格分离的接口：
 compute()（确定性，无大语言模型）和 explain()（可选大语言模型，仅文本）。
 
-`python
+```python
 class AgentProtocol(Protocol):
     name: str
     engine_version: str
@@ -92,11 +92,11 @@ class AgentProtocol(Protocol):
     def compute(self, payload: AgentInput) -> AgentOutput: ...
     def explain(self, output: AgentOutput, style: str = "concise") -> str: ...
     def schema(self) -> dict: ...      # {input_schema, output_schema, engine_version}
-`
+```
 
 BaseAgent 提供共享机制，因此具体智能体只需要实现 _compute_result() 和（可选）_explain()：
 
-`python
+```python
 class BaseAgent(ABC):
     name: str
     engine_version: str
@@ -129,13 +129,13 @@ class BaseAgent(ABC):
         if self.explainer is None:
             return self._fallback_explain(output)   # 确定性模板文本
         return self.explainer.render(output, style=style)
-`
+```
 
 这种分离通过测试强制：compute() 不能碰任何 InferenceProvider；explain() 不能修改 output.result。
 
 ## 2. 确定性引擎接口
 
-`python
+```python
 class DeterministicEngine(ABC):
     version: str
 
@@ -144,7 +144,7 @@ class DeterministicEngine(ABC):
 
     # 纯函数保证：无 I/O，无挂钟时间，无无种子随机数。
     # 子类在 RuleRegistry 中注册规则，便于追踪。
-`
+```
 
 RuleRegistry 将
 rule_ref 字符串映射到可调用对象；每个规则调用追加一个 ReasoningStep。这使得引擎逻辑可以逐条检查和测试，并自动生成
@@ -152,7 +152,7 @@ reasoning_trace。
 
 ## 3. 推理提供者接口（隔离）
 
-`python
+```python
 class InferenceProvider(Protocol):
     name: str                       # "ollama" | "qwen" | "deepseek"
     def generate(self, prompt: str, *, model: str, temperature: float = 0.2,
@@ -162,26 +162,26 @@ class InferenceProvider(Protocol):
 class Explainer(Protocol):
     provider: InferenceProvider | None
     def render(self, output: AgentOutput, *, style: str) -> str: ...
-`
+```
 
 保证：
 - 解释器仅接收序列化后的 AgentOutput；除了 output 暴露的内容，它对引擎或原始输入没有引用。
-- 	emperature 默认较低；结果后验证确保永远不包含与数值字段矛盾的声明（这是检查步骤，不是重新计算）。
+- temperature 默认较低；结果后验证确保永远不包含与数值字段矛盾的声明（这是检查步骤，不是重新计算）。
 - 如果 provider is None，
-ender() 返回确定性模板文本，因此系统在完全没有大语言模型时也完全可用。
+render() 返回确定性模板文本，因此系统在完全没有大语言模型时也完全可用。
 
 ## 4. RAG 检索器接口
 
-`python
+```python
 class KnowledgeRetriever(Protocol):
     def retrieve(self, query: str, *, k: int = 5) -> list[KnowledgeChunk]: ...
-`
+```
 
 仅被 explain()/解释用于注入权威引用。它不能改变排盘数字。本地由 Qdrant 支持；内存后备保证测试无依赖。
 
 ## 5. 编排接口 (LangGraph)
 
-`python
+```python
 class Orchestrator:
     graph: CompiledGraph
     def run(self, request: OrchestrationRequest) -> OrchestrationResponse: ...
@@ -192,7 +192,7 @@ class OrchestrationRequest(BaseModel):
     agents: list[str] | None = None      # None → 路由选择
     strategy: str = "weighted"
     explain: bool = False                # 启用大语言模型文本层
-`
+```
 
 图节点：validate → route → fan_out(agents) → consensus → (explain?) → respond。
 状态是 Pydantic 模型；边是确定性的（路由可以咨询大语言模型进行*选择*，由配置控制）。
@@ -212,13 +212,13 @@ class OrchestrationRequest(BaseModel):
 
 ## 7. 注册与发现
 
-`python
+```python
 class AgentRegistry:
     def register(self, agent: AgentProtocol) -> None: ...
     def get(self, name: str) -> AgentProtocol: ...
     def all(self) -> list[AgentProtocol]: ...
     def schemas(self) -> dict[str, dict]: ...
-`
+```
 
 智能体在导入时自我注册；API 和编排器按名称解析。这是唯一扩展点：新的命理方式 = 新的 BaseAgent 子类 + 注册。
 
