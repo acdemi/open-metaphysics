@@ -4,7 +4,7 @@
     "counts": {
       "nodes": 41,
       "references": 3,
-      "relations": 12
+      "relations": 18
     },
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
@@ -1331,6 +1331,224 @@
       },
       "source_node_id": "kn:main_star:lianzhen",
       "target_node_id": "kn:main_star:tianfu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            1,
+            7
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "紫微贪狼同宫（紫微在卯酉时）; 由契约 BC-012 偏移推导: 贪狼=(天府+2), 天府=-紫微; zw∈{1,7} 时同宫",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:he:ziwei_tanlang",
+      "relation_type": "he",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:ziwei",
+      "target_node_id": "kn:main_star:tanlang",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            2,
+            8
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "太阳太阴同宫（紫微在辰戌时, 日月同宫）; 偏移推导: 太阳=(紫微-3), 太阴=(天府+1); zw∈{2,8} 时同宫",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:he:taiyang_taiyin",
+      "relation_type": "he",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:taiyang",
+      "target_node_id": "kn:main_star:taiyin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            1,
+            7
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "武曲破军同宫（紫微在卯酉时）; 偏移推导: 武曲=(紫微-4), 破军=(天府+10); zw∈{1,7} 时同宫",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:he:wuqu_pojun",
+      "relation_type": "he",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:wuqu",
+      "target_node_id": "kn:main_star:pojun",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "天府与七杀恒居六宫相对（冲位）; 偏移推导: 七杀=(天府+6), 对所有紫微位置恒成立",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:chong:tianfu_qisha",
+      "relation_type": "chong",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:tianfu",
+      "target_node_id": "kn:main_star:qisha",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "天相与破军恒居六宫相对（冲位）; 偏移推导: 天相=(天府+4), 破军=(天府+10), 相距恒为 6 宫",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:chong:tianxiang_pojun",
+      "relation_type": "chong",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:tianxiang",
+      "target_node_id": "kn:main_star:pojun",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            5,
+            11
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "太阳太阴六宫相对（紫微在未丑时, 日月反背结构）; 偏移推导: 太阳=(紫微-3), 太阴=(天府+1); zw∈{5,11} 时相距六宫",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:chong:taiyang_taiyin",
+      "relation_type": "chong",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:taiyang",
+      "target_node_id": "kn:main_star:taiyin",
       "weight": 1.0
     },
     {
