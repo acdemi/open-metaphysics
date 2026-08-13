@@ -775,7 +775,7 @@ requires-dist = [
     { name = "qdrant-client", marker = "extra == 'rag'", specifier = ">=1.10" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.5" },
     { name = "sqlalchemy", marker = "extra == 'persist'", specifier = ">=2.0" },
-    { name = "sxtwl", specifier = ">=1.6" },
+    { name = "sxtwl", specifier = "==2.0.7" },
     { name = "uvicorn", specifier = ">=0.29" },
 ]
 provides-extras = ["rag", "persist", "dev"]

@@ -96,15 +96,17 @@
 
 ## 3. 生成前置条件（Phase 6.7.2 入口）
 
-> **Phase 6.7.1.5 裁定同步（2026-08-13）**: 前置条件 1 已裁定（REVISED）——
-> ZV-pos 组**按修订后表**生成（统一生成规则 + 廉贞 -8）; 但 ACP 未执行,
-> **向量生成必须等待 ACP 完成**（见 `ZIWEI_DECISION_RESOLUTION.md` §6）。
+> **Phase 6.7.1.5 裁定 + Phase 6.7.1.6 实施同步（2026-08-13）**: 前置条件 1
+> 已裁定并已实施 —— ZV-pos 组**按修订后表**生成（统一生成规则 + 廉贞 -8,
+> ACP-ZW-001/002 已执行, Engine v0.3.0）; **向量生成前置阻塞已解除**,
+> 可按修订后规则集采样（见 `ZIWEI_DECISION_RESOLUTION.md` §6）。
 
-1. ~~人工裁定 A-1/A-2~~ ✅ **已裁定（REVISED）**; ⛔ **ACP 执行**（表替换 +
-   廉贞 -8 + ZW-001 校验 + sxtwl pin）必须在向量生成前完成。
-2. sxtwl 锁版（D-ZW-9: 固定 `sxtwl==2.0.7`）—— 已裁定, pin 随 ACP 执行;
-   向量含历法数值, pin 是向量稳定的前提。
-3. 向量格式对齐 BaZi: engine 版本 + status=candidate + 逐字段全盘 JSON。
+1. ~~人工裁定 A-1/A-2~~ ✅ 已裁定（REVISED）; ~~ACP 执行~~ ✅ **已完成**
+   （ACP-ZW-001/002/003/004, Phase 6.7.1.6）—— 向量生成按修订后规则集进行。
+2. ~~sxtwl 锁版~~ ✅ **已实施**（D-ZW-9: `sxtwl==2.0.7` 已 pin,
+   ACP-ZW-004）—— 历法数值向量的稳定前提已就位。
+3. 向量格式对齐 BaZi: engine 版本（v0.3.0）+ status=candidate +
+   逐字段全盘 JSON。
 4. 机器回归测试文件 `tests/test_ziwei_golden_vectors.py`（对齐 BaZi 7 例模式）。
 
 ## 4. 本 Sprint 明确不做

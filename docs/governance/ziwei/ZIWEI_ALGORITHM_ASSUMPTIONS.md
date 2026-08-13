@@ -1,16 +1,17 @@
 # Ziwei Algorithm Assumptions
 
 > **Sprint**: Phase 6.7.1 — Algorithm Stabilization（假设显式化）
-> **日期**: 2026-08-13（Phase 6.7.1.5 更新: A-1/A-2/ZW-001/sxtwl 裁定完成）
-> **性质**: 记录 `ZiweiEngine` v0.2.0 的每一个确定性假设。**不修改任何算法**;
+> **日期**: 2026-08-13（Phase 6.7.1.5 裁定 / Phase 6.7.1.6 实施）
+> **性质**: 记录 `ZiweiEngine` **v0.3.0** 的每一个确定性假设。**不修改任何算法**;
 > 仅显式化既有行为, 供规则裁定（`ZIWEI_RULE_DECISION.md`）与 Golden Vector
 > 设计（`ZIWEI_GOLDEN_VECTOR_READINESS.md`）使用。
 > **编号**: ZW-A1~ZW-A15, 与 Phase 7.0 规则清单 ZW-001~017 交叉引用。
 > **禁止**: 加入当前实现不存在的能力（辅星/四化/大限/流年均不在此表, 由
 > ZW-017 显式声明为"未实现"）。
-> **Phase 6.7.1.5 裁定同步**: ZW-A10（定局表）与 ZW-A12（廉贞）→ REVISED
-> （ACP Required, 未执行）; ZW-A4 补 sxtwl 锁版裁定; ZW-A15 输入校验分层。
-> 完整记录: `ZIWEI_DECISION_RESOLUTION.md`。
+> **Phase 6.7.1.5 裁定 + Phase 6.7.1.6 实施同步**: ZW-A10（定局表）与 ZW-A12
+> （廉贞）→ REVISED → **IMPLEMENTED**（ACP-ZW-001/002）; ZW-A4 补 sxtwl 锁版
+> 裁定并已 pin（ACP-ZW-004）; ZW-A15 输入校验已实施（ACP-ZW-003）。
+> 完整记录: `ZIWEI_DECISION_RESOLUTION.md` + `docs/governance/ACP/`。
 
 ---
 
@@ -71,10 +72,10 @@
 - **Risk**: 高 —— `sxtwl>=1.6` 非精确锁版, compute() 内唯一外部依赖（F-8）;
   闰月策略为项目选择（流派存在"闰月作下月/上月"变体, 见歧义 A-6）
 - **Freeze Candidate**: ✅ 维持现状（月号同值）; sxtwl 锁版策略列入契约化前置
-- **sxtwl 锁版裁定（Phase 6.7.1.5, D-ZW-9）**: **固定版本 `sxtwl==2.0.7`**
-  （环境实测安装版本; 当前声明 `>=1.6` 已跨 1.x→2.x 大版本）。pin 动作随
-  ACP 执行（本 Sprint 不修改 pyproject.toml）。验证: 3 例历法数值测试
-  （`test_lunar_conversion_*`, 已锁 2.0.7 输出）+ Phase 6.7.2 历法向量
+- **sxtwl 锁版（Phase 6.7.1.5 裁定, Phase 6.7.1.6 IMPLEMENTED, D-ZW-9）**:
+  **固定 `sxtwl==2.0.7`**（环境实测安装版本; 原声明 `>=1.6` 已跨 1.x→2.x
+  大版本）。pyproject.toml 已精确 pin（ACP-ZW-004）。验证: 3 例历法数值测试
+  （`test_lunar_conversion_*`, 锁 2.0.7 输出）+ Phase 6.7.2 历法向量
   （ZV-lun-001~003）+ replay。升级须 ACP + 向量迁移。
   详见 `ZIWEI_DECISION_RESOLUTION.md` §5。
 
@@ -143,21 +144,26 @@
 ### ZW-A10 紫微定局表（对应 ZW-012）
 
 - **Assumption ID**: ZW-A10
-- **Name**: 紫微定位 = 定局表（5 局 × 30 日）
-- **Actual Behavior**: `zw = ZIWEI_POS[ju][lunar_day]`; 当前实现为硬编码表,
-  与经典《紫微星诀》结构不一致（F-3, 歧义 A-1）。
-- **Code Evidence**: `agents/ziwei.py:49-210`, `:351`
-- **Existing Test Evidence**: 间接（初一水二局 → 丑）; 已补
-  `test_ziwei_pos_table_structure`（150 组合结构）+ `test_ziwei_pos_values_snapshot`
-  （SHA-256 快照, 150 组合逐格锁定当前表值）
-- **Boundary**: 日 1/30 边界; 各局起始宫; `lunar_day` 越界 KeyError（ZW-001）
-- **Risk**: **高** —— 当前表违反"木三无寅卯 / 金四无酉戌 / 土五无辰巳 /
-  火六无未申"四项著名结构不变式, 且无统一生成规则
-- **Freeze Candidate**: ❌ **REVISED（Phase 6.7.1.5 裁定, ACP Required 未执行）**
-  —— 修订为统一生成规则 `idx = (START + (day-1)//STEP) % 12`:
-  START={水二:丑(11), 木三:辰(2), 金四:亥(9), 土五:午(4), 火六:酉(7)},
-  STEP={水二:2, 木三/金四/土五/火六:3}。修订后全表与证据见
-  `ZIWEI_DECISION_RESOLUTION.md` §2
+- **Name**: 紫微定位 = 定局表（5 局 × 30 日, 统一生成规则）
+- **Actual Behavior**: `zw = ZIWEI_POS[ju][lunar_day]`; `ZIWEI_POS` 由
+  **统一生成规则**生成（ACP-ZW-001, Engine v0.3.0）:
+  `idx = (ZIWEI_JU_START[ju] + (day-1)//ZIWEI_JU_STEP[ju]) % 12`,
+  START={2:丑(11), 3:辰(2), 4:亥(9), 5:午(4), 6:酉(7)},
+  STEP={2:2, 3:3, 4:3, 5:3, 6:3}。
+  结构不变式（全部满足）: 木三局不落寅卯 / 金四局不落酉戌 / 土五局不落辰巳 /
+  火六局不落未申。
+- **Code Evidence**: `agents/ziwei.py:45-66`（`ZIWEI_JU_START`/`ZIWEI_JU_STEP`/
+  `_ziwei_pos_table()`/`ZIWEI_POS`）, `:351`（查表使用）
+- **Existing Test Evidence**: 间接（初一水二局 → 丑）; `test_ziwei_pos_table_structure`
+  （150 组合结构）+ `test_ziwei_pos_values_snapshot`（SHA-256 快照, 已按修订
+  后表重生成）; `test_ziwei_tianfu_mirror_multiple_ju` / `test_user_lunar_override_flows_into_placement`
+  读同一模块表, 自动一致。
+- **Boundary**: 日 1/30 边界; 各局起始宫; `lunar_day` 越界已由输入校验拦截
+  （ZW-001, ACP-ZW-003）
+- **Risk**: 已闭合 —— 修订规则满足四项著名结构不变式, 与经典《紫微星诀》
+  速见表吻合（`ZIWEI_DECISION_RESOLUTION.md` §2 证据）
+- **Freeze Candidate**: ✅（修订后行为已实施并被测试锁定, 可进入 Freeze
+  Review）
 
 ### ZW-A11 天府镜像（对应 ZW-013）
 
@@ -176,16 +182,15 @@
 - **Assumption ID**: ZW-A12
 - **Name**: 六星安星（逆行, 偏移减）
 - **Actual Behavior**: 紫微0 / 天机-1 / 太阳-3 / 武曲-4 / 天同-5 / 廉贞**-8**
-  （Phase 6.7.1.5 修订后规范; 当前实现仍为 -9, 待 ACP）。
-- **Code Evidence**: `agents/ziwei.py:214-221`, `:360-362`（当前 -9）
-- **Existing Test Evidence**: 存在性; 已补 `test_ziwei_xingxi_offsets`
-  （位置断言, 公式类 —— 读同一模块表, ACP 后自动一致）
+  （ACP-ZW-002 实施完成, Engine v0.3.0）。
+- **Code Evidence**: `agents/ziwei.py:68-78`（`ZIWEI_XINGXI`, 廉贞 -8）,
+  `:360-362`（安星循环）
+- **Existing Test Evidence**: `test_ziwei_xingxi_offsets`（六星位置断言,
+  公式类 —— 读同一模块表, ACP 后自动一致）
 - **Boundary**: mod 12 环绕（紫微在寅/亥等边缘宫）
-- **Risk**: **高** —— 当前 -9 破坏"紫微在子午, 廉贞天府同度辰戌"著名恒等式
-- **Freeze Candidate**: ❌ **REVISED（Phase 6.7.1.5 裁定, ACP Required 未执行）**
-  —— 廉贞 = 紫微 **-8**（本项目规范定义为 -8, 而非历史原因）;
-  依据: 歌诀隔位结构 + 廉贞天府同宫恒等式。详见
-  `ZIWEI_DECISION_RESOLUTION.md` §3
+- **Risk**: 已闭合 —— "紫微在子午, 廉贞天府同度辰戌"恒等式成立
+  （`ZIWEI_DECISION_RESOLUTION.md` §3 证据）
+- **Freeze Candidate**: ✅（-8 已实施并被测试锁定, 可进入 Freeze Review）
 
 ### ZW-A13 天府星系偏移（对应 ZW-015）
 
@@ -219,22 +224,22 @@
 - **Name**: 隐式默认值集合 + 未实现能力清单
 - **Actual Behavior**:
   1. 显式农历（lunar_month+lunar_day 同时提供）优先于公历转换; 年干仍取公历立春界;
-  2. `lunar_day` 越界无校验 → `ZIWEI_POS` KeyError;
+  2. `lunar_month∈[1,12]` / `lunar_day∈[1,30]` / 两字段同给同省 —— 由
+     `ZiweiInput` 模型校验器显式校验（ACP-ZW-003）; 越界/部分提供 →
+     ValueError（API 422）;
   3. `gender` 继承但 engine 从不读取; `yin_yang` 计算但无下游消费;
   4. `auxiliary_stars` 恒空列表; 四化/大限/流年未实现;
   5. 置信度固定 0.95（基类默认）; trace 恒 4 步。
-- **Code Evidence**: `agents/ziwei.py:236-238`, `:287-383`;
+- **Code Evidence**: `agents/ziwei.py:91-106`（校验器）, `:287-383`;
   `core/engines.py:141-145`（置信度）
-- **Existing Test Evidence**: `test_user_provided_lunar_used_directly`（smoke, 已强化）;
-  `test_metadata_updated`; 已补 `test_lunar_day_out_of_range_raises_keyerror` /
-  `test_aux_stars_always_empty` / `test_yin_yang_year_stem`
-- **Boundary**: lunar_day 0/31; 农历与公历不一致的输入组合
-- **Risk**: 中 —— 校验缺失（KeyError）为已暴露行为; 已裁定"KeyError 属工程
-  意外, 待修复"
-- **Freeze Candidate**: ⚠️ 部分 —— 未实现边界（ZW-017）✅; 输入校验策略
-  （ZW-001）**REVISED**（Phase 6.7.1.5 裁定: Contract 要求显式校验
-  month∈[1,12]/day∈[1,30]/两字段同给同省; 当前实现待修复, ACP Required,
-  修复仅影响非法输入路径。详见 `ZIWEI_DECISION_RESOLUTION.md` §4）
+- **Existing Test Evidence**: `test_user_provided_lunar_used_directly`;
+  `test_lunar_input_out_of_range_rejected`（6 类非法输入 + 合法组合）;
+  `test_metadata_updated`; `test_aux_stars_always_empty` / `test_yin_yang_year_stem`
+- **Boundary**: lunar_day 0/31; lunar_month 0/13; 部分提供; 农历与公历不一致
+  （合法, 不校验）
+- **Risk**: 已闭合 —— 校验策略已实施, 合法输入输出零变化
+- **Freeze Candidate**: ⚠️ 部分 —— 未实现边界（ZW-017）✅; 输入校验
+  （ZW-001）✅ **IMPLEMENTED**（ACP-ZW-003, Engine v0.3.0）
 
 ---
 
@@ -245,18 +250,19 @@
 | ZW-A1 | tz-aware 输入 | ✅ |
 | ZW-A2 | 时区回退链（无 UTC 兜底） | ✅ + 差异声明 |
 | ZW-A3 | 钟表时辰 | ✅ |
-| ZW-A4 | sxtwl 农历 + 闰月月号同值 | ✅ + 锁版裁定（固定 2.0.7, ACP pin） |
+| ZW-A4 | sxtwl 农历 + 闰月月号同值 | ✅ + 锁版 **IMPLEMENTED**（==2.0.7, ACP-ZW-004） |
 | ZW-A5 | 立春年界（共享原语） | ✅ |
 | ZW-A6 | 五虎遁 | ✅ |
 | ZW-A7 | 命宫公式 | ✅ |
 | ZW-A8 | 身宫公式 | ✅ |
 | ZW-A9 | 五行局映射 | ✅ |
-| ZW-A10 | 紫微定局表 | ❌ **REVISED**（统一生成规则, ACP） |
+| ZW-A10 | 紫微定局表 | ✅ **IMPLEMENTED**（统一生成规则, ACP-ZW-001） |
 | ZW-A11 | 天府镜像 | ✅ |
-| ZW-A12 | 紫微星系（廉贞） | ❌ **REVISED**（-8, ACP） |
+| ZW-A12 | 紫微星系（廉贞） | ✅ **IMPLEMENTED**（-8, ACP-ZW-002） |
 | ZW-A13 | 天府星系 | ✅ |
 | ZW-A14 | 宫位布局 | ✅ |
-| ZW-A15 | 默认/未实现边界 | ⚠️ 部分 **REVISED**（输入校验, ACP） |
+| ZW-A15 | 默认/未实现边界 | ⚠️ 部分 **IMPLEMENTED**（输入校验, ACP-ZW-003） |
 
 > 完整裁定与开放问题见 `ZIWEI_RULE_DECISION.md`（Phase 6.7.1, Draft, 未冻结）
-> 与 `ZIWEI_DECISION_RESOLUTION.md`（Phase 6.7.1.5 四项裁定）。
+> 与 `ZIWEI_DECISION_RESOLUTION.md`（Phase 6.7.1.5）; 实施记录见
+> `docs/governance/ACP/ACP-ZW-001~004.md`（Phase 6.7.1.6）。

@@ -124,8 +124,9 @@
 
 ### Q12. 是否存在版本号？
 
-是。`ZiweiEngine.version = "0.2.0"`（`agents/ziwei.py:285`）;
-metadata 断言 `engine_version == "0.2.0"`（`tests/test_ziwei.py:187`）。
+是。审计时 `ZiweiEngine.version = "0.2.0"`（`agents/ziwei.py`）;
+**Phase 6.7.1.6（ACP 实施）后为 v0.3.0**（定局表生成式 + 廉贞 -8 + 输入校验）;
+metadata 断言 `engine_version == "0.3.0"`（`tests/test_ziwei.py`）。
 
 ### Q13. 当前测试数量是多少？
 

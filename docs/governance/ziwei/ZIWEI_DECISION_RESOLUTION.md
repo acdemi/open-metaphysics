@@ -1,7 +1,7 @@
 # Ziwei Decision Resolution
 
 > **Sprint**: Phase 6.7.1.5 — Ziwei Decision Resolution（纯决策 Sprint）
-> **日期**: 2026-08-13
+> **日期**: 2026-08-13（**Phase 6.7.1.6 更新**: 4 项 ACP 已全部 **IMPLEMENTED**）
 > **性质**: 解决 Phase 6.7.1 遗留的 4 项决策点（A-1 / A-2 / ZW-001 / sxtwl 锁版）。
 > 本 Sprint **不生成代码、不修改 src/、不创建 Contract、不生成 Golden
 > Vectors、不执行任何 ACP** —— 仅产出裁定记录。
@@ -10,24 +10,29 @@
 > `tests/test_ziwei.py`（33 例）。
 > **更正**: 任务书将 A-2 标注为"廉贞 -9（天府星系）"—— 廉贞属**紫微星系**
 > （天府星系为太阴/贪狼/巨门/天相/天梁/七杀/破军）。裁定按紫微星系处理。
+>
+> **ACP 实施状态（Phase 6.7.1.6, 2026-08-13）**:
+> ACP-ZW-001（定局表生成式）/ ACP-ZW-002（廉贞 -8）/ ACP-ZW-003（输入校验）/
+> ACP-ZW-004（sxtwl==2.0.7）—— **全部 IMPLEMENTED**, 记录见
+> `docs/governance/ACP/`; Engine v0.3.0; 全仓库 578/578 全绿。
 
 ---
 
 ## 1. Executive Summary
 
-| # | 决策点 | Decision | 修改 src/? | ACP Required | 本 Sprint 执行 ACP |
-|---|--------|----------|-----------|--------------|--------------------|
-| A-1 | ZW-012 定局表 | **REVISED**（统一生成规则, 5 行全替换） | YES | **YES** | NO |
-| A-2 | ZW-014 廉贞偏移 | **REVISED**（-9 → **-8**） | YES | **YES** | NO |
-| ZW-001 | 输入校验策略 | **分层裁定**（Contract 要求显式校验; 当前实现"待修复"） | YES | **YES** | NO |
-| sxtwl | 历法版本锁定 | **固定版本** `sxtwl==2.0.7` | pyproject only | **YES**（pin 动作） | NO |
+| # | 决策点 | Decision | 修改 src/? | ACP 状态 |
+|---|--------|----------|-----------|----------|
+| A-1 | ZW-012 定局表 | **REVISED**（统一生成规则, 5 行全替换） | YES | **IMPLEMENTED**（ACP-ZW-001, Phase 6.7.1.6） |
+| A-2 | ZW-014 廉贞偏移 | **REVISED**（-9 → **-8**） | YES | **IMPLEMENTED**（ACP-ZW-002, Phase 6.7.1.6） |
+| ZW-001 | 输入校验策略 | **分层裁定**（Contract 要求显式校验; 实现修复） | YES | **IMPLEMENTED**（ACP-ZW-003, Phase 6.7.1.6） |
+| sxtwl | 历法版本锁定 | **固定版本** `sxtwl==2.0.7` | pyproject only | **IMPLEMENTED**（ACP-ZW-004, Phase 6.7.1.6） |
 
-**结论**: 4 项决策全部裁定为需要 ACP 的修订; **本 Sprint 不执行任何 ACP**。
-Phase 6.7.2（Golden Vector Generation）**必须等待 ACP 执行完成后**才能基于
-修订后的规则集生成向量; 在此之前不得生成任何全盘向量。
+**结论**: 4 项裁定全部为需要 ACP 的修订; **ACP 已全部执行（Phase 6.7.1.6,
+Engine v0.3.0）**。Phase 6.7.2（Golden Vector Generation）可基于修订后的
+规则集启动; 在此之前未生成任何全盘向量。
 
-**现状核查**: Phase 6.7.1 已合并 main（commit `1c3e2f7`）; 环境实测
-`sxtwl==2.0.7`（pyproject 声明 `>=1.6`）。
+**现状核查**: Phase 6.7.1 已合并 main（commit `1c3e2f7`）; Phase 6.7.1.5
+已合并 main（commit `270b6f8`）; 环境实测 `sxtwl==2.0.7`（pyproject 已精确 pin）。
 
 ---
 
@@ -160,16 +165,16 @@ ACP required: YES（pin 动作, 不改运行时行为）
 ## 6. Phase 6.7.2 入口条件声明
 
 1. **规则集状态**: 17 条规则中 14 条 Freeze Candidate（ZW-002~011/013/015/016/017,
-   其中 ZW-002/004 带注记）+ 3 条 REVISED（ZW-001/012/014）;
+   其中 ZW-002/004 带注记）+ 3 条 **IMPLEMENTED**（ZW-001/012/014, ACP 已执行）;
    FROZEN 仍需 Phase 6.7.3 Freeze Review。
-2. **ACP 前置（硬性）**: 3 项行为 ACP（ZW-012 表替换、ZW-014 廉贞 -8、
-   ZW-001 校验）+ 1 项依赖 ACP（sxtwl pin）**必须在向量生成前执行**。
+2. **ACP 状态（Phase 6.7.1.6）**: 4 项 ACP（ZW-012 表替换、ZW-014 廉贞 -8、
+   ZW-001 校验、sxtwl pin）**已全部执行**（`docs/governance/ACP/ACP-ZW-001~004.md`）
+   —— 向量生成前置阻塞已解除。
 3. **测试锁定状态**: 14 条 Freeze Candidate 规则均已被确定性测试锁定
-   （详见 ZIWEI_TEST_COVERAGE_REVIEW §5）; 3 条 REVISED 规则的修订后行为
-   由"公式类测试自动一致 + 快照/KeyError 测试随 ACP 迁移"覆盖。
-4. **向量生成**: 可在 ACP 执行完成后启动, **必须基于修订后规则集**
-   （修正定局表 + 廉贞 -8）; ZV-pos 组向量按修订表生成; 全盘向量
-   （ZV-ref/ZV-ju）须在 ACP 后重新采样记录。
+   （详见 ZIWEI_TEST_COVERAGE_REVIEW §5）; 3 条 IMPLEMENTED 规则的修订后行为
+   由快照（新哈希）/公式测试/校验迁移测试锁定。
+4. **向量生成**: 可启动 —— **基于修订后规则集**（统一定局表 + 廉贞 -8）;
+   ZV-pos 组向量按修订表生成; 全盘向量（ZV-ref/ZV-ju）按 v0.3.0 采样。
 5. 本 Sprint 不升级 Ziwei 状态（保持 **Implemented**）; 不创建 Contract /
    Golden Vectors / `reference/ziwei/`。
 
@@ -192,10 +197,9 @@ ACP required: YES（pin 动作, 不改运行时行为）
 
 ## 8. 约束合规声明
 
-- ✅ 未修改 src/（4 项 ACP 仅记录, 未执行）
-- ✅ 未创建 Contract / Golden Vectors / `reference/ziwei/`
-- ✅ 未修改 Qimen / BaZi / Framework
-- ✅ 未引入 LLM / RAG / 解释层
-- ✅ Ziwei 状态保持 **Implemented**
-- ✅ 本 Sprint 仅文档更新（`docs/governance/ziwei/**` + CAPABILITY_STATUS 节 +
-  context 归档）
+> **Phase 6.7.1.5（决策 Sprint）**: ✅ 未修改 src/（4 项 ACP 仅记录, 未执行）
+> — 已由 Phase 6.7.1.6 实施（见下）。
+> **Phase 6.7.1.6（实施 Sprint）**: ✅ ACP-ZW-001~004 全部执行（仅 Ziwei
+> 计算域 + pyproject + ziwei 测试/文档）; ✅ 未创建 Contract / Golden Vectors /
+> `reference/ziwei/`; ✅ 未修改 Qimen / BaZi / Framework; ✅ 未引入 LLM / RAG /
+> 解释层; ✅ Ziwei 状态保持 **Implemented**。
