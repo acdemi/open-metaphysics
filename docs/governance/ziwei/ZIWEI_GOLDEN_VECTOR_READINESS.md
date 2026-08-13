@@ -43,8 +43,9 @@
 | 12 | ZV-pos-003 | 局间对照（金/土/火） | 同上 |
 | 13 | ZV-pos-004 | 用户农历覆盖路径 | 显式 lunar_month/day → 紫微位置 = ZIWEI_POS[ju][day] |
 
-> ⚠️ **A-1 裁定依赖**: 若 ZW-012 裁定"ACP 修正表", 本组向量全部按新表
-> 重新生成; 若裁定"维持现状", 本组向量即为规范锁定证据。
+> ⚠️ **A-1 裁定依赖（Phase 6.7.1.5 已解决）**: ZW-012 裁定 **REVISED** ——
+> 本组向量按**修订后表**（统一生成规则）生成, 且必须在 ACP 执行完成后采样;
+> ACP 前不生成任何全盘向量。
 
 ### V-ZW-TZ 时区（3）
 
@@ -85,7 +86,7 @@
 |--------|---------------------|------|
 | V-ZW-REF | `test_fate_palace_canonical` + 新全盘断言 | ✅ 就位 |
 | V-ZW-JU | `test_wuxing_ju_all_five_elements` | ✅ 就位 |
-| V-ZW-POS | `test_ziwei_pos_full_sweep`（150 组合） | ✅ 就位 |
+| V-ZW-POS | `test_ziwei_pos_values_snapshot`（150 组合 SHA-256） | ✅ 就位（ACP 后重生成快照） |
 | V-ZW-TZ | `test_timezone_*` ×3 | ✅ 就位 |
 | V-ZW-HOUR | `test_hour_window_boundary_2259_vs_2300` | ✅ 就位 |
 | V-ZW-LUNAR | `test_lunar_conversion_*` + `test_leap_month_*` + `test_yin_yang_lichun_boundary` | ✅ 就位 |
@@ -95,9 +96,14 @@
 
 ## 3. 生成前置条件（Phase 6.7.2 入口）
 
-1. 人工裁定 A-1（定局表）/ A-2（廉贞）—— 决定 ZV-pos 组按现行表生成
-   还是按修正后表生成（**冻结前必须裁定**）。
-2. sxtwl 锁版策略（D-ZW-4）—— 向量含历法数值, 锁版是向量稳定的前提。
+> **Phase 6.7.1.5 裁定同步（2026-08-13）**: 前置条件 1 已裁定（REVISED）——
+> ZV-pos 组**按修订后表**生成（统一生成规则 + 廉贞 -8）; 但 ACP 未执行,
+> **向量生成必须等待 ACP 完成**（见 `ZIWEI_DECISION_RESOLUTION.md` §6）。
+
+1. ~~人工裁定 A-1/A-2~~ ✅ **已裁定（REVISED）**; ⛔ **ACP 执行**（表替换 +
+   廉贞 -8 + ZW-001 校验 + sxtwl pin）必须在向量生成前完成。
+2. sxtwl 锁版（D-ZW-9: 固定 `sxtwl==2.0.7`）—— 已裁定, pin 随 ACP 执行;
+   向量含历法数值, pin 是向量稳定的前提。
 3. 向量格式对齐 BaZi: engine 版本 + status=candidate + 逐字段全盘 JSON。
 4. 机器回归测试文件 `tests/test_ziwei_golden_vectors.py`（对齐 BaZi 7 例模式）。
 
