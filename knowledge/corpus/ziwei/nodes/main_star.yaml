@@ -52,3 +52,99 @@ nodes:
     tags: [桃花, 官禄, 紫微星系]
     confidence: 0.9
     attributes: { star_system: 紫微星系, offset: -8, element: 火 }
+  - id: kn:main_star:wuqu
+    node_type: main_star
+    name_cn: 武曲
+    name_en: wuqu
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 北斗，属金，主财帛、刚毅。紫微逆行偏移 -4（隔一阳武天同居）；化气为财。
+    tags: [财帛, 刚毅, 紫微星系]
+    confidence: 0.9
+    schools:
+      - { school: zhongzhou, interpretation: 武曲主财帛之曜，刚直而重实行；忌见孤克组合。中州派以武曲为财星之主，重星曜环境论断。,
+          source: { text: 中州派紫微斗数讲义, chapter: 星曜论, author: 王亭之, credibility: 0.7 }, weight: 0.7 }
+    attributes: { star_system: 紫微星系, offset: -4, element: 金 }
+  - id: kn:main_star:tiantong
+    node_type: main_star
+    name_cn: 天同
+    name_en: tiantong
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗，属水，主福寿、安逸。紫微逆行偏移 -5；化气为福。
+    tags: [福寿, 安逸, 紫微星系]
+    confidence: 0.9
+    attributes: { star_system: 紫微星系, offset: -5, element: 水 }
+  - id: kn:main_star:taiyin
+    node_type: main_star
+    name_cn: 太阴
+    name_en: taiyin
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 中天，属水，主田宅、母星。天府顺行偏移 +1；化气为富，主静主柔。
+    tags: [田宅, 母星, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 1, element: 水 }
+  - id: kn:main_star:tanlang
+    node_type: main_star
+    name_cn: 贪狼
+    name_en: tanlang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 北斗，属木，主桃花、欲望。天府顺行偏移 +2；化气为桃花，亦主才艺。
+    tags: [桃花, 才艺, 天府星系]
+    confidence: 0.9
+    schools:
+      - { school: zhongzhou, interpretation: 贪狼主才艺与桃花，变化多端；中州派重其与武曲之组合吉凶，视环境而定性质。,
+          source: { text: 中州派紫微斗数讲义, chapter: 星曜论, author: 王亭之, credibility: 0.7 }, weight: 0.7 }
+    attributes: { star_system: 天府星系, offset: 2, element: 木 }
+  - id: kn:main_star:jumen
+    node_type: main_star
+    name_cn: 巨门
+    name_en: jumen
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 北斗，属水，主口舌、是非。天府顺行偏移 +3；化气为暗，主口才与疑忌。
+    tags: [口舌, 暗曜, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 3, element: 水 }
+  - id: kn:main_star:tianxiang
+    node_type: main_star
+    name_cn: 天相
+    name_en: tianxiang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗，属水，主印星、辅佐。天府顺行偏移 +4；化气为印，主协调与仪表。
+    tags: [印星, 辅佐, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 4, element: 水 }
+  - id: kn:main_star:tianliang
+    node_type: main_star
+    name_cn: 天梁
+    name_en: tianliang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗，属土，主寿星、荫星。天府顺行偏移 +5；化气为荫，主清高与解厄。
+    tags: [寿星, 荫星, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 5, element: 土 }
+  - id: kn:main_star:qisha
+    node_type: main_star
+    name_cn: 七杀
+    name_en: qisha
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗，属金，主肃杀、威权。天府顺行偏移 +6；化气为将，主变动与决断。
+    tags: [肃杀, 威权, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 6, element: 金 }
+  - id: kn:main_star:pojun
+    node_type: main_star
+    name_cn: 破军
+    name_en: pojun
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 北斗，属水，主破耗、革新。天府顺行偏移 +10；化气为耗，主突破与动荡。
+    tags: [破耗, 革新, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 10, element: 水 }

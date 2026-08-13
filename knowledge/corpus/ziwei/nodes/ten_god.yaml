@@ -54,3 +54,53 @@ nodes:
     tags: [十神, 同我]
     confidence: 0.9
     attributes: { relation_to_day_master: 同我, yin_yang: 同 }
+  - id: kn:ten_god:jiecai
+    node_type: ten_god
+    name_cn: 劫财
+    name_en: jie_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 与我同者（阴阳相异）为劫财，主争夺、豪爽与破耗。
+    tags: [十神, 同我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 同我, yin_yang: 异 }
+  - id: kn:ten_god:shishen
+    node_type: ten_god
+    name_cn: 食神
+    name_en: shi_shen
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 我生者阴阳相同为食神，主才华、享受与福气。
+    tags: [十神, 我生]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我生, yin_yang: 同 }
+  - id: kn:ten_god:shangguan
+    node_type: ten_god
+    name_cn: 伤官
+    name_en: shang_guan
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 我生者阴阳相异为伤官，主才思、傲气与突破。
+    tags: [十神, 我生]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我生, yin_yang: 异 }
+  - id: kn:ten_god:zhengcai
+    node_type: ten_god
+    name_cn: 正财
+    name_en: zheng_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 我克者阴阳相异为正财，主正途财禄、勤俭与务实。
+    tags: [十神, 我克]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我克, yin_yang: 异 }
+  - id: kn:ten_god:piancai
+    node_type: ten_god
+    name_cn: 偏财
+    name_en: pian_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 我克者阴阳相同为偏财，主偏财机遇、慷慨与投机。
+    tags: [十神, 我克]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我克, yin_yang: 同 }
