@@ -41,6 +41,11 @@
 > 跨域边界 `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md` + 向量设计
 > `ZIWEI_GOLDEN_VECTOR_READINESS.md` + 补测 +21（12→33, 全绿）。
 > 状态维持 **Implemented**; 未创建契约/向量/Reference。
+> **Phase 6.7.1.5**: 决策解决（2026-08-13）—— 四项裁定全部 **REVISED +
+> ACP Required（未执行）**: A-1 定局表（统一生成规则）、A-2 廉贞 -8、
+> ZW-001 输入校验、sxtwl 固定 `2.0.7`。完整记录
+> `docs/governance/ziwei/ZIWEI_DECISION_RESOLUTION.md`; 状态维持
+> **Implemented**; Phase 6.7.2 向量生成必须等待 ACP 执行。
 
 ---
 
@@ -172,9 +177,8 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 
 无契约/无 Golden Vectors。Phase 6.7.1 规则裁定工件（**Draft, 未冻结**）:
 - `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）
-- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 Deferred**;
-  Deferred = ZW-001 输入校验策略、ZW-012 定局表流派差异 A-1、
-  ZW-014 廉贞偏移 A-2 —— 均待人工裁定, 当前行为已被测试锁定）
+- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 REVISED**;
+  Phase 6.7.1.5 裁定后状态, 完整记录见 `ZIWEI_DECISION_RESOLUTION.md`）
 - `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md`（ZB-01~09 / ZQ-01~04）
 - `ZIWEI_GOLDEN_VECTOR_READINESS.md`（24 候选矩阵, 未生成正式向量）
 
@@ -185,12 +189,12 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 **下一步（Phase 6.7.2 Golden Vector Generation 入口条件）**:
 
 - ~~算法完全审计~~ ✅（`ZIWEI_ALGORITHM_AUDIT.md`, F-1~F-11）
-- ~~规则登记 + 裁定~~ ✅（ZW-001~017, 14 Freeze Candidate / 3 Deferred）
+- ~~规则登记 + 裁定~~ ✅（ZW-001~017; Phase 6.7.1.5 完成 A-1/A-2/ZW-001/sxtwl
+  四项裁定: 全部 REVISED）
 - ~~测试缺口补全~~ ✅（+21, 33 例全绿）
-- **⛔ 人工裁定前置**: A-1（定局表 4/5 局与主流歌诀差异）与
-  A-2（廉贞 -9）—— 决定向量按现行表生成或 ACP 修正后生成;
-  ZW-001 校验策略（KeyError 是否可接受）
-- **⛔ sxtwl 锁版策略**（D-ZW-4）—— 历法数值向量的稳定前提
+- **⛔ ACP 执行（4 项, Phase 6.7.1.5 已裁定但未执行）**: ZW-012 定局表替换
+  （统一生成规则）、ZW-014 廉贞 -8、ZW-001 输入校验、sxtwl 精确 pin
+  （`sxtwl==2.0.7`）—— **向量生成必须等待 ACP 完成**, 且按修订后规则集采样
 - Phase 6.7.3: Freeze Review & Contract Draft（本 Sprint 不做）
 
 ---
