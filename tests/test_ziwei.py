@@ -199,7 +199,7 @@ def test_metadata_updated():
     agent = ZiweiAgent()
     meta = agent._metadata()
     assert meta["star_placement"] == "14_major_stars"
-    assert meta["engine_version"] == "0.2.0"
+    assert meta["engine_version"] == "0.3.0"
     assert meta["deterministic"] is True
 
 
@@ -222,7 +222,7 @@ def test_ziwei_pos_values_snapshot():
             "utf-8"
         )
     ).hexdigest()
-    assert digest == "100ee28063bdcab7b0c191339aae510d61c23e13c1b4b9e51fe67a6c6a187477"
+    assert digest == "1cc796400c628e419e9942a2ddba236c77a95e4285fc1f94fcc9b4d057c44909"
 
 
 def test_ziwei_tianfu_mirror_multiple_ju():
@@ -401,13 +401,27 @@ def test_user_lunar_override_flows_into_placement():
     assert zw == ZIWEI_POS[ju][15]
 
 
-def test_lunar_day_out_of_range_raises_keyerror():
-    with pytest.raises(KeyError):
-        _run(
-            datetime(2024, 5, 1, 12, 0, tzinfo=ZoneInfo("Asia/Shanghai")),
-            lunar_month=2,
-            lunar_day=31,
-        )
+def test_lunar_input_out_of_range_rejected():
+    # ACP-ZW-003: explicit validation — invalid lunar inputs raise ValueError
+    # (pydantic ValidationError is a ValueError subclass), not KeyError.
+    base = dict(
+        request_id="z",
+        born_at=datetime(2024, 5, 1, 12, 0, tzinfo=ZoneInfo("Asia/Shanghai")),
+        gender=Gender.MALE,
+    )
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_month=2, lunar_day=31)
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_month=2, lunar_day=0)
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_month=13, lunar_day=15)
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_month=0, lunar_day=15)
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_month=2)
+    with pytest.raises(ValueError):
+        ZiweiInput(**base, lunar_day=15)
+    ZiweiInput(**base, lunar_month=2, lunar_day=15)  # valid combination accepted
 
 
 def test_aux_stars_always_empty():

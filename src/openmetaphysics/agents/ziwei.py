@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ..core.calendar import (
     bazi_year_index,
@@ -43,181 +43,38 @@ PALACE_NAMES = [
 JU_NUMBER = {"水": 2, "木": 3, "金": 4, "土": 5, "火": 6}
 
 # ---------------------------------------------------------------------------
-# 紫微定局: 紫wei palace index from (ju: 2-6, lunar_day: 1-30)
-# Canonical lookup table: ZIWEI_POS[ju][day] = palace_index (0..11)
+# 紫微定局: 紫微 palace index from (ju: 2-6, lunar_day: 1-30)
+# Canonical rule (ACP-ZW-001, 2026-08-13):
+#   idx = (START[ju] + (day - 1) // STEP[ju]) % 12
+#   START 起宫: 水二丑 / 木三辰 / 金四亥 / 土五午 / 火六酉
+#   STEP 步长: 水二 2 日, 木三/金四/土五/火六 3 日
+#   Invariants: 木三局不落寅卯 / 金四局不落酉戌 / 土五局不落辰巳 / 火六局不落未申
 # ---------------------------------------------------------------------------
-ZIWEI_POS: dict[int, dict[int, int]] = {
-    2: {  # 水二局
-        1: 11,
-        2: 0,
-        3: 0,
-        4: 1,
-        5: 1,
-        6: 2,
-        7: 2,
-        8: 3,
-        9: 3,
-        10: 4,
-        11: 4,
-        12: 5,
-        13: 5,
-        14: 6,
-        15: 6,
-        16: 7,
-        17: 7,
-        18: 8,
-        19: 8,
-        20: 9,
-        21: 9,
-        22: 10,
-        23: 10,
-        24: 11,
-        25: 11,
-        26: 0,
-        27: 0,
-        28: 1,
-        29: 1,
-        30: 2,
-    },
-    3: {  # 木三局
-        1: 0,
-        2: 0,
-        3: 1,
-        4: 1,
-        5: 2,
-        6: 2,
-        7: 3,
-        8: 3,
-        9: 4,
-        10: 4,
-        11: 5,
-        12: 5,
-        13: 6,
-        14: 6,
-        15: 7,
-        16: 7,
-        17: 8,
-        18: 8,
-        19: 9,
-        20: 9,
-        21: 10,
-        22: 10,
-        23: 11,
-        24: 11,
-        25: 0,
-        26: 0,
-        27: 1,
-        28: 1,
-        29: 2,
-        30: 2,
-    },
-    4: {  # 金四局
-        1: 11,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 1,
-        6: 1,
-        7: 1,
-        8: 2,
-        9: 2,
-        10: 2,
-        11: 3,
-        12: 3,
-        13: 3,
-        14: 4,
-        15: 4,
-        16: 4,
-        17: 5,
-        18: 5,
-        19: 5,
-        20: 6,
-        21: 6,
-        22: 6,
-        23: 7,
-        24: 7,
-        25: 7,
-        26: 8,
-        27: 8,
-        28: 8,
-        29: 9,
-        30: 9,
-    },
-    5: {  # 土五局
-        1: 11,
-        2: 11,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 1,
-        7: 1,
-        8: 1,
-        9: 2,
-        10: 2,
-        11: 2,
-        12: 3,
-        13: 3,
-        14: 3,
-        15: 4,
-        16: 4,
-        17: 4,
-        18: 5,
-        19: 5,
-        20: 5,
-        21: 6,
-        22: 6,
-        23: 6,
-        24: 7,
-        25: 7,
-        26: 7,
-        27: 8,
-        28: 8,
-        29: 8,
-        30: 9,
-    },
-    6: {  # 火六局
-        1: 11,
-        2: 11,
-        3: 0,
-        4: 0,
-        5: 0,
-        6: 0,
-        7: 1,
-        8: 1,
-        9: 1,
-        10: 1,
-        11: 2,
-        12: 2,
-        13: 2,
-        14: 2,
-        15: 3,
-        16: 3,
-        17: 3,
-        18: 3,
-        19: 4,
-        20: 4,
-        21: 4,
-        22: 4,
-        23: 5,
-        24: 5,
-        25: 5,
-        26: 5,
-        27: 6,
-        28: 6,
-        29: 6,
-        30: 6,
-    },
-}
+ZIWEI_JU_START: dict[int, int] = {2: 11, 3: 2, 4: 9, 5: 4, 6: 7}
+ZIWEI_JU_STEP: dict[int, int] = {2: 2, 3: 3, 4: 3, 5: 3, 6: 3}
+
+
+def _ziwei_pos_table() -> dict[int, dict[int, int]]:
+    return {
+        ju: {
+            day: (ZIWEI_JU_START[ju] + (day - 1) // ZIWEI_JU_STEP[ju]) % 12 for day in range(1, 31)
+        }
+        for ju in sorted(ZIWEI_JU_START)
+    }
+
+
+ZIWEI_POS: dict[int, dict[int, int]] = _ziwei_pos_table()
 
 # 14 major stars: 紫微星系 (relative to Ziwei position,逆行) + 天府星系 (relative to Tianfu position,顺行)
 # 紫微星系: [name: offset from 紫微 (逆行 = negative)]
+# 廉贞 -8 (ACP-ZW-002, 2026-08-13): "隔一阳武天同居, 又隔二位廉贞地"
 ZIWEI_XINGXI: list[tuple[str, int]] = [
     ("紫微", 0),
     ("天机", -1),
     ("太阳", -3),
     ("武曲", -4),
     ("天同", -5),
-    ("廉贞", -9),
+    ("廉贞", -8),
 ]
 
 # 天府星系: [name: offset from 天府 (顺行 = positive)]
@@ -236,6 +93,18 @@ TIANFU_XINGXI: list[tuple[str, int]] = [
 class ZiweiInput(AgentInput):
     lunar_month: int | None = None  # 1..12; None -> compute from solar date
     lunar_day: int | None = None  # 1..30; None -> compute from solar date
+
+    @model_validator(mode="after")
+    def _validate_lunar_fields(self) -> ZiweiInput:
+        # ACP-ZW-003 (2026-08-13): explicit validation per contract —
+        # both-or-neither provision, month in [1,12], day in [1,30].
+        if (self.lunar_month is None) != (self.lunar_day is None):
+            raise ValueError("lunar_month and lunar_day must be provided together")
+        if self.lunar_month is not None and not 1 <= self.lunar_month <= 12:
+            raise ValueError("lunar_month must be in 1..12")
+        if self.lunar_day is not None and not 1 <= self.lunar_day <= 30:
+            raise ValueError("lunar_day must be in 1..30")
+        return self
 
 
 class Palace(BaseModel):
@@ -282,7 +151,7 @@ def _local_hour_branch(local_dt) -> int:
 
 
 class ZiweiEngine(DeterministicEngine):
-    version = "0.2.0"
+    version = "0.3.0"  # ACP-ZW-001/002/003 (2026-08-13): canonical 定局表 + 廉贞 -8 + 输入校验
 
     def calculate(self, payload: ZiweiInput) -> dict[str, Any]:
         born = payload.born_at

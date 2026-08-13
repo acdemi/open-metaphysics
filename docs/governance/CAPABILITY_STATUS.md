@@ -46,6 +46,12 @@
 > ZW-001 输入校验、sxtwl 固定 `2.0.7`。完整记录
 > `docs/governance/ziwei/ZIWEI_DECISION_RESOLUTION.md`; 状态维持
 > **Implemented**; Phase 6.7.2 向量生成必须等待 ACP 执行。
+> **Phase 6.7.1.6**: ACP 实施（2026-08-13）—— ACP-ZW-001（定局表生成式,
+> 统一规则 起宫 丑/辰/亥/午/酉 + 步长 2/3/3/3/3）、ACP-ZW-002（廉贞 -8）、
+> ACP-ZW-003（输入校验显式化）、ACP-ZW-004（sxtwl==2.0.7 pin）全部
+> **IMPLEMENTED**（记录: `docs/governance/ACP/`）; Engine **v0.3.0**;
+> 快照/校验测试迁移; 全仓库 578/578 全绿; Ziwei 规则集无 ACP 阻塞,
+> Phase 6.7.2 向量生成可按修订规则集启动。状态维持 **Implemented**。
 
 ---
 
@@ -163,8 +169,9 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 
 **Calculation Layer**:
 
-- 算法: `src/openmetaphysics/agents/ziwei.py`（ZiweiEngine v0.2.0: 命宫/身宫,
-  五行局, 十四主星定局, 农历转换; 辅星/四化/大限未实现）
+- 算法: `src/openmetaphysics/agents/ziwei.py`（ZiweiEngine **v0.3.0**:
+  命宫/身宫, 五行局, 十四主星定局, 农历转换; 辅星/四化/大限未实现;
+  Phase 6.7.1.6: 定局表统一生成规则 + 廉贞 -8 + 输入校验）
 - 确定性: 是（无 LLM; replay 测试锁定）
 - Schema: **领域专属** `ZiweiInput`（lunar_month/lunar_day 显式重放）/
   `ZiweiChart`/`Palace`（`extra="forbid"`）; SCHEMAS.md §3.2 已登记
@@ -177,8 +184,9 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 
 无契约/无 Golden Vectors。Phase 6.7.1 规则裁定工件（**Draft, 未冻结**）:
 - `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）
-- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 REVISED**;
-  Phase 6.7.1.5 裁定后状态, 完整记录见 `ZIWEI_DECISION_RESOLUTION.md`）
+- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 IMPLEMENTED**;
+  Phase 6.7.1.5 裁定 + Phase 6.7.1.6 实施, 完整记录见
+  `ZIWEI_DECISION_RESOLUTION.md` + `docs/governance/ACP/ACP-ZW-001~004.md`）
 - `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md`（ZB-01~09 / ZQ-01~04）
 - `ZIWEI_GOLDEN_VECTOR_READINESS.md`（24 候选矩阵, 未生成正式向量）
 
@@ -189,13 +197,13 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 **下一步（Phase 6.7.2 Golden Vector Generation 入口条件）**:
 
 - ~~算法完全审计~~ ✅（`ZIWEI_ALGORITHM_AUDIT.md`, F-1~F-11）
-- ~~规则登记 + 裁定~~ ✅（ZW-001~017; Phase 6.7.1.5 完成 A-1/A-2/ZW-001/sxtwl
-  四项裁定: 全部 REVISED）
+- ~~规则登记 + 裁定~~ ✅（ZW-001~017; Phase 6.7.1.5 完成四项裁定）
 - ~~测试缺口补全~~ ✅（+21, 33 例全绿）
-- **⛔ ACP 执行（4 项, Phase 6.7.1.5 已裁定但未执行）**: ZW-012 定局表替换
-  （统一生成规则）、ZW-014 廉贞 -8、ZW-001 输入校验、sxtwl 精确 pin
-  （`sxtwl==2.0.7`）—— **向量生成必须等待 ACP 完成**, 且按修订后规则集采样
-- Phase 6.7.3: Freeze Review & Contract Draft（本 Sprint 不做）
+- ~~ACP 执行（4 项）~~ ✅（Phase 6.7.1.6 全部 IMPLEMENTED, Engine v0.3.0;
+  定局表生成式 / 廉贞 -8 / 输入校验 / sxtwl==2.0.7）—— **无阻塞**
+- ⏳ Phase 6.7.2: Golden Vector 生成（按修订后规则集 + v0.3.0 采样,
+  24 候选矩阵见 `ZIWEI_GOLDEN_VECTOR_READINESS.md`）
+- ⏳ Phase 6.7.3: Freeze Review & Contract Draft
 
 ---
 
