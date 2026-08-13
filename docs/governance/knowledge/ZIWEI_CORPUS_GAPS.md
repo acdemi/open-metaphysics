@@ -18,6 +18,7 @@
 | GAP-06 | pattern（格局）收录与解释域边界（A-8: Ziwei 格局链路断裂） | pattern 节点仅作知识收录, 无计算消费者; 收录必要性待解释域 Sprint 确认 | Phase 7.1.4+（解释域授权） | 记录 |
 | GAP-07 | 断事类（career/personality/marriage/health/wealth/annual_fortune/major_luck）依赖未实现能力（ZW-017 边界） | 8 种 node_type 第一波范围外 | 后续阶段（功能 Sprint 后） | 记录 |
 | GAP-08 | 用神类（yong_shen/xi_shen/ji_shen/tiao_hou）属子平体系, 无跨域授权 | 4 种 node_type 范围外 | 跨域授权（BaZi 语料阶段） | 记录 |
+| GAP-09 | 星曜级 xing（刑）/ hai（害）关系**无 Tier 1 来源支撑**（Phase 7.1.2 候选 9 条经契约 BC-012 数学验证 6 条不成立: 贪狼破军永不同宫/天梁巨门·太阳廉贞恒不相对/紫微破军·武曲七杀仅条件同宫无刑害语义等）; 冲刑害为**地支**关系, 而地支节点尚未创建（7.1.4） | Build Plan 24 关系目标无法达成 → 实际 18（he+3/chong+3 完成, xing/hai 缺口 6） | Phase 7.1.4（地支节点创建后, 以地支三刑/六害/六冲落地; 或授权改用 duiying 对宫关系, 见 7.1.2 报告 §9） | 待解决 |
 
 ---
 
