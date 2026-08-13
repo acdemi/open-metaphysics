@@ -1,0 +1,54 @@
+# KnowledgeNode — 十二宫（palace）试点子集
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+
+nodes:
+  - id: kn:palace:minggong
+    node_type: palace
+    name_cn: 命宫
+    name_en: ming_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 安命身宫诀, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 命宫为全盘枢纽，定五行局与十二宫之序。命宫 = ((农历月-1) - 时辰支) % 12。
+    tags: [十二宫, 枢纽]
+    confidence: 0.9
+    attributes: { palace_kind: 命, index_rule: "((month-1) - hour) % 12" }
+  - id: kn:palace:xiongdi
+    node_type: palace
+    name_cn: 兄弟宫
+    name_en: siblings_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 兄弟宫主兄弟姐妹、平辈及合作。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 兄弟 }
+  - id: kn:palace:fuqi
+    node_type: palace
+    name_cn: 夫妻宫
+    name_en: spouse_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 夫妻宫主配偶、婚姻关系与感情。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 夫妻 }
+  - id: kn:palace:zinv
+    node_type: palace
+    name_cn: 子女宫
+    name_en: children_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 子女宫主子嗣、晚辈与学生。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 子女 }
+  - id: kn:palace:caibo
+    node_type: palace
+    name_cn: 财帛宫
+    name_en: wealth_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 财帛宫主财运、理财能力与物质生活。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 财帛 }

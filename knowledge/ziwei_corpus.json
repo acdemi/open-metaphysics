@@ -1,0 +1,1027 @@
+{
+  "metadata": {
+    "corpus_id": "ziwei_pilot_v1",
+    "counts": {
+      "nodes": 20,
+      "references": 3,
+      "relations": 12
+    },
+    "domain": "ziwei",
+    "pipeline": "knowledge/pipeline.py (Phase 7.0)",
+    "source_digests": {
+      "source_01.yaml": "ca1368ed29fdeced58162a4a19090496388452dfe24b1bc73582f536cf3d5ab6",
+      "source_02.yaml": "525714f230f2040b202a605d16255d6bd19cbf2913239fe54dd75037e65a54de"
+    },
+    "status": "pilot"
+  },
+  "nodes": [
+    {
+      "attributes": {
+        "element": "土",
+        "offset": 0,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:ziwei",
+      "interpretation": "中天之尊星，帝座，属土。南北斗诸星会聚之枢纽；紫微定局后逆行安天机等六星。",
+      "name_cn": "紫微",
+      "name_en": "ziwei",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "帝座",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "offset": -1,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tianji",
+      "interpretation": "南斗，属木，主变动、智谋。紫微逆行第一星（偏移 -1）。",
+      "name_cn": "天机",
+      "name_en": "tianji",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "变动",
+        "智谋",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "offset": -3,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:taiyang",
+      "interpretation": "中天，属火，主光明、贵显。紫微逆行偏移 -3（隔一阳武天同居）。",
+      "name_cn": "太阳",
+      "name_en": "taiyang",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "光明",
+        "贵显",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "offset": 0,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tianfu",
+      "interpretation": "南斗主星，属土，库星。与紫微寅申轴对称（镜像, 偏移 0, 顺行安天府星系八星）。",
+      "name_cn": "天府",
+      "name_en": "tianfu",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "库星",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "offset": -8,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:lianzhen",
+      "interpretation": "北斗，属火，主次桃花、官禄。紫微逆行偏移 -8（又隔二位廉贞地）；「紫微在子午，廉贞天府同度辰戌」。",
+      "name_cn": "廉贞",
+      "name_en": "lianzhen",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "桃花",
+        "官禄",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "index_rule": "((month-1) - hour) % 12",
+        "palace_kind": "命"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:minggong",
+      "interpretation": "命宫为全盘枢纽，定五行局与十二宫之序。命宫 = ((农历月-1) - 时辰支) % 12。",
+      "name_cn": "命宫",
+      "name_en": "ming_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "安命身宫诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫",
+        "枢纽"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "兄弟"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:xiongdi",
+      "interpretation": "兄弟宫主兄弟姐妹、平辈及合作。",
+      "name_cn": "兄弟宫",
+      "name_en": "siblings_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "夫妻"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:fuqi",
+      "interpretation": "夫妻宫主配偶、婚姻关系与感情。",
+      "name_cn": "夫妻宫",
+      "name_en": "spouse_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "子女"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:zinv",
+      "interpretation": "子女宫主子嗣、晚辈与学生。",
+      "name_cn": "子女宫",
+      "name_en": "children_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "财帛"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:caibo",
+      "interpretation": "财帛宫主财运、理财能力与物质生活。",
+      "name_cn": "财帛宫",
+      "name_en": "wealth_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "克我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:zhengguan",
+      "interpretation": "克我者阴阳相异为正官，主贵气、规范与事业约束。",
+      "name_cn": "正官",
+      "name_en": "zheng_guan",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "克我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "克我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:qisha",
+      "interpretation": "克我者阴阳相同为七杀，主魄力、压力与权势。",
+      "name_cn": "七杀",
+      "name_en": "qi_sha",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "克我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "生我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:zhengyin",
+      "interpretation": "生我者阴阳相异为正印，主学识、庇护与名誉。",
+      "name_cn": "正印",
+      "name_en": "zheng_yin",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "生我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "生我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:pianyin",
+      "interpretation": "生我者阴阳相同为偏印，主偏才、学术与孤独。",
+      "name_cn": "偏印",
+      "name_en": "pian_yin",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "生我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "同我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bijian",
+      "interpretation": "与我同者（同阴阳）为比肩，主自立、竞争与手足。",
+      "name_cn": "比肩",
+      "name_en": "bi_jian",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "同我"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "东",
+        "element": "木",
+        "season": "春"
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:mu",
+      "interpretation": "五行之木，主仁，主生发。东方，春令；星曜之木性（天机、贪狼等）主变动与才华。",
+      "name_cn": "木",
+      "name_en": "wood",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "五行",
+        "生发"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "南",
+        "element": "火",
+        "season": "夏"
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:huo",
+      "interpretation": "五行之火，主礼，主炎上。南方，夏令；星曜之火性（太阳、廉贞等）主光明与热烈。",
+      "name_cn": "火",
+      "name_en": "fire",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "五行",
+        "炎上"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "中",
+        "element": "土",
+        "season": "长夏"
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:tu",
+      "interpretation": "五行之土，主信，主中央。长夏；星曜之土性（紫微、天府等）主厚重与承载。",
+      "name_cn": "土",
+      "name_en": "earth",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "五行",
+        "中央"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "西",
+        "element": "金",
+        "season": "秋"
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:jin",
+      "interpretation": "五行之金，主义，主肃杀。西方，秋令；星曜之金性（七杀、武曲等）主决断与刚毅。",
+      "name_cn": "金",
+      "name_en": "metal",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "五行",
+        "肃杀"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "北",
+        "element": "水",
+        "season": "冬"
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:shui",
+      "interpretation": "五行之水，主智，主润下。北方，冬令；星曜之水性（天同、巨门等）主智慧与流动。",
+      "name_cn": "水",
+      "name_en": "water",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "五行",
+        "润下"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "credibility": 0.8,
+      "passage": "紫微属土，乃中天之尊星，为帝座，主掌造化枢机，为人命之主宰。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_quanshu_ziwei",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "target_id": "kn:main_star:ziwei",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.7,
+      "passage": "命宫为斗数枢纽，看一生格局首重命宫与身宫；三合四正之会照不可偏废。",
+      "ref_type": "school_commentary",
+      "reference_id": "ref:school:zhongzhou_minggong",
+      "school": "zhongzhou",
+      "source": {
+        "author": "王亭之",
+        "chapter": "命宫",
+        "credibility": 0.7,
+        "page": null,
+        "text": "中州派紫微斗数讲义",
+        "url": null
+      },
+      "target_id": "kn:palace:minggong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "紫微在子午，廉贞天府同度辰戌。",
+      "ref_type": "oral_tradition",
+      "reference_id": "ref:oral:lianzhen_tianfu_tongdu",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "target_id": "rel:he:lianzhen_tianfu",
+      "target_type": "relation"
+    }
+  ],
+  "relations": [
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            10,
+            4
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "紫微与天府寅申轴对称镜像；紫微在子(10)时天府在辰(2)同宫，在午(4)时同度戌(8)",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:he:ziwei_tianfu",
+      "relation_type": "he",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:ziwei",
+      "target_node_id": "kn:main_star:tianfu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "ziwei_index",
+          "in": [
+            10,
+            4
+          ]
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "廉贞 = 紫微 -8（BC-012）；紫微在子时廉贞在辰与天府同宫，在午时同度戌",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "星曜总论",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:he:lianzhen_tianfu",
+      "relation_type": "he",
+      "source": {
+        "author": null,
+        "chapter": "BC-012",
+        "credibility": 1.0,
+        "page": null,
+        "text": "Ziwei Behavior Contract v1.0.0",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:lianzhen",
+      "target_node_id": "kn:main_star:tianfu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木生火",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:sheng:mu_huo",
+      "relation_type": "sheng",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:mu",
+      "target_node_id": "kn:wuxing:huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火生土",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:sheng:huo_tu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:huo",
+      "target_node_id": "kn:wuxing:tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土生金",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:sheng:tu_jin",
+      "relation_type": "sheng",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:tu",
+      "target_node_id": "kn:wuxing:jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金生水",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:sheng:jin_shui",
+      "relation_type": "sheng",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:jin",
+      "target_node_id": "kn:wuxing:shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水生木",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:sheng:shui_mu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:shui",
+      "target_node_id": "kn:wuxing:mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木克土",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:ke:mu_tu",
+      "relation_type": "ke",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:mu",
+      "target_node_id": "kn:wuxing:tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土克水",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:ke:tu_shui",
+      "relation_type": "ke",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:tu",
+      "target_node_id": "kn:wuxing:shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水克火",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:ke:shui_huo",
+      "relation_type": "ke",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:shui",
+      "target_node_id": "kn:wuxing:huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火克金",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:ke:huo_jin",
+      "relation_type": "ke",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:huo",
+      "target_node_id": "kn:wuxing:jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金克木",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "五行生克",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:ke:jin_mu",
+      "relation_type": "ke",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "五行生克",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:wuxing:jin",
+      "target_node_id": "kn:wuxing:mu",
+      "weight": 1.0
+    }
+  ]
+}

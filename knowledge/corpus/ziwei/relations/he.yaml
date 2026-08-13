@@ -1,0 +1,31 @@
+# KnowledgeRelation — 星曜同度（he）
+# 依据: Ziwei 冻结契约 BC-012「紫微在子午，廉贞天府同度辰戌」恒等式（A-2 验证, 2026-08-13）
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+
+relations:
+  - id: rel:he:ziwei_tianfu
+    source_node_id: kn:main_star:ziwei
+    target_node_id: kn:main_star:tianfu
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: 紫微与天府寅申轴对称镜像；紫微在子(10)时天府在辰(2)同宫，在午(4)时同度戌(8)
+        source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: Ziwei Behavior Contract v1.0.0, chapter: BC-012, credibility: 1.0 }
+    conditions:
+      - { field: ziwei_index, in: [10, 4] }
+  - id: rel:he:lianzhen_tianfu
+    source_node_id: kn:main_star:lianzhen
+    target_node_id: kn:main_star:tianfu
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: 廉贞 = 紫微 -8（BC-012）；紫微在子时廉贞在辰与天府同宫，在午时同度戌
+        source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: Ziwei Behavior Contract v1.0.0, chapter: BC-012, credibility: 1.0 }
+    conditions:
+      - { field: ziwei_index, in: [10, 4] }
