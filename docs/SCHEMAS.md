@@ -1,7 +1,8 @@
 # OpenMetaphysics — Schema 设计
 
-> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Reference Freeze Candidate (2026-08-09)。
+> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Qimen / BaZi 契约均已 Frozen 并完成登记。
 > Schema 是跨语言契约（Python / Rust / Go），由 Reference Runtime 定义。
+> **契约登记**: Qimen §3.3（qimen:behavior:v1.0.0）、BaZi §3.1（bazi:behavior:v1.0.0, Phase 6.6 登记）。
 
 ## 1. 设计规则
 
@@ -18,7 +19,7 @@ result。
 
 ### 2.1 基础类型
 
-`python
+```python
 class Gender(str, Enum):
     MALE = "male"
     FEMALE = "female"
@@ -36,11 +37,11 @@ class SexagenaryComponent(BaseModel):
     earthly_branch: str              # 子丑寅卯辰巳午未申酉戌亥之一
     stem_index: int = Field(ge=0, le=9)
     branch_index: int = Field(ge=0, le=11)
-`
+```
 
 ### 2.2 输入信封
 
-`python
+```python
 class AgentInput(BaseModel):
     request_id: str
     born_at: datetime                 # 时区感知
@@ -50,11 +51,11 @@ class AgentInput(BaseModel):
     locale: str = "zh-CN"
     seed: int | None = None           # 确定性 RNG 种子（六爻起卦）
     client_nonce: str | None = None   # 幂等/重放密钥
-`
+```
 
 ### 2.3 输出信封
 
-`python
+```python
 class ReasoningStep(BaseModel):
     step: int
     rule_ref: str                     # 例如 "bazi.month_pillar.solar_term"
@@ -77,38 +78,53 @@ class AgentOutput(BaseModel):
     reasoning_trace: list[ReasoningStep]
     metadata: dict[str, str | int | float | bool]
     result: dict                      # 智能体特定；子类验证
-`
+```
 
 ## 3. 智能体特定载荷
 
 ### 3.1 八字 (agents.bazi)
 
-输入：BaziInput(AgentInput) — 无额外字段（出生日时分 + 性别驱动大运方向）。
+> **契约登记**: `bazi:behavior:v1.0.0`（Frozen, `docs/bazi/BAZI_BEHAVIOR_CONTRACT.md`
+> BC-013 Schema Contract 为规范性定义）。本登记为描述性文档, 与契约冲突时
+> **以契约为准**; 任何变更须 ACP。
+
+输入：`BaziInput(AgentInput)` — 追加 `dayun_count: int = 8`（大运步数, 可配）。
+出生日时分 + 性别驱动大运方向（B5/B6）。
 
 输出
-result: BaziChart:
+result: BaziChart（全部 `extra="forbid"`）:
 
-`python
+```python
 class Pillar(BaseModel):
     position: Literal["year","month","day","hour"]
-    stem_branch: SexagenaryComponent
-    hidden_stems: list[str]           # 藏干
-    nayin: str                        # 纳音 (例如 "海中金")
-    ten_gods_stem: str | None = None  # 天干相对于日主的十神
+    stem: str                        # 天干 甲乙丙丁戊己庚辛壬癸
+    branch: str                      # 地支 子丑寅卯辰巳午未申酉戌亥
+    stem_index: int                  # 0..9
+    branch_index: int                # 0..11
+    hidden_stems: list[str]          # 藏干
+    nayin: str                       # 纳音 (例如 "海中金")
+    ten_god: str                     # 本柱干相对日主的十神
 
-class DaYun(BaseModel):               # 大运（十年运）
+class DaYun(BaseModel):              # 大运（十年运）
+    index: int                       # 1..dayun_count
     start_age: int
     end_age: int
-    stem_branch: SexagenaryComponent
+    stem: str
+    branch: str
+    stem_index: int
+    branch_index: int
     start_at: datetime
 
 class BaziChart(BaseModel):
-    day_master: str                   # 日主（日干）
-    pillars: list[Pillar]             # 恰好 4 柱
-    dayun: list[DaYun]
-    ten_gods_map: dict[str, str]      # 天干/地支 → 十神
-    solar_term_boundary: str          # 例如 "立春"
-`
+    day_master: str                  # 日主（日干）
+    day_master_element: str          # 日主五行
+    pillars: list[Pillar]            # 恰好 4 柱 (year/month/day/hour)
+    dayun: list[DaYun]               # 默认 8 步（BaziInput.dayun_count 可配）
+    ten_gods_map: dict[str, str]     # 出现干支 → 十神
+    year_boundary: datetime          # 立春 UTC 时刻
+    month_boundary: str              # 节名 (例如 "立春")
+    gender_assumed: bool             # UNKNOWN 按男处理标记
+```
 
 ### 3.2 紫微斗数 (agents.ziwei)
 
@@ -118,7 +134,7 @@ class BaziChart(BaseModel):
 输出
 result: ZiweiChart:
 
-`python
+```python
 class Palace(BaseModel):
     index: int = Field(ge=0, le=11)   # 0..11，寅=0 符合惯例
     name: str                         # 命宫/财帛/...
@@ -137,7 +153,7 @@ class ZiweiChart(BaseModel):
     wuxing_ju: str                    # 五行局 例如 "水二局"
     palaces: list[Palace]             # 12 宫
     calendar_note: str | None = None  # 历法说明
-`
+```
 
 ### 3.3 奇门遁甲 (agents.qimen)
 
@@ -146,7 +162,7 @@ class ZiweiChart(BaseModel):
 输出
 result: QimenBoard:
 
-`python
+```python
 class QimenCell(BaseModel):
     palace: int = Field(ge=1, le=9)   # 后天八卦 宫位 1..9
     name: str                         # 坎/坤/震/巽/中宫/乾/兑/艮/离
@@ -164,13 +180,13 @@ class QimenBoard(BaseModel):
     ju: int                           # 局 (1..9)
     dun_type: Literal["yang","yin"]   # 阳遁/阴遁
     cells: list[QimenCell]            # 9 宫格 (宫位 1..9)
-`
+```
 
 ### 3.4 六爻 (agents.liuyao)
 
 输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 random()）。
 
-`python
+```python
 class YaoLine(BaseModel):
     position: int = Field(ge=1, le=6) # 初爻..上爻
     is_yin: bool                      # True=阴爻，False=阳爻
@@ -189,23 +205,23 @@ class LiuyaoChart(BaseModel):
     shi_position: int                 # 世爻 位置 1..6
     ying_position: int                # 应爻 位置 1..6
     yong_shen: str | None = None      # 用神
-`
+```
 
 ### 3.5 共识 (agents.consensus)
 
 输入：ConsensusInput:
 
-`python
+```python
 class ConsensusInput(BaseModel):
     request_id: str
     agent_outputs: list[AgentOutput]  # 1..N 验证过的信封
     strategy: Literal["weighted","majority","all"] = "weighted"
-`
+```
 
 输出
 result: ConsensusReport:
 
-`python
+```python
 class AgentContribution(BaseModel):
     agent: str
     confidence: float
@@ -225,20 +241,20 @@ class ConsensusReport(BaseModel):
     conflicts: list[Conflict]
     synthesis: str                    # 结构化自然语言总结（确定性）
     recommendation: str | None = None
-`
+```
 
 ## 4. JSON Schema 发布
 
 AgentRegistry 对每个智能体暴露：
 
-`python
+```python
 {
   "name": "liuyao",
   "input_schema":  LiuyaoInput.model_json_schema(),
   "output_schema": LiuyaoOutput.model_json_schema(),
   "engine_version": "0.1.0"
 }
-`
+```
 
 这是 FastAPI 层、MCP 桩和任何外部客户端消费的唯一真相来源。Schemas 在测试中对照示例 fixtures 验证。
 
