@@ -3,7 +3,7 @@
     "corpus_id": "ziwei_pilot_v1",
     "counts": {
       "nodes": 41,
-      "references": 3,
+      "references": 7,
       "relations": 18
     },
     "domain": "ziwei",
@@ -1251,6 +1251,74 @@
         "url": null
       },
       "target_id": "rel:he:lianzhen_tianfu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "天府属土，南斗主星，为财库之星，主守成、包容；与紫微寅申轴对称安星（天府星系之源）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_quanshu_tianfu",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论·天府篇",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "target_id": "kn:main_star:tianfu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "官禄宫主事业之成败、职位之高下与功名之进退。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_quanshu_guanlu",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义·官禄宫",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "target_id": "kn:palace:guanlu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.7,
+      "passage": "iztro 现代实现中天府星系偏移表（贪狼 = 天府 + 2）与冻结契约 BC-012 一致；其文档对贪狼桃花/才艺性质作现代整理。",
+      "ref_type": "modern_interpretation",
+      "reference_id": "ref:modern:iztro_tanlang_placement",
+      "school": null,
+      "source": {
+        "author": "SylarLong",
+        "chapter": null,
+        "credibility": 0.7,
+        "page": null,
+        "text": "iztro（紫微斗数开源引擎文档）",
+        "url": "https://github.com/SylarLong/iztro"
+      },
+      "target_id": "kn:main_star:tanlang",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "日月反背（口传口诀摘要）: 太阳太阴在紫微未丑之时六宫相对，为反背结构，主颠沛而后兴。",
+      "ref_type": "oral_tradition",
+      "reference_id": "ref:oral:riyue_fanbei",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "target_id": "rel:chong:taiyang_taiyin",
       "target_type": "relation"
     }
   ],
