@@ -2,15 +2,15 @@
   "metadata": {
     "corpus_id": "ziwei_pilot_v1",
     "counts": {
-      "nodes": 20,
+      "nodes": 41,
       "references": 3,
       "relations": 12
     },
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
     "source_digests": {
-      "source_01.yaml": "ca1368ed29fdeced58162a4a19090496388452dfe24b1bc73582f536cf3d5ab6",
-      "source_02.yaml": "525714f230f2040b202a605d16255d6bd19cbf2913239fe54dd75037e65a54de"
+      "source_01.yaml": "1dd6851e4f4ad05ce69dc1a178251915c76bc1d545c009c65e37dc05457ad7be",
+      "source_02.yaml": "d6a6ebc82813b803b08dcff33294c924f09b6548f8ec629b10c2c4ee0b6af983"
     },
     "status": "pilot"
   },
@@ -165,6 +165,304 @@
     },
     {
       "attributes": {
+        "element": "金",
+        "offset": -4,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:wuqu",
+      "interpretation": "北斗，属金，主财帛、刚毅。紫微逆行偏移 -4（隔一阳武天同居）；化气为财。",
+      "name_cn": "武曲",
+      "name_en": "wuqu",
+      "node_type": "main_star",
+      "schools": [
+        {
+          "interpretation": "武曲主财帛之曜，刚直而重实行；忌见孤克组合。中州派以武曲为财星之主，重星曜环境论断。",
+          "school": "zhongzhou",
+          "source": {
+            "author": "王亭之",
+            "chapter": "星曜论",
+            "credibility": 0.7,
+            "page": null,
+            "text": "中州派紫微斗数讲义",
+            "url": null
+          },
+          "weight": 0.7
+        }
+      ],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "财帛",
+        "刚毅",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "offset": -5,
+        "star_system": "紫微星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tiantong",
+      "interpretation": "南斗，属水，主福寿、安逸。紫微逆行偏移 -5；化气为福。",
+      "name_cn": "天同",
+      "name_en": "tiantong",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "福寿",
+        "安逸",
+        "紫微星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "offset": 1,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:taiyin",
+      "interpretation": "中天，属水，主田宅、母星。天府顺行偏移 +1；化气为富，主静主柔。",
+      "name_cn": "太阴",
+      "name_en": "taiyin",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "田宅",
+        "母星",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "offset": 2,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tanlang",
+      "interpretation": "北斗，属木，主桃花、欲望。天府顺行偏移 +2；化气为桃花，亦主才艺。",
+      "name_cn": "贪狼",
+      "name_en": "tanlang",
+      "node_type": "main_star",
+      "schools": [
+        {
+          "interpretation": "贪狼主才艺与桃花，变化多端；中州派重其与武曲之组合吉凶，视环境而定性质。",
+          "school": "zhongzhou",
+          "source": {
+            "author": "王亭之",
+            "chapter": "星曜论",
+            "credibility": 0.7,
+            "page": null,
+            "text": "中州派紫微斗数讲义",
+            "url": null
+          },
+          "weight": 0.7
+        }
+      ],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "桃花",
+        "才艺",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "offset": 3,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:jumen",
+      "interpretation": "北斗，属水，主口舌、是非。天府顺行偏移 +3；化气为暗，主口才与疑忌。",
+      "name_cn": "巨门",
+      "name_en": "jumen",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "口舌",
+        "暗曜",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "offset": 4,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tianxiang",
+      "interpretation": "南斗，属水，主印星、辅佐。天府顺行偏移 +4；化气为印，主协调与仪表。",
+      "name_cn": "天相",
+      "name_en": "tianxiang",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "印星",
+        "辅佐",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "offset": 5,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:tianliang",
+      "interpretation": "南斗，属土，主寿星、荫星。天府顺行偏移 +5；化气为荫，主清高与解厄。",
+      "name_cn": "天梁",
+      "name_en": "tianliang",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "寿星",
+        "荫星",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "offset": 6,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:qisha",
+      "interpretation": "南斗，属金，主肃杀、威权。天府顺行偏移 +6；化气为将，主变动与决断。",
+      "name_cn": "七杀",
+      "name_en": "qisha",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "肃杀",
+        "威权",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "offset": 10,
+        "star_system": "天府星系"
+      },
+      "confidence": 0.9,
+      "id": "kn:main_star:pojun",
+      "interpretation": "北斗，属水，主破耗、革新。天府顺行偏移 +10；化气为耗，主突破与动荡。",
+      "name_cn": "破军",
+      "name_en": "pojun",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "星曜总论",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "破耗",
+        "革新",
+        "天府星系"
+      ]
+    },
+    {
+      "attributes": {
         "index_rule": "((month-1) - hour) % 12",
         "palace_kind": "命"
       },
@@ -278,6 +576,188 @@
       "interpretation": "财帛宫主财运、理财能力与物质生活。",
       "name_cn": "财帛宫",
       "name_en": "wealth_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "疾厄"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:ji_e",
+      "interpretation": "疾厄宫主身体健康、疾病倾向与灾厄。",
+      "name_cn": "疾厄宫",
+      "name_en": "health_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "迁移"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:qianyi",
+      "interpretation": "迁移宫主外出、环境变动与际遇。",
+      "name_cn": "迁移宫",
+      "name_en": "travel_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "奴仆"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:nupu",
+      "interpretation": "奴仆宫主下属、朋友与社交关系。",
+      "name_cn": "奴仆宫",
+      "name_en": "friends_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "官禄"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:guanlu",
+      "interpretation": "官禄宫主事业、职位与功名。",
+      "name_cn": "官禄宫",
+      "name_en": "career_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "田宅"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:tianzhai",
+      "interpretation": "田宅宫主房产、祖业与家庭环境。",
+      "name_cn": "田宅宫",
+      "name_en": "property_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "福德"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:fude",
+      "interpretation": "福德宫主精神享受、福分与内心世界。",
+      "name_cn": "福德宫",
+      "name_en": "fortune_palace",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "十二宫释义",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "十二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "palace_kind": "父母"
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:fumu",
+      "interpretation": "父母宫主父母、长辈与遗传影响。",
+      "name_cn": "父母宫",
+      "name_en": "parents_palace",
       "node_type": "palace",
       "schools": [],
       "source": {
@@ -433,6 +913,146 @@
       "tags": [
         "十神",
         "同我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "同我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:jiecai",
+      "interpretation": "与我同者（阴阳相异）为劫财，主争夺、豪爽与破耗。",
+      "name_cn": "劫财",
+      "name_en": "jie_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "同我"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "我生",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:shishen",
+      "interpretation": "我生者阴阳相同为食神，主才华、享受与福气。",
+      "name_cn": "食神",
+      "name_en": "shi_shen",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我生"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "我生",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:shangguan",
+      "interpretation": "我生者阴阳相异为伤官，主才思、傲气与突破。",
+      "name_cn": "伤官",
+      "name_en": "shang_guan",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我生"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "我克",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:zhengcai",
+      "interpretation": "我克者阴阳相异为正财，主正途财禄、勤俭与务实。",
+      "name_cn": "正财",
+      "name_en": "zheng_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我克"
+      ]
+    },
+    {
+      "attributes": {
+        "relation_to_day_master": "我克",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:piancai",
+      "interpretation": "我克者阴阳相同为偏财，主偏财机遇、慷慨与投机。",
+      "name_cn": "偏财",
+      "name_en": "pian_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://github.com/mymmscs/books"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我克"
       ]
     },
     {
