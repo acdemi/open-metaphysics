@@ -1,8 +1,9 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-12
+> **最后更新**: 2026-08-13
 > **项目阶段**: Reference Freeze Candidate
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
+> **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 
 ---
 
@@ -18,6 +19,9 @@
 | **Qimen Behavior Contract** | **1.0.0（Frozen + Certified）** |
 | **Qimen Reference** | **Certified Independent Implementation** |
 | **Qimen Golden Vectors** | **24（Frozen Verification Artifacts）** |
+| **BaZi Behavior Contract** | **1.0.0（Frozen, Integration Ready）** |
+| **BaZi Reference** | **Certified（24/24 等价）** |
+| **BaZi Golden Vectors** | **24（normative fixtures）** |
 
 ---
 
@@ -35,6 +39,7 @@
 | Conformance Rules | **Frozen** | CF-001~020，不可修改 |
 | Golden Vectors | **Auto-generated** | 19 个向量，自动发现 |
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
+| **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | Production Runtime | **Draft** | 尚未开始 |
 
 ---
@@ -87,8 +92,8 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Phase 0 | 脚手架 | 完成 | pyproject.toml, src 布局 |
 | Phase 1 | 基础 (schemas, models, calendar, engines) | 部分完成 | core 模块骨架已建立 |
 | Phase 2 | 六爻 | 部分完成 | 卦表、纳甲、六亲已实现 |
-| Phase 3 | 八字 | 部分完成 | 四柱引擎已实现，全部测试通过 |
-| Phase 4 | 紫微斗数 | 部分完成 | 宫位 + 十四主星已完成 |
+| Phase 3 | 八字 | 部分完成（**Integration Ready**） | 四柱引擎 + 契约 v1.0.0 Frozen + Reference 独立实现（24/24 等价） |
+| Phase 4 | 紫微斗数 | 部分完成（Phase 6.7.1） | 宫位 + 十四主星；规则清单 ZW-001~017 审计，14 Freeze Candidate + 3 REVISED |
 | Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
 | Phase 6 | 共识智能体 | 未开始 | - |
 | Phase 7 | 编排 + API | 部分完成 | FastAPI 骨架已建立 |
@@ -107,8 +112,13 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 |------|--------|------|------|
 | Reference Runtime | 304 | 304 | 0 |
 | Conformance Suite | 57 (测试) / 135 (检查) | 57 / 135 | 0 |
-| Production | 77 | 77 | 0 |
-| **总计** | **457** | **457** | **0** |
+| Production + 域测试 | 534（含 Qimen 24/24、BaZi 24/24、Ziwei 33） | 534 | 0 |
+| Reference 独立套件（`reference/tests/`） | 44 | 44 | 0 |
+| **总计** | **578** | **578** | **0** |
+
+> 实测：`uv run pytest -q` 收集 **578** 个测试全部通过（2026-08-13）。
+> 注：`reference/tests/` 需随全量套件从仓库根运行（独立收集会因 `reference` 包
+> 导入路径问题报错）。
 
 ### 5.2 测试文件明细
 
@@ -136,7 +146,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_qimen_abi.py` | 5 | 全部通过 |
 | `tests/test_qimen_reference_docs.py` | 7 | 全部通过 |
 | `tests/test_solar_time.py` | 7 | 全部通过 |
-| `tests/test_ziwei.py` | 12 | 全部通过 |
+| `tests/test_ziwei.py` | 33 | 全部通过 |
 
 ### 5.3 Golden Vectors
 
@@ -207,6 +217,11 @@ Proposal (ACP)。
 - Phase 5.8/5.8A/5.8B/5.8C: 契约适配层（contracts 包）/ 契约 Schema 提取 / Runtime Adapter / Golden Vector 机器回归（E014）
 - Phase 5.9A: Runtime 类型边界（TypedDict + ABI snapshot）
 - 全量测试 530+ 通过（含 reference/tests 独立套件）
+- Phase 6.5/6.6（BaZi）: 契约 **v1.0.0 Frozen**（BC-001~014）+ Reference 独立实现 +
+  **24/24 等价认证** + Schema 登记 + 集成就绪审查 7/7 → **Integration Ready**
+  （`docs/bazi/`，2026-08-13 历史重写后经分支合并）
+- Phase 6.7.1（Ziwei）: 规则清单 **ZW-001~017**（14 Freeze Candidate + 3 REVISED）+
+  测试 12 → 33 + 11 审计发现 + 4 项 ACP 决策（定局表公式化 / 廉贞 -8 / 输入校验 / sxtwl 锁版）
 
 ---
 
@@ -215,8 +230,9 @@ Proposal (ACP)。
 **待定**。等待用户明确指示。
 
 可能的方向：
-- 其他领域（八字/紫微/六爻）契约化路径复用 Qimen 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；状态: `docs/governance/CAPABILITY_STATUS.md`）
-- Qimen 功能扩展（格局判断 / 用神，需新授权）
+- Ziwei Phase 6.7.2：ACP 实施收尾（定局表公式化 / 廉贞 -8 / 输入校验 / sxtwl 锁版已实现，待提交）+ 黄金向量生成
+- 其他领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；状态: `docs/governance/CAPABILITY_STATUS.md`）
+- Qimen/BaZi 功能扩展（格局判断 / 用神，需新授权）
 - Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
 
 ---
@@ -252,7 +268,7 @@ Proposal (ACP)。
 | Python | 3.11（`.python-version` 固定） |
 | 包管理 | uv（`uv sync --all-extras`） |
 | 锁文件 | `uv.lock` |
-| 核心依赖 | pydantic / fastapi / uvicorn / langgraph / httpx / pyyaml / jinja2 / sxtwl |
+| 核心依赖 | pydantic / fastapi / uvicorn / langgraph / httpx / pyyaml / jinja2 / sxtwl（==2.0.7 精确锁定） |
 
 > **sxtwl 说明**: 农历计算依赖 `sxtwl`。其最新版（2.0.7）仅提供 Python 3.11
 > 的 Windows 预编译 wheel（3.12 / 3.13 需 MSVC 从源码编译）。因此项目固定
@@ -263,7 +279,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-.venv/Scripts/python -m pytest -q            # 运行全量测试（381/381）
+uv run pytest -q                             # 运行全量测试（578/578）
 ```
 
 ---

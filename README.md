@@ -4,138 +4,138 @@
 
 **核心原则：** **大语言模型永远不参与历法计算、排盘、推演。所有这些输出都来自确定性规则引擎，完全可重复。大语言模型仅用于可选的自然语言解释，并且与计算核心严格隔离。**
 
-## 智能体
+**Rule First. Knowledge Second. LLM Last.**
 
-- **八字 (Bazi)** - 基于二十四节气分界的八字排盘，支持大运
-- **紫微斗数 (Ziwei)** - 紫微斗数十二宫、十四主星定局
-- **奇门遁甲 (Qimen)** - 时家奇门排盘（✅ **Frozen and Certified** — 契约 v1.0.0 + Reference 认证 + 双实现验证）
-- **六爻 (Liuyao)** - 六爻起卦，确定性纳甲
-- **共识 (Consensus)** - Evidence-Based 证据聚合，多结论并存
+---
 
-## 技术栈
+## 当前实现状态（2026-08-13）
 
-Polyglot Monorepo -- 四语言协作：
+本仓库以 **Python 实现为主**：`src/`（生产代码）+ `reference/`（规范性 Reference Runtime）。
+Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs/engineering/14_polyglot_architecture.md`）。
 
-| 语言 | 职责 | 确定性 |
-|------|------|--------|
-| **Rust** | 历法计算 · 真太阳时 · 规则引擎 · 格局匹配 | ✅ 确定性 |
-| **Go** | API Gateway · 共识服务 · 知识服务 · Worker | ✅ 确定性 |
-| **Python** | LLM 解释 · RAG 检索 · LangGraph 编排 · DSL 解析 | ❌ 非确定性 |
-| **TypeScript** | Frontend · CLI | - |
+| 组成部分 | 位置 | 状态 |
+|----------|------|------|
+| Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
+| 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
+| 测试 | `tests/` + `reference/tests/` | **578 个全部通过**（含 Qimen 24/24 向量回归、BaZi 24/24 等价） |
+| Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
+| Go 服务 | `services/gateway/` | 占位（Phase 9+） |
+| Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
 
-详见 `docs/engineering/14_polyglot_architecture.md`。
+## 智能体（均已实现确定性引擎）
 
-## 开发环境搭建
+| 智能体 | 状态 | 说明 |
+|--------|------|------|
+| **奇门遁甲 (Qimen)** | ✅ **Frozen + Certified** | 契约 `qimen:behavior:v1.0.0` + Reference 认证 + 24 向量双实现验证 |
+| **八字 (Bazi)** | ✅ **Integration Ready** | 契约 `bazi:behavior:v1.0.0` Frozen + Reference 独立实现 + 24/24 等价 |
+| **紫微斗数 (Ziwei)** | 🚧 Implemented（Phase 6.7.1 进行中） | 12 宫 + 14 主星；规则清单 ZW-001~017 审计完成 |
+| **六爻 (Liuyao)** | Implemented | 卦表、纳甲、六亲、六神 |
+| **共识 (Consensus)** | Reference 完成 | Evidence 聚合，多结论并存（`reference/consensus*.py`） |
 
-### 前置条件
+> 能力状态登记与生命周期：`docs/governance/CAPABILITY_STATUS.md`。
+> 生命周期标准：`docs/governance/CAPABILITY_LIFECYCLE.md`。
 
-| 工具 | 最低版本 | 安装 |
-|------|----------|------|
-| Python | 3.11+ | [python.org](https://python.org) |
-| uv | 0.5+ | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
-| Rust | 1.75+ | [rustup.rs](https://rustup.rs) |
-| Go | 1.23+ | [go.dev](https://go.dev/dl/) |
-| Docker | 24+ | [docker.com](https://docker.com) |
-| make | any | 系统自带（Windows 需额外安装或使用 `task`） |
-
-### 一键启动
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/open-metaphysics/open-metaphysics.git
-cd open-metaphysics
-
-# 2. 安装全部依赖（Python / Rust / Go / pre-commit hooks）
-make bootstrap
-# Windows 替代: ./scripts/setup-dev.ps1
-
-# 3. 启动基础设施服务（PostgreSQL+AGE / Qdrant / Valkey）
-docker compose up -d
-
-# 4. （可选）启动本地 LLM
-docker compose --profile llm up -d
-
-# 5. 运行测试
-make test
-```
-
-全新开发者从 `git clone` 到 `make test` 全部成功，即验证环境搭建完成。
-
-### 快速启动 API
-
-```bash
-# 启动 FastAPI 开发服务器
-uvicorn openmetaphysics.api.app:app --reload
-
-# 或通过 uv
-uv run uvicorn openmetaphysics.api.app:app --reload
-```
-
-核心计算不依赖任何外部服务。PostgreSQL / Qdrant / Valkey / Ollama 都是**可选**的。
-
-## 目录说明
+## 代码结构
 
 ```
 open-metaphysics/
-├── apps/               # 可部署应用入口（Go Gateway / Worker，Phase 9+）
-├── services/           # Go 微服务
-│   └── gateway/        # API Gateway（Phase 9+，当前为 placeholder）
-├── crates/             # Rust crates（workspace）
-│   └── om-calendar/    # 历法计算核心（Phase 7+，当前为 placeholder）
-├── packages/           # 跨语言共享包（proto-go / ts-client，Phase 9+）
-├── python/             # Python 服务包（Explain Agent / RAG，Phase 9+）
-├── frontend/           # TypeScript Frontend（React，Phase 10+）
-├── proto/              # Protobuf IDL 定义
-│   └── openmetaphysics/v1/  # gRPC 服务接口契约
-├── scripts/            # 工具脚本（setup-dev.sh / setup-dev.ps1）
-├── tools/              # 开发工具（知识导入 / 规则校验，Phase 7+）
-├── docs/               # 全部文档
-│   ├── engineering/    # 工程设计文档（Phase 6.5 / 6.6）
-│   └── design/phase6/  # 架构设计文档（Phase 6）
-├── src/                # Python 源码（openmetaphysics 包）
-├── tests/              # Python 测试
-├── Cargo.toml          # Rust workspace 根配置
-├── go.work             # Go workspace 配置
-├── pyproject.toml      # Python 项目配置（uv 兼容）
-├── Taskfile.yml        # Task Runner（跨平台，推荐 Windows 使用）
-├── Makefile            # GNU Make（Unix/macOS，GitHub Actions）
-├── docker-compose.yml  # 基础设施服务编排
-├── buf.yaml            # Protobuf lint 配置
-├── buf.gen.yaml        # Protobuf 代码生成配置
-├── .pre-commit-config.yaml  # 统一 pre-commit hooks
-└── .github/workflows/  # CI/CD（lint / build / test）
+├── src/openmetaphysics/     # 生产代码（Python）
+│   ├── agents/              # 智能体：bazi / qimen / liuyao / ziwei / consensus + explainer
+│   ├── core/                # calendar（农历/节气/干支）、solar_time（真太阳时）、
+│   │                        # engines（BaseAgent）、models、schemas、config
+│   ├── domain/qimen/        # Qimen 域建模（types / abi / adapter / structural）
+│   ├── contracts/           # qimen_contract.py + JSON Schema
+│   ├── api/                 # FastAPI（health/agents/schema/compute/explain/orchestrate）+ CLI
+│   ├── inference/           # LLM 解释层（与计算核心严格隔离）
+│   ├── orchestration/       # LangGraph 编排
+│   ├── rag/                 # 检索器（Qdrant 可选，内存后备）
+│   └── mcp/                 # MCP 服务器桩
+├── reference/               # 规范性 Reference Runtime（行为规范，权威）
+│   ├── engine.py / parser.py / patterns.py / pattern_matcher.py
+│   ├── evidence*.py / knowledge*.py / consensus*.py / conformance*.py
+│   ├── qimen/               # Qimen 域 Reference 实现（domain + astronomy + concepts）
+│   ├── bazi/                # BaZi 域 Reference 独立实现（domain + astronomy + tables）
+│   ├── contracts/           # 自动生成契约 JSON（v1.0.0）
+│   ├── conformance/golden/  # 自动生成 Golden Vectors
+│   ├── examples/            # 示例数据（YAML）
+│   └── tests/               # Reference 独立测试套件
+├── tests/                   # 生产测试（578 例全绿）
+├── docs/                    # 文档（见下节）
+├── context/                 # 对话归档与项目状态
+├── crates/om-calendar/      # Rust 占位（Phase 7+）
+├── services/gateway/        # Go 占位（Phase 9+）
+└── proto/                   # Protobuf IDL（规划）
+```
+
+## 开发环境搭建
+
+| 工具 | 版本 | 说明 |
+|------|------|------|
+| Python | 3.11（`.python-version` 固定） | sxtwl 2.0.7 仅提供 3.11 的 Windows wheel |
+| uv | 0.5+ | 包管理（`uv.lock` 锁定） |
+
+```bash
+# 1. 安装依赖（自动创建 .venv）
+uv sync
+
+# 2. 运行全部测试（578 个）
+uv run pytest -q
+
+# 3. 启动 API（FastAPI, http://127.0.0.1:8000）
+uv run openmetaphysics
+#   或: uv run uvicorn openmetaphysics.api.app:app --reload
+```
+
+**无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务。
+`docker-compose.yml`（PostgreSQL+AGE / Qdrant / Valkey / Ollama）仅在未来
+RAG 与持久化阶段需要，当前可完全离线运行。
+
+### 快速体验
+
+```bash
+# Reference Runtime 演示：DSL → Rule → Evaluate → JSON
+uv run python -m reference.demo
+
+# API 示例（排八字）
+curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: application/json" -d '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}'
 ```
 
 ## 常用命令
 
 | 命令 | 说明 |
 |------|------|
-| `make bootstrap` | 安装全部依赖 |
-| `make test` | 运行全部测试（Python + Rust + Go） |
-| `make lint` | 运行全部 linter |
-| `make fmt` | 格式化全部代码 |
-| `make proto` | 从 .proto 生成代码 |
-| `make clean` | 清理构建产物 |
-| `make docker-up` | 启动基础设施服务 |
-| `make docker-down` | 停止基础设施服务 |
-| `task <name>` | 跨平台替代（需安装 [Task](https://taskfile.dev)） |
+| `uv sync` | 安装依赖 |
+| `uv run pytest -q` | 全量测试（578） |
+| `uv run ruff check src/ tests/ reference/` | lint |
+| `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
+| `uv run openmetaphysics` | 启动 API |
+| `uv run python -m reference.demo` | Reference 演示 |
+| `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |
 
-## 文档
+## 规范与治理
 
 | 文档 | 内容 |
 |------|------|
-| `docs/engineering/01_rule_dsl.md` | Rule DSL 设计（Phase 6.5） |
-| `docs/engineering/12_open_source_evaluation.md` | 开源项目评估（Phase 6.6） |
-| `docs/engineering/13_component_decision_matrix.md` | 组件决策矩阵（Phase 6.6） |
-| `docs/engineering/14_polyglot_architecture.md` | 多语言协作架构（Phase 6.6） |
-| `docs/design/phase6/` | Phase 6 架构设计（10 份文档） |
-| `docs/ARCHITECTURE.md` | 系统架构概览 + Governance |
-| `docs/ROADMAP.md` | 开发路线图（双时间线） |
+| `AGENTS.md` | 长期规则（Sprint Discipline + 对话工作流） |
+| `docs/specification/` | 行为规范：BEHAVIOR_SPEC（35 条）/ KNOWLEDGE（20 条）/ CONSENSUS（25 条）/ CONFORMANCE（20 条）+ Contract 治理 |
+| `docs/governance/` | 能力生命周期 + 状态登记（CAPABILITY_STATUS）+ 各域审计工件 |
+| `docs/ARCHITECTURE.md` | 系统架构概览 |
 | `docs/SCHEMAS.md` | Schema 设计 + 跨语言契约 |
-| `docs/INTERFACES.md` | 接口设计 + Reference Runtime 接口位置 |
+| `docs/INTERFACES.md` | 接口设计 |
+| `docs/ROADMAP.md` | 开发路线图 |
 | `docs/PROJECT_STATUS.md` | 项目状态总览 |
-| `docs/governance/CAPABILITY_STATUS.md` | 领域能力成熟度跟踪（Qimen: Certified Frozen） |
-| `docs/specification/` | 行为规范 + Contract 治理（7 份文档） |
+| `docs/design/phase6/` | Phase 6 架构冻结（不可修改） |
+| `docs/engineering/` | 工程冻结 + 技术选型（12/13/14 多语言架构） |
+| `reference/contracts/` | 自动生成契约 JSON（v1.0.0） |
+| `reference/conformance/golden/` | 自动生成 Golden Vectors |
+
+## 领域文档（冻结工件）
+
+| 域 | 文档 |
+|----|------|
+| Qimen | `docs/qimen/`（契约、认证、向量、Freeze 记录） |
+| BaZi | `docs/bazi/`（契约 v1.0.0、认证、黄金向量、集成就绪审查） |
+| Ziwei | `docs/governance/ziwei/`（规则清单、算法假设、审计、决策解析） |
 
 ## License
 
