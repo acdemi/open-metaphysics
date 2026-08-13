@@ -1,0 +1,54 @@
+# KnowledgeNode — 五行（wuxing）
+# 试点: 20 节点之一组。规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+
+nodes:
+  - id: kn:wuxing:mu
+    node_type: wuxing
+    name_cn: 木
+    name_en: wood
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 五行之木，主仁，主生发。东方，春令；星曜之木性（天机、贪狼等）主变动与才华。
+    tags: [五行, 生发]
+    confidence: 0.9
+    attributes: { element: 木, direction: 东, season: 春 }
+  - id: kn:wuxing:huo
+    node_type: wuxing
+    name_cn: 火
+    name_en: fire
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 五行之火，主礼，主炎上。南方，夏令；星曜之火性（太阳、廉贞等）主光明与热烈。
+    tags: [五行, 炎上]
+    confidence: 0.9
+    attributes: { element: 火, direction: 南, season: 夏 }
+  - id: kn:wuxing:tu
+    node_type: wuxing
+    name_cn: 土
+    name_en: earth
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 五行之土，主信，主中央。长夏；星曜之土性（紫微、天府等）主厚重与承载。
+    tags: [五行, 中央]
+    confidence: 0.9
+    attributes: { element: 土, direction: 中, season: 长夏 }
+  - id: kn:wuxing:jin
+    node_type: wuxing
+    name_cn: 金
+    name_en: metal
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 五行之金，主义，主肃杀。西方，秋令；星曜之金性（七杀、武曲等）主决断与刚毅。
+    tags: [五行, 肃杀]
+    confidence: 0.9
+    attributes: { element: 金, direction: 西, season: 秋 }
+  - id: kn:wuxing:shui
+    node_type: wuxing
+    name_cn: 水
+    name_en: water
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 五行之水，主智，主润下。北方，冬令；星曜之水性（天同、巨门等）主智慧与流动。
+    tags: [五行, 润下]
+    confidence: 0.9
+    attributes: { element: 水, direction: 北, season: 冬 }

@@ -1,0 +1,94 @@
+# KnowledgeRelation — 五行生克（sheng / ke）
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+
+relations:
+  - id: rel:sheng:mu_huo
+    source_node_id: kn:wuxing:mu
+    target_node_id: kn:wuxing:huo
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 木生火, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:sheng:huo_tu
+    source_node_id: kn:wuxing:huo
+    target_node_id: kn:wuxing:tu
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 火生土, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:sheng:tu_jin
+    source_node_id: kn:wuxing:tu
+    target_node_id: kn:wuxing:jin
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 土生金, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:sheng:jin_shui
+    source_node_id: kn:wuxing:jin
+    target_node_id: kn:wuxing:shui
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 金生水, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:sheng:shui_mu
+    source_node_id: kn:wuxing:shui
+    target_node_id: kn:wuxing:mu
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 水生木, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:ke:mu_tu
+    source_node_id: kn:wuxing:mu
+    target_node_id: kn:wuxing:tu
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 木克土, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:ke:tu_shui
+    source_node_id: kn:wuxing:tu
+    target_node_id: kn:wuxing:shui
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 土克水, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:ke:shui_huo
+    source_node_id: kn:wuxing:shui
+    target_node_id: kn:wuxing:huo
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 水克火, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:ke:huo_jin
+    source_node_id: kn:wuxing:huo
+    target_node_id: kn:wuxing:jin
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 火克金, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
+  - id: rel:ke:jin_mu
+    source_node_id: kn:wuxing:jin
+    target_node_id: kn:wuxing:mu
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: 金克木, source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }, weight: 1.0 }
+    source: { text: 紫微斗数全书, chapter: 五行生克, author: 罗洪先辑, credibility: 0.8 }
