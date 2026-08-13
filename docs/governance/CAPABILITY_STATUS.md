@@ -12,7 +12,7 @@
 | Domain | Status | Contract | Golden Vectors | Reference | 测试 |
 |--------|--------|----------|----------------|-----------|------|
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
-| **BaZi** | **Reference Certified** | v1.0.0 **Frozen** | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
+| **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
 | **Ziwei** | Implemented | 无 | 无 | 无 | 12 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
@@ -29,6 +29,9 @@
 > **Phase 6.5**: BaZi 契约正式冻结 **v1.0.0**（`BAZI_BEHAVIOR_CONTRACT.md`）+
 > Reference 独立实现（`reference/bazi/`, 无 src 导入）+ 14/14 BC 审计 +
 > **24/24 Production == Reference 等价** → 状态升级 **Reference Certified**。
+> **Phase 6.6**: BaZi Schema 登记（SCHEMAS.md §3.1）+ 变更政策生效 +
+> 集成边界审查 7/7（`BAZI_INTEGRATION_READINESS.md`）→ 状态升级
+> **Integration Ready**（完整生命周期完成）。
 
 ---
 
@@ -83,9 +86,10 @@ LLM Reasoning / RAG Knowledge / Consensus Decision。Qimen 域只产生
 
 **Status**:
 
-**Reference Certified**（Phase 6.5, 2026-08-09）
-—— 契约 **v1.0.0 Frozen** + Reference 独立实现 + **24/24 等价认证**;
-Integration Ready（Stage 4 治理注册/变更政策）未完成, 待 Phase 6.6。
+**Integration Ready** — Certified Capability（Phase 6.6, 2026-08-09）
+—— 完整生命周期 Stage 0→4 完成: 契约 v1.0.0 Frozen + Reference Certified +
+Schema 登记 + 变更政策生效 + 集成边界审查 PASS（
+`docs/bazi/BAZI_INTEGRATION_READINESS.md`, 7/7）。
 > 评估依据: `docs/governance/bazi/Bazi_CAPABILITY_ASSESSMENT.md`（Phase 6.1）
 > Phase 6.2 稳定化工件（Draft, 未冻结）: `docs/bazi/BAZI_ALGORITHM_ASSUMPTIONS.md` /
 > `docs/bazi/BAZI_RULE_DECISION.md` / `docs/bazi/BAZI_GOLDEN_VECTOR_PLAN.md` /
@@ -100,6 +104,7 @@ Integration Ready（Stage 4 治理注册/变更政策）未完成, 待 Phase 6.6
 > `reference/bazi/` 独立实现 + `BAZI_REFERENCE_AUDIT.md`（14/14 PASS）+
 > `reference/tests/test_bazi_equivalence.py`（**24/24 等价**）+
 > `BAZI_REFERENCE_CERTIFICATION.md`
+> Phase 6.6 闭环: SCHEMAS.md §3.1 登记 + `BAZI_INTEGRATION_READINESS.md`（7/7）
 
 **Calculation Layer**:
 
@@ -126,8 +131,10 @@ Integration Ready（Stage 4 治理注册/变更政策）未完成, 待 Phase 6.6
 
 **下一步（Reference Certified 退出条件 → Integration Ready）**:
 
-- Stage 4 治理注册完成（本表已登记）+ 变更政策生效（已声明, Phase 6.6 收尾）
-- SCHEMAS.md 登记 / JSON Schema 导出（可选补齐）
+- ~~Stage 4 治理注册完成~~ ✅（本表登记 + `BAZI_INTEGRATION_READINESS.md` 7/7, Phase 6.6）
+- ~~变更政策生效~~ ✅（契约 §5 + 本表, 与 CAPABILITY_LIFECYCLE.md §5 一致）
+- ~~SCHEMAS.md 登记~~ ✅（§3.1, 按冻结契约 BC-013 实际结构）
+- 可选: JSON Schema 导出（`Model.model_json_schema()`, 未实现, 不影响状态）
 
 ---
 
