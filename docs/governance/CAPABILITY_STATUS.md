@@ -16,7 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei 试点 20/12/3） | — | — | 10（pipeline 回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 41 节点, Phase 7.1.1） | — | — | 10（pipeline 回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -78,6 +78,11 @@
 > Knowledge Layer 状态: Architecture **FROZEN**（未变）/ Pipeline
 > **VALIDATED** / Corpus **PARTIAL**（仅指针更新, 不升级——引用层不产生
 > 计算输出）。
+> **Phase 7.1.1**: Ziwei Core Vocabulary（2026-08-13）—— 新增 21 节点
+> （main_star +9 / palace +7 / ten_god +5, 均 Tier 1 来源, 武曲/贪狼含
+> 中州派 SchoolView）+ Pilot 20 节点正式化 → **41/41 节点完成**,
+> 校验/确定性通过（报告: `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.1_REPORT.md`）。
+> Corpus: **PARTIAL**（Ziwei, 41 节点; 关系/引用待 7.1.2/7.1.3; 仍为引用层, 不升级）。
 > **Phase 7.1.0**: Ziwei Corpus Scope & Source Freeze（2026-08-13）——
 > 7 份治理工件（Scope / Source Registry / Admission Policy / Pilot Audit /
 > Coverage Matrix / Build Plan / Gaps）→ Corpus 范围与来源策略**已冻结**
