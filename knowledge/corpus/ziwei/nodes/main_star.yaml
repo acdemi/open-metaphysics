@@ -1,0 +1,54 @@
+# KnowledgeNode — 十四主星（main_star）试点子集
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+
+nodes:
+  - id: kn:main_star:ziwei
+    node_type: main_star
+    name_cn: 紫微
+    name_en: ziwei
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 中天之尊星，帝座，属土。南北斗诸星会聚之枢纽；紫微定局后逆行安天机等六星。
+    tags: [帝座, 紫微星系]
+    confidence: 0.9
+    attributes: { star_system: 紫微星系, offset: 0, element: 土 }
+  - id: kn:main_star:tianji
+    node_type: main_star
+    name_cn: 天机
+    name_en: tianji
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗，属木，主变动、智谋。紫微逆行第一星（偏移 -1）。
+    tags: [变动, 智谋, 紫微星系]
+    confidence: 0.9
+    attributes: { star_system: 紫微星系, offset: -1, element: 木 }
+  - id: kn:main_star:taiyang
+    node_type: main_star
+    name_cn: 太阳
+    name_en: taiyang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 中天，属火，主光明、贵显。紫微逆行偏移 -3（隔一阳武天同居）。
+    tags: [光明, 贵显, 紫微星系]
+    confidence: 0.9
+    attributes: { star_system: 紫微星系, offset: -3, element: 火 }
+  - id: kn:main_star:tianfu
+    node_type: main_star
+    name_cn: 天府
+    name_en: tianfu
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 南斗主星，属土，库星。与紫微寅申轴对称（镜像, 偏移 0, 顺行安天府星系八星）。
+    tags: [库星, 天府星系]
+    confidence: 0.9
+    attributes: { star_system: 天府星系, offset: 0, element: 土 }
+  - id: kn:main_star:lianzhen
+    node_type: main_star
+    name_cn: 廉贞
+    name_en: lianzhen
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 北斗，属火，主次桃花、官禄。紫微逆行偏移 -8（又隔二位廉贞地）；「紫微在子午，廉贞天府同度辰戌」。
+    tags: [桃花, 官禄, 紫微星系]
+    confidence: 0.9
+    attributes: { star_system: 紫微星系, offset: -8, element: 火 }
