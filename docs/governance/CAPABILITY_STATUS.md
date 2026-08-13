@@ -13,7 +13,7 @@
 |--------|--------|----------|----------------|-----------|------|
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
-| **Ziwei** | Implemented | 无 | 无 | 无 | 12 |
+| **Ziwei** | Implemented | 无 | 无 | 无 | 33（12 + 21 Phase 6.7.1） |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
 
@@ -32,6 +32,15 @@
 > **Phase 6.6**: BaZi Schema 登记（SCHEMAS.md §3.1）+ 变更政策生效 +
 > 集成边界审查 7/7（`BAZI_INTEGRATION_READINESS.md`）→ 状态升级
 > **Integration Ready**（完整生命周期完成）。
+> **Phase 7.0**: Ziwei 迁移评估完成（`docs/governance/ziwei/` 4 份工件）;
+> 状态维持 **Implemented**（无虚报）; Framework 可零修改复用（结论:
+> Reusable without modification）。
+> **Phase 6.7.1**: Ziwei 算法稳定化完成（2026-08-13）—— 审计
+> `ZIWEI_ALGORITHM_AUDIT.md` + 假设 `ZIWEI_ALGORITHM_ASSUMPTIONS.md` +
+> 规则裁定 `ZIWEI_RULE_DECISION.md`（14 Freeze Candidate / 3 Deferred）+
+> 跨域边界 `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md` + 向量设计
+> `ZIWEI_GOLDEN_VECTOR_READINESS.md` + 补测 +21（12→33, 全绿）。
+> 状态维持 **Implemented**; 未创建契约/向量/Reference。
 
 ---
 
@@ -142,27 +151,47 @@ Schema 登记 + 变更政策生效 + 集成边界审查 PASS（
 
 **Status**:
 
-Implemented（Stage 1 完成；未进入 Contract Candidate）
+Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约草案 + Freeze Review, 均未完成）
+> Phase 7.0 评估（2026-08-09）: `docs/governance/ziwei/ZIWEI_CAPABILITY_ASSESSMENT.md`
+> + `ZIWEI_RULE_INVENTORY.md`（ZW-001~017）+ `ZIWEI_TEST_COVERAGE_REVIEW.md`
+> + `ZIWEI_CROSS_DOMAIN_PRECHECK.md`（ZB-01~09 / ZQ-01~04 差异登记）
 
 **Calculation Layer**:
 
-- 算法: `src/openmetaphysics/agents/ziwei/`（宫位 + 十四主星 + 五行局 + 农历转换）
-- 确定性: 是
-- Schema: 共享 `AgentInput`/`AgentOutput` 信封；无领域专属 Schema
-- 测试: `tests/test_ziwei.py`（12 例通过）
+- 算法: `src/openmetaphysics/agents/ziwei.py`（ZiweiEngine v0.2.0: 命宫/身宫,
+  五行局, 十四主星定局, 农历转换; 辅星/四化/大限未实现）
+- 确定性: 是（无 LLM; replay 测试锁定）
+- Schema: **领域专属** `ZiweiInput`（lunar_month/lunar_day 显式重放）/
+  `ZiweiChart`/`Palace`（`extra="forbid"`）; SCHEMAS.md §3.2 已登记
+  （Phase 6.7.1 完成勘误: calendar_note 位于 ZiweiChart; 未导出 JSON Schema）
+- 测试: `tests/test_ziwei.py`（**33 例** = 12 基线 + 21 Phase 6.7.1 补测:
+  定局表 150 组合快照 / 全 5 局 / 星曜位置 / 时区链 / 时辰窗 / 闰月 /
+  立春界 / 序列化; 覆盖矩阵见 `ZIWEI_TEST_COVERAGE_REVIEW.md` §5）
 
 **Contract Layer**:
 
-无（无契约、无 Golden Vectors）
+无契约/无 Golden Vectors。Phase 6.7.1 规则裁定工件（**Draft, 未冻结**）:
+- `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）
+- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 Deferred**;
+  Deferred = ZW-001 输入校验策略、ZW-012 定局表流派差异 A-1、
+  ZW-014 廉贞偏移 A-2 —— 均待人工裁定, 当前行为已被测试锁定）
+- `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md`（ZB-01~09 / ZQ-01~04）
+- `ZIWEI_GOLDEN_VECTOR_READINESS.md`（24 候选矩阵, 未生成正式向量）
 
 **Reference Layer**:
 
 无（无 `reference/ziwei/` 独立实现）
 
-**下一步（迁移前置）**:
+**下一步（Phase 6.7.2 Golden Vector Generation 入口条件）**:
 
-- 领域专属 Schema 定义
-- 规则清单 + 向量草案 → Freeze Review → 契约化
+- ~~算法完全审计~~ ✅（`ZIWEI_ALGORITHM_AUDIT.md`, F-1~F-11）
+- ~~规则登记 + 裁定~~ ✅（ZW-001~017, 14 Freeze Candidate / 3 Deferred）
+- ~~测试缺口补全~~ ✅（+21, 33 例全绿）
+- **⛔ 人工裁定前置**: A-1（定局表 4/5 局与主流歌诀差异）与
+  A-2（廉贞 -9）—— 决定向量按现行表生成或 ACP 修正后生成;
+  ZW-001 校验策略（KeyError 是否可接受）
+- **⛔ sxtwl 锁版策略**（D-ZW-4）—— 历法数值向量的稳定前提
+- Phase 6.7.3: Freeze Review & Contract Draft（本 Sprint 不做）
 
 ---
 
