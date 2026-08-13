@@ -9,12 +9,12 @@
 
 ## 1. 节点覆盖矩阵（node_type）
 
-| node_type | 计划节点数（第一波） | 已覆盖（Pilot） | 需新增 | 来源就绪 |
+| node_type | 计划节点数（第一波） | 已覆盖（Phase 7.1.1 后） | 需新增 | 来源就绪 |
 |-----------|---------------------|-----------------|--------|----------|
-| wuxing | 5 | 5 | 0 | ✅ Tier 1 |
-| main_star | 14 | 5 | 9 | ✅ Tier 1（全书星曜总论; 待逐星核对赋性） |
-| palace | 12 | 5 | 7 | ✅ Tier 1（全书十二宫释义） |
-| ten_god | 10 | 5 | 5 | ✅ Tier 1（渊海子平论十神） |
+| wuxing | 5 | **5** ✅ | 0 | ✅ Tier 1 |
+| main_star | 14 | **14** ✅（Pilot 5 + 7.1.1 新增 9: 武曲/天同/太阴/贪狼/巨门/天相/天梁/七杀/破军; 武曲/贪狼含中州派 SchoolView） | 0 | ✅ Tier 1 + Tier 2 |
+| palace | 12 | **12** ✅（Pilot 5 + 7.1.1 新增 7: 疾厄/迁移/奴仆/官禄/田宅/福德/父母） | 0 | ✅ Tier 1 |
+| ten_god | 10 | **10** ✅（Pilot 5 + 7.1.1 新增 5: 劫财/食神/伤官/正财/偏财） | 0 | ✅ Tier 1（渊海子平） |
 | heavenly_stem | 10 | 0 | 10 | ✅ Tier 1（干支基础; 归 7.1.4） |
 | earthly_branch | 12 | 0 | 12 | ✅ Tier 1（归 7.1.4） |
 | auxiliary_star | 12-15 | 0 | 12-15 | ⚠️ 需来源确认（Tier 2+; GAP-05） |
@@ -22,6 +22,8 @@
 | pattern | 20-50 | 0 | 20-50 | ⚠️ 高争议（SchoolView 多源; A-8） |
 | 断事类 ×8（career 等） | 10-20/类 | 0 | — | 🔴 解释域依赖（范围外） |
 | 用神类 ×4（yong_shen 等） | 10/类 | 0 | — | 🔴 跨域授权（范围外） |
+
+> **第一波节点 41/41 已全部完成**（Phase 7.1.1, 2026-08-13）。
 
 ## 2. 关系覆盖矩阵（relation_type）
 
@@ -50,10 +52,10 @@
 
 ## 4. 汇总
 
-| 类别 | 计划（第一波） | Pilot 已覆盖 | 缺口 |
+| 类别 | 计划（第一波） | 已覆盖（Phase 7.1.1 后） | 缺口 |
 |------|---------------|-------------|------|
-| nodes | 41（wuxing/main_star/palace/ten_god） | 20 | 21 |
-| relations | 24（sheng/ke/he/chong/xing/hai） | 12 | 12 |
-| references | 8（3/2/1/2） | 3 | 5 |
+| nodes | 41（wuxing/main_star/palace/ten_god） | **41** ✅ | 0 |
+| relations | 24（sheng/ke/he/chong/xing/hai） | 12 | 12（Phase 7.1.2） |
+| references | 8（3/2/1/2） | 3 | 5（Phase 7.1.3） |
 
 > 干支（22 节点）+ 其余关系/引用在 7.1.4 扩展与后续阶段按 Scope/GAP 推进。
