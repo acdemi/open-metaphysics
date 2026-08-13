@@ -13,7 +13,7 @@
 |--------|--------|----------|----------------|-----------|------|
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
-| **Ziwei** | **Reference Certified** | 草案 `ziwei:behavior:0.1.0-draft`（BC-001~014, Freeze Review PASS） | 24（candidate, 等价 24/24） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
+| **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
 
@@ -65,6 +65,11 @@
 > 独立实现（tables/astronomy/domain, 无 src 导入, 显式复用 reference/bazi
 > 共享原语）+ **24/24 Golden Vector 等价** + 4 例等价测试 + 14/14 BC 审计 +
 > 认证记录 → 状态升级 **Reference Certified**。
+> **Phase 6.7.5**: Integration Ready Closure（2026-08-13）—— 契约正式冻结
+> **`ziwei:behavior:v1.0.0`**（BC-001~014, 2026-08-13）+ Freeze Integrity
+> Check 8/8 + Schema 登记确认（SCHEMAS.md §3.2）+ 变更政策生效 +
+> 集成边界审查 7/7（`ZIWEI_INTEGRATION_READINESS.md`）→ 状态升级
+> **Integration Ready**（完整生命周期完成, 与 Qimen/BaZi 并列）。
 
 ---
 
@@ -175,11 +180,10 @@ Schema 登记 + 变更政策生效 + 集成边界审查 PASS（
 
 **Status**:
 
-**Reference Certified**（Phase 6.7.4, 2026-08-13）
-—— 完整 Stage 0→3: Freeze Review PASS + 契约草案（BC-001~014）+ 24/24
-Golden Vector 等价 + Reference 独立实现（`reference/ziwei/`, 无 src 导入）+
-14/14 BC 审计。**未达 Integration Ready**（契约 v1.0.0 冻结 + Schema 登记 +
-变更政策生效, 待 Phase 6.7.5）。
+**Integration Ready** — Certified Capability（Phase 6.7.5, 2026-08-13）
+—— 完整生命周期 Stage 0→4 完成: 契约 v1.0.0 Frozen + Reference Certified +
+Schema 登记 + 变更政策生效 + 集成边界审查 PASS（
+`docs/governance/ziwei/ZIWEI_INTEGRATION_READINESS.md`, 7/7 + Freeze Integrity 8/8）。
 > Phase 7.0 评估（2026-08-09）: `docs/governance/ziwei/ZIWEI_CAPABILITY_ASSESSMENT.md`
 > + `ZIWEI_RULE_INVENTORY.md`（ZW-001~017）+ `ZIWEI_TEST_COVERAGE_REVIEW.md`
 > + `ZIWEI_CROSS_DOMAIN_PRECHECK.md`（ZB-01~09 / ZQ-01~04 差异登记）
@@ -199,10 +203,12 @@ Golden Vector 等价 + Reference 独立实现（`reference/ziwei/`, 无 src 导�
 
 **Contract Layer**:
 
-- **契约草案**: `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT_DRAFT.md`（`ziwei:behavior:0.1.0-draft`,
-  BC-001~014, 2026-08-13, Freeze Review PASS; **未冻结**, 正式化须人工 Gate）
-- **Golden Vectors**: `docs/ziwei/golden_vectors.json`（**24**, candidate,
-  Engine v0.3.0 生成, 机器回归 24/24）
+- **契约**: **v1.0.0 Frozen**（`docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md`,
+  `contract_id: ziwei:behavior:v1.0.0`, 2026-08-13, BC-001~014）
+- **Golden Vectors**: `docs/ziwei/golden_vectors.json`（**24**, normative
+  fixtures, Engine v0.3.0 生成, 机器回归 24/24）
+- **变更政策**: ACP Required（ACP + 契约版本递增 + Golden Vector 迁移 +
+  Reference 重新认证; 契约 §1/§6 + 本表 Ziwei 节 + INTEGRATION_READINESS §2）
 - 规则裁定工件: `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）/
   `ZIWEI_RULE_DECISION.md`（ZW-001~017: **3 IMPLEMENTED + 14 FROZEN**）/
   `ZIWEI_DECISION_RESOLUTION.md` + `docs/governance/ACP/ACP-ZW-001~004.md` /
@@ -218,14 +224,30 @@ Golden Vector 等价 + Reference 独立实现（`reference/ziwei/`, 无 src 导�
 - 审计: `docs/governance/ziwei/ZIWEI_REFERENCE_AUDIT.md`（**14/14 PASS**）;
   认证: `ZIWEI_REFERENCE_CERTIFICATION.md`
 
-**下一步（Reference Certified 退出条件 → Integration Ready）**:
+**冻结工件（Frozen Artifacts）**:
 
-- ~~算法审计 + 规则裁定~~ ✅（F-1~F-11; 4 项 ACP 实施, Engine v0.3.0）
-- ~~Golden Vector 生成~~ ✅（24 向量, Phase 6.7.2）
-- ~~Freeze Review + 契约草案~~ ✅（PASS, BC-001~014, Phase 6.7.3）
-- ~~Reference 独立实现 + 等价 + 审计~~ ✅（24/24 等价, 14/14 PASS, Phase 6.7.4）
-- ⏳ Phase 6.7.5: 契约正式冻结（v1.0.0）+ Schema 登记 + 变更政策生效
-  → **Integration Ready**（完整生命周期, 对齐 Qimen/BaZi）
+- Ziwei Behavior Contract v1.0.0（`docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md`）
+- Golden Vector 数据集（24 向量, `docs/ziwei/golden_vectors.json`）
+- Reference 独立实现 + 认证记录（`reference/ziwei/` +
+  `ZIWEI_REFERENCE_CERTIFICATION.md`）
+- 集成边界审查（`ZIWEI_INTEGRATION_READINESS.md`, 7/7）
+
+**约束（Constraints / Forbidden）**:
+
+- 禁止修改 `src/openmetaphysics/agents/ziwei.py` 算法代码
+- 禁止修改 `reference/ziwei/` 算法文件
+- 禁止修改 Behavior Contract / Golden Vector 数据
+- 禁止添加解释规则 / 新依赖（须 ACP）
+
+**范围之外（不属于冻结能力）**:
+
+辅星/杂曜/四化/大限/流年 / 格局分析 / 解释层 / 叙述 / 建议 / LLM / RAG /
+Consensus（契约 §4 显式排除; 任何新增能力须 ACP）
+
+**下一步**:
+
+- 无（Integration Ready = 完整生命周期终点, 对齐 Qimen/BaZi）。
+- 未来能力扩展（功能 Sprint）与契约化升级须经 ACP + 用户授权。
 
 ---
 

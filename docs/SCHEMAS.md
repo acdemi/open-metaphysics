@@ -128,8 +128,10 @@ class BaziChart(BaseModel):
 
 ### 3.2 紫微斗数 (agents.ziwei)
 
-> **状态**: 描述性登记（**未注册契约**; Ziwei = Implemented, 见
-> `docs/governance/CAPABILITY_STATUS.md`）。引擎 `ZiweiEngine` v0.2.0。
+> **契约登记**: `ziwei:behavior:v1.0.0`（Frozen, Phase 6.7.5,
+> `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md` BC-013 Schema Contract 为规范性定义）。
+> 本登记为描述性文档, 与契约冲突时**以契约为准**; 任何变更须 ACP。
+> 引擎 `ZiweiEngine` v0.3.0。
 > Phase 6.7.1 勘误: `calendar_note` 位于 **ZiweiChart** 而非 `Palace`;
 > 全模型 `extra="forbid"`。未导出静态 JSON Schema（可经
 > `Model.model_json_schema()` 动态生成, `GET /agents/ziwei/schema`）。
@@ -158,7 +160,7 @@ class ZiweiChart(BaseModel):
     fate_palace_index: int
     body_palace_index: int
     yin_yang: Literal["yin","yang"]
-    wuxing_ju: str                    # 五行局 例如 "水二局"
+    wuxing_ju: str                    # 五行局 例如 "水2局"（BC-009 规范格式 "{元素}{数}局"）
     palaces: list[Palace]             # 12 宫
     calendar_note: str | None = None  # 历法说明（闰月等）
 ```
