@@ -1,0 +1,26 @@
+# KnowledgeReference — 试点引用（3 例, 3 种 ref_type）
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:ziwei_quanshu_ziwei
+    target_type: node
+    target_id: kn:main_star:ziwei
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    passage: 紫微属土，乃中天之尊星，为帝座，主掌造化枢机，为人命之主宰。
+    credibility: 0.8
+  - reference_id: ref:school:zhongzhou_minggong
+    target_type: node
+    target_id: kn:palace:minggong
+    ref_type: school_commentary
+    source: { text: 中州派紫微斗数讲义, chapter: 命宫, author: 王亭之, credibility: 0.7 }
+    passage: 命宫为斗数枢纽，看一生格局首重命宫与身宫；三合四正之会照不可偏废。
+    school: zhongzhou
+    credibility: 0.7
+  - reference_id: ref:oral:lianzhen_tianfu_tongdu
+    target_type: relation
+    target_id: rel:he:lianzhen_tianfu
+    ref_type: oral_tradition
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    passage: 紫微在子午，廉贞天府同度辰戌。
+    credibility: 0.8

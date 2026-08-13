@@ -1,0 +1,15 @@
+# Source 02 — 《渊海子平》
+
+> 试点来源元数据（原始数据引用，非数据本身）。
+> 古籍原文不在仓库内；条目级引用经 SourceRef 登记。
+
+| 项 | 值 |
+|----|-----|
+| source_id | source_bazi_01 |
+| title | 渊海子平 |
+| author | 徐升（宋）；杨淙（增校） |
+| school | 子平（八字） |
+| edition | 通行古籍本（public domain 范围） |
+| url | https://github.com/mymmscs/books （渊海子平 txt 全文镜像，2026-08 调研确认） |
+| note | 十神/五行生克之权威出处（十神节点试点引用） |
+| digest_note | 版本追踪：以本文件 + pipeline 输出 corpus checksum 为准 |
