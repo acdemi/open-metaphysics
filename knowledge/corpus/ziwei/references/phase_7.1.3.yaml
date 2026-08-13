@@ -1,0 +1,34 @@
+# KnowledgeReference — Phase 7.1.3 新增（4 条）
+# classic ×2 / modern ×1 / oral ×1; school_commentary 槽位因 GAP-02
+# （中州派 provenance 不可核实）按准入策略不生产 —— 不虚构、不补全。
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:ziwei_quanshu_tianfu
+    target_type: node
+    target_id: kn:main_star:tianfu
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 星曜总论·天府篇, author: 罗洪先辑, credibility: 0.8 }
+    passage: "天府属土，南斗主星，为财库之星，主守成、包容；与紫微寅申轴对称安星（天府星系之源）。"
+    credibility: 0.8
+  - reference_id: ref:classic:ziwei_quanshu_guanlu
+    target_type: node
+    target_id: kn:palace:guanlu
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 十二宫释义·官禄宫, author: 罗洪先辑, credibility: 0.8 }
+    passage: "官禄宫主事业之成败、职位之高下与功名之进退。"
+    credibility: 0.8
+  - reference_id: ref:modern:iztro_tanlang_placement
+    target_type: node
+    target_id: kn:main_star:tanlang
+    ref_type: modern_interpretation
+    source: { text: iztro（紫微斗数开源引擎文档）, author: SylarLong, url: "https://github.com/SylarLong/iztro", credibility: 0.7 }
+    passage: "iztro 现代实现中天府星系偏移表（贪狼 = 天府 + 2）与冻结契约 BC-012 一致；其文档对贪狼桃花/才艺性质作现代整理。"
+    credibility: 0.7
+  - reference_id: ref:oral:riyue_fanbei
+    target_type: relation
+    target_id: rel:chong:taiyang_taiyin
+    ref_type: oral_tradition
+    source: { text: 紫微斗数全书, chapter: 星曜总论, author: 罗洪先辑, credibility: 0.8 }
+    passage: "日月反背（口传口诀摘要）: 太阳太阴在紫微未丑之时六宫相对，为反背结构，主颠沛而后兴。"
+    credibility: 0.8
