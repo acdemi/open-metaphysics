@@ -78,6 +78,12 @@
 > Knowledge Layer 状态: Architecture **FROZEN**（未变）/ Pipeline
 > **VALIDATED** / Corpus **PARTIAL**（仅指针更新, 不升级——引用层不产生
 > 计算输出）。
+> **Phase 7.1.0**: Ziwei Corpus Scope & Source Freeze（2026-08-13）——
+> 7 份治理工件（Scope / Source Registry / Admission Policy / Pilot Audit /
+> Coverage Matrix / Build Plan / Gaps）→ Corpus 范围与来源策略**已冻结**
+> （第一波: 41 节点 + 24 关系 + 8 引用; 构建序列 7.1.1~7.1.6）。
+> Knowledge Layer 状态: Architecture **FROZEN** / Pipeline **VALIDATED** /
+> Corpus **PARTIAL**（Scope 已冻结, 语料数量未变; 仍为引用层, 不升级）。
 
 ---
 
