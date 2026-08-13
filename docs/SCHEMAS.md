@@ -128,31 +128,39 @@ class BaziChart(BaseModel):
 
 ### 3.2 紫微斗数 (agents.ziwei)
 
-输入：ZiweiInput(AgentInput) — 出生日时分 + 性别（阴阳 + 年干决定命局/紫微 placement）。
-支持显式提供 lunar_month: int | None / lunar_day: int | None 用于重放。
+> **状态**: 描述性登记（**未注册契约**; Ziwei = Implemented, 见
+> `docs/governance/CAPABILITY_STATUS.md`）。引擎 `ZiweiEngine` v0.2.0。
+> Phase 6.7.1 勘误: `calendar_note` 位于 **ZiweiChart** 而非 `Palace`;
+> 全模型 `extra="forbid"`。未导出静态 JSON Schema（可经
+> `Model.model_json_schema()` 动态生成, `GET /agents/ziwei/schema`）。
+
+输入：ZiweiInput(AgentInput) — 出生日时分 + 性别（继承信封, engine 当前不
+消费 gender, 见 ZW-017）。支持显式提供 lunar_month: int | None /
+lunar_day: int | None 用于重放。
 
 输出
-result: ZiweiChart:
+result: ZiweiChart（全部 `extra="forbid"`）:
 
 ```python
 class Palace(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     index: int = Field(ge=0, le=11)   # 0..11，寅=0 符合惯例
     name: str                         # 命宫/财帛/...
     earthly_branch: str
     heavenly_stem: str
     main_stars: list[str]             # 紫微/天机/... (14 主星已完成)
-    auxiliary_stars: list[str]        # 辅星 (未来阶段)
+    auxiliary_stars: list[str]        # 辅星 (未实现, 恒空)
     is_fate_palace: bool = False
     is_body_palace: bool = False
-    calendar_note: str | None = None  # 历法说明（闰月等）
 
 class ZiweiChart(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     fate_palace_index: int
     body_palace_index: int
     yin_yang: Literal["yin","yang"]
     wuxing_ju: str                    # 五行局 例如 "水二局"
     palaces: list[Palace]             # 12 宫
-    calendar_note: str | None = None  # 历法说明
+    calendar_note: str | None = None  # 历法说明（闰月等）
 ```
 
 ### 3.3 奇门遁甲 (agents.qimen)
