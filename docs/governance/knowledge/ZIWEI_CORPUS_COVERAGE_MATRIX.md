@@ -46,21 +46,21 @@
 
 ## 3. 引用覆盖矩阵（ref_type）
 
-| ref_type | 计划引用数（第一波） | 已覆盖 | 需新增 | 来源就绪 |
+| ref_type | 计划引用数（第一波） | 已覆盖（Phase 7.1.3 后） | 需新增 | 来源就绪 |
 |----------|---------------------|--------|--------|----------|
-| classic_text | 3 | 1 | 2 | ⚠️ 需获取（紫微斗数全集 Tier 1; GAP-01） |
-| school_commentary | 2 | 1 | 1 | ⚠️ 需确认（中州派版次; GAP-02） |
-| modern_interpretation | 1 | 0 | 1 | ⚠️ 需获取（iztro MIT 已调研） |
-| oral_tradition | 2 | 1 | 1 | ✅（口诀类, 契约恒等式验证） |
+| classic_text | 3 | **3** ✅（全书星曜/天府篇/官禄宫） | 0 | ✅ Tier 1 |
+| school_commentary | 2 | **1** ⚠️（中州派, not_authoritative, GAP-02） | 1 | 🔴 无可核实来源（GAP-02 REMAINS OPEN） |
+| modern_interpretation | 1 | **1** ✅（iztro MIT, 贪狼偏移对照） | 0 | ✅ Tier 3 |
+| oral_tradition | 2 | **2** ✅（廉贞天府口诀 / 日月反背） | 0 | ✅ 契约 BC-012 交叉验证 |
 
 ---
 
 ## 4. 汇总
 
-| 类别 | 计划（第一波） | 已覆盖（Phase 7.1.2 后） | 缺口 |
+| 类别 | 计划（第一波） | 已覆盖（Phase 7.1.3 后） | 缺口 |
 |------|---------------|-------------|------|
 | nodes | 41（wuxing/main_star/palace/ten_god） | **41** ✅ | 0 |
 | relations | 24（sheng/ke/he/chong/xing/hai） | **18**（sheng 5/ke 5/he 5/chong 3） | 6（xing 3 + hai 3, GAP-09） |
-| references | 8（3/2/1/2） | 3 | 5（Phase 7.1.3） |
+| references | 8（3/2/1/2） | **7**（classic 3/school 1⚠️/modern 1/oral 2） | 1（school, GAP-02 REMAINS OPEN） |
 
 > 干支（22 节点）+ 其余关系/引用在 7.1.4 扩展与后续阶段按 Scope/GAP 推进。
