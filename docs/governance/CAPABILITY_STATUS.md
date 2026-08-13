@@ -12,7 +12,7 @@
 | Domain | Status | Contract | Golden Vectors | Reference | 测试 |
 |--------|--------|----------|----------------|-----------|------|
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
-| **BaZi** | Implemented | 无 | 无 | 无 | 11 |
+| **BaZi** | **Contract Candidate** | 0.1.0-draft（草案） | 24（candidate） | 无（未认证） | 11 + 14 + 7 |
 | **Ziwei** | Implemented | 无 | 无 | 无 | 12 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
@@ -22,6 +22,10 @@
 > **Phase 6.1**: BaZi 迁移评估完成（`docs/governance/bazi/Bazi_CAPABILITY_ASSESSMENT.md`）,
 > 状态维持 Implemented（无虚报）。模板领域无关性审查:
 > `docs/governance/CAPABILITY_TEMPLATE_REVIEW.md`。
+> **Phase 6.4**: BaZi **Freeze Review PASS**（`BAZI_FREEZE_REVIEW.md`, B1~B6 冻结,
+> Deferred 项裁定, 24 向量充分）→ 契约草案
+> （`docs/bazi/BAZI_BEHAVIOR_CONTRACT_DRAFT.md`, `bazi:behavior:0.1.0-draft`）→
+> 状态升级 **Contract Candidate**（契约尚未正式冻结）。
 
 ---
 
@@ -76,15 +80,19 @@ LLM Reasoning / RAG Knowledge / Consensus Decision。Qimen 域只产生
 
 **Status**:
 
-Implemented（Stage 1 完成；**未升级** — Contract Candidate 需契约草案 + Freeze Review, 均未完成）
+**Contract Candidate**（Phase 6.4 Freeze Review PASS, 2026-08-09）
+—— 契约草案就绪（`bazi:behavior:0.1.0-draft`）, **尚未正式冻结**;
+Reference 认证未开始（Stage 3 未启动）。
 > 评估依据: `docs/governance/bazi/Bazi_CAPABILITY_ASSESSMENT.md`（Phase 6.1）
 > Phase 6.2 稳定化工件（Draft, 未冻结）: `docs/bazi/BAZI_ALGORITHM_ASSUMPTIONS.md` /
 > `docs/bazi/BAZI_RULE_DECISION.md` / `docs/bazi/BAZI_GOLDEN_VECTOR_PLAN.md` /
 > `docs/bazi/BAZI_TEST_COVERAGE_REVIEW.md`
-> Phase 6.3 证据（Candidate, 未升级）: **Golden Vector Candidate 24 向量**
-> （`docs/bazi/golden_vectors.json`, engine 0.1.0, status=candidate）+
-> `docs/bazi/BAZI_FREEZE_BOUNDARY.md` + `tests/test_bazi_golden_vectors.py`（7 例）+
-> 审计报告 `docs/governance/bazi/BAZI_GOLDEN_VECTOR_REPORT.md`
+> Phase 6.3 证据（Candidate）: **24 向量**（`docs/bazi/golden_vectors.json`,
+> engine 0.1.0, status=candidate）+ `BAZI_FREEZE_BOUNDARY.md` +
+> `tests/test_bazi_golden_vectors.py`（7 例）+ `BAZI_GOLDEN_VECTOR_REPORT.md`
+> Phase 6.4 冻结: `BAZI_FREEZE_REVIEW.md`（B1~B6 FROZEN, Deferred 裁定,
+> 向量充分）+ `BAZI_CROSS_DOMAIN_BOUNDARIES.md` +
+> `BAZI_BEHAVIOR_CONTRACT_DRAFT.md`（DRAFT）+ `tests/test_bazi_units.py`（14 例）
 
 **Calculation Layer**:
 
@@ -92,21 +100,24 @@ Implemented（Stage 1 完成；**未升级** — Contract Candidate 需契约草
 - 确定性: 是（无 LLM 参与；determinism 测试覆盖）
 - Schema: 领域专属 `BaziInput`/`BaziChart`/`Pillar`/`DaYun`（`extra="forbid"`,
   位于 `agents/bazi.py`）；**未登记 SCHEMAS.md / 未导出 JSON Schema**
-- 测试: `tests/test_bazi.py`（11 例通过, 含立春界/晚子时/大运方向边界用例）
+- 测试: `tests/test_bazi.py`（11）+ `tests/test_bazi_units.py`（14, Phase 6.4 补齐）
 
 **Contract Layer**:
 
-无（无契约、无领域 Golden Vectors、无规则裁定、无 Freeze Review）
+- 契约: **Draft** `docs/bazi/BAZI_BEHAVIOR_CONTRACT_DRAFT.md`（0.1.0-draft,
+  BC-001~014, 待冻结）
+- 冻结规则: **B1~B6 FROZEN**（`BAZI_FREEZE_REVIEW.md` PASS）
+- Golden Vectors: 24（candidate, 机器回归 7 例通过）
+- 政策裁定: 晚子时 23:00 换日; 大运 round(x.5) 银行家舍入
 
 **Reference Layer**:
 
-无（无 `reference/bazi/` 独立实现）
+无（无 `reference/bazi/` 独立实现, Stage 3 未开始）
 
-**下一步（迁移前置, 见评估文档 §4）**:
+**下一步（Contract Candidate 退出条件）**:
 
-- 算法假设文档（approx_1min / 立春界 / 23:00 换日显式化）
-- 规则裁定文档（冻结规则清单）→ 向量草案 → 契约草案 → Freeze Review
-  （复用 Qimen 流程, 见 `CAPABILITY_LIFECYCLE.md` §5）
+- 契约草案正式评审 → 冻结 v1.0.0（Frozen）
+- `reference/bazi/` 独立实现 + 契约审计 + 等价测试（Stage 3, 复用 Qimen 流程）
 
 ---
 
