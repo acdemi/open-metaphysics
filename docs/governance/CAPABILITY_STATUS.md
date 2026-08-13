@@ -13,7 +13,7 @@
 |--------|--------|----------|----------------|-----------|------|
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
-| **Ziwei** | Implemented | 无 | 无 | 无 | 33（12 + 21 Phase 6.7.1） |
+| **Ziwei** | **Reference Certified** | 草案 `ziwei:behavior:0.1.0-draft`（BC-001~014, Freeze Review PASS） | 24（candidate, 等价 24/24） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
 
@@ -52,6 +52,19 @@
 > **IMPLEMENTED**（记录: `docs/governance/ACP/`）; Engine **v0.3.0**;
 > 快照/校验测试迁移; 全仓库 578/578 全绿; Ziwei 规则集无 ACP 阻塞,
 > Phase 6.7.2 向量生成可按修订规则集启动。状态维持 **Implemented**。
+> **Phase 6.7.2**: Golden Vector 生成（2026-08-13）—— 24 个规范性向量
+> `docs/ziwei/golden_vectors.json`（Engine v0.3.0 输出生成, status=candidate,
+> 17/17 规则覆盖 + A-1/A-2 专项 PASS）+ 回归测试 7 例; 全仓库 585/585 全绿。
+> 状态维持 **Implemented**。
+> **Phase 6.7.3**: Freeze Review & Gate（2026-08-13）—— 证据审查 6/6 PASS;
+> 边界裁定 A-3/A-4/A-6/A-7 全部 **FROZEN**（显式声明）; 17 规则终态
+> （3 IMPLEMENTED + 14 FROZEN）; Verdict **PASS** → 契约草案
+> `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT_DRAFT.md`（BC-001~014）。
+> 状态维持 **Implemented**。
+> **Phase 6.7.4**: Reference Certification（2026-08-13）—— `reference/ziwei/`
+> 独立实现（tables/astronomy/domain, 无 src 导入, 显式复用 reference/bazi
+> 共享原语）+ **24/24 Golden Vector 等价** + 4 例等价测试 + 14/14 BC 审计 +
+> 认证记录 → 状态升级 **Reference Certified**。
 
 ---
 
@@ -162,7 +175,11 @@ Schema 登记 + 变更政策生效 + 集成边界审查 PASS（
 
 **Status**:
 
-Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约草案 + Freeze Review, 均未完成）
+**Reference Certified**（Phase 6.7.4, 2026-08-13）
+—— 完整 Stage 0→3: Freeze Review PASS + 契约草案（BC-001~014）+ 24/24
+Golden Vector 等价 + Reference 独立实现（`reference/ziwei/`, 无 src 导入）+
+14/14 BC 审计。**未达 Integration Ready**（契约 v1.0.0 冻结 + Schema 登记 +
+变更政策生效, 待 Phase 6.7.5）。
 > Phase 7.0 评估（2026-08-09）: `docs/governance/ziwei/ZIWEI_CAPABILITY_ASSESSMENT.md`
 > + `ZIWEI_RULE_INVENTORY.md`（ZW-001~017）+ `ZIWEI_TEST_COVERAGE_REVIEW.md`
 > + `ZIWEI_CROSS_DOMAIN_PRECHECK.md`（ZB-01~09 / ZQ-01~04 差异登记）
@@ -182,28 +199,33 @@ Implemented（Stage 1 满足; **未升级** —— Contract Candidate 需契约�
 
 **Contract Layer**:
 
-无契约/无 Golden Vectors。Phase 6.7.1 规则裁定工件（**Draft, 未冻结**）:
-- `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）
-- `ZIWEI_RULE_DECISION.md`（ZW-001~017: **14 Freeze Candidate / 3 IMPLEMENTED**;
-  Phase 6.7.1.5 裁定 + Phase 6.7.1.6 实施, 完整记录见
-  `ZIWEI_DECISION_RESOLUTION.md` + `docs/governance/ACP/ACP-ZW-001~004.md`）
-- `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md`（ZB-01~09 / ZQ-01~04）
-- `ZIWEI_GOLDEN_VECTOR_READINESS.md`（24 候选矩阵, 未生成正式向量）
+- **契约草案**: `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT_DRAFT.md`（`ziwei:behavior:0.1.0-draft`,
+  BC-001~014, 2026-08-13, Freeze Review PASS; **未冻结**, 正式化须人工 Gate）
+- **Golden Vectors**: `docs/ziwei/golden_vectors.json`（**24**, candidate,
+  Engine v0.3.0 生成, 机器回归 24/24）
+- 规则裁定工件: `ZIWEI_ALGORITHM_ASSUMPTIONS.md`（ZW-A1~A15）/
+  `ZIWEI_RULE_DECISION.md`（ZW-001~017: **3 IMPLEMENTED + 14 FROZEN**）/
+  `ZIWEI_DECISION_RESOLUTION.md` + `docs/governance/ACP/ACP-ZW-001~004.md` /
+  `ZIWEI_CROSS_DOMAIN_BOUNDARIES.md`（ZB-01~09 / ZQ-01~04）/
+  `ZIWEI_GOLDEN_VECTOR_READINESS.md`
 
 **Reference Layer**:
 
-无（无 `reference/ziwei/` 独立实现）
+- `reference/ziwei/`（tables / astronomy / domain, **独立实现, 无 src 导入**;
+  共享原语显式复用 `reference/bazi/*`——立春界/干支/纳音）
+- `reference/tests/test_ziwei_equivalence.py`（4 例: 24/24 等价 / 独立性 /
+  确定性 / 序列化）
+- 审计: `docs/governance/ziwei/ZIWEI_REFERENCE_AUDIT.md`（**14/14 PASS**）;
+  认证: `ZIWEI_REFERENCE_CERTIFICATION.md`
 
-**下一步（Phase 6.7.2 Golden Vector Generation 入口条件）**:
+**下一步（Reference Certified 退出条件 → Integration Ready）**:
 
-- ~~算法完全审计~~ ✅（`ZIWEI_ALGORITHM_AUDIT.md`, F-1~F-11）
-- ~~规则登记 + 裁定~~ ✅（ZW-001~017; Phase 6.7.1.5 完成四项裁定）
-- ~~测试缺口补全~~ ✅（+21, 33 例全绿）
-- ~~ACP 执行（4 项）~~ ✅（Phase 6.7.1.6 全部 IMPLEMENTED, Engine v0.3.0;
-  定局表生成式 / 廉贞 -8 / 输入校验 / sxtwl==2.0.7）—— **无阻塞**
-- ⏳ Phase 6.7.2: Golden Vector 生成（按修订后规则集 + v0.3.0 采样,
-  24 候选矩阵见 `ZIWEI_GOLDEN_VECTOR_READINESS.md`）
-- ⏳ Phase 6.7.3: Freeze Review & Contract Draft
+- ~~算法审计 + 规则裁定~~ ✅（F-1~F-11; 4 项 ACP 实施, Engine v0.3.0）
+- ~~Golden Vector 生成~~ ✅（24 向量, Phase 6.7.2）
+- ~~Freeze Review + 契约草案~~ ✅（PASS, BC-001~014, Phase 6.7.3）
+- ~~Reference 独立实现 + 等价 + 审计~~ ✅（24/24 等价, 14/14 PASS, Phase 6.7.4）
+- ⏳ Phase 6.7.5: 契约正式冻结（v1.0.0）+ Schema 登记 + 变更政策生效
+  → **Integration Ready**（完整生命周期, 对齐 Qimen/BaZi）
 
 ---
 
