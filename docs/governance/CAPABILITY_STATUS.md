@@ -16,6 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei 试点 20/12/3） | — | — | 10（pipeline 回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -70,6 +71,13 @@
 > Check 8/8 + Schema 登记确认（SCHEMAS.md §3.2）+ 变更政策生效 +
 > 集成边界审查 7/7（`ZIWEI_INTEGRATION_READINESS.md`）→ 状态升级
 > **Integration Ready**（完整生命周期完成, 与 Qimen/BaZi 并列）。
+> **Phase 7.0**: Knowledge Pipeline Validation（2026-08-13）—— `knowledge/`
+> 试点语料（Ziwei 20 节点/12 关系/3 引用）+ 确定性 Pipeline + KB-001~020
+> 校验 + 10 回归测试（报告:
+> `docs/governance/knowledge/KNOWLEDGE_SPRINT_0_REPORT.md`）→
+> Knowledge Layer 状态: Architecture **FROZEN**（未变）/ Pipeline
+> **VALIDATED** / Corpus **PARTIAL**（仅指针更新, 不升级——引用层不产生
+> 计算输出）。
 
 ---
 

@@ -1,0 +1,56 @@
+# KnowledgeNode — 十神（ten_god）试点子集
+# 注: 十神为子平概念，本试点含少量跨系统概念节点以验证多系统 metadata；
+# 语料主体仍为 Ziwei 试点（来源: 《渊海子平》）。
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+
+nodes:
+  - id: kn:ten_god:zhengguan
+    node_type: ten_god
+    name_cn: 正官
+    name_en: zheng_guan
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 克我者阴阳相异为正官，主贵气、规范与事业约束。
+    tags: [十神, 克我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 克我, yin_yang: 异 }
+  - id: kn:ten_god:qisha
+    node_type: ten_god
+    name_cn: 七杀
+    name_en: qi_sha
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 克我者阴阳相同为七杀，主魄力、压力与权势。
+    tags: [十神, 克我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 克我, yin_yang: 同 }
+  - id: kn:ten_god:zhengyin
+    node_type: ten_god
+    name_cn: 正印
+    name_en: zheng_yin
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 生我者阴阳相异为正印，主学识、庇护与名誉。
+    tags: [十神, 生我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 生我, yin_yang: 异 }
+  - id: kn:ten_god:pianyin
+    node_type: ten_god
+    name_cn: 偏印
+    name_en: pian_yin
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 生我者阴阳相同为偏印，主偏才、学术与孤独。
+    tags: [十神, 生我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 生我, yin_yang: 同 }
+  - id: kn:ten_god:bijian
+    node_type: ten_god
+    name_cn: 比肩
+    name_en: bi_jian
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://github.com/mymmscs/books", credibility: 0.8 }
+    interpretation: 与我同者（同阴阳）为比肩，主自立、竞争与手足。
+    tags: [十神, 同我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 同我, yin_yang: 同 }
