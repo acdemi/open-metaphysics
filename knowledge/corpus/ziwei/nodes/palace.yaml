@@ -52,3 +52,73 @@ nodes:
     tags: [十二宫]
     confidence: 0.9
     attributes: { palace_kind: 财帛 }
+  - id: kn:palace:ji_e
+    node_type: palace
+    name_cn: 疾厄宫
+    name_en: health_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 疾厄宫主身体健康、疾病倾向与灾厄。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 疾厄 }
+  - id: kn:palace:qianyi
+    node_type: palace
+    name_cn: 迁移宫
+    name_en: travel_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 迁移宫主外出、环境变动与际遇。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 迁移 }
+  - id: kn:palace:nupu
+    node_type: palace
+    name_cn: 奴仆宫
+    name_en: friends_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 奴仆宫主下属、朋友与社交关系。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 奴仆 }
+  - id: kn:palace:guanlu
+    node_type: palace
+    name_cn: 官禄宫
+    name_en: career_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 官禄宫主事业、职位与功名。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 官禄 }
+  - id: kn:palace:tianzhai
+    node_type: palace
+    name_cn: 田宅宫
+    name_en: property_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 田宅宫主房产、祖业与家庭环境。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 田宅 }
+  - id: kn:palace:fude
+    node_type: palace
+    name_cn: 福德宫
+    name_en: fortune_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 福德宫主精神享受、福分与内心世界。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 福德 }
+  - id: kn:palace:fumu
+    node_type: palace
+    name_cn: 父母宫
+    name_en: parents_palace
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 十二宫释义, author: 罗洪先辑, credibility: 0.8 }
+    interpretation: 父母宫主父母、长辈与遗传影响。
+    tags: [十二宫]
+    confidence: 0.9
+    attributes: { palace_kind: 父母 }
