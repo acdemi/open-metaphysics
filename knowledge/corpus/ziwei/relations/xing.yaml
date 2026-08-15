@@ -1,0 +1,64 @@
+# KnowledgeRelation — 地支三刑（xing, 5 条, 原文验证）
+# Phase 7.1.4B Gate C — Tier 1 证据驱动: 仅采纳 渊海子平（wikisource 通行本）
+# 原文可验证的关系。原文核验:
+#   「忌寅刑巳、巳刑申、申刑寅」（论大运篇）
+#   「子卯相刑门户，全无礼德」（论命细法篇）
+# 未验证候选（丑戌未恃势之刑 / 六害全部配对）→ 拒绝并记录 GAP-10。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+
+relations:
+  - id: rel:xing:yin_si
+    source_node_id: kn:earthly_branch:yin
+    target_node_id: kn:earthly_branch:si
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "寅刑巳（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+  - id: rel:xing:si_shen
+    source_node_id: kn:earthly_branch:si
+    target_node_id: kn:earthly_branch:shen
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "巳刑申（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+  - id: rel:xing:shen_yin
+    source_node_id: kn:earthly_branch:shen
+    target_node_id: kn:earthly_branch:yin
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "申刑寅（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+  - id: rel:xing:zi_mao
+    source_node_id: kn:earthly_branch:zi
+    target_node_id: kn:earthly_branch:mao
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "子刑卯（子卯相刑门户, 全无礼德, 无礼之刑）"
+        source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+  - id: rel:xing:mao_zi
+    source_node_id: kn:earthly_branch:mao
+    target_node_id: kn:earthly_branch:zi
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卯刑子（子卯相刑门户, 全无礼德, 无礼之刑, 互刑）"
+        source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }

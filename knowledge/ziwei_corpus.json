@@ -2,19 +2,382 @@
   "metadata": {
     "corpus_id": "ziwei_pilot_v1",
     "counts": {
-      "nodes": 41,
-      "references": 7,
-      "relations": 18
+      "nodes": 53,
+      "references": 8,
+      "relations": 23
     },
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
     "source_digests": {
       "source_01.yaml": "1dd6851e4f4ad05ce69dc1a178251915c76bc1d545c009c65e37dc05457ad7be",
-      "source_02.yaml": "d6a6ebc82813b803b08dcff33294c924f09b6548f8ec629b10c2c4ee0b6af983"
+      "source_02.yaml": "a135dea3cb4da475c98c68df30d4735fb31a83469880c0bc6a1b347f9c6ace5c"
     },
     "status": "pilot"
   },
   "nodes": [
+    {
+      "attributes": {
+        "branch_index": 10,
+        "element": "水",
+        "zodiac": "鼠"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:zi",
+      "interpretation": "地支第一位，属水，主正北，冬令子月；为时辰之始（子时 23:00~00:59，契约 BC-004）。与卯相刑（无礼之刑）。",
+      "name_cn": "子",
+      "name_en": "zi",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "水",
+        "子时"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 11,
+        "element": "土",
+        "zodiac": "牛"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:chou",
+      "interpretation": "地支第二位，属土，主东北，冬末之月（隆冬建丑）；丑为金库、湿土。",
+      "name_cn": "丑",
+      "name_en": "chou",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "丑月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 0,
+        "element": "木",
+        "zodiac": "虎"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:yin",
+      "interpretation": "地支第三位，属木，主东北，春令寅月；艮宫之木，气聚三阳。紫微十二宫之起宫（寅=0，契约 BC-010）。寅刑巳、巳刑申、申刑寅（无恩之刑）。",
+      "name_cn": "寅",
+      "name_en": "yin",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "木",
+        "寅月",
+        "起宫"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 1,
+        "element": "木",
+        "zodiac": "兔"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:mao",
+      "interpretation": "地支第四位，属木，主正东，仲春卯月；与子相刑（子卯相刑门户，全无礼德）。",
+      "name_cn": "卯",
+      "name_en": "mao",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "木",
+        "卯月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 2,
+        "element": "土",
+        "zodiac": "龙"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:chen",
+      "interpretation": "地支第五位，属土，主东南，季春辰月；辰为水库、湿土。",
+      "name_cn": "辰",
+      "name_en": "chen",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "辰月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 3,
+        "element": "火",
+        "zodiac": "蛇"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:si",
+      "interpretation": "地支第六位，属火，主东南，孟夏巳月；巳为金长生。寅刑巳、巳刑申、申刑寅（无恩之刑）。",
+      "name_cn": "巳",
+      "name_en": "si",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "火",
+        "巳月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 4,
+        "element": "火",
+        "zodiac": "马"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:wu",
+      "interpretation": "地支第七位，属火，主正南，仲夏午月；午时（11:00~12:59）。与子为对宫冲位。",
+      "name_cn": "午",
+      "name_en": "wu",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "火",
+        "午月",
+        "午时"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 5,
+        "element": "土",
+        "zodiac": "羊"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:wei",
+      "interpretation": "地支第八位，属土，主西南，季夏未月；未为木库、燥土。",
+      "name_cn": "未",
+      "name_en": "wei",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "未月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 6,
+        "element": "金",
+        "zodiac": "猴"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:shen",
+      "interpretation": "地支第九位，属金，主西南，孟秋申月；申为水长生。寅刑巳、巳刑申、申刑寅（无恩之刑）。",
+      "name_cn": "申",
+      "name_en": "shen",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "金",
+        "申月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 7,
+        "element": "金",
+        "zodiac": "鸡"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:you",
+      "interpretation": "地支第十位，属金，主正西，仲秋酉月；酉时（17:00~18:59）。",
+      "name_cn": "酉",
+      "name_en": "you",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "金",
+        "酉月",
+        "酉时"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 8,
+        "element": "土",
+        "zodiac": "狗"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:xu",
+      "interpretation": "地支第十一位，属土，主西北，季秋戌月；戌为火库、燥土。",
+      "name_cn": "戌",
+      "name_en": "xu",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "戌月"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 9,
+        "element": "水",
+        "zodiac": "猪"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:hai",
+      "interpretation": "地支第十二位，属水，主西北，孟冬亥月；亥为木长生。",
+      "name_cn": "亥",
+      "name_en": "hai",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "地支",
+        "水",
+        "亥月"
+      ]
+    },
     {
       "attributes": {
         "element": "土",
@@ -1320,6 +1683,23 @@
       },
       "target_id": "rel:chong:taiyang_taiyin",
       "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "忌寅刑巳、巳刑申、申刑寅。（三刑原文, 支撑 rel:xing:yin_si / si_shen / shen_yin）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:yuanhai_sanxing",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:xing:yin_si",
+      "target_type": "relation"
     }
   ],
   "relations": [
@@ -1927,6 +2307,161 @@
       },
       "source_node_id": "kn:wuxing:jin",
       "target_node_id": "kn:wuxing:mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅刑巳（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:yin_si",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:yin",
+      "target_node_id": "kn:earthly_branch:si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳刑申（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:si_shen",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:si",
+      "target_node_id": "kn:earthly_branch:shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申刑寅（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:shen_yin",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:shen",
+      "target_node_id": "kn:earthly_branch:yin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "子刑卯（子卯相刑门户, 全无礼德, 无礼之刑）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论命细法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:zi_mao",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论命细法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:zi",
+      "target_node_id": "kn:earthly_branch:mao",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卯刑子（子卯相刑门户, 全无礼德, 无礼之刑, 互刑）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论命细法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:mao_zi",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论命细法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:mao",
+      "target_node_id": "kn:earthly_branch:zi",
       "weight": 1.0
     }
   ]
