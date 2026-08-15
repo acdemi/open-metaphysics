@@ -19,6 +19,7 @@
 | GAP-07 | 断事类（career/personality/marriage/health/wealth/annual_fortune/major_luck）依赖未实现能力（ZW-017 边界） | 8 种 node_type 第一波范围外 | 后续阶段（功能 Sprint 后） | 记录 |
 | GAP-08 | 用神类（yong_shen/xi_shen/ji_shen/tiao_hou）属子平体系, 无跨域授权 | 4 种 node_type 范围外 | 跨域授权（BaZi 语料阶段） | 记录 |
 | GAP-09 | 星曜级 xing（刑）/ hai（害）关系**无 Tier 1 来源支撑**（Phase 7.1.2 候选 9 条经契约 BC-012 数学验证 6 条不成立: 贪狼破军永不同宫/天梁巨门·太阳廉贞恒不相对/紫微破军·武曲七杀仅条件同宫无刑害语义等）; 冲刑害为**地支**关系, 而地支节点尚未创建（7.1.4） | Build Plan 24 关系目标无法达成 → 实际 18（he+3/chong+3 完成, xing/hai 缺口 6） | **Phase 7.1.4A（门 A Schema Admission）: ACP_DRAFTED → RESOLVED（无变更）** —— 审计确认 `earthly_branch` **已注册于冻结 KB-002**（任务书"无归属"前提不成立, 见 `docs/governance/ACP/ACP-SCHEMA-001_earthly_branch.md`）; Schema 阻塞移除; 剩余阻塞 = **门 C**（xing/hai 的 Tier 1 证据评估）+ **门 B**（12 地支节点生产授权, 7.1.4B） | 待门 B/C |
+| GAP-10 | 地支 六害（子未/丑午/寅巳/卯辰/申亥/酉戌）与 恃势之刑（丑戌未）**未能在可获取 Tier 1 文本中逐对验证**（渊海子平 wikisource 通行本: 六害仅出现术语、未列配对; 丑戌未刑组无原文; 三刑仅验证 寅巳申环 + 子卯互刑）——按 Gate C 证据规则**拒绝生产**, 不预设数量 | 门 C 产出 xing 5 条（寅巳申×3 + 子卯×2）, hai 0 条; 传统六害/恃势之刑缺失 9 条候选 | 后续: 以三命通会/五行精纪 等补充 Tier 1 来源后重新评估（新增来源须先入 Source Registry） | 待解决 |
 
 ---
 

@@ -1,0 +1,128 @@
+# KnowledgeNode — 地支（earthly_branch, 12 个）
+# Phase 7.1.4B Gate B — 节点本体生产（不包含刑冲合害关系, 由 Gate C 单独裁定）
+# 来源: 渊海子平（Tier 1, 论天干地支/地支藏遁歌; wikisource 通行本核验）
+#        + 紫微斗数全书（Tier 1, 十二宫地支应用 BC-010）
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+# 注: branch_index 遵循 Ziwei 契约 BC-010 约定（寅=0..丑=11）; 五行/生肖为经典常量。
+
+nodes:
+  - id: kn:earthly_branch:zi
+    node_type: earthly_branch
+    name_cn: 子
+    name_en: zi
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第一位，属水，主正北，冬令子月；为时辰之始（子时 23:00~00:59，契约 BC-004）。与卯相刑（无礼之刑）。
+    tags: [地支, 水, 子时]
+    confidence: 0.9
+    attributes: { branch_index: 10, element: 水, zodiac: 鼠 }
+  - id: kn:earthly_branch:chou
+    node_type: earthly_branch
+    name_cn: 丑
+    name_en: chou
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第二位，属土，主东北，冬末之月（隆冬建丑）；丑为金库、湿土。
+    tags: [地支, 土, 丑月]
+    confidence: 0.9
+    attributes: { branch_index: 11, element: 土, zodiac: 牛 }
+  - id: kn:earthly_branch:yin
+    node_type: earthly_branch
+    name_cn: 寅
+    name_en: yin
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第三位，属木，主东北，春令寅月；艮宫之木，气聚三阳。紫微十二宫之起宫（寅=0，契约 BC-010）。寅刑巳、巳刑申、申刑寅（无恩之刑）。
+    tags: [地支, 木, 寅月, 起宫]
+    confidence: 0.9
+    attributes: { branch_index: 0, element: 木, zodiac: 虎 }
+  - id: kn:earthly_branch:mao
+    node_type: earthly_branch
+    name_cn: 卯
+    name_en: mao
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第四位，属木，主正东，仲春卯月；与子相刑（子卯相刑门户，全无礼德）。
+    tags: [地支, 木, 卯月]
+    confidence: 0.9
+    attributes: { branch_index: 1, element: 木, zodiac: 兔 }
+  - id: kn:earthly_branch:chen
+    node_type: earthly_branch
+    name_cn: 辰
+    name_en: chen
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第五位，属土，主东南，季春辰月；辰为水库、湿土。
+    tags: [地支, 土, 辰月]
+    confidence: 0.9
+    attributes: { branch_index: 2, element: 土, zodiac: 龙 }
+  - id: kn:earthly_branch:si
+    node_type: earthly_branch
+    name_cn: 巳
+    name_en: si
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第六位，属火，主东南，孟夏巳月；巳为金长生。寅刑巳、巳刑申、申刑寅（无恩之刑）。
+    tags: [地支, 火, 巳月]
+    confidence: 0.9
+    attributes: { branch_index: 3, element: 火, zodiac: 蛇 }
+  - id: kn:earthly_branch:wu
+    node_type: earthly_branch
+    name_cn: 午
+    name_en: wu
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第七位，属火，主正南，仲夏午月；午时（11:00~12:59）。与子为对宫冲位。
+    tags: [地支, 火, 午月, 午时]
+    confidence: 0.9
+    attributes: { branch_index: 4, element: 火, zodiac: 马 }
+  - id: kn:earthly_branch:wei
+    node_type: earthly_branch
+    name_cn: 未
+    name_en: wei
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第八位，属土，主西南，季夏未月；未为木库、燥土。
+    tags: [地支, 土, 未月]
+    confidence: 0.9
+    attributes: { branch_index: 5, element: 土, zodiac: 羊 }
+  - id: kn:earthly_branch:shen
+    node_type: earthly_branch
+    name_cn: 申
+    name_en: shen
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第九位，属金，主西南，孟秋申月；申为水长生。寅刑巳、巳刑申、申刑寅（无恩之刑）。
+    tags: [地支, 金, 申月]
+    confidence: 0.9
+    attributes: { branch_index: 6, element: 金, zodiac: 猴 }
+  - id: kn:earthly_branch:you
+    node_type: earthly_branch
+    name_cn: 酉
+    name_en: you
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十位，属金，主正西，仲秋酉月；酉时（17:00~18:59）。
+    tags: [地支, 金, 酉月, 酉时]
+    confidence: 0.9
+    attributes: { branch_index: 7, element: 金, zodiac: 鸡 }
+  - id: kn:earthly_branch:xu
+    node_type: earthly_branch
+    name_cn: 戌
+    name_en: xu
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十一位，属土，主西北，季秋戌月；戌为火库、燥土。
+    tags: [地支, 土, 戌月]
+    confidence: 0.9
+    attributes: { branch_index: 8, element: 土, zodiac: 狗 }
+  - id: kn:earthly_branch:hai
+    node_type: earthly_branch
+    name_cn: 亥
+    name_en: hai
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十二位，属水，主西北，孟冬亥月；亥为木长生。
+    tags: [地支, 水, 亥月]
+    confidence: 0.9
+    attributes: { branch_index: 9, element: 水, zodiac: 猪 }
