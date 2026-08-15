@@ -120,7 +120,7 @@ def test_source_to_corpus_reproducible() -> None:
     first_text = OUTPUT.read_text(encoding="utf-8")
     doc = json.loads(first_text)
     digests = doc["metadata"]["source_digests"]
-    assert len(digests) == 2, "expected 2 source metadata files"
+    assert len(digests) >= 2, "expected at least 2 source metadata files"
     for path in (KNOWLEDGE_DIR / "sources" / "ziwei").glob("*.yaml"):
         assert hashlib.sha256(path.read_bytes()).hexdigest() == digests[path.name], (
             f"source digest mismatch: {path.name}"

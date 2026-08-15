@@ -2,15 +2,16 @@
   "metadata": {
     "corpus_id": "ziwei_pilot_v1",
     "counts": {
-      "nodes": 53,
-      "references": 8,
-      "relations": 23
+      "nodes": 63,
+      "references": 10,
+      "relations": 32
     },
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
     "source_digests": {
       "source_01.yaml": "1dd6851e4f4ad05ce69dc1a178251915c76bc1d545c009c65e37dc05457ad7be",
-      "source_02.yaml": "a135dea3cb4da475c98c68df30d4735fb31a83469880c0bc6a1b347f9c6ace5c"
+      "source_02.yaml": "a135dea3cb4da475c98c68df30d4735fb31a83469880c0bc6a1b347f9c6ace5c",
+      "source_03.yaml": "c91636d9cd74874872c60688595a5319ce34db13429183d786c73dc8b757129e"
     },
     "status": "pilot"
   },
@@ -376,6 +377,306 @@
         "地支",
         "水",
         "亥月"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "stem_index": 0,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:jia",
+      "interpretation": "天干第一位，阳木，主参天大树、开拓。五行属木，阳干。",
+      "name_cn": "甲",
+      "name_en": "jia",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "木",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "stem_index": 1,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:yi",
+      "interpretation": "天干第二位，阴木，主花草藤蔓、柔韧。五行属木，阴干。",
+      "name_cn": "乙",
+      "name_en": "yi",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "木",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "stem_index": 2,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bing",
+      "interpretation": "天干第三位，阳火，主太阳之火、光明。五行属火，阳干。",
+      "name_cn": "丙",
+      "name_en": "bing",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "火",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "stem_index": 3,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:ding",
+      "interpretation": "天干第四位，阴火，主灯烛之火、温文。五行属火，阴干。",
+      "name_cn": "丁",
+      "name_en": "ding",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "火",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "stem_index": 4,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:wu",
+      "interpretation": "天干第五位，阳土，主城墙之土、厚重。五行属土，阳干。",
+      "name_cn": "戊",
+      "name_en": "wu",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "土",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "stem_index": 5,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:ji",
+      "interpretation": "天干第六位，阴土，主田园之土、包容。五行属土，阴干。",
+      "name_cn": "己",
+      "name_en": "ji",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "土",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "stem_index": 6,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:geng",
+      "interpretation": "天干第七位，阳金，主刀剑之金、刚锐。五行属金，阳干。",
+      "name_cn": "庚",
+      "name_en": "geng",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "金",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "stem_index": 7,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:xin",
+      "interpretation": "天干第八位，阴金，主首饰之金、细腻。五行属金，阴干。",
+      "name_cn": "辛",
+      "name_en": "xin",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "金",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "stem_index": 8,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:ren",
+      "interpretation": "天干第九位，阳水，主江河之水、奔流。五行属水，阳干。",
+      "name_cn": "壬",
+      "name_en": "ren",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "水",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "stem_index": 9,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:gui",
+      "interpretation": "天干第十位，阴水，主雨露之水、润泽。五行属水，阴干。",
+      "name_cn": "癸",
+      "name_en": "gui",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论天干地支暗藏总诀",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "天干",
+        "水",
+        "阴"
       ]
     },
     {
@@ -1700,6 +2001,40 @@
       },
       "target_id": "rel:xing:yin_si",
       "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "丑顺至戌，戌顺至未，极十数而为恃势之刑。丑恃旺水刑戌中之墓火；戌恃六甲之尊刑未六癸之卑；未有旺土，复恃势刑丑中之旺水。（支撑 rel:xing:chou_xu / xu_wei / wei_chou）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_shishi_xing",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "target_id": "rel:xing:chou_xu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "子未相害者，谓未旺土，亥子旺水，名势家相害。丑午相害…寅巳相害…卯辰相害…申亥相害…酉戌相害。（六害六配对原文，支撑 rel:hai:* 全部六条）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_liuhai",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "target_id": "rel:hai:zi_wei",
+      "target_type": "relation"
     }
   ],
   "relations": [
@@ -1997,6 +2332,285 @@
       },
       "source_node_id": "kn:main_star:taiyang",
       "target_node_id": "kn:main_star:taiyin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "丑刑戌（恃势之刑: 丑恃旺水刑戌中之墓火; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:chou_xu",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:chou",
+      "target_node_id": "kn:earthly_branch:xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "戌刑未（恃势之刑: 戌为六甲之尊，刑未六癸之卑; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:xu_wei",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:xu",
+      "target_node_id": "kn:earthly_branch:wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "未刑丑（恃势之刑: 未有旺土，复恃势刑丑中之旺水; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:xing:wei_chou",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:wei",
+      "target_node_id": "kn:earthly_branch:chou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "子未相害（六害: 未旺土与亥子旺水，名势家相害，故子见未则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:zi_wei",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:zi",
+      "target_node_id": "kn:earthly_branch:wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "丑午相害（六害: 午以旺火凌丑死金，名官鬼相害，故丑见午则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:chou_wu",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:chou",
+      "target_node_id": "kn:earthly_branch:wu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "寅巳相害（六害: 名恃临官擅能而进相害，况刑在其中——寅巳兼具刑害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:yin_si",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:yin",
+      "target_node_id": "kn:earthly_branch:si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "卯辰相害（六害: 卯以旺木凌辰死土，此以少凌长相害，故辰见卯则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:mao_chen",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:mao",
+      "target_node_id": "kn:earthly_branch:chen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "申亥相害（六害: 名恃临官，竞嫉才能，争进相害，申见亥、亥见申均为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:shen_hai",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:shen",
+      "target_node_id": "kn:earthly_branch:hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "酉戌相害（六害: 戌以死火害酉旺金，此嫉妒相害，故酉人见戌则凶）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:hai:you_xu",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:you",
+      "target_node_id": "kn:earthly_branch:xu",
       "weight": 1.0
     },
     {
