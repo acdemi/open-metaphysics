@@ -16,7 +16,8 @@ jobs:
       - run: uv sync --all-extras
       - run: uv run pytest -q
       - name: Conformance Suite
-        run: uv run python -c "from reference.conformance_runner import ConformanceRunner, ReferenceAdapter; r = ConformanceRunner().run(ReferenceAdapter(), 'reference', '1.0.0'); assert r.certified, f'Conformance failed: {r.failed} checks failed'"
+        run: |
+          uv run python -c "from reference.conformance_runner import ConformanceRunner, ReferenceAdapter; r = ConformanceRunner().run(ReferenceAdapter(), 'reference', '1.0.0'); assert r.certified, f'Conformance failed: {r.failed} checks failed'"
 
   rust:
     name: Rust Tests
