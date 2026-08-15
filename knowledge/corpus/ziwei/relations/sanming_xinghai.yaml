@@ -1,0 +1,107 @@
+# KnowledgeRelation — 地支恃势之刑（xing, 3 条）+ 六害（hai, 6 条）
+# Phase 7.1.5 Gate A — Tier 1 原文验证（三命通会/卷二, wikisource 通行本）:
+#   论三刑: 「丑顺至戌，戌顺至未，极十数而为恃势之刑」+「丑恃旺水刑戌中之墓火；
+#            戌恃六甲之尊刑未六癸之卑；未有旺土，复恃势刑丑中之旺水」
+#   论六害: 子未/丑午/寅巳/卯辰/申亥/酉戌 六配对逐字出现（见 evidence）
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+
+relations:
+  - id: rel:xing:chou_xu
+    source_node_id: kn:earthly_branch:chou
+    target_node_id: kn:earthly_branch:xu
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "丑刑戌（恃势之刑: 丑恃旺水刑戌中之墓火; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:xing:xu_wei
+    source_node_id: kn:earthly_branch:xu
+    target_node_id: kn:earthly_branch:wei
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "戌刑未（恃势之刑: 戌为六甲之尊，刑未六癸之卑; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:xing:wei_chou
+    source_node_id: kn:earthly_branch:wei
+    target_node_id: kn:earthly_branch:chou
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "未刑丑（恃势之刑: 未有旺土，复恃势刑丑中之旺水; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:zi_wei
+    source_node_id: kn:earthly_branch:zi
+    target_node_id: kn:earthly_branch:wei
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "子未相害（六害: 未旺土与亥子旺水，名势家相害，故子见未则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:chou_wu
+    source_node_id: kn:earthly_branch:chou
+    target_node_id: kn:earthly_branch:wu
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "丑午相害（六害: 午以旺火凌丑死金，名官鬼相害，故丑见午则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:yin_si
+    source_node_id: kn:earthly_branch:yin
+    target_node_id: kn:earthly_branch:si
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "寅巳相害（六害: 名恃临官擅能而进相害，况刑在其中——寅巳兼具刑害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:mao_chen
+    source_node_id: kn:earthly_branch:mao
+    target_node_id: kn:earthly_branch:chen
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "卯辰相害（六害: 卯以旺木凌辰死土，此以少凌长相害，故辰见卯则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:shen_hai
+    source_node_id: kn:earthly_branch:shen
+    target_node_id: kn:earthly_branch:hai
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "申亥相害（六害: 名恃临官，竞嫉才能，争进相害，申见亥、亥见申均为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+  - id: rel:hai:you_xu
+    source_node_id: kn:earthly_branch:you
+    target_node_id: kn:earthly_branch:xu
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "酉戌相害（六害: 戌以死火害酉旺金，此嫉妒相害，故酉人见戌则凶）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }

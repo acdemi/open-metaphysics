@@ -14,7 +14,8 @@
 |-----------|-------|-------------|-------------|-------------|--------------------|------------|------------------|
 | source_ziwei_01 | 紫微斗数全书 | 题「陈抟（希夷）」传；罗洪先辑（明） | classic_text | 南派三合（星曜体系主干） | 已登记（原文未入库, 章节引用） | 通行古籍本（public domain 范围） | 高: 星曜/宫位/五行生克权威出处; 星曜赋性部分流派注记多, 以原文为据 |
 | source_ziwei_02 | 紫微斗数全集 | 明清刻本（作者归属存疑） | classic_text | 南派三合 | 待获取（扫描本质量参差） | 待确认版本 | 中: 与全书互补; 部分章节错漏, 需校对（见 GAP-01） |
-| source_bazi_01 | 渊海子平 | 徐升（宋）；杨淙增校 | classic_text | 子平 | 已登记（mymmscs/books txt 镜像） | https://github.com/mymmscs/books | 高: 十神/生克权威出处（跨系统共享概念） |
+| source_bazi_01 | 渊海子平 | 徐升（宋）；杨淙增校 | classic_text | 子平 | 已登记（wikisource 通行本核验; mymmsc/books PDF 存在） | https://zh.wikisource.org/wiki/渊海子平 | 高: 十神/干支/三刑（寅巳申/子卯）权威出处（跨系统共享概念） |
+| source_sanming_01 | 三命通会 | 万民英（明） | classic_text | 子平（命理通论） | 已登记（wikisource 通行本核验） | https://zh.wikisource.org/wiki/三命通会 （卷二: 论六害/论三刑） | 高: 地支三刑（无恩/无礼/**恃势**）与**六害六配对**权威原文（Phase 7.1.5 Gate A 逐字验证） |
 
 ## Tier 2 — 流派注释 / 整理（school_commentary）
 
