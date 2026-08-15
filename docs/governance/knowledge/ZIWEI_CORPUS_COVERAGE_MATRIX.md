@@ -15,8 +15,8 @@
 | main_star | 14 | **14** ✅（Pilot 5 + 7.1.1 新增 9: 武曲/天同/太阴/贪狼/巨门/天相/天梁/七杀/破军; 武曲/贪狼含中州派 SchoolView） | 0 | ✅ Tier 1 + Tier 2 |
 | palace | 12 | **12** ✅（Pilot 5 + 7.1.1 新增 7: 疾厄/迁移/奴仆/官禄/田宅/福德/父母） | 0 | ✅ Tier 1 |
 | ten_god | 10 | **10** ✅（Pilot 5 + 7.1.1 新增 5: 劫财/食神/伤官/正财/偏财） | 0 | ✅ Tier 1（渊海子平） |
-| heavenly_stem | 10 | 0 | 10 | ✅ Tier 1（干支基础; 归 7.1.4） |
-| earthly_branch | 12 | 0 | 12 | ✅ Tier 1（归 7.1.4） |
+| heavenly_stem | 10 | 0 | 10 | ✅ Tier 1（干支基础; 归 7.1.4 扩展） |
+| earthly_branch | 12 | **12** ✅（Phase 7.1.4B: zi/chou/yin/mao/chen/si/wu/wei/shen/you/xu/hai, 渊海子平 Tier 1） | 0 | ✅ Tier 1（渊海子平, wikisource 通行本核验） |
 | auxiliary_star | 12-15 | 0 | 12-15 | ⚠️ 需来源确认（Tier 2+; GAP-05） |
 | shen_sha | 10-20 | 0 | 10-20 | ⚠️ 需来源确认（GAP-05） |
 | pattern | 20-50 | 0 | 20-50 | ⚠️ 高争议（SchoolView 多源; A-8） |
@@ -33,8 +33,8 @@
 | ke | 5 | 5 | 0 | ✅ |
 | he | 5 | **5** ✅（Pilot 2 + 7.1.2 新增 3: 紫微贪狼/日月同宫/武曲破军, 契约推导） | 0 | ✅ 契约 BC-012 推导 + 全书 |
 | chong | 3 | **3** ✅（天府七杀恒对宫/天相破军恒对宫/太阳太阴反背, 契约推导） | 0 | ✅ 契约 BC-012 推导 + 全书 |
-| xing | 3 | **0** ❌ | 3 | 🔴 星曜级刑无 Tier 1 来源（GAP-09; 待 7.1.4 地支节点后以地支三刑落地） |
-| hai | 3 | **0** ❌ | 3 | 🔴 星曜级害无 Tier 1 来源（GAP-09; 待 7.1.4 地支节点后以地支六害落地） |
+| xing | 3 | **5** ✅（Phase 7.1.4B 门 C: 寅巳申环×3 + 子卯互刑×2, 渊海子平原文验证） | 0 | ✅ Tier 1 原文验证 |
+| hai | 3 | **0** ❌ | 3 | 🔴 六害配对未在 Tier 1 文本逐对验证（GAP-10, 不制造） |
 | yinyong | 5 | 0 | 5 | ✅（引用关系, 随 7.1.3 references 建立） |
 | shuyu | 5 | 0 | 5 | ✅（星曜属五行/宫位归属） |
 | 其余 ×7（fuzhu/zhiyue/duiying/yingxiang/zengqiang/xueroo/zhixiang） | — | 0 | — | 🔴 后续阶段（解释域/断事） |
@@ -48,7 +48,7 @@
 
 | ref_type | 计划引用数（第一波） | 已覆盖（Phase 7.1.3 后） | 需新增 | 来源就绪 |
 |----------|---------------------|--------|--------|----------|
-| classic_text | 3 | **3** ✅（全书星曜/天府篇/官禄宫） | 0 | ✅ Tier 1 |
+| classic_text | 3 | **3** ✅（全书星曜/天府篇/官禄宫 + 渊海子平三刑原文） | 0 | ✅ Tier 1 |
 | school_commentary | 2 | **1** ⚠️（中州派, not_authoritative, GAP-02） | 1 | 🔴 无可核实来源（GAP-02 REMAINS OPEN） |
 | modern_interpretation | 1 | **1** ✅（iztro MIT, 贪狼偏移对照） | 0 | ✅ Tier 3 |
 | oral_tradition | 2 | **2** ✅（廉贞天府口诀 / 日月反背） | 0 | ✅ 契约 BC-012 交叉验证 |
@@ -57,10 +57,10 @@
 
 ## 4. 汇总
 
-| 类别 | 计划（第一波） | 已覆盖（Phase 7.1.3 后） | 缺口 |
+| 类别 | 计划（第一波） | 已覆盖（Phase 7.1.4B 后） | 缺口 |
 |------|---------------|-------------|------|
-| nodes | 41（wuxing/main_star/palace/ten_god） | **41** ✅ | 0 |
-| relations | 24（sheng/ke/he/chong/xing/hai） | **18**（sheng 5/ke 5/he 5/chong 3） | 6（xing 3 + hai 3, GAP-09） |
-| references | 8（3/2/1/2） | **7**（classic 3/school 1⚠️/modern 1/oral 2） | 1（school, GAP-02 REMAINS OPEN） |
+| nodes | 41 + 地支 12 = 53 | **53** ✅（41 + 12） | 0 |
+| relations | 24 + 地支 xing/hai（证据驱动） | **23**（sheng 5/ke 5/he 5/chong 3/xing 5） | 六害 6 + 恃势刑 3（GAP-10, 证据未验证） |
+| references | 8（3/2/1/2） | **8**（classic 4/school 1⚠️/modern 1/oral 2） | 1（school, GAP-02 REMAINS OPEN） |
 
 > 干支（22 节点）+ 其余关系/引用在 7.1.4 扩展与后续阶段按 Scope/GAP 推进。
