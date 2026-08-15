@@ -1,0 +1,12 @@
+# KnowledgeReference — Phase 7.1.4B 新增（1 条）
+# 渊海子平 三刑 原文引用（Gate C 证据追溯）
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:yuanhai_sanxing
+    target_type: relation
+    target_id: rel:xing:yin_si
+    ref_type: classic_text
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: "忌寅刑巳、巳刑申、申刑寅。（三刑原文, 支撑 rel:xing:yin_si / si_shen / shen_yin）"
+    credibility: 0.8
