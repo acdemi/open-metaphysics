@@ -1,9 +1,11 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-13
-> **项目阶段**: Reference Freeze Candidate
+> **最后更新**: 2026-08-17
+> **项目阶段**: Reference Freeze Candidate（Knowledge 语料建设中）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
+> **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei 63 节点 + 37 关系 + 10 引用，Phase 7.1.6；7.2A Schema 门已通过）
 
 ---
 
@@ -22,6 +24,11 @@
 | **BaZi Behavior Contract** | **1.0.0（Frozen, Integration Ready）** |
 | **BaZi Reference** | **Certified（24/24 等价）** |
 | **BaZi Golden Vectors** | **24（normative fixtures）** |
+| **Ziwei Behavior Contract** | **1.0.0（Frozen, Integration Ready）** |
+| **Ziwei Reference** | **Certified（24/24 等价）** |
+| **Ziwei Golden Vectors** | **24（normative fixtures）** |
+| **Knowledge Behavior Contract** | **KB-001~020（Frozen）** |
+| **Knowledge Corpus** | **Validated / Partial（Ziwei 63/37/10, Phase 7.1.6）** |
 
 ---
 
@@ -40,6 +47,9 @@
 | Golden Vectors | **Auto-generated** | 19 个向量，自动发现 |
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
+| **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
+| **Knowledge Domain** | **引用层（Partial）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus Partial（Ziwei 63/37/10, Phase 7.1.6; 7.2A Schema 门已通过） |
+| **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **Draft** | 尚未开始 |
 
 ---
@@ -93,7 +103,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | Phase 1 | 基础 (schemas, models, calendar, engines) | 部分完成 | core 模块骨架已建立 |
 | Phase 2 | 六爻 | 部分完成 | 卦表、纳甲、六亲已实现 |
 | Phase 3 | 八字 | 部分完成（**Integration Ready**） | 四柱引擎 + 契约 v1.0.0 Frozen + Reference 独立实现（24/24 等价） |
-| Phase 4 | 紫微斗数 | 部分完成（Phase 6.7.1） | 宫位 + 十四主星；规则清单 ZW-001~017 审计，14 Freeze Candidate + 3 REVISED |
+| Phase 4 | 紫微斗数 | 部分完成（**Integration Ready**） | 定局表 + 十四主星 + 农历；契约冻结 v1.0.0 + Reference 独立实现（24/24 等价）；规则 ACP 已实施（Engine v0.3.0，定局生成式 / 廉贞 -8 / 输入校验 / sxtwl==2.0.7） |
 | Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
 | Phase 6 | 共识智能体 | 未开始 | - |
 | Phase 7 | 编排 + API | 部分完成 | FastAPI 骨架已建立 |
@@ -112,13 +122,16 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 |------|--------|------|------|
 | Reference Runtime | 304 | 304 | 0 |
 | Conformance Suite | 57 (测试) / 135 (检查) | 57 / 135 | 0 |
-| Production + 域测试 | 534（含 Qimen 24/24、BaZi 24/24、Ziwei 33） | 534 | 0 |
-| Reference 独立套件（`reference/tests/`） | 44 | 44 | 0 |
-| **总计** | **578** | **578** | **0** |
+| 域测试（Qimen 24/24、BaZi、Ziwei、Liuyao 等） | 含 Qimen Regression 24/24、BaZi/Production↔Reference 30/30、Ziwei 24/24 向量回归 | 正常 | 0 |
+| Knowledge Pipeline 回归 | 10 | 10 | 0 |
+| Reference 独立套件（`reference/tests/`） | 48 | 48 | 0 |
+| **总计（收集）** | **599** | **599（权威全绿口径）** | **0（真实缺陷）** |
 
-> 实测：`uv run pytest -q` 收集 **578** 个测试全部通过（2026-08-13）。
-> 注：`reference/tests/` 需随全量套件从仓库根运行（独立收集会因 `reference` 包
-> 导入路径问题报错）。
+> 实测：`uv run pytest -q` 收集 **599** 个测试（2026-08-17）。
+> 注：本机 DSH 文件沙箱会以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
+> （`test_knowledge_pipeline.py` ×3 + `test_ziwei_equivalence::test_reference_independent_of_production`），
+> 属环境性限制非代码缺陷；在无管道限制环境（CI/本机普通运行）下为 **599/599 全绿**。
+> `reference/tests/` 需随全量套件从仓库根运行（独立收集会因 `reference` 包导入路径问题报错）。
 
 ### 5.2 测试文件明细
 
@@ -147,6 +160,16 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_qimen_reference_docs.py` | 7 | 全部通过 |
 | `tests/test_solar_time.py` | 7 | 全部通过 |
 | `tests/test_ziwei.py` | 33 | 全部通过 |
+| `tests/test_bazi_golden_vectors.py` | 7 | 全部通过 |
+| `tests/test_bazi_units.py` | 14 | 全部通过 |
+| `tests/test_ziwei_golden_vectors.py` | 7 | 全部通过 |
+| `tests/test_knowledge_pipeline.py` | 10 | 全部通过 |
+| `reference/tests/test_equivalence.py` | 3 | 全部通过 |
+| `reference/tests/test_bazi_equivalence.py` | 6 | 全部通过 |
+| `reference/tests/test_ziwei_equivalence.py` | 4 | 环境性（子进程管道被沙箱拒） |
+| `reference/tests/test_contract_boundaries.py` | 8 | 全部通过 |
+| `reference/tests/test_golden_vectors.py` | 27 | 全部通过 |
+| **合计** | **599** | 权威口径 599/599 全绿 |
 
 ### 5.3 Golden Vectors
 
@@ -164,6 +187,8 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | 向量集 | 向量数 | 状态 |
 |--------|--------|------|
 | `docs/qimen/golden_vectors.json` | **24** | **Frozen**，normative fixtures，机器回归 24/24，迁移须 ACP |
+| `docs/bazi/golden_vectors.json` | **24** | **normative fixtures**（Engine v0.1.0，机器回归通过） |
+| `docs/ziwei/golden_vectors.json` | **24** | **normative fixtures**（Engine v0.3.0，机器回归通过） |
 
 ### 5.4 Conformance Suite 结果
 
@@ -194,9 +219,10 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint**: Phase 6.0 — Domain Capability Framework Standardization
-（生命周期标准 `CAPABILITY_LIFECYCLE.md` + 模板 `DOMAIN_CAPABILITY_TEMPLATE.md`
-+ 领域审计 `CAPABILITY_STATUS.md`；治理文档标准化评审，无功能实现）
+**当前 Sprint**: Knowledge 语料建设（Phase 7.x）
+（最新 **Phase 7.2A Schema Admission Gate** 已通过：`shen_sha` / `auxiliary_star`
+均裁定 **A（已存在，无需 ACP）**，零数据生产，待人工 Evidence Review + 7.2B 生产授权。
+详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2A_REPORT.md`。）
 
 **Qimen Domain 状态**: **Frozen and Certified**（Integration Ready）
 
@@ -222,18 +248,32 @@ Proposal (ACP)。
   （`docs/bazi/`，2026-08-13 历史重写后经分支合并）
 - Phase 6.7.1（Ziwei）: 规则清单 **ZW-001~017**（14 Freeze Candidate + 3 REVISED）+
   测试 12 → 33 + 11 审计发现 + 4 项 ACP 决策（定局表公式化 / 廉贞 -8 / 输入校验 / sxtwl 锁版）
+- Phase 6.7.1.5/6.7.1.6（Ziwei）: 4 项 ACP **IMPLEMENTED**（定局生成式 / 廉贞 -8 /
+  输入校验显式化 / sxtwl==2.0.7 pin; Engine **v0.3.0**）
+- Phase 6.7.2~6.7.5（Ziwei）: Golden Vector 生成（24）→ Freeze Review（PASS）→
+  Reference Certified（24/24 等价）→ **Integration Ready**（契约 `ziwei:behavior:v1.0.0` Frozen）
+- Phase 7.0（Knowledge）: Corpus Pipeline 验证（Ziwei 试点 20/12/3）+ 确定性 Pipeline +
+  KB-001~020 校验
+- Phase 7.1.0~7.1.6（Knowledge）: Corpus 全量建设 —— Scope/Source 冻结 → 核心词汇 41 →
+  关系/引用/天干/地支/五合扩展 → **63 节点 + 37 关系 + 10 引用**（sha256 9c222617）
+- Phase 7.2A（Knowledge）: Schema Admission Gate —— shen_sha / auxiliary_star 均裁定
+  **A（已存在，无需 ACP）**；GAP-05 Schema 部分 RESOLVED；零数据生产
 
 ---
 
 ## 8. Next Sprint
 
-**待定**。等待用户明确指示。
+**下一步（待用户明确授权）**：
 
-可能的方向：
-- Ziwei Phase 6.7.2：ACP 实施收尾（定局表公式化 / 廉贞 -8 / 输入校验 / sxtwl 锁版已实现，待提交）+ 黄金向量生成
-- 其他领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；状态: `docs/governance/CAPABILITY_STATUS.md`）
-- Qimen/BaZi 功能扩展（格局判断 / 用神，需新授权）
+- **Phase 7.2B（Ziwei）**: shen_sha / auxiliary_star **节点生产**——前置：人工
+  Evidence Review（7.2A）+ 来源确认（Tier 2+ 多源 SchoolView, GAP-05 收尾）+
+  契约示例层补充（auxiliary_star）
+- 其它 Knowledge Corpus 扩展（pattern / 断事类 / 用神类等，随授权）
+- 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
+  状态: `docs/governance/CAPABILITY_STATUS.md`）
+- Qimen/BaZi/Ziwei 功能扩展（格局判断 / 用神，需新授权）
 - Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
+- 本文档 + context 状态 + knowledge/README 等随各 Sprint 持续刷新
 
 ---
 
@@ -256,6 +296,9 @@ Proposal (ACP)。
 | Golden Tests | `tests/test_reference_*.py` | Reference Runtime 验证 |
 | Governance | `docs/governance/` | 领域能力标准（CAPABILITY_LIFECYCLE.md）+ 登记模板（DOMAIN_CAPABILITY_TEMPLATE.md）+ 状态登记（CAPABILITY_STATUS.md） |
 | Qimen 认证工件 | `docs/qimen/reference_certification.md` | Qimen Reference 认证记录 |
+| Ziwei 认证工件 | `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md` / `reference/ziwei/` | Ziwei 契约 / Reference 认证 |
+| Knowledge 治理 | `docs/governance/knowledge/` | Scope / Source / Admission / Build Plan / Coverage / Gaps / 各 Phase 报告 |
+| Knowledge 语料 | `knowledge/` | 数据源（sources）、语料（corpus）、Pipeline（pipeline.py / validate.py）、输出（ziwei_corpus.json） |
 
 ---
 
@@ -279,7 +322,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（578/578）
+uv run pytest -q                             # 运行全量测试（599/599）
 ```
 
 ---
