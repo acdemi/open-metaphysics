@@ -1,0 +1,15 @@
+# Source 03 — 《三命通会》
+
+> 试点来源元数据（原始数据引用，非数据本身）。
+> Phase 7.1.5 Gate A 新增登记（地支恃势之刑/六害 的 Tier 1 原文依据）。
+
+| 项 | 值 |
+|----|-----|
+| source_id | source_sanming_01 |
+| title | 三命通会 |
+| author | 万民英（明） |
+| school | 子平（命理通论） |
+| edition | 通行本（public domain 范围） |
+| url | https://zh.wikisource.org/wiki/三命通会 （卷二: 论六害 / 论三刑, 2026-08 核验） |
+| note | 地支 三刑（无恩/无礼/恃势）与 六害 的权威原文出处; 六害六配对与恃势之刑环逐字验证 |
+| digest_note | 版本追踪: 以本文件 + pipeline 输出 corpus checksum 为准 |

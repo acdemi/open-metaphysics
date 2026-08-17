@@ -1,0 +1,19 @@
+# KnowledgeReference — Phase 7.1.5 新增（2 条）
+# 三命通会 恃势之刑 / 六害 原文引用（Gate A 证据追溯）
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:sanming_shishi_xing
+    target_type: relation
+    target_id: rel:xing:chou_xu
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    passage: "丑顺至戌，戌顺至未，极十数而为恃势之刑。丑恃旺水刑戌中之墓火；戌恃六甲之尊刑未六癸之卑；未有旺土，复恃势刑丑中之旺水。（支撑 rel:xing:chou_xu / xu_wei / wei_chou）"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_liuhai
+    target_type: relation
+    target_id: rel:hai:zi_wei
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    passage: "子未相害者，谓未旺土，亥子旺水，名势家相害。丑午相害…寅巳相害…卯辰相害…申亥相害…酉戌相害。（六害六配对原文，支撑 rel:hai:* 全部六条）"
+    credibility: 0.8
