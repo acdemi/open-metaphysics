@@ -14,7 +14,7 @@
 | GAP-02 | 中州派讲义（王亭之）无授权数字版; 版次/页码 provenance 不完整 | school_commentary 引用（ref:school:zhongzhou_minggong）待补充 provenance; 7.1.3 school 槽位（+1 条）因此未生产 | **Phase 7.1.3 处理结果: REMAINS OPEN** —— 已核实公开来源无可补全信息, 不虚构; 该引用标记 **not_authoritative**（仅 Pilot 历史保留, 不作为正式依据）; 待可核实来源出现或用户降级决策 | 待解决 |
 | GAP-03 | Schema 无法表达「流派权重分歧的量化归属」（某解释属于哪派多重的判定） | 冲突处理依赖 SchoolView/evidence 人工赋权, 无机器可校验的归属规则 | Phase 8+（规范治理输入） | 记录（不修改 KB 规范） |
 | GAP-04 | ten_god 节点属 bazi 体系, 但当前仅 Ziwei Corpus 存在（跨系统归属无独立语料位置） | 10 个 ten_god 节点的语料归属待 BaZi Corpus 授权后统一 | Phase 7.1.1（bazi 侧登记）+ 后续 | 待解决（保留于 Ziwei Corpus 为共享概念, 标注 systems:[bazi]） |
-| GAP-05 | 神煞/辅星体系无单一权威来源（南派/北派/中州差异大） | auxiliary_star/shen_sha 阶段（7.1.4）延后, 需多源 SchoolView | Phase 7.1.4（来源确认后） | 待解决 |
+| GAP-05 | 神煞/辅星体系无单一权威来源（南派/北派/中州差异大） | auxiliary_star/shen_sha 阶段延后, 需多源 SchoolView | **Phase 7.2A（Schema Gate）: Schema 部分 RESOLVED** —— 三处冻结权威（KB-002 / reference/knowledge.py NodeType / knowledge_contract.json）交叉核对确认 `shen_sha` 与 `auxiliary_star` **均已注册**（裁定 A, 无需 ACP, 见 `ZIWEI_SCHEMA_ADMISSION_SHEN_SHA.md` / `ZIWEI_SCHEMA_ADMISSION_AUXILIARY_STAR.md`）; Schema 阻塞移除。**剩余阻塞 = 来源选定（Tier 2+ 多源 SchoolView）+ 生产授权（7.2B）** | 待生产授权 |
 | GAP-06 | pattern（格局）收录与解释域边界（A-8: Ziwei 格局链路断裂） | pattern 节点仅作知识收录, 无计算消费者; 收录必要性待解释域 Sprint 确认 | Phase 7.1.4+（解释域授权） | 记录 |
 | GAP-07 | 断事类（career/personality/marriage/health/wealth/annual_fortune/major_luck）依赖未实现能力（ZW-017 边界） | 8 种 node_type 第一波范围外 | 后续阶段（功能 Sprint 后） | 记录 |
 | GAP-08 | 用神类（yong_shen/xi_shen/ji_shen/tiao_hou）属子平体系, 无跨域授权 | 4 种 node_type 范围外 | 跨域授权（BaZi 语料阶段） | 记录 |
