@@ -1,0 +1,107 @@
+# KnowledgeNode — 天干（heavenly_stem, 10 个）
+# Phase 7.1.5 Gate B — 节点本体生产（不含五合等关系, 不越界）
+# 来源: 渊海子平（Tier 1, 论天干地支暗藏总诀/又地支藏遁歌; wikisource 通行本核验）
+# 规范前置（KB-002）: 冻结枚举类型名为 heavenly_stem（非 gans）——以冻结规范为准
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+
+nodes:
+  - id: kn:heavenly_stem:jia
+    node_type: heavenly_stem
+    name_cn: 甲
+    name_en: jia
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第一位，阳木，主参天大树、开拓。五行属木，阳干。
+    tags: [天干, 木, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 0, element: 木, yin_yang: 阳 }
+  - id: kn:heavenly_stem:yi
+    node_type: heavenly_stem
+    name_cn: 乙
+    name_en: yi
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第二位，阴木，主花草藤蔓、柔韧。五行属木，阴干。
+    tags: [天干, 木, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 1, element: 木, yin_yang: 阴 }
+  - id: kn:heavenly_stem:bing
+    node_type: heavenly_stem
+    name_cn: 丙
+    name_en: bing
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第三位，阳火，主太阳之火、光明。五行属火，阳干。
+    tags: [天干, 火, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 2, element: 火, yin_yang: 阳 }
+  - id: kn:heavenly_stem:ding
+    node_type: heavenly_stem
+    name_cn: 丁
+    name_en: ding
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第四位，阴火，主灯烛之火、温文。五行属火，阴干。
+    tags: [天干, 火, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 3, element: 火, yin_yang: 阴 }
+  - id: kn:heavenly_stem:wu
+    node_type: heavenly_stem
+    name_cn: 戊
+    name_en: wu
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第五位，阳土，主城墙之土、厚重。五行属土，阳干。
+    tags: [天干, 土, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 4, element: 土, yin_yang: 阳 }
+  - id: kn:heavenly_stem:ji
+    node_type: heavenly_stem
+    name_cn: 己
+    name_en: ji
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第六位，阴土，主田园之土、包容。五行属土，阴干。
+    tags: [天干, 土, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 5, element: 土, yin_yang: 阴 }
+  - id: kn:heavenly_stem:geng
+    node_type: heavenly_stem
+    name_cn: 庚
+    name_en: geng
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第七位，阳金，主刀剑之金、刚锐。五行属金，阳干。
+    tags: [天干, 金, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 6, element: 金, yin_yang: 阳 }
+  - id: kn:heavenly_stem:xin
+    node_type: heavenly_stem
+    name_cn: 辛
+    name_en: xin
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第八位，阴金，主首饰之金、细腻。五行属金，阴干。
+    tags: [天干, 金, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 7, element: 金, yin_yang: 阴 }
+  - id: kn:heavenly_stem:ren
+    node_type: heavenly_stem
+    name_cn: 壬
+    name_en: ren
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第九位，阳水，主江河之水、奔流。五行属水，阳干。
+    tags: [天干, 水, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 8, element: 水, yin_yang: 阳 }
+  - id: kn:heavenly_stem:gui
+    node_type: heavenly_stem
+    name_cn: 癸
+    name_en: gui
+    systems: [ziwei]
+    source: { text: 渊海子平, chapter: 论天干地支暗藏总诀, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第十位，阴水，主雨露之水、润泽。五行属水，阴干。
+    tags: [天干, 水, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 9, element: 水, yin_yang: 阴 }
