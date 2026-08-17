@@ -3,7 +3,7 @@
 > 领域能力成熟度跟踪（Domain Maturity Tracking）— 唯一权威状态登记
 > 状态模型与迁移规则: `docs/governance/CAPABILITY_LIFECYCLE.md`
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
-> 更新: 2026-08-09（Phase 6.0 标准化评审）
+> 更新: 2026-08-17（Phase 7.2A Schema Admission Gate）
 
 ---
 
@@ -89,6 +89,18 @@
 > （第一波: 41 节点 + 24 关系 + 8 引用; 构建序列 7.1.1~7.1.6）。
 > Knowledge Layer 状态: Architecture **FROZEN** / Pipeline **VALIDATED** /
 > Corpus **PARTIAL**（Scope 已冻结, 语料数量未变; 仍为引用层, 不升级）。
+> **Phase 7.1.2~7.1.6**: Ziwei Relations & References 生产（2026-08-13）——
+> 7.1.2 he/chong 关系（18 关系, xing/hai 缺口 GAP-09）; 7.1.3 引用与 provenance
+> （+4 引用, GAP-02 REMAINS OPEN）; 7.1.4B 地支 12 节点 + xing 5（GAP-09 关闭）;
+> 7.1.5 天干 10 节点 + 三命通会 xing 3 / hai 6（GAP-10 CLOSED）; 7.1.6 五合 5
+> （he_wu_he）→ Corpus **63 节点 / 37 关系 / 10 引用**（sha256 9c222617）。
+> **Phase 7.2A**: Schema Admission Gate（2026-08-17）—— `shen_sha` 与
+> `auxiliary_star` 两类型经 KB-002 / `reference/knowledge.py::NodeType` /
+> `knowledge_contract.json` 三处冻结权威交叉核对均裁定 **A（已存在, 无需 ACP）**;
+> 零数据生产; **GAP-05 Schema 部分 RESOLVED**（剩余阻塞 = 来源选定 + 7.2B 生产授权）;
+> 报告 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2A_REPORT.md`。
+> Knowledge Layer 状态: Architecture **FROZEN** / Pipeline **VALIDATED** /
+> Corpus **PARTIAL**（Ziwei 63/37/10; Schema 已进 7.2B 前; 仍为引用层, 不升级）。
 
 ---
 
