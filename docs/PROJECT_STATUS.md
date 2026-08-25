@@ -258,6 +258,12 @@ Proposal (ACP)。
   关系/引用/天干/地支/五合扩展 → **63 节点 + 37 关系 + 10 引用**（sha256 9c222617）
 - Phase 7.2A（Knowledge）: Schema Admission Gate —— shen_sha / auxiliary_star 均裁定
   **A（已存在，无需 ACP）**；GAP-05 Schema 部分 RESOLVED；零数据生产
+- Phase 7.2B（Knowledge, 2026-08-17）: shen_sha / auxiliary_star **证据驱动生产
+  —— 0 产出**（三命通会/渊海子平 webfetch 失败 → GAP-13; 紫微全书原文未入库 +
+  全集未获取 → GAP-12）; Corpus 维持 63/37/10
+- Phase 7.3（Knowledge, 2026-08-25）: Source Acquisition & Evidence Availability
+  —— 来源状态登记（SOURCE_STATUS.md, 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+
+  webfetch 阻塞 → **0 生产**; 语料 sha 规范化 LF 口径 b1b8f90a（内容不变 63/37/10）
 
 ---
 
@@ -265,9 +271,9 @@ Proposal (ACP)。
 
 **下一步（待用户明确授权）**：
 
-- **Phase 7.2B（Ziwei）**: shen_sha / auxiliary_star **节点生产**——前置：人工
-  Evidence Review（7.2A）+ 来源确认（Tier 2+ 多源 SchoolView, GAP-05 收尾）+
-  契约示例层补充（auxiliary_star）
+- **Phase 7.3+（Knowledge）**: shen_sha / auxiliary_star **生产重试**——前置：
+  紫微全书原文入库 / 紫微全集获取（GAP-01）/ webfetch 可用（GAP-12/GAP-13）/
+  或用户授权降级证据策略（7.2B 报告 §16）
 - 其它 Knowledge Corpus 扩展（pattern / 断事类 / 用神类等，随授权）
 - 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
   状态: `docs/governance/CAPABILITY_STATUS.md`）
