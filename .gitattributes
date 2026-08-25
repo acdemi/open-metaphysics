@@ -1,3 +1,5 @@
 # EOL normalization policy (Phase 7.1.4A+ commit-hygiene fix, 2026-08-17)
 # context/*.md 归档类文件: 强制 CRLF 工作区 / LF 规范存储, 消除 EOL 翻转噪音
 context/*.md text eol=crlf
+# knowledge 语料 JSON: 规范 LF 存储（消除 sha 口径歧义, 2026-08-25）
+knowledge/**/*.json text eol=lf
