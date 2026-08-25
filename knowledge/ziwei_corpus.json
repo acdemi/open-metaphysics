@@ -9,7 +9,7 @@
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
     "source_digests": {
-      "source_01.yaml": "1dd6851e4f4ad05ce69dc1a178251915c76bc1d545c009c65e37dc05457ad7be",
+      "source_01.yaml": "6c27dfda7b32c9b6b251f239b6c84bdda882d142d417f220b3057a7820d77121",
       "source_02.yaml": "a135dea3cb4da475c98c68df30d4735fb31a83469880c0bc6a1b347f9c6ace5c",
       "source_03.yaml": "56f2e5c6e29dfab9757d8101ec15368106981ed61ad7656780366d44ab35806c"
     },
