@@ -1,0 +1,3 @@
+# EOL normalization policy (Phase 7.1.4A+ commit-hygiene fix, 2026-08-17)
+# context/*.md 归档类文件: 强制 CRLF 工作区 / LF 规范存储, 消除 EOL 翻转噪音
+context/*.md text eol=crlf
