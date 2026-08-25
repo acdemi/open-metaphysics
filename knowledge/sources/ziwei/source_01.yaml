@@ -11,6 +11,9 @@
 | author | 题「陈抟（希夷）」传；罗洪先辑（明） |
 | school | 紫微斗数（南派三合） |
 | edition | 通行古籍本（public domain 范围） |
-| url | null（未收录全文镜像；引用以章节/页码为据） |
+| url | https://zh.wikisource.org/wiki/紫微斗數全書 |
+| acquisition_status | discovered_blocked  # 非 ingested |
+| evidence_status | not_ready |
+| blocker | webfetch_transport_error |
 | note | 星曜/宫位/五行生克之权威出处；「紫微在子午，廉贞天府同度辰戌」口诀出处之一 |
 | digest_note | 版本追踪：以本文件 + pipeline 输出 corpus checksum 为准（无外部文本 hash） |
