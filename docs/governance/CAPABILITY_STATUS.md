@@ -16,7 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.1.6）; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变）; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
