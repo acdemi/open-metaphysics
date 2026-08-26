@@ -2,7 +2,7 @@
 
 > 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：**Qimen Domain Frozen and Certified**（契约 v1.0.0 + Reference 认证 + 双实现验证）。
+> 当前开发位置：**Knowledge Corpus 建设（Phase 7.3 完成；7.3+ shen_sha/auxiliary_star 生产重试待授权）**（三大计算域 Qimen/BaZi/Ziwei 已 **Frozen & Certified / Integration Ready**）。
 
 ## A. 两条时间线
 
@@ -33,7 +33,7 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Phase 6.0 | Domain Capability Framework Standardization（生命周期标准 + 状态模型 + 模板 + 领域审计） | 完成 | - |
 | Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
 
-**当前开发位置**: **Qimen Domain Frozen and Certified**（Integration Ready）。
+**当前开发位置**: **Knowledge Corpus 建设（Phase 7.3 完成，7.3+ 待授权）**（Qimen/BaZi/Ziwei 三大计算域已 Integration Ready / Certified）。
 **领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /
 5 阶段），其他领域（BaZi/Ziwei/Liuyào）均处于 Implemented，按标准逐级契约化。
 

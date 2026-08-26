@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-17
+> **最后更新**: 2026-08-25
 > **项目阶段**: Reference Freeze Candidate（Knowledge 语料建设中）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
@@ -279,7 +279,7 @@ Proposal (ACP)。
   状态: `docs/governance/CAPABILITY_STATUS.md`）
 - Qimen/BaZi/Ziwei 功能扩展（格局判断 / 用神，需新授权）
 - Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
-- 本文档 + context 状态 + knowledge/README 等随各 Sprint 持续刷新
+- 本文档 + docs/governance/CAPABILITY_STATUS.md + knowledge/README.md 等随各 Sprint 持续刷新
 
 ---
 
