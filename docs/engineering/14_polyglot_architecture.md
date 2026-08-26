@@ -155,9 +155,9 @@ service RuleEngineService {
 }
 
 service CalendarService {
-  rpc SolarTerms(YearRequest) returns (SolarTermsResponse);
-  rpc LunarDate(SolarDateRequest) returns (LunarDateResponse);
-  rpc TrueSolarTime(TimeRequest) returns (TrueSolarTimeResponse);
+  rpc SolarTerms(SolarTermsRequest) returns (SolarTermsResponse);
+  rpc LunarDate(LunarDateRequest) returns (LunarDateResponse);
+  rpc TrueSolarTime(TrueSolarTimeRequest) returns (TrueSolarTimeResponse);
 }
 ```
 
