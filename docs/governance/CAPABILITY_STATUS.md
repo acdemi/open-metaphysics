@@ -3,7 +3,7 @@
 > 领域能力成熟度跟踪（Domain Maturity Tracking）— 唯一权威状态登记
 > 状态模型与迁移规则: `docs/governance/CAPABILITY_LIFECYCLE.md`
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
-> 更新: 2026-08-17（Phase 7.2A Schema Admission Gate）
+> 更新: 2026-08-25（Phase 7.3 Source Acquisition）
 
 ---
 
@@ -16,7 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变）; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变））; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -101,6 +101,13 @@
 > 报告 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2A_REPORT.md`。
 > Knowledge Layer 状态: Architecture **FROZEN** / Pipeline **VALIDATED** /
 > Corpus **PARTIAL**（Ziwei 63/37/10; Schema 已进 7.2B 前; 仍为引用层, 不升级）。
+> **Phase 7.2B**: shen_sha / auxiliary_star 证据驱动生产（2026-08-17）—— Tier 1 原文
+> 不可达（三命通会/渊海子平 webfetch 失败 → GAP-13；紫微全书未入库 → GAP-12、
+> 全集未获取 → GAP-01）→ **0 生产**; Corpus 维持 63/37/10（sha256 9c222617）。
+> **Phase 7.3**: Source Acquisition & Evidence Availability（2026-08-25）—— 来源状态登记
+> （SOURCE_STATUS.md, 四来源 FETCH_BLOCKED/NOT_ATTEMPTED / Source Discovery 🟡
+> SOURCE_DISCOVERED）+ webfetch 4 次阻塞 → **0 生产**; 语料 sha 规范化 LF 口径
+> b1b8f90a（内容不变 63/37/10）; Knowledge Layer 状态维持 **PARTIAL**（引用层, 不升级）。
 
 ---
 
