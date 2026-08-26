@@ -7,12 +7,12 @@ package openmetaphysics.v1;
 // See: docs/engineering/14_polyglot_architecture.md (Rust Layer)
 
 service CalendarService {
-  rpc SolarTerms(YearRequest) returns (SolarTermsResponse);
-  rpc LunarDate(SolarDateRequest) returns (LunarDateResponse);
-  rpc TrueSolarTime(TimeRequest) returns (TrueSolarTimeResponse);
+  rpc SolarTerms(SolarTermsRequest) returns (SolarTermsResponse);
+  rpc LunarDate(LunarDateRequest) returns (LunarDateResponse);
+  rpc TrueSolarTime(TrueSolarTimeRequest) returns (TrueSolarTimeResponse);
 }
 
-message YearRequest {
+message SolarTermsRequest {
   int32 year = 1;
 }
 
@@ -27,7 +27,7 @@ message SolarTermsResponse {
   repeated SolarTerm terms = 2;
 }
 
-message SolarDateRequest {
+message LunarDateRequest {
   int32 year = 1;
   int32 month = 2;
   int32 day = 3;
@@ -40,7 +40,7 @@ message LunarDateResponse {
   bool is_leap_month = 4;
 }
 
-message TimeRequest {
+message TrueSolarTimeRequest {
   string utc_time = 1;
   double longitude = 2;
   bool daylight_saving = 3;
