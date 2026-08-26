@@ -102,8 +102,8 @@
 > Knowledge Layer 状态: Architecture **FROZEN** / Pipeline **VALIDATED** /
 > Corpus **PARTIAL**（Ziwei 63/37/10; Schema 已进 7.2B 前; 仍为引用层, 不升级）。
 > **Phase 7.2B**: shen_sha / auxiliary_star 证据驱动生产（2026-08-17）—— Tier 1 原文
-> 不可达（三命通会/渊海子平 webfetch 失败 → GAP-13；紫微全书未入库 + 全集未获取 →
-> GAP-12）→ **0 生产**; Corpus 维持 63/37/10（sha256 9c222617）。
+> 不可达（三命通会/渊海子平 webfetch 失败 → GAP-13；紫微全书未入库 → GAP-12、
+> 全集未获取 → GAP-01）→ **0 生产**; Corpus 维持 63/37/10（sha256 9c222617）。
 > **Phase 7.3**: Source Acquisition & Evidence Availability（2026-08-25）—— 来源状态登记
 > （SOURCE_STATUS.md, 四来源 FETCH_BLOCKED/NOT_ATTEMPTED / Source Discovery 🟡
 > SOURCE_DISCOVERED）+ webfetch 4 次阻塞 → **0 生产**; 语料 sha 规范化 LF 口径
