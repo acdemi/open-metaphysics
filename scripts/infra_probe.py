@@ -69,7 +69,9 @@ CONFIG: dict[str, Any] = {
 }
 
 #: Approved execution window for LIVE runs (UTC). Hard lock, see module docstring.
-EXECUTION_WINDOW_UTC: tuple[str, str] = ("2026-08-27T02:00:00Z", "2026-08-27T06:00:00Z")
+#: Window re-authorized by human CAO on 2026-08-29 (char-001); supersedes the
+#: expired 2026-08-27T02:00Z..06:00Z window. Thresholds unchanged.
+EXECUTION_WINDOW_UTC: tuple[str, str] = ("2026-08-30T00:00:00Z", "2026-08-30T00:30:00Z")
 
 #: Fixed synthetic payload - transport parameters identical to the judge path,
 #: but no real challenge case (protocol section 2).
@@ -768,9 +770,9 @@ def selftest() -> int:
     check("billing_via_status_code", is_auth_or_billing(FakeStatusError("Insufficient Balance")))
     check("plain_conn_error_not_billing", not is_auth_or_billing(ConnectionError("refused")))
 
-    # window guard math
-    inside = check_execution_window(_parse_iso("2026-08-27T03:00:00Z"))
-    outside = check_execution_window(_parse_iso("2026-08-27T07:00:00Z"))
+    # window guard math (samples tied to EXECUTION_WINDOW_UTC)
+    inside = check_execution_window(_parse_iso("2026-08-30T00:15:00Z"))
+    outside = check_execution_window(_parse_iso("2026-08-30T01:00:00Z"))
     check("window_inside_true", inside[0] is True)
     check("window_outside_false", outside[0] is False)
 
