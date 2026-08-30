@@ -69,12 +69,12 @@ CONFIG: dict[str, Any] = {
 }
 
 #: Approved execution window for LIVE runs (UTC). Hard lock, see module docstring.
-#: Window authorized by human CAO decision on 2026-08-29 (char-001), 2h duration
-#: per EXECUTION_WINDOW_CHANGE_PROPOSAL.md. Supersedes, in order: expired
-#: 2026-08-27T02:00Z..06:00Z -> interim 2026-08-30T00:00Z..00:30Z ->
-#: 2026-08-30T00:30Z..01:00Z (structurally insufficient, review ade5bb9).
-#: Thresholds and state machine unchanged.
-EXECUTION_WINDOW_UTC: tuple[str, str] = ("2026-08-30T02:00:00Z", "2026-08-30T04:00:00Z")
+#: Window authorized by human CAO on 2026-08-30 (char-001): immediate execution,
+#: 2h duration, supersedes the unused 02:00Z..04:00Z registration. Provenance
+#: chain: 2026-08-27T02:00Z..06:00Z (expired) -> 2026-08-30T00:00Z..00:30Z ->
+#: 2026-08-30T00:30Z..01:00Z -> 2026-08-30T02:00Z..04:00Z (expired unused) ->
+#: 2026-08-30T07:53Z..09:53Z. Thresholds and state machine unchanged.
+EXECUTION_WINDOW_UTC: tuple[str, str] = ("2026-08-30T07:53:00Z", "2026-08-30T09:53:00Z")
 
 #: Fixed synthetic payload - transport parameters identical to the judge path,
 #: but no real challenge case (protocol section 2).
@@ -774,8 +774,8 @@ def selftest() -> int:
     check("plain_conn_error_not_billing", not is_auth_or_billing(ConnectionError("refused")))
 
     # window guard math (samples tied to EXECUTION_WINDOW_UTC)
-    inside = check_execution_window(_parse_iso("2026-08-30T03:00:00Z"))
-    outside = check_execution_window(_parse_iso("2026-08-30T05:00:00Z"))
+    inside = check_execution_window(_parse_iso("2026-08-30T08:53:00Z"))
+    outside = check_execution_window(_parse_iso("2026-08-30T10:53:00Z"))
     check("window_inside_true", inside[0] is True)
     check("window_outside_false", outside[0] is False)
 
