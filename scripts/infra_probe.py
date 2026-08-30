@@ -46,7 +46,11 @@ from typing import Any
 
 CONFIG: dict[str, Any] = {
     "endpoint": "https://api.deepseek.com",
-    "model": "deepseek-chat",
+    # Model substituted by human CAO on 2026-08-30 (char-002 re-run after the
+    # HTTP 402 abort of char-001): deepseek-chat -> deepseek-v4-flash. ID
+    # verified via GET /models; precedent: INFRASTRUCTURE_INCIDENT_RECORD R3
+    # pressure probe (deepseek-v4-flash, 30/30). Thresholds below unchanged.
+    "model": "deepseek-v4-flash",
     "temperature": 0.1,
     "response_format": {"type": "json_object"},
     # PROPOSED values frozen by human review on 2026-08-25 - DO NOT MODIFY.
