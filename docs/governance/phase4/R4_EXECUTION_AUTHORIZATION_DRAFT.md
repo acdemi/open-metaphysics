@@ -17,11 +17,11 @@ R4（延续 R / R2 / R3 序列; 历史产物为外部 ACIS 归档, 本仓库仅�
 ## 2. Execution Window UTC
 
 ```text
-PROPOSED: 2 小时窗口（Option B, 见 R4_EXECUTION_PREP_AUDIT.md Task 3）
-START = <由人工 CAO 批准时指定>
-END   = START + 2h
+FROZEN per CAO-P4-R4EXEC-001（CAO 指令「晚上十二点」, 2h duration Option B）:
+START = 2026-08-30T16:00:00Z   （当地 UTC+8 = 2026-08-31 00:00, 晚上十二点）
+END   = 2026-08-30T18:00:00Z   （当地 UTC+8 = 2026-08-31 02:00）
 约束: 全部 R4 请求必须落在 [START, END) 内; 窗口外请求 = 越权。
-本草案不冻结任何窗口值。
+临近 END 未完成 → 按停止条件停止并保存已产生证据（runner 为 checkpointed）。
 ```
 
 ## 3. Model
@@ -128,13 +128,14 @@ LOCKED。本授权与 Knowledge Layer / 7.2B 无关。
 
 ---
 
-## 批准语句（人工填写）
+## 批准语句（已由人工 CAO 签发）
 
 ```text
 R4 EXECUTION AUTHORIZED
-批准人: ________    批准时间(UTC): ________
-START: ________    END: ________    Run ID: R4
-（签署本语句 = §1–§14 全部生效; 任何留白未填 = 不生效）
+批准人: 人工 CAO（本会话 CAO Decision 消息, Decision ID: CAO-P4-R4EXEC-001）
+批准时间(UTC): 2026-08-30（会话内签发; 精确时刻以消息时序为准）
+START: 2026-08-30T16:00:00Z    END: 2026-08-30T18:00:00Z    Run ID: R4
+（窗口值按 CAO 指令「晚上十二点」填定 = 当地午夜 00:00 UTC+8; §1–§14 全部生效）
 ```
 
 ## STOP
