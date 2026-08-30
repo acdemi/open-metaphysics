@@ -1,0 +1,150 @@
+{
+  "run_id": "char-002",
+  "final_status": "COMPLETED",
+  "started_utc": "2026-08-30T08:05:55.500157Z",
+  "finished_utc": "2026-08-30T08:37:20.124159Z",
+  "conditions_planned": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "conditions_executed": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "requests_total": 240,
+  "gates": [
+    {
+      "gate": "G1_connectivity",
+      "http_status": 200,
+      "detail": "http_2xx",
+      "passed": true
+    },
+    {
+      "gate": "G2_config_snapshot",
+      "passed": true,
+      "run_id": "char-002",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-v4-flash",
+      "api_key_source": "env:DEEPSEEK_API_KEY",
+      "api_key_fingerprint": "98d5b340390f",
+      "proxy_env_vars": {},
+      "launch_command": [
+        "E:\\knowledge_database\\open-metaphysics\\.venv\\Scripts\\python.exe",
+        "E:\\knowledge_database\\open-metaphysics\\scripts\\infra_probe.py",
+        "run",
+        "--run-id",
+        "char-002"
+      ],
+      "python_version": "3.11.15",
+      "platform": "Windows-10-10.0.26100-SP0",
+      "dry_run": false,
+      "execution_window_utc": [
+        "2026-08-30T07:53:00Z",
+        "2026-08-30T09:53:00Z"
+      ],
+      "thresholds_frozen": {
+        "X": 90,
+        "Y": 3,
+        "Z": 60,
+        "W": 5,
+        "Q0": 300,
+        "T_max": 900,
+        "N": 5,
+        "rolling_windows": [
+          1,
+          5,
+          10
+        ],
+        "conditions": {
+          "A": {
+            "interval": 30,
+            "count": 20
+          },
+          "B": {
+            "interval": 5,
+            "count": 40
+          },
+          "C": {
+            "interval": 1,
+            "count": 60
+          },
+          "D": {
+            "flow": [
+              "pause",
+              "probe",
+              "confirm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "gate": "G3_time_registration",
+      "passed": true,
+      "started_utc": "2026-08-30T08:05:55.500157Z"
+    }
+  ],
+  "config_snapshot": {
+    "gate": "G2_config_snapshot",
+    "passed": true,
+    "run_id": "char-002",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-v4-flash",
+    "api_key_source": "env:DEEPSEEK_API_KEY",
+    "api_key_fingerprint": "98d5b340390f",
+    "proxy_env_vars": {},
+    "launch_command": [
+      "E:\\knowledge_database\\open-metaphysics\\.venv\\Scripts\\python.exe",
+      "E:\\knowledge_database\\open-metaphysics\\scripts\\infra_probe.py",
+      "run",
+      "--run-id",
+      "char-002"
+    ],
+    "python_version": "3.11.15",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "dry_run": false,
+    "execution_window_utc": [
+      "2026-08-30T07:53:00Z",
+      "2026-08-30T09:53:00Z"
+    ],
+    "thresholds_frozen": {
+      "X": 90,
+      "Y": 3,
+      "Z": 60,
+      "W": 5,
+      "Q0": 300,
+      "T_max": 900,
+      "N": 5,
+      "rolling_windows": [
+        1,
+        5,
+        10
+      ],
+      "conditions": {
+        "A": {
+          "interval": 30,
+          "count": 20
+        },
+        "B": {
+          "interval": 5,
+          "count": 40
+        },
+        "C": {
+          "interval": 1,
+          "count": 60
+        },
+        "D": {
+          "flow": [
+            "pause",
+            "probe",
+            "confirm"
+          ]
+        }
+      }
+    }
+  }
+}

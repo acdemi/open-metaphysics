@@ -1,0 +1,70 @@
+{
+  "run_id": "char-002",
+  "window": "2026-08-30T07:53:00Z/2026-08-30T09:53:00Z",
+  "generated_at_utc": "2026-08-30T08:37:20.126165Z",
+  "dry_run": false,
+  "final_status": "COMPLETED",
+  "thresholds_frozen": {
+    "X": 90,
+    "Y": 3,
+    "Z": 60,
+    "W": 5,
+    "Q0": 300,
+    "T_max": 900,
+    "N": 5,
+    "rolling_windows": [
+      1,
+      5,
+      10
+    ]
+  },
+  "conditions": {
+    "A": {
+      "requests": 20,
+      "successes": 20,
+      "failures": 0,
+      "success_rate": 100.0,
+      "max_consecutive_failures": 0,
+      "trailing_failure_run_length": 0,
+      "S1_success_rate_ge_X": true,
+      "S2_max_consecutive_le_Y": true,
+      "S3_no_permanent_window": true,
+      "passed": true,
+      "stopped_by_failure_rule": false
+    },
+    "B": {
+      "requests": 40,
+      "successes": 40,
+      "failures": 0,
+      "success_rate": 100.0,
+      "max_consecutive_failures": 0,
+      "trailing_failure_run_length": 0,
+      "S1_success_rate_ge_X": true,
+      "S2_max_consecutive_le_Y": true,
+      "S3_no_permanent_window": true,
+      "passed": true,
+      "stopped_by_failure_rule": false
+    },
+    "C": {
+      "requests": 60,
+      "successes": 60,
+      "failures": 0,
+      "success_rate": 100.0,
+      "max_consecutive_failures": 0,
+      "trailing_failure_run_length": 0,
+      "pass_criteria": "NOT_APPLIED_OBSERVATIONAL",
+      "stopped_by_failure_rule": false
+    },
+    "D": {
+      "variant": "SUSTAINED_STRESS_C_DENSITY",
+      "recovery_latency_seconds": null,
+      "stable_recovery": null,
+      "S4_pass": null,
+      "note": "C finished without stop rule; D1/D2 NOT_TRIGGERED",
+      "probes_sent": 120
+    }
+  },
+  "notes": [
+    "facts and PASS/FAIL states only; architecture interpretation excluded (protocol section 0)"
+  ]
+}
