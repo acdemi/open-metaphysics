@@ -5,7 +5,7 @@
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
-> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei 63 节点 + 37 关系 + 10 引用；7.2A Schema 门通过，7.2B/7.3 因来源不可达 0 产出，**Phase 7.3.1 Tier 1 来源已获取并逐字核验（证据侧阻塞解除），仍未生产**）
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei **86 节点 + 37 关系 + 22 引用**；Phase 7.3.1 逐字证据 → Phase 7.2B-R 首批生产 23 节点（shen_sha 11 / auxiliary_star 12），逐字核验 23/23 PASS）
 
 ---
 
@@ -269,6 +269,10 @@ Proposal (ACP)。
   获取 + sha256 登记; 逐字核验 **36/36 义理断言 + 10/10 转录差异核验 PASS**
   → **GAP-12/GAP-13 证据侧阻塞解除**（EVIDENCE_VERIFIED）; **0 生产**（未获重跑授权）;
   语料维持 63/37/10（corpus sha b4af74ab, 仅 source_digests 同步）
+- Phase 7.2B-R（Knowledge, 2026-09-15）: **shen_sha / auxiliary_star 首批生产** ——
+  23 节点（auxiliary_star 12 + shen_sha 11）+ 12 条 classic_text 条目级引用
+  （含羊刃三源对照）; 语料 **86/37/22**（sha256 9a213728）; 逐节点原文关键句核验
+  **23/23 PASS**; 测试 599/599; GAP-05/12/13（限定范围）CLOSED
 
 ---
 
@@ -276,11 +280,12 @@ Proposal (ACP)。
 
 **下一步（待用户明确授权）**：
 
-- **Phase 7.2B 重跑（Knowledge）**: shen_sha / auxiliary_star **证据驱动生产**——
-  前置来源阻塞**已由 Phase 7.3.1 解除**（Tier 1 原文已获取并逐字核验）; 待人工裁定:
-  ① 重跑授权（D-1）② auxiliary_star 契约示例层是否先走 ACP（D-2）
-  ③ 抓取快照是否入库（D-3）④ 天乙贵人韵文口诀缺位处置（D-4）
-  （决策点详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_REPORT.md` §9）
+- **关系层生产（Knowledge）**: 神煞/辅星 ↔ 干支/主星 的关联是否生产——
+  需先裁定冻结 15 类 `relation_type` 能否无损表达定位关系（羊刃=禄前一辰 / 驿马=三合绝处）
+  （D-1，见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2B_RERUN_REPORT.md` §4）
+- **Corpus 扩展（Knowledge）**: 三命通会卷一~卷九 其余神煞（空亡/元辰/勾绞/灾煞/六厄/天罗地网/
+  十恶大败）与紫微斗数全书卷二/卷三 已获取未抽取部分（证据已在仓, 可直接生产）
+- **抓取快照入库（D-3）/ 天乙贵人韵文口诀（D-4）** 待裁定
 - **GAP-01（Knowledge）**: 《紫微斗數全集》版本核验是否推进（D-5）
 - 其它 Knowledge Corpus 扩展（pattern / 断事类 / 用神类等，随授权）
 - 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
