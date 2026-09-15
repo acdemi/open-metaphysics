@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "读路径缓存架构：浏览器 · API · Redis · PostgreSQL",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "read-path", "label": "主读路径", "focus": ["browser", "api", "redis", "postgres"], "note": "浏览器经 API 查询，缓存未命中时回源 PostgreSQL。" },
+      { "id": "cache-layer", "label": "缓存层", "focus": ["api", "redis"], "note": "API 先查 Redis，命中即返回，不触碰数据库。" },
+      { "id": "origin", "label": "回源与回填", "focus": ["redis", "postgres"], "note": "未命中回源取数，结果写回缓存并设置 TTL。" }
+    ]
+  },
+  "components": [
+    { "id": "browser", "type": "external", "label": "浏览器", "sublabel": "Web / 移动端", "pos": [40, 190], "size": [156, 66] },
+    { "id": "api", "type": "backend", "label": "API 服务", "sublabel": "HTTP / JSON", "pos": [262, 190], "size": [156, 66] },
+    { "id": "redis", "type": "database", "label": "Redis 缓存", "sublabel": "cache :6379", "tag": "Cache-Aside", "pos": [484, 190], "size": [156, 66] },
+    { "id": "postgres", "type": "database", "label": "PostgreSQL", "sublabel": "origin :5432", "tag": "唯一可信源", "pos": [706, 190], "size": [156, 66] }
+  ],
+  "connections": [
+    { "id": "browser-api", "from": "browser", "to": "api", "label": "HTTPS 请求", "variant": "emphasis" },
+    { "id": "api-redis", "from": "api", "to": "redis", "label": "先查缓存" },
+    { "id": "redis-postgres", "from": "redis", "to": "postgres", "label": "未命中回源", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "读路径", "items": ["浏览器发起 HTTPS 请求，API 服务鉴权并解析参数", "API 先查 Redis 缓存，命中即直接返回响应"] },
+    { "dot": "emerald", "title": "回源", "items": ["缓存未命中时回源 PostgreSQL 读取数据", "结果写回 Redis 并设置 TTL，后续请求即可命中"] },
+    { "dot": "amber", "title": "一致性", "items": ["PostgreSQL 是唯一可信数据源，缓存只做加速", "TTL 到期或写入失效后自动再次回源"] }
+  ]
+}
