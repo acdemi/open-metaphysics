@@ -1,11 +1,11 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-08-25
+> **最后更新**: 2026-09-15
 > **项目阶段**: Reference Freeze Candidate（Knowledge 语料建设中）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
-> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei 63 节点 + 37 关系 + 10 引用，Phase 7.1.6；7.2A Schema 门已通过）
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei 63 节点 + 37 关系 + 10 引用；7.2A Schema 门通过，7.2B/7.3 因来源不可达 0 产出，**Phase 7.3.1 Tier 1 来源已获取并逐字核验（证据侧阻塞解除），仍未生产**）
 
 ---
 
@@ -264,6 +264,11 @@ Proposal (ACP)。
 - Phase 7.3（Knowledge, 2026-08-25）: Source Acquisition & Evidence Availability
   —— 来源状态登记（SOURCE_STATUS.md, 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+
   webfetch 阻塞 → **0 生产**; 语料 sha 规范化 LF 口径 b1b8f90a（内容不变 63/37/10）
+- Phase 7.3.1（Knowledge, 2026-09-15）: **Tier 1 来源获取与逐字证据核验** ——
+  紫微斗數全書（卷一/二/三）、三命通會（卷一~九）、淵海子平 全部 **revision-pinned**
+  获取 + sha256 登记; 逐字核验 **36/36 义理断言 + 10/10 转录差异核验 PASS**
+  → **GAP-12/GAP-13 证据侧阻塞解除**（EVIDENCE_VERIFIED）; **0 生产**（未获重跑授权）;
+  语料维持 63/37/10（corpus sha b4af74ab, 仅 source_digests 同步）
 
 ---
 
@@ -271,9 +276,12 @@ Proposal (ACP)。
 
 **下一步（待用户明确授权）**：
 
-- **Phase 7.3+（Knowledge）**: shen_sha / auxiliary_star **生产重试**——前置：
-  紫微全书原文入库 / 紫微全集获取（GAP-01）/ webfetch 可用（GAP-12/GAP-13）/
-  或用户授权降级证据策略（7.2B 报告 §16）
+- **Phase 7.2B 重跑（Knowledge）**: shen_sha / auxiliary_star **证据驱动生产**——
+  前置来源阻塞**已由 Phase 7.3.1 解除**（Tier 1 原文已获取并逐字核验）; 待人工裁定:
+  ① 重跑授权（D-1）② auxiliary_star 契约示例层是否先走 ACP（D-2）
+  ③ 抓取快照是否入库（D-3）④ 天乙贵人韵文口诀缺位处置（D-4）
+  （决策点详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_REPORT.md` §9）
+- **GAP-01（Knowledge）**: 《紫微斗數全集》版本核验是否推进（D-5）
 - 其它 Knowledge Corpus 扩展（pattern / 断事类 / 用神类等，随授权）
 - 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
   状态: `docs/governance/CAPABILITY_STATUS.md`）
