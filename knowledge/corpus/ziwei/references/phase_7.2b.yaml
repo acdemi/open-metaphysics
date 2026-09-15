@@ -1,0 +1,91 @@
+# KnowledgeReference — Phase 7.2B-R 新增（11 条）
+# 目的: 为 7.2B-R 首批生产节点提供**条目级原文引用**（passage 逐字, Tier 1 可回溯）
+# 来源: 紫微斗数全书/卷一（revid 7913704）; 三命通会/卷三（revid 2184219）, 卷二（revid 2292392）; 渊海子平（revid 2593607）
+# 逐字核验: docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_EVIDENCE_DOSSIER.md（36/36 断言 PASS）
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:ziwei_wenchang
+    target_type: node
+    target_id: kn:auxiliary_star:wen_chang
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問文昌星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    passage: "答曰：文昌主科甲，守身命主人幽閑儒雅，清秀魁梧，博文廣記，機變異常，一舉成名，披緋衣紫，福壽雙全。縱四殺沖破不為下賤。"
+    credibility: 0.8
+  - reference_id: ref:classic:ziwei_lucun
+    target_type: node
+    target_id: kn:auxiliary_star:lu_cun
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問禄存星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    passage: "希夷先生答曰：禄存北斗第三星，真人之宿，主人贵爵，掌人寿基。帝相扶之施权，日月得之增辉。……十二宫中惟身命、田宅、财帛为要，主富。"
+    credibility: 0.8
+  - reference_id: ref:classic:ziwei_qingyang
+    target_type: node
+    target_id: kn:auxiliary_star:qing_yang
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問擎羊星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    passage: "希夷先生答曰：擎羊北斗之助星。守身命性粗行暴，孤单，视亲为疏，翻恩为怨。入庙性刚果决，机谋好勇，主权贵。……纵富贵不久亦不善终。"
+    credibility: 0.8
+  - reference_id: ref:classic:ziwei_lingxing
+    target_type: node
+    target_id: kn:auxiliary_star:ling_xing
+    ref_type: classic_text
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問铃星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    passage: "答曰：铃星乃南斗助星也。……大杀铃星将，南斗为从神，值人身命者，性格亦沉吟，形貌多异类，威势有声名，若与贪狼会，指日立边庭，庙地财官贵，陷地主孤贫。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yangren
+    target_type: node
+    target_id: kn:shen_sha:yang_ren
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论羊刃, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "《三车》云：“羊言刚也，刃者取宰割之义。”禄过则刃生；功成当退不退则过，越其分如羊之在刃，言有伤也。故羊刃常居禄前一辰。……子平以甲丙戊庚壬五阳干有刃，乙丁巳辛癸五阴干无刃，惟见伤官；与羊刃同祸，是指阴阳之阳，非牛羊之羊。（注: 原文「乙丁巳辛癸」之「巳」为转录字形讹误，对照卷六/渊海子平作「己」，见 dossier V-1）"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yangren_ge
+    target_type: node
+    target_id: kn:shen_sha:yang_ren
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷六·论阳刃, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷六", credibility: 0.8 }
+    passage: "阳者，阴阳之阳，刃者，刀刃之刃，即禄前一位，言旺越其分，故险。……惟甲丙戊庚壬五阳干有刃，乙丁己辛癸五阴干无刃，故曰阳刃。……阳刃有三，有劫财刃，甲见乙是也，不利财官格，有护禄刃；甲见卯是也，大利归禄格；有背禄刃，乙丙是也，大利去官留煞局。"
+    credibility: 0.8
+  - reference_id: ref:classic:yuanhai_yangren
+    target_type: node
+    target_id: kn:shen_sha:yang_ren
+    ref_type: classic_text
+    source: { text: 渊海子平, chapter: 论阳刃, author: "徐升", url: "https://zh.wikisource.org/wiki/淵海子平", credibility: 0.8 }
+    passage: "夫阳刃者，号天上之凶星，作人间之恶杀，以禄前一位是也；如甲禄在寅，卯为阳刃。……何谓阳刃？甲丙戊庚壬五阳有刃，乙丁己辛癸五阴无刃，故名阳刃。（跨源对照: 与三命通会卷六一致）"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yima
+    target_type: node
+    target_id: kn:shen_sha:yi_ma
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论驿马, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "所谓驿马者，乃先天三合数也……寅午戌生人，马在申而五阳干乘之……申子辰人，马在寅而五阳干乘之……巳酉丑人，马在亥而五阴干乘之……亥卯未人，马在巳而五阴干乘之。又曰：驿马者，三命中发用，喜庆之神。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_guiren
+    target_type: node
+    target_id: kn:shen_sha:tian_yi_gui_ren
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论天乙贵人, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "天乙者，乃天上之神，在紫微垣、阊阖门外，与太乙并列，事天皇大帝……其神最尊贵，所至之处，一切凶煞隐然而避。……《广录》云：甲阳木、戊阳土、庚阳金，皆喜土位。未者，土之正位；丑者，土安静之地，所以牛羊为贵。……乙者，阴木；巳者，阴土……所以鼠猴为贵。……六幸阴金，喜阳火生旺之地，故以马虎为贵。（注: 原文「六幸」为「六辛」转录讹误; 起例以散文表述, 未见韵文体口诀, 见 dossier L-3/V-4）"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_jiesha
+    target_type: node
+    target_id: kn:shen_sha:jie_sha
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论劫煞亡神, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "劫者，夺也，自外夺之之谓夺；亡者，失也，自内失之之谓亡。劫在五行绝处，亡在五行临官，俱属寅申巳亥。水绝在巳，申子辰以巳为劫煞……火绝在亥，寅午戌以亥为劫煞……金绝在寅，巳酉丑以寅为劫煞……木绝在申，亥卯未以申为劫煞。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_huagai
+    target_type: node
+    target_id: kn:shen_sha:hua_gai
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论将星华盖, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷二", credibility: 0.8 }
+    passage: "将星者，如将札中军也，故以三合中位谓之将星；化盖者，喻如宝盖，天有此星，其形如盖，常覆乎大帝之座，故以三合底处得库谓之华盖。……凡人命得华盖，多主孤寡，总贵亦不免孤独，作僧道艺术论。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_xianchi
+    target_type: node
+    target_id: kn:shen_sha:xian_chi
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论咸池, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷二", credibility: 0.8 }
+    passage: "《淮南子》曰：“日出扶桑，入于咸池。”故五行沐浴之地，名咸池。……寅午戌卯、已酉丑午、申子辰酉、亥卯未子即长生第二位沐浴之宫是也。一名败神，一名桃花煞。（注: 原文「已酉丑」为「巳酉丑」转录讹误, 见 dossier V-3）"
+    credibility: 0.8
