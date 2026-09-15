@@ -1,0 +1,130 @@
+# KnowledgeNode — 辅星与煞星（auxiliary_star, 12 个）
+# Phase 7.2B-R — 证据驱动生产（Tier 1 逐字核验完成后执行）
+# 来源: 《紫微斗数全书》卷一·諸星問答論（wikisource 通行本, 公有领域）
+#   revision pin: revid 7913704 (2026-08-07T05:47:26Z), sha256 9beb8038a8b82154d15d81c8ff822423d4f0c7c006f536a86552adeaa594818a
+#   逐字证据: docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_EVIDENCE_DOSSIER.md §1（机器抽取, 未改写）
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+# 写法约定: 原文为繁体（部分简体）, interpretation 统一以简体书写; provenance 记原文出处（chapter 精确到问答条目）
+# 边界: 本文件只含节点; 不含关系（关系需另行证据裁定, 见 Sprint 报告决策点）
+
+nodes:
+  - id: kn:auxiliary_star:wen_chang
+    node_type: auxiliary_star
+    name_cn: 文昌
+    name_en: wen_chang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問文昌星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 主科甲功名。守身命主人幽闲儒雅、清秀魁梧、博文广记、机变异常，一举成名，福寿双全；纵四杀冲破亦不为下贱；加权禄则厚重有师号。歌曰辰巳是旺地，利午嫌卯酉，喜金生人。
+    tags: [辅星, 文星, 吉星]
+    confidence: 0.85
+    attributes: { category: 文星, section: 卷一·諸星問答論, 原文关键句: "文昌主科甲，守身命主人幽閑儒雅", 旺地: 辰巳 }
+  - id: kn:auxiliary_star:wen_qu
+    node_type: auxiliary_star
+    name_cn: 文曲
+    name_en: wen_qu
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問文曲星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 属水，北斗第四星，主科甲文车之宿；与文昌同协，临身命作科第之客。与廉贞共处作公吏官，与太阴同行定系九流术士；怕逢破军、嫌遇贪狼；女命不宜逢，忌入土宫；若禄存、化禄来缠则不可作凶论。
+    tags: [辅星, 文星, 水]
+    confidence: 0.85
+    attributes: { category: 文星, element: 水, section: 卷一·諸星問答論, 原文关键句: "文曲属水，北斗第四星也，主科甲文车之宿" }
+  - id: kn:auxiliary_star:zuo_fu
+    node_type: auxiliary_star
+    name_cn: 左辅
+    name_en: zuo_fu
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問左辅所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 帝极主宰之星，守身命诸宫降福；主人形貌敦厚、慷慨风流。紫府禄权三合冲照主文武大贵；火忌冲破则虽富贵不久；僧道清闲，旺地封赠。
+    tags: [辅星, 吉星, 助星]
+    confidence: 0.85
+    attributes: { category: 助星, section: 卷一·諸星問答論, 原文关键句: "左辅帝极主宰之星，守身命诸宫降福" }
+  - id: kn:auxiliary_star:you_bi
+    node_type: auxiliary_star
+    name_cn: 右弼
+    name_en: you_bi
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問右弼所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 帝极主宰之星，守身命文墨精通；紫府吉星同垣则财官双美、文武双全；羊陀火忌冲破则以下局断之。女人贤良有志，纵四杀冲破亦不为下贱。
+    tags: [辅星, 吉星, 助星]
+    confidence: 0.85
+    attributes: { category: 助星, section: 卷一·諸星問答論, 原文关键句: "右弼帝极主宰之星，守身命文墨精通" }
+  - id: kn:auxiliary_star:tian_kui
+    node_type: auxiliary_star
+    name_cn: 天魁
+    name_en: tian_kui
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問天魁天钺星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 魁钺为斗中司科之星，又为上界和合之神。入命坐贵向贵，得左右吉聚无不富贵；魁临命、钺守身更迭相守，遇紫府日月昌曲左右权禄相凑，少年必聚美妻；遇大难必得贵人成就扶助。歌曰天乙贵人众所钦，命逢金带福弥深。
+    tags: [辅星, 吉星, 贵人]
+    confidence: 0.85
+    attributes: { category: 贵人星, section: 卷一·諸星問答論, 原文关键句: "魁钺斗中司科之星" }
+  - id: kn:auxiliary_star:tian_yue
+    node_type: auxiliary_star
+    name_cn: 天钺
+    name_en: tian_yue
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問天魁天钺星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 与天魁同为斗中司科之星、上界和合之神，主科名与贵人扶助。钺守身、魁临命则更迭相守；遇紫府日月昌曲左右权禄相凑则少年聚美妻；限步巡逢主女子添喜、功名有成；加恶杀亦为富贵，但不免私情淫佚。
+    tags: [辅星, 吉星, 贵人]
+    confidence: 0.85
+    attributes: { category: 贵人星, section: 卷一·諸星問答論, 原文关键句: "魁钺斗中司科之星" }
+  - id: kn:auxiliary_star:lu_cun
+    node_type: auxiliary_star
+    name_cn: 禄存
+    name_en: lu_cun
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問禄存星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 北斗第三星，真人之宿，主人贵爵，掌人寿基；十二宫中惟身命、田宅、财帛为要，主富；居迁移则佳；独守命而无吉化则为看财奴；最嫌落于陷空；守身命主人慈厚信直、通文济楚；紫府廉同会合作禄存上局。
+    tags: [辅星, 吉星, 财禄]
+    confidence: 0.85
+    attributes: { category: 禄星, section: 卷一·諸星問答論, 原文关键句: "禄存北斗第三星，真人之宿，主人贵爵，掌人寿基" }
+  - id: kn:auxiliary_star:tian_ma
+    node_type: auxiliary_star
+    name_cn: 天马
+    name_en: tian_ma
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問天马星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 诸宫各有制化，身命临之谓之驿马；喜禄存、紫府、昌曲守照为吉。与禄存同宫谓之禄马交驰（又曰折鞭马），紫府同宫谓之扶轝马，刑杀同宫谓之负尸马，火星同宫谓之战马，日月同宫谓雌雄马，逢空亡谓之死马亡马，遇陀罗谓之折足马——犯此数者俱主灾病。
+    tags: [辅星, 动星, 驿马]
+    confidence: 0.8
+    attributes: { category: 动星, section: 卷一·諸星問答論, 原文关键句: "如身命临之谓之驿马", note: "此为紫微斗数之天马; 子平驿马见 kn:shen_sha:yi_ma（另一体系, 不合并）" }
+  - id: kn:auxiliary_star:qing_yang
+    node_type: auxiliary_star
+    name_cn: 擎羊
+    name_en: qing_yang
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問擎羊星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 北斗之助星。守身命性粗行暴、孤单，视亲为疏、翻恩为怨；入庙性刚果决、机谋好勇、主权贵；居卯酉作祸兴殃、刑克极甚；六甲六庚生人必有凶祸，纵富贵不久亦不善终；加火忌劫空冲破则残疾、离祖、刑克六亲。化气曰刑。
+    tags: [煞星, 刑]
+    confidence: 0.85
+    attributes: { category: 煞星, 化气: 刑, section: 卷一·諸星問答論, 原文关键句: "擎羊北斗之助星" }
+  - id: kn:auxiliary_star:tuo_luo
+    node_type: auxiliary_star
+    name_cn: 陀罗
+    name_en: tuo_luo
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問陀罗星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 北斗之助星。守身命心行不正、暗泪长流、性刚威猛、作事进退，横成横破、飘荡不定；与贪狼同度因酒色以成痨，与火铃同处疥疫不死；居疾厄暗疾缠绵；辰戌丑未生人为福；在庙财官论。化气曰忌。
+    tags: [煞星, 忌]
+    confidence: 0.85
+    attributes: { category: 煞星, 化气: 忌, section: 卷一·諸星問答論, 原文关键句: "陀罗北斗之助星" }
+  - id: kn:auxiliary_star:huo_xing
+    node_type: auxiliary_star
+    name_cn: 火星
+    name_en: huo_xing
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問火星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 南斗浮星，号大杀将。若主身命位则诸宫不可临；性气沉毒、刚强出众；更与羊陀会则襁褓必灾迍、过房出外养；东南利、不利西北生；若得贪狼会于旺地则贵无伦、封侯居上将；三方无杀破则中年后始兴。女人旺地洁、陷地主邪淫。
+    tags: [煞星, 火, 南斗]
+    confidence: 0.85
+    attributes: { category: 煞星, element: 火, section: 卷一·諸星問答論, 原文关键句: "火星乃南斗浮星也" }
+  - id: kn:auxiliary_star:ling_xing
+    node_type: auxiliary_star
+    name_cn: 铃星
+    name_en: ling_xing
+    systems: [ziwei]
+    source: { text: 紫微斗数全书, chapter: 卷一·諸星問答論·問铃星所主若何, author: "罗洪先辑", url: "https://zh.wikisource.org/wiki/紫微斗數全書/卷一", credibility: 0.8 }
+    interpretation: 南斗助星，号大杀铃星将、南斗为从神。值人身命者性格沉吟、形貌多异类、威势有声名；若与贪狼会则指日立边庭；庙地财官贵、陷地主孤贫；羊陀凑合则其刑大不清、孤单弃祖、残伤带疾；七杀主阵亡、破军财屋倾；若逢居旺地则富贵不可论。
+    tags: [煞星, 火, 南斗]
+    confidence: 0.85
+    attributes: { category: 煞星, element: 火, section: 卷一·諸星問答論, 原文关键句: "铃星乃南斗助星也" }

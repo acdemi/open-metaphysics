@@ -1,0 +1,125 @@
+# KnowledgeNode — 神煞（shen_sha, 11 个）
+# Phase 7.2B-R — 证据驱动生产（Tier 1 逐字核验完成后执行）
+# 来源（Tier 1, wikisource 通行本, 公有领域）:
+#   《三命通会》卷三·论十干禄/论驿马/论天乙贵人/论劫煞亡神/论羊刃/论孤辰寡宿
+#   《三命通会》卷二·论将星华盖/论咸池；卷六·论阳刃
+#   《渊海子平》论阳刃/论劫财（跨源对照）
+#   revision pin: 三命通会/卷三 revid 2184219; 卷二 revid 2292392; 卷六 revid 845352; 渊海子平 revid 2593607
+#   逐字证据: docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_EVIDENCE_DOSSIER.md §2（机器抽取, 未改写）
+# 规范: KN-001~003 / reference/knowledge.py::KnowledgeNode
+# 跨系统说明（GAP-04 同类处置）: 神煞属子平（八字）体系, systems 标 [bazi] 并在 Ziwei 语料中作共享概念保留
+# 边界: 本文件只含节点; 不含关系（关系须另行证据裁定, 见 Sprint 报告决策点）
+
+nodes:
+  - id: kn:shen_sha:yang_ren
+    node_type: shen_sha
+    name_cn: 羊刃
+    name_en: yang_ren
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论羊刃, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 又名阳刃。禄过则刃生——羊言刚、刃取宰割之义，故羊刃常居禄前一辰，言旺越其分而有伤。子平以甲丙戊庚壬五阳干有刃，乙丁己辛癸五阴干无刃（惟见伤官与羊刃同祸）。卷六格论又分三刃：劫财刃、护禄刃、背禄刃；并谓「阳刃冲合岁君，勃然祸至」。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.85
+    schools:
+      - { school: ziping, interpretation: 五阳干有刃、五阴干无刃，阴干惟以伤官同祸（渊海子平「甲丙戊庚壬五阳有刃，乙丁己辛癸五阴无刃，故名阳刃」）。, source: { text: 渊海子平, chapter: 论阳刃, author: "徐升", url: "https://zh.wikisource.org/wiki/淵海子平", credibility: 0.8 }, weight: 0.8 }
+    attributes: { 起例: 禄前一辰, 适用: 甲丙戊庚壬五阳干, 三刃: "劫财刃/护禄刃/背禄刃", section: "卷三·论羊刃；卷六·论阳刃", 原文关键句: "故羊刃常居禄前一辰" }
+  - id: kn:shen_sha:lu_shen
+    node_type: shen_sha
+    name_cn: 禄神
+    name_en: lu_shen
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论十干禄, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 禄者爵禄也，当得势而享乃谓之禄；十干就支神为禄，谓禄随旺行。起例：甲禄寅、乙禄卯、庚禄申、辛禄酉、壬禄亥、癸禄子，丙禄巳、丁禄午、戊寄巳、己寄午（巳午乃火旺之乡，子随母得禄之义）。辰戌为魁罡、丑未为天乙贵人出入之门，故四宫无禄。
+    tags: [神煞, 子平, 吉神]
+    confidence: 0.85
+    attributes: { 起例: "甲寅/乙卯/丙巳/丁午/戊寄巳/己寄午/庚申/辛酉/壬亥/癸子", 四宫无禄: "辰戌丑未", section: 卷三·论十干禄, 原文关键句: "禄，爵禄也，当得势而享，乃谓之禄" }
+  - id: kn:shen_sha:yi_ma
+    node_type: shen_sha
+    name_cn: 驿马
+    name_en: yi_ma
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论驿马, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 乃先天三合数所立：寅午戌火局驿马在申，申子辰水局驿马在寅，巳酉丑金局驿马在亥，亥卯未木局驿马在巳（阳局从子顺行、阴局从午逆行）。为三命中发用、喜庆之神，君子常居荣位，小人主丰赡；大小运行年至之主得官及迁改之喜。另有十二马名目（款段/蹶蹄/折足/无粮/不出厅厩/嘶风/趋途/驮尸/食刍/乘轩/乘轺/无辔）。
+    tags: [神煞, 子平, 动星]
+    confidence: 0.85
+    attributes: { 起例: "寅午戌→申；申子辰→寅；巳酉丑→亥；亥卯未→巳", 十二马: "款段/蹶蹄/折足/无粮/不出厅厩/嘶风/趋途/驮尸/食刍/乘轩/乘轺/无辔", section: 卷三·论驿马, 原文关键句: "寅午戌生人，马在申" }
+  - id: kn:shen_sha:tian_yi_gui_ren
+    node_type: shen_sha
+    name_cn: 天乙贵人
+    name_en: tian_yi_gui_ren
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论天乙贵人, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 天乙乃天上之神，在紫微垣阊阖门外，与太乙并列，事天皇大帝，其神最尊贵，所至之处一切凶煞隐然而避。起例以取象散文表述：甲戊庚皆喜土位，未为土之正位、丑为土安静之地，故「牛羊为贵」；乙己喜申子生旺水土，故「鼠猴为贵」；丙丁以酉亥阴气和为贵、壬癸以巳卯阳气和为贵；六辛喜阳火生旺之地，故「马虎为贵」。
+    tags: [神煞, 子平, 吉神, 贵人]
+    confidence: 0.8
+    attributes: { 取象: "甲戊庚→牛羊；乙己→鼠猴；丙丁→猪鸡（酉亥）；壬癸→兔蛇（卯巳）；六辛→马虎", section: 卷三·论天乙贵人, 原文关键句: "其神最尊贵，所至之处，一切凶煞隐然而避", 限制: "本版本以散文表述起例, 未见韵文体口诀（dossier L-3）; 起例表由散文取象推导, 已显式标注" }
+  - id: kn:shen_sha:jie_sha
+    node_type: shen_sha
+    name_cn: 劫煞
+    name_en: jie_sha
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论劫煞亡神, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 劫者夺也，自外夺之之谓夺。劫在五行绝处，俱属寅申巳亥：水绝在巳，故申子辰以巳为劫煞；火绝在亥，故寅午戌以亥为劫煞；金绝在寅，故巳酉丑以寅为劫煞；木绝在申，故亥卯未以申为劫煞。古歌谓「劫煞为灾不可当，徒然奔走名利场」，然兼官贵在时上亦主鲠直名标御史台、执兵权助圣明。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.85
+    attributes: { 起例: "申子辰→巳；寅午戌→亥；巳酉丑→寅；亥卯未→申", 原理: 五行绝处, section: 卷三·论劫煞亡神, 原文关键句: "劫在五行绝处，亡在五行临官，俱属寅申巳亥" }
+  - id: kn:shen_sha:wang_shen
+    node_type: shen_sha
+    name_cn: 亡神
+    name_en: wang_shen
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论劫煞亡神, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 亡者失也，自内失之之谓亡。亡在五行临官，俱属寅申巳亥：水生木，故申子辰以亥为亡神；火生土，故寅午戌以巳为亡神；金生水，故巳酉丑以申为亡神；木生火，故亥卯未以寅为亡神。古歌谓「亡神七煞祸非轻，用尽机关一不成」，然命宫值之而长生遇贵人、时日更兼天地合者，亦可作王臣。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.85
+    attributes: { 起例: "申子辰→亥；寅午戌→巳；巳酉丑→申；亥卯未→寅", 原理: 五行临官, section: 卷三·论劫煞亡神, 原文关键句: "亡在五行临官" }
+  - id: kn:shen_sha:jiang_xing
+    node_type: shen_sha
+    name_cn: 将星
+    name_en: jiang_xing
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷二·论将星华盖, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷二", credibility: 0.8 }
+    interpretation: 将星者如将札中军，故以三合中位谓之将星。常欲吉星相扶、贵煞加临乃为吉庆；《理愚歌》云「将星若用亡神临，为国栋梁臣」，言吉助之为贵；夹贵库墓纯粹不杂者出将入相。
+    tags: [神煞, 子平, 吉神]
+    confidence: 0.85
+    attributes: { 起例: 三合中位, section: 卷二·论将星华盖, 原文关键句: "以三合中位谓之将星" }
+  - id: kn:shen_sha:hua_gai
+    node_type: shen_sha
+    name_cn: 华盖
+    name_en: hua_gai
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷二·论将星华盖, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷二", credibility: 0.8 }
+    interpretation: 华盖喻如宝盖，天有此星其形如盖，常覆乎大帝之座，故以三合底处得库谓之华盖。凡人命得华盖多主孤寡，总贵亦不免孤独，作僧道艺术论；《理愚歌》云「华盖虽吉亦有妨，或为孽子或孤孀」。带华印而正建驿马名曰节印，主旌节之贵。
+    tags: [神煞, 子平, 孤]
+    confidence: 0.85
+    attributes: { 起例: 三合底处得库, section: 卷二·论将星华盖, 原文关键句: "以三合底处得库谓之华盖" }
+  - id: kn:shen_sha:xian_chi
+    node_type: shen_sha
+    name_cn: 咸池
+    name_en: xian_chi
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷二·论咸池, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷二", credibility: 0.8 }
+    interpretation: 又名败神、桃花煞。《淮南子》曰「日出扶桑，入于咸池」，故五行沐浴之地名咸池：寅午戌见卯、巳酉丑见午、申子辰见酉、亥卯未见子，即长生第二位沐浴之宫。其神奸邪淫鄙——生旺则美容仪、耽酒色、疏财好欢、破散家业；死绝则落魄不检、言行狡诈。妇人尤忌之。
+    tags: [神煞, 子平, 桃花]
+    confidence: 0.85
+    attributes: { 起例: "寅午戌→卯；巳酉丑→午；申子辰→酉；亥卯未→子", 别名: "败神/桃花煞", section: 卷二·论咸池, 原文关键句: "五行沐浴之地，名咸池" }
+  - id: kn:shen_sha:gu_chen
+    node_type: shen_sha
+    name_cn: 孤辰
+    name_en: gu_chen
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论孤辰寡宿, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 老而无夫曰寡、幼而无父曰孤，此其义也。取「母绝为孤辰」：如亥子丑逐方三位，进前一辰见寅为孤；巳午未方取木绝在申、寅卯辰方取水绝在巳，余方依此推。乃阴阳惆怅之义，男命生于妻绝之中而逢孤辰，平生难于婚偶。
+    tags: [神煞, 子平, 孤]
+    confidence: 0.8
+    attributes: { 起例: "亥子丑方→寅（进前一辰）；母绝为孤辰", section: 卷三·论孤辰寡宿, 原文关键句: "进前一辰见寅为孤" }
+  - id: kn:shen_sha:gua_su
+    node_type: shen_sha
+    name_cn: 寡宿
+    name_en: gua_su
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论孤辰寡宿, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 与孤辰同出一论，取「夫墓、妻墓为寡宿」：如亥子丑方退后一辰见戌为寡（火墓为戌，是妻墓也），余三方依此推。又寅申巳亥为角、辰戌丑未为隔，进者为阳不利父、退者为阴不利母；女命生于夫绝之中而遇寡宿，屡嫁不能偕老。
+    tags: [神煞, 子平, 孤]
+    confidence: 0.8
+    attributes: { 起例: "亥子丑方→戌（退后一辰）；夫墓/妻墓为寡宿", section: 卷三·论孤辰寡宿, 原文关键句: "退后一辰见戌为寡" }
