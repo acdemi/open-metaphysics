@@ -12,8 +12,12 @@
 | school | 紫微斗数（南派三合） |
 | edition | 通行古籍本（public domain 范围） |
 | url | https://zh.wikisource.org/wiki/紫微斗數全書 |
-| acquisition_status | discovered_blocked  # 非 ingested |
-| evidence_status | not_ready |
-| blocker | webfetch_transport_error |
+| acquisition_status | acquired  # revision-pinned 抓取件（保存在仓库外），非入库 |
+| evidence_status | verbatim_verified  # 限卷一·諸星問答論（7.2B 候选辅星集） |
+| blocker | 已解除（Phase 7.3.1: HTTPS 直取成功；原 webfetch_transport_error） |
+| retrieved_utc | 2026-09-15T16:14:37Z |
+| revision_pin | 卷一 revid 7913704（2026-08-07T05:47:26Z, 67698 B, sha256 9beb8038a8b82154d15d81c8ff822423d4f0c7c006f536a86552adeaa594818a）；卷二 revid 1963110；卷三 revid 2268626 |
+| evidence_scope | 卷一·諸星問答論（輔星 11 条 + 天馬 + 羊陀/羊陀火鈴 两组总论）；36/36 断言 PASS，见 KNOWLEDGE_PHASE_7.3.1_EVIDENCE_DOSSIER.md |
+| transcription_note | 卷一繁简混排（V-5）；引文按原文登记，字形差异见 dossier §4 |
 | note | 星曜/宫位/五行生克之权威出处；「紫微在子午，廉贞天府同度辰戌」口诀出处之一 |
-| digest_note | 版本追踪：以本文件 + pipeline 输出 corpus checksum 为准（无外部文本 hash） |
+| digest_note | 版本追踪：本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记 |
