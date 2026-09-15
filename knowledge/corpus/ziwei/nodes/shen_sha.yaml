@@ -1,5 +1,6 @@
-# KnowledgeNode — 神煞（shen_sha, 11 个）
+# KnowledgeNode — 神煞（shen_sha, 18 个 = 7.2B-R 11 + 7.2B-R2 追加 7）
 # Phase 7.2B-R — 证据驱动生产（Tier 1 逐字核验完成后执行）
+# Phase 7.2B-R2 — 追加 卷三·论空亡 / 论元辰 / 论灾煞 / 论六厄 / 论勾绞 / 论天罗地网 / 论十恶大败
 # 来源（Tier 1, wikisource 通行本, 公有领域）:
 #   《三命通会》卷三·论十干禄/论驿马/论天乙贵人/论劫煞亡神/论羊刃/论孤辰寡宿
 #   《三命通会》卷二·论将星华盖/论咸池；卷六·论阳刃
@@ -123,3 +124,78 @@ nodes:
     tags: [神煞, 子平, 孤]
     confidence: 0.8
     attributes: { 起例: "亥子丑方→戌（退后一辰）；夫墓/妻墓为寡宿", section: 卷三·论孤辰寡宿, 原文关键句: "退后一辰见戌为寡" }
+
+  # --- Phase 7.2B-R2 追加（三命通會 卷三 其余神煞 7 类, revid 2184219）---
+  - id: kn:shen_sha:kong_wang
+    node_type: shen_sha
+    name_cn: 空亡
+    name_en: kong_wang
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论空亡, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 空对实、亡对有言。以甲旬尽处曰空亡——有是位而无禄曰空，有支而无干曰亡；如甲子旬遁至酉而十干足，故无戌亥，余五旬例见。空而有实、亡而有存，未可便为凶论；禄入空亡须分前后之辰以表阴阳轻重。带此煞生旺则气度宽大、动招虚名，死绝则一生成败飘泊；与劫煞并则狡勇、与亡神并则飘蓬、与咸池六害并多凶暴卒，惟夹贵、华盖、三奇、学堂并者大聪明脱俗。经云「金空则响，火空则明，水空则清，木空则折，土空则崩」。
+    tags: [神煞, 子平, 空]
+    confidence: 0.85
+    attributes: { 义理: "甲旬尽处；有是位而无禄曰空，有支而无干曰亡", 别称: 天中, 轻重: "甲子至戊辰以戌为空亡（见壬戌重、戊戌轻）；己巳至癸酉以亥为空亡（见癸亥重、乙亥轻）", 变体: "截路空亡/四大空亡/五鬼空亡/克害空亡/破祖空亡", section: 卷三·论空亡, 原文关键句: "故以甲旬尽处曰空亡，盖有是位而无禄，曰空；有支而无干，曰亡" }
+  - id: kn:shen_sha:yuan_chen
+    node_type: shen_sha
+    name_cn: 元辰
+    name_en: yuan_chen
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论元辰, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 元辰者别而不合之名：阳前阴后则有所屈，阴前阳后则直而不遂，故谓之元辰。阳男阴女在冲前一位支辰，阴男阳女在冲后一位支辰；如甲子生男与甲午对冲，即乙未为正。岁运临之如物当风、动摇颠倒，纵富贵崇高十年可畏；与官符并多招无辜之挠，带劫煞则不循细行、动招危辱。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.8
+    schools:
+      - { school: ziping, interpretation: 徐子平以元辰为「命中元有所害之辰」（如甲见申庚、乙见酉辛之类）；岁运复遇谓之犯元辰，为害尤重，元无则轻，其煞与亡神、劫煞、羊刃、空亡同类观。, source: { text: 三命通会, chapter: 卷三·论元辰（引徐子平语）, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.75 }, weight: 0.7 }
+    attributes: { 起例: "阳男阴女→冲前一位支辰；阴男阳女→冲后一位支辰", 示例: "甲子生男→乙未；乙丑生男→甲午", 并用: "与官符并、带劫煞", 评注: "原文谓常术《鼠忌羊头歌》不分男女，不足凭；又引林开「元辰恶煞为灾甚重」与徐子平说并存", section: 卷三·论元辰, 原文关键句: "阳男阴女，在冲前一位支辰；阴男阳女，在冲后一位支辰" }
+  - id: kn:shen_sha:zai_sha
+    node_type: shen_sha
+    name_cn: 灾煞
+    name_en: zai_sha
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论灾煞, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 灾煞者其性勇猛，常居劫煞之前，冲破将星，谓之灾煞——申子辰将星在子而午冲、寅午戌在午而子冲、巳酉丑在酉而卯冲、亥卯未在卯而酉冲。主血光横死：在水火防焚溺，金木杖刃，土坠落，瘟疫克身，大凶；若有福神相助多是武权，要见官星、印绶生旺处为佳。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.85
+    attributes: { 起例: "四局将星之冲（申子辰→午；寅午戌→子；巳酉丑→卯；亥卯未→酉）", section: 卷三·论灾煞, 原文关键句: "常居劫煞之前，冲破将星，谓之灾煞" }
+  - id: kn:shen_sha:liu_e
+    node_type: shen_sha
+    name_cn: 六厄
+    name_en: liu_e
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论六厄, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 厄者遭乎难者也，常居马前一辰、劫后二辰，死而不生谓之厄——申子辰水局水死在卯、寅午戌火局火死在酉、亥卯未木局木死在午、巳酉丑金局金死在子，所以为厄。若有救护扶持、逢生旺兼贵气相助则吉，究竟一生蹇滞；《壶中子》云「六厄为剥官之煞」。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.85
+    attributes: { 起例: "四局五行死位（申子辰→卯；寅午戌→酉；亥卯未→午；巳酉丑→子）", 别称: 剥官之煞, section: 卷三·论六厄, 原文关键句: "常居马前一辰，劫后二辰，死而不生谓之厄" }
+  - id: kn:shen_sha:gou_jiao
+    node_type: shen_sha
+    name_cn: 勾绞
+    name_en: gou_jiao
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论勾绞, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 勾者牵连之义，绞者羁绊之名，二煞尝相对冲，亦犹亡劫。阳男阴女命前三辰为勾、命后三辰为绞，阴男阳女反之（如甲子阳命人卯为勾、酉为绞；乙丑阴命人辰为绞、戌为勾）。此煞大忌金神白虎并则凶；身若克煞多心路计巧、主掌刑法之任或为将帅，煞若克身主非命而终，小人逢之非横灾祸，行年至此亦主口舌刑狱。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.8
+    attributes: { 起例: "阳男阴女: 命前三辰为勾、命后三辰为绞；阴男阳女反之", 示例: "甲子阳命人→卯为勾、酉为绞；乙丑阴命人→辰为绞、戌为勾", 轻重: "值两位全者灾重、一位者轻；有鬼则灾重、无鬼则灾轻", section: 卷三·论勾绞, 原文异文: "「命后一三辰为绞」中「一三」疑为衍/讹（对照同句下段作「命后三辰为勾」），登记为 V-6，保留原文未改写", 原文关键句: "阳男阴女，命前三辰为勾；命后一三辰为绞" }
+  - id: kn:shen_sha:tian_luo_di_wang
+    node_type: shen_sha
+    name_cn: 天罗地网
+    name_en: tian_luo_di_wang
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论天罗地网, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 戌亥为天罗（六阴之终），辰巳为地网（六阳之终）；阴阳终极则暗昧不明，如人之在罗网。《壶中子》云「龙蛇混杂，偏不利于辰生；猪犬侵凌，但独嫌于亥字」——辰人得巳、巳人得辰皆曰龙蛇混杂（男命不妨，惟女命破婚害子、薄命抱疾），戌人得亥、亥人得戌皆曰猪犬侵凌（女命不妨，惟男命妨祖克妻）。故男怕天罗、女怕地网；火命人有天罗，水土命人有地网，金木二命无之；重犯则灾不能歇。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.8
+    attributes: { 天罗: 戌亥, 地网: 辰巳, 轻重: "辰人得巳重、巳人得辰轻；戌人得亥轻、亥人得戌重", 命局归属: "火命有天罗；水土命有地网；金木二命无", section: 卷三·论天罗地网, 原文异文: "「此春义也」疑为「此其义也」之讹，登记为 V-8，保留原文", 原文关键句: "戌亥为天罗，辰巳为地网" }
+  - id: kn:shen_sha:shi_e_da_bai
+    node_type: shen_sha
+    name_cn: 十恶大败
+    name_en: shi_e_da_bai
+    systems: [bazi]
+    source: { text: 三命通会, chapter: 卷三·论十恶大败, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    interpretation: 十恶者譬律法中人犯十恶重罪在所不赦，大败者譬兵法中与敌交战大败无一生还，喻极凶也。六甲旬中十个日值禄入空亡——如甲辰、乙巳（甲以寅为禄、乙以卯为禄，甲辰旬以寅卯为空亡），又如壬申（壬以亥为禄，甲子旬以亥为空亡），余如丙申、丁亥、庚辰、戊戌、癸亥、辛巳、乙丑等日皆仿此。命中犯者当以日上见之为是，其余不论；犯者未必皆凶，内有吉神相扶、贵气相辅则当为吉论。
+    tags: [神煞, 子平, 凶煞]
+    confidence: 0.8
+    attributes: { 例日: "甲辰/乙巳/壬申/丙申/丁亥/庚辰/戊戌/癸亥/辛巳/乙丑", 判法: "以日上见之为是；有吉神贵气相辅则作吉论", section: 卷三·论十恶大败, 原文异文: "「日值禄人空亡」中「禄人」疑为「禄入」之讹，登记为 V-7，保留原文", 原文关键句: "六甲旬中十个日值禄人空亡" }
+

@@ -1,0 +1,77 @@
+# KnowledgeReference — Phase 7.2B-R2 新增（10 条）
+# 目的: 为 7.2B-R2 的 7 类神煞节点提供**条目级原文引用**（passage 为纯逐字连续文本, 无省略号, 无注记）
+# 来源: 《三命通会》卷三（revid 2184219, sha256 2de8fc1bf46eb4ecc5436b6cece6d4a06e56330565f3aa6e4cfaa581f5b0488e）
+# 转录异文（V-6/V-7/V-8）不写入 passage, 统一登记在节点 attributes.原文异文 与本轮报告 §3
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:sanming_kongwang
+    target_type: node
+    target_id: kn:shen_sha:kong_wang
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论空亡, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "故以甲旬尽处曰空亡，盖有是位而无禄，曰空；有支而无干，曰亡。如甲子的遁至酉而十干足，所以无戌亥，余五干例见，是为空亡。然空而有实，亡而有存，所以未可便为凶论。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_kongwang_bian
+    target_type: node
+    target_id: kn:shen_sha:kong_wang
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: "卷三·论空亡（变体：截路/四大/五鬼/克害/破祖）", author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "有截路空亡，正如人在途中遇水，不能前进，不可以济，故曰截路，只以日取时见之。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yuanchen
+    target_type: node
+    target_id: kn:shen_sha:yuan_chen
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论元辰, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "元辰者，别而不合之名。阳前阴后，则有所屈，屈则于事无所申；阴前阳后，则直而不遂，于事暴而不治，难与同事，故谓之元辰。是以阳男阴女，在冲前一位支辰；阴男阳女，在冲后一位支辰。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yuanchen_xu
+    target_type: node
+    target_id: kn:shen_sha:yuan_chen
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论元辰（引徐子平语）, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.75 }
+    passage: "徐子平云：“元辰者，命中元有所害之辰，如甲见申庚，乙见酉辛之类，人生岁月日时原有七煞，已为所害之辰，岁运复遇，谓之犯元辰，为害尤重，元无则轻。然元辰一煞，与亡劫、羊刃、空亡同类观。”"
+    credibility: 0.75
+  - reference_id: ref:classic:sanming_zaisha
+    target_type: node
+    target_id: kn:shen_sha:zai_sha
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论灾煞, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "灾煞者，其性勇猛，常居劫煞之前，冲破将星，谓之灾煞。如申子辰将星在子，午却去冲子；寅午戌在午，子却去冲；巳酉丑在酉，卯却去冲；亥卯未在卯，酉却去冲。是灾煞也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_liue
+    target_type: node
+    target_id: kn:shen_sha:liu_e
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论六厄, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "厄者，遭乎难者也，常居马前一辰，劫后二辰，死而不生谓之厄。申子辰水局，水死在卯；寅午戌火局，火死在酉；亥卯未木局，木死在午；巳酉丑金局，金死在子，所以为厄。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_goujiao
+    target_type: node
+    target_id: kn:shen_sha:gou_jiao
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论勾绞, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "勾者，牵连之义；绞者，羁绊之名，二煞尝相对冲，亦犹亡劫。阳男阴女，命前三辰为勾；命后一三辰为绞；阴男阳女，命前三辰为绞，命后三辰为勾。假令甲子阳命人，卯为勾，酉为绞；乙丑阴命人，辰为绞，戌为勾之例。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_luowang
+    target_type: node
+    target_id: kn:shen_sha:tian_luo_di_wang
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论天罗地网, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "罗网之说，其义甚明。然何以戌亥为天罗，辰巳为地网，盖天倾西北，戌亥者，六阴之终也；地陷东南，辰巳者，六阳之终也。阴阳终极，则暗昧不明，如人之在罗网，此春义也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_luowang_huzhongzi
+    target_type: node
+    target_id: kn:shen_sha:tian_luo_di_wang
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论天罗地网（引《壶中子》）, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "《壶中子》云：“龙蛇混杂，偏不利于辰生；猪犬侵凌，但独嫌于亥字。”龙为辰，蛇为巳；辰人得巳，巳人得辰，皆曰龙蛇混杂。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_shiedabai
+    target_type: node
+    target_id: kn:shen_sha:shi_e_da_bai
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论十恶大败, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "十恶者，譬律法中人，犯十恶重罪，在所不赦，大败者，譬兵法中与敌交战，大败无一生还，喻极凶也。六甲旬中十个日值禄人空亡，如甲辰、乙巳，甲以寅为禄，乙以卯为禄，甲辰旬以寅卯为空亡。"
+    credibility: 0.8
