@@ -111,8 +111,8 @@ NOT READY 是独立状态, 不因 Discovery 而自动升级。
 
 ## 下一步（需人工授权）
 
-1. **D-1**: 7.2B 重跑（shen_sha / auxiliary_star 生产）授权
-2. **D-2**: auxiliary_star 契约示例层是否先走 ACP
+1. ~~**D-1**: 7.2B 重跑授权~~ → **已执行（Phase 7.2B-R, 2026-09-15）**: 生产 23 节点 + 12 引用
+2. ~~**D-2**: auxiliary_star 契约示例层是否先走 ACP~~ → **已裁定: 无需 ACP**（golden_examples 为 query 级; node_types 已含两类型）
 3. **D-3**: Tier 1 抓取件（原文快照）是否入库
 4. **D-4**: 天乙贵人韵文体口诀缺位的处置
 5. **D-5**: GAP-01《紫微斗数全集》是否推进版本核验

@@ -2,8 +2,8 @@
   "metadata": {
     "corpus_id": "ziwei_pilot_v1",
     "counts": {
-      "nodes": 63,
-      "references": 10,
+      "nodes": 86,
+      "references": 22,
       "relations": 37
     },
     "domain": "ziwei",
@@ -16,6 +16,371 @@
     "status": "pilot"
   },
   "nodes": [
+    {
+      "attributes": {
+        "category": "文星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "文昌主科甲，守身命主人幽閑儒雅",
+        "旺地": "辰巳"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:wen_chang",
+      "interpretation": "主科甲功名。守身命主人幽闲儒雅、清秀魁梧、博文广记、机变异常，一举成名，福寿双全；纵四杀冲破亦不为下贱；加权禄则厚重有师号。歌曰辰巳是旺地，利午嫌卯酉，喜金生人。",
+      "name_cn": "文昌",
+      "name_en": "wen_chang",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問文昌星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "文星",
+        "吉星"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "文星",
+        "element": "水",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "文曲属水，北斗第四星也，主科甲文车之宿"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:wen_qu",
+      "interpretation": "属水，北斗第四星，主科甲文车之宿；与文昌同协，临身命作科第之客。与廉贞共处作公吏官，与太阴同行定系九流术士；怕逢破军、嫌遇贪狼；女命不宜逢，忌入土宫；若禄存、化禄来缠则不可作凶论。",
+      "name_cn": "文曲",
+      "name_en": "wen_qu",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問文曲星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "文星",
+        "水"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "助星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "左辅帝极主宰之星，守身命诸宫降福"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:zuo_fu",
+      "interpretation": "帝极主宰之星，守身命诸宫降福；主人形貌敦厚、慷慨风流。紫府禄权三合冲照主文武大贵；火忌冲破则虽富贵不久；僧道清闲，旺地封赠。",
+      "name_cn": "左辅",
+      "name_en": "zuo_fu",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問左辅所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "吉星",
+        "助星"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "助星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "右弼帝极主宰之星，守身命文墨精通"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:you_bi",
+      "interpretation": "帝极主宰之星，守身命文墨精通；紫府吉星同垣则财官双美、文武双全；羊陀火忌冲破则以下局断之。女人贤良有志，纵四杀冲破亦不为下贱。",
+      "name_cn": "右弼",
+      "name_en": "you_bi",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問右弼所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "吉星",
+        "助星"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "贵人星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "魁钺斗中司科之星"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:tian_kui",
+      "interpretation": "魁钺为斗中司科之星，又为上界和合之神。入命坐贵向贵，得左右吉聚无不富贵；魁临命、钺守身更迭相守，遇紫府日月昌曲左右权禄相凑，少年必聚美妻；遇大难必得贵人成就扶助。歌曰天乙贵人众所钦，命逢金带福弥深。",
+      "name_cn": "天魁",
+      "name_en": "tian_kui",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問天魁天钺星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "吉星",
+        "贵人"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "贵人星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "魁钺斗中司科之星"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:tian_yue",
+      "interpretation": "与天魁同为斗中司科之星、上界和合之神，主科名与贵人扶助。钺守身、魁临命则更迭相守；遇紫府日月昌曲左右权禄相凑则少年聚美妻；限步巡逢主女子添喜、功名有成；加恶杀亦为富贵，但不免私情淫佚。",
+      "name_cn": "天钺",
+      "name_en": "tian_yue",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問天魁天钺星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "吉星",
+        "贵人"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "禄星",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "禄存北斗第三星，真人之宿，主人贵爵，掌人寿基"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:lu_cun",
+      "interpretation": "北斗第三星，真人之宿，主人贵爵，掌人寿基；十二宫中惟身命、田宅、财帛为要，主富；居迁移则佳；独守命而无吉化则为看财奴；最嫌落于陷空；守身命主人慈厚信直、通文济楚；紫府廉同会合作禄存上局。",
+      "name_cn": "禄存",
+      "name_en": "lu_cun",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問禄存星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "吉星",
+        "财禄"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "动星",
+        "note": "此为紫微斗数之天马; 子平驿马见 kn:shen_sha:yi_ma（另一体系, 不合并）",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "如身命临之谓之驿马"
+      },
+      "confidence": 0.8,
+      "id": "kn:auxiliary_star:tian_ma",
+      "interpretation": "诸宫各有制化，身命临之谓之驿马；喜禄存、紫府、昌曲守照为吉。与禄存同宫谓之禄马交驰（又曰折鞭马），紫府同宫谓之扶轝马，刑杀同宫谓之负尸马，火星同宫谓之战马，日月同宫谓雌雄马，逢空亡谓之死马亡马，遇陀罗谓之折足马——犯此数者俱主灾病。",
+      "name_cn": "天马",
+      "name_en": "tian_ma",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問天马星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "辅星",
+        "动星",
+        "驿马"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "煞星",
+        "section": "卷一·諸星問答論",
+        "化气": "刑",
+        "原文关键句": "擎羊北斗之助星"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:qing_yang",
+      "interpretation": "北斗之助星。守身命性粗行暴、孤单，视亲为疏、翻恩为怨；入庙性刚果决、机谋好勇、主权贵；居卯酉作祸兴殃、刑克极甚；六甲六庚生人必有凶祸，纵富贵不久亦不善终；加火忌劫空冲破则残疾、离祖、刑克六亲。化气曰刑。",
+      "name_cn": "擎羊",
+      "name_en": "qing_yang",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問擎羊星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "煞星",
+        "刑"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "煞星",
+        "section": "卷一·諸星問答論",
+        "化气": "忌",
+        "原文关键句": "陀罗北斗之助星"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:tuo_luo",
+      "interpretation": "北斗之助星。守身命心行不正、暗泪长流、性刚威猛、作事进退，横成横破、飘荡不定；与贪狼同度因酒色以成痨，与火铃同处疥疫不死；居疾厄暗疾缠绵；辰戌丑未生人为福；在庙财官论。化气曰忌。",
+      "name_cn": "陀罗",
+      "name_en": "tuo_luo",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問陀罗星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "煞星",
+        "忌"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "煞星",
+        "element": "火",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "火星乃南斗浮星也"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:huo_xing",
+      "interpretation": "南斗浮星，号大杀将。若主身命位则诸宫不可临；性气沉毒、刚强出众；更与羊陀会则襁褓必灾迍、过房出外养；东南利、不利西北生；若得贪狼会于旺地则贵无伦、封侯居上将；三方无杀破则中年后始兴。女人旺地洁、陷地主邪淫。",
+      "name_cn": "火星",
+      "name_en": "huo_xing",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問火星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "煞星",
+        "火",
+        "南斗"
+      ]
+    },
+    {
+      "attributes": {
+        "category": "煞星",
+        "element": "火",
+        "section": "卷一·諸星問答論",
+        "原文关键句": "铃星乃南斗助星也"
+      },
+      "confidence": 0.85,
+      "id": "kn:auxiliary_star:ling_xing",
+      "interpretation": "南斗助星，号大杀铃星将、南斗为从神。值人身命者性格沉吟、形貌多异类、威势有声名；若与贪狼会则指日立边庭；庙地财官贵、陷地主孤贫；羊陀凑合则其刑大不清、孤单弃祖、残伤带疾；七杀主阵亡、破军财屋倾；若逢居旺地则富贵不可论。",
+      "name_cn": "铃星",
+      "name_en": "ling_xing",
+      "node_type": "auxiliary_star",
+      "schools": [],
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問铃星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "systems": [
+        "ziwei"
+      ],
+      "tags": [
+        "煞星",
+        "火",
+        "南斗"
+      ]
+    },
     {
       "attributes": {
         "branch_index": 10,
@@ -1441,6 +1806,359 @@
     },
     {
       "attributes": {
+        "section": "卷三·论羊刃；卷六·论阳刃",
+        "三刃": "劫财刃/护禄刃/背禄刃",
+        "原文关键句": "故羊刃常居禄前一辰",
+        "起例": "禄前一辰",
+        "适用": "甲丙戊庚壬五阳干"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:yang_ren",
+      "interpretation": "又名阳刃。禄过则刃生——羊言刚、刃取宰割之义，故羊刃常居禄前一辰，言旺越其分而有伤。子平以甲丙戊庚壬五阳干有刃，乙丁己辛癸五阴干无刃（惟见伤官与羊刃同祸）。卷六格论又分三刃：劫财刃、护禄刃、背禄刃；并谓「阳刃冲合岁君，勃然祸至」。",
+      "name_cn": "羊刃",
+      "name_en": "yang_ren",
+      "node_type": "shen_sha",
+      "schools": [
+        {
+          "interpretation": "五阳干有刃、五阴干无刃，阴干惟以伤官同祸（渊海子平「甲丙戊庚壬五阳有刃，乙丁己辛癸五阴无刃，故名阳刃」）。",
+          "school": "ziping",
+          "source": {
+            "author": "徐升",
+            "chapter": "论阳刃",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/淵海子平"
+          },
+          "weight": 0.8
+        }
+      ],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论羊刃",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "凶煞"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论十干禄",
+        "原文关键句": "禄，爵禄也，当得势而享，乃谓之禄",
+        "四宫无禄": "辰戌丑未",
+        "起例": "甲寅/乙卯/丙巳/丁午/戊寄巳/己寄午/庚申/辛酉/壬亥/癸子"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:lu_shen",
+      "interpretation": "禄者爵禄也，当得势而享乃谓之禄；十干就支神为禄，谓禄随旺行。起例：甲禄寅、乙禄卯、庚禄申、辛禄酉、壬禄亥、癸禄子，丙禄巳、丁禄午、戊寄巳、己寄午（巳午乃火旺之乡，子随母得禄之义）。辰戌为魁罡、丑未为天乙贵人出入之门，故四宫无禄。",
+      "name_cn": "禄神",
+      "name_en": "lu_shen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论十干禄",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "吉神"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论驿马",
+        "十二马": "款段/蹶蹄/折足/无粮/不出厅厩/嘶风/趋途/驮尸/食刍/乘轩/乘轺/无辔",
+        "原文关键句": "寅午戌生人，马在申",
+        "起例": "寅午戌→申；申子辰→寅；巳酉丑→亥；亥卯未→巳"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:yi_ma",
+      "interpretation": "乃先天三合数所立：寅午戌火局驿马在申，申子辰水局驿马在寅，巳酉丑金局驿马在亥，亥卯未木局驿马在巳（阳局从子顺行、阴局从午逆行）。为三命中发用、喜庆之神，君子常居荣位，小人主丰赡；大小运行年至之主得官及迁改之喜。另有十二马名目（款段/蹶蹄/折足/无粮/不出厅厩/嘶风/趋途/驮尸/食刍/乘轩/乘轺/无辔）。",
+      "name_cn": "驿马",
+      "name_en": "yi_ma",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论驿马",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "动星"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论天乙贵人",
+        "原文关键句": "其神最尊贵，所至之处，一切凶煞隐然而避",
+        "取象": "甲戊庚→牛羊；乙己→鼠猴；丙丁→猪鸡（酉亥）；壬癸→兔蛇（卯巳）；六辛→马虎",
+        "限制": "本版本以散文表述起例, 未见韵文体口诀（dossier L-3）; 起例表由散文取象推导, 已显式标注"
+      },
+      "confidence": 0.8,
+      "id": "kn:shen_sha:tian_yi_gui_ren",
+      "interpretation": "天乙乃天上之神，在紫微垣阊阖门外，与太乙并列，事天皇大帝，其神最尊贵，所至之处一切凶煞隐然而避。起例以取象散文表述：甲戊庚皆喜土位，未为土之正位、丑为土安静之地，故「牛羊为贵」；乙己喜申子生旺水土，故「鼠猴为贵」；丙丁以酉亥阴气和为贵、壬癸以巳卯阳气和为贵；六辛喜阳火生旺之地，故「马虎为贵」。",
+      "name_cn": "天乙贵人",
+      "name_en": "tian_yi_gui_ren",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论天乙贵人",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "吉神",
+        "贵人"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论劫煞亡神",
+        "原文关键句": "劫在五行绝处，亡在五行临官，俱属寅申巳亥",
+        "原理": "五行绝处",
+        "起例": "申子辰→巳；寅午戌→亥；巳酉丑→寅；亥卯未→申"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:jie_sha",
+      "interpretation": "劫者夺也，自外夺之之谓夺。劫在五行绝处，俱属寅申巳亥：水绝在巳，故申子辰以巳为劫煞；火绝在亥，故寅午戌以亥为劫煞；金绝在寅，故巳酉丑以寅为劫煞；木绝在申，故亥卯未以申为劫煞。古歌谓「劫煞为灾不可当，徒然奔走名利场」，然兼官贵在时上亦主鲠直名标御史台、执兵权助圣明。",
+      "name_cn": "劫煞",
+      "name_en": "jie_sha",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论劫煞亡神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "凶煞"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论劫煞亡神",
+        "原文关键句": "亡在五行临官",
+        "原理": "五行临官",
+        "起例": "申子辰→亥；寅午戌→巳；巳酉丑→申；亥卯未→寅"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:wang_shen",
+      "interpretation": "亡者失也，自内失之之谓亡。亡在五行临官，俱属寅申巳亥：水生木，故申子辰以亥为亡神；火生土，故寅午戌以巳为亡神；金生水，故巳酉丑以申为亡神；木生火，故亥卯未以寅为亡神。古歌谓「亡神七煞祸非轻，用尽机关一不成」，然命宫值之而长生遇贵人、时日更兼天地合者，亦可作王臣。",
+      "name_cn": "亡神",
+      "name_en": "wang_shen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论劫煞亡神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "凶煞"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷二·论将星华盖",
+        "原文关键句": "以三合中位谓之将星",
+        "起例": "三合中位"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:jiang_xing",
+      "interpretation": "将星者如将札中军，故以三合中位谓之将星。常欲吉星相扶、贵煞加临乃为吉庆；《理愚歌》云「将星若用亡神临，为国栋梁臣」，言吉助之为贵；夹贵库墓纯粹不杂者出将入相。",
+      "name_cn": "将星",
+      "name_en": "jiang_xing",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论将星华盖",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "吉神"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷二·论将星华盖",
+        "原文关键句": "以三合底处得库谓之华盖",
+        "起例": "三合底处得库"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:hua_gai",
+      "interpretation": "华盖喻如宝盖，天有此星其形如盖，常覆乎大帝之座，故以三合底处得库谓之华盖。凡人命得华盖多主孤寡，总贵亦不免孤独，作僧道艺术论；《理愚歌》云「华盖虽吉亦有妨，或为孽子或孤孀」。带华印而正建驿马名曰节印，主旌节之贵。",
+      "name_cn": "华盖",
+      "name_en": "hua_gai",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论将星华盖",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "孤"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷二·论咸池",
+        "别名": "败神/桃花煞",
+        "原文关键句": "五行沐浴之地，名咸池",
+        "起例": "寅午戌→卯；巳酉丑→午；申子辰→酉；亥卯未→子"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:xian_chi",
+      "interpretation": "又名败神、桃花煞。《淮南子》曰「日出扶桑，入于咸池」，故五行沐浴之地名咸池：寅午戌见卯、巳酉丑见午、申子辰见酉、亥卯未见子，即长生第二位沐浴之宫。其神奸邪淫鄙——生旺则美容仪、耽酒色、疏财好欢、破散家业；死绝则落魄不检、言行狡诈。妇人尤忌之。",
+      "name_cn": "咸池",
+      "name_en": "xian_chi",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论咸池",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "桃花"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论孤辰寡宿",
+        "原文关键句": "进前一辰见寅为孤",
+        "起例": "亥子丑方→寅（进前一辰）；母绝为孤辰"
+      },
+      "confidence": 0.8,
+      "id": "kn:shen_sha:gu_chen",
+      "interpretation": "老而无夫曰寡、幼而无父曰孤，此其义也。取「母绝为孤辰」：如亥子丑逐方三位，进前一辰见寅为孤；巳午未方取木绝在申、寅卯辰方取水绝在巳，余方依此推。乃阴阳惆怅之义，男命生于妻绝之中而逢孤辰，平生难于婚偶。",
+      "name_cn": "孤辰",
+      "name_en": "gu_chen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论孤辰寡宿",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "孤"
+      ]
+    },
+    {
+      "attributes": {
+        "section": "卷三·论孤辰寡宿",
+        "原文关键句": "退后一辰见戌为寡",
+        "起例": "亥子丑方→戌（退后一辰）；夫墓/妻墓为寡宿"
+      },
+      "confidence": 0.8,
+      "id": "kn:shen_sha:gua_su",
+      "interpretation": "与孤辰同出一论，取「夫墓、妻墓为寡宿」：如亥子丑方退后一辰见戌为寡（火墓为戌，是妻墓也），余三方依此推。又寅申巳亥为角、辰戌丑未为隔，进者为阳不利父、退者为阴不利母；女命生于夫绝之中而遇寡宿，屡嫁不能偕老。",
+      "name_cn": "寡宿",
+      "name_en": "gua_su",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论孤辰寡宿",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "神煞",
+        "子平",
+        "孤"
+      ]
+    },
+    {
+      "attributes": {
         "relation_to_day_master": "克我",
         "yin_yang": "异"
       },
@@ -2035,6 +2753,210 @@
       },
       "target_id": "rel:hai:zi_wei",
       "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "答曰：文昌主科甲，守身命主人幽閑儒雅，清秀魁梧，博文廣記，機變異常，一舉成名，披緋衣紫，福壽雙全。縱四殺沖破不為下賤。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_wenchang",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問文昌星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "target_id": "kn:auxiliary_star:wen_chang",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "希夷先生答曰：禄存北斗第三星，真人之宿，主人贵爵，掌人寿基。帝相扶之施权，日月得之增辉。……十二宫中惟身命、田宅、财帛为要，主富。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_lucun",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問禄存星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "target_id": "kn:auxiliary_star:lu_cun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "希夷先生答曰：擎羊北斗之助星。守身命性粗行暴，孤单，视亲为疏，翻恩为怨。入庙性刚果决，机谋好勇，主权贵。……纵富贵不久亦不善终。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_qingyang",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問擎羊星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "target_id": "kn:auxiliary_star:qing_yang",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "答曰：铃星乃南斗助星也。……大杀铃星将，南斗为从神，值人身命者，性格亦沉吟，形貌多异类，威势有声名，若与贪狼会，指日立边庭，庙地财官贵，陷地主孤贫。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:ziwei_lingxing",
+      "school": null,
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷一·諸星問答論·問铃星所主若何",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": "https://zh.wikisource.org/wiki/紫微斗數全書/卷一"
+      },
+      "target_id": "kn:auxiliary_star:ling_xing",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "《三车》云：“羊言刚也，刃者取宰割之义。”禄过则刃生；功成当退不退则过，越其分如羊之在刃，言有伤也。故羊刃常居禄前一辰。……子平以甲丙戊庚壬五阳干有刃，乙丁巳辛癸五阴干无刃，惟见伤官；与羊刃同祸，是指阴阳之阳，非牛羊之羊。（注: 原文「乙丁巳辛癸」之「巳」为转录字形讹误，对照卷六/渊海子平作「己」，见 dossier V-1）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_yangren",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论羊刃",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "target_id": "kn:shen_sha:yang_ren",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "阳者，阴阳之阳，刃者，刀刃之刃，即禄前一位，言旺越其分，故险。……惟甲丙戊庚壬五阳干有刃，乙丁己辛癸五阴干无刃，故曰阳刃。……阳刃有三，有劫财刃，甲见乙是也，不利财官格，有护禄刃；甲见卯是也，大利归禄格；有背禄刃，乙丙是也，大利去官留煞局。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_yangren_ge",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷六·论阳刃",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷六"
+      },
+      "target_id": "kn:shen_sha:yang_ren",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "夫阳刃者，号天上之凶星，作人间之恶杀，以禄前一位是也；如甲禄在寅，卯为阳刃。……何谓阳刃？甲丙戊庚壬五阳有刃，乙丁己辛癸五阴无刃，故名阳刃。（跨源对照: 与三命通会卷六一致）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:yuanhai_yangren",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": "论阳刃",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/淵海子平"
+      },
+      "target_id": "kn:shen_sha:yang_ren",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "所谓驿马者，乃先天三合数也……寅午戌生人，马在申而五阳干乘之……申子辰人，马在寅而五阳干乘之……巳酉丑人，马在亥而五阴干乘之……亥卯未人，马在巳而五阴干乘之。又曰：驿马者，三命中发用，喜庆之神。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_yima",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论驿马",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "target_id": "kn:shen_sha:yi_ma",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "天乙者，乃天上之神，在紫微垣、阊阖门外，与太乙并列，事天皇大帝……其神最尊贵，所至之处，一切凶煞隐然而避。……《广录》云：甲阳木、戊阳土、庚阳金，皆喜土位。未者，土之正位；丑者，土安静之地，所以牛羊为贵。……乙者，阴木；巳者，阴土……所以鼠猴为贵。……六幸阴金，喜阳火生旺之地，故以马虎为贵。（注: 原文「六幸」为「六辛」转录讹误; 起例以散文表述, 未见韵文体口诀, 见 dossier L-3/V-4）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_guiren",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论天乙贵人",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "target_id": "kn:shen_sha:tian_yi_gui_ren",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "劫者，夺也，自外夺之之谓夺；亡者，失也，自内失之之谓亡。劫在五行绝处，亡在五行临官，俱属寅申巳亥。水绝在巳，申子辰以巳为劫煞……火绝在亥，寅午戌以亥为劫煞……金绝在寅，巳酉丑以寅为劫煞……木绝在申，亥卯未以申为劫煞。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_jiesha",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论劫煞亡神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷三"
+      },
+      "target_id": "kn:shen_sha:jie_sha",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "将星者，如将札中军也，故以三合中位谓之将星；化盖者，喻如宝盖，天有此星，其形如盖，常覆乎大帝之座，故以三合底处得库谓之华盖。……凡人命得华盖，多主孤寡，总贵亦不免孤独，作僧道艺术论。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_huagai",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论将星华盖",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+      },
+      "target_id": "kn:shen_sha:hua_gai",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "《淮南子》曰：“日出扶桑，入于咸池。”故五行沐浴之地，名咸池。……寅午戌卯、已酉丑午、申子辰酉、亥卯未子即长生第二位沐浴之宫是也。一名败神，一名桃花煞。（注: 原文「已酉丑」为「巳酉丑」转录讹误, 见 dossier V-3）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:sanming_xianchi",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论咸池",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通會/卷二"
+      },
+      "target_id": "kn:shen_sha:xian_chi",
+      "target_type": "node"
     }
   ],
   "relations": [
