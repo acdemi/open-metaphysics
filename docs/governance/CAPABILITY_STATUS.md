@@ -3,7 +3,7 @@
 > 领域能力成熟度跟踪（Domain Maturity Tracking）— 唯一权威状态登记
 > 状态模型与迁移规则: `docs/governance/CAPABILITY_LIFECYCLE.md`
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
-> 更新: 2026-08-25（Phase 7.3 Source Acquisition）
+> 更新: 2026-09-15（Phase 7.3.1 Tier 1 Source Acquisition & Verbatim Evidence Verification）
 
 ---
 
@@ -16,7 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变））; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变）; **Phase 7.3.1: 四份 Tier 1 来源全部获取（revision-pinned）并完成逐字证据核验（36/36 义理断言 + 10/10 转录差异核验）→ GAP-12/13 证据侧阻塞解除, 仍未生产任何节点**, 语料 63/37/10 不变（corpus sha b4af74ab, 仅 source_digests 同步））; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -108,6 +108,15 @@
 > （SOURCE_STATUS.md, 四来源 FETCH_BLOCKED/NOT_ATTEMPTED / Source Discovery 🟡
 > SOURCE_DISCOVERED）+ webfetch 4 次阻塞 → **0 生产**; 语料 sha 规范化 LF 口径
 > b1b8f90a（内容不变 63/37/10）; Knowledge Layer 状态维持 **PARTIAL**（引用层, 不升级）。
+> **Phase 7.3.1**: Tier 1 来源获取与逐字证据核验（2026-09-15）—— Phase 7.3 §9 的
+> 四项下一步执行完毕: 紫微斗數全書（卷一/卷二/卷三, revid 7913704/1963110/2268626）、
+> 三命通會（卷一~卷九, 卷三 revid 2184219）、淵海子平（revid 2593607）全部
+> revision-pinned 获取 + sha256 登记; 逐字核验 **36/36 义理断言 PASS + 10/10 转录差异
+> 核验 PASS**（`KNOWLEDGE_PHASE_7.3.1_EVIDENCE_DOSSIER.md`）; GAP-12/GAP-13 →
+> **EVIDENCE_VERIFIED**（证据侧）; **Knowledge Production 0**（未获 7.2B 重跑授权）;
+> 语料维持 63/37/10（corpus sha b4af74ab, 仅 `metadata.source_digests` 同步）。
+> 报告: `docs/governance/knowledge/KNOWLEDGE_PHASE_7.3.1_REPORT.md`。
+> Knowledge Layer 状态维持 **PARTIAL**（引用层, 不升级; 证据就绪 ≠ 生产授权）。
 
 ---
 
