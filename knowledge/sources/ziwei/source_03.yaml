@@ -11,5 +11,12 @@
 | school | 子平（命理通论） |
 | edition | 通行本（public domain 范围） |
 | url | https://zh.wikisource.org/wiki/三命通会 （卷二: 论六害 / 论三刑, 2026-08 核验） |
-| note | 地支 三刑（无恩/无礼/恃势）与 六害 的权威原文出处; 六害六配对与恃势之刑环逐字验证 |
-| digest_note | 版本追踪: 以本文件 + pipeline 输出 corpus checksum 为准 |
+| acquisition_status | acquired  # revision-pinned 抓取件（仓库外）; 卷一~卷九全量获取 |
+| evidence_status | verbatim_verified  # 限本轮所核章节（卷三神煞诸论 + 卷二将星华盖/咸池 + 卷六论阳刃） |
+| blocker | 已解除（Phase 7.3.1: HTTPS 直取成功；原 webfetch 阻塞） |
+| retrieved_utc | 2026-09-15T16:14:37Z |
+| revision_pin | 卷三 revid 2184219（2022-10-03T21:50:57Z, 65356 B, sha256 2de8fc1bf46eb4ecc5436b6cece6d4a06e56330565f3aa6e4cfaa581f5b0488e）；卷二 revid 2292392；卷六 revid 845352；余卷见 SOURCE_STATUS.md |
+| evidence_scope | 卷三: 论十干禄/论驿马/论天乙贵人/论劫煞亡神/论羊刃/论孤辰寡宿/总论诸神煞；卷二: 论将星华盖/论咸池；卷六: 论阳刃 |
+| transcription_note | 简体转录，存在「巳/己/已」「辛/幸」字形混录（V-1~V-4，局部且已机器核验） |
+| note | 地支 三刑（无恩/无礼/恃势）与 六害 的权威原文出处; 六害六配对与恃势之刑环逐字验证; Phase 7.3.1 追加神煞诸论逐字核验 |
+| digest_note | 版本追踪: 本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记 |

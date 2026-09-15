@@ -11,5 +11,12 @@
 | school | 子平（八字） |
 | edition | 通行古籍本（public domain 范围） |
 | url | https://github.com/mymmsc/books （文学/渊海子平.pdf, 2026-08 核验存在; 亦见 zh.wikisource.org/wiki/渊海子平 通行本全文） |
+| acquisition_status | acquired  # revision-pinned 抓取件（仓库外） |
+| evidence_status | verbatim_verified  # 限本轮所核章节（论阳刃 / 论劫财） |
+| blocker | 已解除（Phase 7.3.1: HTTPS 直取成功；原 webfetch 阻塞） |
+| retrieved_utc | 2026-09-15T16:14:37Z |
+| revision_pin | 淵海子平 revid 2593607（2025-08-24T18:41:12Z, 173237 B, sha256 a4447be5d95eb073857cb8cba8f0e58a500de1c283016c76cfdedb0d1b2bb133） |
+| evidence_scope | 论阳刃（「以禄前一位是也；如甲禄在寅，卯为阳刃」）/ 论劫财（「亦名『逆刃』」）；作羊刃证据的跨源对照项 |
+| transcription_note | 转录含 {{No source}} / {{傳統漢字化}} 模板，需注意（dossier §2.11–2.12） |
 | note | 十神/五行生克之权威出处（十神节点试点引用） |
-| digest_note | 版本追踪：以本文件 + pipeline 输出 corpus checksum 为准 |
+| digest_note | 版本追踪：本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记 |
