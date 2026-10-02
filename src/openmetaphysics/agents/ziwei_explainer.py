@@ -4,7 +4,8 @@ from typing import Any
 
 from jinja2 import Template
 
-from ..core.schemas import AgentOutput, Gender
+from ..core.config import get_settings
+from ..core.schemas import AgentOutput
 from ..inference.explainer import Explainer
 from .ziwei import ZiweiChart
 
@@ -134,20 +135,21 @@ class ZiweiExplainer(Explainer):
     """
 
     def _prepare_prompt_data(self, output: AgentOutput) -> dict[str, Any]:
-        """Prepare structured data for prompt injection."""
-        chart = ZiweiChart(**output.result)
-        pillars_by_pos = {p.name: p for p in chart.palaces}
+        """Prepare structured data for prompt injection (read-only)."""
+        chart = (
+            output.result if isinstance(output.result, ZiweiChart) else ZiweiChart(**output.result)
+        )
+        palaces_by_name = {p.name: p for p in chart.palaces}
         fate_palace = next(p for p in chart.palaces if p.is_fate_palace)
         body_palace = next(p for p in chart.palaces if p.is_body_palace)
 
-        # 处理格局列表
-        patterns_list = "、".join(chart.patterns) if chart.patterns else "无特殊格局"
-
-        # 核心宫位：命宫、财帛、官禄、夫妻、迁移
+        # 核心宫位：命宫、财帛、官禄、夫妻、迁移（该盘缺失则跳过）
         core_palace_names = ["命宫", "财帛", "官禄", "夫妻", "迁移"]
         core_palaces = []
         for name in core_palace_names:
-            p = pillars_by_pos[name]
+            p = palaces_by_name.get(name)
+            if p is None:
+                continue
             core_palaces.append(
                 {
                     "name": name,
@@ -164,15 +166,9 @@ class ZiweiExplainer(Explainer):
                 stars_dist.append(f"{p.name}: {'、'.join(p.main_stars)}")
         stars_distribution = "\n".join(stars_dist)
 
-        # 性别
-        gender_text = (
-            "男"
-            if output.input_payload.get("gender") == Gender.MALE
-            else "女"
-            if output.input_payload.get("gender") == Gender.FEMALE
-            else "未知"
-        )
-        question = output.input_payload.get("question", "分析此紫微斗数命盘")
+        # gender / question 取自 output envelope（解释器只能解释已给出的内容）
+        gender_text = str(output.metadata.get("gender", "未知"))
+        question = str(output.metadata.get("question", "分析此紫微斗数命盘"))
 
         return {
             "wuxing_ju": chart.wuxing_ju,
@@ -185,7 +181,8 @@ class ZiweiExplainer(Explainer):
             "body_palace_stars": "、".join(body_palace.main_stars)
             if body_palace.main_stars
             else "无主星",
-            "patterns_list": patterns_list,
+            # ZiweiChart 无 patterns 字段：格局识别不在冻结契约范围内（ZW-017 边界）
+            "patterns_list": "无特殊格局",
             "gender_text": gender_text,
             "question": question,
             "core_palaces": core_palaces,
@@ -194,40 +191,61 @@ class ZiweiExplainer(Explainer):
             "confidence_factors": ", ".join(output.confidence.factors.keys()),
         }
 
-    def _llm_render(self, output: AgentOutput, style: str) -> str:
+    def _llm_render(
+        self,
+        output: AgentOutput,
+        style: str,
+        chunks: list[Any] | tuple[Any, ...] = (),
+    ) -> str:
         prompt_data = self._prepare_prompt_data(output)
         user_prompt = USER_PROMPT_TEMPLATE.render(prompt_data)
 
         if self.provider is None:
-            return self._fallback(output, style)
+            return self._fallback(output, style, chunks=chunks)
 
-        s = self.provider.settings
+        prompt = ZIWEI_SYSTEM_PROMPT + "\n\n" + user_prompt
+        if chunks:
+            cited = "\n".join(f"- {c.text}" for c in chunks)
+            prompt += f"\n\n# 权威知识 (Authoritative context)\n{cited}\n"
+
+        s = get_settings()
         return self.provider.generate(
-            ZIWEI_SYSTEM_PROMPT + "\n\n" + user_prompt,
+            prompt,
             model=s.ollama_model,
             temperature=s.explain_temperature,
             max_tokens=s.explain_max_tokens,
         )
 
     @staticmethod
-    def _fallback(output: AgentOutput, style: str, note: str = "") -> str:
+    def _fallback(
+        output: AgentOutput,
+        style: str,
+        note: str = "",
+        chunks: list[Any] | tuple[Any, ...] = (),
+    ) -> str:
         """Deterministic fallback when LLM is not available or fails."""
         try:
-            chart = ZiweiChart(**output.result)
+            chart = (
+                output.result
+                if isinstance(output.result, ZiweiChart)
+                else ZiweiChart(**output.result)
+            )
             fate_palace = next(p for p in chart.palaces if p.is_fate_palace)
             fate_stars = "、".join(fate_palace.main_stars) if fate_palace.main_stars else "无主星"
             body_palace = next(p for p in chart.palaces if p.is_body_palace)
             body_stars = "、".join(body_palace.main_stars) if body_palace.main_stars else "无主星"
             total_stars = len([s for p in chart.palaces for s in p.main_stars])
-            patterns_text = "、".join(chart.patterns) if chart.patterns else "无特殊格局"
 
             fallback = (
-                f"此紫微命盘为{chart.wuxing_ju} | 格局：{patterns_text} | 命宫在{fate_palace.name}，主星[{fate_stars}] | "
+                f"此紫微命盘为{chart.wuxing_ju} | 命宫在{fate_palace.name}，主星[{fate_stars}] | "
                 f"身宫在{body_palace.name}，主星[{body_stars}] | 共{total_stars}颗主星入庙。"
             )
             if note:
                 fallback += f" ({note})"
+            if chunks:
+                cited = "; ".join(f"{c.source or c.id}" for c in chunks[:3])
+                fallback += f" [knowledge: {cited}]"
             return fallback
         except Exception:
             # Ultimate fallback to generic output
-            return Explainer._fallback(output, style, note)
+            return Explainer._fallback(output, style, note, chunks)

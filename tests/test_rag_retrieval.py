@@ -184,7 +184,10 @@ def test_explainer_receives_real_context():
 
     assert provider.prompt is not None
     assert "Authoritative context" in provider.prompt, "retriever produced no context"
-    # the injected context must be real corpus prose, not a placeholder
-    chunks = get_retriever().retrieve(output.agent, k=3)
+    # the injected context must be real corpus prose, not a placeholder.
+    # Phase A3: the pipeline derives the query from the deterministic result,
+    # so assert against the same query the pipeline uses.
+    expl = Explainer(provider=provider, retriever=get_retriever())
+    chunks = expl.retrieve(output, k=3)
     assert chunks
     assert chunks[0].text[:12] in provider.prompt

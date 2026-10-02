@@ -11,7 +11,7 @@ from pydantic import BaseModel, ValidationError
 
 from ..agents.registry import get_registry
 from ..core.schemas import AgentOutput
-from ..inference.explainer import get_explainer
+from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
 
 
@@ -68,7 +68,7 @@ def create_app() -> FastAPI:
         except ValidationError as exc:
             return JSONResponse(status_code=422, content={"detail": jsonable_encoder(exc.errors())})
         fresh = type(agent)()
-        fresh.explainer = get_explainer()
+        fresh.explainer = get_explainer_for(name)
         return {"agent": name, "explanation": fresh.explain(output)}
 
     @app.post("/orchestrate")
