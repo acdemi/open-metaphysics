@@ -354,11 +354,19 @@ Consensus（契约 §4 显式排除; 任何新增能力须 ACP）
 
 ## Consensus（共识 — 非计算域）
 
-**Status**: N/A
+**Status**: N/A（不适用领域生命周期）
 
-Consensus 是**跨领域聚合层**（Evidence → ConsensusReport），不属于命理
-计算领域，不适用领域能力生命周期。其自身行为由
-`CONSENSUS_BEHAVIOR_SPEC.md`（25 条, Frozen）治理。
+自 Phase C4 起，共识明确为**两个不同 capability**，不做合并
+（事实报告与判定：`docs/CONSENSUS_CAPABILITY_CLARIFICATION.md`）：
+
+| Capability | 实现 | 输入 | 输出 | 治理 |
+|---|---|---|---|---|
+| **Cross-Modal Consensus**（`CrossModalConsensus`，现名 `ConsensusAgent`） | `src/openmetaphysics/agents/consensus.py` | `list[AgentOutput]` | 一致矩阵 / 冲突 / 综合（`contributions`+`agreement_matrix`+`synthesis`） | 无契约；由 `tests/test_consensus.py` 覆盖 |
+| **Evidence Consensus** | `reference/consensus_builder.py`（**仅 Reference**） | `list[Evidence]` + `ConsensusConfig` | `ConsensusReport{conclusions, conflicts, evidence_ids}` | `CONSENSUS_BEHAVIOR_SPEC.md`（CS-001~025，**Frozen**）+ `reference/contracts/consensus_contract.json` v1.0.0 + conformance CONSENSUS 层（3 向量） |
+
+- orchestration（`orchestration/graph.py::_consensus`）使用的是 **Cross-Modal Consensus**。
+- 生产侧**没有** Evidence Consensus 实现；Reference 契约描述的是后者。
+- 两者目前**未连接**；是否让生产侧也具备 Evidence 聚合能力属 **A1 结构裁定**（仍挂起）。
 
 ---
 
