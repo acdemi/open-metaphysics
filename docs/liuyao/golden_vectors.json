@@ -1,0 +1,3726 @@
+{
+  "metadata": {
+    "categories": [
+      "boundary",
+      "edge",
+      "invalid",
+      "normal"
+    ],
+    "contract": "docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md",
+    "domain": "liuyao",
+    "engine_version": "0.1.0",
+    "generated_from": "src/openmetaphysics/agents/liuyao.py (existing behaviour)",
+    "reference": "reference/liuyao/domain.py",
+    "rule_inventory": "docs/liuyao/LIUYAO_RULE_INVENTORY.md",
+    "status": "candidate",
+    "total_vectors": 24
+  },
+  "vectors": [
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "乾为天, all stable young-yang",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "子孙",
+          "妻财",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "父母"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 1,
+        "najia": [
+          "甲子",
+          "甲寅",
+          "甲辰",
+          "壬午",
+          "壬申",
+          "壬戌"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 1,
+        "palace": "乾",
+        "palace_element": "金",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_001",
+      "input": {
+        "born_at": "1985-08-15T10:00:00+08:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "坤为地, all stable young-yin",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "兄弟",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "妻财",
+          "子孙"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 2,
+        "najia": [
+          "乙未",
+          "乙巳",
+          "乙卯",
+          "癸丑",
+          "癸亥",
+          "癸酉"
+        ],
+        "original": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 2,
+        "palace": "坤",
+        "palace_element": "土",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_002",
+      "input": {
+        "born_at": "1985-08-15T10:00:00+08:00",
+        "casts": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "乾 -> 坤, all six lines changing",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 2,
+        "liu_qin": [
+          "子孙",
+          "妻财",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "父母"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 1,
+        "najia": [
+          "甲子",
+          "甲寅",
+          "甲辰",
+          "壬午",
+          "壬申",
+          "壬戌"
+        ],
+        "original": [
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 1,
+        "palace": "乾",
+        "palace_element": "金",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_003",
+      "input": {
+        "born_at": "1985-08-15T10:00:00+08:00",
+        "casts": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "坤 -> 乾, all six old-yin",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 1,
+        "liu_qin": [
+          "兄弟",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "妻财",
+          "子孙"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 2,
+        "najia": [
+          "乙未",
+          "乙巳",
+          "乙卯",
+          "癸丑",
+          "癸亥",
+          "癸酉"
+        ],
+        "original": [
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 2,
+        "palace": "坤",
+        "palace_element": "土",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_004",
+      "input": {
+        "born_at": "1985-08-15T10:00:00+08:00",
+        "casts": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "mixed lines with changing lines",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 17,
+        "liu_qin": [
+          "子孙",
+          "官鬼",
+          "兄弟",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 64,
+        "najia": [
+          "己卯",
+          "己丑",
+          "己亥",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 63,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_005",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          8,
+          9,
+          6,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "seeded three-coin casting (no explicit casts)",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "父母",
+          "官鬼",
+          "妻财",
+          "父母",
+          "官鬼",
+          "妻财"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 23,
+        "najia": [
+          "乙未",
+          "乙巳",
+          "乙卯",
+          "辛未",
+          "辛巳",
+          "辛卯"
+        ],
+        "original": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 20,
+        "palace": "乾",
+        "palace_element": "金",
+        "shi_position": 4,
+        "ying_position": 1,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_006",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": null,
+        "question": null,
+        "seed": 12345
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "single changing line (upper six)",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 43,
+        "liu_qin": [
+          "子孙",
+          "妻财",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "父母"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 1,
+        "najia": [
+          "甲子",
+          "甲寅",
+          "甲辰",
+          "壬午",
+          "壬申",
+          "壬戌"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 1,
+        "palace": "乾",
+        "palace_element": "金",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_007",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          9
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "question 财运 -> 妻财 用神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "妻财"
+      },
+      "id": "LY_norm_008",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": "财运如何",
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "question 事业升迁 -> 官鬼 用神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "官鬼"
+      },
+      "id": "LY_norm_009",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": "事业升迁",
+        "seed": null
+      }
+    },
+    {
+      "category": "normal",
+      "coverage": [
+        "LY-01",
+        "LY-02",
+        "LY-03",
+        "LY-04",
+        "LY-05",
+        "LY-06",
+        "LY-07",
+        "LY-08",
+        "LY-09",
+        "LY-10",
+        "LY-11"
+      ],
+      "description": "no changing lines -> changed_hexagram is null",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "子孙",
+          "官鬼",
+          "兄弟",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 64,
+        "najia": [
+          "己卯",
+          "己丑",
+          "己亥",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 63,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_norm_010",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          8,
+          7,
+          8,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-11"
+      ],
+      "description": "no question -> default 世爻 用神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "子孙",
+          "妻财",
+          "父母",
+          "官鬼",
+          "兄弟",
+          "父母"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 1,
+        "najia": [
+          "甲子",
+          "甲寅",
+          "甲辰",
+          "壬午",
+          "壬申",
+          "壬戌"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 1,
+        "palace": "乾",
+        "palace_element": "金",
+        "shi_position": 6,
+        "ying_position": 3,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_edge_001",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-11"
+      ],
+      "description": "question matching several keyword groups (first rule wins)",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "妻财"
+      },
+      "id": "LY_edge_002",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": "财运与事业",
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-11"
+      ],
+      "description": "question 出行 -> 子孙 用神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "子孙"
+      },
+      "id": "LY_edge_003",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": "出行平安",
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-11"
+      ],
+      "description": "question 考试 -> 父母 用神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "父母",
+          "官鬼",
+          "兄弟",
+          "官鬼",
+          "兄弟",
+          "父母"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 28,
+        "najia": [
+          "丙辰",
+          "丙午",
+          "丙申",
+          "庚午",
+          "庚申",
+          "庚戌"
+        ],
+        "original": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 62,
+        "palace": "兑",
+        "palace_element": "金",
+        "shi_position": 4,
+        "ying_position": 1,
+        "yong_shen": "父母"
+      },
+      "id": "LY_edge_004",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          8,
+          8,
+          7,
+          7,
+          8,
+          8
+        ],
+        "question": "考试结果",
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-04",
+        "LY-05"
+      ],
+      "description": "mutual hexagram derived from lines 2-4 / 3-5",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 17,
+        "liu_qin": [
+          "子孙",
+          "官鬼",
+          "兄弟",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 64,
+        "najia": [
+          "己卯",
+          "己丑",
+          "己亥",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 63,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_edge_005",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          8,
+          9,
+          6,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "edge",
+      "coverage": [
+        "LY-10"
+      ],
+      "description": "22:00 clock time does not trigger the 23:00 day rollover",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_edge_006",
+      "input": {
+        "born_at": "2024-05-01T22:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "boundary",
+      "coverage": [
+        "LY-10"
+      ],
+      "description": "23:30 triggers the 23:00 day rollover for 六神",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 61,
+        "liu_qin": [
+          "父母",
+          "子孙",
+          "兄弟",
+          "妻财",
+          "子孙",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 63,
+        "najia": [
+          "戊寅",
+          "戊辰",
+          "戊午",
+          "己酉",
+          "己未",
+          "己巳"
+        ],
+        "original": [
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 64,
+        "palace": "离",
+        "palace_element": "火",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_bound_001",
+      "input": {
+        "born_at": "2024-05-01T23:30:00+00:00",
+        "casts": [
+          6,
+          7,
+          8,
+          9,
+          6,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "boundary",
+      "coverage": [
+        "LY-10"
+      ],
+      "description": "23:00 exactly triggers the rollover",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 61,
+        "liu_qin": [
+          "父母",
+          "子孙",
+          "兄弟",
+          "妻财",
+          "子孙",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 63,
+        "najia": [
+          "戊寅",
+          "戊辰",
+          "戊午",
+          "己酉",
+          "己未",
+          "己巳"
+        ],
+        "original": [
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 64,
+        "palace": "离",
+        "palace_element": "火",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_bound_002",
+      "input": {
+        "born_at": "2024-05-01T23:00:00+00:00",
+        "casts": [
+          6,
+          7,
+          8,
+          9,
+          6,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "boundary",
+      "coverage": [
+        "LY-10"
+      ],
+      "description": "00:00 clock time, no rollover",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": 61,
+        "liu_qin": [
+          "父母",
+          "子孙",
+          "兄弟",
+          "妻财",
+          "子孙",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武",
+          "青龙"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 9,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 6,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 63,
+        "najia": [
+          "戊寅",
+          "戊辰",
+          "戊午",
+          "己酉",
+          "己未",
+          "己巳"
+        ],
+        "original": [
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 9,
+            "is_changing": true,
+            "is_yin": false,
+            "position": 4
+          },
+          {
+            "cast_value": 6,
+            "is_changing": true,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 64,
+        "palace": "离",
+        "palace_element": "火",
+        "shi_position": 3,
+        "ying_position": 6,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_bound_003",
+      "input": {
+        "born_at": "2024-05-02T00:00:00+00:00",
+        "casts": [
+          6,
+          7,
+          8,
+          9,
+          6,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "boundary",
+      "coverage": [
+        "LY-10",
+        "LY-05"
+      ],
+      "description": "leap day (2024-02-29)",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "玄武",
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_bound_004",
+      "input": {
+        "born_at": "2024-02-29T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "boundary",
+      "coverage": [
+        "LY-10"
+      ],
+      "description": "year boundary 2023-12-31T23:59",
+      "expected": {
+        "changed": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "changed_hexagram": null,
+        "liu_qin": [
+          "妻财",
+          "子孙",
+          "官鬼",
+          "父母",
+          "官鬼",
+          "兄弟"
+        ],
+        "liu_shen": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "mutual": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 5
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 6
+          }
+        ],
+        "mutual_hexagram": 27,
+        "najia": [
+          "丁巳",
+          "丁卯",
+          "丁丑",
+          "戊申",
+          "戊戌",
+          "戊子"
+        ],
+        "original": [
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 1
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 2
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 3
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 4
+          },
+          {
+            "cast_value": 7,
+            "is_changing": false,
+            "is_yin": false,
+            "position": 5
+          },
+          {
+            "cast_value": 8,
+            "is_changing": false,
+            "is_yin": true,
+            "position": 6
+          }
+        ],
+        "original_hexagram": 60,
+        "palace": "坎",
+        "palace_element": "水",
+        "shi_position": 1,
+        "ying_position": 4,
+        "yong_shen": "世爻"
+      },
+      "id": "LY_bound_005",
+      "input": {
+        "born_at": "2023-12-31T23:59:00+00:00",
+        "casts": [
+          7,
+          7,
+          8,
+          8,
+          7,
+          8
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "invalid",
+      "coverage": [],
+      "description": "five cast values rejected",
+      "expected": null,
+      "expected_error": "casts must have exactly 6 values",
+      "id": "LY_inv_001",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "invalid",
+      "coverage": [],
+      "description": "cast value 5 rejected",
+      "expected": null,
+      "expected_error": "each cast value must be 6,7,8 or 9",
+      "id": "LY_inv_002",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          5,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "invalid",
+      "coverage": [],
+      "description": "cast value 10 rejected",
+      "expected": null,
+      "expected_error": "each cast value must be 6,7,8 or 9",
+      "id": "LY_inv_003",
+      "input": {
+        "born_at": "2024-05-01T12:00:00+00:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          10
+        ],
+        "question": null,
+        "seed": null
+      }
+    }
+  ]
+}
