@@ -6,7 +6,12 @@ from jinja2 import Template
 
 from ..core.config import get_settings
 from ..core.schemas import AgentOutput
-from ..inference.explainer import Explainer
+from ..inference.explainer import (
+    PROMPT_FACTS_HEADER,
+    PROMPT_KNOWLEDGE_HEADER,
+    PROMPT_RULES,
+    Explainer,
+)
 from .ziwei import ZiweiChart
 
 # 辅星权重映射，值越小优先级越高
@@ -203,10 +208,14 @@ class ZiweiExplainer(Explainer):
         if self.provider is None:
             return self._fallback(output, style, chunks=chunks)
 
-        prompt = ZIWEI_SYSTEM_PROMPT + "\n\n" + user_prompt
+        prompt = ZIWEI_SYSTEM_PROMPT + f"\n\n{PROMPT_FACTS_HEADER}\n" + user_prompt
         if chunks:
-            cited = "\n".join(f"- {c.text}" for c in chunks)
-            prompt += f"\n\n# 权威知识 (Authoritative context)\n{cited}\n"
+            cited = "\n".join(
+                f"- {c.text}" + (f" ({c.source})" if getattr(c, "source", "") else "")
+                for c in chunks
+            )
+            prompt += f"\n\n{PROMPT_KNOWLEDGE_HEADER}\n{cited}\n"
+        prompt += f"\n{PROMPT_RULES}\n"
 
         s = get_settings()
         return self.provider.generate(

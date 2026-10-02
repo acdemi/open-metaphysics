@@ -233,6 +233,7 @@ def test_e2e_response_shape_is_stable():
         "degraded",
         "knowledge",
         "evidence",
+        "error",
     }
     # sanity: the runtime is local and clock-independent apart from computed_at
     assert datetime.now(timezone.utc).year >= 2024
