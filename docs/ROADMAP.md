@@ -2,7 +2,7 @@
 
 > 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：**Knowledge Corpus 建设（Phase 7.3 完成；7.3+ shen_sha/auxiliary_star 生产重试待授权）**（三大计算域 Qimen/BaZi/Ziwei 已 **Frozen & Certified / Integration Ready**）。
+> 当前开发位置：**Production Runtime 收口（P0 状态对齐 + 死代码清理；P1 可信度与治理债务）**（三大计算域 Qimen/BaZi/Ziwei 已 **Frozen & Certified / Integration Ready**；Knowledge Ziwei 语料 **FROZEN-v1.0.0**，102/47/41）。
 
 ## A. 两条时间线
 
@@ -33,9 +33,11 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Phase 6.0 | Domain Capability Framework Standardization（生命周期标准 + 状态模型 + 模板 + 领域审计） | 完成 | - |
 | Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
 
-**当前开发位置**: **Knowledge Corpus 建设（Phase 7.3 完成，7.3+ 待授权）**（Qimen/BaZi/Ziwei 三大计算域已 Integration Ready / Certified）。
+**当前开发位置**: **Production Runtime 收口**（Qimen/BaZi/Ziwei 三大计算域已 Integration Ready / Certified；Knowledge Ziwei 语料已 Frozen v1.0.0）。详见
+`docs/PROJECT_REVIEW_2026-09-16.md` §4（P0/P1/P2 计划）与 `docs/PROJECT_STATUS.md` §4/§8。
 **领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /
-5 阶段），其他领域（BaZi/Ziwei/Liuyào）均处于 Implemented，按标准逐级契约化。
+5 阶段）。BaZi / Ziwei 已达 **Integration Ready**（生命周期终点）；**Liuyào 仍处于
+Implemented**，待按标准逐级契约化。
 
 **关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
 实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。
@@ -47,7 +49,7 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 - src/openmetaphysics/ 下的包骨架，空的 tests/。
 - **完成标准：** python -m pip install -e . 成功，pytest 可以运行（0 测试）。
 
-## Phase 1 — 基础
+## Phase 1 — 基础（✅ 完成）
 - core.schemas: 共享模型（§SCHEMAS 2.x）+ JSON Schema 导出。
 - core.models: 领域原语（天干地支，八卦，六十四卦，二十四节气，六十甲子）。
 - core.calendar: 确定性阴阳历法 + 节气分界（立春年分界，节月分界）。纯函数。
@@ -55,19 +57,19 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 - core.config: 类型化配置（Ollama/Qwen/DeepSeek/Qdrant/PG 端点）。
 - **完成标准：** 日历/天干单元测试通过 + 黄金重放框架运行。
 
-## Phase 2 — 六爻（完整参考智能体）
+## Phase 2 — 六爻（完整参考智能体）〔部分完成：算法已实现，契约化待办〕
 - 卦表，纳甲，六亲，六神，世应，用神规则。
 - 种子起卦（从 seed 得到六爻）；本/变/互卦。
 - LiuyaoAgent + 黄金向量（标准起卦 → 期望图表）。
 - **完成标准：** 重放测试绿色；不涉及大语言模型。
 
-## Phase 3 — 八字
+## Phase 3 — 八字（✅ 完成 → Integration Ready）
 - 基于节气分界的四柱引擎（年/月/日/时）。
 - 藏干，纳音，十神，大运（性别驱动方向）。
 - BaziAgent + 跨越年界（立春）边界情况的黄金向量。
 - **完成标准：** 柱子测试绿色，包括立春前后和时区情况。
 
-## Phase 4 — 紫微斗数（骨架 → 部分完成）
+## Phase 4 — 紫微斗数（✅ 完成 → Integration Ready；辅星/四化/大限属 ZW-017 未实现边界）
 - 命局/五行局，十二宫，紫微星排布规则。
 - v1: 宫位骨架 + 紫微/天府排布；剩余星分步完成。
 - ✅ **完成：** 宫位布局 + 十四主星 紫微定局测试绿色。农历转换 via sxtwl。
@@ -81,22 +83,22 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 - **完成标准：** ✅ 契约冻结 + Reference 认证 + 双实现验证（独立测试套件 + 30/30 等价 + 认证工件）。
 - **变更政策**: 任何算法/规则/向量变更须 **ACP** + 契约版本递增 + Golden Vector 迁移 + Reference 更新（详见 `docs/governance/CAPABILITY_STATUS.md`）。
 
-## Phase 6 — 共识智能体
+## Phase 6 — 共识智能体〔部分完成：已实现并接线，缺契约校验与等价测试〕
 - ConsensusAgent: 加权聚合，一致矩阵，冲突检测。
 - 确定性综合模板。
 - **完成标准：** 多智能体共识测试绿色。
 
-## Phase 7 — 编排 + API
+## Phase 7 — 编排 + API〔部分完成 ≈ 达成：五步 LangGraph + 6 端点齐全〕
 - LangGraph Orchestrator (validate→route→fan_out→consensus→respond)。
 - FastAPI app 带所有端点 + OpenAPI。
 - **完成标准：** /orchestrate 端到端测试绿色。
 
-## Phase 8 — 推理 + RAG（隔离）
+## Phase 8 — 推理 + RAG（隔离）〔部分完成：实现齐备；RAG 未接线、零测试、专属 explainer 坏死〕
 - OllamaProvider（+ 通义千问/DeepSeek 通过相同接口，可选远程）。
 - Explainer 带确定性后备；KnowledgeRetriever (Qdrant + 内存)。
 - **完成标准：** 离线解释工作（后备），Ollama 存在时也工作。
 
-## Phase 9 — 运维 + 可扩展性
+## Phase 9 — 运维 + 可扩展性〔仅桩：MCP 无 transport、无持久化、无冒烟测试〕
 - Docker Compose (Postgres/Qdrant/Ollama) + 会话/追踪持久化。
 - mcp/server.py 工具接口桩。
 - 文档合并，示例。
@@ -104,5 +106,21 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 
 ## 当前交付范围
 
-当前迭代完整执行 Phases 0-4；**Phase 5 奇门遁甲已冻结并认证**（v1.0.0 契约 + Reference 认证 + 双实现验证），附带适配层/ABI/回归防护网。Consensus + API 作为可运行垂直切片，八字、紫微斗数核心完成。所有重型服务保持可选；核心完全可以离线测试。
+**Product Roadmap 现状（2026-09-16 只读代码审计口径；明细见 `docs/PROJECT_STATUS.md` §4）**：
+
+| Phase | 状态 |
+|-------|------|
+| 0 脚手架 | 完成 |
+| 1 基础 | 完成（JSON Schema 仅运行时导出，无落盘工件） |
+| 2 六爻 | 部分完成（领域专属 Schema 已有；缺契约化流程） |
+| 3 八字 | **完成 → Integration Ready** |
+| 4 紫微斗数 | **完成 → Integration Ready**（辅星/四化/大限属 ZW-017 未实现边界） |
+| 5 奇门遁甲 | **完成 → Certified**（v1.0.0 契约 + Reference 认证 + 双实现验证 + 适配层/ABI/回归防护网） |
+| 6 共识 | 部分完成（已实现并接线；缺契约校验与等价测试） |
+| 7 编排 + API | 部分完成 ≈ 达成（五步 LangGraph + 6 端点） |
+| 8 推理 + RAG | 部分完成（RAG 未接线、provider/RAG 零测试、专属 explainer 坏死） |
+| 9 运维 + 可扩展性 | **仅桩** |
+
+`crates/om-calendar` 与 `services/gateway` 仍为 bootstrap 占位。所有重型服务保持可选；
+核心完全可以离线测试。
 
