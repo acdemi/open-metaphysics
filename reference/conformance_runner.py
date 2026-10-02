@@ -29,6 +29,23 @@ from .conformance import (
 GOLDEN_DIR = Path(__file__).parent / "conformance" / "golden"
 CONTRACTS_DIR = Path(__file__).parent / "contracts"
 
+# Phase 7.4 (ACP-REF-001 Option A) -- CF-015 required behavior-contract IDs.
+# CF-015 ("Behavior Contract Coverage") enumerates exactly these IDs and states
+# that each MUST be represented and that missing coverage MUST fail conformance.
+# Before Phase 7.4 the runner hardcoded 17 of them and asserted ``passed=True``
+# without verifying anything; the list below is the specification's full set.
+REQUIRED_BEHAVIOR_IDS: tuple[str, ...] = (
+    "BC-RE-001",
+    "BC-DNF-001",
+    "BC-PM-001",
+    "BC-EV-001",
+    "BC-JSON-001",
+    "BC-DET-001",
+    "BC-EDGE-001",
+    *(f"KB-{i:03d}" for i in range(1, 21)),
+    *(f"CS-{i:03d}" for i in range(1, 26)),
+)
+
 
 # == Reference Adapter (wraps existing Reference Runtime) ==
 
@@ -459,7 +476,7 @@ class ConformanceRunner:
                 layer=vector.layer,
                 name=f"sort:{vector.name}",
                 passed=True,
-                message="Stable ordering verified via golden match",
+                message="Ordering stability derived from the golden match (not independently re-verified)",
             )
         )
 
@@ -471,7 +488,7 @@ class ConformanceRunner:
                 layer=vector.layer,
                 name=f"hash:{vector.name}",
                 passed=True,
-                message="Hash verified via golden match",
+                message="Hash stability derived from the golden match (not independently re-verified)",
             )
         )
 
@@ -483,7 +500,7 @@ class ConformanceRunner:
                 layer=vector.layer,
                 name=f"null:{vector.name}",
                 passed=True,
-                message="Null handling verified via golden match",
+                message="Null handling derived from the golden match (not independently re-verified)",
             )
         )
 
@@ -524,36 +541,145 @@ class ConformanceRunner:
                     )
                 )
 
+    def _behavior_representation(self, result: ConformanceResult) -> dict[str, tuple[bool, str]]:
+        """Resolve every CF-015 required ID to an EXECUTED representation.
+
+        Phase 7.4 (ACP-REF-001 Option A). Returns ``{behavior_id: (passed, basis)}``.
+
+        Representations, by contract family:
+
+        * ``KB-001`` ~ ``KB-020``: executed ``KnowledgeBehavior.audit()``
+          verifiers (one per contract).
+        * ``CS-001`` ~ ``CS-025``: executed ``ConsensusBehavior.audit()``
+          verifiers (one per contract).
+        * ``BC-*``: the Rule/Pattern/Evidence layer checks and the
+          JSON/determinism check families that the golden vectors actually
+          exercise, plus a live edge-case probe for ``BC-EDGE-001``.
+
+        An ID absent from the returned mapping has **no representation** and is
+        therefore reported as uncovered -- which, per CF-015, fails conformance.
+        """
+        rep: dict[str, tuple[bool, str]] = {}
+
+        def layer_ok(layer: ConformanceLayer) -> bool:
+            checks = [c for c in result.checks if c.layer == layer]
+            return bool(checks) and all(c.passed for c in checks)
+
+        def category_ok(category: ConformanceCategory) -> bool:
+            checks = [c for c in result.checks if c.category == category]
+            return bool(checks) and all(c.passed for c in checks)
+
+        # -- BC-* : rule/pattern/evidence behaviors exercised by the vectors --
+        rep["BC-RE-001"] = (layer_ok(ConformanceLayer.RULE), "executed rule-layer golden checks")
+        rep["BC-DNF-001"] = (layer_ok(ConformanceLayer.RULE), "executed rule-layer golden checks")
+        rep["BC-PM-001"] = (
+            layer_ok(ConformanceLayer.PATTERN),
+            "executed pattern-layer golden checks",
+        )
+        rep["BC-EV-001"] = (
+            layer_ok(ConformanceLayer.EVIDENCE),
+            "executed evidence-layer golden checks",
+        )
+        rep["BC-JSON-001"] = (
+            category_ok(ConformanceCategory.GOLDEN_JSON),
+            "canonical-JSON golden comparison",
+        )
+        rep["BC-DET-001"] = (
+            category_ok(ConformanceCategory.DETERMINISTIC_OUTPUT),
+            "re-executed determinism checks",
+        )
+        try:
+            from .engine import field_exists
+
+            rep["BC-EDGE-001"] = (
+                field_exists({}, "missing.path") is False
+                and field_exists({"a": {"b": 1}}, "a.b") is True,
+                "live missing-field probe",
+            )
+        except Exception as exc:  # pragma: no cover - defensive
+            rep["BC-EDGE-001"] = (False, f"probe failed: {exc}")
+
+        # -- KB-001 ~ KB-020 : executed knowledge behavior verifiers --
+        try:
+            from .knowledge_behavior import KnowledgeBehavior
+            from .knowledge_query import load_knowledge_store
+
+            kn_dir = Path(__file__).parent / "examples" / "knowledge"
+            store = load_knowledge_store(
+                nodes_path=kn_dir / "nodes.yaml",
+                relations_path=kn_dir / "relations.yaml",
+                references_path=kn_dir / "references.yaml",
+            )
+            kb = KnowledgeBehavior.audit(store)
+            for bid, passed in kb.items():
+                if bid.startswith("KB-"):
+                    rep[bid] = (bool(passed), "KnowledgeBehavior.audit()")
+        except Exception as exc:  # pragma: no cover - defensive
+            for i in range(1, 21):
+                rep.setdefault(f"KB-{i:03d}", (False, f"audit unavailable: {exc}"))
+
+        # -- CS-001 ~ CS-025 : executed consensus behavior verifiers --
+        try:
+            from .consensus_behavior import ConsensusBehavior
+            from .consensus_builder import ConsensusBuilder
+
+            cs = ConsensusBehavior.audit(ConsensusBuilder())
+            for bid, passed in cs.items():
+                if bid.startswith("CS-"):
+                    rep[bid] = (bool(passed), "ConsensusBehavior.audit()")
+        except Exception as exc:  # pragma: no cover - defensive
+            for i in range(1, 26):
+                rep.setdefault(f"CS-{i:03d}", (False, f"audit unavailable: {exc}"))
+
+        return rep
+
     def _check_behavior_coverage(self, result: ConformanceResult) -> None:
-        known_behaviors = [
-            "BC-RE-001",
-            "BC-DNF-001",
-            "BC-PM-001",
-            "BC-EV-001",
-            "BC-JSON-001",
-            "BC-DET-001",
-            "BC-EDGE-001",
-            "KB-001",
-            "KB-012",
-            "KB-018",
-            "KB-020",
-            "CS-001",
-            "CS-004",
-            "CS-005",
-            "CS-006",
-            "CS-020",
-            "CS-025",
-        ]
-        for bid in known_behaviors:
+        """CF-015: every required behavior contract MUST be represented.
+
+        Phase 7.4 (ACP-REF-001 Option A): this used to hardcode 17 IDs and add
+        each with ``passed=True`` without verifying anything. It now resolves
+        every required ID through ``_behavior_representation`` and reports the
+        truth, including failing the IDs that have no executed representation.
+        """
+        rep = self._behavior_representation(result)
+
+        unrepresented: list[str] = []
+        represented = 0
+        for bid in REQUIRED_BEHAVIOR_IDS:
+            entry = rep.get(bid)
+            if entry is None:
+                unrepresented.append(bid)
+                result.add_check(
+                    ConformanceCheckResult(
+                        check_id=f"CF-BEHAV-{bid}",
+                        category=ConformanceCategory.BEHAVIOR_COVERAGE,
+                        name=bid,
+                        passed=False,
+                        message="No executed representation for this behavior contract "
+                        "(CF-015 requires coverage; missing coverage MUST fail)",
+                    )
+                )
+                continue
+            passed, basis = entry
+            if passed:
+                represented += 1
+            else:
+                unrepresented.append(bid)
             result.add_check(
                 ConformanceCheckResult(
                     check_id=f"CF-BEHAV-{bid}",
                     category=ConformanceCategory.BEHAVIOR_COVERAGE,
                     name=bid,
-                    passed=True,
-                    message="Behavior contract covered by golden vectors",
+                    passed=passed,
+                    message=f"Represented by: {basis}"
+                    if passed
+                    else f"Representation failed: {basis}",
                 )
             )
+
+        total = len(REQUIRED_BEHAVIOR_IDS)
+        result.behavior_coverage = represented / total if total else 0.0
+        result.unrepresented_behaviors = unrepresented
 
     def _check_architecture_boundary(
         self, adapter: RuntimeAdapter, result: ConformanceResult

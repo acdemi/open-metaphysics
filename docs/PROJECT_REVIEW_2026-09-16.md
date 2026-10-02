@@ -61,12 +61,19 @@
 - **域 Reference**：qimen 63 例 / bazi 6 例 / ziwei 4 例；**无 `reference/liuyao/`**。
 - 域向量（`docs/{qimen,bazi,ziwei}/golden_vectors.json` 各 24 条）**不经过 ConformanceRunner**。
 
-### 2.2 ⚠️ Conformance / 认证可信度 —— 剩余：中（**建议列为最高优先修复项**）
+### 2.2 ✅ Conformance / 认证可信度 —— **已修复**（ACP-REF-001 选项 A 实施完毕）
 
-> **本节已于同日二轮复核修正**（初版数字有误；勘误明细见
+> **状态（2026-09-16 当日修复）**：`ACP-REF-001` 已按**选项 A（补齐实现）**实施 ——
+> 检查 135 → **170**、行为覆盖 **52/52**（`behavior_coverage = 1.0`、`unrepresented = []`）、
+> `certified=True` **强度已如实**；补写 KB-001~011 与 13 条 CS 验证器；**CF-015 规范零修改**；
+> 测试 618 → **627**（含 2 个负向对照）。详见
+> `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md`（IMPLEMENTED）。
+> 下节保留**修复前**的问题描述作为审计留档；本节曾经的三个数字错误已在同日二轮复核中更正。
+
+> **本节于同日二轮复核修正**（初版数字有误；勘误明细见
 > `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md` §1.4）。
 
-实测 `ConformanceRunner().run(...)` → `passed 135 / failed 0 / certified True`，但其中的覆盖检查**不作任何覆盖验证**：
+**（修复前状态，留档）** 实测 `ConformanceRunner().run(...)` → `passed 135 / failed 0 / certified True`，但其中的覆盖检查**不作任何覆盖验证**：
 
 | 检查 | 现状 | 问题 |
 |------|------|------|
@@ -241,17 +248,18 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 
 ### 4.2 P1 — 可信度与治理债务（建议紧接着做，比新功能更优先）
 
-> **状态（2026-09-16）**：用户已选定 **P1 为下一步 Sprint**。ACP 草案已起草于分支
-> `work/governance/p1-reference-assurance`：**`ACP-REF-001`**（认证口径 / 空转检查处置）与
-> **`ACP-REF-002`**（范围扩张追认 + rule/pattern 契约补全）。两者均为 **PROPOSED** ——
-> **批准前不得修改** `reference/` 与 `docs/specification/` 任何文件。
+> **状态（2026-09-16）**：用户已选定 **P1 为下一步 Sprint** 并授权**补齐实现（选项 A）一个 Sprint**。
+> **P1-1 已实施完毕**：检查 **135 → 170**、行为覆盖 **52/52**、`behavior_coverage = 1.0`、
+> `unrepresented = []`、`certified = True`（强度已如实）；**`CONFORMANCE_SPEC` 零修改**；
+> 测试 618 → **627**（含 2 个负向对照）。见 `ACP-REF-001`（**IMPLEMENTED**）。
+> 后续：P1-2（`ACP-REF-002`，仍 PROPOSED）与 P1-3/P1-4。
 
-| # | 任务 | 依据 | 备注 |
+| # | 任务 | 依据 | 状态 |
 |---|------|------|------|
-| **P1-1** | **Conformance 空转处置**：出 **ACP/缺陷提案**，二选一——(a) 补齐 `_check_behavior_coverage` 至 100 个 ID 并做真实验证、去掉 4 类无条件通过；(b) 经 ACP 修订 CF-015 与相关检查定义 | §2.2；CF-015；H3/H4 | **不得静默修改** `reference/` 行为实现（须 ACP）→ **已出 `ACP-REF-001`（PROPOSED）** |
-| **P1-2** | **ACP 补正**：为 KnowledgeStore / Consensus / Conformance 的范围扩张补 `ACP-REF-*`，同步修订 `REFERENCE_RUNTIME_SPEC.md` §3.1/§3.2/§6.1 + §10 | §2.7；§3.2 L93-107「MUST NOT without ACP」 | 治理债清零 → **已出 `ACP-REF-002`（PROPOSED）** |
-| P1-3 | **契约补全**：新增 `rule_contract.json` / `pattern_contract.json` + 生成器 + diff 测试 | §2.1；`RUNTIME_CONTRACT.md` §10 Planned | 5 层契约齐平 |
-| P1-4 | **坏死/空转修复**：`ZiweiExplainer` 字段契约修复或删除；RAG 接线（灌入 KnowledgeChunk）；为 provider/retriever 补测试 | §2.3 新发现 2/3 | 属功能缺陷修复 |
+| **P1-1** | **Conformance 空转处置**（选项 A：补齐实现） | §2.2；CF-015；H3/H4 | **✅ 已实施** —— 新增 52-ID 逐条代表物校验 + 24 条新验证器（KB 11 / CS 13）；`certified` 强度已如实 |
+| **P1-2** | **`ACP-REF-002`**：范围扩张追认 + 修订 `REFERENCE_RUNTIME_SPEC` §3.1/§3.2/§6.1/§10 | §2.7；§3.2「MUST NOT without ACP」 | 🔴 **PROPOSED（待批准）** —— 拟与「Reference 最终冻结」同批 |
+| P1-3 | **契约补全**：新增 `rule_contract.json` / `pattern_contract.json` + 生成器 + diff 测试 | §2.1；`RUNTIME_CONTRACT.md` §10 Planned | 未开始（随 P1-2 同批） |
+| P1-4 | **坏死/空转修复**：`ZiweiExplainer` 字段契约修复或删除；RAG 接线（灌入 KnowledgeChunk）；为 provider/retriever 补测试 | §2.3 新发现 2/3 | 未开始 |
 
 ### 4.3 P2 — 主线候选（1~2 周，择一，需授权）
 

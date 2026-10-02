@@ -73,6 +73,13 @@ class ConformanceResult(BaseModel):
     behavior_version: str = "1.0.0"
     checks: list[ConformanceCheckResult] = Field(default_factory=list)
     certified: bool = False
+    # Phase 7.4 (ACP-REF-001 Option A): CF-015 behavior-contract coverage.
+    # ``behavior_coverage`` is represented/required over the 52 IDs CF-015
+    # enumerates; ``unrepresented_behaviors`` lists the IDs that could not be
+    # traced to an executed representation (these are also emitted as failing
+    # checks, because CF-015 states missing coverage MUST fail).
+    behavior_coverage: float = Field(default=0.0, ge=0.0, le=1.0)
+    unrepresented_behaviors: list[str] = Field(default_factory=list)
 
     def add_check(self, check: ConformanceCheckResult) -> None:
         self.checks.append(check)
