@@ -63,16 +63,27 @@
 
 ### 2.2 ⚠️ Conformance / 认证可信度 —— 剩余：中（**建议列为最高优先修复项**）
 
-实测 `ConformanceRunner().run(...)` → `passed 135 / failed 0 / certified True`，但**135 个检查中含大量无条件通过**：
+> **本节已于同日二轮复核修正**（初版数字有误；勘误明细见
+> `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md` §1.4）。
+
+实测 `ConformanceRunner().run(...)` → `passed 135 / failed 0 / certified True`，但其中的覆盖检查**不作任何覆盖验证**：
 
 | 检查 | 现状 | 问题 |
 |------|------|------|
-| `_check_behavior_coverage`（L527-556） | 硬编码 **17 个 ID**（BC 7/7、KB 4/20、CS 6/25），**一律 `passed=True`** | **CF-015**（`CONFORMANCE_SPEC.md` L265-278）要求覆盖 KB-001~020 + CS-001~025 → **83 个 ID 未验证** |
-| `_check_ordering` / `_check_hash` / `_check_null` / `_check_enum`（L454/466/478/490） | 全部**无条件 `passed=True`** | 这四类号称"检查"实为占位 |
+| `_check_behavior_coverage`（L527-556） | 硬编码 **17 个 ID**（BC 7 + KB{001,012,018,020} + CS{001,004,005,006,020,025}），**一律 `passed=True`**，不校验是否真被代表 | **CF-015**（`CONFORMANCE_SPEC.md` §4.15）要求 **52 个** ID（7 BC + KB-001~020 + CS-001~025）每个**至少由一条 golden vector 代表**，缺失 **MUST fail** → **35 个 ID 未被纳入** |
+| `_check_ordering` / `_check_hash` / `_check_null` / `_check_enum`（L454/466/478/490） | **并非无条件**：仅在 golden 匹配通过后添加（`_check_vector` L380-385 `if passed:`） | 属**派生断言** —— 未对 ordering/hash/null/enum 作独立验证（`_check_deterministic` 才是唯一真正复跑的检查）；措辞「verified」名不副实 |
 
-> 结论：**`certified=True` 的强度低于文档暗示**。这不否定已有域认证（Qimen/BaZi/Ziwei 另有
-> 独立等价测试 30/30 + 24/24 + 24/24 支撑），但**核心 5 层的 Conformance 结论需重新评估**。
-> 按 H3/H4：应出 **ACP**（或缺陷提案）决定是「补齐实现以符合 CF-015」还是「经 ACP 修订 CF-015」。
+**更深一层（二轮复核）**：35 个未纳入的 ID 中约 **21 个连验证器都不存在** ——
+`reference/knowledge_behavior.py` 只覆盖 KB-012~020（**KB-001~011 无验证器**），
+`reference/consensus_behavior.py` 只覆盖约 15/25 条 CS；两者 `audit()` 各只调用 5 项；
+全仓测试中出现 **KB ID 11 个、CS ID 0 个**；CF-015 自己的测试
+`test_behavior_coverage_checks_present` **只断言 `BEHAVIOR_COVERAGE` 类别存在**，同为空断言。
+
+> 结论：**`certified=True` 的强度低于文档暗示**，且这不是"补映射"能解决的 ——
+> 真正达标需为约 35 个合约补写 ID 级验证（**Sprint 级**）。
+> 这不否定已有域认证（Qimen/BaZi/Ziwei 另有独立等价测试 30/30 + 24/24 + 24/24 支撑），
+> 但**核心 5 层的 Conformance 结论需重新评估**。
+> 按 H3/H4 已出 **`ACP-REF-001`（PROPOSED）**，决定「补齐实现以符合 CF-015」还是「经 ACP 修订 CF-015」。
 
 ### 2.3 Production Runtime（Python）逐 Phase
 
