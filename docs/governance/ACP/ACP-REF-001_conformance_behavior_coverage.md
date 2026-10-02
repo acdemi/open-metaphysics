@@ -1,10 +1,46 @@
 # ACP-REF-001 — Conformance 行为覆盖与派生检查处置
 
-> **Status**: **PROPOSED（已修正估算，待人工裁定范围）** · 2026-09-16
+> **Status**: **IMPLEMENTED**（2026-09-16 · 选项 A · 人工授权单个 Sprint）· 实施分支 `work/reference/p1-behavior-coverage`
 > **修正记录**: 初版（同日）称「83/100 ID 未验证、4 类检查无条件通过」——**经二轮复核该表述不准确**，
 > 本版为修正后的准确口径（见 §1.4「初版勘误」）。
-> **范围**: `reference/conformance_runner.py`（Reference 行为实现，冻结）+ `docs/specification/CONFORMANCE_SPEC.md` CF-015（冻结规范）
-> **纪律**: 依 H3 —— 本提案 **未实施任何变更**。
+> **范围**: `reference/conformance_runner.py`（Reference 行为实现，冻结）+ `reference/knowledge_behavior.py` + `reference/consensus_behavior.py` + `reference/conformance.py`
+> **规范未改**: 走**选项 A（补齐实现以符合 CF-015）**，故 `docs/specification/CONFORMANCE_SPEC.md` **零修改**（无需版本递增）。
+
+## 0. 实施结果（2026-09-16）
+
+| 指标 | 实施前 | 实施后 |
+|------|--------|--------|
+| Conformance 检查总数 | 135 | **170** |
+| 行为覆盖检查条数 | 17（硬编码、恒真） | **52**（逐条真实执行） |
+| `behavior_coverage` | 未暴露 | **1.0（52/52）** |
+| `unrepresented_behaviors` | 未暴露 | **[]** |
+| `certified` | True（强度被高估） | **True（已如实验证）** |
+| 测试 | 618 | **627**（新增 9 条锁定机制，含 2 个负向对照） |
+
+**落地内容**
+
+- **A-1 机制**：新增 `REQUIRED_BEHAVIOR_IDS`（CF-015 的 52 个 ID）与 `_behavior_representation()`；
+  `_check_behavior_coverage` 改为**逐 ID 执行代表物**，无代表物 → **FAIL**；派生四项检查的措辞改为
+  「derived from the golden match (not independently re-verified)」。
+- **A-2 KB**：`knowledge_behavior.py` 新增 **KB-001~011**（模型校验：ID 格式/枚举/边界/`extra=forbid`）
+  共 11 个验证器（均含「合法载荷必被接受」的正向对照，防止空转），并把 `audit()` 由 5 键扩到
+  **KB-001~020 全覆盖**；同时**更正**原 `audit()` 的映射错误（原把 KB-013~015 当作「列表排序」、
+  把确定性挂在 KB-019 —— 与规范原文不符，现按规范逐条对齐）。
+- **A-3 CS**：`consensus_behavior.py` 新增 **CS-002/003/004/005/006/007/008/009/010/018/019/022/024**
+  共 13 个验证器（驱动真实 `ConsensusBuilder` 断言可观测后果），`audit()` 由 5 键扩到 **CS-001~025 全覆盖**。
+- **A-4 追溯**：每个 ID 的 `message` 记录代表物来源（`KnowledgeBehavior.audit()` /
+  `ConsensusBehavior.audit()` / 对应层 golden 检查 / 实时缺字段探针）。
+- **A-5 口径**：`ConformanceResult` 新增 `behavior_coverage` 与 `unrepresented_behaviors`；
+  `certified` 保持 `failed == 0` 语义 —— 覆盖不足会**真实失败**（已由负向对照测试锁定）。
+
+**未采用红旗过渡**：因 A-2/A-3 已把缺失验证器补齐，实施后覆盖率即为 **52/52**，
+`certified` 始终为 True 且**其强度已如实**，无需任何过渡方案，main 亦未出现红灯。
+
+**关于 CF-015 措辞的说明（须确认）**：CF-015 原文为「每个行为合约 **MUST** 由至少一条
+**golden vector** 代表」。本次落地的代表物为**可执行行为验证器**（KB/CS）与**对应层 golden 检查**（BC），
+而非为每个 ID 新建一条 golden vector。这是**同一意图的更强实现**（执行真实断言而非快照比对），
+但**字面上**与 CF-015 的 "golden vector" 用词不同。若要求严格字面一致，可再出一次小 ACP
+把代表物形态写清或补生成对应向量 —— 请裁定。
 
 ---
 
