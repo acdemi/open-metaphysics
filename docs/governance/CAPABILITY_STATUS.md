@@ -313,33 +313,39 @@ Consensus（契约 §4 显式排除; 任何新增能力须 ACP）
 
 **Status**:
 
-Implemented（Stage 1 完成；未进入 Contract Candidate）
+**Integration Ready**（2026-09-16 Phase B 契约化：Reference 独立实现 + 24 向量 + 等价认证通过）
 
 **Calculation Layer**:
 
 - 算法: `src/openmetaphysics/agents/liuyao.py`（361 行；起卦/纳甲/六亲/六神/世应/用神/本变互卦）
-- 确定性: 是（PRNG 种子来自输入；`deterministic_rng(derive_seed(payload))`）
-- Schema: **领域专属模型已存在** —— `LiuyaoInput` / `YaoLine` / `LiuyaoChart` / `LiuyaoOutput`
+- 确定性: 是（显式 `casts` 或显式 `seed` → `deterministic_rng(derive_seed(payload))`；
+  **注意**：自动 seed 受 `PYTHONHASHSEED` 影响，跨进程不可复现 —— 见 `LC-D04`）
+- Schema: 领域专属模型 `LiuyaoInput` / `YaoLine` / `LiuyaoChart` / `LiuyaoOutput`
   （`agents/liuyao.py` L28 / L43 / L51 / L69），经 `AgentRegistry.schema()` 暴露为 JSON Schema；
-  已在 `docs/SCHEMAS.md §3.4` 登记。**（此前本条误写「无领域专属 Schema」，2026-09-16 审计修正）**
-- 测试: `tests/test_liuyao.py`（6 例通过）
+  已在 `docs/SCHEMAS.md §3.4` 登记。
+- 测试: `tests/test_liuyao.py`（6 例）+ `tests/test_liuyao_golden_vectors.py`（6 例）
 
 **Contract Layer**:
 
-无（无契约、无 Golden Vectors）
+- 规则清单: `docs/liuyao/LIUYAO_RULE_INVENTORY.md`（LY-01~LY-11 + 输入校验 + 5 项已知边界）
+- 行为契约: `docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（**candidate** v1.0.0；LC-001~LC-052）
+- Golden Vectors: `docs/liuyao/golden_vectors.json`（**24**：normal 10 / edge 6 / boundary 5 / invalid 3）
 
 **Reference Layer**:
 
-无（无 `reference/liuyao/` 独立实现）
+- `reference/liuyao/`（**自包含**，不导入 `openmetaphysics`）：`domain.py` + `tables.py` + `astronomy.py` + `README.md`
+- 等价证明: `reference/tests/test_liuyao_equivalence.py`
+  —— 24 向量 + **40/40** 生成输入**逐字节一致**；含 23:00 换日边界、seed 掷卦路径、
+  Reference 表与生产表**一致性守卫**、Reference 源码独立性断言
 
-**下一步（迁移前置）**:
+**下一步**:
 
-- ~~领域专属 Schema 定义~~ → **已完成**（`agents/liuyao.py` L28/L43/L51/L69；`docs/SCHEMAS.md §3.4`）
-- 规则清单（编号化）+ Golden Vector 草案 → Freeze Review → 契约 v1.0.0
-  → `reference/liuyao/` 独立实现 → 24/24 等价认证 → Integration Ready
-  （复用 Qimen/BaZi/Ziwei 已验证剧本；10+ 文件，零算法创新）
+- ~~领域专属 Schema 定义~~ → **已完成**（`docs/SCHEMAS.md §3.4`）
+- ~~规则清单 + Golden Vectors → Reference 独立实现 → 等价认证~~ → **已完成**（Phase B，2026-09-16）
+- 待办（非阻塞）：契约从 `candidate` **Frozen**（须 ACP）；Golden Vector 数量从 24 提升至与
+  BaZi/Ziwei 同级覆盖密度；补 `docs/liuyao/LIUYAO_FREEZE_REVIEW.md`
 
-**已知代码缺陷（2026-09-16 审计，非计算域契约影响）**:
+**已知代码缺陷（2026-09-16 审计，非计算域契约影响；Phase B 未改动算法）**:
 
 - `LiuyaoEngine._changed_yao` 中 `flipped` 重复赋值（`agents/liuyao.py` L258-260，首处为死赋值）
 - `_select_yong_shen` 经 `LiuyaoEngine._yong_shen = staticmethod(...)` 猴子补丁挂载（L336）
