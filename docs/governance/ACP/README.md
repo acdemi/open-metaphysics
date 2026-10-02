@@ -23,19 +23,25 @@
 | `ACP-ZW-004` | sxtwl 精确锁定 `==2.0.7` | IMPLEMENTED | 2026-08-13 | 依赖/环境 |
 | `ACP-SCHEMA-001` | earthly_branch Schema 归位审计 | NOT REQUIRED（撤回） | 2026-08-13 | KB Schema（无需变更） |
 | `ACP-SCHEMA-001`（自审） | 门 A 审计自审 8/8 | —（记录） | 2026-08-13 | KB Schema |
-| **`ACP-REF-001`** | **Conformance 行为覆盖与"空转检查"处置** | **PROPOSED** | 2026-09-16 | `reference/conformance_runner.py`、`CONFORMANCE_SPEC` CF-015 |
+| **`ACP-REF-001`** | **Conformance 行为覆盖与"空转检查"处置** | **IMPLEMENTED**（选项 A） | 2026-09-16 | `reference/conformance_runner.py`、`knowledge_behavior.py`、`consensus_behavior.py`、`conformance.py`（**CF-015 规范未改**） |
 | **`ACP-REF-002`** | **Reference Runtime 范围扩张追认与契约层补全** | **PROPOSED** | 2026-09-16 | `REFERENCE_RUNTIME_SPEC` §3.1/§3.2/§6.1/§10、`reference/contracts/` |
+
+## 已实施（IMPLEMENTED）
+
+- **`ACP-REF-001`**（2026-09-16，**选项 A · 补齐实现**；含同日勘误）：`_check_behavior_coverage`
+  原硬编码 **17/52** 个 CF-015 所需 ID 且不校验代表物 → 现已改为**逐 ID 执行代表物**，
+  并补齐缺失验证器：KB-001~011（11 条）与 CS-002~007/008/009/010/018/019/022/024（13 条）。
+  **结果：检查 135 → 170、行为覆盖 52/52、`behavior_coverage = 1.0`、`unrepresented = []`、
+  `certified = True`（强度已如实）**；`CONFORMANCE_SPEC` **零修改**（走 A 而非 B）。
+  测试 618 → **627**（含 2 个负向对照锁定机制非空转）。
+  ⚠ 待你确认一点：CF-015 原文用词是 "at least one **golden vector**"，本次代表物为**可执行行为验证器**
+  （更强、执行真实断言），若要求字面一致需再出一次小 ACP。
 
 ## 待批准（PROPOSED）
 
-- **`ACP-REF-001`**（2026-09-16，**含同日勘误**）：`_check_behavior_coverage` 硬编码 **17/52** 个
-  CF-015 所需 ID 且不校验是否真被代表 → **35 个 ID 未被纳入**，其中约 **21 个连验证器都不存在**
-  （KB-001~011 无验证器；CS 约 15/25 有验证器；测试中 CS ID = 0）。
-  另：`_check_ordering/_hash/_null/_enum` **并非无条件**，属 golden 匹配通过后的**派生断言**（初版表述已更正）。
-  需裁定：**A 补齐实现**（Sprint 级，约 35 条验证 + 52 ID 机器登记）／**B 修订 CF-015**（须版本递增 + 豁免清单）
-  ／**过渡方案**（如实暴露 `behavior_coverage`，书面约定分阶段达标）。
 - **`ACP-REF-002`**：`REFERENCE_RUNTIME_SPEC` §3.2 把 KnowledgeStore / Consensus 列为
   *Out of Scope*「MUST NOT be added without ACP」，而二者**已实现且有 v1.0.0 契约**；
   同时缺 `rule_contract.json` / `pattern_contract.json`。需裁定：追认 + 修订规范 + 补契约。
 
-> 两份提案均**未实施**；在获批前，仓库对 `reference/` 与 `docs/specification/` 保持零改动。
+> `ACP-REF-001` 已实施且**未触碰 CF-015 规范**；`ACP-REF-002` 仍未实施，
+> 在获批前仓库对 `docs/specification/` 保持零改动。
