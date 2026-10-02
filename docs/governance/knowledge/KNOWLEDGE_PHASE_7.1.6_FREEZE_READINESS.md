@@ -27,7 +27,7 @@ Phase 7.1.6 是 `ZIWEI_CORPUS_BUILD_PLAN.md` 执行序列的最后一步
 |----|----|
 | 规范产物 | `knowledge/ziwei_corpus.json`（生成物，唯一对外语料） |
 | 规范输入 | `knowledge/corpus/ziwei/{nodes,relations,references}/*.yaml` |
-| digest | `bac1b1ef0db1bb95655e96decba57ceebdec11511a69f0ed63f998f2f3d14707` |
+| digest（就绪审计时） | `bac1b1ef0db1bb95655e96decba57ceebdec11511a69f0ed63f998f2f3d14707` → **冻结时因 metadata 版本标识规范化变为 `69d6e2a6…`**（节点/关系/引用内容零变化; 见 `KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` §3） |
 | 计数 | **102 nodes / 47 relations / 41 references** |
 | 版本建议 | `ziwei_corpus:v1.0.0` |
 
