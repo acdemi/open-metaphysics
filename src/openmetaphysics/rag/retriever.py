@@ -31,14 +31,30 @@ class InMemoryRetriever:
         self.chunks.append(chunk)
 
     def retrieve(self, query: str, *, k: int = 5) -> list[KnowledgeChunk]:
-        q = set(query)  # CJK char-level overlap
+        """Deterministic keyword retrieval: character overlap + whole-tag match.
+
+        Strategy is unchanged from the original (no embeddings, no external
+        service); the fixes are that tags are matched as whole labels instead of
+        being folded into single characters, and ``k <= 0`` returns nothing.
+        Ranking is by descending score then ascending chunk id, so results are
+        stable for a given corpus and query.
+        """
+        if k <= 0:
+            return []
+        q = query.strip().lower()
+        if not q:
+            return []
+        qchars = set(q)  # CJK char-level overlap
         scored = []
         for c in self.chunks:
-            hay = set(c.text) | set(c.tags)
-            score = len(q & hay)
+            score = len(qchars & set(c.text.lower()))
+            for tag in c.tags:
+                label = tag.strip().lower()
+                if label and label in q:
+                    score += 1
             scored.append((score, c))
         scored.sort(key=lambda t: (-t[0], t[1].id))
-        return [c for _, c in scored[:k] if _ > 0] or []
+        return [c for score, c in scored[:k] if score > 0]
 
 
 class QdrantRetriever:
@@ -82,6 +98,20 @@ class QdrantRetriever:
 _default: KnowledgeRetriever | None = None
 
 
+def _load_default_corpus(retriever: InMemoryRetriever) -> int:
+    """Load the frozen Knowledge corpus into the in-memory retriever.
+
+    Degrades to an empty retriever when the corpus is unavailable, so the
+    offline default path never raises.
+    """
+    try:
+        from .corpus import load_into
+
+        return load_into(retriever)
+    except Exception:
+        return 0
+
+
 def get_retriever() -> KnowledgeRetriever:
     global _default
     if _default is None:
@@ -89,7 +119,9 @@ def get_retriever() -> KnowledgeRetriever:
         if s.rag_enabled and s.qdrant_url:
             _default = QdrantRetriever(s.qdrant_url, s.qdrant_collection)
         else:
-            _default = InMemoryRetriever()
+            retriever = InMemoryRetriever()
+            _load_default_corpus(retriever)
+            _default = retriever
     return _default
 
 
