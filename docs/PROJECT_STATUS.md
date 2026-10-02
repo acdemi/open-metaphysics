@@ -28,7 +28,7 @@
 | **Ziwei Reference** | **Certified（24/24 等价）** |
 | **Ziwei Golden Vectors** | **24（normative fixtures）** |
 | **Knowledge Behavior Contract** | **KB-001~020（Frozen）** |
-| **Knowledge Corpus** | **Validated / Partial（Ziwei 63/37/10, Phase 7.1.6）** |
+| **Knowledge Corpus** | **FROZEN-v1.0.0（`ziwei_corpus:v1.0.0`, 2026-09-16）—— 102/47/41** |
 
 ---
 
@@ -48,7 +48,7 @@
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
-| **Knowledge Domain** | **引用层（Partial）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus Partial（Ziwei 63/37/10, Phase 7.1.6; 7.2A Schema 门已通过） |
+| **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `69d6e2a6…`, 2026-09-16; 变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **Draft** | 尚未开始 |
 
