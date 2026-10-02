@@ -3,7 +3,8 @@
 > 领域能力成熟度跟踪（Domain Maturity Tracking）— 唯一权威状态登记
 > 状态模型与迁移规则: `docs/governance/CAPABILITY_LIFECYCLE.md`
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
-> 更新: 2026-09-16（Phase 7.1.6 **Corpus Freeze v1.0.0** —— 语料 102/47/41, D-12=A 批准）
+> 更新: 2026-09-16（Phase 7.1.6 **Corpus Freeze v1.0.0** —— 语料 102/47/41, D-12=A 批准；
+> 同日按只读代码审计刷新 Qimen 测试列与 **Liuyào Schema 条目** —— 见 `docs/PROJECT_REVIEW_2026-09-16.md`）
 
 ---
 
@@ -11,12 +12,12 @@
 
 | Domain | Status | Contract | Golden Vectors | Reference | 测试 |
 |--------|--------|----------|----------------|-----------|------|
-| **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 全仓库 530 |
+| **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 93 + 28 |
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **FROZEN-v1.0.0** ［`ziwei_corpus:v1.0.0`, 2026-09-16, D-12=A 批准（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变）; **Phase 7.3.1: 四份 Tier 1 来源全部获取（revision-pinned）并完成逐字证据核验（36/36 义理断言 + 10/10 转录差异核验）→ GAP-12/13 证据侧阻塞解除, 仍未生产任何节点**, 语料 63/37/10 不变（corpus sha b4af74ab）; **Phase 7.2B-R/R2: 生产 30 节点 + 22 引用 → 语料 93/37/32（sha ce3b83b7）, 逐字核验 key_quote 30/30 + passage 22/22 PASS**; **Phase 7.2B-R3（2026-09-16）: +9 神煞 → 102/37/41; Phase 7.1.3 补齐: `yinyong(5)` + `shuyu(5)` 关系 → 102/47/41（digest `69d6e2a6…`）, 引文逐字 10/10 + 端点 10/10 PASS; **Phase 7.1.6: Corpus Freeze v1.0.0** —— `ziwei_corpus.json` 与规范输入 YAML 冻结, 变更须走 Corpus 级审查; 回归 618/618; §2 关系矩阵无未闭合项, 唯一引用缺口 GAP-02**）; Provenance **AUDITED** | — | — | 618（全仓库回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）; Provenance **AUDITED**。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 618（全仓库回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -316,9 +317,11 @@ Implemented（Stage 1 完成；未进入 Contract Candidate）
 
 **Calculation Layer**:
 
-- 算法: `src/openmetaphysics/agents/liuyao.py`（起卦/纳甲/静卦/动卦, 种子确定性）
-- 确定性: 是（PRNG 种子来自输入）
-- Schema: 共享 `AgentInput`/`AgentOutput` 信封；无领域专属 Schema
+- 算法: `src/openmetaphysics/agents/liuyao.py`（361 行；起卦/纳甲/六亲/六神/世应/用神/本变互卦）
+- 确定性: 是（PRNG 种子来自输入；`deterministic_rng(derive_seed(payload))`）
+- Schema: **领域专属模型已存在** —— `LiuyaoInput` / `YaoLine` / `LiuyaoChart` / `LiuyaoOutput`
+  （`agents/liuyao.py` L28 / L43 / L51 / L69），经 `AgentRegistry.schema()` 暴露为 JSON Schema；
+  已在 `docs/SCHEMAS.md §3.4` 登记。**（此前本条误写「无领域专属 Schema」，2026-09-16 审计修正）**
 - 测试: `tests/test_liuyao.py`（6 例通过）
 
 **Contract Layer**:
@@ -331,8 +334,15 @@ Implemented（Stage 1 完成；未进入 Contract Candidate）
 
 **下一步（迁移前置）**:
 
-- 领域专属 Schema 定义
-- 规则清单 + 向量草案 → Freeze Review → 契约化
+- ~~领域专属 Schema 定义~~ → **已完成**（`agents/liuyao.py` L28/L43/L51/L69；`docs/SCHEMAS.md §3.4`）
+- 规则清单（编号化）+ Golden Vector 草案 → Freeze Review → 契约 v1.0.0
+  → `reference/liuyao/` 独立实现 → 24/24 等价认证 → Integration Ready
+  （复用 Qimen/BaZi/Ziwei 已验证剧本；10+ 文件，零算法创新）
+
+**已知代码缺陷（2026-09-16 审计，非计算域契约影响）**:
+
+- `LiuyaoEngine._changed_yao` 中 `flipped` 重复赋值（`agents/liuyao.py` L258-260，首处为死赋值）
+- `_select_yong_shen` 经 `LiuyaoEngine._yong_shen = staticmethod(...)` 猴子补丁挂载（L336）
 
 ---
 
