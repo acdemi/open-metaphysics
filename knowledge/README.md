@@ -1,7 +1,7 @@
 # Knowledge 语料库（Knowledge Corpus）
 
-> **阶段**: Phase 7.1.6 全量建设（Phase 7.2A Schema Gate 已通过）
-> **状态**: **Pipeline Validated, Corpus Partial**（Ziwei 试点 → 扩展建设中）
+> **阶段**: Phase 7.1.6 已完成 —— **Corpus Freeze v1.0.0**（2026-09-16, D-12=A 批准）
+> **状态**: **Pipeline Validated, Corpus FROZEN（`ziwei_corpus:v1.0.0`）**
 > **规范基准**: `docs/specification/KNOWLEDGE_BEHAVIOR_SPEC.md`（KB-001~020, Frozen）+
 > `docs/design/phase6/01_knowledge_layer_architecture.md`（Frozen）+
 > 规范性模型 `reference/knowledge.py`
@@ -13,12 +13,16 @@
 ## 1. 范围
 
 - **试点领域**: 仅 Ziwei（含少量跨系统 ten_god 概念节点，来源《渊海子平》）
-- **试点到全量演进**: Phase 7.0 试点（20 节点/12 关系/3 引用，验证 Pipeline）→
+- **演进**: Phase 7.0 试点（20 节点/12 关系/3 引用，验证 Pipeline）→
   Phase 7.1.1~7.1.6 全量建设（核心词汇 → 天干/地支/关系/引用扩展）→
-  当前 **63 节点 + 37 关系 + 10 引用**（`ziwei_corpus.json` 实测, sha256 9c222617）。
+  Phase 7.2A Schema 门 → 7.2B-R/·R2/·R3 证据驱动生产（辅星/神煞）→
+  **Phase 7.1.6 关系层补齐（yinyong/shuyu）+ Corpus Freeze v1.0.0**。
+  当前 **102 节点 + 47 关系 + 41 引用**（`ziwei_corpus.json` 实测, digest `69d6e2a6…`）。
   治理进展见 `docs/governance/knowledge/`（Scope/Source/Admission/Build Plan/
-  Coverage Matrix/Gaps 及各 Phase 报告）。Phase 7.2A Schema 门已通过
-  （shen_sha / auxiliary_star 均裁定 **A 已存在**, 待 7.2B 生产授权）。
+  Coverage Matrix/Gaps/各 Phase 报告/**7.1.6 FREEZE**）。
+- **变更流程（冻结后）**: 任何 node/relation/reference 变更须走 **Corpus 级审查**
+  （提案 → 逐字证据核验 → validate/确定性/回归 → 人工批准 → 版本递增）。
+  见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`。
 - **来源**: 3 个 Tier 1 来源（`sources/ziwei/source_01.yaml` 紫微斗数全书;
   `source_02.yaml` 渊海子平; `source_03.yaml` 三命通会）—— 原始数据引用，
   **不包含**古籍全文
@@ -42,15 +46,14 @@ knowledge/
 
 | 类别 | 数量 | 类型覆盖 |
 |------|------|----------|
-| nodes | 63 | wuxing(5) / main_star(14) / palace(12) / ten_god(10) / heavenly_stem(10) / earthly_branch(12) |
-| relations | 37 | sheng / ke / he / xing / hai / chong（含五合/三合/六害等） |
-| references | 10 | classic_text / school_commentary / oral_tradition |
+| nodes | 102 | wuxing(5) / main_star(14) / palace(12) / ten_god(10) / heavenly_stem(10) / earthly_branch(12) / auxiliary_star(12) / shen_sha(27) |
+| relations | 47 | sheng(5) / ke(5) / he(10) / chong(3) / xing(8) / hai(6) / shuyu(5) / yinyong(5) |
+| references | 41 | classic_text(37) / school_commentary(1) / modern_interpretation(1) / oral_tradition(2) |
 
-> 数量以 `ziwei_corpus.json` 为准（63/37/10, sha256 9c222617）；详细节点/关系/
-> 引用分项见 `docs/governance/knowledge/ZIWEI_CORPUS_COVERAGE_MATRIX.md` 与
-> 各 Phase 报告（7.1.1 核心词汇 / 7.1.2 关系 / 7.1.3 引用 / 7.1.4B 地支+刑 /
-> 7.1.5 天干+三命刑害 / 7.1.6 五合）。**注意**：node_type 具体枚举以冻结
-> KB-002 & `reference/knowledge.py::NodeType` 为准（本表为语义概览）。
+> 数量以 `ziwei_corpus.json` 为准（102/47/41, digest `69d6e2a6…`, **FROZEN v1.0.0**）；
+> 详细分项见 `docs/governance/knowledge/ZIWEI_CORPUS_COVERAGE_MATRIX.md` 与各 Phase 报告。
+> **注意**：node_type / relation_type / ref_type 具体枚举以冻结 KB-002 / KB-007 / KB-011 &
+> `reference/knowledge.py` 为准（本表为语义概览）。
 
 ## 4. 运行
 

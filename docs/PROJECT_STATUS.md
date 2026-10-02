@@ -1,11 +1,11 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-09-15
-> **项目阶段**: Reference Freeze Candidate（Knowledge 语料建设中）
+> **最后更新**: 2026-09-16
+> **项目阶段**: Reference Freeze Candidate（Knowledge 语料 **Ziwei 已冻结 v1.0.0**）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
-> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **Partial**（Ziwei **86 节点 + 37 关系 + 22 引用**；Phase 7.3.1 逐字证据 → Phase 7.2B-R 首批生产 23 节点（shen_sha 11 / auxiliary_star 12），逐字核验 23/23 PASS）
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 2026-09-16, D-12=A 批准 —— Ziwei **102 节点 + 47 关系 + 41 引用**, digest `69d6e2a6…`；变更须走 Corpus 级审查）
 
 ---
 
@@ -28,7 +28,7 @@
 | **Ziwei Reference** | **Certified（24/24 等价）** |
 | **Ziwei Golden Vectors** | **24（normative fixtures）** |
 | **Knowledge Behavior Contract** | **KB-001~020（Frozen）** |
-| **Knowledge Corpus** | **Validated / Partial（Ziwei 63/37/10, Phase 7.1.6）** |
+| **Knowledge Corpus** | **FROZEN-v1.0.0（`ziwei_corpus:v1.0.0`, 2026-09-16）—— 102/47/41** |
 
 ---
 
@@ -48,7 +48,7 @@
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
-| **Knowledge Domain** | **引用层（Partial）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus Partial（Ziwei 63/37/10, Phase 7.1.6; 7.2A Schema 门已通过） |
+| **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `69d6e2a6…`, 2026-09-16; 变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **Draft** | 尚未开始 |
 
@@ -219,10 +219,11 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint**: Knowledge 语料建设（Phase 7.x）
-（最新 **Phase 7.2A Schema Admission Gate** 已通过：`shen_sha` / `auxiliary_star`
-均裁定 **A（已存在，无需 ACP）**，零数据生产，待人工 Evidence Review + 7.2B 生产授权。
-详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2A_REPORT.md`。）
+**当前 Sprint**: Knowledge / Ziwei 语料 —— **已完成并冻结（Phase 7.1.6 Corpus Freeze）**
+（`ziwei_corpus:v1.0.0`：**102 节点 + 47 关系 + 41 引用**, digest `69d6e2a6…`；
+Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`/`shuyu(5)` 关系；
+`Coverage Matrix` §1/§2 无未闭合项，唯一引用缺口 GAP-02；回归 618/618。
+详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`。）
 
 **Qimen Domain 状态**: **Frozen and Certified**（Integration Ready）
 
@@ -284,14 +285,17 @@ Proposal (ACP)。
 
 **下一步（待用户明确授权）**：
 
-- **关系层生产（Knowledge）**: 神煞/辅星 ↔ 干支/主星 的关联是否生产——
-  需先裁定冻结 15 类 `relation_type` 能否无损表达定位关系（羊刃=禄前一辰 / 驿马=三合绝处）
-  （D-1，见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2B_RERUN_REPORT.md` §4）
-- ~~Corpus 扩展: 三命通會卷三其余神煞~~ → **已完成（Phase 7.2B-R2）**
-- **Corpus 扩展（Knowledge, 下一步）**: 紫微斗數全書 卷二/卷三 已获取未抽取部分
-  （证据已在 7.3.1 抓取件, 可直接生产）; 三命通會 卷一/卷四~卷九 其余条目
-- **抓取快照入库（D-3）/ 天乙贵人韵文口诀（D-4）** 待裁定
-- **GAP-01（Knowledge）**: 《紫微斗數全集》版本核验是否推进（D-5）
+- ~~关系层生产（Knowledge）: 神煞/辅星 ↔ 干支/主星 的关联~~ → **§2 规划内的
+  `yinyong(5)` / `shuyu(5)` 已完成（2026-09-16）**；其余 ×7（fuzhu/zhiyue/duiying/
+  yingxiang/zengqiang/xueroo/zhixiang）仍属后续阶段（解释域/断事），未规划生产
+- ~~Corpus 扩展: 三命通會卷三其余神煞~~ → **已完成（Phase 7.2B-R2/R3）**
+- ~~Corpus 冻结~~ → **已完成（Phase 7.1.6 Corpus Freeze v1.0.0, D-12=A）**；
+  此后任何语料变更须走 **Corpus 级审查**（见冻结记录 §2）
+- **开放项（不阻塞冻结, 待裁定）**: GAP-02（school_commentary 唯一引用缺口）/
+  D-11（GAP-15 星曜五行多源冲突口径）/ D-6（四化 schema, 须 ACP）/ D-7（auxiliary_star
+  是否扩至卷一杂曜, 须 scope 批准）/ D-3 抓取快照入库 / D-5 GAP-01 版本核验
+- **Ziwei 计算域**: Integration Ready 为生命周期终点；辅星/四化/大限等属 ZW-017
+  冻结边界，扩展须 **ACP + 用户授权**
 - 其它 Knowledge Corpus 扩展（pattern / 断事类 / 用神类等，随授权）
 - 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
   状态: `docs/governance/CAPABILITY_STATUS.md`）
