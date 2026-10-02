@@ -103,6 +103,8 @@ def _explain_detail(name: str, output: AgentOutput) -> dict[str, Any]:
         ],
         # the fact layer the explanation was produced from (E2E verifiability)
         "evidence": result["evidence"],
+        # provider failure record (kind/type/message), None when the provider ran
+        "error": result.get("error"),
     }
 
 

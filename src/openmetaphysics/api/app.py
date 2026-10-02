@@ -74,6 +74,8 @@ def _explain_payload(
         # the fact layer the explanation was produced from, so a client can
         # verify that the explanation did not rewrite the deterministic result
         "evidence": result["evidence"],
+        # provider failure record (kind/type/message), None when the provider ran
+        "error": result.get("error"),
     }
 
 
@@ -161,6 +163,7 @@ def create_app() -> FastAPI:
             "degraded": payload["degraded"],
             "knowledge": payload["knowledge"],
             "evidence": payload["evidence"],
+            "error": payload.get("error"),
         }
 
     @app.post("/orchestrate")
