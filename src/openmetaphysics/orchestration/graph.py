@@ -101,6 +101,8 @@ def _explain_detail(name: str, output: AgentOutput) -> dict[str, Any]:
             {"id": c["id"], "source": c["source"], "text": c["text"]}
             for c in result.get("knowledge", [])
         ],
+        # the fact layer the explanation was produced from (E2E verifiability)
+        "evidence": result["evidence"],
     }
 
 
