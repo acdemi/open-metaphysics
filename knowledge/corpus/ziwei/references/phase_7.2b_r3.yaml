@@ -1,0 +1,70 @@
+# KnowledgeReference — Phase 7.2B-R3 新增（9 条）
+# 目的: 为 7.2B-R3 的 9 类神煞节点提供条目级原文引用（passage 为纯逐字连续文本, 无省略号, 无注记）
+# 来源: 《三命通会》卷三（revid 2184219, sha256 2de8fc1bf46eb4ecc5436b6cece6d4a06e56330565f3aa6e4cfaa581f5b0488e）
+# 生成: passage 由抓取件去空白后按起止标记机器切取（逐字由构造保证）
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+
+references:
+  - reference_id: ref:classic:sanming_jinyu
+    target_type: node
+    target_id: kn:shen_sha:jin_yu
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论金舆, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "舆者，车也，金者，贵之义也，譬之君子居官得禄，须坐车以载之。故金舆常居禄前二辰，如甲子人禄在寅，辰为金舆是也。此煞乃禄命之旄旗，三才之节钺，主人性柔貌愿，举止温克，妇人逢之，不富即贵；男子得之，多妻妾，阴福相扶持，生日、生时遇之为佳，骨肉平生安泰，得贤妻妾，子孙茂盛。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_sanqi
+    target_type: node
+    target_id: kn:shen_sha:san_qi
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论三奇, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "《珞琭子》曰：“奇为贵也；奇者，异也。”谓物以贵为奇也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_tiande
+    target_type: node
+    target_id: kn:shen_sha:tian_de
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论天月德, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "夫德者，利物济人、掩凶作善之谓也。天德者，谓周天有三百六十五度二十五分半，除十二宫分野，每宫各占三十度，共计三百六十度，外有五度二十五分半，散在十二佐宫甲、庚、丙、壬、乙、辛、丁、癸、乾、坤、艮、巽，谓之神藏煞没。每宫各得四十四分，所以子午卯酉中有甲庚丙壬，辰戌丑未中有乙辛丁癸，寅申巳亥中有乾坤艮巽，此十二位宫，能回凶作善，乃曰天德也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_yuede
+    target_type: node
+    target_id: kn:shen_sha:yue_de
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论天月德, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "月德者，乃三合所照之方，日月会合之辰，申子辰会酉出，庚入垣于壬；亥卯未会干出，丙入垣于甲；寅午戌会卯出，甲入垣于丙；巳酉丑会子出，壬入垣于庚，故壬甲丙癸谓之月德，而辰未戌丑四月，天德亦同属焉。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_taijigui
+    target_type: node
+    target_id: kn:shen_sha:tai_ji_gui_ren
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论太极贵, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "太极者，太初也，始也，物造于初为太极，成也，收也，物有所归曰极。造化始终相保，乃曰太极贵也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_xuetang
+    target_type: node
+    target_id: kn:shen_sha:xue_tang
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论学堂词馆, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "夫学堂者，如人读书之在学堂；词馆者，如今官翰林，谓之词馆，取其学业精专，文章出类。长生乃学堂之正位，如金命见辛巳，金长生在巳；辛巳，纳音又属金是也。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_ciguan
+    target_type: node
+    target_id: kn:shen_sha:ci_guan
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论学堂词馆, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "临官乃词馆正位，如金命壬申，金临官在申；壬申，纳音又属金是也。余以类推。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_dexiu
+    target_type: node
+    target_id: kn:shen_sha:de_xiu
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论德秀, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "夫德者，本月生旺之德；秀者，合天地中和之气、五行变化而成者也。又曰；德者，阴阳解凶之神；秀者，天地清秀之气，四时当旺之神。"
+    credibility: 0.8
+  - reference_id: ref:classic:sanming_anjindesha
+    target_type: node
+    target_id: kn:shen_sha:an_jin_de_sha
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷三·论暗金的煞, author: "万民英", url: "https://zh.wikisource.org/wiki/三命通會/卷三", credibility: 0.8 }
+    passage: "此一煞而有三名；一曰吟呻，二曰破碎，三曰白衣。子午卯酉在巳，寅申巳亥在酉，辰戌丑未在丑。巳者，金生之地，巳中，临官之火，金气临克，主杖楚刑狱呻吟之灾，故曰吟呻。酉者，金旺之地，煞物当时，又有辛金相助，万物当之，无不破碎，主支离流血之灾，故曰破碎。丑乃金之库墓，居四季而临鬼门，主妨害丧服哭泣之事，故曰白衣。五行中惟金能煞物，故总名曰暗金的煞也。"
+    credibility: 0.8
