@@ -13,6 +13,7 @@
 > Ziwei 实现实际位于：
 > - `src/openmetaphysics/agents/ziwei.py`（引擎, 411 行）
 > - `src/openmetaphysics/agents/ziwei/pattern_matcher.py`（格局匹配, 108 行, 不可达, 见 F-1）
+>   —— **已于 2026-09-16 按只读审计 P0-3 删除**（死代码 + 不可导入 + 契约 §4 范围外）
 > - `src/openmetaphysics/agents/ziwei_explainer.py`（解释层, 233 行, 未接线, 见 F-2）
 > - 基础设施: `src/openmetaphysics/core/calendar.py` / `core/models.py` /
 >   `core/schemas.py` / `core/engines.py`
@@ -182,8 +183,8 @@ metadata 断言 `engine_version == "0.3.0"`（`tests/test_ziwei.py`）。
 
 | # | 发现 | 严重度 | 处理 |
 |---|------|--------|------|
-| F-1 | `agents/ziwei/pattern_matcher.py` **不可导入**: 模块 `ziwei.py` 与目录 `ziwei/` 同名, 目录无 `__init__.py`, `ziwei.py` 遮蔽命名空间包 → `openmetaphysics.agents.ziwei.pattern_matcher` 为死代码, `match_patterns` 从未被任何代码/测试调用（实测 `ModuleNotFoundError`） | 高（死代码） | 记录; 不在本 Sprint 修改（解释域）; 候选裁定见 RULE_DECISION §6 |
-| F-2 | `ZiweiExplainer` 引用不存在的 `chart.patterns`（ZiweiChart 无此字段且 `extra="forbid"`）与 `output.input_payload`（AgentOutput 无此字段）→ LLM 路径必然 AttributeError（被 render try/except 兜底至 fallback）; 且 **ZiweiExplainer 未接线**（API/编排用通用 `Explainer`）→ 格局识别全链路断裂（matcher 未跑、输出无 patterns、解释层读不到） | 中（解释域, 不影响排盘） | 记录; 计算域契约不受影响; 列入开放问题 |
+| F-1 | `agents/ziwei/pattern_matcher.py` **不可导入**: 模块 `ziwei.py` 与目录 `ziwei/` 同名, 目录无 `__init__.py`, `ziwei.py` 遮蔽命名空间包 → `openmetaphysics.agents.ziwei.pattern_matcher` 为死代码, `match_patterns` 从未被任何代码/测试调用（实测 `ModuleNotFoundError`） | 高（死代码） | 记录; 不在本 Sprint 修改（解释域）; 候选裁定见 RULE_DECISION §6 → **✅ 已于 2026-09-16 删除**（只读审计 P0-3；源文件与残留 `__pycache__` 一并移除，无任何导入者/测试受影响） |
+| F-2 | `ZiweiExplainer` 引用不存在的 `chart.patterns`（ZiweiChart 无此字段且 `extra="forbid"`）与 `output.input_payload`（AgentOutput 无此字段）→ LLM 路径必然 AttributeError（被 render try/except 兜底至 fallback）; 且 **ZiweiExplainer 未接线**（API/编排用通用 `Explainer`）→ 格局识别全链路断裂（matcher 未跑、输出无 patterns、解释层读不到） | 中（解释域, 不影响排盘） | 记录; 计算域契约不受影响; 列入开放问题 → **🟡 仍开放**（2026-09-16 审计复核确认仍未接线且 LLM 路径与自身 `_fallback` 均不可达；处置见 `docs/PROJECT_STATUS.md` §8.1 P1） |
 | F-3 | `ZIWEI_POS` 定局表与主流《紫微星诀》存在**系统性差异**: 水二局与主流一致（起丑, 两日一宫）; 木三局（现: 起寅两日一宫 vs 主流: 起辰三日一宫）、金四局（现: 起丑三日一宫 vs 主流: 起亥四日一宫）、土五局（现: 起丑三日一宫 vs 主流: 起午五日一宫）、火六局（现: 起丑四日一宫 vs 主流: 起酉六日一宫）均不一致 | **高（待裁定）** | **不修改代码**; 记录为内部歧义 A-1; 提出候选裁定（维持现状/ACP 修正） |
 | F-4 | 廉贞偏移 `-9`（紫微星系表）vs 主流 `-8`（例: 紫微在子 → 现廉贞在卯, 主流廉贞在辰与天府同宫） | **高（待裁定）** | 同上, 歧义 A-2 |
 | F-5 | SCHEMAS.md §3.2 勘误: `Palace` 列表含 `calendar_note`（实际位于 `ZiweiChart`）; 未标注 `extra="forbid"` 与 engine 版本 | 低（文档漂移） | 本 Sprint 修复（纯文档, 无行为变化） |
