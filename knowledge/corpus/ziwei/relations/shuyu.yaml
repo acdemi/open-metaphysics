@@ -1,0 +1,70 @@
+# KnowledgeRelation — 星曜属五行（shuyu）
+# 依据: 《紫微斗数全书》卷二·安身命例「北斗化吉凶并分属五行」星曜五行名录
+#       （revid 1963110, sha256 1e255c6ae99e6f89ae124ab342554ef1347fc8e68fb8908cba7290d1a38cbb72）
+# 语义: KB-007 shuyu = 属于（docs/design/phase6/03_json_schemas.md：…/属于/引用）
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 范围: Phase 7.1.3 规划 yinyong(5)+shuyu(5) 中的 shuyu 部分（Coverage Matrix §2「需新增 5」）
+# 选取规则: 仅取**单一五行、无第二来源冲突**的十四主星条目；截至本批共 5 条
+# 未生产: 擎羊/陀罗/火星 等存在**卷一 vs 卷二 五行归属冲突**（见 GAP-15），按准入策略
+#         §3「多源并列/不静默合并」本轮不生产
+
+relations:
+  - id: rel:shuyu:ziwei_tu
+    source_node_id: kn:main_star:ziwei
+    target_node_id: kn:wuxing:tu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷二「分属五行」名录逐字：「紫微属土」"
+        source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+
+  - id: rel:shuyu:tianji_mu
+    source_node_id: kn:main_star:tianji
+    target_node_id: kn:wuxing:mu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷二「分属五行」名录逐字：「天机属木」"
+        source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+
+  - id: rel:shuyu:taiyang_huo
+    source_node_id: kn:main_star:taiyang
+    target_node_id: kn:wuxing:huo
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷二「分属五行」名录逐字：「太阳属火」"
+        source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+
+  - id: rel:shuyu:wuqu_jin
+    source_node_id: kn:main_star:wuqu
+    target_node_id: kn:wuxing:jin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷二「分属五行」名录逐字：「武曲属金」"
+        source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+
+  - id: rel:shuyu:taiyin_shui
+    source_node_id: kn:main_star:taiyin
+    target_node_id: kn:wuxing:shui
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷二「分属五行」名录逐字：「太阴属水」"
+        source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
+        weight: 1.0
+    source: { text: 紫微斗数全书, chapter: 卷二·安身命例, author: 罗洪先辑, credibility: 0.8 }
