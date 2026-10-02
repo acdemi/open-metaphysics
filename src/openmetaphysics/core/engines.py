@@ -148,7 +148,14 @@ class BaseAgent(ABC):
         return {"engine_version": self.engine_version, "deterministic": True}
 
     def explain(self, output: AgentOutput, style: str = "concise") -> str:
-        if self.explainer is not None and getattr(self.explainer, "provider", None) is not None:
+        """Explain a computed output.
+
+        Delegates to the attached explainer whenever one is present: the
+        explainer owns the offline path too (deterministic prose + retrieved
+        knowledge), so the chain must not be skipped just because no LLM
+        provider is configured.
+        """
+        if self.explainer is not None:
             return self.explainer.render(output, style=style)
         return self._explain_fallback(output, style=style)
 
