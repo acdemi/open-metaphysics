@@ -80,7 +80,11 @@ def build() -> dict:
 def main() -> None:
     doc = build()
     text = json.dumps(doc, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-    OUTPUT.write_text(text, encoding="utf-8")
+    # newline="\n" pins LF regardless of platform: .gitattributes declares
+    # knowledge/**/*.json as text eol=lf, and the checksum below is computed
+    # over the LF text. Without it Windows text mode writes CRLF, which dirties
+    # the working tree and makes the on-disk bytes disagree with the register.
+    OUTPUT.write_text(text, encoding="utf-8", newline="\n")
     checksum = hashlib.sha256(text.encode("utf-8")).hexdigest()
     print(
         f"corpus written: {OUTPUT} ({len(doc['nodes'])} nodes, "
