@@ -2,7 +2,7 @@
 
 > **审查模式**: 审计（REVIEW） · **日期**: 2026-09-16 · **分支**: `work/knowledge/phase7.2b-r3`
 > **审查对象**: main `0d57aa9`（生产） + `e5f324f`（报告与指针）；基线 `04bfd29`（7.2B-R, 86/37/22）
-> **触发事由**: R2 以 `phase_7.2b_r2_status.txt` 标记 `BLOCKED for Evidence Review`，该门未闭合。
+> **触发事由**: R2 以根目录状态戳 `phase_7.2b_r2_status.txt`（内容 `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.`）标记门未闭合；该戳已于 2026-09-16 本门闭合后清理（内容已在此就地留档）。
 > **范围**: 只读复核 + 本报告；**未生产、未修改**任何语料 / 冻结工件。
 
 ---
