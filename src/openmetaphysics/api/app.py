@@ -63,6 +63,7 @@ def _explain_payload(
             "provider": None,
             "degraded": True,
             "knowledge": [],
+            "evidence": {},
             "error": {"type": type(exc).__name__, "message": str(exc)},
         }
     return {
@@ -70,6 +71,9 @@ def _explain_payload(
         "provider": result["provider"],
         "degraded": result["degraded"],
         "knowledge": [{"id": c["id"], "source": c["source"]} for c in result.get("knowledge", [])],
+        # the fact layer the explanation was produced from, so a client can
+        # verify that the explanation did not rewrite the deterministic result
+        "evidence": result["evidence"],
     }
 
 
@@ -156,6 +160,7 @@ def create_app() -> FastAPI:
             "provider": payload["provider"],
             "degraded": payload["degraded"],
             "knowledge": payload["knowledge"],
+            "evidence": payload["evidence"],
         }
 
     @app.post("/orchestrate")
