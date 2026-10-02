@@ -28,9 +28,12 @@
 
 ## 待批准（PROPOSED）
 
-- **`ACP-REF-001`**：现状 `certified=True / coverage=1.0` 含 **83/100 个行为合约 ID 未验证**，
-  且 `_check_ordering` / `_check_hash` / `_check_null` / `_check_enum` 为**无条件通过**。
-  需裁定：补齐实现（选项 A）还是经 ACP 修订 CF-015（选项 B）；以及 `certified` 的最终判定口径。
+- **`ACP-REF-001`**（2026-09-16，**含同日勘误**）：`_check_behavior_coverage` 硬编码 **17/52** 个
+  CF-015 所需 ID 且不校验是否真被代表 → **35 个 ID 未被纳入**，其中约 **21 个连验证器都不存在**
+  （KB-001~011 无验证器；CS 约 15/25 有验证器；测试中 CS ID = 0）。
+  另：`_check_ordering/_hash/_null/_enum` **并非无条件**，属 golden 匹配通过后的**派生断言**（初版表述已更正）。
+  需裁定：**A 补齐实现**（Sprint 级，约 35 条验证 + 52 ID 机器登记）／**B 修订 CF-015**（须版本递增 + 豁免清单）
+  ／**过渡方案**（如实暴露 `behavior_coverage`，书面约定分阶段达标）。
 - **`ACP-REF-002`**：`REFERENCE_RUNTIME_SPEC` §3.2 把 KnowledgeStore / Consensus 列为
   *Out of Scope*「MUST NOT be added without ACP」，而二者**已实现且有 v1.0.0 契约**；
   同时缺 `rule_contract.json` / `pattern_contract.json`。需裁定：追认 + 修订规范 + 补契约。
