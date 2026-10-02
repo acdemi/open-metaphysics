@@ -6,7 +6,7 @@ for *selection* only (config-gated) and never changes any chart's numbers.
 
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import Any, TypedDict
 
 from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, Field, SerializeAsAny
@@ -29,6 +29,7 @@ class OrchestrationResponse(BaseModel):
     outputs: list[SerializeAsAny[AgentOutput]] = Field(default_factory=list)
     consensus: ConsensusOutput | None = None
     explanation: dict[str, str] = Field(default_factory=dict)
+    explanation_detail: dict[str, dict[str, Any]] = Field(default_factory=dict)
     errors: list[str] = Field(default_factory=list)
 
 
@@ -39,6 +40,7 @@ class _State(TypedDict, total=False):
     outputs: list[AgentOutput]
     consensus: ConsensusOutput | None
     explanation: dict[str, str]
+    explanation_detail: dict[str, dict[str, Any]]
     errors: list[str]
 
 
@@ -86,27 +88,41 @@ def _consensus(state: _State) -> dict:
     return {"consensus": consensus}
 
 
-def _explain_one(name: str, output: AgentOutput) -> str:
+def _explain_detail(name: str, output: AgentOutput) -> dict[str, Any]:
+    """Run the explain chain for one agent and return prose plus provenance."""
     from ..inference.explainer import get_explainer_for
 
-    registry = get_registry()
-    cls = type(registry.get(name))
-    agent = cls()
-    agent.explainer = get_explainer_for(name)
-    return agent.explain(output)
+    result = get_explainer_for(name).explain(output)
+    return {
+        "explanation": result["explanation"],
+        "provider": result["provider"],
+        "degraded": result["degraded"],
+        "knowledge": [
+            {"id": c["id"], "source": c["source"], "text": c["text"]}
+            for c in result.get("knowledge", [])
+        ],
+    }
+
+
+def _explain_one(name: str, output: AgentOutput) -> str:
+    return str(_explain_detail(name, output)["explanation"])
 
 
 def _respond(state: _State) -> dict:
     req = state["request"]
     outputs = state.get("outputs", [])
     explanation: dict[str, str] = {}
+    detail: dict[str, dict[str, Any]] = {}
     if req.explain:
         for o in outputs:
             try:
-                explanation[o.agent] = _explain_one(o.agent, o)
+                info = _explain_detail(o.agent, o)
             except Exception as exc:
                 explanation[o.agent] = f"(explain failed: {type(exc).__name__})"
-    return {"explanation": explanation}
+                continue
+            explanation[o.agent] = str(info["explanation"])
+            detail[o.agent] = info
+    return {"explanation": explanation, "explanation_detail": detail}
 
 
 def _build_graph():
@@ -143,6 +159,7 @@ class Orchestrator:
             outputs=result.get("outputs", []),
             consensus=result.get("consensus"),
             explanation=result.get("explanation", {}),
+            explanation_detail=result.get("explanation_detail", {}),
             errors=result.get("errors", []),
         )
 
