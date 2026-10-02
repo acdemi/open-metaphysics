@@ -63,6 +63,61 @@ _MAX_VALUE_LEN = 24
 # a string worth querying contains at least one CJK ideograph
 _CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
 
+# == Prompt contract (Phase D) ==
+# The prompt separates the three kinds of material explicitly and states the
+# LLM's limits. Shared with the domain explainers so that every provider prompt
+# carries the same contract.
+PROMPT_FACTS_HEADER = "## FACTS (deterministic calculation output)"
+PROMPT_KNOWLEDGE_HEADER = "## KNOWLEDGE (authoritative citations -- NOT calculation facts)"
+PROMPT_QUESTION_HEADER = "## USER QUESTION"
+PROMPT_RULES = (
+    "RULES:\n"
+    "- FACTS is the complete, authoritative calculation result. Do NOT modify it and do\n"
+    "  not add, remove, correct or recompute any value in it.\n"
+    "- Do NOT invent any calculation result that is not present in FACTS.\n"
+    "- KNOWLEDGE entries are citations provided for context only. They are NOT calculation\n"
+    "  facts and must never be reported as part of the result.\n"
+    "- Explain only what FACTS contains, as natural language."
+)
+
+# credential-like material must never be echoed into a prompt or an error record
+_SECRET_RE = re.compile(r"(sk-[A-Za-z0-9_\-]{6,}|Bearer\s+\S+)")
+
+
+def redact(text: str) -> str:
+    """Remove anything that looks like an API credential."""
+    return _SECRET_RE.sub("[redacted]", text)
+
+
+def classify_provider_error(exc: BaseException) -> str:
+    """Map a provider failure onto a stable, reportable kind.
+
+    Kinds: ``timeout`` | ``rate_limit`` | ``unavailable`` | ``invalid_response``
+    | ``error``.
+    """
+    name = type(exc).__name__
+    if name in {"TimeoutException", "ReadTimeout", "ConnectTimeout", "PoolTimeout", "Timeout"}:
+        return "timeout"
+    if name in {"ConnectError", "ConnectionError", "RemoteProtocolError", "NetworkError"}:
+        return "unavailable"
+    status = getattr(getattr(exc, "response", None), "status_code", None)
+    if status == 429:
+        return "rate_limit"
+    if isinstance(status, int) and status >= 500:
+        return "unavailable"
+    if isinstance(status, int) and 400 <= status < 500:
+        return "invalid_response"
+    if isinstance(exc, (ValueError, KeyError, TypeError)):
+        return "invalid_response"
+    text = redact(str(exc)).lower()
+    if "timed out" in text or "timeout" in text:
+        return "timeout"
+    if "rate limit" in text or "429" in text:
+        return "rate_limit"
+    if "connection" in text or "unavailable" in text:
+        return "unavailable"
+    return "error"
+
 
 def _dump(value: Any) -> dict[str, Any]:
     """Dump a pydantic model or pass through a mapping."""
@@ -179,28 +234,46 @@ class Explainer:
         """Run the full explain chain and return prose plus provenance.
 
         Returns a plain dict (no new schema): ``agent``, ``explanation``,
-        ``evidence``, ``knowledge``, ``provider``, ``degraded``, ``style``.
+        ``evidence``, ``knowledge``, ``provider``, ``degraded``, ``error``,
+        ``style``.
+
+        A provider failure -- timeout, rate limit, unavailable service or an
+        unusable response -- must never fail the request: the deterministic
+        result is already computed and stays available, the explanation degrades
+        to deterministic prose, and the failure is recorded under ``error``.
         """
         evidence = self.evidence_of(output)
         chunks = self.retrieve(output, k=k)
+        provider_name = getattr(self.provider, "name", None) if self.provider else None
         degraded = self.provider is None
-        note = ""
+        error: dict[str, Any] | None = None
+        text: str
+
         if self.provider is None:
             text = self._fallback(output, style, chunks=chunks)
         else:
             try:
                 text = self._llm_render(output, style, chunks=chunks)
+                if not str(text).strip():
+                    raise ValueError("provider returned an empty response")
             except Exception as exc:  # provider must never break the pipeline
                 degraded = True
-                note = f"llm_unavailable: {type(exc).__name__}"
-                text = self._fallback(output, style, note=note, chunks=chunks)
+                error = {
+                    "kind": classify_provider_error(exc),
+                    "type": type(exc).__name__,
+                    "message": redact(str(exc))[:200],
+                    "provider": provider_name,
+                }
+                text = self._fallback(output, style, note=error["kind"], chunks=chunks)
+
         return {
             "agent": output.agent,
             "explanation": text,
             "evidence": evidence,
             "knowledge": [{"id": c.id, "source": c.source, "text": c.text} for c in chunks],
-            "provider": getattr(self.provider, "name", None) if self.provider else None,
+            "provider": provider_name,
             "degraded": degraded,
+            "error": error,
             "style": style,
         }
 
@@ -216,22 +289,29 @@ class Explainer:
         style: str,
         chunks: list[Any] | tuple[Any, ...] = (),
     ) -> str:
-        # Only the fact layer enters the prompt: the output envelope carries a
-        # wall-clock timestamp, which would make identical requests produce
-        # different prompts (and therefore non-deterministic explanations).
+        """Build a provider prompt following the Phase D prompt contract.
+
+        Only the fact layer enters the FACTS section: the output envelope
+        carries a wall-clock timestamp, which would make identical requests
+        produce different prompts (and therefore non-deterministic
+        explanations).
+        """
         payload = json.dumps(Explainer.evidence_of(output), ensure_ascii=False)
         prompt = (
-            f"You are explaining a deterministic metaphysics result. Do NOT recompute "
-            f"any numbers; describe the given structured result in {style} prose.\n"
-            f"Agent: {output.agent}\nConfidence: {output.confidence.value}\n"
+            f"You are explaining a deterministic metaphysics result in {style} prose.\n"
+            f"Agent: {output.agent}\nConfidence: {output.confidence.value}\n\n"
+            f"{PROMPT_FACTS_HEADER}\n{payload}\n\n"
         )
+        if chunks:
+            prompt += f"{PROMPT_KNOWLEDGE_HEADER}\n"
+            for chunk in chunks:
+                citation = f" ({chunk.source})" if getattr(chunk, "source", "") else ""
+                prompt += f"- {chunk.text}{citation}\n"
+            prompt += "\n"
         question = output.metadata.get("question")
         if isinstance(question, str) and question.strip():
-            prompt += f"User question: {question.strip()}\n"
-        prompt += f"Result JSON:\n{payload}\n"
-        if chunks:
-            context = "\n".join(f"- {c.text}" for c in chunks)
-            prompt += f"Authoritative context:\n{context}\n"
+            prompt += f"{PROMPT_QUESTION_HEADER}\n{question.strip()}\n\n"
+        prompt += f"{PROMPT_RULES}\n"
         prompt += "Output only the explanation."
         return prompt
 
