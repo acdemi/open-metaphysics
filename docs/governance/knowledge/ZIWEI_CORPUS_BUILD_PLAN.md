@@ -79,6 +79,12 @@
 | 内容 | Corpus 版本 v1.0.0（ziwei_corpus.json 正式冻结, 变更须走 Corpus 级审查流程） |
 | 交付物 | Freeze 记录 + CAPABILITY_STATUS 指针更新（Corpus: PARTIAL → FROZEN-v1.0.0） |
 
+> **✅ 已执行（2026-09-16, D-12=A 批准）** —— 冻结记录:
+> `KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`; 冻结版本 `ziwei_corpus:v1.0.0`
+> （102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`）;
+> `CAPABILITY_STATUS.md` 已更新为 **FROZEN-v1.0.0**。
+> 至此本 Build Plan 执行序列（7.1.1 → 7.1.6）**全部完成**。
+
 ---
 
 ## 约束

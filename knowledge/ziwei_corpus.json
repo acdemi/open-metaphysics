@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "corpus_id": "ziwei_pilot_v1",
+    "corpus_id": "ziwei_corpus",
     "counts": {
       "nodes": 102,
       "references": 41,
@@ -13,7 +13,8 @@
       "source_02.yaml": "5e6dcf1d7dfefc41ee6b9060be8a631295c0d9c478401fc6142191a2519770b3",
       "source_03.yaml": "16f7744d5e90cf59d2fc69076bce8efcc44d90cefe4c8e2d034493c4e84530ff"
     },
-    "status": "pilot"
+    "status": "frozen",
+    "version": "1.0.0"
   },
   "nodes": [
     {

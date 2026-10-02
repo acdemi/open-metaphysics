@@ -59,9 +59,13 @@ def build() -> dict:
     nodes, relations, references = _load_documents()
     doc = {
         "metadata": {
-            "corpus_id": "ziwei_pilot_v1",
+            # Phase 7.1.6 Corpus Freeze (2026-09-16): the corpus is no longer a
+            # pilot. Any change to nodes/relations/references now goes through
+            # the corpus-level review flow (see the 7.1.6 freeze record).
+            "corpus_id": "ziwei_corpus",
             "domain": "ziwei",
-            "status": "pilot",
+            "status": "frozen",
+            "version": "1.0.0",
             "counts": {
                 "nodes": len(nodes),
                 "relations": len(relations),
