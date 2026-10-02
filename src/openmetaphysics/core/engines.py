@@ -131,7 +131,7 @@ class BaseAgent(ABC):
             computed_at=utcnow(),
             confidence=confidence,
             reasoning_trace=list(self.engine.trace.steps),
-            metadata=self._metadata(),
+            metadata=self._output_metadata(validated),
             result=result,
         )
 
@@ -146,6 +146,23 @@ class BaseAgent(ABC):
 
     def _metadata(self) -> dict[str, str | int | float | bool]:
         return {"engine_version": self.engine_version, "deterministic": True}
+
+    def _output_metadata(
+        self, payload: AgentInput | None = None
+    ) -> dict[str, str | int | float | bool]:
+        """Envelope metadata, plus the caller's question.
+
+        The question is carried on the output so the explain pipeline can see
+        what the user actually asked. ``metadata`` is an existing free-form dict
+        on ``AgentOutput``: no field is added or retyped, and the deterministic
+        ``result`` is unaffected. Subclasses keep overriding ``_metadata``
+        unchanged.
+        """
+        metadata = dict(self._metadata())
+        question = getattr(payload, "question", None)
+        if question:
+            metadata["question"] = str(question)
+        return metadata
 
     def explain(self, output: AgentOutput, style: str = "concise") -> str:
         """Explain a computed output.
