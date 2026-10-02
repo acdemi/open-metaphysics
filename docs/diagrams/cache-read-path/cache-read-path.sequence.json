@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "缓存读路径时序：命中分支与未命中回源分支",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [1520, 620],
+    "views": [
+      { "id": "hit-branch", "label": "请求 A · 缓存命中", "focus": ["browser", "gateway", "api", "redis"], "note": "命中时响应在 Redis 处折返，PostgreSQL 全程静默。" },
+      { "id": "miss-branch", "label": "请求 B · 未命中回源", "focus": ["api", "redis", "postgres"], "note": "未命中后 API 才回源 PostgreSQL 取数。" },
+      { "id": "backfill-branch", "label": "回填与返回", "focus": ["api", "redis", "gateway"], "note": "回源结果以 SETEX 写回 Redis 并设 TTL，再返回响应。" }
+    ]
+  },
+  "participants": [
+    { "id": "browser", "type": "external", "label": "浏览器", "sublabel": "Web / 移动端" },
+    { "id": "gateway", "type": "cloud", "label": "接入网关 / LB", "sublabel": "HTTPS :443" },
+    { "id": "api", "type": "backend", "label": "API 服务", "sublabel": "HTTP / JSON · 3 副本" },
+    { "id": "redis", "type": "database", "label": "Redis 缓存", "sublabel": "cache :6379" },
+    { "id": "postgres", "type": "database", "label": "PostgreSQL", "sublabel": "origin :5432" }
+  ],
+  "segments": [
+    { "from": 160, "to": 302, "label": "① 请求 A · 缓存命中" },
+    { "from": 312, "to": 546, "label": "② 请求 B · 未命中回源 + 回填" }
+  ],
+  "messages": [
+    { "id": "a-get", "from": "browser", "to": "gateway", "y": 172, "label": "GET /resource/41", "variant": "emphasis" },
+    { "id": "a-forward", "from": "gateway", "to": "api", "y": 202, "label": "转发（轮询副本）", "variant": "default" },
+    { "id": "a-read", "from": "api", "to": "redis", "y": 232, "label": "GET resource:41", "variant": "default" },
+    { "id": "a-hit", "from": "redis", "to": "api", "y": 262, "label": "命中 → value", "variant": "return" },
+    { "id": "a-response", "from": "api", "to": "gateway", "y": 292, "label": "200 JSON", "variant": "return" },
+    { "id": "b-get", "from": "browser", "to": "gateway", "y": 322, "label": "GET /resource/42", "variant": "emphasis" },
+    { "id": "b-forward", "from": "gateway", "to": "api", "y": 352, "label": "转发（轮询副本）", "variant": "default" },
+    { "id": "b-read", "from": "api", "to": "redis", "y": 382, "label": "GET resource:42", "variant": "default" },
+    { "id": "b-miss", "from": "redis", "to": "api", "y": 412, "label": "未命中（nil）", "variant": "return" },
+    { "id": "origin-query", "from": "api", "to": "postgres", "y": 442, "label": "回源 SELECT id=42", "variant": "emphasis" },
+    { "id": "origin-rows", "from": "postgres", "to": "api", "y": 472, "label": "rows", "variant": "return" },
+    { "id": "backfill", "from": "api", "to": "redis", "y": 502, "label": "SETEX TTL=60s", "variant": "dashed" },
+    { "id": "b-response", "from": "api", "to": "gateway", "y": 532, "label": "200 JSON", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "gateway", "from": 168, "to": 296, "type": "cloud" },
+    { "participant": "api", "from": 198, "to": 296, "type": "backend" },
+    { "participant": "redis", "from": 228, "to": 266, "type": "database" },
+    { "participant": "gateway", "from": 318, "to": 536, "type": "cloud" },
+    { "participant": "api", "from": 348, "to": 536, "type": "backend" },
+    { "participant": "redis", "from": 378, "to": 506, "type": "database" },
+    { "participant": "postgres", "from": 438, "to": 476, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "命中分支（请求 A）", "items": ["网关轮询转发到某个 API 副本", "Redis 命中即返回，PostgreSQL 全程静默"] },
+    { "dot": "rose", "title": "未命中回源（请求 B）", "items": ["Redis 返回 nil 后 API 才回源 PostgreSQL", "数据库访问只出现在回源分支之后"] },
+    { "dot": "amber", "title": "回填与 TTL", "items": ["回源结果以 SETEX 写回 Redis 并设 TTL=60s", "TTL 到期后下一次请求重新走回源分支"] }
+  ]
+}
