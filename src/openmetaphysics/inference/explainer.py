@@ -170,7 +170,10 @@ class Explainer:
         style: str,
         chunks: list[Any] | tuple[Any, ...] = (),
     ) -> str:
-        payload = json.dumps(output.model_dump(mode="json"), ensure_ascii=False)
+        # Only the fact layer enters the prompt: the output envelope carries a
+        # wall-clock timestamp, which would make identical requests produce
+        # different prompts (and therefore non-deterministic explanations).
+        payload = json.dumps(Explainer.evidence_of(output), ensure_ascii=False)
         prompt = (
             f"You are explaining a deterministic metaphysics result. Do NOT recompute "
             f"any numbers; describe the given structured result in {style} prose.\n"
@@ -208,7 +211,9 @@ class Explainer:
     ) -> str:
         head = f"[{output.agent}] deterministic result (engine {output.engine_version}, "
         head += f"confidence {output.confidence.value:.2f})."
-        body = json.dumps(output.model_dump(mode="json"), ensure_ascii=False)[:400]
+        # Render from the fact layer only: including the envelope's wall-clock
+        # timestamp would make the same request yield different explanations.
+        body = json.dumps(Explainer.evidence_of(output), ensure_ascii=False)[:400]
         text = (head + " " + note + " " + body).strip()
         if chunks:
             cited = "; ".join(f"{c.source or c.id}" for c in chunks[:3])
