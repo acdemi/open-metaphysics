@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 import pytest
 
 from openmetaphysics.agents.ziwei import ZiweiAgent, ZiweiInput
-from openmetaphysics.inference.explainer import Explainer
+from openmetaphysics.inference.explainer import PROMPT_KNOWLEDGE_HEADER, Explainer
 from openmetaphysics.rag.corpus import load_chunks, load_corpus, load_into, node_to_chunk
 from openmetaphysics.rag.retriever import (
     InMemoryRetriever,
@@ -183,7 +183,7 @@ def test_explainer_receives_real_context():
     Explainer(provider=provider, retriever=get_retriever()).render(output)
 
     assert provider.prompt is not None
-    assert "Authoritative context" in provider.prompt, "retriever produced no context"
+    assert PROMPT_KNOWLEDGE_HEADER in provider.prompt, "retriever produced no context"
     # the injected context must be real corpus prose, not a placeholder.
     # Phase A3: the pipeline derives the query from the deterministic result,
     # so assert against the same query the pipeline uses.

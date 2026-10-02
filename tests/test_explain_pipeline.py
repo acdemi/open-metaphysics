@@ -17,7 +17,11 @@ from openmetaphysics.agents.bazi_explainer import BaziExplainer
 from openmetaphysics.agents.ziwei import ZiweiAgent, ZiweiInput
 from openmetaphysics.agents.ziwei_explainer import ZiweiExplainer
 from openmetaphysics.core.schemas import AgentOutput, Gender
-from openmetaphysics.inference.explainer import Explainer, get_explainer_for
+from openmetaphysics.inference.explainer import (
+    PROMPT_KNOWLEDGE_HEADER,
+    Explainer,
+    get_explainer_for,
+)
 from openmetaphysics.rag.retriever import reset_retriever
 
 BORN = datetime(1985, 8, 15, 10, 0, tzinfo=timezone.utc)
@@ -110,7 +114,7 @@ def test_retrieved_knowledge_enters_explain():
     assert all(c["source"] for c in result["knowledge"]), "citations must be preserved"
     # retrieved knowledge reaches the LLM prompt as authoritative context
     assert provider.prompt is not None
-    assert "Authoritative context" in provider.prompt
+    assert PROMPT_KNOWLEDGE_HEADER in provider.prompt
     assert result["knowledge"][0]["text"][:12] in provider.prompt
 
 
