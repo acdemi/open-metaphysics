@@ -13,7 +13,6 @@ from pathlib import Path
 sys.path.insert(0, "src")
 
 from openmetaphysics.agents import liuyao as L  # noqa: E402
-from openmetaphysics.core import calendar as C  # noqa: E402
 from openmetaphysics.core import models as M  # noqa: E402
 
 OUT = Path("reference/liuyao")
