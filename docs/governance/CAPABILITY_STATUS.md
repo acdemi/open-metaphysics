@@ -3,7 +3,7 @@
 > 领域能力成熟度跟踪（Domain Maturity Tracking）— 唯一权威状态登记
 > 状态模型与迁移规则: `docs/governance/CAPABILITY_LIFECYCLE.md`
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
-> 更新: 2026-09-15（Phase 7.2B-R2 三命通會卷三其余神煞, 语料 93/37/32）
+> 更新: 2026-09-16（Phase 7.1.6 **Corpus Freeze v1.0.0** —— 语料 102/47/41, D-12=A 批准）
 
 ---
 
@@ -16,7 +16,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **PARTIAL**（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变）; **Phase 7.3.1: 四份 Tier 1 来源全部获取（revision-pinned）并完成逐字证据核验（36/36 义理断言 + 10/10 转录差异核验）→ GAP-12/13 证据侧阻塞解除, 仍未生产任何节点**, 语料 63/37/10 不变（corpus sha b4af74ab）; **Phase 7.2B-R/R2: 生产 30 节点 + 22 引用 → 语料 93/37/32（sha ce3b83b7）, 逐字核验 key_quote 30/30 + passage 22/22 PASS**）; Provenance **AUDITED** | — | — | 10（pipeline 回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（Phase 7.0）; Corpus **FROZEN-v1.0.0** ［`ziwei_corpus:v1.0.0`, 2026-09-16, D-12=A 批准（Ziwei, 63 节点 + 37 关系 + 10 引用, Phase 7.2B: shen_sha/auxiliary_star Schema 放行但 Tier 1 原文不可达 → 0 生产, 数量未变; Phase 7.3: 来源状态登记（SOURCE_STATUS.md 四来源 FETCH_BLOCKED/NOT_ATTEMPTED）+ webfetch 阻塞 → 0 生产, 语料 sha 规范化 LF 口径 b1b8f90a（63/37/10 不变）; **Phase 7.3.1: 四份 Tier 1 来源全部获取（revision-pinned）并完成逐字证据核验（36/36 义理断言 + 10/10 转录差异核验）→ GAP-12/13 证据侧阻塞解除, 仍未生产任何节点**, 语料 63/37/10 不变（corpus sha b4af74ab）; **Phase 7.2B-R/R2: 生产 30 节点 + 22 引用 → 语料 93/37/32（sha ce3b83b7）, 逐字核验 key_quote 30/30 + passage 22/22 PASS**; **Phase 7.2B-R3（2026-09-16）: +9 神煞 → 102/37/41; Phase 7.1.3 补齐: `yinyong(5)` + `shuyu(5)` 关系 → 102/47/41（digest `69d6e2a6…`）, 引文逐字 10/10 + 端点 10/10 PASS; **Phase 7.1.6: Corpus Freeze v1.0.0** —— `ziwei_corpus.json` 与规范输入 YAML 冻结, 变更须走 Corpus 级审查; 回归 618/618; §2 关系矩阵无未闭合项, 唯一引用缺口 GAP-02**）; Provenance **AUDITED** | — | — | 618（全仓库回归） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
