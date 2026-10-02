@@ -204,25 +204,26 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 | 指标 | 值 |
 |------|-----|
-| 总检查数 | 135 |
-| 通过 | 135 |
+| 总检查数 | **170** |
+| 通过 | **170** |
 | 失败 | 0 |
-| 认证状态 | **Certified**（强度见下注） |
+| **行为合约覆盖** | **52/52（`behavior_coverage = 1.0`，`unrepresented_behaviors = []`）** |
+| 认证状态 | **Certified**（强度已如实，见下注） |
 
-> ⚠️ **认证强度注（2026-09-16 审计发现；同日二轮复核修正）**：
-> `_check_behavior_coverage` 硬编码 **17 个** ID（BC 7 + KB{001,012,018,020} + CS{001,004,005,006,020,025}）
-> 且一律 `passed=True`，**不校验该 ID 是否真被任何向量代表**；而 **CF-015**（`CONFORMANCE_SPEC.md`）
-> 要求 **52 个** ID（7 BC + KB-001~020 + CS-001~025）每个**至少由一条 golden vector 代表**，
-> 缺失 **MUST fail** → **35 个合约 ID 未被该检查纳入**。
-> 更深一层：这 35 个中约 **21 个连验证器都不存在** —— `knowledge_behavior.py` 仅覆盖 KB-012~020
-> （KB-001~011 无验证器），`consensus_behavior.py` 仅覆盖约 15/25 条 CS；且 CF-015 自己的测试
-> （`test_behavior_coverage_checks_present`）**只断言「类别存在」**，亦是空断言。
-> 另：`_check_ordering/_check_hash/_check_null/_check_enum` 四项**并非无条件** —— 它们在 golden
-> 匹配通过后才添加（`if passed:`），属**派生断言**（未对 ordering/hash/null/enum 独立验证）。
-> 故文中**不应表述为「覆盖率 100%」**，`certified=True` 的强度低于此前口径。
+> ✅ **认证强度已修复（2026-09-16，ACP-REF-001 选项 A 已实施）**：
+> 原先 `_check_behavior_coverage` 硬编码 **17 个** ID 且一律 `passed=True`（不校验代表物）；
+> **CF-015** 要求 **52 个** ID（7 BC + KB-001~020 + CS-001~025）全覆盖，缺失 **MUST fail**。
+> 实施内容：新增 `REQUIRED_BEHAVIOR_IDS`(52) 与逐 ID 代表物校验（无代表物→FAIL）；
+> 补写 **KB-001~011（11 条）** 与 **CS-002~007/008/009/010/018/019/022/024（13 条）** 验证器；
+> 并**更正**原 `audit()` 的映射错误（原把 KB-013~015 当作「列表排序」、把确定性挂在 KB-019，与规范原文不符）。
+> 结果：检查 **135 → 170**、覆盖 **52/52**、`certified=True` 且**强度已如实**；
+> **`CONFORMANCE_SPEC` 零修改**（走 A 补齐实现，而非 B 降规范）。测试 618 → **627**（含 2 个负向对照）。
+> `_check_ordering/_check_hash/_check_null/_check_enum` 的措辞已改为
+> 「derived from the golden match (not independently re-verified)」。
 > 已有域认证（Qimen 30/30、BaZi 24/24、Ziwei 24/24）由独立等价测试支撑，**不受影响**。
-> 处置见 `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md`（**PROPOSED**，
-> 须 ACP 决定「补齐实现」还是「修订 CF-015」；不得静默改 `reference/`）。
+> 详见 `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md`（**IMPLEMENTED**）。
+> ⚠ 唯一待确认项：CF-015 用词为 "at least one **golden vector**"，本次代表物为可执行行为验证器
+> （更强但字面不同），如需字面一致须再出一小 ACP。
 
 ---
 
