@@ -1,7 +1,7 @@
 # OpenMetaphysics 项目汇报与下一步工作计划
 
 > **日期**: 2026-09-16
-> **基线**: `main` @ `e5f324f`；当前分支 `work/knowledge/phase7.2b-r3`（领先 main **5 commits**，Ziwei 语料冻结，待合并 D-10）
+> **基线**: `main` @ `e5f324f`；审计分支 `work/knowledge/phase7.2b-r3`（领先 main **7 commits**，Ziwei 语料冻结，待合并 D-10）；修复分支 `work/repair/audit-p0-fixes`（基于前者，执行 §4.1 P0-2/P0-3）
 > **实测口径**: `pytest` 收集 **618**、全绿 exit 0 · `ruff check`/`format --check` **clean** · Conformance `135/135 certified` · 语料 digest `69d6e2a6…`
 > **测试构成**: 618 = Reference 核心 304 + Knowledge 29 + `reference/tests` 48 + Production 相关 237
 > **方法**: 代码/文档逐项核对 + CI 命令本地复现；所有结论均带文件证据
@@ -180,29 +180,38 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 | DEF-01 | GAP 编号交叉错标 | 🟡 部分修复（`7.3_REPORT.md` §3/§5 仍错） |
 | **新增建议** | D-13 Conformance 空转处置；D-14 Reference 范围扩张 ACP 补正；D-15 Phase 4 事件链收口 | 🔴 待裁 |
 
-### 3.3 文档 / 仓库一致性缺陷（19 项，逐项核对）
+### 3.3 文档 / 仓库一致性缺陷（19 项，逐项核对；含 2026-09-16 刷新后状态）
 
-| # | 位置 | 问题 | 处置 |
+| # | 位置 | 问题 | 处置（2026-09-16 P0-2 执行后） |
 |---|------|------|------|
-| 1 | `PROJECT_STATUS.md` §1/§2 | Corpus 写 `Partial（63/37/10）`，与头部 `FROZEN-v1.0.0（102/47/41）` 矛盾 | **✅ 已修** |
-| 2 | `PROJECT_STATUS.md` §5.1 | 测试总写 `599`（2026-08-17）↔ 同文件 §7 `618`。**对账：599+6+7+6=618** | 待刷新 |
-| 3 | `PROJECT_STATUS.md` §4 | Phase 6「未开始」、Phase 8「未开始」**严重过时**（均已实现并接线）；§2 L53「Production Runtime Draft 尚未开始」亦过时 | 待刷新 |
-| 4 | `PROJECT_STATUS.md` §4/§5.2 | Production `457`、Reference `304`；§5.2 明细表**漏列 3 个 knowledge 测试文件**（6+7+6=19） | 待刷新 |
-| 5 | `PROJECT_STATUS.md` §5.2 | 把 `test_ziwei_equivalence.py` 标「环境性（沙箱拒绝）」——本次实测 **4 passed 未复现**；同述「`reference/tests` 独立收集报错」也未复现 | 待刷新 |
-| 6 | `PROJECT_STATUS.md` §7 | 「已交付历史 Sprint」止于 7.2B-R2，缺 R3 与 Corpus Freeze | 待刷新 |
-| 7 | `PROJECT_STATUS.md` §11/§9 | 仍写「每对话必须归档 + 必须开分支 + 禁止直接改 main」（与 AGENTS.md E3/E4 冲突）；索引仍称 AGENTS.md 含「Sprint Discipline」 | 待刷新 |
-| 8 | `CAPABILITY_STATUS.md` L19 | 同一单元格内既写 `FROZEN-v1.0.0（…63 节点 + 37 关系 + 10 引用` 又写 `→ 102/47/41`；且违反 E3「1~3 行指针」 | 待刷新 |
-| 9 | `CAPABILITY_STATUS.md` | Qimen 行测试列 `全仓库 530`；Liuyào 节写「无领域专属 Schema」（实际已有） | 待刷新 |
-| 10 | `ROADMAP.md` | L5/L36「当前开发位置」停在 Phase 7.3；L38 写「BaZi/Ziwei/Liuyào 均 Implemented」（前二者实为 Integration Ready）；Phase 3/4 无完成标记 | 待刷新 |
-| 11 | `REFERENCE_RUNTIME_SPEC.md` §6.1 | 四个「(not yet implemented)」中 Consensus Engine / Knowledge Service **已实现**；§3.1 组件清单止于 Sprint 1-3 / 106 测试 | 待刷新 |
-| 12 | `RUNTIME_CONTRACT.md` / `reference/golden/README.md` | 数字陈旧（「106 tests」「35 BCs」，实为 618/100） | 待刷新 |
-| 13 | `reference/contracts/README.md` | 清单漏 Knowledge、把 Consensus 列为 future；只给 Evidence 的重生成命令 | 待刷新 |
-| 14 | Qimen Schema 双份 | `docs/specification/qimen_contract.schema.json`(`CCAA58B5…`) ≠ `src/.../contracts/qimen_contract.schema.json`(`3D4CD776…`) | 待澄清权威 |
-| 15 | 编号复用 | **Phase 7.1.6 被两个无关 Sprint 复用**（天干五合 vs Corpus Freeze）；**7.1.3 同样重复** | 待治理 |
-| 16 | 根目录 | `phase_7.2b_r2_status.txt` 状态戳仍被跟踪；`scripts/infra_probe.py` 不在 main（仅未合并分支） | 可清理 |
-| 17 | `docs/governance/项目进展梳理.md` | 自报 31 分支/1 未合并/599/main=38ee24e ↔ 实测 13/8/618/e5f324f | 待刷新/归档 |
-| 18 | 分支 | **8 条本地分支未合并**（archify +42、phase4/char-001 +40、本分支 +5 等） | 见 §4 |
-| 19 | `docs/governance/phase4/INFRASTRUCTURE_INCIDENT_RECORD.md` | 自报「事件状态 **OPEN**」 | 待显式收口 |
+| 1 | `PROJECT_STATUS.md` §1/§2 | Corpus 写 `Partial（63/37/10）`，与头部 `FROZEN-v1.0.0（102/47/41）` 矛盾 | **✅ 已修**（前次） |
+| 2 | `PROJECT_STATUS.md` §5.1 | 测试总写 `599`（2026-08-17）↔ 同文件 §7 `618`。**对账：599+6+7+6=618** | **✅ 已刷新** → 618，并加对账式 `304+237+29+48=618` |
+| 3 | `PROJECT_STATUS.md` §4 | Phase 6「未开始」、Phase 8「未开始」**严重过时**（均已实现并接线）；§2 L53「Production Runtime Draft 尚未开始」亦过时 | **✅ 已刷新** → §2 L53 改「部分实现」；§4 全表重写（P1 完成 / P3·P4 完成 / P6·P7·P8 部分完成 / P9 仅桩） |
+| 4 | `PROJECT_STATUS.md` §4/§5.2 | Production `457`、Reference `304`；§5.2 明细表**漏列 3 个 knowledge 测试文件**（6+7+6=19） | **✅ 已刷新** → §4 改「20 文件 230 例 / 全仓 618」；§5.2 补列 `test_reference_qimen.py`(28) 与 3 个 knowledge 文件，合计 618 |
+| 5 | `PROJECT_STATUS.md` §5.2 | 把 `test_ziwei_equivalence.py` 标「环境性（沙箱拒绝）」——本次实测 **4 passed 未复现**；同述「`reference/tests` 独立收集报错」也未复现 | **✅ 已刷新** → 改为「2026-09-16 复测未复现；48/48 通过」 |
+| 6 | `PROJECT_STATUS.md` §7 | 「已交付历史 Sprint」止于 7.2B-R2，缺 R3 与 Corpus Freeze | **✅ 已刷新** → 补 Phase 7.2B-R3 / 7.1.3 关系层 / 7.1.6 Corpus Freeze |
+| 7 | `PROJECT_STATUS.md` §11/§9 | 仍写「每对话必须归档 + 必须开分支 + 禁止直接改 main」（与 AGENTS.md E3/E4 冲突）；索引仍称 AGENTS.md 含「Sprint Discipline」 | **✅ 已刷新** → §11 改「现行规则以 AGENTS.md H1~H8/E1~E7 为准」+ 历史约定归档；§9 索引更正 |
+| 8 | `CAPABILITY_STATUS.md` L19 | 同一单元格内既写 `FROZEN-v1.0.0（…63 节点 + 37 关系 + 10 引用` 又写 `→ 102/47/41`；且违反 E3「1~3 行指针」 | **✅ 已刷新** → 收敛为 3 行指针 + 指向冻结记录（详见该文件） |
+| 9 | `CAPABILITY_STATUS.md` | Qimen 行测试列 `全仓库 530`；Liuyào 节写「无领域专属 Schema」（实际已有） | **✅ 已刷新** → Qimen 改 `93 + 28`；Liuyào Schema 条目更正（L28/L43/L51/L69 + SCHEMAS §3.4），并登记 2 条代码缺陷 |
+| 10 | `ROADMAP.md` | L5/L36「当前开发位置」停在 Phase 7.3；L38 写「BaZi/Ziwei/Liuyào 均 Implemented」（前二者实为 Integration Ready）；Phase 3/4 无完成标记 | **✅ 已刷新** → L5/L36 改为 Production Runtime 收口；L38 更正；Phase 1/2/3/4/6/7/8/9 加状态标记；「当前交付范围」改为现状表 |
+| 11 | `REFERENCE_RUNTIME_SPEC.md` §6.1 | 四个「(not yet implemented)」中 Consensus Engine / Knowledge Service **已实现**；§3.1 组件清单止于 Sprint 1-3 / 106 测试 | 🔒 **冻结文档**（H3：`docs/specification/*` 变更须 ACP）→ 并入 P1-2 ACP 批次，本次未触碰 |
+| 12 | `RUNTIME_CONTRACT.md` / `reference/golden/README.md` | 数字陈旧（「106 tests」「35 BCs」，实为 618/100） | 🔒 前者属 `docs/specification`（冻结，须 ACP）；后者位于 `reference/` 冻结域 → 本次均未触碰，并入 ACP 批次 |
+| 13 | `reference/contracts/README.md` | 清单漏 Knowledge、把 Consensus 列为 future；只给 Evidence 的重生成命令 | 🔒 位于 `reference/`（冻结域）→ 本次未触碰，并入 ACP 批次 |
+| 14 | Qimen Schema 双份 | `docs/specification/qimen_contract.schema.json`(`CCAA58B5…`) ≠ `src/.../contracts/qimen_contract.schema.json`(`3D4CD776…`) | 🔴 **待裁定**（权威归属 + 冻结工件，须 ACP） |
+| 15 | 编号复用 | **Phase 7.1.6 被两个无关 Sprint 复用**（天干五合 vs Corpus Freeze）；**7.1.3 同样重复** | 🔴 **待治理**（并入 §4.4 E 的 D 编号登记体系治理） |
+| 16 | 根目录 | `phase_7.2b_r2_status.txt` 状态戳仍被跟踪；`scripts/infra_probe.py` 不在 main（仅未合并分支） | 🟡 **保留未删**：该戳被 3 份治理文档引用为 R2 门的历史证据，删除须知识域同意（见下方说明）；`infra_probe.py` 归属已备案 |
+| 17 | `docs/governance/项目进展梳理.md` | 自报 31 分支/1 未合并/599/main=38ee24e ↔ 实测 13/8/618/e5f324f | **✅ 已刷新** → 顶部加 2026-09-16 当前值对照表 + 9 条未合并分支清单；正文显式标注为「时点留档」 |
+| 18 | 分支 | **8 条本地分支未合并**（archify +42、phase4/char-001 +40、本分支 +5 等） | 🔴 **待裁**（D-10 / P0-4 分支清账）；实测现为 **9 条**（含本次修复分支） |
+| 19 | `docs/governance/phase4/INFRASTRUCTURE_INCIDENT_RECORD.md` | 自报「事件状态 **OPEN**」 | 🔴 **待裁**（D-15 显式收口） |
+
+> **#16 处理说明**：`phase_7.2b_r2_status.txt` 内容为
+> `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.`，被
+> `KNOWLEDGE_PHASE_7.2B_R2_EVIDENCE_REVIEW.md`（触发事由）、`KNOWLEDGE_PHASE_7.2B_R2_REPORT.md`
+> 与 `context/归档.md` 引用为门状态证据。E1 虽允许清理，但删除会使 3 份治理文档的引用悬空，
+> 故**保留并在冻结语料批准后由知识域一并处置**（删除或移入归档目录）。
+>
+> **未纳入本次刷新（须 ACP / 须裁定）**：#11、#12、#13（冻结域文档）· #14（冻结工件权威归属）·
+> #15（编号治理）· #18（分支清账）· #19（事件收口）。
 
 ---
 
@@ -210,13 +219,14 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 
 ### 4.1 P0 — 立即（无需新授权，半天内）
 
-| # | 任务 | 理由 | 产出 |
-|---|------|------|------|
-| P0-1 | **合并 `work/knowledge/phase7.2b-r3` → main**（D-10） | 冻结只在 main 生效；main 落后 5 commits；分支未过 CI | 合并 commit + CI 首次验证 |
-| P0-2 | **状态指针刷新**（§3.3 #2~#13、#17） | 消除 19 处自相矛盾；E3 收尾动作 | 4~6 文件小改 |
-| P0-3 | **代码清理**：`ziwei/pattern_matcher.py`（死码+不可导入+越界）删除或移出；根目录状态戳清理 | 越界 + 死码 + 误导 | 2 项清理 |
-| P0-4 | **分支清账**：8 条未合并分支逐一给结论 | 审计/回滚成本 | 决议清单 |
-| P0-5 | 合并后跑 CI 等价命令（ruff/pytest/conformance） | H7 合并门 | 回执 |
+| # | 任务 | 理由 | 产出 | 状态（2026-09-16 执行） |
+|---|------|------|------|--------------------------|
+| P0-1 | **合并 `work/knowledge/phase7.2b-r3` → main**（D-10） | 冻结只在 main 生效；main 落后 commits；分支未过 CI | 合并 commit + CI 首次验证 | 🔴 **待用户裁定**（D-10） |
+| P0-2 | **状态指针刷新**（§3.3 #2~#10、#17） | 消除自相矛盾；E3 收尾动作 | 4~6 文件小改 | **✅ 已执行** —— 分支 `work/repair/audit-p0-fixes`，6 文件（见 §6） |
+| P0-3 | **代码清理**：`ziwei/pattern_matcher.py`（死码+不可导入+越界）删除或移出；根目录状态戳清理 | 越界 + 死码 + 误导 | 2 项清理 | 🟡 **部分执行** —— `pattern_matcher.py`(108 行)+残留 `__pycache__` 已删除；`phase_7.2b_r2_status.txt` **保留**（被 3 份治理文档引用为 R2 门证据，见 §3.3 #16 说明） |
+| P0-4 | **分支清账**：未合并分支逐一给结论 | 审计/回滚成本 | 决议清单 | 🔴 **待用户裁定**（实测 **9** 条，非 8） |
+| P0-5 | 合并后跑 CI 等价命令（ruff/pytest/conformance） | H7 合并门 | 回执 | ⏸ **待 P0-1**（本次仅跑 docs-only 变更的回归验证） |
+| — | **（新增）§3.3 #11~#14 冻结域文档/工件** | 属 `docs/specification/*`、`reference/*`、冻结 Schema | — | 🔒 **须 ACP** —— 本次未触碰 |
 
 ### 4.2 P1 — 可信度与治理债务（建议紧接着做，比新功能更优先）
 
@@ -267,5 +277,31 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 
 ---
 
-*本报告全部结论基于本机实测（pytest 618/618、ruff clean、conformance 135/135、向量重生成逐字节一致、
-契约 diff 测试通过）与代码/文档逐项核对；未修改任何被审对象（除 §3.3 #1 的状态指针修正）。*
+## 6. 本轮执行记录（2026-09-16 · P0-2 / P0-3）
+
+**分支**: `work/repair/audit-p0-fixes`（基于 `work/knowledge/phase7.2b-r3`）
+
+| 文件 | 变更 |
+|------|------|
+| `docs/PROJECT_STATUS.md` | §1 头部增 Production Runtime 行；§2 L53 改「部分实现」；§4 全表重写（含 618 测试口径）；§5.1 对账表 + §5.2 补列 4 文件与合计 618 + 沙箱注记更正；§5.4 增 Conformance 强度注；§7 补 R3 / 7.1.3 / Corpus Freeze；§8 新增 §8.1 P0/P1/P2 收口计划与 GAP-16~19；§9 索引更正；§10 618；§11 改为指向 AGENTS.md H1~H8/E1~E7 + 历史约定归档 |
+| `docs/governance/CAPABILITY_STATUS.md` | 头部更新说明；Qimen 测试列 `全仓库 530` → `93 + 28`；Liuyào 行 Schema 条目更正（领域专属模型已存在）+ 下一步勾除 + 2 条代码缺陷登记；Knowledge 行巨型单元格收敛为指针（消除 63/37/10 ↔ 102/47/41 自相矛盾，满足 E3） |
+| `docs/ROADMAP.md` | L5/L36 当前开发位置；L38 领域状态更正；Phase 1/2/3/4/6/7/8/9 加状态标记；「当前交付范围」改为现状表 |
+| `docs/governance/项目进展梳理.md` | 顶部增 2026-09-16 当前值对照表 + 9 条未合并分支清单；正文显式标注为「时点留档」 |
+| `docs/governance/ziwei/ZIWEI_ALGORITHM_AUDIT.md` | F-1 标记 ✅ 已删除；F-2 标记 🟡 仍开放；头部路径勘误条目补删除说明 |
+| `src/openmetaphysics/agents/ziwei/pattern_matcher.py` | **删除**（108 行死代码 + 不可导入 + 契约 §4 范围外）；同步移除无 `__init__.py` 的 `agents/ziwei/` 目录与陈旧 `__pycache__` |
+
+**零触碰核验**：`docs/specification/*`（冻结）、`reference/*`（冻结）、`reference/contracts/*.json`（冻结）、
+Behavior Contract、Golden Vector、`docs/design/phase6/`、`docs/engineering/` —— 本次 diff 为空。
+
+**验证**：docs-only 变更 + 1 处死代码删除。`pattern_matcher.py` 全仓零导入者、零测试引用
+（实测 `ModuleNotFoundError`），故删除不影响任何测试；`pytest --collect-only` 仍收集 **618** 例。
+
+**未执行项及原因**：#11~#14 属冻结文档/冻结工件（须 ACP）· #15 编号治理 · #16 状态戳
+（引用未清）· #18 分支清账（须用户裁定）· #19 事件收口（须裁定）。
+
+---
+
+*本报告全部结论基于本机实测（pytest 618/618、ruff clean、conformance 135/135〔强度见 §2.2〕、
+向量重生成逐字节一致、契约 diff 测试通过）与代码/文档逐项核对。
+2026-09-16 首轮只读审计未修改任何被审对象；同日 P0-2/P0-3 修复轮仅改 §6 列出的 6 个文档
++ 删除 1 个死代码文件。*

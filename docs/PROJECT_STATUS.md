@@ -5,6 +5,7 @@
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
+> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（Qimen Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
 > **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 2026-09-16, D-12=A 批准 —— Ziwei **102 节点 + 47 关系 + 41 引用**, digest `69d6e2a6…`；变更须走 Corpus 级审查）
 
 ---
@@ -50,7 +51,7 @@
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
 | **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `69d6e2a6…`, 2026-09-16; 变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
-| Production Runtime | **Draft** | 尚未开始 |
+| Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现（含缺陷），Phase 9 仅桩；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
 
 ---
 
@@ -94,23 +95,27 @@ Reference Runtime（`reference/`）是整个项目的行为规范。全部 Pytho
 
 ## 4. Product Runtime Progress
 
-Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前大部分
-领域尚未开始正式实现。
+Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python 侧（`src/`）
+是当前唯一可用实现；`crates/om-calendar`（1 crate，占位）与 `services/gateway`
+（1 module，占位）尚未启动。
+
+> 本表依据 **2026-09-16 只读代码审计**（逐模块取证）刷新，替换此前停留在
+> 2026-08-17 的判定；审计明细与缺陷登记见 `docs/PROJECT_REVIEW_2026-09-16.md`。
 
 | Phase | 领域 | 状态 | 说明 |
 |-------|------|------|------|
-| Phase 0 | 脚手架 | 完成 | pyproject.toml, src 布局 |
-| Phase 1 | 基础 (schemas, models, calendar, engines) | 部分完成 | core 模块骨架已建立 |
-| Phase 2 | 六爻 | 部分完成 | 卦表、纳甲、六亲已实现 |
-| Phase 3 | 八字 | 部分完成（**Integration Ready**） | 四柱引擎 + 契约 v1.0.0 Frozen + Reference 独立实现（24/24 等价） |
-| Phase 4 | 紫微斗数 | 部分完成（**Integration Ready**） | 定局表 + 十四主星 + 农历；契约冻结 v1.0.0 + Reference 独立实现（24/24 等价）；规则 ACP 已实施（Engine v0.3.0，定局生成式 / 廉贞 -8 / 输入校验 / sxtwl==2.0.7） |
-| Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
-| Phase 6 | 共识智能体 | 未开始 | - |
-| Phase 7 | 编排 + API | 部分完成 | FastAPI 骨架已建立 |
-| Phase 8 | 推理 + RAG | 未开始 | - |
-| Phase 9 | 运维 + 可扩展性 | 未开始 | - |
+| Phase 0 | 脚手架 | 完成 | pyproject.toml（src 布局）、ruff+pytest、sxtwl==2.0.7 锁定 |
+| Phase 1 | 基础 (schemas, models, calendar, engines, config) | 完成 | core 6 模块全部实现；JSON Schema **仅运行时导出**（`BaseAgent.schema()` + `GET /agents/{name}/schema` + MCP `agent_schema`），**无落盘工件** |
+| Phase 2 | 六爻 | 部分完成 | **领域专属 Schema 已存在**（`liuyao.py`：`LiuyaoInput`/`YaoLine`/`LiuyaoChart`/`LiuyaoOutput`）+ 纳甲/六亲/六神/世应/用神/本变互卦/种子起卦；缺契约化（规则清单→向量→契约→`reference/liuyao/`→等价认证） |
+| Phase 3 | 八字 | **完成（Integration Ready）** | 四柱引擎（五虎遁/五鼠遁/立春界/23:00 换日）+ 藏干/纳音/十神/大运；契约 v1.0.0 Frozen（BC-001~014）+ Reference 独立实现（24/24 等价）。可选：机器可读契约 MANIFEST |
+| Phase 4 | 紫微斗数 | **完成（Integration Ready）** | 定局表 + 十四主星 + 农历；契约 v1.0.0 Frozen（BC-001~014, ZW-001~017）+ Reference 独立实现（24/24 等价）；规则 ACP 已实施（Engine v0.3.0）。**边界**：辅星/四化/大限等属 ZW-017 未实现边界（须 ACP）；`agents/ziwei/pattern_matcher.py` 为死代码且不可导入（见审计 §2.3） |
+| Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md, QC-001~014) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
+| Phase 6 | 共识智能体 | 部分完成 | `agents/consensus.py` 已实现并接入编排（`/orchestrate`）；缺机器可读契约适配层、生产↔Reference 等价测试；`majority`/`all` 策略无表决语义 |
+| Phase 7 | 编排 + API | 部分完成（≈达成） | LangGraph 五步（validate→route→fan_out→consensus→respond）齐全 + 6 端点 + 自动 OpenAPI；缺独立 `/consensus` 端点、知识端点、鉴权/CORS |
+| Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；**缺陷**：RAG 全仓无 `.add()` → 检索恒空；provider/RAG 零测试；`BaziExplainer`/`ZiweiExplainer` 未接线且坏死 |
+| Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 457 个，全部通过（含 Qimen 系列：排盘 33 + 契约 8 + 回归 26 + 适配器 7 + 契约适配 7 + ABI 5 + Reference 文档 7）。
+**Production Runtime 测试总计**: 导入 `openmetaphysics.*`（`src/`）的测试文件 **20 个 / 230 例**，全部通过；另 `tests/test_qimen_reference_docs.py` 7 例（只读 docs 工件）与 `reference/tests/` 中直接对拍 `src` 的 9 例。**全仓收集 618 例**（2026-09-16 实测）。此前「457」口径已废弃。
 
 ---
 
@@ -120,18 +125,19 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 
 | 类别 | 测试数 | 通过 | 失败 |
 |------|--------|------|------|
-| Reference Runtime | 304 | 304 | 0 |
-| Conformance Suite | 57 (测试) / 135 (检查) | 57 / 135 | 0 |
-| 域测试（Qimen 24/24、BaZi、Ziwei、Liuyao 等） | 含 Qimen Regression 24/24、BaZi/Production↔Reference 30/30、Ziwei 24/24 向量回归 | 正常 | 0 |
-| Knowledge Pipeline 回归 | 10 | 10 | 0 |
-| Reference 独立套件（`reference/tests/`） | 48 | 48 | 0 |
-| **总计（收集）** | **599** | **599（权威全绿口径）** | **0（真实缺陷）** |
+| Reference Runtime 核心（`test_reference_{rules,patterns,evidence,knowledge,consensus,conformance}.py`） | 304 | 304 | 0 |
+| Production Runtime（导入 `openmetaphysics.*` 的 20 文件 **230** 例 + `test_qimen_reference_docs.py` **7** 例） | 237 | 237 | 0 |
+| Knowledge Pipeline / Corpus 回归（`test_knowledge_pipeline.py` + `_corpus_r2` / `_corpus_r3` / `_corpus_relations`） | 29 | 29 | 0 |
+| Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
+| **总计（收集）** | **618** | **618（权威全绿口径）** | **0（真实缺陷）** |
 
-> 实测：`uv run pytest -q` 收集 **599** 个测试（2026-08-17）。
-> 注：本机 DSH 文件沙箱会以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
-> （`test_knowledge_pipeline.py` ×3 + `test_ziwei_equivalence::test_reference_independent_of_production`），
-> 属环境性限制非代码缺陷；在无管道限制环境（CI/本机普通运行）下为 **599/599 全绿**。
-> `reference/tests/` 需随全量套件从仓库根运行（独立收集会因 `reference` 包导入路径问题报错）。
+> 实测：`pytest --collect-only -q` 收集 **618** 个测试（2026-09-16；此前「599 / 2026-08-17」口径已废弃）。
+> Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
+> **对账**：304 + 237 + 29 + 48 = 618。
+> 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
+> （`test_knowledge_pipeline.py` ×3 + `test_ziwei_equivalence::test_reference_independent_of_production`）。
+> **2026-09-16 复测未复现**：`reference/tests/` 独立套件 **48/48 通过**（含 `test_ziwei_equivalence.py` 4 passed）。
+> `reference/tests/` 仍需随全量套件从仓库根运行。
 
 ### 5.2 测试文件明细
 
@@ -143,6 +149,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_reference_knowledge.py` | 71 | 全部通过 |
 | `tests/test_reference_consensus.py` | 70 | 全部通过 |
 | `tests/test_reference_conformance.py` | 57 | 全部通过 |
+| `tests/test_reference_qimen.py` | 28 | 全部通过（Qimen 参考域独立套件） |
 | `tests/test_api.py` | 7 | 全部通过 |
 | `tests/test_bazi.py` | 11 | 全部通过 |
 | `tests/test_calendar.py` | 6 | 全部通过 |
@@ -164,12 +171,15 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | `tests/test_bazi_units.py` | 14 | 全部通过 |
 | `tests/test_ziwei_golden_vectors.py` | 7 | 全部通过 |
 | `tests/test_knowledge_pipeline.py` | 10 | 全部通过 |
+| `tests/test_knowledge_corpus_r2.py` | 6 | 全部通过 |
+| `tests/test_knowledge_corpus_r3.py` | 7 | 全部通过 |
+| `tests/test_knowledge_corpus_relations.py` | 6 | 全部通过 |
 | `reference/tests/test_equivalence.py` | 3 | 全部通过 |
 | `reference/tests/test_bazi_equivalence.py` | 6 | 全部通过 |
-| `reference/tests/test_ziwei_equivalence.py` | 4 | 环境性（子进程管道被沙箱拒） |
+| `reference/tests/test_ziwei_equivalence.py` | 4 | 全部通过（2026-09-16 复测，此前「沙箱拒绝」未复现） |
 | `reference/tests/test_contract_boundaries.py` | 8 | 全部通过 |
 | `reference/tests/test_golden_vectors.py` | 27 | 全部通过 |
-| **合计** | **599** | 权威口径 599/599 全绿 |
+| **合计** | **618** | 权威口径 618/618 全绿（2026-09-16 实测收集） |
 
 ### 5.3 Golden Vectors
 
@@ -197,8 +207,16 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。当前�
 | 总检查数 | 135 |
 | 通过 | 135 |
 | 失败 | 0 |
-| 覆盖率 | 100% |
-| 认证状态 | **Certified** |
+| 认证状态 | **Certified**（强度见下注） |
+
+> ⚠️ **认证强度注（2026-09-16 只读审计发现）**：135 个检查中含大量无条件通过 ——
+> `_check_behavior_coverage` 硬编码 17 个 ID（BC 7/7、KB 4/20、CS 6/25）且一律
+> `passed=True`，**CF-015（`CONFORMANCE_SPEC.md`）要求的 KB-001~020 + CS-001~025
+> 共 83 个 ID 未验证**；`_check_ordering` / `_check_hash` / `_check_null` /
+> `_check_enum` 四类亦为无条件 `passed=True`。故文中**不应表述为「覆盖率 100%」**，
+> `certified=True` 的强度低于此前口径。已有域认证（Qimen 30/30、BaZi 24/24、
+> Ziwei 24/24）由独立等价测试支撑，不受影响。处置见
+> `docs/PROJECT_REVIEW_2026-09-16.md` §2.2 与 §4.2 P1-1（须 ACP / 缺陷提案，不得静默改 `reference/`）。
 
 ---
 
@@ -278,6 +296,15 @@ Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`
   7 节点（空亡/元辰/灾煞/六厄/勾绞/天罗地网/十恶大败）+ 10 条条目级引用;
   语料 **93/37/32**（sha256 ce3b83b7）; key_quote 7/7 + passage 10/10 核验 PASS;
   测试 **605/605**（新增 6 条回归测试）
+- Phase 7.2B-R3（Knowledge, 2026-09-16）: **三命通會卷三其余神煞** —— 追加 9 节点
+  （金舆/三奇/天德/月德/太极贵/学堂/词馆/德秀/暗金煞）+ 9 条条目级引用;
+  语料 **102/37/41**（sha256 9a… → digest `69d6e2a6…`）
+- Phase 7.1.3 补齐（Knowledge, 2026-09-16）: 关系层 `yinyong(5)` + `shuyu(5)`
+  → 语料 **102/47/41**; 引文逐字 10/10 + 端点 10/10 PASS
+- **Phase 7.1.6 Corpus Freeze（Knowledge, 2026-09-16, D-12=A 批准）**:
+  `ziwei_corpus:v1.0.0` 正式冻结（102 节点 + 47 关系 + 41 引用, digest `69d6e2a6…`）;
+  Coverage Matrix §1/§2 无未闭合项，唯一引用缺口 GAP-02; 此后变更须走 **Corpus 级审查**;
+  回归 **618/618**。详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`
 
 ---
 
@@ -303,13 +330,41 @@ Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`
 - Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
 - 本文档 + docs/governance/CAPABILITY_STATUS.md + knowledge/README.md 等随各 Sprint 持续刷新
 
+### 8.1 Production Runtime 收口（2026-09-16 只读代码审计新增）
+
+**P0 —— 立即（无需新授权）**
+- **状态指针刷新**：`PROJECT_STATUS.md` §1/§2/§4/§5/§7/§9/§10/§11 + `CAPABILITY_STATUS.md`
+  + `ROADMAP.md` + `项目进展梳理.md`（^ 本次已执行）
+- **死代码清理**：`src/openmetaphysics/agents/ziwei/pattern_matcher.py`（108 行；零导入、
+  目录缺 `__init__.py` 导致不可导入、且落在紫微契约 §4 显式排除的「格局识别」范围内）
+- **仓库清理**：根目录 `phase_7.2b_r2_status.txt` 一次性状态戳
+- **分支清账**：8 条未合并本地分支逐一给结论
+
+**P1 —— 可信度与治理债务（建议优先于新功能）**
+- **D-13 Conformance 空转处置**（见 §5.4 注；须 ACP 或缺陷提案，不得静默改 `reference/`）
+- **D-14 Reference Runtime 范围扩张 ACP 补正**（KnowledgeStore / Consensus 未走 ACP）
+- **契约补全**：`rule_contract.json` / `pattern_contract.json` + 生成器 + diff 测试
+- **坏死/空转修复**：`ZiweiExplainer` 字段契约修复或删除；RAG 接线（灌入 `KnowledgeChunk`）；
+  为 `inference/providers.py` / `rag/retriever.py` 补测试
+
+**P2 —— 主线候选（1~2 周，择一，需授权）**
+- **A（推荐）六爻域契约化**：Schema 定稿 → 规则清单 → 向量 → Freeze Review → 契约 v1.0.0
+  → `reference/liuyao/` 独立实现 → 24/24 等价 → 治理注册（10+ 文件，零算法创新）
+- **B Reference Runtime 最终冻结**（依赖 P1 的 ACP 补正与契约补全）
+- **C Production Runtime Phase 9 收口**：MCP transport 接线 + 依赖声明；compose 补应用服务；
+  会话/追踪持久化；RAG 接线
+
+**本轮新增 GAP 登记（建议）**: GAP-16 Conformance 行为覆盖空转（17/100）·
+GAP-17 Reference Runtime 范围扩张未走 ACP · GAP-18 `ZiweiExplainer` 坏死未接线 ·
+GAP-19 RAG 检索恒空
+
 ---
 
 ## 9. 关键文档索引
 
 | 文档 | 位置 | 用途 |
 |------|------|------|
-| AGENTS.md | 根目录 | 长期规则（Sprint Discipline 等） |
+| AGENTS.md | 根目录 | 长期规则（硬规则 H1~H8 + 效率规则 E1~E7；2026-09-15 精简版） |
 | ARCHITECTURE.md | `docs/` | 架构设计 + Governance |
 | SCHEMAS.md | `docs/` | Schema 设计 + 跨语言契约 |
 | INTERFACES.md | `docs/` | 接口设计 + Reference 位置 |
@@ -350,22 +405,34 @@ Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（599/599）
+uv run pytest -q                             # 运行全量测试（618/618，2026-09-16）
 ```
 
 ---
 
-## 11. 开发流程约定（2026-08-12）
+## 11. 开发流程约定
 
-### 对话工作流约定
+> ⚠️ **本节 2026-08-12 原文已被 `AGENTS.md`（2026-09-15 精简版）取代**，
+> 原「每轮对话 MUST 归档 + MAY 禁止直接改 main」的仪式性要求已删除。
+> **现行规则以 `AGENTS.md` §1 硬规则 H1~H8 与 §2 效率规则 E1~E7 为准**：
+>
+> - **E1 决策分级**：文档 / 测试 / 内部重构 / GAP 登记 / **状态指针刷新** / 清理已合并分支
+>   属自主执行（无需请示）；冻结工件或规范变更（H3 走 ACP）、跨域写、合并到 main、
+>   付费或真实外部主体实验、对外发布必须请示。
+> - **E3 状态指针单一权威**：能力/语料唯一指针为 `docs/governance/CAPABILITY_STATUS.md`（合并时更新）；
+>   本文件只在**阶段边界**更新；`context/归档.md` 仅在合并或 Sprint 完成时追加（≤15 行）。
+> - **E4 轻量变更可直推 main**：归档记录、状态指针刷新、错别字/GAP 编号修正、已合并分支清理、
+>   纯格式/注释修正可跳过分支；其余（代码、数据、契约、报告、实验工件）走
+>   `work/<领域>/<主题>` 分支。
+> - **H7 合并门槛**：仅测试全绿 + 确定性可复现的分支可合并；合并需用户授权。
+
+### 历史约定（2026-08-12，已归档不再生效）
 
 每次对话 MUST 遵守：输出归档 + 分支工作流 + 用户把控合并。
 
 - 每轮对话结束前，将本轮产出追加归档至 `context/归档.md`（追加式，不覆盖历史）。
 - 所有代码/文档输出在独立分支 `work/<领域>/<主题>` 上进行，禁止直接改 main。
 - 是否合并、是否进入下一步，由用户决定。
-
-细则见 `AGENTS.md` → Conversation Workflow Convention。
 
 ### 工具链编码约定（Windows UTF-8 修复）
 
