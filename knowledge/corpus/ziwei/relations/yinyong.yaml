@@ -1,0 +1,69 @@
+# KnowledgeRelation — 节点间引用（yinyong）
+# 依据: 《三命通会》卷三（revid 2184219,
+#       sha256 2de8fc1bf46eb4ecc5436b6cece6d4a06e56330565f3aa6e4cfaa581f5b0488e）
+# 语义: KB-007 yinyong = 引用（docs/design/phase6/03_json_schemas.md：…/属于/引用）
+#       方向: 引用方 → 被引用方（directed）
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 范围: Phase 7.1.3 规划 yinyong(5)+shuyu(5) 中的 yinyong 部分（Coverage Matrix §2「需新增 5」）
+# 证据: 每条 evidence.description 内以「…」给出**逐字**引文（连续、无省略号）
+
+relations:
+  - id: rel:yinyong:zai_sha_jiang_xing
+    source_node_id: kn:shen_sha:zai_sha
+    target_node_id: kn:shen_sha:jiang_xing
+    relation_type: yinyong
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷三·论灾煞：灾煞以将星之冲定位，逐字引「常居劫煞之前，冲破将星，谓之灾煞」"
+        source: { text: 三命通会, chapter: 卷三·论灾煞, author: "万民英", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷三·论灾煞, author: "万民英", credibility: 0.8 }
+
+  - id: rel:yinyong:jin_yu_lu_shen
+    source_node_id: kn:shen_sha:jin_yu
+    target_node_id: kn:shen_sha:lu_shen
+    relation_type: yinyong
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷三·论金舆：金舆以禄神定位，逐字引「故金舆常居禄前二辰」"
+        source: { text: 三命通会, chapter: 卷三·论金舆, author: "万民英", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷三·论金舆, author: "万民英", credibility: 0.8 }
+
+  - id: rel:yinyong:yang_ren_lu_shen
+    source_node_id: kn:shen_sha:yang_ren
+    target_node_id: kn:shen_sha:lu_shen
+    relation_type: yinyong
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷三·论羊刃：羊刃以禄神定位，逐字引「故羊刃常居禄前一辰」"
+        source: { text: 三命通会, chapter: 卷三·论羊刃, author: "万民英", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷三·论羊刃, author: "万民英", credibility: 0.8 }
+
+  - id: rel:yinyong:xue_tang_yi_ma
+    source_node_id: kn:shen_sha:xue_tang
+    target_node_id: kn:shen_sha:yi_ma
+    relation_type: yinyong
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷三·论学堂词馆：学堂与驿马并用，逐字引「学堂如更朝驿马，位极勋高压天下」"
+        source: { text: 三命通会, chapter: 卷三·论学堂词馆, author: "万民英", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷三·论学堂词馆, author: "万民英", credibility: 0.8 }
+
+  - id: rel:yinyong:san_qi_tian_yi_gui_ren
+    source_node_id: kn:shen_sha:san_qi
+    target_node_id: kn:shen_sha:tian_yi_gui_ren
+    relation_type: yinyong
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卷三·论三奇：三奇遇天乙贵则贵，逐字引「带天乙贵者，勋业超群」"
+        source: { text: 三命通会, chapter: 卷三·论三奇, author: "万民英", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷三·论三奇, author: "万民英", credibility: 0.8 }

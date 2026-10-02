@@ -4,7 +4,7 @@
     "counts": {
       "nodes": 102,
       "references": 41,
-      "relations": 37
+      "relations": 47
     },
     "domain": "ziwei",
     "pipeline": "knowledge/pipeline.py (Phase 7.0)",
@@ -4884,6 +4884,161 @@
       "direction": "directed",
       "evidence": [
         {
+          "description": "卷二「分属五行」名录逐字：「紫微属土」",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "卷二·安身命例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:shuyu:ziwei_tu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷二·安身命例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:ziwei",
+      "target_node_id": "kn:wuxing:tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷二「分属五行」名录逐字：「天机属木」",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "卷二·安身命例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:shuyu:tianji_mu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷二·安身命例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:tianji",
+      "target_node_id": "kn:wuxing:mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷二「分属五行」名录逐字：「太阳属火」",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "卷二·安身命例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:shuyu:taiyang_huo",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷二·安身命例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:taiyang",
+      "target_node_id": "kn:wuxing:huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷二「分属五行」名录逐字：「武曲属金」",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "卷二·安身命例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:shuyu:wuqu_jin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷二·安身命例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:wuqu",
+      "target_node_id": "kn:wuxing:jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷二「分属五行」名录逐字：「太阴属水」",
+          "source": {
+            "author": "罗洪先辑",
+            "chapter": "卷二·安身命例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "紫微斗数全书",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:shuyu:taiyin_shui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "罗洪先辑",
+        "chapter": "卷二·安身命例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "紫微斗数全书",
+        "url": null
+      },
+      "source_node_id": "kn:main_star:taiyin",
+      "target_node_id": "kn:wuxing:shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
           "description": "寅刑巳（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
           "source": {
             "author": "徐升",
@@ -5032,6 +5187,161 @@
       },
       "source_node_id": "kn:earthly_branch:mao",
       "target_node_id": "kn:earthly_branch:zi",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷三·论灾煞：灾煞以将星之冲定位，逐字引「常居劫煞之前，冲破将星，谓之灾煞」",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷三·论灾煞",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:yinyong:zai_sha_jiang_xing",
+      "relation_type": "yinyong",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论灾煞",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": null
+      },
+      "source_node_id": "kn:shen_sha:zai_sha",
+      "target_node_id": "kn:shen_sha:jiang_xing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷三·论金舆：金舆以禄神定位，逐字引「故金舆常居禄前二辰」",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷三·论金舆",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:yinyong:jin_yu_lu_shen",
+      "relation_type": "yinyong",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论金舆",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": null
+      },
+      "source_node_id": "kn:shen_sha:jin_yu",
+      "target_node_id": "kn:shen_sha:lu_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷三·论羊刃：羊刃以禄神定位，逐字引「故羊刃常居禄前一辰」",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷三·论羊刃",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:yinyong:yang_ren_lu_shen",
+      "relation_type": "yinyong",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论羊刃",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": null
+      },
+      "source_node_id": "kn:shen_sha:yang_ren",
+      "target_node_id": "kn:shen_sha:lu_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷三·论学堂词馆：学堂与驿马并用，逐字引「学堂如更朝驿马，位极勋高压天下」",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷三·论学堂词馆",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:yinyong:xue_tang_yi_ma",
+      "relation_type": "yinyong",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论学堂词馆",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": null
+      },
+      "source_node_id": "kn:shen_sha:xue_tang",
+      "target_node_id": "kn:shen_sha:yi_ma",
+      "weight": 1.0
+    },
+    {
+      "conditions": [],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卷三·论三奇：三奇遇天乙贵则贵，逐字引「带天乙贵者，勋业超群」",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷三·论三奇",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": null
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:yinyong:san_qi_tian_yi_gui_ren",
+      "relation_type": "yinyong",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷三·论三奇",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": null
+      },
+      "source_node_id": "kn:shen_sha:san_qi",
+      "target_node_id": "kn:shen_sha:tian_yi_gui_ren",
       "weight": 1.0
     }
   ]
