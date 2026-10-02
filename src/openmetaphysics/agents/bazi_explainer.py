@@ -5,7 +5,8 @@ from typing import Any
 
 from jinja2 import Template
 
-from ..core.schemas import AgentOutput, Gender
+from ..core.config import get_settings
+from ..core.schemas import AgentOutput
 from ..inference.explainer import Explainer
 from .bazi import BaziChart
 
@@ -99,20 +100,21 @@ class BaziExplainer(Explainer):
             "pattern_ten_god": pattern_ten_god,
         }
 
-    def _llm_render(self, output: AgentOutput, style: str) -> str:
+    def _llm_render(
+        self,
+        output: AgentOutput,
+        style: str,
+        chunks: list[Any] | tuple[Any, ...] = (),
+    ) -> str:
         chart = (
             output.result if isinstance(output.result, BaziChart) else BaziChart(**output.result)
         )
         pillars_by_pos = {p.position: p for p in chart.pillars}
 
-        gender_text = (
-            "男"
-            if output.input_payload.get("gender") == Gender.MALE
-            else "女"
-            if output.input_payload.get("gender") == Gender.FEMALE
-            else "未知"
-        )
-        question = output.input_payload.get("question", "分析此八字")
+        # The explainer only sees the AgentOutput: gender/question are taken from
+        # the output envelope when present, never invented.
+        gender_text = str(output.metadata.get("gender", "未知"))
+        question = str(output.metadata.get("question", "分析此八字"))
 
         # Format pillars
         yp = pillars_by_pos["year"]
@@ -151,18 +153,28 @@ class BaziExplainer(Explainer):
         user_prompt = USER_PROMPT_TEMPLATE.render(prompt_data)
 
         if self.provider is None:
-            return self._fallback(output, style)
+            return self._fallback(output, style, chunks=chunks)
 
-        s = self.provider.settings
+        prompt = BAZI_SYSTEM_PROMPT + "\n\n" + user_prompt
+        if chunks:
+            cited = "\n".join(f"- {c.text}" for c in chunks)
+            prompt += f"\n\n# 权威知识 (Authoritative context)\n{cited}\n"
+
+        s = get_settings()
         return self.provider.generate(
-            BAZI_SYSTEM_PROMPT + "\n\n" + user_prompt,
+            prompt,
             model=s.ollama_model,
             temperature=s.explain_temperature,
             max_tokens=s.explain_max_tokens,
         )
 
     @staticmethod
-    def _fallback(output: AgentOutput, style: str, note: str = "") -> str:
+    def _fallback(
+        output: AgentOutput,
+        style: str,
+        note: str = "",
+        chunks: list[Any] | tuple[Any, ...] = (),
+    ) -> str:
         """Deterministic fallback when LLM is not available or fails."""
         try:
             chart = (
@@ -186,7 +198,10 @@ class BaziExplainer(Explainer):
             )
             if note:
                 fallback += f" ({note})"
+            if chunks:
+                cited = "; ".join(f"{c.source or c.id}" for c in chunks[:3])
+                fallback += f" [knowledge: {cited}]"
             return fallback
         except Exception:
             # Ultimate fallback to generic output
-            return Explainer._fallback(output, style, note)
+            return Explainer._fallback(output, style, note, chunks)

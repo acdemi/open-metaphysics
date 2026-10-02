@@ -87,12 +87,12 @@ def _consensus(state: _State) -> dict:
 
 
 def _explain_one(name: str, output: AgentOutput) -> str:
-    from ..inference.explainer import get_explainer
+    from ..inference.explainer import get_explainer_for
 
     registry = get_registry()
     cls = type(registry.get(name))
     agent = cls()
-    agent.explainer = get_explainer()
+    agent.explainer = get_explainer_for(name)
     return agent.explain(output)
 
 
