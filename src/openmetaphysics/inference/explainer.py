@@ -25,6 +25,7 @@ exists as ``AgentOutput.result`` + ``reasoning_trace`` + ``confidence``.
 from __future__ import annotations
 
 import json
+import re
 from typing import Any, Protocol
 
 from ..core.config import get_settings
@@ -33,20 +34,34 @@ from .providers import InferenceProvider, get_provider
 
 __all__ = ["Explainer", "KnowledgeRetrieverProtocol", "get_explainer", "get_explainer_for"]
 
-# Bounded, deterministic result flattening for knowledge queries.
-_QUERY_FIELDS = (
-    "day_master",
-    "day_master_element",
-    "month_pillar",
-    "wuxing_ju",
-    "ju",
-    "dun_type",
-    "palace_element",
-    "original_hexagram",
-    "fate_palace_index",
-)
-_MAX_QUERY_VALUES = 12
+# Deterministic, semantic query construction for knowledge retrieval (Phase C2).
+#
+# Priority order:
+#   1. domain-specific semantic fields (star / element / god / palace names)
+#   2. the request question, when present (the user's own domain terms)
+#   3. CJK-bearing semantic strings found anywhere in the result
+#
+# Deliberately excluded: dates and timestamps, input_hash, large JSON blobs,
+# reasoning_trace, and bare numbers -- they carry no retrieval semantics and
+# were the main source of irrelevant hits.
+_QUERY_FIELDS: dict[str, tuple[str, ...]] = {
+    "bazi": (
+        "day_master",
+        "day_master_element",
+        "year_pillar",
+        "month_pillar",
+        "day_pillar",
+        "hour_pillar",
+    ),
+    "ziwei": ("wuxing_ju",),
+    "qimen": ("dun_type", "ju"),
+    "liuyao": ("palace", "palace_element", "yong_shen"),
+}
+_MAX_QUERY_VALUES = 6
 _MAX_VALUE_LEN = 24
+
+# a string worth querying contains at least one CJK ideograph
+_CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
 
 
 def _dump(value: Any) -> dict[str, Any]:
@@ -58,8 +73,21 @@ def _dump(value: Any) -> dict[str, Any]:
     return {}
 
 
-def _iter_strings(value: Any, limit: int = _MAX_QUERY_VALUES) -> list[str]:
-    """Deterministically collect short non-empty strings from a nested result."""
+def _semantic_token(text: str) -> list[str]:
+    """A query token worth keeping: short, non-empty and CJK-bearing."""
+    token = text.strip()
+    if token and len(token) <= _MAX_VALUE_LEN and _CJK.search(token):
+        return [token]
+    return []
+
+
+def _iter_semantic_strings(value: Any, limit: int = _MAX_QUERY_VALUES) -> list[str]:
+    """Deterministically collect short CJK-bearing strings from a nested result.
+
+    Anything without a CJK character (dates, numbers, hashes, ISO stamps,
+    ASCII flags) is skipped: it cannot usefully match the Chinese knowledge
+    corpus and only diluted the ranking.
+    """
     out: list[str] = []
 
     def walk(node: Any) -> None:
@@ -67,7 +95,7 @@ def _iter_strings(value: Any, limit: int = _MAX_QUERY_VALUES) -> list[str]:
             return
         if isinstance(node, str):
             text = node.strip()
-            if text and len(text) <= _MAX_VALUE_LEN:
+            if text and len(text) <= _MAX_VALUE_LEN and _CJK.search(text):
                 out.append(text)
         elif isinstance(node, dict):
             for key in sorted(node):
@@ -101,18 +129,36 @@ class Explainer:
             "confidence": output.confidence.model_dump(mode="json"),
             "result": _dump(output.result),
             "reasoning_trace": [s.model_dump(mode="json") for s in output.reasoning_trace],
+            # carries the caller's question through the explain chain (Phase C1)
+            "metadata": dict(output.metadata),
         }
 
     @staticmethod
     def build_query(output: AgentOutput) -> str:
-        """Knowledge query derived from the deterministic result."""
+        """Deterministic semantic query for knowledge retrieval (Phase C2).
+
+        Order: agent name, domain-specific semantic fields, the request
+        question, then CJK-bearing strings found in the result. Dates, numbers,
+        hashes and other non-semantic values are never included.
+        """
         result = _dump(output.result)
-        parts = [output.agent]
-        for field in _QUERY_FIELDS:
+        parts: list[str] = [output.agent]
+
+        for field in _QUERY_FIELDS.get(output.agent, ()):
             value = result.get(field)
-            if isinstance(value, str) and value.strip():
-                parts.append(value.strip())
-        parts.extend(_iter_strings(result))
+            if isinstance(value, str):
+                parts.extend(_semantic_token(value))
+            elif isinstance(value, (list, tuple)):
+                for item in value:
+                    if isinstance(item, str):
+                        parts.extend(_semantic_token(item))
+
+        question = output.metadata.get("question")
+        if isinstance(question, str) and question.strip():
+            parts.append(question.strip())
+
+        parts.extend(_iter_semantic_strings(result))
+
         # de-duplicate while preserving order
         seen: set[str] = set()
         ordered = [p for p in parts if p and not (p in seen or seen.add(p))]
@@ -178,8 +224,11 @@ class Explainer:
             f"You are explaining a deterministic metaphysics result. Do NOT recompute "
             f"any numbers; describe the given structured result in {style} prose.\n"
             f"Agent: {output.agent}\nConfidence: {output.confidence.value}\n"
-            f"Result JSON:\n{payload}\n"
         )
+        question = output.metadata.get("question")
+        if isinstance(question, str) and question.strip():
+            prompt += f"User question: {question.strip()}\n"
+        prompt += f"Result JSON:\n{payload}\n"
         if chunks:
             context = "\n".join(f"- {c.text}" for c in chunks)
             prompt += f"Authoritative context:\n{context}\n"

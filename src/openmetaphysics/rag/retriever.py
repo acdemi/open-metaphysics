@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Protocol, runtime_checkable
 
 from pydantic import BaseModel
@@ -22,22 +23,49 @@ class KnowledgeRetriever(Protocol):
 
 
 class InMemoryRetriever:
-    """Deterministic keyword-overlap scorer over a local chunk list."""
+    """Deterministic keyword-overlap scorer over a local chunk list.
+
+    Scoring is character overlap plus whole-tag matching, weighted so that
+    characters which are rare across the indexed corpus count for more than
+    ubiquitous ones (Phase C2 finalization). Same retriever, same public API,
+    same architecture -- no embeddings, no external service.
+    """
 
     def __init__(self, chunks: list[KnowledgeChunk] | None = None) -> None:
         self.chunks = chunks or []
+        self._weights: dict[str, float] | None = None
 
     def add(self, chunk: KnowledgeChunk) -> None:
         self.chunks.append(chunk)
+        self._weights = None
+
+    def _char_weights(self) -> dict[str, float]:
+        """Rare-term weights over the indexed corpus: ``1 + ln(N / df(ch))``.
+
+        A character occurring in every chunk weighs ``1.0``; one occurring in a
+        single chunk weighs ``1 + ln(N)``. Deterministic and cached;
+        invalidated by ``add``.
+        """
+        if self._weights is None:
+            total = len(self.chunks)
+            document_frequency: dict[str, int] = {}
+            for chunk in self.chunks:
+                for ch in set(chunk.text.lower()):
+                    document_frequency[ch] = document_frequency.get(ch, 0) + 1
+            self._weights = {
+                ch: 1.0 + math.log(total / count) for ch, count in document_frequency.items()
+            }
+        return self._weights
 
     def retrieve(self, query: str, *, k: int = 5) -> list[KnowledgeChunk]:
-        """Deterministic keyword retrieval: character overlap + whole-tag match.
+        """Deterministic keyword retrieval: weighted character overlap + whole-tag match.
 
-        Strategy is unchanged from the original (no embeddings, no external
-        service); the fixes are that tags are matched as whole labels instead of
-        being folded into single characters, and ``k <= 0`` returns nothing.
-        Ranking is by descending score then ascending chunk id, so results are
-        stable for a given corpus and query.
+        Strategy is unchanged (no embeddings, no external service). The scoring
+        change is that each overlapping character contributes its corpus-rarity
+        weight instead of a flat 1, so query expansion no longer dilutes rare
+        semantic terms. Whole-tag matching, ``k <= 0`` and the ``score > 0``
+        filter behave as before. Ranking is by descending score then ascending
+        chunk id, so results are stable for a given corpus and query.
         """
         if k <= 0:
             return []
@@ -45,13 +73,15 @@ class InMemoryRetriever:
         if not q:
             return []
         qchars = set(q)  # CJK char-level overlap
+        weights = self._char_weights()
         scored = []
         for c in self.chunks:
-            score = len(qchars & set(c.text.lower()))
+            # sorted() keeps the float summation order stable across processes
+            score = sum(weights.get(ch, 1.0) for ch in sorted(qchars & set(c.text.lower())))
             for tag in c.tags:
                 label = tag.strip().lower()
                 if label and label in q:
-                    score += 1
+                    score += 1.0
             scored.append((score, c))
         scored.sort(key=lambda t: (-t[0], t[1].id))
         return [c for score, c in scored[:k] if score > 0]

@@ -1,9 +1,17 @@
-"""Consensus agent — aggregates validated agent outputs.
+"""Cross-Modal Consensus agent (a.k.a. CrossModalConsensus).
 
-Cross-validates modalities via shared 五行 signals, builds a pairwise agreement
-matrix, detects conflicts, and produces a deterministic synthesis. Fully
-deterministic; no LLM. Does not inherit BaseAgent (input is a list of outputs,
-not a birth record).
+Aggregates **validated agent outputs**: it cross-validates modalities via shared
+五行 signals, builds a pairwise agreement matrix, detects 克 conflicts, and
+produces a deterministic synthesis. Fully deterministic; no LLM. Does not
+inherit BaseAgent (input is a list of outputs, not a birth record).
+
+Capability boundary (Phase C4): this is NOT the Reference Evidence-consensus.
+The frozen Reference contract ``reference/contracts/consensus_contract.json``
+(v1.0.0) and ``CONSENSUS_BEHAVIOR_SPEC.md`` (CS-001~CS-025) describe a
+*different* capability -- Evidence aggregation over ``Evidence[]`` with the
+``retain_all`` / ``highest_confidence`` / ``majority`` adjudication strategies.
+Neither capability implements the other; they are deliberately not merged.
+See ``docs/CONSENSUS_CAPABILITY_CLARIFICATION.md``.
 """
 
 from __future__ import annotations
