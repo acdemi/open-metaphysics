@@ -78,3 +78,5 @@ pipeline 双重运行输出逐字节一致（KB-020），main 复验与本报告
 4. **下一步（未执行，等待指令）**：紫微斗數全書 卷二/卷三 已获取未抽取部分。
 
 > 状态文件 `phase_7.2b_r2_status.txt` 已按指令生成：`Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.`
+> **（2026-09-16 补记）** 该门经 `KNOWLEDGE_PHASE_7.2B_R2_EVIDENCE_REVIEW.md` 复核 **PASS** 后闭合，
+> 根目录状态戳已清理；其内容在本行就地留档，不再作为独立文件存在。
