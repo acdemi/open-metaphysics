@@ -337,8 +337,11 @@ Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`
   + `ROADMAP.md` + `项目进展梳理.md`（^ 本次已执行）
 - **死代码清理**：`src/openmetaphysics/agents/ziwei/pattern_matcher.py`（108 行；零导入、
   目录缺 `__init__.py` 导致不可导入、且落在紫微契约 §4 显式排除的「格局识别」范围内）
-- **仓库清理**：根目录 `phase_7.2b_r2_status.txt` 一次性状态戳
-- **分支清账**：8 条未合并本地分支逐一给结论
+- **仓库清理**：根目录 `phase_7.2b_r2_status.txt` 一次性状态戳 —— ✅ **已执行（2026-09-16）**：
+  内容 `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.` 已就地留档于 R2 报告与证据复核两处，
+  引用同步改写，不再作为独立文件存在
+- **分支清账**：见 `docs/PROJECT_REVIEW_2026-09-16.md` §6 —— 已合并/被取代分支已清理，
+  未合并分支（Phase 4 证据谱系 + archify）逐条给结论并**保留**
 
 **P1 —— 可信度与治理债务（建议优先于新功能）**
 - **D-13 Conformance 空转处置**（见 §5.4 注；须 ACP 或缺陷提案，不得静默改 `reference/`）

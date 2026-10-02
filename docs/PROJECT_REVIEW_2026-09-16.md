@@ -199,19 +199,19 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 | 13 | `reference/contracts/README.md` | 清单漏 Knowledge、把 Consensus 列为 future；只给 Evidence 的重生成命令 | 🔒 位于 `reference/`（冻结域）→ 本次未触碰，并入 ACP 批次 |
 | 14 | Qimen Schema 双份 | `docs/specification/qimen_contract.schema.json`(`CCAA58B5…`) ≠ `src/.../contracts/qimen_contract.schema.json`(`3D4CD776…`) | 🔴 **待裁定**（权威归属 + 冻结工件，须 ACP） |
 | 15 | 编号复用 | **Phase 7.1.6 被两个无关 Sprint 复用**（天干五合 vs Corpus Freeze）；**7.1.3 同样重复** | 🔴 **待治理**（并入 §4.4 E 的 D 编号登记体系治理） |
-| 16 | 根目录 | `phase_7.2b_r2_status.txt` 状态戳仍被跟踪；`scripts/infra_probe.py` 不在 main（仅未合并分支） | 🟡 **保留未删**：该戳被 3 份治理文档引用为 R2 门的历史证据，删除须知识域同意（见下方说明）；`infra_probe.py` 归属已备案 |
+| 16 | 根目录 | `phase_7.2b_r2_status.txt` 状态戳仍被跟踪；`scripts/infra_probe.py` 不在 main（仅未合并分支） | **✅ 已执行**（2026-09-16）：状态戳已删除，内容在三处引用中就地留档、引用同步改写；`infra_probe.py` 归属已备案（Phase 4 未合并分支） |
 | 17 | `docs/governance/项目进展梳理.md` | 自报 31 分支/1 未合并/599/main=38ee24e ↔ 实测 13/8/618/e5f324f | **✅ 已刷新** → 顶部加 2026-09-16 当前值对照表 + 9 条未合并分支清单；正文显式标注为「时点留档」 |
-| 18 | 分支 | **8 条本地分支未合并**（archify +42、phase4/char-001 +40、本分支 +5 等） | 🔴 **待裁**（D-10 / P0-4 分支清账）；实测现为 **9 条**（含本次修复分支） |
-| 19 | `docs/governance/phase4/INFRASTRUCTURE_INCIDENT_RECORD.md` | 自报「事件状态 **OPEN**」 | 🔴 **待裁**（D-15 显式收口） |
+| 18 | 分支 | 本地分支未合并现状 | **✅ 已清账**（2026-09-16）：8 条已合并/被取代分支**已删除**，5 条未合并分支逐条给结论并**保留**（见 §6.2） |
+| 19 | `docs/governance/phase4/INFRASTRUCTURE_INCIDENT_RECORD.md` | 自报「事件状态 **OPEN**」 | **✅ 已显式收口**（2026-09-16）：新增 §6 处置结论 —— **维持 OPEN（不写 RESOLVED）**，登记为常开限制并明确关闭判据与授权要求（见 §6.3） |
 
-> **#16 处理说明**：`phase_7.2b_r2_status.txt` 内容为
-> `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.`，被
+> **#16 处理说明（已执行）**：`phase_7.2b_r2_status.txt` 内容为
+> `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.`。该门经证据复核 **PASS** 后已闭合，
+> 状态戳失去对象，故 **2026-09-16 删除**；其内容在
 > `KNOWLEDGE_PHASE_7.2B_R2_EVIDENCE_REVIEW.md`（触发事由）、`KNOWLEDGE_PHASE_7.2B_R2_REPORT.md`
-> 与 `context/归档.md` 引用为门状态证据。E1 虽允许清理，但删除会使 3 份治理文档的引用悬空，
-> 故**保留并在冻结语料批准后由知识域一并处置**（删除或移入归档目录）。
+> 两处**就地留档**，`context/归档.md` 为追加式历史记录（不改写），引用不再悬空。
 >
-> **未纳入本次刷新（须 ACP / 须裁定）**：#11、#12、#13（冻结域文档）· #14（冻结工件权威归属）·
-> #15（编号治理）· #18（分支清账）· #19（事件收口）。
+> **仍未处理（须 ACP / 须裁定）**：#11、#12、#13（冻结域文档，须 ACP）· #14（冻结工件权威归属）·
+> #15（编号治理）。
 
 ---
 
@@ -221,12 +221,12 @@ GAP-18 `ZiweiExplainer` 坏死未接线；GAP-19 RAG 检索恒空。
 
 | # | 任务 | 理由 | 产出 | 状态（2026-09-16 执行） |
 |---|------|------|------|--------------------------|
-| P0-1 | **合并 `work/knowledge/phase7.2b-r3` → main**（D-10） | 冻结只在 main 生效；main 落后 commits；分支未过 CI | 合并 commit + CI 首次验证 | 🔴 **待用户裁定**（D-10） |
-| P0-2 | **状态指针刷新**（§3.3 #2~#10、#17） | 消除自相矛盾；E3 收尾动作 | 4~6 文件小改 | **✅ 已执行** —— 分支 `work/repair/audit-p0-fixes`，6 文件（见 §6） |
-| P0-3 | **代码清理**：`ziwei/pattern_matcher.py`（死码+不可导入+越界）删除或移出；根目录状态戳清理 | 越界 + 死码 + 误导 | 2 项清理 | 🟡 **部分执行** —— `pattern_matcher.py`(108 行)+残留 `__pycache__` 已删除；`phase_7.2b_r2_status.txt` **保留**（被 3 份治理文档引用为 R2 门证据，见 §3.3 #16 说明） |
-| P0-4 | **分支清账**：未合并分支逐一给结论 | 审计/回滚成本 | 决议清单 | 🔴 **待用户裁定**（实测 **9** 条，非 8） |
-| P0-5 | 合并后跑 CI 等价命令（ruff/pytest/conformance） | H7 合并门 | 回执 | ⏸ **待 P0-1**（本次仅跑 docs-only 变更的回归验证） |
-| — | **（新增）§3.3 #11~#14 冻结域文档/工件** | 属 `docs/specification/*`、`reference/*`、冻结 Schema | — | 🔒 **须 ACP** —— 本次未触碰 |
+| P0-1 | **合并知识冻结分支 → main**（D-10） | 冻结只在 main 生效 | 合并 commit + CI 首次验证 | **✅ 已执行**（用户裁定 Q1=B 分两步）：`03c32ae` 冻结分支 → `eaf372b` 修复分支（见 §6.1） |
+| P0-2 | **状态指针刷新**（§3.3 #2~#10、#17） | 消除自相矛盾；E3 收尾动作 | 4~6 文件小改 | **✅ 已执行** —— 6 文件（见 §6） |
+| P0-3 | **代码清理**：死码 + 根目录状态戳 | 越界 + 死码 + 误导 | 2 项清理 | **✅ 已执行** —— `pattern_matcher.py`(108 行) 删除；`phase_7.2b_r2_status.txt` 删除并就地留档（见 §6.3） |
+| P0-4 | **分支清账** | 审计/回滚成本 | 决议清单 | **✅ 已执行** —— 8 条已合并/被取代分支删除；5 条保留并给结论（见 §6.2） |
+| P0-5 | 合并后跑 CI 等价命令 | H7 合并门 | 回执 | **✅ 已执行** —— 合并后 main：`pytest` **618/618 exit 0**、`ruff` clean、`validate` PASSED、conformance 135/135 |
+| — | **（新增）§3.3 #11~#14 冻结域文档/工件** | 属 `docs/specification/*`、`reference/*`、冻结 Schema | — | 🔒 **须 ACP** —— 本次未触碰（转入 P1） |
 
 ### 4.2 P1 — 可信度与治理债务（建议紧接着做，比新功能更优先）
 
@@ -296,12 +296,59 @@ Behavior Contract、Golden Vector、`docs/design/phase6/`、`docs/engineering/` 
 **验证**：docs-only 变更 + 1 处死代码删除。`pattern_matcher.py` 全仓零导入者、零测试引用
 （实测 `ModuleNotFoundError`），故删除不影响任何测试；`pytest --collect-only` 仍收集 **618** 例。
 
-**未执行项及原因**：#11~#14 属冻结文档/冻结工件（须 ACP）· #15 编号治理 · #16 状态戳
-（引用未清）· #18 分支清账（须用户裁定）· #19 事件收口（须裁定）。
+### 6.1 合并记录（P0-1 / P0-5，用户裁定 Q1=B 分两步）
+
+| 步骤 | 合并提交 | 内容 |
+|------|----------|------|
+| 1 | `03c32ae` | `Merge branch 'work/knowledge/phase7.2b-r3'` —— 知识冻结 7 commits（R2 复核 + DEF-02 + R3 + 关系补齐 + 冻结 + 审计报告） |
+| 2 | `eaf372b` | `Merge branch 'work/repair/audit-p0-fixes'` —— 状态指针刷新 + 死码删除 |
+
+**合并后 main 验证（H7 合并门）**：`pytest` **618 passed / failures=0 errors=0 skipped=0（exit 0）**；
+`ruff check` + `format --check` **clean**；`knowledge/validate.py` **PASSED**；
+`ConformanceRunner` **135/135 certified**；冻结工件 diff（`reference/`、`docs/specification/`、
+`docs/design/`、`docs/engineering/`）**为空**。
+（注：合并后 main 树与该修复分支树**逐字节相同**，已实测 `git diff --stat` 为空。）
+
+### 6.2 分支清账（P0-4）
+
+**已删除（8 条）** —— 6 条 `ahead=0`（内容已在 main）+ 2 条被取代：
+
+| 分支 | ahead | 结论 |
+|------|-------|------|
+| `work/knowledge/phase7.2b-r3` | 0 | 已合并（`03c32ae`） |
+| `work/repair/audit-p0-fixes` | 0 | 已合并（`eaf372b`） |
+| `work/knowledge/phase7.2b-rerun` | 0 | 早已合并 |
+| `work/knowledge/phase7.3.1-source-acquisition` | 0 | 早已合并 |
+| `work/ci/proto-lint-fix` | 0 | 早已合并 |
+| `work/docs/context-docs-consolidation` | 0 | 早已合并 |
+| `work/docs/def01-gap-numbering-fix` | +1 | **被取代**：main 的 `SOURCE_STATUS.md` 已是更完整版本且 GAP-12/13 标注正确 |
+| `work/docs/project-history-review` | +1 | **被取代**（内容已迁 `docs/governance/项目进展梳理.md`）；**其缺失的 1 条归档条目已回收进 main 的 `context/归档.md`** 后删除 |
+
+**保留（5 条）** —— 均不得删除：
+
+| 分支 | ahead | 结论 |
+|------|-------|------|
+| `work/docs/archify-cache-read-path` | +42 | **保留**。独有内容仅 2 个 Archify 图 commit（`1d10e23`/`e7afe70`），其余 40 为 Phase 4 谱系；**直接合并会把 Phase 4 实验线带入 main**。如需入库，应从 main 另起分支提取这 2 个 commit |
+| `work/phase4/cao-window-reauthorization` | +8 | **保留（冻结归档）**：Phase 4 授权窗口证据谱系 |
+| `work/phase4/char-001-execution` | +40 | **保留（冻结归档）**：Phase 4 R4 报告 / CHAR002 处置谱系 |
+| `work/phase4/infra-characterization-protocol` | +4 | **保留（冻结归档）**：Phase 4 协议设计 |
+| `work/phase4/probe-implementation` | +5 | **保留（冻结归档）**：Phase 4 探针实现 |
+
+> Phase 4 四分支承载 H6（真实外部实验）的**证据谱系**；删除将丢失 CHAR002 GAP 处置与 R4 报告。
+> 是否继续 Phase 4 属独立决策，需明确授权后方可推进或归档。
+
+### 6.3 仓库清理与事件收口（P0-3 尾项 / #19）
+
+- **`phase_7.2b_r2_status.txt` 已删除**：R2 证据门经复核 PASS 后闭合，状态戳失去对象；
+  内容已就地留档于 `KNOWLEDGE_PHASE_7.2B_R2_EVIDENCE_REVIEW.md` 与 `KNOWLEDGE_PHASE_7.2B_R2_REPORT.md`，
+  `context/归档.md` 作为追加式历史不改写 → 引用不悬空。
+- **Phase 4 基础设施事件**：在 `docs/governance/phase4/INFRASTRUCTURE_INCIDENT_RECORD.md`
+  新增 **§6 处置结论** —— 依其自身纪律**维持 `OPEN`（不写 RESOLVED）**，
+  登记为**常开限制**并明确关闭判据与授权要求（详见该文件 §6）。
 
 ---
 
 *本报告全部结论基于本机实测（pytest 618/618、ruff clean、conformance 135/135〔强度见 §2.2〕、
 向量重生成逐字节一致、契约 diff 测试通过）与代码/文档逐项核对。
-2026-09-16 首轮只读审计未修改任何被审对象；同日 P0-2/P0-3 修复轮仅改 §6 列出的 6 个文档
-+ 删除 1 个死代码文件。*
+时间线：① 2026-09-16 首轮只读审计（未修改任何被审对象）；② 同日 P0-2/P0-3 修复轮（6 文档 + 1 死码删除）；
+③ 同日 P0-1/P0-4/P0-5 合并与清账轮（两步合并至 main + 8 分支清理 + 状态戳删除 + 事件显式收口）。*
