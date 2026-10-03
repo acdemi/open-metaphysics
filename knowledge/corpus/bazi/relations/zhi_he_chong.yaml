@@ -1,0 +1,154 @@
+# KnowledgeRelation — 地支六合（he, 6 条）/ 地支六冲（chong, 6 条）（BaZi Corpus）
+# P2.1 BaZi Knowledge Integration: 六合 子丑/寅亥/卯戌/辰酉/巳申/午未；
+#   六冲 子午/丑未/寅申/卯酉/辰戌/巳亥（十二支各相冲一次）。
+# 证据级别: 书级来源归属（渊海子平, Tier 1, revision-pinned）；
+#   逐对章节级逐字核验**未在本轮完成** → 记入 P2.1 报告「剩余证据缺口」，
+#   不引用未核验原文（描述不含逐字引文）。
+# 注: 午未一合，传统有「合化土」与「合化日月」两说 → 按 Admission Policy §3
+#   于 description 内并列保留，不静默合并。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# ID 命名: 加 bazi_ 域前缀, 避免与 Ziwei 冻结语料 rel:he:*/rel:chong:* 冲突。
+
+relations:
+  # ---- 六合（liu_he）----
+  - id: rel:bazi_zhi_he:zi_chou
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_chou
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "子丑相合（六合之一，合化土：子为水之旺地，丑为湿土，水土相合）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 土 }
+  - id: rel:bazi_zhi_he:yin_hai
+    source_node_id: kn:earthly_branch:bazi_yin
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "寅亥相合（六合之一，合化木：寅为木之临官，亥为木之长生）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_zhi_he:mao_xu
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "卯戌相合（六合之一，合化火：卯为木之帝旺，戌为火库）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 火 }
+  - id: rel:bazi_zhi_he:chen_you
+    source_node_id: kn:earthly_branch:bazi_chen
+    target_node_id: kn:earthly_branch:bazi_you
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "辰酉相合（六合之一，合化金：辰为湿土，酉为金之帝旺，土生金而合）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 金 }
+  - id: rel:bazi_zhi_he:si_shen
+    source_node_id: kn:earthly_branch:bazi_si
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "巳申相合（六合之一，合化水：巳为金之长生，申为金之临官，金水相生）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 水 }
+  - id: rel:bazi_zhi_he:wu_wei
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "午未相合（六合之一；合化有「土」与「日月」两说，并列保留不合并）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_he }
+      - { field: result_element, value: 土 }
+      - { field: result_element_alt, value: 日月 }
+
+  # ---- 六冲（liu_chong）----
+  - id: rel:bazi_chong:zi_wu
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_wu
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "子午相冲（六冲之一，水火之冲，居十二支相对之位）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
+  - id: rel:bazi_chong:chou_wei
+    source_node_id: kn:earthly_branch:bazi_chou
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "丑未相冲（六冲之一，土土之冲，丑未各为金木之库墓）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
+  - id: rel:bazi_chong:yin_shen
+    source_node_id: kn:earthly_branch:bazi_yin
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "寅申相冲（六冲之一，木金之冲；寅申亦在寅巳申三刑环中）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
+  - id: rel:bazi_chong:mao_you
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_you
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "卯酉相冲（六冲之一，木金之冲，四正之冲）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
+  - id: rel:bazi_chong:chen_xu
+    source_node_id: kn:earthly_branch:bazi_chen
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "辰戌相冲（六冲之一，土土之冲，辰为水库、戌为火库）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
+  - id: rel:bazi_chong:si_hai
+    source_node_id: kn:earthly_branch:bazi_si
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: chong
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "巳亥相冲（六冲之一，火水之冲，四生之冲）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_chong }
