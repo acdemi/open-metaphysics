@@ -1,0 +1,114 @@
+# KnowledgeNode — 八神（shen_sha, Qimen Corpus, 9 个）
+# P2.2 Qimen Knowledge Integration: 值符/螣蛇/太阴/六合/白虎/玄武/九地/九天
+# 与「八神」总纲 —— deterministic engine 实际使用到的八神知识。
+# 语义与 deterministic engine 一致: src/openmetaphysics/agents/qimen.py::EIGHT_GODS
+#   （值符 螣蛇 太阴 六合 白虎 玄武 九地 九天；自值符落宫起顺时针顺布, 跳过中宫）。
+# 本语料为解释引用, 不参与计算。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 命名说明: slug 加 `qimen_` 域前缀; 八神之「值符」以 `qimen_shen_zhifu` 收录,
+#   与概念节点 kn:pattern:qimen_zhifu（值符星/值符神之「当值」法则）区分。
+# 流派说明: 奇门遁甲统宗 卷之二·八神 作「一值符、二腾蛇、三太阴、四六合、
+#   五勾陈、六朱雀、七九地、八九天」, 并注「（朱雀下有玄武，勾陈下又白虎）」;
+#   engine 采用通行八神命名（白虎/玄武 代 勾陈/朱雀）, 本语料按 engine 实际使用收录,
+#   并在 attributes 保留 统宗 异名。
+# 证据: 奇门遁甲统宗 卷之二·八神类神 / 卷之二·八神（书级归属 + 已读章节锚点; 非逐字核验）。
+
+nodes:
+  - id: kn:shen_sha:qimen_bashen
+    node_type: shen_sha
+    name_cn: 八神
+    name_en: qimen_bashen
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门八神，为值符、螣蛇、太阴、六合、白虎、玄武、九地、九天。小值符加大值符：天盘值符加于九星值符所临之宫，其余七神依序顺布，阳顺阴逆，跳过中宫。八神为「神盘」，只布八宫。《奇门遁甲统宗》所列八神第五、第六为勾陈、朱雀，并注朱雀下有玄武、勾陈下有白虎；本实现采用通行命名（白虎、玄武），故语料按实现用名收录并保留异名。
+    tags: [奇门, 八神, 神盘, 八将]
+    confidence: 0.85
+    attributes: { god_count: 8, palaces: 8, center_has_god: false, order: [值符, 螣蛇, 太阴, 六合, 白虎, 玄武, 九地, 九天], tongzong_variant: [勾陈, 朱雀] }
+
+  - id: kn:shen_sha:qimen_shen_zhifu
+    node_type: shen_sha
+    name_cn: 值符神
+    name_en: qimen_god_zhifu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之首，禀中央之土，为贵人之位，能育万物，大将利居其下。随值符落宫起布，其余七神依次顺行。主尊贵、印绶文章、诏书筵会；休囚则主哭泣愁闷。奇门占法「急从神兮缓从门」，与「值使」相对，同为盘面主导之神。
+    tags: [奇门, 八神, 值符, 贵人, 土]
+    confidence: 0.85
+    attributes: { order_index: 1, element: 土, fortune: 吉 }
+
+  - id: kn:shen_sha:qimen_shen_tengshe
+    node_type: shen_sha
+    name_cn: 螣蛇
+    name_en: qimen_god_tengshe
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，禀南方之火，为虚耗之神。为人性虚伪而巧诈；主胎产、婚姻、文契、钱货，得奇得门无妨；变异则为光怪、火烛、惊疑、恶梦、血光。异写「腾蛇」。
+    tags: [奇门, 八神, 螣蛇, 腾蛇, 火]
+    confidence: 0.85
+    attributes: { order_index: 2, element: 火, fortune: 凶 }
+
+  - id: kn:shen_sha:qimen_shen_taiyin
+    node_type: shen_sha
+    name_cn: 太阴
+    name_en: qimen_god_taiyin
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，禀西方之金，为阴佑之神，能为祯祥护持。为人正直无私，性气难驯。旺相主喜庆、恩赦、婚姻胎产；休囚则主淫滥、忧疑、欺诈、隐私、口舌、暗谋密约。奇门「人遁」以休门合丁奇上临太阴。
+    tags: [奇门, 八神, 太阴, 金, 阴佑]
+    confidence: 0.85
+    attributes: { order_index: 3, element: 金, fortune: 吉 }
+
+  - id: kn:shen_sha:qimen_shen_liuhe
+    node_type: shen_sha
+    name_cn: 六合
+    name_en: qimen_god_liuhe
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，禀东方之木，为雷部雨师护卫之神，能飞腾变化。为人性好贤乐善；旺相主爵禄荣庆、婚姻和合、胎产；休囚则主口舌争财、囚系胆怯、通谋勾引。奇门「九天之上扬威武，九地之下匿兵马，伏兵但向太阴位，唯有六合可逃形」。
+    tags: [奇门, 八神, 六合, 木, 和合]
+    confidence: 0.85
+    attributes: { order_index: 4, element: 木, fortune: 吉 }
+
+  - id: kn:shen_sha:qimen_shen_baihu
+    node_type: shen_sha
+    name_cn: 白虎
+    name_en: qimen_god_baihu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，禀西方之金，为刚勇之神，主兵戈战斗。为人性猛烈威雄；主争讼、疾病、死丧、道路跌伤、留连遗失。在《奇门遁甲统宗》列于「勾陈」之下，本实现以白虎为八神第五（通行命名）。
+    tags: [奇门, 八神, 白虎, 金, 刚勇]
+    confidence: 0.85
+    attributes: { order_index: 5, element: 金, fortune: 凶, tongzong_name: 勾陈 }
+
+  - id: kn:shen_sha:qimen_shen_xuanwu
+    node_type: shen_sha
+    name_cn: 玄武
+    name_en: qimen_god_xuanwu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，禀北方之水，为刑戮奸谗之神。为人性聪明而躁急、巧辩而反复；主谒官求望，失令则主口舌啼哭、梦想离别、惊恐遗失、逃人。在《奇门遁甲统宗》列于「朱雀」之下，本实现以玄武为八神第六（通行命名）。
+    tags: [奇门, 八神, 玄武, 水, 奸谗]
+    confidence: 0.85
+    attributes: { order_index: 6, element: 水, fortune: 凶, tongzong_name: 朱雀 }
+
+  - id: kn:shen_sha:qimen_shen_jiudi
+    node_type: shen_sha
+    name_cn: 九地
+    name_en: qimen_god_jiudi
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，坤土之象，万物之母，为阴晦之神。为人性柔顺吝啬；主模糊、忧思、病患、牢狱、暗昧、哭泣死丧。奇门「九地之下匿兵马」，宜伏藏；鬼遁以乙奇合九地杜门。
+    tags: [奇门, 八神, 九地, 土, 伏藏]
+    confidence: 0.85
+    attributes: { order_index: 7, element: 土, fortune: 中平 }
+
+  - id: kn:shen_sha:qimen_shen_jiutian
+    node_type: shen_sha
+    name_cn: 九天
+    name_en: qimen_god_jiutian
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八神之一，乾金之象，万物之父，为显扬之神。为人性刚健而不测；主谋望、博弈、远行。奇门「九天之上扬威武」，宜陈兵；神遁以休门与乙奇合九天。
+    tags: [奇门, 八神, 九天, 金, 显扬]
+    confidence: 0.85
+    attributes: { order_index: 8, element: 金, fortune: 吉 }

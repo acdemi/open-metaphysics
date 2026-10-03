@@ -1,0 +1,28 @@
+# Source 01 — 《奇門遁甲統宗》(Qimen Corpus)
+
+> Qimen 语料主来源元数据（原始数据引用，非数据本身）。
+> 古籍原文不在仓库内；条目级引用经 SourceRef 登记于 corpus 与 references。
+> 与 Ziwei/BaZi 语料共用同一批已获取、公有领域的 Tier 1 来源
+> （见 knowledge/sources/ziwei/SOURCE_STATUS.md 与 P2.1 记录）。
+
+| 项 | 值 |
+|----|-----|
+| source_id | source_qimen_01 |
+| title | 奇门遁甲统宗 |
+| title_wikisource | 奇門遁甲統宗 |
+| author | 旧题 明·程道生（传本系统，作者归属存疑，本语料不据此断言作者） |
+| school | 奇门遁甲（时家转盘法 / 通行本） |
+| edition | 通行古籍本（public domain 范围；维基文库转录正文，PD-old 模板） |
+| url | https://zh.wikisource.org/wiki/奇門遁甲統宗 |
+| pageid | （P2.2 未登记 pageid） |
+| revid | 1378608（维基文库页面固定链接；本 Sprint 未做 revision-pinned 抓取归档） |
+| acquisition_status | read_online_not_archived  # P2.2: 仅在线读取公共转录本, 未保存抓取件 |
+| evidence_status | source_level_attributed  # P2.2: 语料条目按书级来源归属 + 已读章节级锚点; 未做逐条逐字核验 |
+| verified_scope | 本 Sprint 已在线读取并核对章节结构: 卷之一（奇门秘诀总赋/遁甲起例/九星值符图/八门值使图/值符值使诀/论八门执事歌）、卷之二（奇门妙秘赋/九星/八门/六仪/八神/阴遁起例/阳遁起例/三元/八节/以旬首取符使法/值符加时干法/值使加时支法/八门所主/九星所主/三奇喜怒/八卦类神/九星类神/八神类神）、卷之三（十干类神/十二支类神） |
+| blocker | 无 |
+| retrieved_utc | 2026-10-03T14:43:00Z（在线读取时间） |
+| revision_pin | 无（本 Sprint 未做 revision-pinned 抓取与 sha256 登记） |
+| evidence_scope | 本语料涉及: 九宫/八门/九星/八神/六仪三奇/旬首空亡/阴阳遁/值符值使/三元 |
+| transcription_note | 维基文库转录为繁体, 与项目语料简体用字存在繁简差异; 语料条目统一以简体书写 |
+| note | Qimen 语料之主要出处; 九星/八门/六仪/八神/值符值使/阴阳遁顺逆之依据 |
+| digest_note | 版本追踪: 本文件（pipeline source_digests）登记; 无 revision_pin（见 blocker / evidence_status） |
