@@ -1,0 +1,228 @@
+# KnowledgeRelation — 地支三合（he, 8 条）/ 地支三会（he, 8 条）（BaZi Corpus）
+# P2.1 BaZi Knowledge Integration:
+#   三合局（san_he）: 申子辰合水 / 亥卯未合木 / 寅午戌合火 / 巳酉丑合金
+#   三会方（san_hui）: 寅卯辰会东方木 / 巳午未会南方火 / 申酉戌会西方金 / 亥子丑会北方水
+#
+# 结构说明（冻结 KB-007 关系为二元有向边, 无法表达三元组）:
+#   每局以「中神（帝旺/三合中位）」或「仲神（三会中位）」为 source, 另两支为
+#   target, 各 2 条边; 整局的完整成员以 evidence.description + conditions 显式记载,
+#   不静默合并为单一「局」节点（A8: 不扩 schema）。
+# 证据级别: 书级来源归属（渊海子平, Tier 1, revision-pinned）;
+#   逐局章节级逐字核验未在本轮完成 → 见 P2.1 报告「剩余证据缺口」。
+# 注: 三合（四正 + 四生 + 四墓）、三会（四孟/四仲/四季）为方局概念, 与
+#   六合/六冲/六害不同层级; 辰既是申子辰三合成员又是寅卯辰三会成员, 并存不冲突。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# ID 命名: 加 bazi_ 域前缀, 避免与 Ziwei 冻结语料冲突。
+
+relations:
+  # ---- 三合局（san_he）----
+  - id: rel:bazi_sanhe:zi_shen
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "申子辰三合水局：子为局中帝旺（中神），申为长生、辰为墓库，三支会水", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 申子辰 }
+      - { field: result_element, value: 水 }
+  - id: rel:bazi_sanhe:zi_chen
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_chen
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "申子辰三合水局：子为局中帝旺（中神），申为长生、辰为墓库，三支会水", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 申子辰 }
+      - { field: result_element, value: 水 }
+  - id: rel:bazi_sanhe:mao_hai
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "亥卯未三合木局：卯为局中帝旺（中神），亥为长生、未为墓库，三支会木", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 亥卯未 }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_sanhe:mao_wei
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "亥卯未三合木局：卯为局中帝旺（中神），亥为长生、未为墓库，三支会木", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 亥卯未 }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_sanhe:wu_yin
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_yin
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "寅午戌三合火局：午为局中帝旺（中神），寅为长生、戌为墓库，三支会火", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 寅午戌 }
+      - { field: result_element, value: 火 }
+  - id: rel:bazi_sanhe:wu_xu
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "寅午戌三合火局：午为局中帝旺（中神），寅为长生、戌为墓库，三支会火", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 寅午戌 }
+      - { field: result_element, value: 火 }
+  - id: rel:bazi_sanhe:you_si
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_si
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "巳酉丑三合金局：酉为局中帝旺（中神），巳为长生、丑为墓库，三支会金", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 巳酉丑 }
+      - { field: result_element, value: 金 }
+  - id: rel:bazi_sanhe:you_chou
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_chou
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "巳酉丑三合金局：酉为局中帝旺（中神），巳为长生、丑为墓库，三支会金", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_he }
+      - { field: group, value: 巳酉丑 }
+      - { field: result_element, value: 金 }
+
+  # ---- 三会方（san_hui）----
+  - id: rel:bazi_sanhui:mao_yin
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_yin
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "寅卯辰三会东方木：卯为四仲之中，寅为孟、辰为季，三支会成木方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 寅卯辰 }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_sanhui:mao_chen
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_chen
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "寅卯辰三会东方木：卯为四仲之中，寅为孟、辰为季，三支会成木方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 寅卯辰 }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_sanhui:wu_si
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_si
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "巳午未三会南方火：午为四仲之中，巳为孟、未为季，三支会成火方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 巳午未 }
+      - { field: result_element, value: 火 }
+  - id: rel:bazi_sanhui:wu_wei
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "巳午未三会南方火：午为四仲之中，巳为孟、未为季，三支会成火方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 巳午未 }
+      - { field: result_element, value: 火 }
+  - id: rel:bazi_sanhui:you_shen
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "申酉戌三会西方金：酉为四仲之中，申为孟、戌为季，三支会成金方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 申酉戌 }
+      - { field: result_element, value: 金 }
+  - id: rel:bazi_sanhui:you_xu
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "申酉戌三会西方金：酉为四仲之中，申为孟、戌为季，三支会成金方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 申酉戌 }
+      - { field: result_element, value: 金 }
+  - id: rel:bazi_sanhui:zi_hai
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "亥子丑三会北方水：子为四仲之中，亥为孟、丑为季，三支会成水方", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 亥子丑 }
+      - { field: result_element, value: 水 }
+  - id: rel:bazi_sanhui:zi_chou
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_chou
+    relation_type: he
+    direction: directed
+    weight: 1.0
+    evidence:
+      - { description: "亥子丑三会北方水：子为四仲之中，亥为孟、丑为季，三支会成水方（注: 子丑同时亦为六合，两关系并存）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: san_hui }
+      - { field: group, value: 亥子丑 }
+      - { field: result_element, value: 水 }

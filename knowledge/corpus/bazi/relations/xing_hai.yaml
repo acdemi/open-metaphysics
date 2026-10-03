@@ -1,0 +1,253 @@
+# KnowledgeRelation — 地支刑（xing, 12 条）/ 地支六害（hai, 6 条）（BaZi Corpus）
+# P2.1 BaZi Knowledge Integration:
+#   刑: 无恩之刑 寅巳申（3）+ 恃势之刑 丑戌未（3）+ 无礼之刑 子卯互刑（2）
+#       + 自刑 辰/午/酉/亥（4 自环）  = 12
+#   六害: 子未 / 丑午 / 寅巳 / 卯辰 / 申亥 / 酉戌 = 6
+#
+# 证据（逐字核验章节, 与 Ziwei 冻结语料 relations/xing.yaml /
+#   relations/sanming_xinghai.yaml 同源同据）:
+#   渊海子平·论大运: 「忌寅刑巳、巳刑申、申刑寅」
+#   渊海子平·论命细法: 「子卯相刑门户，全无礼德」
+#   三命通会·卷二·论三刑: 恃势之刑 丑→戌→未→丑
+#   三命通会·卷二·论六害: 六配对逐字出现
+# 证据级别不齐说明: 自刑（辰午酉亥）本轮未取得章节级逐字原文 → 仅作书级
+#   来源归属并记入 P2.1 报告「剩余证据缺口」（不引用未核验原文）。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# ID 命名: 加 bazi_ 域前缀, 避免与 Ziwei 冻结语料 rel:xing:*/rel:hai:* 冲突。
+
+relations:
+  # ---- 无恩之刑: 寅 → 巳 → 申 → 寅 ----
+  - id: rel:bazi_xing:yin_si
+    source_node_id: kn:earthly_branch:bazi_yin
+    target_node_id: kn:earthly_branch:bazi_si
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "寅刑巳（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_en_zhi_xing }
+  - id: rel:bazi_xing:si_shen
+    source_node_id: kn:earthly_branch:bazi_si
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "巳刑申（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_en_zhi_xing }
+  - id: rel:bazi_xing:shen_yin
+    source_node_id: kn:earthly_branch:bazi_shen
+    target_node_id: kn:earthly_branch:bazi_yin
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "申刑寅（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）"
+        source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_en_zhi_xing }
+
+  # ---- 恃势之刑: 丑 → 戌 → 未 → 丑 ----
+  - id: rel:bazi_xing:chou_xu
+    source_node_id: kn:earthly_branch:bazi_chou
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "丑刑戌（恃势之刑: 丑恃旺水刑戌中之墓火; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: shi_shi_zhi_xing }
+  - id: rel:bazi_xing:xu_wei
+    source_node_id: kn:earthly_branch:bazi_xu
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "戌刑未（恃势之刑: 戌为六甲之尊，刑未六癸之卑; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: shi_shi_zhi_xing }
+  - id: rel:bazi_xing:wei_chou
+    source_node_id: kn:earthly_branch:bazi_wei
+    target_node_id: kn:earthly_branch:bazi_chou
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "未刑丑（恃势之刑: 未有旺土，复恃势刑丑中之旺水; 三刑环 丑→戌→未→丑）"
+        source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: shi_shi_zhi_xing }
+
+  # ---- 无礼之刑: 子 ⇄ 卯 ----
+  - id: rel:bazi_xing:zi_mao
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_mao
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "子刑卯（子卯相刑门户, 全无礼德, 无礼之刑）"
+        source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_li_zhi_xing }
+  - id: rel:bazi_xing:mao_zi
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_zi
+    relation_type: xing
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卯刑子（子卯相刑门户, 全无礼德, 无礼之刑, 互刑）"
+        source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 渊海子平, chapter: 论命细法, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_li_zhi_xing }
+
+  # ---- 自刑: 辰 / 午 / 酉 / 亥 见本支重复 ----
+  - id: rel:bazi_xing:chen_chen
+    source_node_id: kn:earthly_branch:bazi_chen
+    target_node_id: kn:earthly_branch:bazi_chen
+    relation_type: xing
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "辰辰自刑（自刑之一: 命局再见同支而无制化, 主自困自扰; 章节级原文待核）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zi_xing }
+  - id: rel:bazi_xing:wu_wu
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_wu
+    relation_type: xing
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "午午自刑（自刑之一: 午为火之帝旺, 重见则燥烈自伤; 章节级原文待核）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zi_xing }
+  - id: rel:bazi_xing:you_you
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_you
+    relation_type: xing
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "酉酉自刑（自刑之一: 酉为金之帝旺, 重见则刚锐自伤; 章节级原文待核）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zi_xing }
+  - id: rel:bazi_xing:hai_hai
+    source_node_id: kn:earthly_branch:bazi_hai
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: xing
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - { description: "亥亥自刑（自刑之一: 亥为水之临官, 重见则泛滥自溺; 章节级原文待核）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 1.0 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zi_xing }
+
+  # ---- 六害（逐字核验: 三命通会·卷二·论六害）----
+  - id: rel:bazi_hai:zi_wei
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "子未相害（六害: 未旺土与亥子旺水，名势家相害，故子见未则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }
+  - id: rel:bazi_hai:chou_wu
+    source_node_id: kn:earthly_branch:bazi_chou
+    target_node_id: kn:earthly_branch:bazi_wu
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "丑午相害（六害: 午以旺火凌丑死金，名官鬼相害，故丑见午则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }
+  - id: rel:bazi_hai:yin_si
+    source_node_id: kn:earthly_branch:bazi_yin
+    target_node_id: kn:earthly_branch:bazi_si
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "寅巳相害（六害: 名恃临官擅能而进相害，况刑在其中——寅巳兼具刑害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }
+  - id: rel:bazi_hai:mao_chen
+    source_node_id: kn:earthly_branch:bazi_mao
+    target_node_id: kn:earthly_branch:bazi_chen
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "卯辰相害（六害: 卯以旺木凌辰死土，此以少凌长相害，故辰见卯则为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }
+  - id: rel:bazi_hai:shen_hai
+    source_node_id: kn:earthly_branch:bazi_shen
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "申亥相害（六害: 名恃临官，竞嫉才能，争进相害，申见亥、亥见申均为害）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }
+  - id: rel:bazi_hai:you_xu
+    source_node_id: kn:earthly_branch:bazi_you
+    target_node_id: kn:earthly_branch:bazi_xu
+    relation_type: hai
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "酉戌相害（六害: 戌以死火害酉旺金，此嫉妒相害，故酉人见戌则凶）"
+        source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: liu_hai }

@@ -1,0 +1,4164 @@
+{
+  "metadata": {
+    "corpus_id": "bazi_corpus",
+    "counts": {
+      "nodes": 40,
+      "references": 14,
+      "relations": 67
+    },
+    "domain": "bazi",
+    "pipeline": "knowledge/pipeline.py (P2.1 BaZi Knowledge Integration)",
+    "source_digests": {
+      "source_bazi_01.yaml": "58230e068498e96ae2b37ef9a83ab506720f61916f0ff8d52fb90720854ba8f1",
+      "source_bazi_02.yaml": "059b6feb95bbbb37662a5c884e237000798fc073b0bda62910ca18bbd55ab2a3"
+    },
+    "status": "candidate",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "attributes": {
+        "engine_field": "day_master",
+        "位置": "日柱天干",
+        "作用": "十神与旺衰之参照"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_day_master",
+      "interpretation": "日主即日柱天干（日干），代表命主自身，是十神与旺衰判断的参照基准「我」。其余各柱天干与地支藏干，均以日主为参照推演十神关系（同我/我生/我克/克我/生我）。日主本身只论其五行与阴阳属性，强弱须结合月令、通根、透干与全局生扶克泄综合判断。引擎对应的结果字段见节点属性。",
+      "name_cn": "日主",
+      "name_en": "bazi_day_master",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "日主",
+        "日干",
+        "命主",
+        "十神基准"
+      ]
+    },
+    {
+      "attributes": {
+        "engine_field": "month_pillar.branch",
+        "位置": "月柱地支",
+        "作用": "司权/定格/旺衰首据"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_month_order",
+      "interpretation": "月令即月柱地支，司一命四时之气候与旺衰，是判断日主强弱与定格取用的第一依据。月令藏干之中，当令主气最为有力：主气透出天干多以之定格（如甲木生于酉月，酉藏辛金为甲之正官，作正官格）；主气不透则参看全局得根最强之十神。月令亦决定五行之旺相休囚死，故为旺衰判断之首据。引擎对应的结果字段见节点属性。",
+      "name_cn": "月令",
+      "name_en": "bazi_month_command",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "月令",
+        "月支",
+        "提纲",
+        "旺衰",
+        "格局"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 0,
+        "element": "水",
+        "hidden_stems": [
+          "癸"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "鼠"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_zi",
+      "interpretation": "地支第一位，阳水，生肖鼠，藏干癸（本气）。子为水之帝旺，主智、流动、暗昧。子与丑六合、与午六冲、与卯相刑、与未相害、与酉相破，并为申子辰三合水局与亥子丑三会水方之成员。",
+      "name_cn": "子",
+      "name_en": "bazi_zi",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "水",
+        "阳",
+        "生肖鼠"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 1,
+        "element": "土",
+        "hidden_stems": [
+          "己",
+          "癸",
+          "辛"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "牛"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_chou",
+      "interpretation": "地支第二位，阴土，生肖牛，藏干己（主气）、癸、辛。丑为金库湿土，主收藏、坚忍、蓄积。丑与子六合、与未六冲、与戌未相刑（恃势之刑）、与午相害、与辰相破，并为巳酉丑三合金局之成员。",
+      "name_cn": "丑",
+      "name_en": "bazi_chou",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "阴",
+        "生肖牛"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 2,
+        "element": "木",
+        "hidden_stems": [
+          "甲",
+          "丙",
+          "戊"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "虎"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_yin",
+      "interpretation": "地支第三位，阳木，生肖虎，藏干甲（主气）、丙、戊。寅为木之临官，主生发、进取、开创。寅与亥六合、与申六冲、与巳申相刑（无恩之刑）、与巳相害、与亥相破，并为寅午戌三合火局与寅卯辰三会木方之成员。",
+      "name_cn": "寅",
+      "name_en": "bazi_yin",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "木",
+        "阳",
+        "生肖虎"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 3,
+        "element": "木",
+        "hidden_stems": [
+          "乙"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "兔"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_mao",
+      "interpretation": "地支第四位，阴木，生肖兔，藏干乙（本气）。卯为木之帝旺，主柔韧、文雅、条达。卯与戌六合、与酉六冲、与子相刑（无礼之刑）、与辰相害、与午相破，并为亥卯未三合木局与寅卯辰三会木方之成员。",
+      "name_cn": "卯",
+      "name_en": "bazi_mao",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "木",
+        "阴",
+        "生肖兔"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 4,
+        "element": "土",
+        "hidden_stems": [
+          "戊",
+          "乙",
+          "癸"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "龙"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_chen",
+      "interpretation": "地支第五位，阳土，生肖龙，藏干戊（主气）、乙、癸。辰为水库湿泥，主变化、蓄藏、包容。辰与酉六合、与戌六冲、自刑（辰辰自刑）、与卯相害、与丑相破，并为申子辰三合水局与寅卯辰三会木方之成员。",
+      "name_cn": "辰",
+      "name_en": "bazi_chen",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "阳",
+        "生肖龙"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 5,
+        "element": "火",
+        "hidden_stems": [
+          "丙",
+          "庚",
+          "戊"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "蛇"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_si",
+      "interpretation": "地支第六位，阴火，生肖蛇，藏干丙（主气）、庚、戊。巳为火之临官，主文明、变通、外柔内刚。巳与申六合、与亥六冲、与寅申相刑（无恩之刑）、与寅相害、与申相破，并为巳酉丑三合金局与巳午未三会火方之成员。",
+      "name_cn": "巳",
+      "name_en": "bazi_si",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "火",
+        "阴",
+        "生肖蛇"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 6,
+        "element": "火",
+        "hidden_stems": [
+          "丁",
+          "己"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "马"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_wu",
+      "interpretation": "地支第七位，阳火，生肖马，藏干丁（主气）、己。午为火之帝旺，主热烈、显达、急躁。午与未六合、与子六冲、自刑（午午自刑）、与丑相害、与卯相破，并为寅午戌三合火局与巳午未三会火方之成员。",
+      "name_cn": "午",
+      "name_en": "bazi_wu_branch",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "火",
+        "阳",
+        "生肖马"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 7,
+        "element": "土",
+        "hidden_stems": [
+          "己",
+          "丁",
+          "乙"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "羊"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_wei",
+      "interpretation": "地支第八位，阴土，生肖羊，藏干己（主气）、丁、乙。未为木库燥土，主温厚、才艺、多思。未与午六合、与丑六冲、与丑戌相刑（恃势之刑）、与子相害、并为亥卯未三合木局与巳午未三会火方之成员。",
+      "name_cn": "未",
+      "name_en": "bazi_wei",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "阴",
+        "生肖羊"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 8,
+        "element": "金",
+        "hidden_stems": [
+          "庚",
+          "壬",
+          "戊"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "猴"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_shen",
+      "interpretation": "地支第九位，阳金，生肖猴，藏干庚（主气）、壬、戊。申为金之临官，主刚毅、机变、通达。申与巳六合、与寅六冲、与寅巳相刑（无恩之刑）、与亥相害、与巳相破，并为申子辰三合水局与申酉戌三会金方之成员。",
+      "name_cn": "申",
+      "name_en": "bazi_shen",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "金",
+        "阳",
+        "生肖猴"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 9,
+        "element": "金",
+        "hidden_stems": [
+          "辛"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "鸡"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_you",
+      "interpretation": "地支第十位，阴金，生肖鸡，藏干辛（本气）。酉为金之帝旺，主清白、锐利、精审。酉与辰六合、与卯六冲、自刑（酉酉自刑）、与戌相害、与子相破，并为巳酉丑三合金局与申酉戌三会金方之成员。",
+      "name_cn": "酉",
+      "name_en": "bazi_you",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "金",
+        "阴",
+        "生肖鸡"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 10,
+        "element": "土",
+        "hidden_stems": [
+          "戊",
+          "辛",
+          "丁"
+        ],
+        "yin_yang": "阳",
+        "zodiac": "狗"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_xu",
+      "interpretation": "地支第十一位，阳土，生肖狗，藏干戊（主气）、辛、丁。戌为火库燥土，主忠义、防守、收束。戌与卯六合、与辰六冲、与丑未相刑（恃势之刑）、与酉相害、与未相破，并为寅午戌三合火局与申酉戌三会金方之成员。",
+      "name_cn": "戌",
+      "name_en": "bazi_xu",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "土",
+        "阳",
+        "生肖狗"
+      ]
+    },
+    {
+      "attributes": {
+        "branch_index": 11,
+        "element": "水",
+        "hidden_stems": [
+          "壬",
+          "甲"
+        ],
+        "yin_yang": "阴",
+        "zodiac": "猪"
+      },
+      "confidence": 0.9,
+      "id": "kn:earthly_branch:bazi_hai",
+      "interpretation": "地支第十二位，阴水，生肖猪，藏干壬（主气）、甲。亥为水之临官，主聪慧、包容、多情。亥与寅六合、与巳六冲、自刑（亥亥自刑）、与申相害、与寅相破，并为亥卯未三合木局与亥子丑三会水方之成员。",
+      "name_cn": "亥",
+      "name_en": "bazi_hai",
+      "node_type": "earthly_branch",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "地支",
+        "水",
+        "阴",
+        "生肖猪"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "he_element": "土",
+        "he_partner": "己",
+        "stem_index": 0,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_jia",
+      "interpretation": "天干第一位，阳木，象参天大树，主开拓、仁厚、领导。甲与己合而化土（天干五合）。日主为甲者，喜庚金修斫成材，忌己土合绊、忌金多克伐。",
+      "name_cn": "甲",
+      "name_en": "bazi_jia",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "木",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "he_element": "金",
+        "he_partner": "庚",
+        "stem_index": 1,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_yi",
+      "interpretation": "天干第二位，阴木，象花草藤蔓，主柔韧、适应、艺术。乙与庚合而化金（天干五合）。日主为乙者，喜丙火向阳、忌庚金太刚，藤萝系甲则可春可秋。",
+      "name_cn": "乙",
+      "name_en": "bazi_yi",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "木",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "he_element": "水",
+        "he_partner": "辛",
+        "stem_index": 2,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_bing",
+      "interpretation": "天干第三位，阳火，象太阳，主光明、热烈、显达无私。丙与辛合而化水（天干五合）。日主为丙者，喜壬水映射、忌癸水阴晦，火旺须水济。",
+      "name_cn": "丙",
+      "name_en": "bazi_bing",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "火",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "he_element": "木",
+        "he_partner": "壬",
+        "stem_index": 3,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_ding",
+      "interpretation": "天干第四位，阴火，象灯烛星辰，主精微、文明、内秀。丁与壬合而化木（天干五合）。日主为丁者，喜甲木为薪、忌壬水太旺，丁火宜得地而不宜过烈。",
+      "name_cn": "丁",
+      "name_en": "bazi_ding",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "火",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "he_element": "火",
+        "he_partner": "癸",
+        "stem_index": 4,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_wu",
+      "interpretation": "天干第五位，阳土，象城墙堤岸，主厚重、信用、承载。戊与癸合而化火（天干五合）。日主为戊者，喜甲木疏通、忌乙木疏松，土厚须木疏、水润则生物。",
+      "name_cn": "戊",
+      "name_en": "bazi_wu",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "土",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "he_element": "土",
+        "he_partner": "甲",
+        "stem_index": 5,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_ji",
+      "interpretation": "天干第六位，阴土，象田园沃土，主包容、养育、务实。己与甲合而化土（天干五合）。日主为己者，喜丙火暖养、忌水涝土崩，得金泄秀则聪敏。",
+      "name_cn": "己",
+      "name_en": "bazi_ji",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "土",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "he_element": "金",
+        "he_partner": "乙",
+        "stem_index": 6,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_geng",
+      "interpretation": "天干第七位，阳金，象斧钺剑戟，主刚断、肃杀、改革。庚与乙合而化金（天干五合）。日主为庚者，喜丁火锻炼成器、忌丙火太过，金必要火方成材。",
+      "name_cn": "庚",
+      "name_en": "bazi_geng",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "金",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "he_element": "水",
+        "he_partner": "丙",
+        "stem_index": 7,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_xin",
+      "interpretation": "天干第八位，阴金，象珠玉首饰，主清秀、精细、名望。辛与丙合而化水（天干五合）。日主为辛者，喜壬水淘洗显光、忌戊土埋金，得火则温润可用。",
+      "name_cn": "辛",
+      "name_en": "bazi_xin",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "金",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "he_element": "木",
+        "he_partner": "丁",
+        "stem_index": 8,
+        "yin_yang": "阳"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_ren",
+      "interpretation": "天干第九位，阳水，象江河大海，主奔涌、智慧、包容。壬与丁合而化木（天干五合）。日主为壬者，喜戊土堤防、忌己土浑浊，水旺须土制、木泄。",
+      "name_cn": "壬",
+      "name_en": "bazi_ren",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "水",
+        "阳"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "he_element": "火",
+        "he_partner": "戊",
+        "stem_index": 9,
+        "yin_yang": "阴"
+      },
+      "confidence": 0.9,
+      "id": "kn:heavenly_stem:bazi_gui",
+      "interpretation": "天干第十位，阴水，象雨露甘霖，主润泽、灵慧、隐微。癸与戊合而化火（天干五合）。日主为癸者，喜辛金发源、忌己土混浊，得丙火照暖则生发。",
+      "name_cn": "癸",
+      "name_en": "bazi_gui",
+      "node_type": "heavenly_stem",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "天干",
+        "水",
+        "阴"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "same",
+        "relation_to_day_master": "同我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_bijian",
+      "interpretation": "与日主同类且同阴阳者为比肩，即「同我」。主自立、竞争、手足同辈；身弱得比肩帮身则有力，身强比肩过多则分夺财禄。",
+      "name_cn": "比肩",
+      "name_en": "bazi_bi_jian",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "同我"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "same",
+        "relation_to_day_master": "同我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_jiecai",
+      "interpretation": "与日主同类而阴阳相异者为劫财，亦名逆刃。主争夺、豪爽、破耗，亦主合作与助力；身弱喜其帮身，身强则忌其夺财，行运逢之宜防耗散。",
+      "name_cn": "劫财",
+      "name_en": "bazi_jie_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "同我"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "generates",
+        "relation_to_day_master": "我生",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_shishen",
+      "interpretation": "日主所生而阴阳相同者为食神，即「我生」。主才华、口福、温和表达与福气；食神生财主富，食神制杀主贵，唯忌偏印夺食。",
+      "name_cn": "食神",
+      "name_en": "bazi_shi_shen",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我生"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "generates",
+        "relation_to_day_master": "我生",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_shangguan",
+      "interpretation": "日主所生而阴阳相异者为伤官，即「我生」。主才思敏捷、傲气与突破创新；伤官配印主智，伤官生财主富有才干，伤官见官则主口舌是非，须制化得宜。",
+      "name_cn": "伤官",
+      "name_en": "bazi_shang_guan",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我生"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "controls",
+        "relation_to_day_master": "我克",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_zhengcai",
+      "interpretation": "日主所克而阴阳相异者为正财，即「我克」。主正途财禄、勤俭务实，男命亦主妻室；财宜藏不宜露，喜食伤来生，忌比劫分夺。",
+      "name_cn": "正财",
+      "name_en": "bazi_zheng_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我克"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "controls",
+        "relation_to_day_master": "我克",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_piancai",
+      "interpretation": "日主所克而阴阳相同者为偏财，即「我克」。主偏财机遇、慷慨、投机与外缘，男命亦主偏室/父亲；偏财喜身强能任，身弱财多则反为财所困。",
+      "name_cn": "偏财",
+      "name_en": "bazi_pian_cai",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "我克"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "controlled_by",
+        "relation_to_day_master": "克我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_zhengguan",
+      "interpretation": "克日主而阴阳相异者为正官，即「克我」。主贵气、规范、事业约束与名誉，女命亦主夫星；官宜得财生、得印护，忌伤官见官，亦忌官杀混杂而不清。",
+      "name_cn": "正官",
+      "name_en": "bazi_zheng_guan",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "克我"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "controlled_by",
+        "relation_to_day_master": "克我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_qisha",
+      "interpretation": "克日主而阴阳相同者为七杀（偏官），即「克我」。主魄力、压力与权柄；身弱逢杀须印化（杀印相生）或食制，制化得宜则为贵，无制无化则多灾病与是非。",
+      "name_cn": "七杀",
+      "name_en": "bazi_qi_sha",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "克我"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "generated_by",
+        "relation_to_day_master": "生我",
+        "yin_yang": "异"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_zhengyin",
+      "interpretation": "生日主而阴阳相异者为正印，即「生我」。主学识、庇护、名誉与母亲；印能化杀生身，身弱得印最吉，唯印重则依赖懒散，须以财抑印、以食伤泄秀。",
+      "name_cn": "正印",
+      "name_en": "bazi_zheng_yin",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "生我"
+      ]
+    },
+    {
+      "attributes": {
+        "element_relation": "generated_by",
+        "relation_to_day_master": "生我",
+        "yin_yang": "同"
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:bazi_pianyin",
+      "interpretation": "生日主而阴阳相同者为偏印，又名枭神，即「生我」。主偏才、专技、宗教哲学与孤独；善化七杀，但夺食神之食，食神为用而逢偏印则福减。",
+      "name_cn": "偏印",
+      "name_en": "bazi_pian_yin",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "十神",
+        "生我"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "东",
+        "element": "木",
+        "season": "春",
+        "stems": [
+          "甲",
+          "乙"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:bazi_mu",
+      "interpretation": "五行之木，主仁，主生发条达。于时为春，于方为东。甲乙日主属木：甲为参天之木主开拓，乙为花草藤蔓主柔韧。木得令则条理仁厚，失令受金克则郁滞少断。",
+      "name_cn": "木",
+      "name_en": "bazi_wood",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "木",
+        "生发"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "南",
+        "element": "火",
+        "season": "夏",
+        "stems": [
+          "丙",
+          "丁"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:bazi_huo",
+      "interpretation": "五行之火，主礼，主炎上光明。于时为夏，于方为南。丙丁日主属火：丙为太阳之火主显达，丁为灯烛之火主精微。火得令则热诚文明，失令遇水克则燥郁无恒。",
+      "name_cn": "火",
+      "name_en": "bazi_fire",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "火",
+        "炎上"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "中",
+        "element": "土",
+        "season": "四季",
+        "stems": [
+          "戊",
+          "己"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:bazi_tu",
+      "interpretation": "五行之土，主信，主承载稼穑。于时为四季之末（长夏），于方为中。戊己日主属土：戊为城墙堤岸之土主厚重，己为田园之土主包容。土得令则信实沉稳，失令遇木克则壅塞不通。",
+      "name_cn": "土",
+      "name_en": "bazi_earth",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "土",
+        "承载"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "西",
+        "element": "金",
+        "season": "秋",
+        "stems": [
+          "庚",
+          "辛"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:bazi_jin",
+      "interpretation": "五行之金，主义，主肃杀收敛。于时为秋，于方为西。庚辛日主属金：庚为斧钺之金主刚断，辛为首饰之金主清秀。金得令则刚毅守规，失令遇火克则销铄易折。",
+      "name_cn": "金",
+      "name_en": "bazi_metal",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "金",
+        "肃杀"
+      ]
+    },
+    {
+      "attributes": {
+        "direction": "北",
+        "element": "水",
+        "season": "冬",
+        "stems": [
+          "壬",
+          "癸"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:bazi_shui",
+      "interpretation": "五行之水，主智，主润下流通。于时为冬，于方为北。壬癸日主属水：壬为江河之水主奔涌，癸为雨露之水主润泽。水得令则机智流通，失令遇土克则滞塞多虑。",
+      "name_cn": "水",
+      "name_en": "bazi_water",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "水",
+        "润下"
+      ]
+    },
+    {
+      "attributes": {
+        "参考": [
+          "通根",
+          "透干",
+          "生扶",
+          "克泄"
+        ],
+        "状态": "旺相休囚死",
+        "首要依据": "月令"
+      },
+      "confidence": 0.85,
+      "id": "kn:wuxing:bazi_wangshuai",
+      "interpretation": "旺衰指五行在四时所处的旺、相、休、囚、死五种状态：当令者旺，令所生者相，生令者休，克令者囚，令所克者死。日主强弱以月令司权为首要依据，再参通根、透干与全局生扶克泄：得令得地得势者偏强，失令失地失势者偏弱。旺衰只是强弱判断的基础概念，具体取用另见用神。",
+      "name_cn": "旺衰",
+      "name_en": "bazi_wang_shuai",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "systems": [
+        "bazi"
+      ],
+      "tags": [
+        "五行",
+        "旺衰",
+        "月令"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "credibility": 0.8,
+      "passage": "五行相生：木生火、火生土、土生金、金生水、水生木；五行相克：木克土、土克水、水克火、火克金、金克木。与 reference/bazi/tables.py 的 WUXING_SHENG/WUXING_KE 表逐对一致。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_wuxing_shengke",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_sheng:mu_huo",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "五行旺衰以月令司权为首要：当令者旺，令所生者相，生令者休，克令者囚，令所克者死；日主强弱另参通根、透干与全局生扶克泄。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_wangshuai",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "kn:wuxing:bazi_wangshuai",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "十神以日主为「我」推得：同我者比肩劫财，我生者食神伤官，我克者正财偏财，克我者正官七杀，生我者正印偏印；再以阴阳相同/相异区分正偏。与 docs/bazi/BAZI_BEHAVIOR_CONTRACT.md（BC-006 十神映射）语义一致。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_ten_god",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": "论十神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "kn:ten_god:bazi_zhengguan",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "日主为日柱天干，是命主自身「我」的象征，为十神与旺衰判断之参照基准；引擎中对应 day_master / day_master_element 字段。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_day_master",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "kn:heavenly_stem:bazi_day_master",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "月令为月柱地支，司一命之气候与旺衰，为定格取用之第一依据：月令藏干主气透干多以之定格，主气不透则取全局得根最强之十神。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_month_order",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "kn:earthly_branch:bazi_month_order",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "天干五合：甲己合而化土、乙庚化金、丙辛化水、丁壬化木、戊癸化火。（本章节与五合断言已于 Phase 7.1.6 逐字核验，同一证据亦见 Ziwei 冻结语料 relations/he_wu_he.yaml。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_gan_he",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "target_id": "rel:bazi_gan_he:jia_ji",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "地支六合：子丑合土、寅亥合木、卯戌合火、辰酉合金、巳申合水、午未合（合化有「土」与「日月」两说，并列保留）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_zhi_he",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_zhi_he:zi_chou",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "地支六冲：子午、丑未、寅申、卯酉、辰戌、巳亥；十二支各居相对之位，子午为水火之冲，丑未/辰戌为土土之冲。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_chong",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_chong:zi_wu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "地支三合：申子辰合水局、亥卯未合木局、寅午戌合火局、巳酉丑合金局；每局含长生、帝旺（中神）与墓库三支。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_sanhe",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_sanhe:zi_shen",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "地支三会：寅卯辰会东方木、巳午未会南方火、申酉戌会西方金、亥子丑会北方水；每方含孟、仲、季三支。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_sanhui",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_sanhui:mao_yin",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "无恩之刑：寅刑巳、巳刑申、申刑寅（逐字核验章节；同一原文见 Ziwei 冻结语料 relations/xing.yaml）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_xing_wuen",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_xing:yin_si",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "恃势之刑：丑恃旺水刑戌中之墓火，戌恃六甲之尊刑未六癸之卑，未有旺土复恃势刑丑中之旺水，成丑→戌→未→丑之环（逐字核验章节）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_xing_shishi",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "target_id": "rel:bazi_xing:chou_xu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "六害六配对：子未、丑午、寅巳、卯辰、申亥、酉戌（逐字核验章节，配对逐字出现于原文）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_hai",
+      "school": null,
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "target_id": "rel:bazi_hai:zi_wei",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "六破六配对：子酉、午卯、辰丑、戌未、寅亥、巳申。冻结 KB-007 的 15 类 relation_type 无 po（破），本语料以中性类型 duiying 承载并以 relation_subtype=po 保留语义（schema 缺口已记录，不修改冻结契约）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:bazi_po",
+      "school": null,
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "target_id": "rel:bazi_po:zi_you",
+      "target_type": "relation"
+    }
+  ],
+  "relations": [
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "土"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "甲己合而化土（五合之一; 三命通会: 故甲己合而化土，其气上升而云施; 渊海子平: 谓之甲己化土）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论十干化气",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_gan_he:jia_ji",
+      "relation_type": "he",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:heavenly_stem:bazi_jia",
+      "target_node_id": "kn:heavenly_stem:bazi_ji",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "乙庚化金（五合之一; 三命通会: 乙庚化金，非已酉丑月不化）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论十干化气",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_gan_he:yi_geng",
+      "relation_type": "he",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:heavenly_stem:bazi_yi",
+      "target_node_id": "kn:heavenly_stem:bazi_geng",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "丙辛化水（五合之一; 三命通会: 丙辛化水，非申子辰月不化）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论十干化气",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_gan_he:bing_xin",
+      "relation_type": "he",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:heavenly_stem:bazi_bing",
+      "target_node_id": "kn:heavenly_stem:bazi_xin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "丁壬化木（五合之一; 三命通会: 丁壬化木，非亥卯未月不化）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论十干化气",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_gan_he:ding_ren",
+      "relation_type": "he",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:heavenly_stem:bazi_ding",
+      "target_node_id": "kn:heavenly_stem:bazi_ren",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "戊癸化火（五合之一; 三命通会: 戊癸化火，非丙午戌月不化; 渊海子平: 戊癸化火巳午）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论十干化气",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_gan_he:wu_gui",
+      "relation_type": "he",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论十干化气",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:heavenly_stem:bazi_wu",
+      "target_node_id": "kn:heavenly_stem:bazi_gui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "子酉相破（六破之一: 子为水旺、酉为金旺, 金水本相生而各恃旺气, 故曰破）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:zi_you",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_you",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "午卯相破（六破之一: 午为火旺、卯为木旺, 木火本相生而各恃旺气, 故曰破）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:wu_mao",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_mao",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "辰丑相破（六破之一: 辰为水库、丑为金库湿土, 同为湿土而墓库相破）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:chen_chou",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chen",
+      "target_node_id": "kn:earthly_branch:bazi_chou",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "戌未相破（六破之一: 戌为火库、未为木库, 燥土墓库相破）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:xu_wei",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_xu",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "寅亥相破（六破之一: 寅亥本六合, 合中带破, 主合作中见裂痕）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:yin_hai",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_yin",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "po"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "巳申相破（六破之一: 巳申本六合, 合中带破, 且巳申兼具刑害）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 0.6
+        }
+      ],
+      "id": "rel:bazi_po:si_shen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_si",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 0.6
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "申子辰"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申子辰三合水局：子为局中帝旺（中神），申为长生、辰为墓库，三支会水",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:zi_shen",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "申子辰"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申子辰三合水局：子为局中帝旺（中神），申为长生、辰为墓库，三支会水",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:zi_chen",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_chen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "亥卯未"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "亥卯未三合木局：卯为局中帝旺（中神），亥为长生、未为墓库，三支会木",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:mao_hai",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "亥卯未"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "亥卯未三合木局：卯为局中帝旺（中神），亥为长生、未为墓库，三支会木",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:mao_wei",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "寅午戌"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅午戌三合火局：午为局中帝旺（中神），寅为长生、戌为墓库，三支会火",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:wu_yin",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_yin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "寅午戌"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅午戌三合火局：午为局中帝旺（中神），寅为长生、戌为墓库，三支会火",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:wu_xu",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "巳酉丑"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳酉丑三合金局：酉为局中帝旺（中神），巳为长生、丑为墓库，三支会金",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:you_si",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_he"
+        },
+        {
+          "field": "group",
+          "value": "巳酉丑"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳酉丑三合金局：酉为局中帝旺（中神），巳为长生、丑为墓库，三支会金",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhe:you_chou",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_chou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "寅卯辰"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅卯辰三会东方木：卯为四仲之中，寅为孟、辰为季，三支会成木方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:mao_yin",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_yin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "寅卯辰"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅卯辰三会东方木：卯为四仲之中，寅为孟、辰为季，三支会成木方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:mao_chen",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_chen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "巳午未"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳午未三会南方火：午为四仲之中，巳为孟、未为季，三支会成火方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:wu_si",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "巳午未"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳午未三会南方火：午为四仲之中，巳为孟、未为季，三支会成火方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:wu_wei",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "申酉戌"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申酉戌三会西方金：酉为四仲之中，申为孟、戌为季，三支会成金方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:you_shen",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "申酉戌"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申酉戌三会西方金：酉为四仲之中，申为孟、戌为季，三支会成金方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:you_xu",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "亥子丑"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "亥子丑三会北方水：子为四仲之中，亥为孟、丑为季，三支会成水方",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:zi_hai",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "san_hui"
+        },
+        {
+          "field": "group",
+          "value": "亥子丑"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "亥子丑三会北方水：子为四仲之中，亥为孟、丑为季，三支会成水方（注: 子丑同时亦为六合，两关系并存）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sanhui:zi_chou",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_chou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木生火（五行相生: 木性温暖，火伏其中，钻灼而出）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sheng:mu_huo",
+      "relation_type": "sheng",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_mu",
+      "target_node_id": "kn:wuxing:bazi_huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火生土（五行相生: 火焚木而成灰，灰即土）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sheng:huo_tu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_huo",
+      "target_node_id": "kn:wuxing:bazi_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土生金（五行相生: 金居石中，依山津润而生）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sheng:tu_jin",
+      "relation_type": "sheng",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_tu",
+      "target_node_id": "kn:wuxing:bazi_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金生水（五行相生: 少阴之气润泽流而为水）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sheng:jin_shui",
+      "relation_type": "sheng",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_jin",
+      "target_node_id": "kn:wuxing:bazi_shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水生木（五行相生: 水润而木生）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_sheng:shui_mu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_shui",
+      "target_node_id": "kn:wuxing:bazi_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木克土（五行相克: 木专而土散）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_ke:mu_tu",
+      "relation_type": "ke",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_mu",
+      "target_node_id": "kn:wuxing:bazi_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土克水（五行相克: 土壅而水塞）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_ke:tu_shui",
+      "relation_type": "ke",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_tu",
+      "target_node_id": "kn:wuxing:bazi_shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水克火（五行相克: 水盛而火灭）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_ke:shui_huo",
+      "relation_type": "ke",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_shui",
+      "target_node_id": "kn:wuxing:bazi_huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火克金（五行相克: 火烈而金销）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_ke:huo_jin",
+      "relation_type": "ke",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_huo",
+      "target_node_id": "kn:wuxing:bazi_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金克木（五行相克: 金锐而木伐）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_ke:jin_mu",
+      "relation_type": "ke",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:wuxing:bazi_jin",
+      "target_node_id": "kn:wuxing:bazi_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_en_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "寅刑巳（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:yin_si",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_yin",
+      "target_node_id": "kn:earthly_branch:bazi_si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_en_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巳刑申（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:si_shen",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_si",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_en_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "申刑寅（三刑: 寅刑巳、巳刑申、申刑寅, 无恩之刑环）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论大运",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:shen_yin",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论大运",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_shen",
+      "target_node_id": "kn:earthly_branch:bazi_yin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "shi_shi_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "丑刑戌（恃势之刑: 丑恃旺水刑戌中之墓火; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:chou_xu",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chou",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "shi_shi_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "戌刑未（恃势之刑: 戌为六甲之尊，刑未六癸之卑; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:xu_wei",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_xu",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "shi_shi_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "未刑丑（恃势之刑: 未有旺土，复恃势刑丑中之旺水; 三刑环 丑→戌→未→丑）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论三刑",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:wei_chou",
+      "relation_type": "xing",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论三刑",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wei",
+      "target_node_id": "kn:earthly_branch:bazi_chou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_li_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "子刑卯（子卯相刑门户, 全无礼德, 无礼之刑）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论命细法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:zi_mao",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论命细法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_mao",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wu_li_zhi_xing"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卯刑子（子卯相刑门户, 全无礼德, 无礼之刑, 互刑）",
+          "source": {
+            "author": "徐升",
+            "chapter": "论命细法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:mao_zi",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": "论命细法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_zi",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zi_xing"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "辰辰自刑（自刑之一: 命局再见同支而无制化, 主自困自扰; 章节级原文待核）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:chen_chen",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chen",
+      "target_node_id": "kn:earthly_branch:bazi_chen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zi_xing"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "午午自刑（自刑之一: 午为火之帝旺, 重见则燥烈自伤; 章节级原文待核）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:wu_wu",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_wu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zi_xing"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "酉酉自刑（自刑之一: 酉为金之帝旺, 重见则刚锐自伤; 章节级原文待核）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:you_you",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_you",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zi_xing"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "亥亥自刑（自刑之一: 亥为水之临官, 重见则泛滥自溺; 章节级原文待核）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_xing:hai_hai",
+      "relation_type": "xing",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_hai",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "子未相害（六害: 未旺土与亥子旺水，名势家相害，故子见未则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:zi_wei",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "丑午相害（六害: 午以旺火凌丑死金，名官鬼相害，故丑见午则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:chou_wu",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chou",
+      "target_node_id": "kn:earthly_branch:bazi_wu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "寅巳相害（六害: 名恃临官擅能而进相害，况刑在其中——寅巳兼具刑害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:yin_si",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_yin",
+      "target_node_id": "kn:earthly_branch:bazi_si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "卯辰相害（六害: 卯以旺木凌辰死土，此以少凌长相害，故辰见卯则为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:mao_chen",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_chen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "申亥相害（六害: 名恃临官，竞嫉才能，争进相害，申见亥、亥见申均为害）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:shen_hai",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_shen",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_hai"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "酉戌相害（六害: 戌以死火害酉旺金，此嫉妒相害，故酉人见戌则凶）",
+          "source": {
+            "author": "万民英",
+            "chapter": "卷二·论六害",
+            "credibility": 0.8,
+            "page": null,
+            "text": "三命通会",
+            "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_hai:you_xu",
+      "relation_type": "hai",
+      "source": {
+        "author": "万民英",
+        "chapter": "卷二·论六害",
+        "credibility": 0.8,
+        "page": null,
+        "text": "三命通会",
+        "url": "https://zh.wikisource.org/wiki/三命通会/卷二"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_you",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "土"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "子丑相合（六合之一，合化土：子为水之旺地，丑为湿土，水土相合）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:zi_chou",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_chou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "木"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "寅亥相合（六合之一，合化木：寅为木之临官，亥为木之长生）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:yin_hai",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_yin",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "火"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "卯戌相合（六合之一，合化火：卯为木之帝旺，戌为火库）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:mao_xu",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "金"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "辰酉相合（六合之一，合化金：辰为湿土，酉为金之帝旺，土生金而合）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:chen_you",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chen",
+      "target_node_id": "kn:earthly_branch:bazi_you",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "水"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "巳申相合（六合之一，合化水：巳为金之长生，申为金之临官，金水相生）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:si_shen",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_si",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_he"
+        },
+        {
+          "field": "result_element",
+          "value": "土"
+        },
+        {
+          "field": "result_element_alt",
+          "value": "日月"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "午未相合（六合之一；合化有「土」与「日月」两说，并列保留不合并）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_zhi_he:wu_wei",
+      "relation_type": "he",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_wu",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "子午相冲（六冲之一，水火之冲，居十二支相对之位）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:zi_wu",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_zi",
+      "target_node_id": "kn:earthly_branch:bazi_wu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "丑未相冲（六冲之一，土土之冲，丑未各为金木之库墓）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:chou_wei",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chou",
+      "target_node_id": "kn:earthly_branch:bazi_wei",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "寅申相冲（六冲之一，木金之冲；寅申亦在寅巳申三刑环中）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:yin_shen",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_yin",
+      "target_node_id": "kn:earthly_branch:bazi_shen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "卯酉相冲（六冲之一，木金之冲，四正之冲）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:mao_you",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_mao",
+      "target_node_id": "kn:earthly_branch:bazi_you",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "辰戌相冲（六冲之一，土土之冲，辰为水库、戌为火库）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:chen_xu",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_chen",
+      "target_node_id": "kn:earthly_branch:bazi_xu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liu_chong"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "巳亥相冲（六冲之一，火水之冲，四生之冲）",
+          "source": {
+            "author": "徐升",
+            "chapter": null,
+            "credibility": 0.8,
+            "page": null,
+            "text": "渊海子平",
+            "url": "https://zh.wikisource.org/wiki/渊海子平"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:bazi_chong:si_hai",
+      "relation_type": "chong",
+      "source": {
+        "author": "徐升",
+        "chapter": null,
+        "credibility": 0.8,
+        "page": null,
+        "text": "渊海子平",
+        "url": "https://zh.wikisource.org/wiki/渊海子平"
+      },
+      "source_node_id": "kn:earthly_branch:bazi_si",
+      "target_node_id": "kn:earthly_branch:bazi_hai",
+      "weight": 1.0
+    }
+  ]
+}
