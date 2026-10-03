@@ -1,8 +1,7 @@
 """FastAPI application exposing agents, orchestration and the explain pipeline.
 
 Route naming is intentionally kept as-is (``/agents/{name}/...``) rather than
-restructured into per-domain REST paths; this phase only closes the runtime
-composition, it does not redesign the API surface.
+restructured into per-domain REST paths.
 
 Runtime composition exposed here:
 
@@ -14,14 +13,25 @@ Runtime composition exposed here:
       -> knowledge retrieval (Explain chain)
       -> explanation
       -> HTTP response
+
+Public error model (Productization P1): every failure carries one machine
+readable ``error`` object with a stable ``kind`` -- ``invalid_request`` (422),
+``unknown_agent`` (404) or ``calculation_failed`` / ``internal_error`` (500).
+FastAPI's ``detail`` is preserved alongside it for compatibility.
+
+An explanation or provider failure is **not** an HTTP error: the deterministic
+result is still returned with HTTP 200 and the failure is recorded in the
+``explain.error`` block, so provider errors can never masquerade as calculation
+errors.
 """
 
 from __future__ import annotations
 
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ValidationError
 
@@ -35,11 +45,43 @@ class ExplainRequest(BaseModel):
     output: dict[str, Any]
 
 
+# -- public error model ----------------------------------------------------
+
+
+def _error_body(kind: str, message: str, **extra: Any) -> dict[str, Any]:
+    """The stable machine-readable error object (``kind`` is the discriminator)."""
+    return {"kind": kind, "message": message, **extra}
+
+
 def _error(status: int, kind: str, message: str, **extra: Any) -> JSONResponse:
-    """Structured error body shared by every failure path."""
+    return JSONResponse(status_code=status, content={"error": _error_body(kind, message, **extra)})
+
+
+def _unknown_agent(name: str) -> JSONResponse:
+    message = f"unknown agent: {name}"
     return JSONResponse(
-        status_code=status,
-        content={"error": {"type": kind, "message": message, **extra}},
+        status_code=404,
+        content={"detail": message, "error": _error_body("unknown_agent", message, agent=name)},
+    )
+
+
+def _invalid_request(exc: ValidationError) -> JSONResponse:
+    """422 for a body or query that failed the published schema.
+
+    Used both for handler-level validation and for FastAPI's own request
+    validation, so a validation failure has one shape wherever it comes from.
+    """
+    errors = jsonable_encoder(exc.errors())
+    return JSONResponse(
+        status_code=422,
+        content={
+            "detail": errors,
+            "error": _error_body(
+                "invalid_request",
+                "request validation failed",
+                fields=[list(e.get("loc", [])) for e in exc.errors()],
+            ),
+        },
     )
 
 
@@ -59,15 +101,15 @@ def _explain_payload(
         result = get_explainer_for(agent_name).explain(output, style=style, k=k)
     except Exception as exc:  # pragma: no cover - defensive
         return {
-            "text": "",
+            "explanation": "",
             "provider": None,
             "degraded": True,
             "knowledge": [],
             "evidence": {},
-            "error": {"type": type(exc).__name__, "message": str(exc)},
+            "error": _error_body("explain_failed", str(exc), type=type(exc).__name__),
         }
     return {
-        "text": result["explanation"],
+        "explanation": result["explanation"],
         "provider": result["provider"],
         "degraded": result["degraded"],
         "knowledge": [{"id": c["id"], "source": c["source"]} for c in result.get("knowledge", [])],
@@ -96,11 +138,11 @@ def create_app() -> FastAPI:
         return {"agents": [{"name": a.name, "engine_version": a.engine_version} for a in reg.all()]}
 
     @app.get("/agents/{name}/schema")
-    def agent_schema(name: str) -> dict[str, Any]:
+    def agent_schema(name: str) -> Any:
         try:
             return get_registry().get(name).schema()
         except KeyError:
-            raise HTTPException(status_code=404, detail=f"unknown agent: {name}") from None
+            return _unknown_agent(name)
 
     @app.post("/agents/{name}/compute")
     def agent_compute(
@@ -119,20 +161,23 @@ def create_app() -> FastAPI:
         try:
             agent = reg.get(name)
         except KeyError:
-            raise HTTPException(status_code=404, detail=f"unknown agent: {name}") from None
+            return _unknown_agent(name)
 
         try:
             payload = agent.input_schema.model_validate(body)
         except ValidationError as exc:
-            return JSONResponse(
-                status_code=422,
-                content={"detail": jsonable_encoder(exc.errors())},
-            )
+            return _invalid_request(exc)
 
         try:
             output = agent.compute(payload)
         except Exception as exc:
-            return _error(500, type(exc).__name__, str(exc), agent=name)
+            return _error(
+                500,
+                "calculation_failed",
+                str(exc),
+                type=type(exc).__name__,
+                agent=name,
+            )
 
         data: dict[str, Any] = output.model_dump(mode="json")
         if explain:
@@ -145,41 +190,49 @@ def create_app() -> FastAPI:
         try:
             get_registry().get(name)
         except KeyError:
-            raise HTTPException(status_code=404, detail=f"unknown agent: {name}") from None
+            return _unknown_agent(name)
 
         try:
             output = AgentOutput.model_validate(req.output)
         except ValidationError as exc:
-            return JSONResponse(
-                status_code=422,
-                content={"detail": jsonable_encoder(exc.errors())},
-            )
+            return _invalid_request(exc)
 
         payload = _explain_payload(name, output, style=style, k=k)
-        return {
-            "agent": name,
-            "explanation": payload["text"],
-            "provider": payload["provider"],
-            "degraded": payload["degraded"],
-            "knowledge": payload["knowledge"],
-            "evidence": payload["evidence"],
-            "error": payload.get("error"),
-        }
+        return {"agent": name, **payload}
 
     @app.post("/orchestrate")
     def orchestrate_endpoint(req: OrchestrationRequest) -> Any:
+        # Request-level check: if the caller explicitly named agents and none of
+        # them exist there is nothing to orchestrate -> 404, matching the
+        # single-agent operations. Partially-unknown requests keep the batch
+        # semantics (200 with per-agent entries in ``errors``).
+        if req.agents:
+            known = set(get_registry().names())
+            unknown = sorted(a for a in req.agents if a not in known)
+            if unknown and len(unknown) == len(req.agents):
+                message = "unknown agent(s): " + ", ".join(unknown)
+                return JSONResponse(
+                    status_code=404,
+                    content={
+                        "detail": message,
+                        "error": _error_body("unknown_agent", message, agents=unknown),
+                    },
+                )
+
         try:
             resp = orchestrate(req)
         except ValidationError as exc:
-            return JSONResponse(
-                status_code=422,
-                content={"detail": jsonable_encoder(exc.errors())},
-            )
+            return _invalid_request(exc)
         return resp.model_dump(mode="json")
+
+    @app.exception_handler(RequestValidationError)
+    def request_validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:
+        """FastAPI-level (body / query / path) validation shares the 422 shape."""
+        return _invalid_request(exc)  # type: ignore[arg-type]
 
     @app.exception_handler(Exception)
     def unhandled(_: Any, exc: Exception) -> JSONResponse:
-        return _error(500, type(exc).__name__, str(exc))
+        return _error(500, "internal_error", str(exc), type=type(exc).__name__)
 
     return app
 
