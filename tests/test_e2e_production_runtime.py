@@ -117,7 +117,7 @@ def test_e2e_single_agent_compute_with_explain_carries_evidence():
     explain = data["explain"]
     assert explain["evidence"]["result"] == data["result"]
     assert explain["knowledge"], "knowledge retrieval must run on the compute path"
-    assert explain["text"]
+    assert explain["explanation"]
 
 
 # == Fact layer integrity ==
