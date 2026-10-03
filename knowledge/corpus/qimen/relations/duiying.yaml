@@ -1,0 +1,360 @@
+# KnowledgeRelation — 对应（duiying, Qimen Corpus, 24 条）
+# P2.2 Qimen Knowledge Integration: 地盘宫位与九星/八门的固定配属、
+#   值符与值符神、阳遁与阴遁、旬首与六仪、三奇与六仪、空亡与旬首、三元与阴阳遁。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 奇门遁甲统宗 卷之一·九星值符图·八门值使图 / 卷之二·阳遁起例·阴遁起例·
+#   三元 / 卷之三·孤虚（书级归属 + 已读章节锚点; 非逐字核验）。
+
+relations:
+  - id: rel:qimen_duiying:gong1_tianpeng
+    source_node_id: kn:palace:qimen_kan
+    target_node_id: kn:main_star:qimen_tianpeng
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘坎一宫固定配属九星天蓬（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 1 }
+
+  - id: rel:qimen_duiying:gong2_tianrui
+    source_node_id: kn:palace:qimen_kun
+    target_node_id: kn:main_star:qimen_tianrui
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘坤二宫固定配属九星天芮（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 2 }
+
+  - id: rel:qimen_duiying:gong3_tianchong
+    source_node_id: kn:palace:qimen_zhen
+    target_node_id: kn:main_star:qimen_tianchong
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘震三宫固定配属九星天冲（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 3 }
+
+  - id: rel:qimen_duiying:gong4_tianfu
+    source_node_id: kn:palace:qimen_xun
+    target_node_id: kn:main_star:qimen_tianfu
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘巽四宫固定配属九星天辅（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 4 }
+
+  - id: rel:qimen_duiying:gong5_tianqin
+    source_node_id: kn:palace:qimen_zhong
+    target_node_id: kn:main_star:qimen_tianqin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘中五宫固定配属九星天禽（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 5 }
+
+  - id: rel:qimen_duiying:gong6_tianxin
+    source_node_id: kn:palace:qimen_qian
+    target_node_id: kn:main_star:qimen_tianxin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘乾六宫固定配属九星天心（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 6 }
+
+  - id: rel:qimen_duiying:gong7_tianzhu
+    source_node_id: kn:palace:qimen_dui
+    target_node_id: kn:main_star:qimen_tianzhu
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘兑七宫固定配属九星天柱（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 7 }
+
+  - id: rel:qimen_duiying:gong8_tianren
+    source_node_id: kn:palace:qimen_gen
+    target_node_id: kn:main_star:qimen_tianren
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘艮八宫固定配属九星天任（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 8 }
+
+  - id: rel:qimen_duiying:gong9_tianying
+    source_node_id: kn:palace:qimen_li
+    target_node_id: kn:main_star:qimen_tianying
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘离九宫固定配属九星天英（九星值符图）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_star }
+      - { field: palace_number, value: 9 }
+
+  - id: rel:qimen_duiying:gong1_xiu
+    source_node_id: kn:palace:qimen_kan
+    target_node_id: kn:shen_sha:qimen_men_xiu
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘坎一宫固定配属八门休门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 1 }
+
+  - id: rel:qimen_duiying:gong2_si
+    source_node_id: kn:palace:qimen_kun
+    target_node_id: kn:shen_sha:qimen_men_si
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘坤二宫固定配属八门死门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 2 }
+
+  - id: rel:qimen_duiying:gong3_shang
+    source_node_id: kn:palace:qimen_zhen
+    target_node_id: kn:shen_sha:qimen_men_shang
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘震三宫固定配属八门伤门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 3 }
+
+  - id: rel:qimen_duiying:gong4_du
+    source_node_id: kn:palace:qimen_xun
+    target_node_id: kn:shen_sha:qimen_men_du
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘巽四宫固定配属八门杜门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 4 }
+
+  - id: rel:qimen_duiying:gong6_kai
+    source_node_id: kn:palace:qimen_qian
+    target_node_id: kn:shen_sha:qimen_men_kai
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘乾六宫固定配属八门开门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 6 }
+
+  - id: rel:qimen_duiying:gong7_jing_dui
+    source_node_id: kn:palace:qimen_dui
+    target_node_id: kn:shen_sha:qimen_men_jing_dui
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘兑七宫固定配属八门惊门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 7 }
+
+  - id: rel:qimen_duiying:gong8_sheng
+    source_node_id: kn:palace:qimen_gen
+    target_node_id: kn:shen_sha:qimen_men_sheng
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘艮八宫固定配属八门生门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 8 }
+
+  - id: rel:qimen_duiying:gong9_jing_li
+    source_node_id: kn:palace:qimen_li
+    target_node_id: kn:shen_sha:qimen_men_jing_li
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "地盘离九宫固定配属八门景门（八门值使图）；中五宫不开门，故无配属。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·八门值使图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dipan_door }
+      - { field: palace_number, value: 9 }
+
+  - id: rel:qimen_duiying:zhifu_shen
+    source_node_id: kn:pattern:qimen_zhifu
+    target_node_id: kn:shen_sha:qimen_shen_zhifu
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "值符之名兼指当值九星与八神之首：八神之值符神随值符落宫起布。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zhifu_god }
+
+  - id: rel:qimen_duiying:yangdun_yindun
+    source_node_id: kn:pattern:qimen_yangdun
+    target_node_id: kn:pattern:qimen_yindun
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "阳遁与阴遁相对：冬至后阳遁顺布六仪逆布三奇，夏至后阴遁逆布六仪顺布三奇。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: dun_pair }
+
+  - id: rel:qimen_duiying:xunshou_liuyi
+    source_node_id: kn:pattern:qimen_xunshou
+    target_node_id: kn:pattern:qimen_liuyi
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "六甲旬首各遁于一仪：甲子戊、甲戌己、甲申庚、甲午辛、甲辰壬、甲寅癸。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·六仪遁, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·六仪遁, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: xunshou_instrument }
+
+  - id: rel:qimen_duiying:sanqi_liuyi
+    source_node_id: kn:pattern:qimen_sanqi
+    target_node_id: kn:pattern:qimen_liuyi
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "三奇（乙丙丁）与六仪（戊己庚辛壬癸）并列布于九宫地盘，地盘布序为戊己庚辛壬癸丁丙乙。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: sanqi_instrument }
+
+  - id: rel:qimen_duiying:kongwang_xunshou
+    source_node_id: kn:pattern:qimen_kongwang
+    target_node_id: kn:pattern:qimen_xunshou
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "空亡（旬空）由旬首推得：六甲旬中十干配十二支，所余二支为空。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之三·孤虚, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之三·孤虚, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: kongwang_xunshou }
+
+  - id: rel:qimen_duiying:sanyuan_yangdun
+    source_node_id: kn:pattern:qimen_sanyuan
+    target_node_id: kn:pattern:qimen_yangdun
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "三元（上中下元）在上元/中元/下元之上叠加三元偏移，得阳遁各局之局数。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·三元, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·三元, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: sanyuan_dun }
+
+  - id: rel:qimen_duiying:sanyuan_yindun
+    source_node_id: kn:pattern:qimen_sanyuan
+    target_node_id: kn:pattern:qimen_yindun
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "三元（上中下元）在上元/中元/下元之上叠加三元偏移，得阴遁各局之局数。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·三元, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·三元, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: sanyuan_dun }

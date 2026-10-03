@@ -1,0 +1,512 @@
+# KnowledgeRelation — 属于（shuyu, Qimen Corpus, 36 条）
+# P2.2 Qimen Knowledge Integration: 九宫/八门/九星/八神 各子项归属其总纲,
+#   以及 值符 属于 九星体系、值使 属于 八门体系。
+# 所有节点同属 Qimen 语料（同一 retriever, 单一知识架构）。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 奇门遁甲统宗 卷之一·九星值符图·八门值使图 / 卷之二·以旬首取符使法
+#   （书级归属 + 已读章节锚点; 非逐字核验）。
+
+relations:
+  - id: rel:qimen_shuyu:jiugong_kan
+    source_node_id: kn:palace:qimen_kan
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坎一宫为洛书九宫之一，属于九宫体系（宫位序 1）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_kun
+    source_node_id: kn:palace:qimen_kun
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坤二宫为洛书九宫之一，属于九宫体系（宫位序 2）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_zhen
+    source_node_id: kn:palace:qimen_zhen
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "震三宫为洛书九宫之一，属于九宫体系（宫位序 3）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_xun
+    source_node_id: kn:palace:qimen_xun
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "巽四宫为洛书九宫之一，属于九宫体系（宫位序 4）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_zhong
+    source_node_id: kn:palace:qimen_zhong
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "中五宫为洛书九宫之一，属于九宫体系（宫位序 5）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_qian
+    source_node_id: kn:palace:qimen_qian
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "乾六宫为洛书九宫之一，属于九宫体系（宫位序 6）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_dui
+    source_node_id: kn:palace:qimen_dui
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "兑七宫为洛书九宫之一，属于九宫体系（宫位序 7）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_gen
+    source_node_id: kn:palace:qimen_gen
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "艮八宫为洛书九宫之一，属于九宫体系（宫位序 8）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:jiugong_li
+    source_node_id: kn:palace:qimen_li
+    target_node_id: kn:palace:qimen_jiugong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "离九宫为洛书九宫之一，属于九宫体系（宫位序 9）。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiugong_member }
+
+  - id: rel:qimen_shuyu:bamen_xiu
+    source_node_id: kn:shen_sha:qimen_men_xiu
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "休门为奇门八门之一，地盘固定配属坎一宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_si
+    source_node_id: kn:shen_sha:qimen_men_si
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "死门为奇门八门之一，地盘固定配属坤二宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_shang
+    source_node_id: kn:shen_sha:qimen_men_shang
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "伤门为奇门八门之一，地盘固定配属震三宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_du
+    source_node_id: kn:shen_sha:qimen_men_du
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "杜门为奇门八门之一，地盘固定配属巽四宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_kai
+    source_node_id: kn:shen_sha:qimen_men_kai
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "开门为奇门八门之一，地盘固定配属乾六宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_jing_dui
+    source_node_id: kn:shen_sha:qimen_men_jing_dui
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "惊门为奇门八门之一，地盘固定配属兑七宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_sheng
+    source_node_id: kn:shen_sha:qimen_men_sheng
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "生门为奇门八门之一，地盘固定配属艮八宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:bamen_jing_li
+    source_node_id: kn:shen_sha:qimen_men_jing_li
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "景门为奇门八门之一，地盘固定配属离九宫，属于八门体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bamen_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianpeng
+    source_node_id: kn:main_star:qimen_tianpeng
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天蓬为奇门九星之一，地盘固定配属坎一宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianrui
+    source_node_id: kn:main_star:qimen_tianrui
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天芮为奇门九星之一，地盘固定配属坤二宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianchong
+    source_node_id: kn:main_star:qimen_tianchong
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天冲为奇门九星之一，地盘固定配属震三宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianfu
+    source_node_id: kn:main_star:qimen_tianfu
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天辅为奇门九星之一，地盘固定配属巽四宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianqin
+    source_node_id: kn:main_star:qimen_tianqin
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天禽为奇门九星之一，地盘固定配属中五宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianxin
+    source_node_id: kn:main_star:qimen_tianxin
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天心为奇门九星之一，地盘固定配属乾六宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianzhu
+    source_node_id: kn:main_star:qimen_tianzhu
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天柱为奇门九星之一，地盘固定配属兑七宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianren
+    source_node_id: kn:main_star:qimen_tianren
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天任为奇门九星之一，地盘固定配属艮八宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:jiuxing_tianying
+    source_node_id: kn:main_star:qimen_tianying
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "天英为奇门九星之一，地盘固定配属离九宫，属于九星体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: jiuxing_member }
+
+  - id: rel:qimen_shuyu:bashen_zhifu
+    source_node_id: kn:shen_sha:qimen_shen_zhifu
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "值符神为奇门八神之一（第 1 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_tengshe
+    source_node_id: kn:shen_sha:qimen_shen_tengshe
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "螣蛇为奇门八神之一（第 2 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_taiyin
+    source_node_id: kn:shen_sha:qimen_shen_taiyin
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "太阴为奇门八神之一（第 3 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_liuhe
+    source_node_id: kn:shen_sha:qimen_shen_liuhe
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "六合为奇门八神之一（第 4 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_baihu
+    source_node_id: kn:shen_sha:qimen_shen_baihu
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "白虎为奇门八神之一（第 5 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_xuanwu
+    source_node_id: kn:shen_sha:qimen_shen_xuanwu
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "玄武为奇门八神之一（第 6 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_jiudi
+    source_node_id: kn:shen_sha:qimen_shen_jiudi
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "九地为奇门八神之一（第 7 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:bashen_jiutian
+    source_node_id: kn:shen_sha:qimen_shen_jiutian
+    target_node_id: kn:shen_sha:qimen_bashen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "九天为奇门八神之一（第 8 位），属于八神体系。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: bashen_member }
+
+  - id: rel:qimen_shuyu:zhifu_jiuxing
+    source_node_id: kn:pattern:qimen_zhifu
+    target_node_id: kn:main_star:qimen_jiuxing
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "值符（当值之九星）取自九星体系：旬首所临地盘宫之星即为值符星。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zhifu_subsystem }
+
+  - id: rel:qimen_shuyu:zhishi_bamen
+    source_node_id: kn:pattern:qimen_zhishi
+    target_node_id: kn:shen_sha:qimen_bamen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "值使（当值之门）取自八门体系：旬首所临地盘宫之地盘八门即为值使门。"
+        source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: zhishi_subsystem }

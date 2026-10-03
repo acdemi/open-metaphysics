@@ -391,7 +391,7 @@ GAP-19 RAG 检索恒空
 | Qimen 认证工件 | `docs/qimen/reference_certification.md` | Qimen Reference 认证记录 |
 | Ziwei 认证工件 | `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md` / `reference/ziwei/` | Ziwei 契约 / Reference 认证 |
 | Knowledge 治理 | `docs/governance/knowledge/` | Scope / Source / Admission / Build Plan / Coverage / Gaps / 各 Phase 报告 |
-| Knowledge 语料 | `knowledge/` | 数据源（sources/ziwei, sources/bazi）、语料（corpus/{ziwei,bazi}）、Pipeline（pipeline.py / validate.py，多域）、输出（ziwei_corpus.json 冻结 1.0.0 / bazi_corpus.json 候选 0.1.0，P2.1） |
+| Knowledge 语料 | `knowledge/` | 数据源（sources/ziwei, sources/bazi, sources/qimen）、语料（corpus/{ziwei,bazi,qimen}）、Pipeline（pipeline.py / validate.py，多域）、输出（ziwei_corpus.json 冻结 1.0.0 / bazi_corpus.json 候选 0.1.0，P2.1 / qimen_corpus.json 候选 0.1.0，P2.2） |
 
 ---
 

@@ -1,4 +1,4 @@
-"""Knowledge corpus schema validation -- Phase 7.0 (multi-domain, P2.1).
+"""Knowledge corpus schema validation -- Phase 7.0 (multi-domain, P2.1/P2.2).
 
 Validates nodes/relations/references against the frozen KB contracts
 (KB-001~020) using the normative reference models (reference/knowledge.py),
@@ -9,6 +9,9 @@ P2.1 BaZi Knowledge Integration: the checks now run per corpus domain
 (``corpus/<domain>/``) and additionally assert that ids stay globally unique
 across domains, because every domain's nodes are loaded into the same
 retriever. The checks themselves are unchanged.
+
+P2.2 Qimen Knowledge Integration: ``qimen`` joins the domain tuple. The checks
+are still unchanged -- adding a domain requires no new validation rule.
 
 Run:  python knowledge/validate.py   (prints PASS/FAIL report)
 """
@@ -33,7 +36,7 @@ from reference.knowledge import (  # noqa: E402  (sys.path bootstrap above)
 )
 
 ROOT = Path(__file__).resolve().parent
-DOMAINS = ("ziwei", "bazi")
+DOMAINS = ("ziwei", "bazi", "qimen")
 
 MIN_NODES = 10
 MIN_RELATIONS = 10

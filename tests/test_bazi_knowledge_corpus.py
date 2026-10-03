@@ -327,10 +327,11 @@ def test_validator_catches_a_broken_endpoint(tmp_path, monkeypatch) -> None:
 def test_pipeline_writes_all_domains_and_is_deterministic() -> None:
     out = _run_pipeline()
     assert "corpus written" in out
-    assert out.count("corpus written") == 2, "both domains are emitted"
+    # P2.1 emitted two domains; P2.2 added Qimen as the third.
+    assert out.count("corpus written") == 3, "every registered domain is emitted"
 
     first = BAZI_CORPUS.read_bytes()
-    assert _run_pipeline().count("corpus written") == 2
+    assert _run_pipeline().count("corpus written") == 3
     assert BAZI_CORPUS.read_bytes() == first, "bazi corpus is not byte-stable"
 
     _run_pipeline("bazi")
