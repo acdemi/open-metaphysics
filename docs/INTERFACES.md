@@ -199,16 +199,83 @@ class OrchestrationRequest(BaseModel):
 
 ## 6. API 接口 (FastAPI)
 
-| 方法   | 路径                              | 用途                               |
-|--------|-----------------------------------|------------------------------------|
-| GET    | /health                         | 存活 + 依赖探针                    |
-| GET    | /agents                         | 列出智能体 + 引擎版本              |
-| GET    | /agents/{name}/schema           | 输入/输出 JSON Schema              |
-| POST   | /agents/{name}/compute          | 单智能体确定性运行                 |
-| POST   | /orchestrate                    | 多智能体 + 共识                    |
-| POST   | /agents/{name}/explain          | 对之前的输出进行大语言模型解释      |
+> Productization P1 已按实现校订本节（旧文曾称错误用 RFC7807 ProblemDetail —— 与实际不符）。
 
-所有 POST 主体/响应都对照发布的 schema 验证。错误使用 RFC7807 风格 ProblemDetail。
+### 6.1 路由
+
+| 方法 | 路径 | 用途 |
+|------|------|------|
+| GET  | `/health` | 存活 + 已注册 agent 列表 |
+| GET  | `/agents` | 列出 agent + engine 版本 |
+| GET  | `/agents/{name}/schema` | 输入/输出 JSON Schema |
+| POST | `/agents/{name}/compute` | 单域确定性计算（可选解释） |
+| POST | `/agents/{name}/explain` | 对**既有**输出做解释（不重算） |
+| POST | `/orchestrate` | 多 agent + 共识（可选解释） |
+
+`{name} ∈ {bazi, ziwei, qimen, liuyao}`。**四个域的接口形状一致**（见 6.2）。
+
+### 6.2 请求
+
+统一信封 `AgentInput`：
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `request_id` | 是 | 回显于响应 |
+| `born_at` | 是 | **必须时区感知**（naive → 422） |
+| `gender` / `born_location` / `question` / `locale` / `seed` / `client_nonce` | 否 | 域内可选；`question` 会进入解释链路 |
+
+域专属附加：`liuyao` 可传 `casts`（恰好 6 个，取值 ∈ {6,7,8,9}；缺省则由 `seed` 确定性起卦）。
+
+`compute` 查询参数：`explain`（bool，默认 `false`）、`style`（默认 `concise`）、`k`（检索条数，默认 3）。
+`explain`/`k` 非法值 → 422。
+
+### 6.3 响应
+
+`compute` 返回 `AgentOutput` 信封：`request_id`、`agent`、`engine_version`、`input_hash`、
+`computed_at`、`confidence`、`reasoning_trace`、`metadata`、`result`。
+
+- `result` 是**确定性事实**，与 `explain` 是否开启无关。
+- `computed_at` 是**信封字段**（墙钟），不属于事实层；事实、共识与解释均不依赖它。
+- `metadata` 携带 `question`（若提供），供解释链路使用。
+
+`?explain=true` 追加一个块（四个域形状相同）：
+
+```json
+"explain": {
+  "explanation": "…自然语言解释…",
+  "provider": null,            // 离线时为 null
+  "degraded": true,            // 无 provider 或 provider 失败
+  "knowledge": [{"id": "kn:…", "source": "…"}],
+  "evidence": { "result": …, "input_hash": …, "reasoning_trace": …, "metadata": … },
+  "error": null                // provider 失败时为 {kind,type,message,provider}
+}
+```
+
+`/agents/{name}/explain` 返回同一组字段（外加 `agent`），**不重算**。
+`/orchestrate` 返回 `outputs[]`、`consensus`、`explanation`（`{agent: 文本}`）与
+`explanation_detail`（`{agent: 上述块}`）。
+
+### 6.4 错误模型
+
+每个失败响应都带**一个机器可读** `error` 对象，`kind` 为稳定判别键；FastAPI 既有 `detail` 保留。
+
+| HTTP | `error.kind` | 触发 |
+|------|--------------|------|
+| 404 | `unknown_agent` | 未知 `{name}`；`/orchestrate` 显式指定的 agent **全部**未知 |
+| 422 | `invalid_request` | 请求体/查询/路径校验失败（含 FastAPI 层校验） |
+| 500 | `calculation_failed` | 确定性计算抛错（附 `type`、`agent`） |
+| 500 | `internal_error` | 未预期异常兜底 |
+| 200 | （块内 `explain.error.kind`） | provider 失败：`timeout` / `rate_limit` / `unavailable` / `invalid_response` / `error` |
+
+**关键语义**：provider / 解释失败**不是** HTTP 错误 —— 仍返回 200，确定性 `result` 完好，
+失败记录在 `explain.error`，因此 provider 错误不会冒充计算错误。
+`/orchestrate` 中部分 agent 未知时保持批处理语义（200，逐 agent 记入 `errors`）。
+
+### 6.5 Provider 行为
+
+默认离线（`enable_explainer=false`）：`provider=null`、`degraded=true`、`error=null`，解释为
+确定性渲染 + 知识引文。仅在显式配置（`OM_*` 环境变量）后启用真实 provider；密钥不落代码/仓库。
+
 
 ## 7. 注册与发现
 

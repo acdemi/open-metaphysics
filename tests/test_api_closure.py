@@ -109,7 +109,7 @@ def test_compute_with_explain_returns_chain():
     assert data["result"]["wuxing_ju"]
     # explanation ran against the already-computed output
     explain = data["explain"]
-    assert explain["text"]
+    assert explain["explanation"]
     assert explain["degraded"] is True  # no LLM provider configured
     # knowledge retrieval is part of the response, with citations
     assert explain["knowledge"], "explain response must carry retrieved knowledge"
