@@ -166,10 +166,22 @@ def test_prioritised_domain_fields_target_the_expected_knowledge_node():
     assert bazi_hits, "bazi retrieval returned nothing"
 
     focused = " ".join(bazi_query.split()[:3])  # agent + day_master + day_master_element
-    top = get_explainer_for("bazi").retriever.retrieve(focused, k=1)  # type: ignore[union-attr]
+    retrieve = get_explainer_for("bazi").retriever.retrieve  # type: ignore[union-attr]
+    top = retrieve(focused, k=1)
     assert top, "focused bazi query returned nothing"
-    assert top[0].id == "kn:heavenly_stem:bing", top[0].id
-    assert bazi.result.day_master in top[0].text
+    # P2.1: the corpus now carries BaZi-specific knowledge, so the prioritised
+    # day-master fields resolve into the BaZi corpus (BaZi-tagged) and the
+    # retrieved node carries the day master or its element.
+    assert "bazi" in top[0].tags, top[0].id
+    assert bazi.result.day_master in top[0].text or bazi.result.day_master_element in top[0].text
+    # the day-master stem node itself is a top-3 candidate for the same fields
+    near = retrieve(focused, k=3)
+    assert any(
+        c.id.startswith("kn:heavenly_stem:bazi_") and bazi.result.day_master in c.text for c in near
+    ), [c.id for c in near]
+    # and the Ziwei copy of the stem node stays reachable as recall material
+    wide = retrieve(focused, k=50)
+    assert any(c.id == "kn:heavenly_stem:bing" for c in wide)
 
     # ziwei: the fate-palace star is a knowledge node
     ziwei = outputs["ziwei"]

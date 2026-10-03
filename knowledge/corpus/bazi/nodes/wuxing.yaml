@@ -1,0 +1,71 @@
+# KnowledgeNode — 五行基础（wuxing, BaZi Corpus, 6 个）
+# P2.1 BaZi Knowledge Integration: 五行基本属性（5）+ 五行旺衰基础概念（1）。
+# 生克关系见 relations/sheng_ke.yaml。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+#
+# 命名说明（KB-001）: 节点 ID 保持 `kn:<node_type>:<slug>`。BaZi 语料与
+# Ziwei 冻结语料同处一个检索库，故 slug 加 `bazi_` 域前缀，避免与
+# Ziwei 语料已冻结的同类型节点（如 kn:wuxing:mu）ID 冲突。
+# 数据一致性: 五行归属与 reference/bazi/tables.py::WUXING_SHENG/KE 一致。
+
+nodes:
+  - id: kn:wuxing:bazi_mu
+    node_type: wuxing
+    name_cn: 木
+    name_en: bazi_wood
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 五行之木，主仁，主生发条达。于时为春，于方为东。甲乙日主属木：甲为参天之木主开拓，乙为花草藤蔓主柔韧。木得令则条理仁厚，失令受金克则郁滞少断。
+    tags: [五行, 木, 生发]
+    confidence: 0.9
+    attributes: { element: 木, season: 春, direction: 东, stems: [甲, 乙] }
+  - id: kn:wuxing:bazi_huo
+    node_type: wuxing
+    name_cn: 火
+    name_en: bazi_fire
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 五行之火，主礼，主炎上光明。于时为夏，于方为南。丙丁日主属火：丙为太阳之火主显达，丁为灯烛之火主精微。火得令则热诚文明，失令遇水克则燥郁无恒。
+    tags: [五行, 火, 炎上]
+    confidence: 0.9
+    attributes: { element: 火, season: 夏, direction: 南, stems: [丙, 丁] }
+  - id: kn:wuxing:bazi_tu
+    node_type: wuxing
+    name_cn: 土
+    name_en: bazi_earth
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 五行之土，主信，主承载稼穑。于时为四季之末（长夏），于方为中。戊己日主属土：戊为城墙堤岸之土主厚重，己为田园之土主包容。土得令则信实沉稳，失令遇木克则壅塞不通。
+    tags: [五行, 土, 承载]
+    confidence: 0.9
+    attributes: { element: 土, season: 四季, direction: 中, stems: [戊, 己] }
+  - id: kn:wuxing:bazi_jin
+    node_type: wuxing
+    name_cn: 金
+    name_en: bazi_metal
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 五行之金，主义，主肃杀收敛。于时为秋，于方为西。庚辛日主属金：庚为斧钺之金主刚断，辛为首饰之金主清秀。金得令则刚毅守规，失令遇火克则销铄易折。
+    tags: [五行, 金, 肃杀]
+    confidence: 0.9
+    attributes: { element: 金, season: 秋, direction: 西, stems: [庚, 辛] }
+  - id: kn:wuxing:bazi_shui
+    node_type: wuxing
+    name_cn: 水
+    name_en: bazi_water
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 五行之水，主智，主润下流通。于时为冬，于方为北。壬癸日主属水：壬为江河之水主奔涌，癸为雨露之水主润泽。水得令则机智流通，失令遇土克则滞塞多虑。
+    tags: [五行, 水, 润下]
+    confidence: 0.9
+    attributes: { element: 水, season: 冬, direction: 北, stems: [壬, 癸] }
+  - id: kn:wuxing:bazi_wangshuai
+    node_type: wuxing
+    name_cn: 旺衰
+    name_en: bazi_wang_shuai
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 旺衰指五行在四时所处的旺、相、休、囚、死五种状态：当令者旺，令所生者相，生令者休，克令者囚，令所克者死。日主强弱以月令司权为首要依据，再参通根、透干与全局生扶克泄：得令得地得势者偏强，失令失地失势者偏弱。旺衰只是强弱判断的基础概念，具体取用另见用神。
+    tags: [五行, 旺衰, 月令]
+    confidence: 0.85
+    attributes: { 状态: 旺相休囚死, 首要依据: 月令, 参考: [通根, 透干, 生扶, 克泄] }
