@@ -1,0 +1,109 @@
+# KnowledgeNode — 天干（heavenly_stem, BaZi Corpus, 10 个）
+# P2.1 BaZi Knowledge Integration: 十天干本体（阴阳/五行/相合）。
+# 五合关系（he）见 relations/gan_he.yaml；十神映射见 nodes/ten_god.yaml。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 一致性: 天干顺序/五行/阴阳与 reference/bazi/tables.py
+#   ITEM_TO_ELEMENT / STEM_YIN_YANG 完全一致（本节点为解释引用，不参与计算）。
+# 命名说明: slug 加 `bazi_` 域前缀，避免与 Ziwei 冻结语料同类型节点 ID 冲突。
+
+nodes:
+  - id: kn:heavenly_stem:bazi_jia
+    node_type: heavenly_stem
+    name_cn: 甲
+    name_en: bazi_jia
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第一位，阳木，象参天大树，主开拓、仁厚、领导。甲与己合而化土（天干五合）。日主为甲者，喜庚金修斫成材，忌己土合绊、忌金多克伐。
+    tags: [天干, 木, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 0, element: 木, yin_yang: 阳, he_partner: 己, he_element: 土 }
+  - id: kn:heavenly_stem:bazi_yi
+    node_type: heavenly_stem
+    name_cn: 乙
+    name_en: bazi_yi
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第二位，阴木，象花草藤蔓，主柔韧、适应、艺术。乙与庚合而化金（天干五合）。日主为乙者，喜丙火向阳、忌庚金太刚，藤萝系甲则可春可秋。
+    tags: [天干, 木, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 1, element: 木, yin_yang: 阴, he_partner: 庚, he_element: 金 }
+  - id: kn:heavenly_stem:bazi_bing
+    node_type: heavenly_stem
+    name_cn: 丙
+    name_en: bazi_bing
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第三位，阳火，象太阳，主光明、热烈、显达无私。丙与辛合而化水（天干五合）。日主为丙者，喜壬水映射、忌癸水阴晦，火旺须水济。
+    tags: [天干, 火, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 2, element: 火, yin_yang: 阳, he_partner: 辛, he_element: 水 }
+  - id: kn:heavenly_stem:bazi_ding
+    node_type: heavenly_stem
+    name_cn: 丁
+    name_en: bazi_ding
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第四位，阴火，象灯烛星辰，主精微、文明、内秀。丁与壬合而化木（天干五合）。日主为丁者，喜甲木为薪、忌壬水太旺，丁火宜得地而不宜过烈。
+    tags: [天干, 火, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 3, element: 火, yin_yang: 阴, he_partner: 壬, he_element: 木 }
+  - id: kn:heavenly_stem:bazi_wu
+    node_type: heavenly_stem
+    name_cn: 戊
+    name_en: bazi_wu
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第五位，阳土，象城墙堤岸，主厚重、信用、承载。戊与癸合而化火（天干五合）。日主为戊者，喜甲木疏通、忌乙木疏松，土厚须木疏、水润则生物。
+    tags: [天干, 土, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 4, element: 土, yin_yang: 阳, he_partner: 癸, he_element: 火 }
+  - id: kn:heavenly_stem:bazi_ji
+    node_type: heavenly_stem
+    name_cn: 己
+    name_en: bazi_ji
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第六位，阴土，象田园沃土，主包容、养育、务实。己与甲合而化土（天干五合）。日主为己者，喜丙火暖养、忌水涝土崩，得金泄秀则聪敏。
+    tags: [天干, 土, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 5, element: 土, yin_yang: 阴, he_partner: 甲, he_element: 土 }
+  - id: kn:heavenly_stem:bazi_geng
+    node_type: heavenly_stem
+    name_cn: 庚
+    name_en: bazi_geng
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第七位，阳金，象斧钺剑戟，主刚断、肃杀、改革。庚与乙合而化金（天干五合）。日主为庚者，喜丁火锻炼成器、忌丙火太过，金必要火方成材。
+    tags: [天干, 金, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 6, element: 金, yin_yang: 阳, he_partner: 乙, he_element: 金 }
+  - id: kn:heavenly_stem:bazi_xin
+    node_type: heavenly_stem
+    name_cn: 辛
+    name_en: bazi_xin
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第八位，阴金，象珠玉首饰，主清秀、精细、名望。辛与丙合而化水（天干五合）。日主为辛者，喜壬水淘洗显光、忌戊土埋金，得火则温润可用。
+    tags: [天干, 金, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 7, element: 金, yin_yang: 阴, he_partner: 丙, he_element: 水 }
+  - id: kn:heavenly_stem:bazi_ren
+    node_type: heavenly_stem
+    name_cn: 壬
+    name_en: bazi_ren
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第九位，阳水，象江河大海，主奔涌、智慧、包容。壬与丁合而化木（天干五合）。日主为壬者，喜戊土堤防、忌己土浑浊，水旺须土制、木泄。
+    tags: [天干, 水, 阳]
+    confidence: 0.9
+    attributes: { stem_index: 8, element: 水, yin_yang: 阳, he_partner: 丁, he_element: 木 }
+  - id: kn:heavenly_stem:bazi_gui
+    node_type: heavenly_stem
+    name_cn: 癸
+    name_en: bazi_gui
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 天干第十位，阴水，象雨露甘霖，主润泽、灵慧、隐微。癸与戊合而化火（天干五合）。日主为癸者，喜辛金发源、忌己土混浊，得丙火照暖则生发。
+    tags: [天干, 水, 阴]
+    confidence: 0.9
+    attributes: { stem_index: 9, element: 水, yin_yang: 阴, he_partner: 戊, he_element: 火 }

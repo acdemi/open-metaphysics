@@ -1,0 +1,109 @@
+# KnowledgeNode — 十神（ten_god, BaZi Corpus, 10 个）
+# P2.1 BaZi Knowledge Integration: 十神全量（比肩/劫财/食神/伤官/正财/偏财/正官/七杀/正印/偏印）。
+# 十神由「日主（我）」与各柱干支阴阳五行推得：同我 / 我生 / 我克 / 克我 / 生我，再分阴阳异同。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 一致性: 与 docs/bazi/BAZI_BEHAVIOR_CONTRACT.md（十神映射）一致；仅解释，不参与计算。
+# 命名说明: slug 加 `bazi_` 域前缀，避免与 Ziwei 冻结语料中同类型节点冲突。
+# 语料归属: 十神属八字体系（Ziwei 语料 GAP-04 记录: 归属待 BaZi Corpus 统一）。
+
+nodes:
+  - id: kn:ten_god:bazi_bijian
+    node_type: ten_god
+    name_cn: 比肩
+    name_en: bazi_bi_jian
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 与日主同类且同阴阳者为比肩，即「同我」。主自立、竞争、手足同辈；身弱得比肩帮身则有力，身强比肩过多则分夺财禄。
+    tags: [十神, 同我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 同我, yin_yang: 同, element_relation: same }
+  - id: kn:ten_god:bazi_jiecai
+    node_type: ten_god
+    name_cn: 劫财
+    name_en: bazi_jie_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 与日主同类而阴阳相异者为劫财，亦名逆刃。主争夺、豪爽、破耗，亦主合作与助力；身弱喜其帮身，身强则忌其夺财，行运逢之宜防耗散。
+    tags: [十神, 同我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 同我, yin_yang: 异, element_relation: same }
+  - id: kn:ten_god:bazi_shishen
+    node_type: ten_god
+    name_cn: 食神
+    name_en: bazi_shi_shen
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 日主所生而阴阳相同者为食神，即「我生」。主才华、口福、温和表达与福气；食神生财主富，食神制杀主贵，唯忌偏印夺食。
+    tags: [十神, 我生]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我生, yin_yang: 同, element_relation: generates }
+  - id: kn:ten_god:bazi_shangguan
+    node_type: ten_god
+    name_cn: 伤官
+    name_en: bazi_shang_guan
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 日主所生而阴阳相异者为伤官，即「我生」。主才思敏捷、傲气与突破创新；伤官配印主智，伤官生财主富有才干，伤官见官则主口舌是非，须制化得宜。
+    tags: [十神, 我生]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我生, yin_yang: 异, element_relation: generates }
+  - id: kn:ten_god:bazi_zhengcai
+    node_type: ten_god
+    name_cn: 正财
+    name_en: bazi_zheng_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 日主所克而阴阳相异者为正财，即「我克」。主正途财禄、勤俭务实，男命亦主妻室；财宜藏不宜露，喜食伤来生，忌比劫分夺。
+    tags: [十神, 我克]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我克, yin_yang: 异, element_relation: controls }
+  - id: kn:ten_god:bazi_piancai
+    node_type: ten_god
+    name_cn: 偏财
+    name_en: bazi_pian_cai
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 日主所克而阴阳相同者为偏财，即「我克」。主偏财机遇、慷慨、投机与外缘，男命亦主偏室/父亲；偏财喜身强能任，身弱财多则反为财所困。
+    tags: [十神, 我克]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 我克, yin_yang: 同, element_relation: controls }
+  - id: kn:ten_god:bazi_zhengguan
+    node_type: ten_god
+    name_cn: 正官
+    name_en: bazi_zheng_guan
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 克日主而阴阳相异者为正官，即「克我」。主贵气、规范、事业约束与名誉，女命亦主夫星；官宜得财生、得印护，忌伤官见官，亦忌官杀混杂而不清。
+    tags: [十神, 克我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 克我, yin_yang: 异, element_relation: controlled_by }
+  - id: kn:ten_god:bazi_qisha
+    node_type: ten_god
+    name_cn: 七杀
+    name_en: bazi_qi_sha
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 克日主而阴阳相同者为七杀（偏官），即「克我」。主魄力、压力与权柄；身弱逢杀须印化（杀印相生）或食制，制化得宜则为贵，无制无化则多灾病与是非。
+    tags: [十神, 克我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 克我, yin_yang: 同, element_relation: controlled_by }
+  - id: kn:ten_god:bazi_zhengyin
+    node_type: ten_god
+    name_cn: 正印
+    name_en: bazi_zheng_yin
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 生日主而阴阳相异者为正印，即「生我」。主学识、庇护、名誉与母亲；印能化杀生身，身弱得印最吉，唯印重则依赖懒散，须以财抑印、以食伤泄秀。
+    tags: [十神, 生我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 生我, yin_yang: 异, element_relation: generated_by }
+  - id: kn:ten_god:bazi_pianyin
+    node_type: ten_god
+    name_cn: 偏印
+    name_en: bazi_pian_yin
+    systems: [bazi]
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 生日主而阴阳相同者为偏印，又名枭神，即「生我」。主偏才、专技、宗教哲学与孤独；善化七杀，但夺食神之食，食神为用而逢偏印则福减。
+    tags: [十神, 生我]
+    confidence: 0.9
+    attributes: { relation_to_day_master: 生我, yin_yang: 同, element_relation: generated_by }

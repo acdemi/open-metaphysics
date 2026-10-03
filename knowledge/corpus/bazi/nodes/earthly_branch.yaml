@@ -1,0 +1,130 @@
+# KnowledgeNode — 地支（earthly_branch, BaZi Corpus, 12 个）
+# P2.1 BaZi Knowledge Integration: 十二地支本体（阴阳/五行/藏干/主要关系）。
+# 关系（六合 he / 六冲 chong / 三合 he / 三会 he / 刑 xing / 害 hai / 破 duiying）
+# 见 relations/ 下各文件；十神映射见 nodes/ten_god.yaml。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 一致性: 地支顺序与藏干（主气在前）与 reference/bazi/tables.py
+#   EARTHLY_BRANCHES / BRANCH_HIDDEN_STEMS 完全一致（本节点仅解释引用，不参与计算）。
+# 命名说明: slug 加 `bazi_` 域前缀，避免与 Ziwei 冻结语料同类型节点 ID 冲突。
+
+nodes:
+  - id: kn:earthly_branch:bazi_zi
+    node_type: earthly_branch
+    name_cn: 子
+    name_en: bazi_zi
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第一位，阳水，生肖鼠，藏干癸（本气）。子为水之帝旺，主智、流动、暗昧。子与丑六合、与午六冲、与卯相刑、与未相害、与酉相破，并为申子辰三合水局与亥子丑三会水方之成员。
+    tags: [地支, 水, 阳, 生肖鼠]
+    confidence: 0.9
+    attributes: { branch_index: 0, element: 水, yin_yang: 阳, hidden_stems: [癸], zodiac: 鼠 }
+  - id: kn:earthly_branch:bazi_chou
+    node_type: earthly_branch
+    name_cn: 丑
+    name_en: bazi_chou
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第二位，阴土，生肖牛，藏干己（主气）、癸、辛。丑为金库湿土，主收藏、坚忍、蓄积。丑与子六合、与未六冲、与戌未相刑（恃势之刑）、与午相害、与辰相破，并为巳酉丑三合金局之成员。
+    tags: [地支, 土, 阴, 生肖牛]
+    confidence: 0.9
+    attributes: { branch_index: 1, element: 土, yin_yang: 阴, hidden_stems: [己, 癸, 辛], zodiac: 牛 }
+  - id: kn:earthly_branch:bazi_yin
+    node_type: earthly_branch
+    name_cn: 寅
+    name_en: bazi_yin
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第三位，阳木，生肖虎，藏干甲（主气）、丙、戊。寅为木之临官，主生发、进取、开创。寅与亥六合、与申六冲、与巳申相刑（无恩之刑）、与巳相害、与亥相破，并为寅午戌三合火局与寅卯辰三会木方之成员。
+    tags: [地支, 木, 阳, 生肖虎]
+    confidence: 0.9
+    attributes: { branch_index: 2, element: 木, yin_yang: 阳, hidden_stems: [甲, 丙, 戊], zodiac: 虎 }
+  - id: kn:earthly_branch:bazi_mao
+    node_type: earthly_branch
+    name_cn: 卯
+    name_en: bazi_mao
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第四位，阴木，生肖兔，藏干乙（本气）。卯为木之帝旺，主柔韧、文雅、条达。卯与戌六合、与酉六冲、与子相刑（无礼之刑）、与辰相害、与午相破，并为亥卯未三合木局与寅卯辰三会木方之成员。
+    tags: [地支, 木, 阴, 生肖兔]
+    confidence: 0.9
+    attributes: { branch_index: 3, element: 木, yin_yang: 阴, hidden_stems: [乙], zodiac: 兔 }
+  - id: kn:earthly_branch:bazi_chen
+    node_type: earthly_branch
+    name_cn: 辰
+    name_en: bazi_chen
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第五位，阳土，生肖龙，藏干戊（主气）、乙、癸。辰为水库湿泥，主变化、蓄藏、包容。辰与酉六合、与戌六冲、自刑（辰辰自刑）、与卯相害、与丑相破，并为申子辰三合水局与寅卯辰三会木方之成员。
+    tags: [地支, 土, 阳, 生肖龙]
+    confidence: 0.9
+    attributes: { branch_index: 4, element: 土, yin_yang: 阳, hidden_stems: [戊, 乙, 癸], zodiac: 龙 }
+  - id: kn:earthly_branch:bazi_si
+    node_type: earthly_branch
+    name_cn: 巳
+    name_en: bazi_si
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第六位，阴火，生肖蛇，藏干丙（主气）、庚、戊。巳为火之临官，主文明、变通、外柔内刚。巳与申六合、与亥六冲、与寅申相刑（无恩之刑）、与寅相害、与申相破，并为巳酉丑三合金局与巳午未三会火方之成员。
+    tags: [地支, 火, 阴, 生肖蛇]
+    confidence: 0.9
+    attributes: { branch_index: 5, element: 火, yin_yang: 阴, hidden_stems: [丙, 庚, 戊], zodiac: 蛇 }
+  - id: kn:earthly_branch:bazi_wu
+    node_type: earthly_branch
+    name_cn: 午
+    name_en: bazi_wu_branch
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第七位，阳火，生肖马，藏干丁（主气）、己。午为火之帝旺，主热烈、显达、急躁。午与未六合、与子六冲、自刑（午午自刑）、与丑相害、与卯相破，并为寅午戌三合火局与巳午未三会火方之成员。
+    tags: [地支, 火, 阳, 生肖马]
+    confidence: 0.9
+    attributes: { branch_index: 6, element: 火, yin_yang: 阳, hidden_stems: [丁, 己], zodiac: 马 }
+  - id: kn:earthly_branch:bazi_wei
+    node_type: earthly_branch
+    name_cn: 未
+    name_en: bazi_wei
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第八位，阴土，生肖羊，藏干己（主气）、丁、乙。未为木库燥土，主温厚、才艺、多思。未与午六合、与丑六冲、与丑戌相刑（恃势之刑）、与子相害、并为亥卯未三合木局与巳午未三会火方之成员。
+    tags: [地支, 土, 阴, 生肖羊]
+    confidence: 0.9
+    attributes: { branch_index: 7, element: 土, yin_yang: 阴, hidden_stems: [己, 丁, 乙], zodiac: 羊 }
+  - id: kn:earthly_branch:bazi_shen
+    node_type: earthly_branch
+    name_cn: 申
+    name_en: bazi_shen
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第九位，阳金，生肖猴，藏干庚（主气）、壬、戊。申为金之临官，主刚毅、机变、通达。申与巳六合、与寅六冲、与寅巳相刑（无恩之刑）、与亥相害、与巳相破，并为申子辰三合水局与申酉戌三会金方之成员。
+    tags: [地支, 金, 阳, 生肖猴]
+    confidence: 0.9
+    attributes: { branch_index: 8, element: 金, yin_yang: 阳, hidden_stems: [庚, 壬, 戊], zodiac: 猴 }
+  - id: kn:earthly_branch:bazi_you
+    node_type: earthly_branch
+    name_cn: 酉
+    name_en: bazi_you
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十位，阴金，生肖鸡，藏干辛（本气）。酉为金之帝旺，主清白、锐利、精审。酉与辰六合、与卯六冲、自刑（酉酉自刑）、与戌相害、与子相破，并为巳酉丑三合金局与申酉戌三会金方之成员。
+    tags: [地支, 金, 阴, 生肖鸡]
+    confidence: 0.9
+    attributes: { branch_index: 9, element: 金, yin_yang: 阴, hidden_stems: [辛], zodiac: 鸡 }
+  - id: kn:earthly_branch:bazi_xu
+    node_type: earthly_branch
+    name_cn: 戌
+    name_en: bazi_xu
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十一位，阳土，生肖狗，藏干戊（主气）、辛、丁。戌为火库燥土，主忠义、防守、收束。戌与卯六合、与辰六冲、与丑未相刑（恃势之刑）、与酉相害、与未相破，并为寅午戌三合火局与申酉戌三会金方之成员。
+    tags: [地支, 土, 阳, 生肖狗]
+    confidence: 0.9
+    attributes: { branch_index: 10, element: 土, yin_yang: 阳, hidden_stems: [戊, 辛, 丁], zodiac: 狗 }
+  - id: kn:earthly_branch:bazi_hai
+    node_type: earthly_branch
+    name_cn: 亥
+    name_en: bazi_hai
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 地支第十二位，阴水，生肖猪，藏干壬（主气）、甲。亥为水之临官，主聪慧、包容、多情。亥与寅六合、与巳六冲、自刑（亥亥自刑）、与申相害、与寅相破，并为亥卯未三合木局与亥子丑三会水方之成员。
+    tags: [地支, 水, 阴, 生肖猪]
+    confidence: 0.9
+    attributes: { branch_index: 11, element: 水, yin_yang: 阴, hidden_stems: [壬, 甲], zodiac: 猪 }

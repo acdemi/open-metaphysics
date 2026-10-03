@@ -1,0 +1,79 @@
+# KnowledgeRelation — 天干五合（he, BaZi Corpus, 5 条）
+# P2.1 BaZi Knowledge Integration: 甲己合土 / 乙庚合金 / 丙辛合水 / 丁壬合木 / 戊癸合火。
+# 证据: 三命通会·卷二·论十干化气（Tier 1, wikisource 通行本, Phase 7.1.6 已逐字核验;
+#   同证据亦见于 Ziwei 冻结语料 relations/he_wu_he.yaml）; 渊海子平 佐证。
+# 注: 五合化气条件（月令/妒合）为化气论细节，记于 conditions.result_element。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# ID 命名: 加 bazi_ 域前缀, 避免与 Ziwei 冻结语料 rel:he:* 冲突。
+
+relations:
+  - id: rel:bazi_gan_he:jia_ji
+    source_node_id: kn:heavenly_stem:bazi_jia
+    target_node_id: kn:heavenly_stem:bazi_ji
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "甲己合而化土（五合之一; 三命通会: 故甲己合而化土，其气上升而云施; 渊海子平: 谓之甲己化土）"
+        source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_he }
+      - { field: result_element, value: 土 }
+  - id: rel:bazi_gan_he:yi_geng
+    source_node_id: kn:heavenly_stem:bazi_yi
+    target_node_id: kn:heavenly_stem:bazi_geng
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "乙庚化金（五合之一; 三命通会: 乙庚化金，非已酉丑月不化）"
+        source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_he }
+      - { field: result_element, value: 金 }
+  - id: rel:bazi_gan_he:bing_xin
+    source_node_id: kn:heavenly_stem:bazi_bing
+    target_node_id: kn:heavenly_stem:bazi_xin
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "丙辛化水（五合之一; 三命通会: 丙辛化水，非申子辰月不化）"
+        source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_he }
+      - { field: result_element, value: 水 }
+  - id: rel:bazi_gan_he:ding_ren
+    source_node_id: kn:heavenly_stem:bazi_ding
+    target_node_id: kn:heavenly_stem:bazi_ren
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "丁壬化木（五合之一; 三命通会: 丁壬化木，非亥卯未月不化）"
+        source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_he }
+      - { field: result_element, value: 木 }
+  - id: rel:bazi_gan_he:wu_gui
+    source_node_id: kn:heavenly_stem:bazi_wu
+    target_node_id: kn:heavenly_stem:bazi_gui
+    relation_type: he
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "戊癸化火（五合之一; 三命通会: 戊癸化火，非丙午戌月不化; 渊海子平: 戊癸化火巳午）"
+        source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+        weight: 1.0
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: wu_he }
+      - { field: result_element, value: 火 }

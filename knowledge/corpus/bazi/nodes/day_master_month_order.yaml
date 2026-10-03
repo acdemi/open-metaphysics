@@ -1,0 +1,33 @@
+# KnowledgeNode — 日主与月令（BaZi Corpus, 2 个）
+# P2.1 BaZi Knowledge Integration: 命局结构位的基础概念。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+#
+# 类型归属说明（KB-002 冻结 20 类，本阶段不扩 schema）:
+#   冻结枚举中没有「命局结构位概念」类型。日主即日柱天干、月令即月柱地支，
+#   故分别以 `heavenly_stem` / `earthly_branch` 收录，语义上属该类型的
+#   位置化概念（非新增 schema）。已知 schema 缺口记录于 P2.1 报告
+#   （无专用 node_type 承载 日主/月令/藏干位 概念）。
+# 一致性: 与 src/openmetaphysics/agents/bazi.py 的 day_master / month pillar
+#   字段语义一致（本节点仅为解释引用，不参与计算）。
+
+nodes:
+  - id: kn:heavenly_stem:bazi_day_master
+    node_type: heavenly_stem
+    name_cn: 日主
+    name_en: bazi_day_master
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 日主即日柱天干（日干），代表命主自身，是十神与旺衰判断的参照基准「我」。其余各柱天干与地支藏干，均以日主为参照推演十神关系（同我/我生/我克/克我/生我）。日主本身只论其五行与阴阳属性，强弱须结合月令、通根、透干与全局生扶克泄综合判断。引擎对应的结果字段见节点属性。
+    tags: [日主, 日干, 命主, 十神基准]
+    confidence: 0.9
+    attributes: { 位置: 日柱天干, 作用: 十神与旺衰之参照, engine_field: day_master }
+  - id: kn:earthly_branch:bazi_month_order
+    node_type: earthly_branch
+    name_cn: 月令
+    name_en: bazi_month_command
+    systems: [bazi]
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    interpretation: 月令即月柱地支，司一命四时之气候与旺衰，是判断日主强弱与定格取用的第一依据。月令藏干之中，当令主气最为有力：主气透出天干多以之定格（如甲木生于酉月，酉藏辛金为甲之正官，作正官格）；主气不透则参看全局得根最强之十神。月令亦决定五行之旺相休囚死，故为旺衰判断之首据。引擎对应的结果字段见节点属性。
+    tags: [月令, 月支, 提纲, 旺衰, 格局]
+    confidence: 0.9
+    attributes: { 位置: 月柱地支, 作用: 司权/定格/旺衰首据, engine_field: month_pillar.branch }
