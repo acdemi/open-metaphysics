@@ -129,15 +129,18 @@ _default: KnowledgeRetriever | None = None
 
 
 def _load_default_corpus(retriever: InMemoryRetriever) -> int:
-    """Load the frozen Knowledge corpus into the in-memory retriever.
+    """Load the frozen Knowledge corpora into the in-memory retriever.
 
-    Degrades to an empty retriever when the corpus is unavailable, so the
-    offline default path never raises.
+    P2.1: every registered domain corpus (Ziwei + BaZi) is indexed into the
+    same retriever -- no second retriever and no architecture change. Degrades
+    to an empty retriever when the corpora are unavailable, so the offline
+    default path never raises; a missing domain corpus simply contributes no
+    chunks to the others.
     """
     try:
-        from .corpus import load_into
+        from .corpus import load_all_into
 
-        return load_into(retriever)
+        return load_all_into(retriever)
     except Exception:
         return 0
 

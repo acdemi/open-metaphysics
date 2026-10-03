@@ -5,6 +5,9 @@
 > 登记模板: `docs/governance/DOMAIN_CAPABILITY_TEMPLATE.md`
 > 更新: 2026-09-16（Phase 7.1.6 **Corpus Freeze v1.0.0** —— 语料 102/47/41, D-12=A 批准；
 > 同日按只读代码审计刷新 Qimen 测试列与 **Liuyào Schema 条目** —— 见 `docs/PROJECT_REVIEW_2026-09-16.md`）
+> 2026-10-03（**P2.1 BaZi Knowledge Integration** —— 新增 `bazi_corpus:0.1.0`
+> 40/67/14 并接入既有 Pipeline / 校验器 / Retriever / Explain 链路；Ziwei 冻结语料
+> 字节未变（digest `69d6e2a6…`）；不新增治理流程）
 
 ---
 
@@ -17,7 +20,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）; Provenance **AUDITED**。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 618（全仓库回归） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1 —— 首个进入 RAG→Explain 链路的 BaZi 结构化语料）; Provenance **AUDITED**。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.1 后全绿, 含 BaZi 语料/检索/Explain E2E） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -128,6 +131,17 @@
 > （空亡/元辰/灾煞/六厄/勾绞/天罗地网/十恶大败）+ **10 引用**; 语料 **93/37/32**
 > （sha256 ce3b83b7）; key_quote 7/7 + passage 10/10 机器核验 PASS; 测试 **605/605**;
 > 报告 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.2B_R2_REPORT.md`。
+> **P2.1 BaZi Knowledge Integration**（2026-10-03）—— 复用既有 Knowledge / RAG /
+> Explain 架构（未新建第二套架构、未改 Retriever 算法、未引入 embedding/向量库）:
+> 新增 **`bazi_corpus:0.1.0`（candidate）** = 40 节点（五行 6 / 十神 10 /
+> 日主·月令 2 / 天干 11 / 地支 13）+ 67 关系（五行生克、天干五合、地支六合、
+> 六冲、三合、三会、刑（含自刑）、六害、六破）+ 14 引用；`pipeline.py` /
+> `validate.py` 多域化（Ziwei 输出逐字节不变, digest `69d6e2a6…`）;
+> `rag/corpus.py` 多域加载 + `retriever` 默认索引两域; 新增 BaZi 语料/校验/
+> 检索/Explain/HTTP E2E/确定性测试。**BaZi 未新增冻结契约、未修改计算逻辑**。
+> 已知缺口（schema: 破无 `po` 类型 → 以 `duiying`+subtype 承载; 日主/月令无专用
+> node_type; 章节级逐字核验范围有限）记录于 `knowledge/README.md` §7。
+> 语料**未升级为 frozen**（需独立 Corpus 级审查）。
 
 ---
 

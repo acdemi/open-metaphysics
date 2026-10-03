@@ -1,0 +1,81 @@
+# KnowledgeRelation — 地支六破（BaZi Corpus, 6 条）
+# P2.1 BaZi Knowledge Integration: 子酉 / 午卯 / 辰丑 / 戌未 / 寅亥 / 巳申。
+#
+# ⚠ Schema 缺口（不擅自扩 schema）:
+#   冻结 KB-007 / reference/knowledge.py::RelationType 的 15 类中**没有 po（破）**。
+#   为不虚构类型、不修改冻结契约，本组关系以中性类型 `duiying`（对应）承载，
+#   并以 conditions.relation_subtype = po 显式保留「相破」语义、evidence 内
+#   书写规范名（如「子酉相破」）。该映射已记入 P2.1 报告「剩余 Knowledge gaps」
+#   （决策点: 是否为其新增冻结 relation_type / 或以现有类型长期承载）。
+# 证据级别: 书级来源归属（渊海子平, Tier 1, revision-pinned）;
+#   章节级逐字核验未在本轮完成。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# ID 命名: 加 bazi_ 域前缀, 避免与 Ziwei 冻结语料冲突。
+
+relations:
+  - id: rel:bazi_po:zi_you
+    source_node_id: kn:earthly_branch:bazi_zi
+    target_node_id: kn:earthly_branch:bazi_you
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "子酉相破（六破之一: 子为水旺、酉为金旺, 金水本相生而各恃旺气, 故曰破）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }
+  - id: rel:bazi_po:wu_mao
+    source_node_id: kn:earthly_branch:bazi_wu
+    target_node_id: kn:earthly_branch:bazi_mao
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "午卯相破（六破之一: 午为火旺、卯为木旺, 木火本相生而各恃旺气, 故曰破）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }
+  - id: rel:bazi_po:chen_chou
+    source_node_id: kn:earthly_branch:bazi_chen
+    target_node_id: kn:earthly_branch:bazi_chou
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "辰丑相破（六破之一: 辰为水库、丑为金库湿土, 同为湿土而墓库相破）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }
+  - id: rel:bazi_po:xu_wei
+    source_node_id: kn:earthly_branch:bazi_xu
+    target_node_id: kn:earthly_branch:bazi_wei
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "戌未相破（六破之一: 戌为火库、未为木库, 燥土墓库相破）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }
+  - id: rel:bazi_po:yin_hai
+    source_node_id: kn:earthly_branch:bazi_yin
+    target_node_id: kn:earthly_branch:bazi_hai
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "寅亥相破（六破之一: 寅亥本六合, 合中带破, 主合作中见裂痕）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }
+  - id: rel:bazi_po:si_shen
+    source_node_id: kn:earthly_branch:bazi_si
+    target_node_id: kn:earthly_branch:bazi_shen
+    relation_type: duiying
+    direction: undirected
+    weight: 0.6
+    evidence:
+      - { description: "巳申相破（六破之一: 巳申本六合, 合中带破, 且巳申兼具刑害）", source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }, weight: 0.6 }
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    conditions:
+      - { field: relation_subtype, value: po }

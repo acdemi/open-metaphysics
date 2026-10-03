@@ -163,8 +163,21 @@ def test_determinism_same_corpus_and_query():
 
 
 def test_get_retriever_is_populated_from_frozen_corpus():
+    """P2.1: the default retriever indexes *every* domain corpus.
+
+    The frozen Ziwei corpus keeps its 102 nodes, loaded first and unchanged;
+    the P2.1 BaZi corpus is indexed alongside it in the same retriever (same
+    architecture, no second retriever), and chunk ids stay globally unique.
+    """
     r = get_retriever()
-    assert len(getattr(r, "chunks", [])) == 102
+    ids = [c.id for c in getattr(r, "chunks", [])]
+
+    ziwei_ids = [c.id for c in load_chunks()]
+    assert len(ziwei_ids) == 102
+    assert ids[: len(ziwei_ids)] == ziwei_ids, "the frozen corpus loads first, unchanged"
+    assert any(i.startswith("kn:wuxing:bazi_") for i in ids), "the BaZi corpus must be indexed"
+    assert any(i.startswith("kn:ten_god:bazi_") for i in ids)
+    assert len(set(ids)) == len(ids), "chunk ids must be unique across domains"
 
 
 def test_explainer_receives_real_context():
