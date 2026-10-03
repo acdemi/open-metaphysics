@@ -1,0 +1,106 @@
+# KnowledgeReference — BaZi 语料引用（classic_text, 14 条）
+# P2.1 BaZi Knowledge Integration: 节点级与关系级来源登记（provenance）。
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+# 证据策略: passage 为**摘要式**说明（KREF 允许 passage 为引文或摘要）。
+#   仅下表中标注「逐字核验章节」的条目引用已核验章节名; 其余为书级来源归属,
+#   不书写未核验的古籍原文（不虚构）。证据级别差异见 P2.1 报告。
+
+references:
+  - reference_id: ref:classic:bazi_wuxing_shengke
+    target_type: relation
+    target_id: rel:bazi_sheng:mu_huo
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 五行相生：木生火、火生土、土生金、金生水、水生木；五行相克：木克土、土克水、水克火、火克金、金克木。与 reference/bazi/tables.py 的 WUXING_SHENG/WUXING_KE 表逐对一致。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_wangshuai
+    target_type: node
+    target_id: kn:wuxing:bazi_wangshuai
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 五行旺衰以月令司权为首要：当令者旺，令所生者相，生令者休，克令者囚，令所克者死；日主强弱另参通根、透干与全局生扶克泄。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_ten_god
+    target_type: node
+    target_id: kn:ten_god:bazi_zhengguan
+    ref_type: classic_text
+    source: { text: 渊海子平, chapter: 论十神, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 十神以日主为「我」推得：同我者比肩劫财，我生者食神伤官，我克者正财偏财，克我者正官七杀，生我者正印偏印；再以阴阳相同/相异区分正偏。与 docs/bazi/BAZI_BEHAVIOR_CONTRACT.md（BC-006 十神映射）语义一致。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_day_master
+    target_type: node
+    target_id: kn:heavenly_stem:bazi_day_master
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 日主为日柱天干，是命主自身「我」的象征，为十神与旺衰判断之参照基准；引擎中对应 day_master / day_master_element 字段。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_month_order
+    target_type: node
+    target_id: kn:earthly_branch:bazi_month_order
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 月令为月柱地支，司一命之气候与旺衰，为定格取用之第一依据：月令藏干主气透干多以之定格，主气不透则取全局得根最强之十神。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_gan_he
+    target_type: relation
+    target_id: rel:bazi_gan_he:jia_ji
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论十干化气, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    passage: 天干五合：甲己合而化土、乙庚化金、丙辛化水、丁壬化木、戊癸化火。（本章节与五合断言已于 Phase 7.1.6 逐字核验，同一证据亦见 Ziwei 冻结语料 relations/he_wu_he.yaml。）
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_zhi_he
+    target_type: relation
+    target_id: rel:bazi_zhi_he:zi_chou
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 地支六合：子丑合土、寅亥合木、卯戌合火、辰酉合金、巳申合水、午未合（合化有「土」与「日月」两说，并列保留）。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_chong
+    target_type: relation
+    target_id: rel:bazi_chong:zi_wu
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 地支六冲：子午、丑未、寅申、卯酉、辰戌、巳亥；十二支各居相对之位，子午为水火之冲，丑未/辰戌为土土之冲。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_sanhe
+    target_type: relation
+    target_id: rel:bazi_sanhe:zi_shen
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 地支三合：申子辰合水局、亥卯未合木局、寅午戌合火局、巳酉丑合金局；每局含长生、帝旺（中神）与墓库三支。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_sanhui
+    target_type: relation
+    target_id: rel:bazi_sanhui:mao_yin
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 地支三会：寅卯辰会东方木、巳午未会南方火、申酉戌会西方金、亥子丑会北方水；每方含孟、仲、季三支。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_xing_wuen
+    target_type: relation
+    target_id: rel:bazi_xing:yin_si
+    ref_type: classic_text
+    source: { text: 渊海子平, chapter: 论大运, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 无恩之刑：寅刑巳、巳刑申、申刑寅（逐字核验章节；同一原文见 Ziwei 冻结语料 relations/xing.yaml）。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_xing_shishi
+    target_type: relation
+    target_id: rel:bazi_xing:chou_xu
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论三刑, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    passage: 恃势之刑：丑恃旺水刑戌中之墓火，戌恃六甲之尊刑未六癸之卑，未有旺土复恃势刑丑中之旺水，成丑→戌→未→丑之环（逐字核验章节）。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_hai
+    target_type: relation
+    target_id: rel:bazi_hai:zi_wei
+    ref_type: classic_text
+    source: { text: 三命通会, chapter: 卷二·论六害, author: 万民英, url: "https://zh.wikisource.org/wiki/三命通会/卷二", credibility: 0.8 }
+    passage: 六害六配对：子未、丑午、寅巳、卯辰、申亥、酉戌（逐字核验章节，配对逐字出现于原文）。
+    credibility: 0.8
+  - reference_id: ref:classic:bazi_po
+    target_type: relation
+    target_id: rel:bazi_po:zi_you
+    ref_type: classic_text
+    source: { text: 渊海子平, author: 徐升, url: "https://zh.wikisource.org/wiki/渊海子平", credibility: 0.8 }
+    passage: 六破六配对：子酉、午卯、辰丑、戌未、寅亥、巳申。冻结 KB-007 的 15 类 relation_type 无 po（破），本语料以中性类型 duiying 承载并以 relation_subtype=po 保留语义（schema 缺口已记录，不修改冻结契约）。
+    credibility: 0.8

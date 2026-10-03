@@ -1,0 +1,25 @@
+# Source 02 — 《三命通会》(BaZi Corpus)
+
+> BaZi 语料来源元数据（原始数据引用，非数据本身）。
+> 古籍原文不在仓库内；条目级引用经 SourceRef 登记于 corpus 与 references。
+> 与 Ziwei 语料共用同一已获取、revision-pinned 的 Tier 1 来源
+> （见 knowledge/sources/ziwei/SOURCE_STATUS.md）。
+
+| 项 | 值 |
+|----|-----|
+| source_id | source_sanming_01 |
+| title | 三命通会 |
+| author | 万民英（明） |
+| school | 子平（命理通论） |
+| edition | 通行本（public domain 范围） |
+| url | https://zh.wikisource.org/wiki/三命通會 |
+| acquisition_status | acquired  # revision-pinned 抓取件（保存在仓库外）；卷一~卷九全量获取 |
+| evidence_status | source_level_attributed  # P2.1: 条目按书级/卷级来源归属；仅卷二·论十干化气/论三刑/论六害为已核章节 |
+| verified_scope | 卷二·论十干化气（五合）/ 卷二·论三刑（恃势之刑）/ 卷二·论六害（六配对）—— Phase 7.1.5/7.1.6 逐字核验 |
+| blocker | 无（Phase 7.3.1 HTTPS 直取成功） |
+| retrieved_utc | 2026-09-15T16:14:37Z |
+| revision_pin | 卷二 revid 2292392（2023-05-28T01:06:07Z, 66693 B, sha256 e58c3f48d5f983548a35783c8f4961768a5c71edfa6d88f8fb37bc07acd53e0d）；卷三 revid 2184219；卷六 revid 845352；余卷见 SOURCE_STATUS.md |
+| evidence_scope | 天干五合化气 / 三刑（无恩·无礼·恃势）/ 六害 —— 本语料关系条目的主要依据 |
+| transcription_note | 简体转录，存在「巳/己/已」「辛/幸」字形混录（V-1~V-4，局部且已机器核验） |
+| note | 干支刑害与十干化气之权威原文出处 |
+| digest_note | 版本追踪: 本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记 |
