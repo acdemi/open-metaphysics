@@ -1,0 +1,120 @@
+# KnowledgeNode — 九宫（palace, Qimen Corpus, 10 个）
+# P2.2 Qimen Knowledge Integration: 洛书九宫本体（坎一…离九）与「九宫」总纲。
+# 语义与 deterministic engine 一致: src/openmetaphysics/agents/qimen.py
+#   PALACE_NAMES_9 / PALACE_BRANCHES / DOORS / NINE_STARS 地盘配属。
+# 本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 命名说明: slug 加 `qimen_` 域前缀, 避免与 Ziwei 冻结语料 kn:palace:* 冲突。
+# 证据: 奇门遁甲统宗 卷之一·遁甲起例 / 卷之二·奇门妙秘赋·八卦类神（书级归属 +
+#   已读章节锚点; 非逐字核验, 见 knowledge/sources/qimen/source_qimen_01.yaml）。
+
+nodes:
+  - id: kn:palace:qimen_jiugong
+    node_type: palace
+    name_cn: 九宫
+    name_en: qimen_jiugong
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门遁甲之盘面骨架，取洛书九宫（戴九履一，左三右七，二四为肩，六八为足，五居中宫）。上法九宫、下应九州，中建八门，以例八卦气。坎一、坤二、震三、巽四、中五、乾六、兑七、艮八、离九，共九宫；中五宫寄坤二宫。九宫为地盘，六仪三奇按阴阳遁顺逆布于九宫，八门与八神只布八宫（中宫不开门、不布神）。
+    tags: [奇门, 九宫, 洛书, 盘面结构]
+    confidence: 0.85
+    attributes: { palace_count: 9, order: 洛书, center_palace: 5, center_host: 坤二宫 }
+
+  - id: kn:palace:qimen_kan
+    node_type: palace
+    name_cn: 坎一宫
+    name_en: qimen_palace_kan_1
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书一宫，后天八卦之坎，方位正北，五行属水，地支配子。地盘配星天蓬、配门休门；甲子戊阳遁一局起于坎一宫。八卦类神主北道、舟程、水事、耳肾腰疾、深听智谋。
+    tags: [奇门, 九宫, 一宫, 坎, 北, 水]
+    confidence: 0.85
+    attributes: { palace_number: 1, bagua: 坎, direction: 北, element: 水, branches: [子], fixed_star: 天蓬, fixed_door: 休门 }
+
+  - id: kn:palace:qimen_kun
+    node_type: palace
+    name_cn: 坤二宫
+    name_en: qimen_palace_kun_2
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书二宫，后天八卦之坤，方位西南，五行属土，地支配未、申。地盘配星天芮、配门死门；中五宫寄坤二宫，故值符、值使落中宫时皆寄此宫。八卦类神主城隍司命、田野仓场、云雾沙石、老女、脾胃腹疾。
+    tags: [奇门, 九宫, 二宫, 坤, 西南, 土]
+    confidence: 0.85
+    attributes: { palace_number: 2, bagua: 坤, direction: 西南, element: 土, branches: [未, 申], fixed_star: 天芮, fixed_door: 死门, is_center_host: true }
+
+  - id: kn:palace:qimen_zhen
+    node_type: palace
+    name_cn: 震三宫
+    name_en: qimen_palace_zhen_3
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书三宫，后天八卦之震，方位正东，五行属木，地支配卯。地盘配星天冲、配门伤门。八卦类神主青龙、车马舟船、宫观庙宇、肝胆四肢、长男、威声、工巧雕刻。
+    tags: [奇门, 九宫, 三宫, 震, 东, 木]
+    confidence: 0.85
+    attributes: { palace_number: 3, bagua: 震, direction: 东, element: 木, branches: [卯], fixed_star: 天冲, fixed_door: 伤门 }
+
+  - id: kn:palace:qimen_xun
+    node_type: palace
+    name_cn: 巽四宫
+    name_en: qimen_palace_xun_4
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书四宫，后天八卦之巽，方位东南，五行属木，地支配辰、巳。地盘配星天辅、配门杜门。八卦类神主山林竹舍、进退藏匿、绳索机关、长女秀士、股肱手足、风寒眼目。
+    tags: [奇门, 九宫, 四宫, 巽, 东南, 木]
+    confidence: 0.85
+    attributes: { palace_number: 4, bagua: 巽, direction: 东南, element: 木, branches: [辰, 巳], fixed_star: 天辅, fixed_door: 杜门 }
+
+  - id: kn:palace:qimen_zhong
+    node_type: palace
+    name_cn: 中五宫
+    name_en: qimen_palace_center_5
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书五宫，居中，五行属土，无卦位、无地支。地盘配星天禽；中宫不开门，故不配八门，八神亦不布中宫。中宫寄坤二宫：值符、值使落中宫时寄坤二宫取用。天禽星阳遁阴遁俱寄坤宫。
+    tags: [奇门, 九宫, 五宫, 中宫, 土, 寄宫]
+    confidence: 0.85
+    attributes: { palace_number: 5, bagua: 中, direction: 中, element: 土, branches: [], fixed_star: 天禽, fixed_door: null, hosts_to: 坤二宫 }
+
+  - id: kn:palace:qimen_qian
+    node_type: palace
+    name_cn: 乾六宫
+    name_en: qimen_palace_qian_6
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书六宫，后天八卦之乾，方位西北，五行属金，地支配戌、亥。地盘配星天心、配门开门。八卦类神主君父显官、僧道老人、金石铜铁、色白形圆、骨脑股筋。
+    tags: [奇门, 九宫, 六宫, 乾, 西北, 金]
+    confidence: 0.85
+    attributes: { palace_number: 6, bagua: 乾, direction: 西北, element: 金, branches: [戌, 亥], fixed_star: 天心, fixed_door: 开门 }
+
+  - id: kn:palace:qimen_dui
+    node_type: palace
+    name_cn: 兑七宫
+    name_en: qimen_palace_dui_7
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书七宫，后天八卦之兑，方位正西，五行属金，地支配酉。地盘配星天柱、配门惊门。八卦类神主破损毁折、阴人灾厄、少女、咽喉口舌、妖邪诡言、刀针铜铁。
+    tags: [奇门, 九宫, 七宫, 兑, 西, 金]
+    confidence: 0.85
+    attributes: { palace_number: 7, bagua: 兑, direction: 西, element: 金, branches: [酉], fixed_star: 天柱, fixed_door: 惊门 }
+
+  - id: kn:palace:qimen_gen
+    node_type: palace
+    name_cn: 艮八宫
+    name_en: qimen_palace_gen_8
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书八宫，后天八卦之艮，方位东北，五行属土，地支配丑、寅。地盘配星天任、配门生门。八卦类神主少男、山冈径路、土石瓦块、寺观、鼻背手指、进退生死、虎豹狼狈之物。
+    tags: [奇门, 九宫, 八宫, 艮, 东北, 土]
+    confidence: 0.85
+    attributes: { palace_number: 8, bagua: 艮, direction: 东北, element: 土, branches: [丑, 寅], fixed_star: 天任, fixed_door: 生门 }
+
+  - id: kn:palace:qimen_li
+    node_type: palace
+    name_cn: 离九宫
+    name_en: qimen_palace_li_9
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·奇门妙秘赋, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 洛书九宫，后天八卦之离，方位正南，五行属火，地支配午。地盘配星天英、配门景门；甲子戊阴遁一局起于离九宫（阴遁甲子戊在 (10 - 局数) 宫）。八卦类神主神圣公像、闪电星火、赤鸦丹凤、火灶烟囱、诗赋词文、眼目心血。
+    tags: [奇门, 九宫, 九宫宫位, 离, 南, 火]
+    confidence: 0.85
+    attributes: { palace_number: 9, bagua: 离, direction: 南, element: 火, branches: [午], fixed_star: 天英, fixed_door: 景门 }

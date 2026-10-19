@@ -1,0 +1,162 @@
+# KnowledgeNode — 六爻结构与法则（pattern, Liuyao Corpus, 13 个）
+# P2.3 Liuyao Knowledge Integration: 本卦/变卦/动爻、世应、纳甲、月建、日辰、
+#   旬空、六冲卦、六合卦、三合局、三刑、仇神。
+# GAP-LIUYAO-05: 互卦（engine 由二三四爻、三四五爻合成）在《增刪卜易》已核章节中
+#   仅见「伏神無用又尋互卦」一句提及，**无定义性原文**，故本 Sprint 不生产该节点；
+#   待补充可核验出处后再收录。
+# 这些节点解释 deterministic result 中的结构性概念（original_hexagram /
+#   changed_hexagram / mutual_hexagram / najia / shi_position / ying_position /
+#   liu_shen）, **不参与计算, 也不改变计算**。
+# 语义基准: src/openmetaphysics/agents/liuyao.py 的算法约定。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# GAP-LIUYAO-02: 冻结 KB-002 的 20 类 NodeType 无「结构/法则/概念」类别。此类
+#   六爻结构性概念暂以 `pattern`（具名配置）承载, 记为 schema 缺口,
+#   **不修改冻结 Schema**（详见 knowledge/README.md §7）。
+# GAP-LIUYAO-04: 仇神无专用 node_type（用神/喜神/忌神之外），以 `pattern` 承载。
+# 证据: 增刪卜易/3 八宮圖 / /4 渾天甲子 / /6 世應 / /7 動變 / /9 用神元神忌神仇神 /
+#   /16 月將 / /17 日辰 / /19 六合 / /20 六沖 / /21 三刑 / /26 旬空
+#   （revision-pinned, 逐字核验）。
+
+nodes:
+  - id: kn:pattern:liuyao_bengua
+    node_type: pattern
+    name_cn: 本卦
+    name_en: liuyao_original_hexagram
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 本卦又称正卦，为六次摇钱所得之卦，自初爻画至上爻。六爻不动则不变，动则必变：老阳「○」为阳动变阴，老阴「ㄨ」为阴动变阳。装卦时先成本卦，按本卦所属之宫安世应、纳甲、六亲、六神；变出之爻安六亲者仍照正卦而推。
+    tags: [六爻, 本卦, 正卦, 装卦]
+    confidence: 0.9
+    attributes: { also_called: 正卦, lines: 6 }
+
+  - id: kn:pattern:liuyao_biangua
+    node_type: pattern
+    name_cn: 变卦
+    name_en: liuyao_changed_hexagram
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 变卦为本卦动爻变化后所得之卦：老阳变阴、老阴变阳，少阳少阴不变。变出之爻与动爻构成回头生、回头克、回头冲、回头合等关系，是断吉凶的重要依据。变卦六亲仍照正卦而推，不依变卦所属之宫另起。
+    tags: [六爻, 变卦, 动变, 回头生克]
+    confidence: 0.9
+    attributes: { lines: 6, liu_qin_source: 正卦 }
+
+  - id: kn:pattern:liuyao_dongyao
+    node_type: pattern
+    name_cn: 动爻
+    name_en: liuyao_changing_line
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 动爻为摇得老阳「○」或老阴「ㄨ」之爻。六爻不动则不变，动则必变。动爻能生克冲合静爻，亦能作用于用神：动而生用神者为吉，动而克用神者为凶。神兆机于动，事之无吉无凶则不动。
+    tags: [六爻, 动爻, 老阳, 老阴, 动变]
+    confidence: 0.9
+    attributes: { markers: [○, ㄨ], changes: true }
+
+  - id: kn:pattern:liuyao_shiying
+    node_type: pattern
+    name_cn: 世应
+    name_en: liuyao_shi_ying
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 世爻为一卦之主，代表求测者自身；应爻为对方或所测之事，隔世爻两位即是应爻。世爻位置依八宫卦序而定：八纯卦世在六爻，一世至五世依次在初至五爻，游魂卦世在四爻，归魂卦世在三爻。自占吉凶以世爻为用神。
+    tags: [六爻, 世应, 世爻, 应爻, 游魂, 归魂]
+    confidence: 0.9
+    attributes: { shi_by_palace_position: [6, 1, 2, 3, 4, 5, 4, 3], ying_offset: 2 }
+
+  - id: kn:pattern:liuyao_najia
+    node_type: pattern
+    name_cn: 纳甲
+    name_en: liuyao_najia
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 渾天甲子章第四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 纳甲以八经卦分内外，各配天干地支：乾内甲外壬（子寅辰、午申戌），坤内乙外癸（未巳卯、丑亥酉），震纳庚（子寅辰、午申戌），巽纳辛（丑亥酉、未巳卯），坎纳戊（寅辰午、申戌子），离纳己（卯丑亥、酉未巳），艮纳丙（辰午申、戌子寅），兑纳丁（巳卯丑、亥酉未）。点卦由下而上，装五行亦由下而上。转录本 /4 第三行作「辰在内／辰在外」，按八宫纳甲当为「艮在内／艮在外」，语料按艮收录并保留异文。
+    tags: [六爻, 纳甲, 浑天甲子, 干支, 装卦]
+    confidence: 0.9
+    attributes: { stem_branch: { 乾: [甲子, 甲寅, 甲辰, 壬午, 壬申, 壬戌], 坤: [乙未, 乙巳, 乙卯, 癸丑, 癸亥, 癸酉], 震: [庚子, 庚寅, 庚辰, 庚午, 庚申, 庚戌], 巽: [辛丑, 辛亥, 辛酉, 辛未, 辛巳, 辛卯], 坎: [戊寅, 戊辰, 戊午, 戊申, 戊戌, 戊子], 离: [己卯, 己丑, 己亥, 己酉, 己未, 己巳], 艮: [丙辰, 丙午, 丙申, 丙戌, 丙子, 丙寅], 兑: [丁巳, 丁卯, 丁丑, 丁亥, 丁酉, 丁未] }, transcription_variant: "辰在内／辰在外（当为艮）" }
+
+  - id: kn:pattern:liuyao_yuejian
+    node_type: pattern
+    name_cn: 月建
+    name_en: liuyao_month_build
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 月將章第十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 月建即月将、月令，掌一月之权，司三旬之令。能助卦爻之衰弱，能挫爻象之旺强；爻衰者能生之合之比之拱之扶之，爻旺者能冲之克之刑之破之。月建合爻为月合，月建冲爻即为月破。卦无用神即以月建为用神。
+    tags: [六爻, 月建, 月令, 月破, 月合, 旺衰]
+    confidence: 0.9
+    attributes: { aliases: [月将, 月令], breaks: 月破, combines: 月合, scope: 三旬 }
+
+  - id: kn:pattern:liuyao_richen
+    node_type: pattern
+    name_cn: 日辰
+    name_en: liuyao_day_branch
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 日辰为六爻之主宰，司四时之旺相，四时俱旺，操生杀大权与月建同功。冲旺相之静爻为暗动，冲衰弱之静爻为日破；冲空即起，冲合即开。爻遇旬空，日辰冲起而有用，谓之冲空则实。
+    tags: [六爻, 日辰, 日建, 暗动, 日破, 冲空]
+    confidence: 0.9
+    attributes: { aliases: [日建], effects: [暗动, 日破, 冲空则实, 冲合则散] }
+
+  - id: kn:pattern:liuyao_xunkong
+    node_type: pattern
+    name_cn: 旬空
+    name_en: liuyao_void
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 旬空章第二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 旬空又名空亡：甲子旬中戌亥空，甲戌旬中申酉空，甲申旬中午未空，甲午旬中辰巳空，甲辰旬中寅卯空，甲寅旬中子丑空。旺不为空，动不为空，有日建动爻生扶者不为空；月破为空，真空为空。出旬则不空，填实之日、冲空之日皆可应事。
+    tags: [六爻, 旬空, 空亡, 填实, 冲空]
+    confidence: 0.9
+    attributes: { void_by_decade: { 甲子: [戌, 亥], 甲戌: [申, 酉], 甲申: [午, 未], 甲午: [辰, 巳], 甲辰: [寅, 卯], 甲寅: [子, 丑] }, non_void_when: [旺, 动, 日建生扶] }
+
+  - id: kn:pattern:liuyao_liuchong_gua
+    node_type: pattern
+    name_cn: 六冲卦
+    name_en: liuyao_six_clash_hexagram
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 八宮圖第三, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六冲卦者，八纯卦（乾为天、坎为水、艮为山、震为雷、巽为风、离为火、坤为地、兑为泽）皆是，再加天雷无妄、雷天大壮，共十卦。冲者散也：占凶事宜于冲散，占吉事不宜；用神旺虽冲不破，用神失陷凶而又凶。六合卦变六冲者，先合后离、始荣终悴。
+    tags: [六爻, 六冲, 六冲卦, 八纯卦, 冲散]
+    confidence: 0.9
+    attributes: { hexagrams: [乾为天, 坎为水, 艮为山, 震为雷, 巽为风, 离为火, 坤为地, 兑为泽, 天雷无妄, 雷天大壮], count: 10, meaning: 散 }
+
+  - id: kn:pattern:liuyao_liuhe_gua
+    node_type: pattern
+    name_cn: 六合卦
+    name_en: liuyao_six_harmony_hexagram
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六合者，子与丑合、寅与亥合、卯与戌合、辰与酉合、巳与申合、午与未合。相合法有六：日月合爻、爻与爻合、爻动化合、卦逢六合、六冲卦变六合卦、六合卦变六合卦。诸合皆以用神旺者为吉；占讼狱不利，冤仇难解。
+    tags: [六爻, 六合, 六合卦, 合起, 合绊, 化扶]
+    confidence: 0.9
+    attributes: { pairs: [[子, 丑], [寅, 亥], [卯, 戌], [辰, 酉], [巳, 申], [午, 未]], kinds: 6 }
+
+  - id: kn:pattern:liuyao_sanhe_ju
+    node_type: pattern
+    name_cn: 三合局
+    name_en: liuyao_three_harmony
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 申子辰合成水局、巳酉丑合成金局、寅午戌合成火局、亥卯未合成木局。成局有四：一卦之内一爻动而合局、两爻动一爻不动亦成局、内卦初爻三爻动而变出爻成局、外卦四爻六爻动而变出之爻成局。占求谋喜庆宜成局，占官讼忧疑而合局者终身团结难消。
+    tags: [六爻, 三合, 三合局, 水局, 金局, 火局, 木局]
+    confidence: 0.9
+    attributes: { groups: { 水局: [申, 子, 辰], 金局: [巳, 酉, 丑], 火局: [寅, 午, 戌], 木局: [亥, 卯, 未] }, kinds: 4 }
+
+  - id: kn:pattern:liuyao_sanxing
+    node_type: pattern
+    name_cn: 三刑
+    name_en: liuyao_three_punishment
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 三刑章第二十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 寅刑巳、巳刑申、子刑卯、卯刑午、丑戌相刑、未辰相刑；又云辰午酉亥谓之自刑。野鶴谓三刑独犯得验者少，多因用神休囚又兼他爻犯之则见凶，故三刑须兼用神旺衰而断，不可单执。
+    tags: [六爻, 三刑, 相刑, 自刑]
+    confidence: 0.9
+    attributes: { pairs: [[寅, 巳], [巳, 申], [子, 卯], [卯, 午], [丑, 戌], [未, 辰]], self_punishment: [辰, 午, 酉, 亥] }
+
+  - id: kn:pattern:liuyao_choushen
+    node_type: pattern
+    name_cn: 仇神
+    name_en: liuyao_enemy_spirit
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 仇神者，克元神而生忌神也。用神为所测之主，元神生用神，忌神克用神，仇神则克元神、生忌神，间接助忌伤用。六爻断法先定用神，再察元神、忌神、仇神之旺衰与动静。
+    tags: [六爻, 仇神, 用神体系, 生克]
+    confidence: 0.9
+    attributes: { role: 仇神, controls: 元神, generates: 忌神 }
