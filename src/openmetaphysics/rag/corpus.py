@@ -25,6 +25,8 @@ keeps its original meaning: the default corpus (Ziwei), unchanged.
 P2.2 Qimen Knowledge Integration adds ``qimen_corpus.json`` to the same list.
 No second loader, no second retriever, no scoring change.
 
+P2.3 Liuyao Knowledge Integration adds ``liuyao_corpus.json`` the same way.
+
 Cross-domain node ids are kept unique by the corpus validator
 (``knowledge/validate.py``), so indexing every domain introduces no duplicate
 chunk ids.
@@ -48,6 +50,7 @@ DOMAIN_CORPUS_FILES: tuple[str, ...] = (
     "ziwei_corpus.json",
     "bazi_corpus.json",
     "qimen_corpus.json",
+    "liuyao_corpus.json",
 )
 
 

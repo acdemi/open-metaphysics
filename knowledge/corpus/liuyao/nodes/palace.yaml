@@ -1,0 +1,109 @@
+# KnowledgeNode — 京房八宫（palace, Liuyao Corpus, 9 个）
+# P2.3 Liuyao Knowledge Integration: 八宫（乾坎艮震巽离坤兑）各领八卦，共六十四卦，
+#   以及「八宫」总纲。语义与 deterministic engine 一致:
+#   src/openmetaphysics/agents/liuyao.py::BA_GONG / _PALACE_OF / SHI_BY_POS。
+#   本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 证据: 增刪卜易/2 卦象圖（八宮六十四卦卦名）/ /3 八宮圖 / /6 世應章
+#   （revision-pinned, 逐字核验）。
+# 命名说明: slug 加 `liuyao_` 域前缀, 避免与 Ziwei 冻结语料 kn:palace:* 冲突。
+
+nodes:
+  - id: kn:palace:liuyao_bagong
+    node_type: palace
+    name_cn: 八宫
+    name_en: liuyao_eight_palaces
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 京房八宫，以八纯卦为宫首，每宫各领八卦，合为六十四卦。八宫为六爻装卦之纲：得卦先寻其所属之宫，以宫之五行为「我」，再按纳甲地支五行与宫五行之生克安六亲。八纯卦世在六爻，一世至五世依次在初至五爻，游魂卦世在四爻，归魂卦世在三爻。
+    tags: [六爻, 八宫, 京房, 六十四卦, 装卦]
+    confidence: 0.9
+    attributes: { palace_count: 8, hexagram_count: 64, shi_by_position: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_qian
+    node_type: palace
+    name_cn: 乾宫
+    name_en: liuyao_palace_qian
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 乾宫属金，宫首为乾为天，其余七卦依次为天风姤、天山遁、天地否、风地观、山地剥、火地晋、火天大有。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 乾宫, 金]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [1, 44, 33, 12, 20, 23, 35, 14], element: 金, hexagrams: [乾为天, 天风姤, 天山遁, 天地否, 风地观, 山地剥, 火地晋, 火天大有], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_kan
+    node_type: palace
+    name_cn: 坎宫
+    name_en: liuyao_palace_kan
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 坎宫属水，宫首为坎为水，其余七卦依次为水泽节、水雷屯、水火既济、泽火革、雷火丰、地火明夷、地水师。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 坎宫, 水]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [29, 60, 3, 63, 49, 55, 36, 7], element: 水, hexagrams: [坎为水, 水泽节, 水雷屯, 水火既济, 泽火革, 雷火丰, 地火明夷, 地水师], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_gen
+    node_type: palace
+    name_cn: 艮宫
+    name_en: liuyao_palace_gen
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 艮宫属土，宫首为艮为山，其余七卦依次为山火贲、山天大畜、山泽损、火泽睽、天泽履、风泽中孚、风山渐。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 艮宫, 土]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [52, 22, 26, 41, 38, 10, 61, 53], element: 土, hexagrams: [艮为山, 山火贲, 山天大畜, 山泽损, 火泽睽, 天泽履, 风泽中孚, 风山渐], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_zhen
+    node_type: palace
+    name_cn: 震宫
+    name_en: liuyao_palace_zhen
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 震宫属木，宫首为震为雷，其余七卦依次为雷地豫、雷水解、雷风恒、地风升、水风井、泽风大过、泽雷随。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 震宫, 木]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [51, 16, 40, 32, 46, 48, 28, 17], element: 木, hexagrams: [震为雷, 雷地豫, 雷水解, 雷风恒, 地风升, 水风井, 泽风大过, 泽雷随], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_xun
+    node_type: palace
+    name_cn: 巽宫
+    name_en: liuyao_palace_xun
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 巽宫属木，宫首为巽为风，其余七卦依次为风天小畜、风火家人、风雷益、天雷无妄、火雷噬嗑、山雷颐、山风蛊。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 巽宫, 木]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [57, 9, 37, 42, 25, 21, 27, 18], element: 木, hexagrams: [巽为风, 风天小畜, 风火家人, 风雷益, 天雷无妄, 火雷噬嗑, 山雷颐, 山风蛊], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_li
+    node_type: palace
+    name_cn: 离宫
+    name_en: liuyao_palace_li
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 离宫属火，宫首为离为火，其余七卦依次为火山旅、火风鼎、火水未济、山水蒙、风水涣、天水讼、天火同人。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 离宫, 火]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [30, 56, 50, 64, 4, 59, 6, 13], element: 火, hexagrams: [离为火, 火山旅, 火风鼎, 火水未济, 山水蒙, 风水涣, 天水讼, 天火同人], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_kun
+    node_type: palace
+    name_cn: 坤宫
+    name_en: liuyao_palace_kun
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 坤宫属土，宫首为坤为地，其余七卦依次为地雷复、地泽临、地天泰、雷天大壮、泽天夬、水天需、水地比。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 坤宫, 土]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [2, 24, 19, 11, 34, 43, 5, 8], element: 土, hexagrams: [坤为地, 地雷复, 地泽临, 地天泰, 雷天大壮, 泽天夬, 水天需, 水地比], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }
+
+  - id: kn:palace:liuyao_dui
+    node_type: palace
+    name_cn: 兑宫
+    name_en: liuyao_palace_dui
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 兑宫属金，宫首为兑为泽，其余七卦依次为泽水困、泽地萃、泽山咸、水山蹇、地山谦、雷山小过、雷泽归妹。世爻依次在六、初、二、三、四、五、四、三爻。
+    tags: [六爻, 八宫, 兑宫, 金]
+    confidence: 0.9
+    attributes: { hexagram_numbers: [58, 47, 45, 31, 39, 15, 62, 54], element: 金, hexagrams: [兑为泽, 泽水困, 泽地萃, 泽山咸, 水山蹇, 地山谦, 雷山小过, 雷泽归妹], shi_positions: [6, 1, 2, 3, 4, 5, 4, 3] }

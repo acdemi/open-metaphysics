@@ -1,0 +1,91 @@
+# KnowledgeNode — 六神（shen_sha, Liuyao Corpus, 7 个）
+# P2.3 Liuyao Knowledge Integration: 青龙/朱雀/勾陈/螣蛇/白虎/玄武 六神
+#   与「六神」总纲。语义与 deterministic engine 一致:
+#   src/openmetaphysics/agents/liuyao.py::SIX_SPIRITS / SPIRIT_START_BY_STEM
+#   （甲乙起青龙、丙丁起朱雀、戊起勾陈、己起螣蛇、庚辛起白虎、壬癸起玄武,
+#     自初爻依序上布）。
+# 本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 类型映射: 六神为象义类符号实体, 以冻结 KB-002 既有的 `shen_sha` 承载,
+#   语义经 tags/attributes 保留（无需 GAP）。
+# 证据: 增刪卜易/18 六神章第十八（revision-pinned, 逐字核验）。
+# 转录说明: 转录本作「元武」（避玄讳）、「滕蛇」（螣蛇异写）、「靑龍」（青之异体）;
+#   语料按 engine 用名（玄武/螣蛇/青龙）收录, attributes 保留转录异名。
+
+nodes:
+  - id: kn:shen_sha:liuyao_liushen
+    node_type: shen_sha
+    name_cn: 六神
+    name_en: liuyao_six_spirits
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神依日干起例，自初爻至上爻依次安布：甲乙日起青龙，丙丁日起朱雀，戊日起勾陈，己日起螣蛇，庚辛日起白虎，壬癸日起玄武。六神为附合之神，不依五行断，须与卦之吉凶、用神旺衰合看：卦吉逢青龙更吉，卦凶逢白虎更凶。玄武主盗贼，朱雀主口舌。
+    tags: [六爻, 六神, 青龙, 朱雀, 勾陈, 螣蛇, 白虎, 玄武]
+    confidence: 0.9
+    attributes: { spirit_count: 6, start_by_stem: { 甲乙: 青龙, 丙丁: 朱雀, 戊: 勾陈, 己: 螣蛇, 庚辛: 白虎, 壬癸: 玄武 }, order: [青龙, 朱雀, 勾陈, 螣蛇, 白虎, 玄武] }
+
+  - id: kn:shen_sha:liuyao_qinglong
+    node_type: shen_sha
+    name_cn: 青龙
+    name_en: liuyao_azure_dragon
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，甲乙日自初爻起。诸书皆以青龙为吉：身旺龙持多吉处，龙动家有喜；虎兴而遇吉神不害其吉，龙动而逢凶曜难掩其凶。六神乃附合之神，卦吉逢龙更吉。
+    tags: [六爻, 六神, 青龙, 吉神, 甲乙日]
+    confidence: 0.9
+    attributes: { order_index: 1, day_stems: [甲, 乙], fortune: 吉, transcription_variant: 靑龍 }
+
+  - id: kn:shen_sha:liuyao_zhuque
+    node_type: shen_sha
+    name_cn: 朱雀
+    name_en: liuyao_vermilion_bird
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，丙丁日自初爻起。朱雀主口舌，凡口舌是非、文书争讼之象多属之。六神为附合之神，须兼卦之吉凶与用神旺衰而断，不可单以六神定生死。
+    tags: [六爻, 六神, 朱雀, 口舌, 丙丁日]
+    confidence: 0.9
+    attributes: { order_index: 2, day_stems: [丙, 丁], fortune: 凶, domain: 口舌 }
+
+  - id: kn:shen_sha:liuyao_gouchen
+    node_type: shen_sha
+    name_cn: 勾陈
+    name_en: liuyao_hooked_chen
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，戊日自初爻起。勾陈属土，主田土、迟滞、勾连牵绊之事。六神为附合之神，须与卦象合看。
+    tags: [六爻, 六神, 勾陈, 田土, 戊日]
+    confidence: 0.9
+    attributes: { order_index: 3, day_stems: [戊], fortune: 平, domain: 田土迟滞 }
+
+  - id: kn:shen_sha:liuyao_tengshe
+    node_type: shen_sha
+    name_cn: 螣蛇
+    name_en: liuyao_flying_serpent
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，己日自初爻起。螣蛇主虚惊怪异、忧疑缠绕；占疾病则螣蛇主死之说见于诸书，然野鶴屡试不验，六神须兼用神旺衰与卦之吉凶，不可单断。转录本作「滕蛇」。
+    tags: [六爻, 六神, 螣蛇, 虚惊, 己日]
+    confidence: 0.9
+    attributes: { order_index: 4, day_stems: [己], fortune: 凶, domain: 虚惊怪异, transcription_variant: 滕蛇 }
+
+  - id: kn:shen_sha:liuyao_baihu
+    node_type: shen_sha
+    name_cn: 白虎
+    name_en: liuyao_white_tiger
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，庚辛日自初爻起。诸书以白虎为凶：虎动家有丧，白虎主丧；虎兴而遇吉神不害其吉，卦凶逢白虎更凶。六神为附合之神，须兼卦象与用神而断。
+    tags: [六爻, 六神, 白虎, 凶神, 庚辛日]
+    confidence: 0.9
+    attributes: { order_index: 5, day_stems: [庚, 辛], fortune: 凶, domain: 丧祸 }
+
+  - id: kn:shen_sha:liuyao_xuanwu
+    node_type: shen_sha
+    name_cn: 玄武
+    name_en: liuyao_black_tortoise
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六神之一，壬癸日自初爻起。玄武主盗贼、暗昧欺瞒之事。转录本避玄讳作「元武」。六神为附合之神，须与卦象合看。
+    tags: [六爻, 六神, 玄武, 盗贼, 壬癸日]
+    confidence: 0.9
+    attributes: { order_index: 6, day_stems: [壬, 癸], fortune: 凶, domain: 盗贼暗昧, transcription_variant: 元武 }
