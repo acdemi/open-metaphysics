@@ -14,6 +14,7 @@ import pytest
 
 from openmetaphysics.agents.bazi import BaziAgent, BaziInput
 from openmetaphysics.agents.bazi_explainer import BaziExplainer
+from openmetaphysics.agents.liuyao_explainer import LiuyaoExplainer
 from openmetaphysics.agents.qimen_explainer import QimenExplainer
 from openmetaphysics.agents.ziwei import ZiweiAgent, ZiweiInput
 from openmetaphysics.agents.ziwei_explainer import ZiweiExplainer
@@ -209,6 +210,11 @@ def test_domain_explainers_are_wired():
     assert isinstance(qimen, QimenExplainer)
     assert type(qimen)._llm_render is Explainer._llm_render
     assert type(qimen)._fallback is Explainer._fallback
+    # P2.3: Liuyao joined the same chain, also query-construction only.
+    liuyao = get_explainer_for("liuyao")
+    assert isinstance(liuyao, LiuyaoExplainer)
+    assert type(liuyao)._llm_render is Explainer._llm_render
+    assert type(liuyao)._fallback is Explainer._fallback
     assert type(get_explainer_for(None)) is Explainer
 
 

@@ -1,0 +1,236 @@
+# KnowledgeReference — Liuyao 语料引用（classic_text, 23 条）
+# P2.3 Liuyao Knowledge Integration: 节点级与关系级来源登记（provenance）。
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+# 证据策略: revision-pinned 抓取（主页 revid 2572918）后逐章逐字核验。
+#   passage 为**原文精确子串**（仅去除维基标记与空白），以「……」连接不连续段落；
+#   凡原文异体字（如 𨿽 / 彊 / ﹐ / 靑 / 元武 / 滕蛇）一律保留，不改写。
+#   来源元数据与子页 revid / SHA-256 见 knowledge/sources/liuyao/source_liuyao_01.yaml。
+
+references:
+  - reference_id: ref:classic:liuyao_wuxing_sheng
+    target_type: node
+    target_id: kn:wuxing:liuyao_mu
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "金生水，水生木，木生火，火生土，土生金。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_wuxing_ke
+    target_type: relation
+    target_id: rel:liuyao_ke:mu_tu
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 五行相克章第十二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "金克木，木克土，土克水，水克火，火克金。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_bagong
+    target_type: node
+    target_id: kn:palace:liuyao_bagong
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "乾宮八卦：﹝俱屬金﹞
+
+乾爲天，天風姤，天山遁，天地否，風地觀，山地剝，火地晉，火天大有。
+
+坎宮八卦：﹝俱屬水﹞
+
+坎爲水，水澤節，水雷屯，水火旣濟，澤火革，雷火豐，地火明夷，地水師。
+
+艮宮八卦：﹝屬土﹞
+
+艮爲山，山火賁，山天大畜，山澤損，火澤睽，天澤履，風澤中孚，風山漸。
+
+震宮八卦：﹝屬木﹞
+
+震爲雷，雷地豫，雷水解，雷風恆，地風升，水風井，澤風大過，澤雷隨。
+
+巽宮八卦：﹝屬木﹞
+
+巽爲風，風天小畜，風火家人，風雷益，天雷無妄，火雷噬嗑，山雷頤，山風蠱。
+
+離宮八卦：﹝屬火﹞
+
+離爲火，火山旅，火風鼎，火水未濟，山水蒙，風水渙，天水訟，天火同人。
+
+坤宮八卦：﹝屬土﹞
+
+坤爲地，地雷復，地澤臨，地天泰，雷天大壯，澤天夬，水天需，水地比。
+
+兌宮八卦：﹝屬金﹞
+
+兌爲澤，澤水困，澤地萃，澤山咸，水山蹇，地山謙，雷山小過，雷澤歸妹。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_bagong_tu
+    target_type: node
+    target_id: kn:palace:liuyao_bagong
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 八宮圖第三, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "先學點卦，點出卦象看是何卦，卽出全圖內尋出此卦，照樣裝排「世」「應」「五行」「六親」，不用念卦書……六沖卦者，乾爲天、坎爲水、艮爲山、震爲雷、巽爲風、離爲火、坤爲地、兌爲澤，此八宮第一卦皆是六沖卦，再者天雷無妄、雷天大壯也是六沖卦一共十卦，其餘不是。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_najia
+    target_type: node
+    target_id: kn:pattern:liuyao_najia
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 渾天甲子章第四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "乾在內：子水寅木辰土。乾在外：午火申金戌土。
+* 坎在內：寅木辰土午火。坎在外：申金戌土子水。
+* 辰在內：辰土午火申金。辰在外：戌土子水寅木。
+* 震在內：子水寅木辰土。震在外；午火申金戌土。
+* 巽在內：丑土亥水酉金。巽在外：未土巳火卯木。
+* 離在內：卯木丑土亥水。離在外：酉金未土巳火。
+* 坤在內：未土巳火卯木。坤在外：丑土亥水酉金。
+* 兌在內：巳火卯木丑土。兌在外：亥水酉金未土。……點卦由下而上，故裝五行也由下而上，餘仿此。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_liuqin
+    target_type: node
+    target_id: kn:ten_god:liuyao_liuqin
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。
+* 坎宮水兄、火財、土鬼、金父、木子。坎宮八卦都屬水。
+* 坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。
+* 離宮火兄、水鬼、土子、木父，金財。離宮八卦都屬火。
+* 震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_shiying
+    target_type: node
+    target_id: kn:pattern:liuyao_shiying
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "乾爲天「世」在六﹐天風姤「世」在初﹐
+天山遁「世」在二﹐天地否「世」在三﹐
+天地觀「世」在四﹐山地剝「世」在五﹐
+火地晉「世」在四﹐火天大有「世」退在三。……隔世爻兩位卽是應爻﹐餘卦仿此。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_dongbian
+    target_type: node
+    target_id: kn:pattern:liuyao_dongyao
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "六爻不動則不變，動則必變……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_yongshen
+    target_type: node
+    target_id: kn:yong_shen:liuyao_yongshen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "父母爻：占父母卽以卦中之父母爻爲神。……官鬼爻：占功名、官府、雷霆鬼神、妻占夫皆以官鬼爻爲用神。……兄弟爻：占兄弟、姐妹、族中兄弟、姑姨、妹夫及結拜兄弟都以兄弟爻爲用神。……妻財爻：占妻妾、婢、僕、役，我驅使之人皆以要財爻爲用神。……子孫爻：占子孫、占女、女婿、侄、甥、門生凡在我子孫輩中皆以子孫爻爲用神。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_yuanshen
+    target_type: node
+    target_id: kn:xi_shen:liuyao_yuanshen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "用神，卽前各類之用神也。元神，生用神之神卽爲元神。忌神克用神之爻也。仇神者克元神而生忌神也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_yuanshen_wangshuai
+    target_type: node
+    target_id: kn:xi_shen:liuyao_yuanshen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 元神忌神衰旺章第十, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "元神𨿽生用神，須要旺相，方可生得用神。……元神能生用神者有五：元神旺相或臨日月或日月動爻生扶者一也。元神動化回頭生及化進神者二也。元神長生帝旺於日辰三也。元神與忌神同動四也。元神旺動臨空化空五也。……元神𨿽現又有不能生用神者有六：元神休囚，不動或動而休囚又被傷克者一也。元神休囚又逢自空、月破二也。元神休囚動化退神三也。元神衰而又絕四也。元神入三墓五也。元神休囚動而化絕、化克、化破、化散六也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_jishen
+    target_type: node
+    target_id: kn:ji_shen:liuyao_jishen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 元神忌神衰旺章第十, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "忌神動而克害用神者有五：忌神旺相或遇日月動爻生扶或臨日月者一也。忌神動化回頭生扶退神者二也。忌神旺動動臨空化空三也。忌神長生帝旺與日辰四也。忌神與仇神同動五也。……忌神𨿽動，不能克用神者有七：忌神休囚不動，而動休囚被日、月動爻克者一也。忌神靜臨空破二也。忌神入三墓三也。忌神衰動化退神四也。忌神衰而又絕五也。忌神動化絕化破、化克、化散六也。忌神與元神同動七也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_choushen
+    target_type: node
+    target_id: kn:pattern:liuyao_choushen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "仇神者克元神而生忌神也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_yuejian
+    target_type: node
+    target_id: kn:pattern:liuyao_yuejian
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 月將章第十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "月將卽是月建又爲月令。掌一月之權，司三旬之令。……能助卦爻之衰弱，能挫爻象之旺彊……月建合爻爲月合，乃有用之爻也。月建沖爻卽爲月破，乃無用之爻也。……卦無用神卽以月建爲用神，不必尋伏神也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_richen
+    target_type: node
+    target_id: kn:pattern:liuyao_richen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "日辰爲六爻之主宰，司四時之旺相。……沖旺相之靜爻，旣爲暗動，沖衰弱之靜爻爲日破……沖空卽起，沖合卽開……爻遇旬空，日辰沖起而有用，謂之沖空則實。逢合住遇日建以沖開，謂之沖合則散。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_liushen
+    target_type: node
+    target_id: kn:shen_sha:liuyao_liushen
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "諸書無不以靑龍爲吉，白虎爲凶。……此皆不以五行，竟以六神而斷生死。惟千金賦曰：虎興而遇吉神不害其吉，龍動而逢凶曜難掩其凶。此正理也，然則六神而不驗耶乎，乃附合之神也，卦之吉者逢龍而更吉，卦之凶者逢白虎而更凶，且元武主盜賊，朱雀主口舌，無不驗也"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_liuhe
+    target_type: node
+    target_id: kn:pattern:liuyao_liuhe_gua
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "子與丑合、寅與亥合、卯與戌合、辰與酉合、巳與申合，午與未合。相合法有六：日月合爻者一也。爻與爻合者二也。爻動化合者三也，卦逢六合四也。六沖卦變六合卦五也。六合卦變六合卦六也。……爻之合者，靜而逢合，謂之合起。動而逢合，合謂之合絆。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_sanhe
+    target_type: node
+    target_id: kn:pattern:liuyao_sanhe_ju
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "申子辰合成水局、巳酉丑合成金局、寅午戌合成火局、亥卯未合成木局。此三合者有四。一卦之內有一爻動而合局者一也。若兩爻動一爻不動亦成合局者二也。有內卦初爻、三爻、動而變出爻成三合者三也。又有外四爻、六爻動、動而變出之爻成三合者四也。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_liuchong
+    target_type: node
+    target_id: kn:pattern:liuyao_liuchong_gua
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 六沖章第二十, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "子午相沖、丑未相沖、寅申相沖、卯酉相沖、辰戌相沖、巳亥相沖。……相沖之法有六。日月沖爻者一也，卦逢六沖二也，六合卦變六沖三也，沖變六沖四也。動爻變沖五也、爻與爻沖六也。……沖者散也，凡占凶事宜於沖散、占吉事而不宜，必兼用神而言，用神旺𨿽沖不破，用神失陷凶而又凶"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_sanxing
+    target_type: node
+    target_id: kn:pattern:liuyao_sanxing
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 三刑章第二十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "寅刑巳、巳刑申、子刑卯、卯刑午、丑戌相刑、未辰相刑。又云：辰午酉亥謂之自刑，夫三刑者，予屢試之，或因用神休囚又兼他爻犯之，刑者則見凶，而獨犯三刑得驗者少，占過數十年只驗得一卦。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_xunkong
+    target_type: node
+    target_id: kn:pattern:liuyao_xunkong
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 旬空章第二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "何謂旬空？如甲子至癸酉日爲一旬，此十日之內，並無戌亥，以爻逢戌亥爲空亡，又名旬空，餘仿此。……野鶴曰：旺不爲空，動不爲空，有日建動爻生扶者不爲空……月破爲空。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_bengua
+    target_type: node
+    target_id: kn:pattern:liuyao_bengua
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "如乾卦初爻動則變爲巽卦。……如占得水天需卦變天水訟……上三爻坎卦卽是坎在外卦：申金、戌土、子水。四爻申金、五爻戌土、六爻子水，變爲乾卦。卽是乾在外卦：午火、申金、戌土。……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。"
+    credibility: 0.9
+
+  - reference_id: ref:classic:liuyao_biangua
+    target_type: node
+    target_id: kn:pattern:liuyao_biangua
+    ref_type: classic_text
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    passage: "六爻不動則不變，動則必變……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。"
+    credibility: 0.9

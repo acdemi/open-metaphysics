@@ -410,10 +410,10 @@ def test_validator_catches_a_cross_domain_id_collision(tmp_path, monkeypatch) ->
 
 def test_pipeline_emits_three_domains_deterministically() -> None:
     out = _run_pipeline()
-    assert out.count("corpus written") == 3, "Ziwei + BaZi + Qimen"
+    assert out.count("corpus written") == 4, "Ziwei + BaZi + Qimen + Liuyao"
 
     first = QIMEN_CORPUS.read_bytes()
-    assert _run_pipeline().count("corpus written") == 3
+    assert _run_pipeline().count("corpus written") == 4
     assert QIMEN_CORPUS.read_bytes() == first, "qimen corpus is not byte-stable"
 
     _run_pipeline("qimen")

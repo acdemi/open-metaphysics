@@ -15,6 +15,7 @@ existing ones):
   same source_digests key set (``sources/ziwei/*.yaml``), same ordering.
 * ``bazi``  -- the P2.1 BaZi corpus (``bazi_corpus.json``, status ``candidate``).
 * ``qimen`` -- the P2.2 Qimen corpus (``qimen_corpus.json``, status ``candidate``).
+* ``liuyao`` -- the P2.3 Liuyao corpus (``liuyao_corpus.json``, status ``candidate``).
 
 ``build()`` keeps its Phase 7.0 signature and still returns the Ziwei document
 by default, so existing callers are unaffected.
@@ -71,6 +72,12 @@ DOMAINS: dict[str, DomainSpec] = {
         status="candidate",
         version="0.1.0",
         pipeline="knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
+    ),
+    "liuyao": DomainSpec(
+        corpus_id="liuyao_corpus",
+        status="candidate",
+        version="0.1.0",
+        pipeline="knowledge/pipeline.py (P2.3 Liuyao Knowledge Integration)",
     ),
 }
 DEFAULT_DOMAIN = "ziwei"
