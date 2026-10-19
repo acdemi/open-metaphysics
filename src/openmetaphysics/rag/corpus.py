@@ -22,6 +22,11 @@ one retriever, no second architecture, no embeddings and no external service.
 The single-corpus API (``load_corpus`` / ``load_chunks`` / ``load_into``)
 keeps its original meaning: the default corpus (Ziwei), unchanged.
 
+P2.2 Qimen Knowledge Integration adds ``qimen_corpus.json`` to the same list.
+No second loader, no second retriever, no scoring change.
+
+P2.3 Liuyao Knowledge Integration adds ``liuyao_corpus.json`` the same way.
+
 Cross-domain node ids are kept unique by the corpus validator
 (``knowledge/validate.py``), so indexing every domain introduces no duplicate
 chunk ids.
@@ -41,7 +46,12 @@ DEFAULT_CORPUS_PATH = Path(__file__).resolve().parents[3] / "knowledge" / "ziwei
 # Every domain corpus indexed by the default retriever, in deterministic order.
 # The file names are resolved relative to the default corpus directory, so an
 # explicit path override (or a test patch of DEFAULT_CORPUS_PATH) still applies.
-DOMAIN_CORPUS_FILES: tuple[str, ...] = ("ziwei_corpus.json", "bazi_corpus.json")
+DOMAIN_CORPUS_FILES: tuple[str, ...] = (
+    "ziwei_corpus.json",
+    "bazi_corpus.json",
+    "qimen_corpus.json",
+    "liuyao_corpus.json",
+)
 
 
 def resolve_corpus_path(path: str | Path | None = None) -> Path:

@@ -1,0 +1,219 @@
+# KnowledgeRelation — 对应（duiying, Liuyao Corpus, 15 条 = 11 duiying + 2 sheng + 2 ke）
+# P2.3 Liuyao Knowledge Integration: 结构概念之间的对应与用神体系的生克链。
+#   用神/元神/忌神/仇神的生克方向以「生用神者元神、克用神者忌神、
+#   克元神而生忌神者仇神」为准（/9）。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 增刪卜易/4 渾天甲子 / /5 六親歌 / /6 世應 / /7 動變 / /8 用神 /
+#   /9 用神元神忌神仇神 / /16 月將 / /17 日辰 / /19 六合 / /20 六沖 / /26 旬空
+#   （revision-pinned, 逐字核验）。
+
+relations:
+  - id: rel:liuyao_duiying:yongshen_liuqin
+    source_node_id: kn:yong_shen:liuyao_yongshen
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "用神按所测之事取六亲：占父母以父母爻为用神，占功名以官鬼爻为用神，占财以妻财爻为用神。"
+        source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: yongshen_selection }
+
+  - id: rel:liuyao_duiying:yongshen_shiying
+    source_node_id: kn:yong_shen:liuyao_yongshen
+    target_node_id: kn:pattern:liuyao_shiying
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "自占吉凶以世爻为用神；世爻即世应结构中代表求测者之爻。"
+        source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: self_yongshen }
+
+  - id: rel:liuyao_duiying:najia_liuqin
+    source_node_id: kn:pattern:liuyao_najia
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "纳甲定各爻干支五行，再以爻五行与宫五行之生克安六亲；六親歌按八宫列六亲配属。"
+        source: { text: 增刪卜易, chapter: 渾天甲子章第四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 渾天甲子章第四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: najia_liuqin }
+
+  - id: rel:liuyao_duiying:bagong_liuqin
+    source_node_id: kn:palace:liuyao_bagong
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "八宫之五行即六亲之「我」：乾兑宫属金则金为兄弟，坎宫属水则水为兄弟，余仿此。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_as_self }
+
+  - id: rel:liuyao_duiying:shiying_bengua
+    source_node_id: kn:pattern:liuyao_shiying
+    target_node_id: kn:pattern:liuyao_bengua
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "世应依本卦所属之宫与卦序安布：八纯卦世在六爻，其余依次在初至五爻及游魂四爻、归魂三爻。"
+        source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 世應章第六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: shiying_structure }
+
+  - id: rel:liuyao_duiying:bengua_biangua
+    source_node_id: kn:pattern:liuyao_bengua
+    target_node_id: kn:pattern:liuyao_biangua
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "本卦动爻变化即得变卦：老阳变阴、老阴变阳，少阳少阴不变。"
+        source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: benbian }
+
+  - id: rel:liuyao_duiying:dongyao_biangua
+    source_node_id: kn:pattern:liuyao_dongyao
+    target_node_id: kn:pattern:liuyao_biangua
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "动爻为变卦之因：六爻不动则不变，动则必变。"
+        source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 動變章第七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: dong_bian }
+
+  - id: rel:liuyao_duiying:yuejian_richen
+    source_node_id: kn:pattern:liuyao_yuejian
+    target_node_id: kn:pattern:liuyao_richen
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "月建司三旬之令，日辰司四时之旺相；日辰操生杀大权与月建同功，二者共为旺衰之主。"
+        source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: yue_ri }
+
+  - id: rel:liuyao_duiying:xunkong_richen
+    source_node_id: kn:pattern:liuyao_xunkong
+    target_node_id: kn:pattern:liuyao_richen
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "爻遇旬空，日辰冲起而有用，谓之冲空则实；逢合住遇日建以冲开，谓之冲合则散。"
+        source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: chongkong }
+
+  - id: rel:liuyao_duiying:liuchong_liuhe
+    source_node_id: kn:pattern:liuyao_liuchong_gua
+    target_node_id: kn:pattern:liuyao_liuhe_gua
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "六冲与六合相对：六冲卦变六合卦者散而复聚，六合卦变六冲者先合后离。"
+        source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: chong_he }
+
+  - id: rel:liuyao_duiying:sanhe_liuhe
+    source_node_id: kn:pattern:liuyao_sanhe_ju
+    target_node_id: kn:pattern:liuyao_liuhe_gua
+    relation_type: duiying
+    direction: undirected
+    weight: 1.0
+    evidence:
+      - description: "三合局与六合同章论列，皆属「合」法；六合为两支相合，三合为三支成局。"
+        source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六合章第十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: he_fa }
+
+  - id: rel:liuyao_sheng:yuanshen_yongshen
+    source_node_id: kn:xi_shen:liuyao_yuanshen
+    target_node_id: kn:yong_shen:liuyao_yongshen
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "元神者，生用神之神即为元神。"
+        source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: yuanshen_role }
+
+  - id: rel:liuyao_ke:jishen_yongshen
+    source_node_id: kn:ji_shen:liuyao_jishen
+    target_node_id: kn:yong_shen:liuyao_yongshen
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "忌神者，克用神之爻也。"
+        source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: jishen_role }
+
+  - id: rel:liuyao_ke:choushen_yuanshen
+    source_node_id: kn:pattern:liuyao_choushen
+    target_node_id: kn:xi_shen:liuyao_yuanshen
+    relation_type: ke
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "仇神者，克元神而生忌神也。"
+        source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: choushen_role }
+
+  - id: rel:liuyao_sheng:choushen_jishen
+    source_node_id: kn:pattern:liuyao_choushen
+    target_node_id: kn:ji_shen:liuyao_jishen
+    relation_type: sheng
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "仇神者，克元神而生忌神也。"
+        source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: choushen_role }

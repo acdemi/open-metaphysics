@@ -14,6 +14,8 @@ import pytest
 
 from openmetaphysics.agents.bazi import BaziAgent, BaziInput
 from openmetaphysics.agents.bazi_explainer import BaziExplainer
+from openmetaphysics.agents.liuyao_explainer import LiuyaoExplainer
+from openmetaphysics.agents.qimen_explainer import QimenExplainer
 from openmetaphysics.agents.ziwei import ZiweiAgent, ZiweiInput
 from openmetaphysics.agents.ziwei_explainer import ZiweiExplainer
 from openmetaphysics.core.schemas import AgentOutput, Gender
@@ -201,7 +203,18 @@ def test_explain_does_not_modify_evidence():
 def test_domain_explainers_are_wired():
     assert isinstance(get_explainer_for("bazi"), BaziExplainer)
     assert isinstance(get_explainer_for("ziwei"), ZiweiExplainer)
-    assert type(get_explainer_for("qimen")) is Explainer
+    # P2.2: Qimen joined the same chain. It only overrides the *query*
+    # construction (遁/局/节气/值符 never entered the generic query), so the
+    # prompt contract and the offline fallback stay the generic ones.
+    qimen = get_explainer_for("qimen")
+    assert isinstance(qimen, QimenExplainer)
+    assert type(qimen)._llm_render is Explainer._llm_render
+    assert type(qimen)._fallback is Explainer._fallback
+    # P2.3: Liuyao joined the same chain, also query-construction only.
+    liuyao = get_explainer_for("liuyao")
+    assert isinstance(liuyao, LiuyaoExplainer)
+    assert type(liuyao)._llm_render is Explainer._llm_render
+    assert type(liuyao)._fallback is Explainer._fallback
     assert type(get_explainer_for(None)) is Explainer
 
 
