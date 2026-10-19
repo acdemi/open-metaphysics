@@ -1,0 +1,121 @@
+# KnowledgeNode — 九星（main_star, Qimen Corpus, 10 个）
+# P2.2 Qimen Knowledge Integration: 天蓬/天芮/天冲/天辅/天禽/天心/天柱/天任/天英
+# 与「九星」总纲 —— deterministic engine 实际使用到的九星知识。
+# 语义与 deterministic engine 一致: src/openmetaphysics/agents/qimen.py::NINE_STARS
+#   （坎1天蓬 坤2天芮 震3天冲 巽4天辅 中5天禽 乾6天心 兑7天柱 艮8天任 离9天英）。
+# 本语料为解释引用, 不参与计算。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 命名说明: slug 加 `qimen_` 域前缀, 避免与 Ziwei 冻结语料 kn:main_star:* 冲突。
+# 证据: 奇门遁甲统宗 卷之二·九星所主 / 卷之一·九星值符图 / 卷之二·奇门妙秘赋
+#   （书级归属 + 已读章节锚点; 非逐字核验）。
+
+nodes:
+  - id: kn:main_star:qimen_jiuxing
+    node_type: main_star
+    name_cn: 九星
+    name_en: qimen_jiuxing
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门九星，地盘所配为坎一天蓬、坤二天芮、震三天冲、巽四天辅、中五天禽、乾六天心、兑七天柱、艮八天任、离九天英。九星常为值符：旬首所临地盘宫之星即为值符，值符随时干，天盘九星按 (时干宫 - 旬首宫) 顺转。天禽阳遁阴遁俱寄坤宫。九星旺于子月，相于本月，死于父母月，囚于鬼月，废于妻月；辅、禽、心、任、冲为吉，蓬、芮、柱、英为凶。
+    tags: [奇门, 九星, 值符体系]
+    confidence: 0.85
+    attributes: { star_count: 9, subsystem: 值符, auspicious: [天辅, 天禽, 天心, 天任, 天冲], inauspicious: [天蓬, 天芮, 天柱, 天英] }
+
+  - id: kn:main_star:qimen_tianpeng
+    node_type: main_star
+    name_cn: 天蓬
+    name_en: qimen_star_tianpeng
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，大凶，五行属水，地盘居坎一宫。宜安抚边境、修筑城池；不宜入官见贵、嫁娶、移徙、商贾、营建。为盗贼之星，主水事、盗贼、失财。
+    tags: [奇门, 九星, 凶星, 水, 坎一宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 1, element: 水, fortune: 凶 }
+
+  - id: kn:main_star:qimen_tianrui
+    node_type: main_star
+    name_cn: 天芮
+    name_en: qimen_star_tianrui
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，大凶，五行属土，地盘居坤二宫。宜崇尚道德、尊师亲友、入官见贵；不宜嫁娶、移徙、商贾、营建。为师巫、为良朋益友，亦主病患、招官讼。
+    tags: [奇门, 九星, 凶星, 土, 坤二宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 2, element: 土, fortune: 凶 }
+
+  - id: kn:main_star:qimen_tianchong
+    node_type: main_star
+    name_cn: 天冲
+    name_en: qimen_star_tianchong
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，小吉，五行属木，地盘居震三宫。宜征伐战斗、报怨酬恩；不宜上官见贵、嫁娶、移徙、商贾、营建。为雷祖天帝、为武士，主动、主威声。
+    tags: [奇门, 九星, 小吉, 木, 震三宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 3, element: 木, fortune: 小吉 }
+
+  - id: kn:main_star:qimen_tianfu
+    node_type: main_star
+    name_cn: 天辅
+    name_en: qimen_star_tianfu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，大吉，五行属木，地盘居巽四宫。宜修道设教、诛凶伐暴、入官见贵、嫁娶、移徙、商贾、营建、应举、谋望。春夏婚姻移徙大吉；为文曲，主文化辅佐。
+    tags: [奇门, 九星, 吉星, 木, 巽四宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 4, element: 木, fortune: 大吉 }
+
+  - id: kn:main_star:qimen_tianqin
+    node_type: main_star
+    name_cn: 天禽
+    name_en: qimen_star_tianqin
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，大吉，五行属土，地盘居中五宫。天禽阳遁阴遁俱寄坤宫。宜祭祀、祈福、断灭群凶、入官见贵、赐爵赏功、应举、谋望、嫁娶、移徙、商贾、营建。为工、为师巫、为法士。
+    tags: [奇门, 九星, 吉星, 土, 中五宫, 寄坤宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 5, element: 土, fortune: 大吉, hosts_to: 坤二宫 }
+
+  - id: kn:main_star:qimen_tianxin
+    node_type: main_star
+    name_cn: 天心
+    name_en: qimen_star_tianxin
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，大吉，五行属金，地盘居乾六宫。宜兴师陈旅、诛暴伐恶、入官见贵、应举、求谋、嫁娶、移徙、商贾、营建。为高道、名医，亦宜书符合药。
+    tags: [奇门, 九星, 吉星, 金, 乾六宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 6, element: 金, fortune: 大吉 }
+
+  - id: kn:main_star:qimen_tianzhu
+    node_type: main_star
+    name_cn: 天柱
+    name_en: qimen_star_tianzhu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，小凶，五行属金，地盘居兑七宫。宜修筑营垒、训练士卒；不宜入官见贵、嫁娶移徙、商贾营建。为隐士、为修炼，可固守隐迹或为阴谋。
+    tags: [奇门, 九星, 凶星, 金, 兑七宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 7, element: 金, fortune: 小凶 }
+
+  - id: kn:main_star:qimen_tianren
+    node_type: main_star
+    name_cn: 天任
+    name_en: qimen_star_tianren
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，小吉，五行属土，地盘居艮八宫。宜立国邑、化人民、入官见贵、求请应与商贾、嫁娶；不宜迁徙、营建。嫁娶生子大贵，上官谒贵全吉。
+    tags: [奇门, 九星, 小吉, 土, 艮八宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 8, element: 土, fortune: 小吉 }
+
+  - id: kn:main_star:qimen_tianying
+    node_type: main_star
+    name_cn: 天英
+    name_en: qimen_star_tianying
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 九星之一，小凶，五行属火，地盘居离九宫。宜远行献书、上官见贵、应举报书；不宜嫁娶、移徙、商贾、营建、祭祀、远行。为炉冶人、为残患，主失财物、修造失火。
+    tags: [奇门, 九星, 凶星, 火, 离九宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 9, element: 火, fortune: 小凶 }

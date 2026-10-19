@@ -1,0 +1,112 @@
+# KnowledgeNode — 奇门结构与法则（pattern, Qimen Corpus, 9 个）
+# P2.2 Qimen Knowledge Integration: 阳遁/阴遁、值符/值使、六仪/三奇、旬首/空亡、三元。
+# 这些节点解释 deterministic result 中的结构性概念（dun_type / ju / 值符 / 值使 /
+# 旬首 / 空亡 / triple_offset），**不参与计算, 也不改变计算**。
+# 语义基准: src/openmetaphysics/agents/qimen.py 的算法流派约定
+#   （1 三元简化 / 2 局数 / 4 值符 / 5 值使 / 6 八神 / 8 空亡）。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# GAP-QIMEN-02: 冻结 KB-002 的 20 类 NodeType 无「结构/法则/概念」类别。此类奇门
+#   结构性概念暂以 `pattern`（具名配置）承载, 记为 schema 缺口, **不修改冻结 Schema**。
+# 证据: 奇门遁甲统宗 卷之一·遁甲起例 / 卷之二·阳遁起例·阴遁起例·三元·八节·
+#   以旬首取符使法·值符加时干法·值使加时支法 / 卷之三·孤虚
+#   （书级归属 + 已读章节锚点; 非逐字核验）。
+
+nodes:
+  - id: kn:pattern:qimen_yangdun
+    node_type: pattern
+    name_cn: 阳遁
+    name_en: qimen_yangdun
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门二遁之一。冬至（含）后至夏至前为阳遁：顺布六仪、逆布三奇。九局之中，一局甲子戊起坎一宫，依次顺行；甲子戊所在之宫即为局数（阳遁 n 局甲子戊在 n 宫）。阳遁九局各配节气，如冬至惊蛰一七四、小寒二八五、大寒春分三九六。本实现用法：遁型为阳时，地盘按顺布六仪、逆布三奇计算。
+    tags: [奇门, 阳遁, 阴阳遁, 顺布六仪, 冬至]
+    confidence: 0.85
+    attributes: { dun_type: yang, instrument_layout: 顺布六仪, three_qi_layout: 逆布三奇, starts_at_term: 冬至 }
+
+  - id: kn:pattern:qimen_yindun
+    node_type: pattern
+    name_cn: 阴遁
+    name_en: qimen_yindun
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阴遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门二遁之一。夏至（含）后至冬至前为阴遁：逆布六仪、顺布三奇。九局之中，甲子戊起离九宫，逆行；阴遁 n 局甲子戊在 (10 - n) 宫。阴遁九局各配节气，如夏至白露九三六、小暑八二五。本实现用法：遁型为阴时，地盘按逆布六仪、顺布三奇计算。
+    tags: [奇门, 阴遁, 阴阳遁, 逆布六仪, 夏至]
+    confidence: 0.85
+    attributes: { dun_type: yin, instrument_layout: 逆布六仪, three_qi_layout: 顺布三奇, starts_at_term: 夏至 }
+
+  - id: kn:pattern:qimen_zhifu
+    node_type: pattern
+    name_cn: 值符
+    name_en: qimen_zhifu_concept
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 值符有二义：一为当值之九星，一为八神之首。取法：旬首（用时之干溯至本旬之甲首）所临地盘宫之星即为值符星；值符随时干——看时干临于地盘何宫，即以天盘值符加于此宫，天盘九星整体按 (时干宫 - 旬首宫) 顺转。值符落中五宫时寄坤二宫。八神之值符神随值符落宫起布。九星常为值符，十时一易。
+    tags: [奇门, 值符, 值符星, 随时干, 旬首]
+    confidence: 0.85
+    attributes: { subsystem: [九星, 八神], rule: 旬首宫之星为值符星, follows: 时干, center_host: 坤二宫 }
+
+  - id: kn:pattern:qimen_zhishi
+    node_type: pattern
+    name_cn: 值使
+    name_en: qimen_zhishi_concept
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·值使加时支法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 值使即当值之门。取法：旬首所临地盘宫之地盘八门即为值使门；值使随时支——自本宫起，阳遁顺行、阴遁逆行，步数为 (时支序 - 旬首支序) 的余数，落宫后其余八门按洛书宫序顺布（跳过中宫）。值使落中五宫时寄坤二宫。八门常为值使，十时一易；奇门占法「急从神兮缓从门」，值使为门盘主导。
+    tags: [奇门, 值使, 值使门, 随时支, 旬首]
+    confidence: 0.85
+    attributes: { subsystem: 八门, rule: 旬首宫之地盘门为值使门, follows: 时支, center_host: 坤二宫 }
+
+  - id: kn:pattern:qimen_liuyi
+    node_type: pattern
+    name_cn: 六仪
+    name_en: qimen_liuyi
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·六仪遁, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 六仪即戊、己、庚、辛、壬、癸，为六甲所遁之仪：甲子遁于六戊、甲戌遁于六己、甲申遁于六庚、甲午遁于六辛、甲辰遁于六壬、甲寅遁于六癸。甲为至尊之神，宜藏而不宜露，故隐于六仪之下，是为「遁甲」。地盘按局数顺布（阳遁）或逆布（阴遁）六仪三奇，顺序为戊己庚辛壬癸丁丙乙。
+    tags: [奇门, 六仪, 遁甲, 戊己庚辛壬癸]
+    confidence: 0.85
+    attributes: { instruments: [戊, 己, 庚, 辛, 壬, 癸], pairs: { 甲子: 戊, 甲戌: 己, 甲申: 庚, 甲午: 辛, 甲辰: 壬, 甲寅: 癸 } }
+
+  - id: kn:pattern:qimen_sanqi
+    node_type: pattern
+    name_cn: 三奇
+    name_en: qimen_sanqi
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·三奇喜怒, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 三奇即乙、丙、丁：乙为日奇、丙为月奇、丁为星奇，三奇之中星奇最灵。地盘布奇与六仪相反（阳遁逆布三奇、阴遁顺布三奇），六仪之后依次为丁、丙、乙。天盘干中之乙丙丁落宫，在盘面单独标记为三奇落宫。奇门「吉门仍又合三奇，大概须云百事宜」；三奇忌入墓（乙丙到乾、丁到艮），亦忌迫制。
+    tags: [奇门, 三奇, 乙丙丁, 日奇月奇星奇]
+    confidence: 0.85
+    attributes: { three_qi: [乙, 丙, 丁], roles: { 乙: 日奇, 丙: 月奇, 丁: 星奇 }, tomb_palaces: { 乙: 乾六宫, 丙: 乾六宫, 丁: 艮八宫 } }
+
+  - id: kn:pattern:qimen_xunshou
+    node_type: pattern
+    name_cn: 旬首
+    name_en: qimen_xunshou
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 旬首为一时干支所溯至的本旬甲首：甲子、甲戌、甲申、甲午、甲辰、甲寅六旬，每旬十日。旬首隐于对应六仪，故旬首所临地盘宫即由其遁仪所在宫决定。旬首所在宫之星为值符、之八门为值使，是奇门起盘之枢纽；旬空二支亦由旬首推得。本实现用法：以时干支序取旬，以旬首所遁六仪之地盘宫为旬首宫。
+    tags: [奇门, 旬首, 六甲, 符使]
+    confidence: 0.85
+    attributes: { xun: [甲子, 甲戌, 甲申, 甲午, 甲辰, 甲寅], span_days: 10, role: 取符使 }
+
+  - id: kn:pattern:qimen_kongwang
+    node_type: pattern
+    name_cn: 空亡
+    name_en: qimen_kongwang
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之三·孤虚, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 空亡（旬空）为六甲旬中十干配十二支所余之二支：甲子旬中戌亥空、甲戌旬中申酉空，余旬仿此。奇门以时柱旬空二支映射宫位（坎子、艮丑寅、震卯、巽辰巳、离午、坤未申、兑酉、乾戌亥），对应宫位在盘面上单独标记为空亡宫。《奇门遁甲统宗》卷之三「孤虚」以「空亡前一位为孤、孤之冲为虚」，为空亡同类之方位法，二者宜分别看待。
+    tags: [奇门, 空亡, 旬空, 孤虚, is_void]
+    confidence: 0.8
+    attributes: { basis: 旬空二支, mapping: 支→宫, void_flag: is_void }
+
+  - id: kn:pattern:qimen_sanyuan
+    node_type: pattern
+    name_cn: 三元
+    name_en: qimen_sanyuan
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·三元, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 三元即上元、中元、下元：一年二十四气，一气三候，一候五日，故五日为一元，一气统三元。古典定三元法以符头所临之支分：值子午卯酉为上元、寅申巳亥为中元、辰戌丑未为下元。元次决定节气基本局之上的局数偏移（三元偏移）。本实现的流派约定（实现假设，非规范契约）：以公历日号 1-10/11-20/21-30 近似上/中/下元，偏移分别为 +0/+3/+6，未实现超神接气与置闰法；本节点仅作解释语境，不改变实现结果。
+    tags: [奇门, 三元, 上元中元下元, 局数偏移]
+    confidence: 0.8
+    attributes: { trinity: [上元, 中元, 下元], span_days_per_yuan: 5, engine_simplification: 日号 1-10/11-20/21-30 → 偏移 0/3/6 }

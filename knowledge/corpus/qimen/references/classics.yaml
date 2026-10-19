@@ -1,0 +1,131 @@
+# KnowledgeReference — Qimen 语料引用（classic_text, 15 条）
+# P2.2 Qimen Knowledge Integration: 节点级与关系级来源登记（provenance）。
+# 规范: KREF-001~004 / reference/knowledge.py::KnowledgeReference
+# 证据策略: passage 为**摘要式**说明（KREF 允许 passage 为引文或摘要）。
+#   P2.2 为首次 Qimen 语料建设: 已完成**书级来源归属**并在线通读了列出的章节结构,
+#   但**未**做 revision-pinned 抓取归档与逐条逐字核验, 故:
+#     - 不书写未核验的古籍原文长引文;
+#     - 仅在确已读到、且为极短通行短语时标注「读自转录本」;
+#     - 不声称 VERBATIM_VERIFIED（沿用项目既有 provenance 语义）。
+#   来源元数据见 knowledge/sources/qimen/source_qimen_01.yaml / 02.yaml。
+
+references:
+  - reference_id: ref:classic:qimen_jiugong
+    target_type: node
+    target_id: kn:palace:qimen_jiugong
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·遁甲起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：洛书九宫为奇门之祖，戴九履一，左三右七，二四为肩，六八为足，五居中宫；上法九宫、下应九州，中建八门。九宫为地盘，六仪三奇按阴阳遁顺逆布之，中宫寄坤二宫。（读自维基文库转录本，非逐字核验；与 engine PALACE_NAMES_9 / PALACE_BRANCHES 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_bamen
+    target_type: node
+    target_id: kn:shen_sha:qimen_bamen
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：八门地盘配属为坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开；八门常为值使，随值符亦十时一易。论八门执事歌：欲求财利往生方，葬猎须知死路强；征战远行开门吉，休门见贵最为良；捉贼惊门无不获，杜门无事好逃藏；索债须防伤上去，思量饮酒景门高。（短句读自转录本，非逐字核验。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_bamen_suozhu
+    target_type: relation
+    target_id: rel:qimen_shuyu:bamen_kai
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：八门各有宜忌——开门宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建，不宜治政；休门宜面君谒贵、上官到任、嫁娶、移徙，不宜行刑断狱；生门宜征讨谋望，不宜埋葬治丧；伤门宜渔猎讨捕索债；杜门宜捕盗剪凶；景门宜上书献策、招贤谒贵；死门宜决断刑狱吊丧埋葬；惊门宜掩捕盗贼。八门最怕迫制。（摘录改写，非逐字核验。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_jiuxing
+    target_type: node
+    target_id: kn:main_star:qimen_jiuxing
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之一·九星值符图, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：九星地盘配属为坎一天蓬、坤二天芮、震三天冲、巽四天辅、中五天禽、乾六天心、兑七天柱、艮八天任、离九天英。九星常为值符用，十时一易，每用加时干。天禽阳遁阴遁俱寄坤宫。（读自转录本，非逐字核验；与 engine NINE_STARS 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_jiuxing_suozhu
+    target_type: relation
+    target_id: rel:qimen_shuyu:jiuxing_tianfu
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·九星所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：九星各有宜忌，天辅、天禽、天心、天任、天冲为吉，天蓬、天芮、天柱、天英为凶（「天辅冲任禽心吉，天蓬天英芮柱凶」）。天蓬宜安抚边境、修筑城池；天辅宜修道设教、诛凶伐暴；天心宜兴师陈旅、诛暴伐恶；天芮宜崇尚道德、尊师亲友；天柱宜修筑营垒、训练士卒；天任宜立国邑、化人民；天英宜远行献书。九星旺于子月。（摘录改写，非逐字核验。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_bashen
+    target_type: node
+    target_id: kn:shen_sha:qimen_bashen
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：八神次第为一值符、二腾蛇、三太阴、四六合、五勾陈、六朱雀、七九地、八九天（阳遁）；阴遁则次第逆行，并注「朱雀下有玄武，勾陈下又白虎」。本 engine 采用通行八神命名（以白虎、玄武代勾陈、朱雀），语料按 engine 用名收录并在 attributes 保留异名。（读自转录本，非逐字核验；流派差异已显式登记。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_bashen_leishen
+    target_type: node
+    target_id: kn:shen_sha:qimen_shen_zhifu
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八神类神, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：八神类神——值符禀中央之土，为贵人之位，能育万物；腾蛇禀南方之火，为虚耗之神；太阴禀西方之金，为阴佑之神；六合禀东方之木，为护卫之神；勾陈（下有白虎）禀西方之金，为刚勇之神，主兵戈战斗；朱雀（下有玄武）禀北方之水，为刑戮奸谗之神；九地为坤土之象，万物之母；九天为乾金之象，万物之父。（摘录改写，非逐字核验。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_yangdun
+    target_type: node
+    target_id: kn:pattern:qimen_yangdun
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阳遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：阳遁九局顺布六仪、逆布三奇。一局甲子戊起坎一宫，甲戌己在坤二宫，甲申庚在震三宫，甲午辛在巽四宫，甲辰壬在中五宫，甲寅癸在乾六宫；丁在兑七宫，丙在艮八宫，乙在离九宫。二局甲子戊起坤二宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type="yang") 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_yindun
+    target_type: node
+    target_id: kn:pattern:qimen_yindun
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·阴遁起例, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：阴遁九局逆布六仪、顺布三奇。一局甲子戊起离九宫，甲戌己在艮八宫，甲申庚在兑七宫，甲午辛在乾六宫，甲辰壬在中五宫，甲寅癸在巽四宫；丁在震三宫，丙在坤二宫，乙在坎一宫。八局甲子戊起艮八宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type="yin") 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_yanbo_yinyang
+    target_type: node
+    target_id: kn:pattern:qimen_yangdun
+    ref_type: classic_text
+    source: { text: 烟波钓叟歌, author: 赵普（旧题）, url: "https://zh.wikisource.org/wiki/煙波釣叟歌", credibility: 0.7 }
+    passage: 摘要（佐证）：歌诀总纲述「阴阳二遁分顺逆，一气三元人莫测，五日都来换一元」及「节气推移时候定，阴阳顺逆要精通」，与《奇门遁甲统宗》阳遁/阴遁顺逆布仪之说平行。本语料以其为佐证来源，不据以做逐字核验（维基文库转录含异文校注）。
+    credibility: 0.7
+
+  - reference_id: ref:classic:qimen_zhifu
+    target_type: node
+    target_id: kn:pattern:qimen_zhifu
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·以旬首取符使法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：旬首者，从用时之干溯至本旬之甲首；地盘旬首所临之宫，其星即为值符，其门即为值使。如旬首在坎宫，则天蓬星为值符，休门为值使。值符加时干法：看用时之干临于地盘何宫，即以天盘值符加于此宫，所谓伏吟者是也。（读自转录本，非逐字核验；与 engine 值符/天盘顺转一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_zhishi
+    target_type: node
+    target_id: kn:pattern:qimen_zhishi
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·值使加时支法, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：八门常为值使，随值符亦十时一易；值使加时支——看用时之支临于地盘何宫，即以天盘值使加于其上，阳遁顺行、阴遁逆行。值符值使诀：一逢坎上一坎休，芮死还排第二流，更有冲伤居震位，巽逢杜辅数为头。（短句读自转录本，非逐字核验；与 engine 值使落宫一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_liuyi
+    target_type: node
+    target_id: kn:pattern:qimen_liuyi
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·六仪遁, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：六仪为戊己庚辛壬癸；甲子遁于六戊、甲戌遁于六己、甲申遁于六庚、甲午遁于六辛、甲辰遁于六壬、甲寅遁于六癸。遁甲起例亦述「顺布六仪（甲子戊、甲戌己、甲申庚、甲午辛、甲辰壬、甲寅癸）」。（读自转录本，非逐字核验；与 engine LIUYI / LIUJIA 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_sanqi
+    target_type: node
+    target_id: kn:pattern:qimen_sanqi
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·三奇喜怒, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：三奇为乙丙丁，乙为日奇、丙为月奇、丁为星奇，三奇之中星奇最灵。遁甲起例述「逆飞三奇（乙为日奇，丙为月奇，丁为星奇）」。三奇喜怒详列三奇到各宫之名（如乙奇到震为玉兔游宫、丁奇到坎为朱雀投江）。（摘录改写，非逐字核验；与 engine SANQI 一致。）
+    credibility: 0.8
+
+  - reference_id: ref:classic:qimen_xunshou_kongwang
+    target_type: node
+    target_id: kn:pattern:qimen_kongwang
+    ref_type: classic_text
+    source: { text: 奇门遁甲统宗, chapter: 卷之三·孤虚, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    passage: 摘要：《奇门遁甲统宗》卷之三论「孤虚」：年月日时俱以前一位空亡为孤，孤之冲为虚，并按年孤/月孤/旬孤/日孤/时孤分量取用。本语料所收录之「空亡」为六甲旬空（旬中二支）之通行义，engine 将时柱旬空二支映射为宫位；二者为同类而不同义的方位法，宜分别看待。（摘录改写，非逐字核验。）
+    credibility: 0.8

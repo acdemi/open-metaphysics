@@ -1,0 +1,35 @@
+# KnowledgeRelation — 作用（roles, Liuyao Corpus, 2 条）
+# P2.3 Liuyao Knowledge Integration: 月建/日辰对用神的旺衰作用。
+#   用神体系中的生克角色（元神生用神、忌神克用神、仇神克元神而生忌神）
+#   已按 sheng/ke 登记于 relations/duiying.yaml。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 增刪卜易/16 月將章第十六 / /17 日辰章第十七（revision-pinned, 逐字核验）。
+
+relations:
+  - id: rel:liuyao_zhiyue:yuejian_yongshen
+    source_node_id: kn:pattern:liuyao_yuejian
+    target_node_id: kn:yong_shen:liuyao_yongshen
+    relation_type: zhiyue
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "月建掌一月之权，司三旬之令，能助卦爻之衰弱，能挫爻象之旺强；用神之旺衰先看月建。"
+        source: { text: 增刪卜易, chapter: 月將章第十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 月將章第十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: yuejian_rule }
+
+  - id: rel:liuyao_zhiyue:richen_yongshen
+    source_node_id: kn:pattern:liuyao_richen
+    target_node_id: kn:yong_shen:liuyao_yongshen
+    relation_type: zhiyue
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "日辰为六爻之主宰，司四时之旺相；用神之生克冲合皆以日辰为断。"
+        source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 日辰章第十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: richen_rule }

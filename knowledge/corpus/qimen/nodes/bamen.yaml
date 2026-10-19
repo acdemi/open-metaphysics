@@ -1,0 +1,113 @@
+# KnowledgeNode — 八门（shen_sha 承载, Qimen Corpus, 9 个）
+# P2.2 Qimen Knowledge Integration: 休/生/伤/杜/景/死/惊/开 八门本体与「八门」总纲。
+# 语义与 deterministic engine 一致: src/openmetaphysics/agents/qimen.py::EIGHT_DOORS
+#   （坎1休门 坤2死门 震3伤门 巽4杜门 中5无门 乾6开门 兑7惊门 艮8生门 离9景门）。
+# 本语料为解释引用, 不参与计算。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# GAP-QIMEN-01: 冻结 KB-002 的 20 类 NodeType 无「门/门户」类别。八门暂以
+#   `shen_sha`（象义类符号实体）承载, 语义以 tags 与 attributes 保留, 记为 schema
+#   缺口, **不修改冻结 Schema**（详见 P2.2 报告与 knowledge/README.md §7）。
+# 命名说明: 景门(离宫)与惊门(兑宫)拼音同为 jing, slug 以所配宫位后缀区分:
+#   qimen_men_jing_li（景门）/ qimen_men_jing_dui（惊门）。
+# 证据: 奇门遁甲统宗 卷之二·八门所主 / 卷之一·论八门执事歌 / 卷之二·奇门妙秘赋
+#   （书级归属 + 已读章节锚点; 非逐字核验）。
+
+nodes:
+  - id: kn:shen_sha:qimen_bamen
+    node_type: shen_sha
+    name_cn: 八门
+    name_en: qimen_bamen
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 奇门八门，地盘所配为坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开；中宫不开门。八门为「值使」体系：旬首所临地盘宫之门即为值使，值使随时支按阳遁顺行、阴遁逆行布于八宫（跳过中宫）。八门有吉凶与五行，并最怕迫制（门与宫相克）。八门只布八宫，与九星、八神同。
+    tags: [奇门, 八门, 门, 值使体系]
+    confidence: 0.85
+    attributes: { door_count: 8, palaces: 8, center_has_door: false, subsystem: 值使 }
+
+  - id: kn:shen_sha:qimen_men_xiu
+    node_type: shen_sha
+    name_cn: 休门
+    name_en: qimen_door_xiu
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，吉门，五行属水，地盘居坎一宫。宜面君谒贵、上官到任、嫁娶、移徙、商贾、营建，诸事皆吉；不宜行刑断狱。执事歌诀「休门见贵最为良」。休门主休养安和、藏聚不飞扬。
+    tags: [奇门, 八门, 吉门, 水, 坎一宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 1, element: 水, fortune: 吉 }
+
+  - id: kn:shen_sha:qimen_men_sheng
+    node_type: shen_sha
+    name_cn: 生门
+    name_en: qimen_door_sheng
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，吉门，五行属土，地盘居艮八宫。宜征讨、谋望、入官见贵、嫁娶、移徙，诸事皆吉；不宜埋葬治丧。执事歌诀「欲求财利往生方」。生门主发生安闲、初成之物。
+    tags: [奇门, 八门, 吉门, 土, 艮八宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 8, element: 土, fortune: 吉 }
+
+  - id: kn:shen_sha:qimen_men_shang
+    node_type: shen_sha
+    name_cn: 伤门
+    name_en: qimen_door_shang
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，凶门，五行属木，地盘居震三宫。宜渔猎、讨捕索债、博戏、收敛货财，余俱不宜。执事歌诀「索债须防伤上去」。伤门主振动伤残，亦可运粮捕捉。
+    tags: [奇门, 八门, 凶门, 木, 震三宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 3, element: 木, fortune: 凶 }
+
+  - id: kn:shen_sha:qimen_men_du
+    node_type: shen_sha
+    name_cn: 杜门
+    name_en: qimen_door_du
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，中平偏凶，五行属木，地盘居巽四宫。宜捕盗、剪凶、决隐、狱形、填塞沟壑，余俱不宜。执事歌诀「杜门无事好逃藏」。杜门主闭塞无为、藏匿不通。
+    tags: [奇门, 八门, 中平, 木, 巽四宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 4, element: 木, fortune: 中平 }
+
+  - id: kn:shen_sha:qimen_men_jing_li
+    node_type: shen_sha
+    name_cn: 景门
+    name_en: qimen_door_jing_li
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，中平，五行属火，地盘居离九宫。宜上书献策、招贤谒贵、拜职遣使、行诛、突阵，余俱不宜。执事歌诀「思量饮酒景门高」。景门主虚华张扬，喜而不久。
+    tags: [奇门, 八门, 中平, 火, 离九宫, 景门]
+    confidence: 0.85
+    attributes: { fixed_palace: 9, element: 火, fortune: 中平, slug_note: 景(离宫)与惊(兑宫)拼音同形, 以宫位区分 }
+
+  - id: kn:shen_sha:qimen_men_si
+    node_type: shen_sha
+    name_cn: 死门
+    name_en: qimen_door_si
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，大凶门，五行属土，地盘居坤二宫。宜决断、刑狱、吊丧、埋葬等事。执事歌诀「葬猎须知死路强」。死门主死亡败绝、事无可成。
+    tags: [奇门, 八门, 凶门, 土, 坤二宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 2, element: 土, fortune: 凶 }
+
+  - id: kn:shen_sha:qimen_men_jing_dui
+    node_type: shen_sha
+    name_cn: 惊门
+    name_en: qimen_door_jing_dui
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，凶门，五行属金，地盘居兑七宫。宜掩捕盗贼、恐惑乱众等事。执事歌诀「捉贼惊门无不获」。惊门主惊惶不安、忧疑怪异。
+    tags: [奇门, 八门, 凶门, 金, 兑七宫, 惊门]
+    confidence: 0.85
+    attributes: { fixed_palace: 7, element: 金, fortune: 凶, slug_note: 惊(兑宫)与景(离宫)拼音同形, 以宫位区分 }
+
+  - id: kn:shen_sha:qimen_men_kai
+    node_type: shen_sha
+    name_cn: 开门
+    name_en: qimen_door_kai
+    systems: [qimen]
+    source: { text: 奇门遁甲统宗, chapter: 卷之二·八门所主, author: 程道生（旧题）, url: "https://zh.wikisource.org/wiki/奇門遁甲統宗", credibility: 0.8 }
+    interpretation: 八门之一，吉门，五行属金，地盘居乾六宫。宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建；不宜治政。执事歌诀「征战远行开门吉」。开门主豁达开畅、四通八达。
+    tags: [奇门, 八门, 吉门, 金, 乾六宫]
+    confidence: 0.85
+    attributes: { fixed_palace: 6, element: 金, fortune: 吉 }

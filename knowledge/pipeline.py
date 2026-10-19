@@ -7,13 +7,15 @@ deterministic JSON corpus with a SHA-256 checksum.
 Determinism: no clock, no random, no network; sort_keys=True output.
 Run:  python knowledge/pipeline.py [domain ...]
 
-Domains (P2.1 BaZi Knowledge Integration added the second domain without
-changing the existing one):
+Domains (P2.1 added the second domain and P2.2 the third, without changing the
+existing ones):
 
 * ``ziwei`` -- the frozen corpus (``ziwei_corpus.json``, status ``frozen``).
   Its output is byte-identical to the pre-P2.1 pipeline: same metadata fields,
   same source_digests key set (``sources/ziwei/*.yaml``), same ordering.
 * ``bazi``  -- the P2.1 BaZi corpus (``bazi_corpus.json``, status ``candidate``).
+* ``qimen`` -- the P2.2 Qimen corpus (``qimen_corpus.json``, status ``candidate``).
+* ``liuyao`` -- the P2.3 Liuyao corpus (``liuyao_corpus.json``, status ``candidate``).
 
 ``build()`` keeps its Phase 7.0 signature and still returns the Ziwei document
 by default, so existing callers are unaffected.
@@ -64,6 +66,18 @@ DOMAINS: dict[str, DomainSpec] = {
         status="candidate",
         version="0.1.0",
         pipeline="knowledge/pipeline.py (P2.1 BaZi Knowledge Integration)",
+    ),
+    "qimen": DomainSpec(
+        corpus_id="qimen_corpus",
+        status="candidate",
+        version="0.1.0",
+        pipeline="knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
+    ),
+    "liuyao": DomainSpec(
+        corpus_id="liuyao_corpus",
+        status="candidate",
+        version="0.1.0",
+        pipeline="knowledge/pipeline.py (P2.3 Liuyao Knowledge Integration)",
     ),
 }
 DEFAULT_DOMAIN = "ziwei"

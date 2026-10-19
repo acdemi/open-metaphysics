@@ -8,6 +8,13 @@
 > 2026-10-03（**P2.1 BaZi Knowledge Integration** —— 新增 `bazi_corpus:0.1.0`
 > 40/67/14 并接入既有 Pipeline / 校验器 / Retriever / Explain 链路；Ziwei 冻结语料
 > 字节未变（digest `69d6e2a6…`）；不新增治理流程）
+> 2026-10-03（**P2.2 Qimen Knowledge Integration** —— 新增 `qimen_corpus:0.1.0`
+> 47/60/15 接入同一条 RAG→Explain 链路；Ziwei 与 BaZi 语料字节未变；
+> 不新增治理流程、不修改冻结 Schema / Qimen 契约 / 计算逻辑）
+> 2026-10-19（**P2.3 Liuyao Knowledge Integration** —— 新增 `liuyao_corpus:0.1.0`
+> 43/54/23；首个 revision-pinned 逐章逐字核验的来源域《增刪卜易》；
+> 接入同一条 RAG→Explain 链路；Ziwei / BaZi / Qimen 语料字节未变；
+> 不修改冻结 Schema / 契约 / 计算逻辑）
 
 ---
 
@@ -20,7 +27,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1 —— 首个进入 RAG→Explain 链路的 BaZi 结构化语料）; Provenance **AUDITED**。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.1 后全绿, 含 BaZi 语料/检索/Explain E2E） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.1.0`, 43 节点 / 54 关系 / 23 引用, 2026-10-19, P2.3 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.3 后全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1005 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -142,6 +149,42 @@
 > 已知缺口（schema: 破无 `po` 类型 → 以 `duiying`+subtype 承载; 日主/月令无专用
 > node_type; 章节级逐字核验范围有限）记录于 `knowledge/README.md` §7。
 > 语料**未升级为 frozen**（需独立 Corpus 级审查）。
+> **P2.2 Qimen Knowledge Integration**（2026-10-03）—— 复用同一 Knowledge / RAG /
+> Explain 架构（未新建第二套知识系统、未改 Retriever 算法、未引入 embedding/向量库）:
+> 新增 **`qimen_corpus:0.1.0`（candidate）** = 47 节点（九宫 10 / 八门 9 / 九星 10 /
+> 八神 9 / 奇门结构与法则 9）+ 60 关系（属于（成员/体系归属）+ 对应（地盘宫↔星·
+> 宫↔门配属、值符↔值符神、阳遁↔阴遁、旬首↔六仪、三奇↔六仪、空亡↔旬首、
+> 三元↔阴阳遁））+ 15 引用；节点文本保持纯中文（避免拉丁词污染字符级稀有度权重）。
+> `pipeline.py` / `validate.py` / `rag/corpus.py` 三处登记即完成接入；新增
+> `QimenExplainer`（**仅**覆写检索查询构造，prompt 契约与离线 fallback 沿用通用
+> 实现），修复「通用查询从不携带 阴遁/阳遁·节气·局数·值符·值使」的实测缺陷。
+> 结果: 九宫/八门/九星/八神/阴遁/阳遁/值符/值使 八项必需术语 **top-1 命中**;
+> `POST /agents/qimen/explain` HTTP E2E（含 provider timeout / knowledge 不可用）
+> 全绿。**未修改 Qimen frozen contract、golden vectors、计算逻辑、KB Schema**;
+> Ziwei 冻结语料 digest `69d6e2a6…` 与 BaZi 语料 digest `69b6edea…` 均未变。
+> 已知缺口（GAP-QIMEN-01 八门无专用 node_type; GAP-QIMEN-02 结构/法则无专用
+> node_type; GAP-QIMEN-03 八神流派命名差异; Qimen 无 revision-pin 逐字核验;
+> 跨平台 YAML EOL 会影响 `source_digests`）记录于 `knowledge/README.md` §7。
+> **`.gitattributes` 未修改**（建议规则会改变冻结 Ziwei digest，前提不成立）。
+> **P2.3 Liuyao Knowledge Integration**（2026-10-19）—— 复用同一 Knowledge / RAG /
+> Explain 架构（未新建第二套知识系统、未改 Retriever 算法、未引入 embedding/向量库）:
+> 新增 **`liuyao_corpus:0.1.0`（candidate）** = 43 节点（六亲 6 / 六神 7 / 八宫 9 /
+> 结构法则 13（本卦·变卦·动爻·世应·纳甲·月建·日辰·旬空·六冲卦·六合卦·三合局·三刑·仇神）/
+> 五行 5 / 用神体系 3（用神·元神·忌神））+ 54 关系（属于 + 五行生克 + 结构对应 +
+> 月建/日辰作用）+ 23 引用；节点文本保持纯中文。
+> **P2 系列首个 revision-pinned 证据域**: 《增刪卜易》主页 revid 2572918 + 17 个子页
+> revid / 原始字节 SHA-256 逐条登记（`sources/liuyao/source_liuyao_01.yaml`），
+> 已核章节**逐字核验**（transcription 异文逐条登记，不静默改写）。
+> `pipeline.py` / `validate.py` / `rag/corpus.py` 三处登记即完成接入；新增
+> `LiuyaoExplainer`（**仅**覆写检索查询构造, prompt 契约与离线 fallback 沿用通用实现），
+> 修复「通用查询的 6 个语义槽被六亲占满，卦名/六神/世应/纳甲永不进入查询」的实测缺陷。
+> 结果: 18 项组合/单术语查询 top-1 命中 Liuyao 节点；`POST /agents/liuyao/explain`
+> HTTP E2E（含 provider timeout / knowledge 不可用 / k 边界 / 可复现）全绿。
+> **未修改任何冻结契约、golden vectors、计算逻辑、KB Schema**；Ziwei digest
+> `69d6e2a6…`、BaZi `69b6edea…`、Qimen `40de5c45…` 均未变。
+> 已知缺口（GAP-LIUYAO-01 六亲无专用 node_type; -02 结构/法则无专用 node_type;
+> -03 元神无专用 node_type; -04 仇神无专用 node_type; -05 互卦无定义性原文故不生产）
+> 记录于 `knowledge/README.md` §7。
 
 ---
 

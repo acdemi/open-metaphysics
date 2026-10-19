@@ -1,0 +1,4290 @@
+{
+  "metadata": {
+    "corpus_id": "liuyao_corpus",
+    "counts": {
+      "nodes": 43,
+      "references": 23,
+      "relations": 54
+    },
+    "domain": "liuyao",
+    "pipeline": "knowledge/pipeline.py (P2.3 Liuyao Knowledge Integration)",
+    "source_digests": {
+      "source_liuyao_01.yaml": "2e402d986832d5234b4853dbc8cbc075282b47c1270255dc14184b759dcb3fce"
+    },
+    "status": "candidate",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "attributes": {
+        "relation_to_self": {
+          "克我": "官鬼",
+          "同我": "兄弟",
+          "我克": "妻财",
+          "我生": "子孙",
+          "生我": "父母"
+        }
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_liuqin",
+      "interpretation": "六爻以卦宫五行为「我」，按各爻纳甲地支五行与「我」的生克关系安六亲：生我者为父母，我生者为子孙，克我者为官鬼，我克者为妻财，比和者为兄弟。乾兑宫属金，故金为兄弟、土为父母、木为妻财、火为官鬼、水为子孙；坎宫属水、坤艮宫属土、离宫属火、震巽宫属木，各依此类推。变卦之爻仍照正卦推六亲。",
+      "name_cn": "六亲",
+      "name_en": "liuyao_six_relatives",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "父母",
+        "兄弟",
+        "子孙",
+        "妻财",
+        "官鬼"
+      ]
+    },
+    {
+      "attributes": {
+        "relation": "生我",
+        "role": "父母",
+        "yong_shen_for": [
+          "父母",
+          "长辈",
+          "文书",
+          "房屋",
+          "舟车"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_fumu",
+      "interpretation": "六亲之一，生我者為父母。占父母、祖父母、伯叔姑姨、师长及与我父母同辈之亲，以父母爻为用神；占天地、城池、墙垣、宅舍、屋宇、舟车、衣服、雨具、章奏、文书、书馆文契，亦以父母爻为用神。一切庇护我身者属之。五行上为生宫者。",
+      "name_cn": "父母",
+      "name_en": "liuyao_parents",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "父母",
+        "文书",
+        "房屋",
+        "生我"
+      ]
+    },
+    {
+      "attributes": {
+        "adverse_for": [
+          "财物",
+          "谋事",
+          "妻妾"
+        ],
+        "relation": "同我",
+        "role": "兄弟",
+        "yong_shen_for": [
+          "兄弟",
+          "朋友",
+          "同事",
+          "合伙"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_xiongdi",
+      "interpretation": "六亲之一，比和者为兄弟。占兄弟、姐妹、族中兄弟、姑姨、妹夫及结拜兄弟，以兄弟爻为用神。兄弟为同类之人，彼得志则欺凌，见财则夺，故占财物以此为劫神，占谋事以此为阻神，占妻妾婢仆以此为刑伤克害之神。五行上与宫相同。",
+      "name_cn": "兄弟",
+      "name_en": "liuyao_siblings",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "兄弟",
+        "劫财",
+        "阻隔",
+        "比和"
+      ]
+    },
+    {
+      "attributes": {
+        "adverse_for": [
+          "功名"
+        ],
+        "relation": "我生",
+        "role": "子孙",
+        "yong_shen_for": [
+          "子孙",
+          "医药",
+          "僧道",
+          "六畜"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_zisun",
+      "interpretation": "六亲之一，我生者为子孙。占子孙、女儿、女婿、侄甥、门生及在我子孙辈中者，以子孙爻为用神；占忠臣、良将、医药、僧道、兵卒、六畜禽兽，亦以子孙爻为用神。子孙为福德之神，为制鬼之神、解忧之神、剥官之神，诸事见之为喜，独占功名者忌之。五行上为宫所生者。",
+      "name_cn": "子孙",
+      "name_en": "liuyao_children",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "子孙",
+        "福德",
+        "医药",
+        "我生"
+      ]
+    },
+    {
+      "attributes": {
+        "relation": "我克",
+        "role": "妻财",
+        "yong_shen_for": [
+          "妻财",
+          "财物",
+          "买卖",
+          "珠宝"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_qicai",
+      "interpretation": "六亲之一，我克者为妻财。占妻妾、婢仆、役使之人，以妻财爻为用神；占货财、珠宝、仓库及一切使用之财物，亦以妻财爻为用神。五行上为宫所克者。",
+      "name_cn": "妻财",
+      "name_en": "liuyao_wealth",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "妻财",
+        "财物",
+        "妻妾",
+        "我克"
+      ]
+    },
+    {
+      "attributes": {
+        "relation": "克我",
+        "role": "官鬼",
+        "yong_shen_for": [
+          "功名",
+          "官府",
+          "丈夫",
+          "贼盗"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:ten_god:liuyao_guangui",
+      "interpretation": "六亲之一，克我者为官鬼。占功名、官府、雷霆鬼神、妻占夫，以官鬼爻为用神；占乱臣、贼盗、邪祟，亦以官鬼爻为用神。一切拘束我身者属之。五行上为克宫者。",
+      "name_cn": "官鬼",
+      "name_en": "liuyao_officer_ghost",
+      "node_type": "ten_god",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六亲",
+        "官鬼",
+        "功名",
+        "官府",
+        "克我"
+      ]
+    },
+    {
+      "attributes": {
+        "order": [
+          "青龙",
+          "朱雀",
+          "勾陈",
+          "螣蛇",
+          "白虎",
+          "玄武"
+        ],
+        "spirit_count": 6,
+        "start_by_stem": {
+          "丙丁": "朱雀",
+          "壬癸": "玄武",
+          "己": "螣蛇",
+          "庚辛": "白虎",
+          "戊": "勾陈",
+          "甲乙": "青龙"
+        }
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_liushen",
+      "interpretation": "六神依日干起例，自初爻至上爻依次安布：甲乙日起青龙，丙丁日起朱雀，戊日起勾陈，己日起螣蛇，庚辛日起白虎，壬癸日起玄武。六神为附合之神，不依五行断，须与卦之吉凶、用神旺衰合看：卦吉逢青龙更吉，卦凶逢白虎更凶。玄武主盗贼，朱雀主口舌。",
+      "name_cn": "六神",
+      "name_en": "liuyao_six_spirits",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "青龙",
+        "朱雀",
+        "勾陈",
+        "螣蛇",
+        "白虎",
+        "玄武"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "甲",
+          "乙"
+        ],
+        "fortune": "吉",
+        "order_index": 1,
+        "transcription_variant": "靑龍"
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_qinglong",
+      "interpretation": "六神之一，甲乙日自初爻起。诸书皆以青龙为吉：身旺龙持多吉处，龙动家有喜；虎兴而遇吉神不害其吉，龙动而逢凶曜难掩其凶。六神乃附合之神，卦吉逢龙更吉。",
+      "name_cn": "青龙",
+      "name_en": "liuyao_azure_dragon",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "青龙",
+        "吉神",
+        "甲乙日"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "丙",
+          "丁"
+        ],
+        "domain": "口舌",
+        "fortune": "凶",
+        "order_index": 2
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_zhuque",
+      "interpretation": "六神之一，丙丁日自初爻起。朱雀主口舌，凡口舌是非、文书争讼之象多属之。六神为附合之神，须兼卦之吉凶与用神旺衰而断，不可单以六神定生死。",
+      "name_cn": "朱雀",
+      "name_en": "liuyao_vermilion_bird",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "朱雀",
+        "口舌",
+        "丙丁日"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "戊"
+        ],
+        "domain": "田土迟滞",
+        "fortune": "平",
+        "order_index": 3
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_gouchen",
+      "interpretation": "六神之一，戊日自初爻起。勾陈属土，主田土、迟滞、勾连牵绊之事。六神为附合之神，须与卦象合看。",
+      "name_cn": "勾陈",
+      "name_en": "liuyao_hooked_chen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "勾陈",
+        "田土",
+        "戊日"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "己"
+        ],
+        "domain": "虚惊怪异",
+        "fortune": "凶",
+        "order_index": 4,
+        "transcription_variant": "滕蛇"
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_tengshe",
+      "interpretation": "六神之一，己日自初爻起。螣蛇主虚惊怪异、忧疑缠绕；占疾病则螣蛇主死之说见于诸书，然野鶴屡试不验，六神须兼用神旺衰与卦之吉凶，不可单断。转录本作「滕蛇」。",
+      "name_cn": "螣蛇",
+      "name_en": "liuyao_flying_serpent",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "螣蛇",
+        "虚惊",
+        "己日"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "庚",
+          "辛"
+        ],
+        "domain": "丧祸",
+        "fortune": "凶",
+        "order_index": 5
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_baihu",
+      "interpretation": "六神之一，庚辛日自初爻起。诸书以白虎为凶：虎动家有丧，白虎主丧；虎兴而遇吉神不害其吉，卦凶逢白虎更凶。六神为附合之神，须兼卦象与用神而断。",
+      "name_cn": "白虎",
+      "name_en": "liuyao_white_tiger",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "白虎",
+        "凶神",
+        "庚辛日"
+      ]
+    },
+    {
+      "attributes": {
+        "day_stems": [
+          "壬",
+          "癸"
+        ],
+        "domain": "盗贼暗昧",
+        "fortune": "凶",
+        "order_index": 6,
+        "transcription_variant": "元武"
+      },
+      "confidence": 0.9,
+      "id": "kn:shen_sha:liuyao_xuanwu",
+      "interpretation": "六神之一，壬癸日自初爻起。玄武主盗贼、暗昧欺瞒之事。转录本避玄讳作「元武」。六神为附合之神，须与卦象合看。",
+      "name_cn": "玄武",
+      "name_en": "liuyao_black_tortoise",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六神",
+        "玄武",
+        "盗贼",
+        "壬癸日"
+      ]
+    },
+    {
+      "attributes": {
+        "hexagram_count": 64,
+        "palace_count": 8,
+        "shi_by_position": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_bagong",
+      "interpretation": "京房八宫，以八纯卦为宫首，每宫各领八卦，合为六十四卦。八宫为六爻装卦之纲：得卦先寻其所属之宫，以宫之五行为「我」，再按纳甲地支五行与宫五行之生克安六亲。八纯卦世在六爻，一世至五世依次在初至五爻，游魂卦世在四爻，归魂卦世在三爻。",
+      "name_cn": "八宫",
+      "name_en": "liuyao_eight_palaces",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "京房",
+        "六十四卦",
+        "装卦"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "hexagram_numbers": [
+          1,
+          44,
+          33,
+          12,
+          20,
+          23,
+          35,
+          14
+        ],
+        "hexagrams": [
+          "乾为天",
+          "天风姤",
+          "天山遁",
+          "天地否",
+          "风地观",
+          "山地剥",
+          "火地晋",
+          "火天大有"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_qian",
+      "interpretation": "乾宫属金，宫首为乾为天，其余七卦依次为天风姤、天山遁、天地否、风地观、山地剥、火地晋、火天大有。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "乾宫",
+      "name_en": "liuyao_palace_qian",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "乾宫",
+        "金"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "hexagram_numbers": [
+          29,
+          60,
+          3,
+          63,
+          49,
+          55,
+          36,
+          7
+        ],
+        "hexagrams": [
+          "坎为水",
+          "水泽节",
+          "水雷屯",
+          "水火既济",
+          "泽火革",
+          "雷火丰",
+          "地火明夷",
+          "地水师"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_kan",
+      "interpretation": "坎宫属水，宫首为坎为水，其余七卦依次为水泽节、水雷屯、水火既济、泽火革、雷火丰、地火明夷、地水师。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "坎宫",
+      "name_en": "liuyao_palace_kan",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "坎宫",
+        "水"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "hexagram_numbers": [
+          52,
+          22,
+          26,
+          41,
+          38,
+          10,
+          61,
+          53
+        ],
+        "hexagrams": [
+          "艮为山",
+          "山火贲",
+          "山天大畜",
+          "山泽损",
+          "火泽睽",
+          "天泽履",
+          "风泽中孚",
+          "风山渐"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_gen",
+      "interpretation": "艮宫属土，宫首为艮为山，其余七卦依次为山火贲、山天大畜、山泽损、火泽睽、天泽履、风泽中孚、风山渐。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "艮宫",
+      "name_en": "liuyao_palace_gen",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "艮宫",
+        "土"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "hexagram_numbers": [
+          51,
+          16,
+          40,
+          32,
+          46,
+          48,
+          28,
+          17
+        ],
+        "hexagrams": [
+          "震为雷",
+          "雷地豫",
+          "雷水解",
+          "雷风恒",
+          "地风升",
+          "水风井",
+          "泽风大过",
+          "泽雷随"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_zhen",
+      "interpretation": "震宫属木，宫首为震为雷，其余七卦依次为雷地豫、雷水解、雷风恒、地风升、水风井、泽风大过、泽雷随。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "震宫",
+      "name_en": "liuyao_palace_zhen",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "震宫",
+        "木"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "hexagram_numbers": [
+          57,
+          9,
+          37,
+          42,
+          25,
+          21,
+          27,
+          18
+        ],
+        "hexagrams": [
+          "巽为风",
+          "风天小畜",
+          "风火家人",
+          "风雷益",
+          "天雷无妄",
+          "火雷噬嗑",
+          "山雷颐",
+          "山风蛊"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_xun",
+      "interpretation": "巽宫属木，宫首为巽为风，其余七卦依次为风天小畜、风火家人、风雷益、天雷无妄、火雷噬嗑、山雷颐、山风蛊。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "巽宫",
+      "name_en": "liuyao_palace_xun",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "巽宫",
+        "木"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "hexagram_numbers": [
+          30,
+          56,
+          50,
+          64,
+          4,
+          59,
+          6,
+          13
+        ],
+        "hexagrams": [
+          "离为火",
+          "火山旅",
+          "火风鼎",
+          "火水未济",
+          "山水蒙",
+          "风水涣",
+          "天水讼",
+          "天火同人"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_li",
+      "interpretation": "离宫属火，宫首为离为火，其余七卦依次为火山旅、火风鼎、火水未济、山水蒙、风水涣、天水讼、天火同人。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "离宫",
+      "name_en": "liuyao_palace_li",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "离宫",
+        "火"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "hexagram_numbers": [
+          2,
+          24,
+          19,
+          11,
+          34,
+          43,
+          5,
+          8
+        ],
+        "hexagrams": [
+          "坤为地",
+          "地雷复",
+          "地泽临",
+          "地天泰",
+          "雷天大壮",
+          "泽天夬",
+          "水天需",
+          "水地比"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_kun",
+      "interpretation": "坤宫属土，宫首为坤为地，其余七卦依次为地雷复、地泽临、地天泰、雷天大壮、泽天夬、水天需、水地比。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "坤宫",
+      "name_en": "liuyao_palace_kun",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "坤宫",
+        "土"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "hexagram_numbers": [
+          58,
+          47,
+          45,
+          31,
+          39,
+          15,
+          62,
+          54
+        ],
+        "hexagrams": [
+          "兑为泽",
+          "泽水困",
+          "泽地萃",
+          "泽山咸",
+          "水山蹇",
+          "地山谦",
+          "雷山小过",
+          "雷泽归妹"
+        ],
+        "shi_positions": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:palace:liuyao_dui",
+      "interpretation": "兑宫属金，宫首为兑为泽，其余七卦依次为泽水困、泽地萃、泽山咸、水山蹇、地山谦、雷山小过、雷泽归妹。世爻依次在六、初、二、三、四、五、四、三爻。",
+      "name_cn": "兑宫",
+      "name_en": "liuyao_palace_dui",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "八宫",
+        "兑宫",
+        "金"
+      ]
+    },
+    {
+      "attributes": {
+        "also_called": "正卦",
+        "lines": 6
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_bengua",
+      "interpretation": "本卦又称正卦，为六次摇钱所得之卦，自初爻画至上爻。六爻不动则不变，动则必变：老阳「○」为阳动变阴，老阴「ㄨ」为阴动变阳。装卦时先成本卦，按本卦所属之宫安世应、纳甲、六亲、六神；变出之爻安六亲者仍照正卦而推。",
+      "name_cn": "本卦",
+      "name_en": "liuyao_original_hexagram",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "本卦",
+        "正卦",
+        "装卦"
+      ]
+    },
+    {
+      "attributes": {
+        "lines": 6,
+        "liu_qin_source": "正卦"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_biangua",
+      "interpretation": "变卦为本卦动爻变化后所得之卦：老阳变阴、老阴变阳，少阳少阴不变。变出之爻与动爻构成回头生、回头克、回头冲、回头合等关系，是断吉凶的重要依据。变卦六亲仍照正卦而推，不依变卦所属之宫另起。",
+      "name_cn": "变卦",
+      "name_en": "liuyao_changed_hexagram",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "变卦",
+        "动变",
+        "回头生克"
+      ]
+    },
+    {
+      "attributes": {
+        "changes": true,
+        "markers": [
+          "○",
+          "ㄨ"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_dongyao",
+      "interpretation": "动爻为摇得老阳「○」或老阴「ㄨ」之爻。六爻不动则不变，动则必变。动爻能生克冲合静爻，亦能作用于用神：动而生用神者为吉，动而克用神者为凶。神兆机于动，事之无吉无凶则不动。",
+      "name_cn": "动爻",
+      "name_en": "liuyao_changing_line",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "动爻",
+        "老阳",
+        "老阴",
+        "动变"
+      ]
+    },
+    {
+      "attributes": {
+        "shi_by_palace_position": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          4,
+          3
+        ],
+        "ying_offset": 2
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_shiying",
+      "interpretation": "世爻为一卦之主，代表求测者自身；应爻为对方或所测之事，隔世爻两位即是应爻。世爻位置依八宫卦序而定：八纯卦世在六爻，一世至五世依次在初至五爻，游魂卦世在四爻，归魂卦世在三爻。自占吉凶以世爻为用神。",
+      "name_cn": "世应",
+      "name_en": "liuyao_shi_ying",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "世應章第六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "世应",
+        "世爻",
+        "应爻",
+        "游魂",
+        "归魂"
+      ]
+    },
+    {
+      "attributes": {
+        "stem_branch": {
+          "乾": [
+            "甲子",
+            "甲寅",
+            "甲辰",
+            "壬午",
+            "壬申",
+            "壬戌"
+          ],
+          "兑": [
+            "丁巳",
+            "丁卯",
+            "丁丑",
+            "丁亥",
+            "丁酉",
+            "丁未"
+          ],
+          "坎": [
+            "戊寅",
+            "戊辰",
+            "戊午",
+            "戊申",
+            "戊戌",
+            "戊子"
+          ],
+          "坤": [
+            "乙未",
+            "乙巳",
+            "乙卯",
+            "癸丑",
+            "癸亥",
+            "癸酉"
+          ],
+          "巽": [
+            "辛丑",
+            "辛亥",
+            "辛酉",
+            "辛未",
+            "辛巳",
+            "辛卯"
+          ],
+          "离": [
+            "己卯",
+            "己丑",
+            "己亥",
+            "己酉",
+            "己未",
+            "己巳"
+          ],
+          "艮": [
+            "丙辰",
+            "丙午",
+            "丙申",
+            "丙戌",
+            "丙子",
+            "丙寅"
+          ],
+          "震": [
+            "庚子",
+            "庚寅",
+            "庚辰",
+            "庚午",
+            "庚申",
+            "庚戌"
+          ]
+        },
+        "transcription_variant": "辰在内／辰在外（当为艮）"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_najia",
+      "interpretation": "纳甲以八经卦分内外，各配天干地支：乾内甲外壬（子寅辰、午申戌），坤内乙外癸（未巳卯、丑亥酉），震纳庚（子寅辰、午申戌），巽纳辛（丑亥酉、未巳卯），坎纳戊（寅辰午、申戌子），离纳己（卯丑亥、酉未巳），艮纳丙（辰午申、戌子寅），兑纳丁（巳卯丑、亥酉未）。点卦由下而上，装五行亦由下而上。转录本 /4 第三行作「辰在内／辰在外」，按八宫纳甲当为「艮在内／艮在外」，语料按艮收录并保留异文。",
+      "name_cn": "纳甲",
+      "name_en": "liuyao_najia",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "渾天甲子章第四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "纳甲",
+        "浑天甲子",
+        "干支",
+        "装卦"
+      ]
+    },
+    {
+      "attributes": {
+        "aliases": [
+          "月将",
+          "月令"
+        ],
+        "breaks": "月破",
+        "combines": "月合",
+        "scope": "三旬"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_yuejian",
+      "interpretation": "月建即月将、月令，掌一月之权，司三旬之令。能助卦爻之衰弱，能挫爻象之旺强；爻衰者能生之合之比之拱之扶之，爻旺者能冲之克之刑之破之。月建合爻为月合，月建冲爻即为月破。卦无用神即以月建为用神。",
+      "name_cn": "月建",
+      "name_en": "liuyao_month_build",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月將章第十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "月建",
+        "月令",
+        "月破",
+        "月合",
+        "旺衰"
+      ]
+    },
+    {
+      "attributes": {
+        "aliases": [
+          "日建"
+        ],
+        "effects": [
+          "暗动",
+          "日破",
+          "冲空则实",
+          "冲合则散"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_richen",
+      "interpretation": "日辰为六爻之主宰，司四时之旺相，四时俱旺，操生杀大权与月建同功。冲旺相之静爻为暗动，冲衰弱之静爻为日破；冲空即起，冲合即开。爻遇旬空，日辰冲起而有用，谓之冲空则实。",
+      "name_cn": "日辰",
+      "name_en": "liuyao_day_branch",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "日辰章第十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "日辰",
+        "日建",
+        "暗动",
+        "日破",
+        "冲空"
+      ]
+    },
+    {
+      "attributes": {
+        "non_void_when": [
+          "旺",
+          "动",
+          "日建生扶"
+        ],
+        "void_by_decade": {
+          "甲午": [
+            "辰",
+            "巳"
+          ],
+          "甲子": [
+            "戌",
+            "亥"
+          ],
+          "甲寅": [
+            "子",
+            "丑"
+          ],
+          "甲戌": [
+            "申",
+            "酉"
+          ],
+          "甲申": [
+            "午",
+            "未"
+          ],
+          "甲辰": [
+            "寅",
+            "卯"
+          ]
+        }
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_xunkong",
+      "interpretation": "旬空又名空亡：甲子旬中戌亥空，甲戌旬中申酉空，甲申旬中午未空，甲午旬中辰巳空，甲辰旬中寅卯空，甲寅旬中子丑空。旺不为空，动不为空，有日建动爻生扶者不为空；月破为空，真空为空。出旬则不空，填实之日、冲空之日皆可应事。",
+      "name_cn": "旬空",
+      "name_en": "liuyao_void",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "旬空章第二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "旬空",
+        "空亡",
+        "填实",
+        "冲空"
+      ]
+    },
+    {
+      "attributes": {
+        "count": 10,
+        "hexagrams": [
+          "乾为天",
+          "坎为水",
+          "艮为山",
+          "震为雷",
+          "巽为风",
+          "离为火",
+          "坤为地",
+          "兑为泽",
+          "天雷无妄",
+          "雷天大壮"
+        ],
+        "meaning": "散"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_liuchong_gua",
+      "interpretation": "六冲卦者，八纯卦（乾为天、坎为水、艮为山、震为雷、巽为风、离为火、坤为地、兑为泽）皆是，再加天雷无妄、雷天大壮，共十卦。冲者散也：占凶事宜于冲散，占吉事不宜；用神旺虽冲不破，用神失陷凶而又凶。六合卦变六冲者，先合后离、始荣终悴。",
+      "name_cn": "六冲卦",
+      "name_en": "liuyao_six_clash_hexagram",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "八宮圖第三",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六冲",
+        "六冲卦",
+        "八纯卦",
+        "冲散"
+      ]
+    },
+    {
+      "attributes": {
+        "kinds": 6,
+        "pairs": [
+          [
+            "子",
+            "丑"
+          ],
+          [
+            "寅",
+            "亥"
+          ],
+          [
+            "卯",
+            "戌"
+          ],
+          [
+            "辰",
+            "酉"
+          ],
+          [
+            "巳",
+            "申"
+          ],
+          [
+            "午",
+            "未"
+          ]
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_liuhe_gua",
+      "interpretation": "六合者，子与丑合、寅与亥合、卯与戌合、辰与酉合、巳与申合、午与未合。相合法有六：日月合爻、爻与爻合、爻动化合、卦逢六合、六冲卦变六合卦、六合卦变六合卦。诸合皆以用神旺者为吉；占讼狱不利，冤仇难解。",
+      "name_cn": "六合卦",
+      "name_en": "liuyao_six_harmony_hexagram",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "六合",
+        "六合卦",
+        "合起",
+        "合绊",
+        "化扶"
+      ]
+    },
+    {
+      "attributes": {
+        "groups": {
+          "木局": [
+            "亥",
+            "卯",
+            "未"
+          ],
+          "水局": [
+            "申",
+            "子",
+            "辰"
+          ],
+          "火局": [
+            "寅",
+            "午",
+            "戌"
+          ],
+          "金局": [
+            "巳",
+            "酉",
+            "丑"
+          ]
+        },
+        "kinds": 4
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_sanhe_ju",
+      "interpretation": "申子辰合成水局、巳酉丑合成金局、寅午戌合成火局、亥卯未合成木局。成局有四：一卦之内一爻动而合局、两爻动一爻不动亦成局、内卦初爻三爻动而变出爻成局、外卦四爻六爻动而变出之爻成局。占求谋喜庆宜成局，占官讼忧疑而合局者终身团结难消。",
+      "name_cn": "三合局",
+      "name_en": "liuyao_three_harmony",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "三合",
+        "三合局",
+        "水局",
+        "金局",
+        "火局",
+        "木局"
+      ]
+    },
+    {
+      "attributes": {
+        "pairs": [
+          [
+            "寅",
+            "巳"
+          ],
+          [
+            "巳",
+            "申"
+          ],
+          [
+            "子",
+            "卯"
+          ],
+          [
+            "卯",
+            "午"
+          ],
+          [
+            "丑",
+            "戌"
+          ],
+          [
+            "未",
+            "辰"
+          ]
+        ],
+        "self_punishment": [
+          "辰",
+          "午",
+          "酉",
+          "亥"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_sanxing",
+      "interpretation": "寅刑巳、巳刑申、子刑卯、卯刑午、丑戌相刑、未辰相刑；又云辰午酉亥谓之自刑。野鶴谓三刑独犯得验者少，多因用神休囚又兼他爻犯之则见凶，故三刑须兼用神旺衰而断，不可单执。",
+      "name_cn": "三刑",
+      "name_en": "liuyao_three_punishment",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "三刑章第二十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "三刑",
+        "相刑",
+        "自刑"
+      ]
+    },
+    {
+      "attributes": {
+        "controls": "元神",
+        "generates": "忌神",
+        "role": "仇神"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_choushen",
+      "interpretation": "仇神者，克元神而生忌神也。用神为所测之主，元神生用神，忌神克用神，仇神则克元神、生忌神，间接助忌伤用。六爻断法先定用神，再察元神、忌神、仇神之旺衰与动静。",
+      "name_cn": "仇神",
+      "name_en": "liuyao_enemy_spirit",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "仇神",
+        "用神体系",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "branches": [
+          "寅",
+          "卯"
+        ],
+        "controlled_by": "金",
+        "controls": "土",
+        "element": "木",
+        "generated_by": "水",
+        "generates": "火",
+        "palaces": [
+          "震",
+          "巽"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:liuyao_mu",
+      "interpretation": "五行之木。六爻以五行生克定六亲与吉凶：木生火，木克土；生木者水，克木者金。地支寅卯属木，震巽二宫属木。",
+      "name_cn": "木",
+      "name_en": "liuyao_wood",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "五行",
+        "木",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "branches": [
+          "巳",
+          "午"
+        ],
+        "controlled_by": "水",
+        "controls": "金",
+        "element": "火",
+        "generated_by": "木",
+        "generates": "土",
+        "palaces": [
+          "离"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:liuyao_huo",
+      "interpretation": "五行之火。六爻以五行生克定六亲与吉凶：火生土，火克金；生火者木，克火者水。地支巳午属火，离宫属火。",
+      "name_cn": "火",
+      "name_en": "liuyao_fire",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "五行",
+        "火",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "branches": [
+          "辰",
+          "戌",
+          "丑",
+          "未"
+        ],
+        "controlled_by": "木",
+        "controls": "水",
+        "element": "土",
+        "generated_by": "火",
+        "generates": "金",
+        "palaces": [
+          "艮",
+          "坤"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:liuyao_tu",
+      "interpretation": "五行之土。六爻以五行生克定六亲与吉凶：土生金，土克水；生土者火，克土者木。地支辰戌丑未属土，艮坤二宫属土。",
+      "name_cn": "土",
+      "name_en": "liuyao_earth",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "五行",
+        "土",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "branches": [
+          "申",
+          "酉"
+        ],
+        "controlled_by": "火",
+        "controls": "木",
+        "element": "金",
+        "generated_by": "土",
+        "generates": "水",
+        "palaces": [
+          "乾",
+          "兑"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:liuyao_jin",
+      "interpretation": "五行之金。六爻以五行生克定六亲与吉凶：金生水，金克木；生金者土，克金者火。地支申酉属金，乾兑二宫属金。",
+      "name_cn": "金",
+      "name_en": "liuyao_metal",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "五行",
+        "金",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "branches": [
+          "子",
+          "亥"
+        ],
+        "controlled_by": "土",
+        "controls": "火",
+        "element": "水",
+        "generated_by": "金",
+        "generates": "木",
+        "palaces": [
+          "坎"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:wuxing:liuyao_shui",
+      "interpretation": "五行之水。六爻以五行生克定六亲与吉凶：水生木，水克火；生水者金，克水者土。地支子亥属水，坎宫属水。",
+      "name_cn": "水",
+      "name_en": "liuyao_water",
+      "node_type": "wuxing",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "五行",
+        "水",
+        "生克"
+      ]
+    },
+    {
+      "attributes": {
+        "by_topic": {
+          "兄弟": "兄弟",
+          "功名": "官鬼",
+          "子孙": "子孙",
+          "父母": "父母",
+          "财物": "妻财"
+        },
+        "selection": "六亲取用",
+        "self_question": "世爻"
+      },
+      "confidence": 0.9,
+      "id": "kn:yong_shen:liuyao_yongshen",
+      "interpretation": "用神为一卦所测之事的核心爻。占父母以父母爻为用神，占功名官鬼、占财物妻财、占兄弟朋友兄弟、占子孙医药子孙；自占吉凶则以世爻为用神。用神既定，再察其旺衰、动静、空破，以及元神、忌神、仇神之生克。",
+      "name_cn": "用神",
+      "name_en": "liuyao_yong_shen",
+      "node_type": "yong_shen",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "用神",
+        "所测之事",
+        "六亲取用"
+      ]
+    },
+    {
+      "attributes": {
+        "gapped_node_type": "xi_shen",
+        "generates": "用神",
+        "role": "元神"
+      },
+      "confidence": 0.9,
+      "id": "kn:xi_shen:liuyao_yuanshen",
+      "interpretation": "元神者，生用神之神也。元神虽生用神，须要旺相方可生得用神：旺相或临日月、日月动爻生扶、动化回头生及化进神、长生帝旺于日辰、与忌神同动、旺动临空化空，此五者为有力之元神，诸占皆吉。若休囚不动、自空月破、动化退神、衰而又绝、入三墓、化绝化克化破化散，则无力生用神。",
+      "name_cn": "元神",
+      "name_en": "liuyao_generating_spirit",
+      "node_type": "xi_shen",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "元神",
+        "生用神",
+        "用神体系",
+        "旺衰"
+      ]
+    },
+    {
+      "attributes": {
+        "controls": "用神",
+        "role": "忌神"
+      },
+      "confidence": 0.9,
+      "id": "kn:ji_shen:liuyao_jishen",
+      "interpretation": "忌神者，克用神之爻也。忌神动而克害用神者有五：旺相或遇日月动爻生扶或临日月、动化回头生扶退神、旺动临空化空、长生帝旺与日辰、与仇神同动，此五者诸占大凶。若休囚不动、静临空破、入三墓、衰动化退神、衰而又绝、动化绝化破化克化散、与元神同动，则无力克用神。",
+      "name_cn": "忌神",
+      "name_en": "liuyao_controlling_spirit",
+      "node_type": "ji_shen",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "忌神",
+        "克用神",
+        "用神体系",
+        "旺衰"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "credibility": 0.9,
+      "passage": "金生水，水生木，木生火，火生土，土生金。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_wuxing_sheng",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:wuxing:liuyao_mu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "金克木，木克土，土克水，水克火，火克金。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_wuxing_ke",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "rel:liuyao_ke:mu_tu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "乾宮八卦：﹝俱屬金﹞\n乾爲天，天風姤，天山遁，天地否，風地觀，山地剝，火地晉，火天大有。\n坎宮八卦：﹝俱屬水﹞\n坎爲水，水澤節，水雷屯，水火旣濟，澤火革，雷火豐，地火明夷，地水師。\n艮宮八卦：﹝屬土﹞\n艮爲山，山火賁，山天大畜，山澤損，火澤睽，天澤履，風澤中孚，風山漸。\n震宮八卦：﹝屬木﹞\n震爲雷，雷地豫，雷水解，雷風恆，地風升，水風井，澤風大過，澤雷隨。\n巽宮八卦：﹝屬木﹞\n巽爲風，風天小畜，風火家人，風雷益，天雷無妄，火雷噬嗑，山雷頤，山風蠱。\n離宮八卦：﹝屬火﹞\n離爲火，火山旅，火風鼎，火水未濟，山水蒙，風水渙，天水訟，天火同人。\n坤宮八卦：﹝屬土﹞\n坤爲地，地雷復，地澤臨，地天泰，雷天大壯，澤天夬，水天需，水地比。\n兌宮八卦：﹝屬金﹞\n兌爲澤，澤水困，澤地萃，澤山咸，水山蹇，地山謙，雷山小過，雷澤歸妹。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_bagong",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:palace:liuyao_bagong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "先學點卦，點出卦象看是何卦，卽出全圖內尋出此卦，照樣裝排「世」「應」「五行」「六親」，不用念卦書……六沖卦者，乾爲天、坎爲水、艮爲山、震爲雷、巽爲風、離爲火、坤爲地、兌爲澤，此八宮第一卦皆是六沖卦，再者天雷無妄、雷天大壯也是六沖卦一共十卦，其餘不是。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_bagong_tu",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "八宮圖第三",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:palace:liuyao_bagong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "乾在內：子水寅木辰土。乾在外：午火申金戌土。 * 坎在內：寅木辰土午火。坎在外：申金戌土子水。 * 辰在內：辰土午火申金。辰在外：戌土子水寅木。 * 震在內：子水寅木辰土。震在外；午火申金戌土。 * 巽在內：丑土亥水酉金。巽在外：未土巳火卯木。 * 離在內：卯木丑土亥水。離在外：酉金未土巳火。 * 坤在內：未土巳火卯木。坤在外：丑土亥水酉金。 * 兌在內：巳火卯木丑土。兌在外：亥水酉金未土。……點卦由下而上，故裝五行也由下而上，餘仿此。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_najia",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "渾天甲子章第四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_najia",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。 * 坎宮水兄、火財、土鬼、金父、木子。坎宮八卦都屬水。 * 坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。 * 離宮火兄、水鬼、土子、木父，金財。離宮八卦都屬火。 * 震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_liuqin",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:ten_god:liuyao_liuqin",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "乾爲天「世」在六﹐天風姤「世」在初﹐ 天山遁「世」在二﹐天地否「世」在三﹐ 天地觀「世」在四﹐山地剝「世」在五﹐ 火地晉「世」在四﹐火天大有「世」退在三。……隔世爻兩位卽是應爻﹐餘卦仿此。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_shiying",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "世應章第六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_shiying",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "六爻不動則不變，動則必變……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_dongbian",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_dongyao",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "父母爻：占父母卽以卦中之父母爻爲神。……官鬼爻：占功名、官府、雷霆鬼神、妻占夫皆以官鬼爻爲用神。……兄弟爻：占兄弟、姐妹、族中兄弟、姑姨、妹夫及結拜兄弟都以兄弟爻爲用神。……妻財爻：占妻妾、婢、僕、役，我驅使之人皆以要財爻爲用神。……子孫爻：占子孫、占女、女婿、侄、甥、門生凡在我子孫輩中皆以子孫爻爲用神。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yongshen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:yong_shen:liuyao_yongshen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "用神，卽前各類之用神也。元神，生用神之神卽爲元神。忌神克用神之爻也。仇神者克元神而生忌神也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yuanshen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:xi_shen:liuyao_yuanshen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "元神𨿽生用神，須要旺相，方可生得用神。……元神能生用神者有五：元神旺相或臨日月或日月動爻生扶者一也。元神動化回頭生及化進神者二也。元神長生帝旺於日辰三也。元神與忌神同動四也。元神旺動臨空化空五也。……元神𨿽現又有不能生用神者有六：元神休囚，不動或動而休囚又被傷克者一也。元神休囚又逢自空、月破二也。元神休囚動化退神三也。元神衰而又絕四也。元神入三墓五也。元神休囚動而化絕、化克、化破、化散六也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yuanshen_wangshuai",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "元神忌神衰旺章第十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:xi_shen:liuyao_yuanshen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "忌神動而克害用神者有五：忌神旺相或遇日月動爻生扶或臨日月者一也。忌神動化回頭生扶退神者二也。忌神旺動動臨空化空三也。忌神長生帝旺與日辰四也。忌神與仇神同動五也。……忌神𨿽動，不能克用神者有七：忌神休囚不動，而動休囚被日、月動爻克者一也。忌神靜臨空破二也。忌神入三墓三也。忌神衰動化退神四也。忌神衰而又絕五也。忌神動化絕化破、化克、化散六也。忌神與元神同動七也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_jishen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "元神忌神衰旺章第十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:ji_shen:liuyao_jishen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "仇神者克元神而生忌神也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_choushen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_choushen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "月將卽是月建又爲月令。掌一月之權，司三旬之令。……能助卦爻之衰弱，能挫爻象之旺彊……月建合爻爲月合，乃有用之爻也。月建沖爻卽爲月破，乃無用之爻也。……卦無用神卽以月建爲用神，不必尋伏神也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yuejian",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月將章第十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_yuejian",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "日辰爲六爻之主宰，司四時之旺相。……沖旺相之靜爻，旣爲暗動，沖衰弱之靜爻爲日破……沖空卽起，沖合卽開……爻遇旬空，日辰沖起而有用，謂之沖空則實。逢合住遇日建以沖開，謂之沖合則散。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_richen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "日辰章第十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_richen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "諸書無不以靑龍爲吉，白虎爲凶。……此皆不以五行，竟以六神而斷生死。惟千金賦曰：虎興而遇吉神不害其吉，龍動而逢凶曜難掩其凶。此正理也，然則六神而不驗耶乎，乃附合之神也，卦之吉者逢龍而更吉，卦之凶者逢白虎而更凶，且元武主盜賊，朱雀主口舌，無不驗也",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_liushen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:shen_sha:liuyao_liushen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "子與丑合、寅與亥合、卯與戌合、辰與酉合、巳與申合，午與未合。相合法有六：日月合爻者一也。爻與爻合者二也。爻動化合者三也，卦逢六合四也。六沖卦變六合卦五也。六合卦變六合卦六也。……爻之合者，靜而逢合，謂之合起。動而逢合，合謂之合絆。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_liuhe",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_liuhe_gua",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "申子辰合成水局、巳酉丑合成金局、寅午戌合成火局、亥卯未合成木局。此三合者有四。一卦之內有一爻動而合局者一也。若兩爻動一爻不動亦成合局者二也。有內卦初爻、三爻、動而變出爻成三合者三也。又有外四爻、六爻動、動而變出之爻成三合者四也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_sanhe",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_sanhe_ju",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "子午相沖、丑未相沖、寅申相沖、卯酉相沖、辰戌相沖、巳亥相沖。……相沖之法有六。日月沖爻者一也，卦逢六沖二也，六合卦變六沖三也，沖變六沖四也。動爻變沖五也、爻與爻沖六也。……沖者散也，凡占凶事宜於沖散、占吉事而不宜，必兼用神而言，用神旺𨿽沖不破，用神失陷凶而又凶",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_liuchong",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六沖章第二十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_liuchong_gua",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "寅刑巳、巳刑申、子刑卯、卯刑午、丑戌相刑、未辰相刑。又云：辰午酉亥謂之自刑，夫三刑者，予屢試之，或因用神休囚又兼他爻犯之，刑者則見凶，而獨犯三刑得驗者少，占過數十年只驗得一卦。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_sanxing",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "三刑章第二十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_sanxing",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "何謂旬空？如甲子至癸酉日爲一旬，此十日之內，並無戌亥，以爻逢戌亥爲空亡，又名旬空，餘仿此。……野鶴曰：旺不爲空，動不爲空，有日建動爻生扶者不爲空……月破爲空。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_xunkong",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "旬空章第二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_xunkong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "如乾卦初爻動則變爲巽卦。……如占得水天需卦變天水訟……上三爻坎卦卽是坎在外卦：申金、戌土、子水。四爻申金、五爻戌土、六爻子水，變爲乾卦。卽是乾在外卦：午火、申金、戌土。……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_bengua",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_bengua",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "六爻不動則不變，動則必變……所以申金變出午火，子水變出戌土，申爻不動則不變。變出之爻安六親者仍照正卦而推，餘卦仿此。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_biangua",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_biangua",
+      "target_type": "node"
+    }
+  ],
+  "relations": [
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "yongshen_selection"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "用神按所测之事取六亲：占父母以父母爻为用神，占功名以官鬼爻为用神，占财以妻财爻为用神。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "用神章第八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:yongshen_liuqin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神章第八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:yong_shen:liuyao_yongshen",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "self_yongshen"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "自占吉凶以世爻为用神；世爻即世应结构中代表求测者之爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "世應章第六",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:yongshen_shiying",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "世應章第六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:yong_shen:liuyao_yongshen",
+      "target_node_id": "kn:pattern:liuyao_shiying",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "najia_liuqin"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "纳甲定各爻干支五行，再以爻五行与宫五行之生克安六亲；六親歌按八宫列六亲配属。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "渾天甲子章第四",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:najia_liuqin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "渾天甲子章第四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_najia",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_as_self"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "八宫之五行即六亲之「我」：乾兑宫属金则金为兄弟，坎宫属水则水为兄弟，余仿此。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:bagong_liuqin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_bagong",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "shiying_structure"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "世应依本卦所属之宫与卦序安布：八纯卦世在六爻，其余依次在初至五爻及游魂四爻、归魂三爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "世應章第六",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:shiying_bengua",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "世應章第六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_shiying",
+      "target_node_id": "kn:pattern:liuyao_bengua",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "benbian"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "本卦动爻变化即得变卦：老阳变阴、老阴变阳，少阳少阴不变。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "動變章第七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:bengua_biangua",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_bengua",
+      "target_node_id": "kn:pattern:liuyao_biangua",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dong_bian"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "动爻为变卦之因：六爻不动则不变，动则必变。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "動變章第七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:dongyao_biangua",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動變章第七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_dongyao",
+      "target_node_id": "kn:pattern:liuyao_biangua",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "yue_ri"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "月建司三旬之令，日辰司四时之旺相；日辰操生杀大权与月建同功，二者共为旺衰之主。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "日辰章第十七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:yuejian_richen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "日辰章第十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_yuejian",
+      "target_node_id": "kn:pattern:liuyao_richen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "chongkong"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "爻遇旬空，日辰冲起而有用，谓之冲空则实；逢合住遇日建以冲开，谓之冲合则散。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "日辰章第十七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:xunkong_richen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "日辰章第十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_xunkong",
+      "target_node_id": "kn:pattern:liuyao_richen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "chong_he"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "六冲与六合相对：六冲卦变六合卦者散而复聚，六合卦变六冲者先合后离。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六合章第十九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:liuchong_liuhe",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_liuchong_gua",
+      "target_node_id": "kn:pattern:liuyao_liuhe_gua",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "he_fa"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "三合局与六合同章论列，皆属「合」法；六合为两支相合，三合为三支成局。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六合章第十九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:sanhe_liuhe",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六合章第十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_sanhe_ju",
+      "target_node_id": "kn:pattern:liuyao_liuhe_gua",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "yuanshen_role"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "元神者，生用神之神即为元神。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "用神元神忌神仇神章第九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:yuanshen_yongshen",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:xi_shen:liuyao_yuanshen",
+      "target_node_id": "kn:yong_shen:liuyao_yongshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jishen_role"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "忌神者，克用神之爻也。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "用神元神忌神仇神章第九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:jishen_yongshen",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ji_shen:liuyao_jishen",
+      "target_node_id": "kn:yong_shen:liuyao_yongshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "choushen_role"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "仇神者，克元神而生忌神也。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "用神元神忌神仇神章第九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:choushen_yuanshen",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_choushen",
+      "target_node_id": "kn:xi_shen:liuyao_yuanshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "choushen_role"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "仇神者，克元神而生忌神也。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "用神元神忌神仇神章第九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:choushen_jishen",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "用神元神忌神仇神章第九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_choushen",
+      "target_node_id": "kn:ji_shen:liuyao_jishen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "yuejian_rule"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "月建掌一月之权，司三旬之令，能助卦爻之衰弱，能挫爻象之旺强；用神之旺衰先看月建。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "月將章第十六",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_zhiyue:yuejian_yongshen",
+      "relation_type": "zhiyue",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月將章第十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_yuejian",
+      "target_node_id": "kn:yong_shen:liuyao_yongshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "richen_rule"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "日辰为六爻之主宰，司四时之旺相；用神之生克冲合皆以日辰为断。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "日辰章第十七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_zhiyue:richen_yongshen",
+      "relation_type": "zhiyue",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "日辰章第十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_richen",
+      "target_node_id": "kn:yong_shen:liuyao_yongshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木生火：《增刪卜易》五行相生章作「木生火」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相生章第十一",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:mu_huo",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_mu",
+      "target_node_id": "kn:wuxing:liuyao_huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火生土：《增刪卜易》五行相生章作「火生土」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相生章第十一",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:huo_tu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_huo",
+      "target_node_id": "kn:wuxing:liuyao_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土生金：《增刪卜易》五行相生章作「土生金」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相生章第十一",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:tu_jin",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_tu",
+      "target_node_id": "kn:wuxing:liuyao_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金生水：《增刪卜易》五行相生章作「金生水」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相生章第十一",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:jin_shui",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_jin",
+      "target_node_id": "kn:wuxing:liuyao_shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_sheng"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水生木：《增刪卜易》五行相生章作「水生木」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相生章第十一",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_sheng:shui_mu",
+      "relation_type": "sheng",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相生章第十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_shui",
+      "target_node_id": "kn:wuxing:liuyao_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "木克土：《增刪卜易》五行相克章作「木克土」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相克章第十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:mu_tu",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_mu",
+      "target_node_id": "kn:wuxing:liuyao_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "土克水：《增刪卜易》五行相克章作「土克水」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相克章第十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:tu_shui",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_tu",
+      "target_node_id": "kn:wuxing:liuyao_shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "水克火：《增刪卜易》五行相克章作「水克火」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相克章第十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:shui_huo",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_shui",
+      "target_node_id": "kn:wuxing:liuyao_huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "火克金：《增刪卜易》五行相克章作「火克金」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相克章第十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:huo_jin",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_huo",
+      "target_node_id": "kn:wuxing:liuyao_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "wuxing_ke"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "金克木：《增刪卜易》五行相克章作「金克木」。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "五行相克章第十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_ke:jin_mu",
+      "relation_type": "ke",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "五行相克章第十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:wuxing:liuyao_jin",
+      "target_node_id": "kn:wuxing:liuyao_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "乾宫为京房八宫之一，宫首乾为天，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_qian",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_qian",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坎宫为京房八宫之一，宫首坎为水，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_kan",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_kan",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "艮宫为京房八宫之一，宫首艮为山，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_gen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_gen",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "震宫为京房八宫之一，宫首震为雷，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_zhen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_zhen",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巽宫为京房八宫之一，宫首巽为风，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_xun",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_xun",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "离宫为京房八宫之一，宫首离为火，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_li",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_li",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坤宫为京房八宫之一，宫首坤为地，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_kun",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_kun",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "兑宫为京房八宫之一，宫首兑为泽，领八卦。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦象圖第二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:bagong_dui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦象圖第二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_dui",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "乾宫属金：《增刪卜易》六親歌「乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:qian_jin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_qian",
+      "target_node_id": "kn:wuxing:liuyao_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坎宫属水：《增刪卜易》六親歌「坎宮水兄、火財、土鬼、金父、木子。坎宮八卦都屬水。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:kan_shui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_kan",
+      "target_node_id": "kn:wuxing:liuyao_shui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "艮宫属土：《增刪卜易》六親歌「坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:gen_tu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_gen",
+      "target_node_id": "kn:wuxing:liuyao_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "震宫属木：《增刪卜易》六親歌「震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:zhen_mu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_zhen",
+      "target_node_id": "kn:wuxing:liuyao_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巽宫属木：《增刪卜易》六親歌「震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:xun_mu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_xun",
+      "target_node_id": "kn:wuxing:liuyao_mu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "离宫属火：《增刪卜易》六親歌「離宮火兄、水鬼、土子、木父，金財。離宮八卦都屬火。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:li_huo",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_li",
+      "target_node_id": "kn:wuxing:liuyao_huo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坤宫属土：《增刪卜易》六親歌「坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:kun_tu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_kun",
+      "target_node_id": "kn:wuxing:liuyao_tu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "palace_element"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "兑宫属金：《增刪卜易》六親歌「乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。」",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:dui_jin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:palace:liuyao_dui",
+      "target_node_id": "kn:wuxing:liuyao_jin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liuqin_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "父母为六亲之一，生我者为父母。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liuqin_fumu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ten_god:liuyao_fumu",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liuqin_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "兄弟为六亲之一，比和者为兄弟。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liuqin_xiongdi",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ten_god:liuyao_xiongdi",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liuqin_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "子孙为六亲之一，我生者为子孙。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liuqin_zisun",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ten_god:liuyao_zisun",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liuqin_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "妻财为六亲之一，我克者为妻财。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liuqin_qicai",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ten_god:liuyao_qicai",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liuqin_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "官鬼为六亲之一，克我者为官鬼。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六親歌章第五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liuqin_guangui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六親歌章第五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:ten_god:liuyao_guangui",
+      "target_node_id": "kn:ten_god:liuyao_liuqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "青龙为六神之一，甲乙日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_qinglong",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_qinglong",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "朱雀为六神之一，丙丁日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_zhuque",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_zhuque",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "勾陈为六神之一，戊日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_gouchen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_gouchen",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "螣蛇为六神之一，己日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_tengshe",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_tengshe",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "白虎为六神之一，庚辛日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_baihu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_baihu",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liushen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "玄武为六神之一，壬癸日起于初爻。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "六神章第十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:liushen_xuanwu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "六神章第十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:shen_sha:liuyao_xuanwu",
+      "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    }
+  ]
+}

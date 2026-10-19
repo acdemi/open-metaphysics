@@ -1,0 +1,79 @@
+# KnowledgeNode — 六亲（ten_god 承载, Liuyao Corpus, 6 个）
+# P2.3 Liuyao Knowledge Integration: 父母/兄弟/子孙/妻财/官鬼 五类六亲
+#   与「六亲」总纲。语义与 deterministic engine 一致:
+#   src/openmetaphysics/agents/liuyao.py::LIU_QIN_BY_RELATION
+#   （同我者兄弟、我生者子孙、生我者父母、我克者妻财、克我者官鬼）。
+# 本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# GAP-LIUYAO-01: 冻结 KB-002 的 20 类 NodeType 无「六亲」类别。六亲暂以
+#   `ten_god`（十神/亲属角色）承载, 语义经 tags 与 attributes 保留, 记为 schema
+#   缺口, **不修改冻结 Schema**（详见 knowledge/README.md §7）。
+# 证据: 增刪卜易/5 六親歌章第五 / /8 用神章第八（revision-pinned, 逐字核验）。
+# 命名说明: slug 加 `liuyao_` 域前缀, 避免与 BaZi 十神节点冲突。
+
+nodes:
+  - id: kn:ten_god:liuyao_liuqin
+    node_type: ten_god
+    name_cn: 六亲
+    name_en: liuyao_six_relatives
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六爻以卦宫五行为「我」，按各爻纳甲地支五行与「我」的生克关系安六亲：生我者为父母，我生者为子孙，克我者为官鬼，我克者为妻财，比和者为兄弟。乾兑宫属金，故金为兄弟、土为父母、木为妻财、火为官鬼、水为子孙；坎宫属水、坤艮宫属土、离宫属火、震巽宫属木，各依此类推。变卦之爻仍照正卦推六亲。
+    tags: [六爻, 六亲, 父母, 兄弟, 子孙, 妻财, 官鬼]
+    confidence: 0.9
+    attributes: { relation_to_self: { 同我: 兄弟, 我生: 子孙, 生我: 父母, 我克: 妻财, 克我: 官鬼 } }
+
+  - id: kn:ten_god:liuyao_fumu
+    node_type: ten_god
+    name_cn: 父母
+    name_en: liuyao_parents
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六亲之一，生我者為父母。占父母、祖父母、伯叔姑姨、师长及与我父母同辈之亲，以父母爻为用神；占天地、城池、墙垣、宅舍、屋宇、舟车、衣服、雨具、章奏、文书、书馆文契，亦以父母爻为用神。一切庇护我身者属之。五行上为生宫者。
+    tags: [六爻, 六亲, 父母, 文书, 房屋, 生我]
+    confidence: 0.9
+    attributes: { role: 父母, relation: 生我, yong_shen_for: [父母, 长辈, 文书, 房屋, 舟车] }
+
+  - id: kn:ten_god:liuyao_xiongdi
+    node_type: ten_god
+    name_cn: 兄弟
+    name_en: liuyao_siblings
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六亲之一，比和者为兄弟。占兄弟、姐妹、族中兄弟、姑姨、妹夫及结拜兄弟，以兄弟爻为用神。兄弟为同类之人，彼得志则欺凌，见财则夺，故占财物以此为劫神，占谋事以此为阻神，占妻妾婢仆以此为刑伤克害之神。五行上与宫相同。
+    tags: [六爻, 六亲, 兄弟, 劫财, 阻隔, 比和]
+    confidence: 0.9
+    attributes: { role: 兄弟, relation: 同我, yong_shen_for: [兄弟, 朋友, 同事, 合伙], adverse_for: [财物, 谋事, 妻妾] }
+
+  - id: kn:ten_god:liuyao_zisun
+    node_type: ten_god
+    name_cn: 子孙
+    name_en: liuyao_children
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六亲之一，我生者为子孙。占子孙、女儿、女婿、侄甥、门生及在我子孙辈中者，以子孙爻为用神；占忠臣、良将、医药、僧道、兵卒、六畜禽兽，亦以子孙爻为用神。子孙为福德之神，为制鬼之神、解忧之神、剥官之神，诸事见之为喜，独占功名者忌之。五行上为宫所生者。
+    tags: [六爻, 六亲, 子孙, 福德, 医药, 我生]
+    confidence: 0.9
+    attributes: { role: 子孙, relation: 我生, yong_shen_for: [子孙, 医药, 僧道, 六畜], adverse_for: [功名] }
+
+  - id: kn:ten_god:liuyao_qicai
+    node_type: ten_god
+    name_cn: 妻财
+    name_en: liuyao_wealth
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六亲之一，我克者为妻财。占妻妾、婢仆、役使之人，以妻财爻为用神；占货财、珠宝、仓库及一切使用之财物，亦以妻财爻为用神。五行上为宫所克者。
+    tags: [六爻, 六亲, 妻财, 财物, 妻妾, 我克]
+    confidence: 0.9
+    attributes: { role: 妻财, relation: 我克, yong_shen_for: [妻财, 财物, 买卖, 珠宝] }
+
+  - id: kn:ten_god:liuyao_guangui
+    node_type: ten_god
+    name_cn: 官鬼
+    name_en: liuyao_officer_ghost
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 六亲之一，克我者为官鬼。占功名、官府、雷霆鬼神、妻占夫，以官鬼爻为用神；占乱臣、贼盗、邪祟，亦以官鬼爻为用神。一切拘束我身者属之。五行上为克宫者。
+    tags: [六爻, 六亲, 官鬼, 功名, 官府, 克我]
+    confidence: 0.9
+    attributes: { role: 官鬼, relation: 克我, yong_shen_for: [功名, 官府, 丈夫, 贼盗] }

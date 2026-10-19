@@ -1,0 +1,4150 @@
+{
+  "metadata": {
+    "corpus_id": "qimen_corpus",
+    "counts": {
+      "nodes": 47,
+      "references": 15,
+      "relations": 60
+    },
+    "domain": "qimen",
+    "pipeline": "knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
+    "source_digests": {
+      "source_qimen_01.yaml": "544ff3360137552a5756f53ad588b7a7329334519eba0ac964c9bf8fc624dec9",
+      "source_qimen_02.yaml": "50b1759d50b6be168defdb4d6d4a8ed467a2f0b3dc8f15f6287c14b6a65e4e5a"
+    },
+    "status": "candidate",
+    "version": "0.1.0"
+  },
+  "nodes": [
+    {
+      "attributes": {
+        "center_has_door": false,
+        "door_count": 8,
+        "palaces": 8,
+        "subsystem": "值使"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_bamen",
+      "interpretation": "奇门八门，地盘所配为坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开；中宫不开门。八门为「值使」体系：旬首所临地盘宫之门即为值使，值使随时支按阳遁顺行、阴遁逆行布于八宫（跳过中宫）。八门有吉凶与五行，并最怕迫制（门与宫相克）。八门只布八宫，与九星、八神同。",
+      "name_cn": "八门",
+      "name_en": "qimen_bamen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "门",
+        "值使体系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "fixed_palace": 1,
+        "fortune": "吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_xiu",
+      "interpretation": "八门之一，吉门，五行属水，地盘居坎一宫。宜面君谒贵、上官到任、嫁娶、移徙、商贾、营建，诸事皆吉；不宜行刑断狱。执事歌诀「休门见贵最为良」。休门主休养安和、藏聚不飞扬。",
+      "name_cn": "休门",
+      "name_en": "qimen_door_xiu",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "吉门",
+        "水",
+        "坎一宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fixed_palace": 8,
+        "fortune": "吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_sheng",
+      "interpretation": "八门之一，吉门，五行属土，地盘居艮八宫。宜征讨、谋望、入官见贵、嫁娶、移徙，诸事皆吉；不宜埋葬治丧。执事歌诀「欲求财利往生方」。生门主发生安闲、初成之物。",
+      "name_cn": "生门",
+      "name_en": "qimen_door_sheng",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "吉门",
+        "土",
+        "艮八宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "fixed_palace": 3,
+        "fortune": "凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_shang",
+      "interpretation": "八门之一，凶门，五行属木，地盘居震三宫。宜渔猎、讨捕索债、博戏、收敛货财，余俱不宜。执事歌诀「索债须防伤上去」。伤门主振动伤残，亦可运粮捕捉。",
+      "name_cn": "伤门",
+      "name_en": "qimen_door_shang",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "凶门",
+        "木",
+        "震三宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "fixed_palace": 4,
+        "fortune": "中平"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_du",
+      "interpretation": "八门之一，中平偏凶，五行属木，地盘居巽四宫。宜捕盗、剪凶、决隐、狱形、填塞沟壑，余俱不宜。执事歌诀「杜门无事好逃藏」。杜门主闭塞无为、藏匿不通。",
+      "name_cn": "杜门",
+      "name_en": "qimen_door_du",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "中平",
+        "木",
+        "巽四宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "fixed_palace": 9,
+        "fortune": "中平",
+        "slug_note": "景(离宫)与惊(兑宫)拼音同形",
+        "以宫位区分": null
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_jing_li",
+      "interpretation": "八门之一，中平，五行属火，地盘居离九宫。宜上书献策、招贤谒贵、拜职遣使、行诛、突阵，余俱不宜。执事歌诀「思量饮酒景门高」。景门主虚华张扬，喜而不久。",
+      "name_cn": "景门",
+      "name_en": "qimen_door_jing_li",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "中平",
+        "火",
+        "离九宫",
+        "景门"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fixed_palace": 2,
+        "fortune": "凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_si",
+      "interpretation": "八门之一，大凶门，五行属土，地盘居坤二宫。宜决断、刑狱、吊丧、埋葬等事。执事歌诀「葬猎须知死路强」。死门主死亡败绝、事无可成。",
+      "name_cn": "死门",
+      "name_en": "qimen_door_si",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "凶门",
+        "土",
+        "坤二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fixed_palace": 7,
+        "fortune": "凶",
+        "slug_note": "惊(兑宫)与景(离宫)拼音同形",
+        "以宫位区分": null
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_jing_dui",
+      "interpretation": "八门之一，凶门，五行属金，地盘居兑七宫。宜掩捕盗贼、恐惑乱众等事。执事歌诀「捉贼惊门无不获」。惊门主惊惶不安、忧疑怪异。",
+      "name_cn": "惊门",
+      "name_en": "qimen_door_jing_dui",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "凶门",
+        "金",
+        "兑七宫",
+        "惊门"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fixed_palace": 6,
+        "fortune": "吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_men_kai",
+      "interpretation": "八门之一，吉门，五行属金，地盘居乾六宫。宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建；不宜治政。执事歌诀「征战远行开门吉」。开门主豁达开畅、四通八达。",
+      "name_cn": "开门",
+      "name_en": "qimen_door_kai",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八门",
+        "吉门",
+        "金",
+        "乾六宫"
+      ]
+    },
+    {
+      "attributes": {
+        "center_has_god": false,
+        "god_count": 8,
+        "order": [
+          "值符",
+          "螣蛇",
+          "太阴",
+          "六合",
+          "白虎",
+          "玄武",
+          "九地",
+          "九天"
+        ],
+        "palaces": 8,
+        "tongzong_variant": [
+          "勾陈",
+          "朱雀"
+        ]
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_bashen",
+      "interpretation": "奇门八神，为值符、螣蛇、太阴、六合、白虎、玄武、九地、九天。小值符加大值符：天盘值符加于九星值符所临之宫，其余七神依序顺布，阳顺阴逆，跳过中宫。八神为「神盘」，只布八宫。《奇门遁甲统宗》所列八神第五、第六为勾陈、朱雀，并注朱雀下有玄武、勾陈下有白虎；本实现采用通行命名（白虎、玄武），故语料按实现用名收录并保留异名。",
+      "name_cn": "八神",
+      "name_en": "qimen_bashen",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "神盘",
+        "八将"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fortune": "吉",
+        "order_index": 1
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_zhifu",
+      "interpretation": "八神之首，禀中央之土，为贵人之位，能育万物，大将利居其下。随值符落宫起布，其余七神依次顺行。主尊贵、印绶文章、诏书筵会；休囚则主哭泣愁闷。奇门占法「急从神兮缓从门」，与「值使」相对，同为盘面主导之神。",
+      "name_cn": "值符神",
+      "name_en": "qimen_god_zhifu",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "值符",
+        "贵人",
+        "土"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "fortune": "凶",
+        "order_index": 2
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_tengshe",
+      "interpretation": "八神之一，禀南方之火，为虚耗之神。为人性虚伪而巧诈；主胎产、婚姻、文契、钱货，得奇得门无妨；变异则为光怪、火烛、惊疑、恶梦、血光。异写「腾蛇」。",
+      "name_cn": "螣蛇",
+      "name_en": "qimen_god_tengshe",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "螣蛇",
+        "腾蛇",
+        "火"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fortune": "吉",
+        "order_index": 3
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_taiyin",
+      "interpretation": "八神之一，禀西方之金，为阴佑之神，能为祯祥护持。为人正直无私，性气难驯。旺相主喜庆、恩赦、婚姻胎产；休囚则主淫滥、忧疑、欺诈、隐私、口舌、暗谋密约。奇门「人遁」以休门合丁奇上临太阴。",
+      "name_cn": "太阴",
+      "name_en": "qimen_god_taiyin",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "太阴",
+        "金",
+        "阴佑"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "fortune": "吉",
+        "order_index": 4
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_liuhe",
+      "interpretation": "八神之一，禀东方之木，为雷部雨师护卫之神，能飞腾变化。为人性好贤乐善；旺相主爵禄荣庆、婚姻和合、胎产；休囚则主口舌争财、囚系胆怯、通谋勾引。奇门「九天之上扬威武，九地之下匿兵马，伏兵但向太阴位，唯有六合可逃形」。",
+      "name_cn": "六合",
+      "name_en": "qimen_god_liuhe",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "六合",
+        "木",
+        "和合"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fortune": "凶",
+        "order_index": 5,
+        "tongzong_name": "勾陈"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_baihu",
+      "interpretation": "八神之一，禀西方之金，为刚勇之神，主兵戈战斗。为人性猛烈威雄；主争讼、疾病、死丧、道路跌伤、留连遗失。在《奇门遁甲统宗》列于「勾陈」之下，本实现以白虎为八神第五（通行命名）。",
+      "name_cn": "白虎",
+      "name_en": "qimen_god_baihu",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "白虎",
+        "金",
+        "刚勇"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "fortune": "凶",
+        "order_index": 6,
+        "tongzong_name": "朱雀"
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_xuanwu",
+      "interpretation": "八神之一，禀北方之水，为刑戮奸谗之神。为人性聪明而躁急、巧辩而反复；主谒官求望，失令则主口舌啼哭、梦想离别、惊恐遗失、逃人。在《奇门遁甲统宗》列于「朱雀」之下，本实现以玄武为八神第六（通行命名）。",
+      "name_cn": "玄武",
+      "name_en": "qimen_god_xuanwu",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "玄武",
+        "水",
+        "奸谗"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fortune": "中平",
+        "order_index": 7
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_jiudi",
+      "interpretation": "八神之一，坤土之象，万物之母，为阴晦之神。为人性柔顺吝啬；主模糊、忧思、病患、牢狱、暗昧、哭泣死丧。奇门「九地之下匿兵马」，宜伏藏；鬼遁以乙奇合九地杜门。",
+      "name_cn": "九地",
+      "name_en": "qimen_god_jiudi",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "九地",
+        "土",
+        "伏藏"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fortune": "吉",
+        "order_index": 8
+      },
+      "confidence": 0.85,
+      "id": "kn:shen_sha:qimen_shen_jiutian",
+      "interpretation": "八神之一，乾金之象，万物之父，为显扬之神。为人性刚健而不测；主谋望、博弈、远行。奇门「九天之上扬威武」，宜陈兵；神遁以休门与乙奇合九天。",
+      "name_cn": "九天",
+      "name_en": "qimen_god_jiutian",
+      "node_type": "shen_sha",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "八神",
+        "九天",
+        "金",
+        "显扬"
+      ]
+    },
+    {
+      "attributes": {
+        "dun_type": "yang",
+        "instrument_layout": "顺布六仪",
+        "starts_at_term": "冬至",
+        "three_qi_layout": "逆布三奇"
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_yangdun",
+      "interpretation": "奇门二遁之一。冬至（含）后至夏至前为阳遁：顺布六仪、逆布三奇。九局之中，一局甲子戊起坎一宫，依次顺行；甲子戊所在之宫即为局数（阳遁 n 局甲子戊在 n 宫）。阳遁九局各配节气，如冬至惊蛰一七四、小寒二八五、大寒春分三九六。本实现用法：遁型为阳时，地盘按顺布六仪、逆布三奇计算。",
+      "name_cn": "阳遁",
+      "name_en": "qimen_yangdun",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阳遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "阳遁",
+        "阴阳遁",
+        "顺布六仪",
+        "冬至"
+      ]
+    },
+    {
+      "attributes": {
+        "dun_type": "yin",
+        "instrument_layout": "逆布六仪",
+        "starts_at_term": "夏至",
+        "three_qi_layout": "顺布三奇"
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_yindun",
+      "interpretation": "奇门二遁之一。夏至（含）后至冬至前为阴遁：逆布六仪、顺布三奇。九局之中，甲子戊起离九宫，逆行；阴遁 n 局甲子戊在 (10 - n) 宫。阴遁九局各配节气，如夏至白露九三六、小暑八二五。本实现用法：遁型为阴时，地盘按逆布六仪、顺布三奇计算。",
+      "name_cn": "阴遁",
+      "name_en": "qimen_yindun",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阴遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "阴遁",
+        "阴阳遁",
+        "逆布六仪",
+        "夏至"
+      ]
+    },
+    {
+      "attributes": {
+        "center_host": "坤二宫",
+        "follows": "时干",
+        "rule": "旬首宫之星为值符星",
+        "subsystem": [
+          "九星",
+          "八神"
+        ]
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_zhifu",
+      "interpretation": "值符有二义：一为当值之九星，一为八神之首。取法：旬首（用时之干溯至本旬之甲首）所临地盘宫之星即为值符星；值符随时干——看时干临于地盘何宫，即以天盘值符加于此宫，天盘九星整体按 (时干宫 - 旬首宫) 顺转。值符落中五宫时寄坤二宫。八神之值符神随值符落宫起布。九星常为值符，十时一易。",
+      "name_cn": "值符",
+      "name_en": "qimen_zhifu_concept",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·以旬首取符使法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "值符",
+        "值符星",
+        "随时干",
+        "旬首"
+      ]
+    },
+    {
+      "attributes": {
+        "center_host": "坤二宫",
+        "follows": "时支",
+        "rule": "旬首宫之地盘门为值使门",
+        "subsystem": "八门"
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_zhishi",
+      "interpretation": "值使即当值之门。取法：旬首所临地盘宫之地盘八门即为值使门；值使随时支——自本宫起，阳遁顺行、阴遁逆行，步数为 (时支序 - 旬首支序) 的余数，落宫后其余八门按洛书宫序顺布（跳过中宫）。值使落中五宫时寄坤二宫。八门常为值使，十时一易；奇门占法「急从神兮缓从门」，值使为门盘主导。",
+      "name_cn": "值使",
+      "name_en": "qimen_zhishi_concept",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·值使加时支法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "值使",
+        "值使门",
+        "随时支",
+        "旬首"
+      ]
+    },
+    {
+      "attributes": {
+        "instruments": [
+          "戊",
+          "己",
+          "庚",
+          "辛",
+          "壬",
+          "癸"
+        ],
+        "pairs": {
+          "甲午": "辛",
+          "甲子": "戊",
+          "甲寅": "癸",
+          "甲戌": "己",
+          "甲申": "庚",
+          "甲辰": "壬"
+        }
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_liuyi",
+      "interpretation": "六仪即戊、己、庚、辛、壬、癸，为六甲所遁之仪：甲子遁于六戊、甲戌遁于六己、甲申遁于六庚、甲午遁于六辛、甲辰遁于六壬、甲寅遁于六癸。甲为至尊之神，宜藏而不宜露，故隐于六仪之下，是为「遁甲」。地盘按局数顺布（阳遁）或逆布（阴遁）六仪三奇，顺序为戊己庚辛壬癸丁丙乙。",
+      "name_cn": "六仪",
+      "name_en": "qimen_liuyi",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·六仪遁",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "六仪",
+        "遁甲",
+        "戊己庚辛壬癸"
+      ]
+    },
+    {
+      "attributes": {
+        "roles": {
+          "丁": "星奇",
+          "丙": "月奇",
+          "乙": "日奇"
+        },
+        "three_qi": [
+          "乙",
+          "丙",
+          "丁"
+        ],
+        "tomb_palaces": {
+          "丁": "艮八宫",
+          "丙": "乾六宫",
+          "乙": "乾六宫"
+        }
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_sanqi",
+      "interpretation": "三奇即乙、丙、丁：乙为日奇、丙为月奇、丁为星奇，三奇之中星奇最灵。地盘布奇与六仪相反（阳遁逆布三奇、阴遁顺布三奇），六仪之后依次为丁、丙、乙。天盘干中之乙丙丁落宫，在盘面单独标记为三奇落宫。奇门「吉门仍又合三奇，大概须云百事宜」；三奇忌入墓（乙丙到乾、丁到艮），亦忌迫制。",
+      "name_cn": "三奇",
+      "name_en": "qimen_sanqi",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·三奇喜怒",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "三奇",
+        "乙丙丁",
+        "日奇月奇星奇"
+      ]
+    },
+    {
+      "attributes": {
+        "role": "取符使",
+        "span_days": 10,
+        "xun": [
+          "甲子",
+          "甲戌",
+          "甲申",
+          "甲午",
+          "甲辰",
+          "甲寅"
+        ]
+      },
+      "confidence": 0.85,
+      "id": "kn:pattern:qimen_xunshou",
+      "interpretation": "旬首为一时干支所溯至的本旬甲首：甲子、甲戌、甲申、甲午、甲辰、甲寅六旬，每旬十日。旬首隐于对应六仪，故旬首所临地盘宫即由其遁仪所在宫决定。旬首所在宫之星为值符、之八门为值使，是奇门起盘之枢纽；旬空二支亦由旬首推得。本实现用法：以时干支序取旬，以旬首所遁六仪之地盘宫为旬首宫。",
+      "name_cn": "旬首",
+      "name_en": "qimen_xunshou",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·以旬首取符使法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "旬首",
+        "六甲",
+        "符使"
+      ]
+    },
+    {
+      "attributes": {
+        "basis": "旬空二支",
+        "mapping": "支→宫",
+        "void_flag": "is_void"
+      },
+      "confidence": 0.8,
+      "id": "kn:pattern:qimen_kongwang",
+      "interpretation": "空亡（旬空）为六甲旬中十干配十二支所余之二支：甲子旬中戌亥空、甲戌旬中申酉空，余旬仿此。奇门以时柱旬空二支映射宫位（坎子、艮丑寅、震卯、巽辰巳、离午、坤未申、兑酉、乾戌亥），对应宫位在盘面上单独标记为空亡宫。《奇门遁甲统宗》卷之三「孤虚」以「空亡前一位为孤、孤之冲为虚」，为空亡同类之方位法，二者宜分别看待。",
+      "name_cn": "空亡",
+      "name_en": "qimen_kongwang",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之三·孤虚",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "空亡",
+        "旬空",
+        "孤虚",
+        "is_void"
+      ]
+    },
+    {
+      "attributes": {
+        "engine_simplification": "日号 1-10/11-20/21-30 → 偏移 0/3/6",
+        "span_days_per_yuan": 5,
+        "trinity": [
+          "上元",
+          "中元",
+          "下元"
+        ]
+      },
+      "confidence": 0.8,
+      "id": "kn:pattern:qimen_sanyuan",
+      "interpretation": "三元即上元、中元、下元：一年二十四气，一气三候，一候五日，故五日为一元，一气统三元。古典定三元法以符头所临之支分：值子午卯酉为上元、寅申巳亥为中元、辰戌丑未为下元。元次决定节气基本局之上的局数偏移（三元偏移）。本实现的流派约定（实现假设，非规范契约）：以公历日号 1-10/11-20/21-30 近似上/中/下元，偏移分别为 +0/+3/+6，未实现超神接气与置闰法；本节点仅作解释语境，不改变实现结果。",
+      "name_cn": "三元",
+      "name_en": "qimen_sanyuan",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·三元",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "三元",
+        "上元中元下元",
+        "局数偏移"
+      ]
+    },
+    {
+      "attributes": {
+        "center_host": "坤二宫",
+        "center_palace": 5,
+        "order": "洛书",
+        "palace_count": 9
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_jiugong",
+      "interpretation": "奇门遁甲之盘面骨架，取洛书九宫（戴九履一，左三右七，二四为肩，六八为足，五居中宫）。上法九宫、下应九州，中建八门，以例八卦气。坎一、坤二、震三、巽四、中五、乾六、兑七、艮八、离九，共九宫；中五宫寄坤二宫。九宫为地盘，六仪三奇按阴阳遁顺逆布于九宫，八门与八神只布八宫（中宫不开门、不布神）。",
+      "name_cn": "九宫",
+      "name_en": "qimen_jiugong",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "洛书",
+        "盘面结构"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "坎",
+        "branches": [
+          "子"
+        ],
+        "direction": "北",
+        "element": "水",
+        "fixed_door": "休门",
+        "fixed_star": "天蓬",
+        "palace_number": 1
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_kan",
+      "interpretation": "洛书一宫，后天八卦之坎，方位正北，五行属水，地支配子。地盘配星天蓬、配门休门；甲子戊阳遁一局起于坎一宫。八卦类神主北道、舟程、水事、耳肾腰疾、深听智谋。",
+      "name_cn": "坎一宫",
+      "name_en": "qimen_palace_kan_1",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "一宫",
+        "坎",
+        "北",
+        "水"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "坤",
+        "branches": [
+          "未",
+          "申"
+        ],
+        "direction": "西南",
+        "element": "土",
+        "fixed_door": "死门",
+        "fixed_star": "天芮",
+        "is_center_host": true,
+        "palace_number": 2
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_kun",
+      "interpretation": "洛书二宫，后天八卦之坤，方位西南，五行属土，地支配未、申。地盘配星天芮、配门死门；中五宫寄坤二宫，故值符、值使落中宫时皆寄此宫。八卦类神主城隍司命、田野仓场、云雾沙石、老女、脾胃腹疾。",
+      "name_cn": "坤二宫",
+      "name_en": "qimen_palace_kun_2",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "二宫",
+        "坤",
+        "西南",
+        "土"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "震",
+        "branches": [
+          "卯"
+        ],
+        "direction": "东",
+        "element": "木",
+        "fixed_door": "伤门",
+        "fixed_star": "天冲",
+        "palace_number": 3
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_zhen",
+      "interpretation": "洛书三宫，后天八卦之震，方位正东，五行属木，地支配卯。地盘配星天冲、配门伤门。八卦类神主青龙、车马舟船、宫观庙宇、肝胆四肢、长男、威声、工巧雕刻。",
+      "name_cn": "震三宫",
+      "name_en": "qimen_palace_zhen_3",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "三宫",
+        "震",
+        "东",
+        "木"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "巽",
+        "branches": [
+          "辰",
+          "巳"
+        ],
+        "direction": "东南",
+        "element": "木",
+        "fixed_door": "杜门",
+        "fixed_star": "天辅",
+        "palace_number": 4
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_xun",
+      "interpretation": "洛书四宫，后天八卦之巽，方位东南，五行属木，地支配辰、巳。地盘配星天辅、配门杜门。八卦类神主山林竹舍、进退藏匿、绳索机关、长女秀士、股肱手足、风寒眼目。",
+      "name_cn": "巽四宫",
+      "name_en": "qimen_palace_xun_4",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "四宫",
+        "巽",
+        "东南",
+        "木"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "中",
+        "branches": [],
+        "direction": "中",
+        "element": "土",
+        "fixed_door": null,
+        "fixed_star": "天禽",
+        "hosts_to": "坤二宫",
+        "palace_number": 5
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_zhong",
+      "interpretation": "洛书五宫，居中，五行属土，无卦位、无地支。地盘配星天禽；中宫不开门，故不配八门，八神亦不布中宫。中宫寄坤二宫：值符、值使落中宫时寄坤二宫取用。天禽星阳遁阴遁俱寄坤宫。",
+      "name_cn": "中五宫",
+      "name_en": "qimen_palace_center_5",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "五宫",
+        "中宫",
+        "土",
+        "寄宫"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "乾",
+        "branches": [
+          "戌",
+          "亥"
+        ],
+        "direction": "西北",
+        "element": "金",
+        "fixed_door": "开门",
+        "fixed_star": "天心",
+        "palace_number": 6
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_qian",
+      "interpretation": "洛书六宫，后天八卦之乾，方位西北，五行属金，地支配戌、亥。地盘配星天心、配门开门。八卦类神主君父显官、僧道老人、金石铜铁、色白形圆、骨脑股筋。",
+      "name_cn": "乾六宫",
+      "name_en": "qimen_palace_qian_6",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "六宫",
+        "乾",
+        "西北",
+        "金"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "兑",
+        "branches": [
+          "酉"
+        ],
+        "direction": "西",
+        "element": "金",
+        "fixed_door": "惊门",
+        "fixed_star": "天柱",
+        "palace_number": 7
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_dui",
+      "interpretation": "洛书七宫，后天八卦之兑，方位正西，五行属金，地支配酉。地盘配星天柱、配门惊门。八卦类神主破损毁折、阴人灾厄、少女、咽喉口舌、妖邪诡言、刀针铜铁。",
+      "name_cn": "兑七宫",
+      "name_en": "qimen_palace_dui_7",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "七宫",
+        "兑",
+        "西",
+        "金"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "艮",
+        "branches": [
+          "丑",
+          "寅"
+        ],
+        "direction": "东北",
+        "element": "土",
+        "fixed_door": "生门",
+        "fixed_star": "天任",
+        "palace_number": 8
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_gen",
+      "interpretation": "洛书八宫，后天八卦之艮，方位东北，五行属土，地支配丑、寅。地盘配星天任、配门生门。八卦类神主少男、山冈径路、土石瓦块、寺观、鼻背手指、进退生死、虎豹狼狈之物。",
+      "name_cn": "艮八宫",
+      "name_en": "qimen_palace_gen_8",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "八宫",
+        "艮",
+        "东北",
+        "土"
+      ]
+    },
+    {
+      "attributes": {
+        "bagua": "离",
+        "branches": [
+          "午"
+        ],
+        "direction": "南",
+        "element": "火",
+        "fixed_door": "景门",
+        "fixed_star": "天英",
+        "palace_number": 9
+      },
+      "confidence": 0.85,
+      "id": "kn:palace:qimen_li",
+      "interpretation": "洛书九宫，后天八卦之离，方位正南，五行属火，地支配午。地盘配星天英、配门景门；甲子戊阴遁一局起于离九宫（阴遁甲子戊在 (10 - 局数) 宫）。八卦类神主神圣公像、闪电星火、赤鸦丹凤、火灶烟囱、诗赋词文、眼目心血。",
+      "name_cn": "离九宫",
+      "name_en": "qimen_palace_li_9",
+      "node_type": "palace",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·奇门妙秘赋",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九宫",
+        "九宫宫位",
+        "离",
+        "南",
+        "火"
+      ]
+    },
+    {
+      "attributes": {
+        "auspicious": [
+          "天辅",
+          "天禽",
+          "天心",
+          "天任",
+          "天冲"
+        ],
+        "inauspicious": [
+          "天蓬",
+          "天芮",
+          "天柱",
+          "天英"
+        ],
+        "star_count": 9,
+        "subsystem": "值符"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_jiuxing",
+      "interpretation": "奇门九星，地盘所配为坎一天蓬、坤二天芮、震三天冲、巽四天辅、中五天禽、乾六天心、兑七天柱、艮八天任、离九天英。九星常为值符：旬首所临地盘宫之星即为值符，值符随时干，天盘九星按 (时干宫 - 旬首宫) 顺转。天禽阳遁阴遁俱寄坤宫。九星旺于子月，相于本月，死于父母月，囚于鬼月，废于妻月；辅、禽、心、任、冲为吉，蓬、芮、柱、英为凶。",
+      "name_cn": "九星",
+      "name_en": "qimen_jiuxing",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "值符体系"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "水",
+        "fixed_palace": 1,
+        "fortune": "凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianpeng",
+      "interpretation": "九星之一，大凶，五行属水，地盘居坎一宫。宜安抚边境、修筑城池；不宜入官见贵、嫁娶、移徙、商贾、营建。为盗贼之星，主水事、盗贼、失财。",
+      "name_cn": "天蓬",
+      "name_en": "qimen_star_tianpeng",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "凶星",
+        "水",
+        "坎一宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fixed_palace": 2,
+        "fortune": "凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianrui",
+      "interpretation": "九星之一，大凶，五行属土，地盘居坤二宫。宜崇尚道德、尊师亲友、入官见贵；不宜嫁娶、移徙、商贾、营建。为师巫、为良朋益友，亦主病患、招官讼。",
+      "name_cn": "天芮",
+      "name_en": "qimen_star_tianrui",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "凶星",
+        "土",
+        "坤二宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "fixed_palace": 3,
+        "fortune": "小吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianchong",
+      "interpretation": "九星之一，小吉，五行属木，地盘居震三宫。宜征伐战斗、报怨酬恩；不宜上官见贵、嫁娶、移徙、商贾、营建。为雷祖天帝、为武士，主动、主威声。",
+      "name_cn": "天冲",
+      "name_en": "qimen_star_tianchong",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "小吉",
+        "木",
+        "震三宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "木",
+        "fixed_palace": 4,
+        "fortune": "大吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianfu",
+      "interpretation": "九星之一，大吉，五行属木，地盘居巽四宫。宜修道设教、诛凶伐暴、入官见贵、嫁娶、移徙、商贾、营建、应举、谋望。春夏婚姻移徙大吉；为文曲，主文化辅佐。",
+      "name_cn": "天辅",
+      "name_en": "qimen_star_tianfu",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "吉星",
+        "木",
+        "巽四宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fixed_palace": 5,
+        "fortune": "大吉",
+        "hosts_to": "坤二宫"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianqin",
+      "interpretation": "九星之一，大吉，五行属土，地盘居中五宫。天禽阳遁阴遁俱寄坤宫。宜祭祀、祈福、断灭群凶、入官见贵、赐爵赏功、应举、谋望、嫁娶、移徙、商贾、营建。为工、为师巫、为法士。",
+      "name_cn": "天禽",
+      "name_en": "qimen_star_tianqin",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "吉星",
+        "土",
+        "中五宫",
+        "寄坤宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fixed_palace": 6,
+        "fortune": "大吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianxin",
+      "interpretation": "九星之一，大吉，五行属金，地盘居乾六宫。宜兴师陈旅、诛暴伐恶、入官见贵、应举、求谋、嫁娶、移徙、商贾、营建。为高道、名医，亦宜书符合药。",
+      "name_cn": "天心",
+      "name_en": "qimen_star_tianxin",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "吉星",
+        "金",
+        "乾六宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "金",
+        "fixed_palace": 7,
+        "fortune": "小凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianzhu",
+      "interpretation": "九星之一，小凶，五行属金，地盘居兑七宫。宜修筑营垒、训练士卒；不宜入官见贵、嫁娶移徙、商贾营建。为隐士、为修炼，可固守隐迹或为阴谋。",
+      "name_cn": "天柱",
+      "name_en": "qimen_star_tianzhu",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "凶星",
+        "金",
+        "兑七宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "土",
+        "fixed_palace": 8,
+        "fortune": "小吉"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianren",
+      "interpretation": "九星之一，小吉，五行属土，地盘居艮八宫。宜立国邑、化人民、入官见贵、求请应与商贾、嫁娶；不宜迁徙、营建。嫁娶生子大贵，上官谒贵全吉。",
+      "name_cn": "天任",
+      "name_en": "qimen_star_tianren",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "小吉",
+        "土",
+        "艮八宫"
+      ]
+    },
+    {
+      "attributes": {
+        "element": "火",
+        "fixed_palace": 9,
+        "fortune": "小凶"
+      },
+      "confidence": 0.85,
+      "id": "kn:main_star:qimen_tianying",
+      "interpretation": "九星之一，小凶，五行属火，地盘居离九宫。宜远行献书、上官见贵、应举报书；不宜嫁娶、移徙、商贾、营建、祭祀、远行。为炉冶人、为残患，主失财物、修造失火。",
+      "name_cn": "天英",
+      "name_en": "qimen_star_tianying",
+      "node_type": "main_star",
+      "schools": [],
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "systems": [
+        "qimen"
+      ],
+      "tags": [
+        "奇门",
+        "九星",
+        "凶星",
+        "火",
+        "离九宫"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "credibility": 0.8,
+      "passage": "摘要：洛书九宫为奇门之祖，戴九履一，左三右七，二四为肩，六八为足，五居中宫；上法九宫、下应九州，中建八门。九宫为地盘，六仪三奇按阴阳遁顺逆布之，中宫寄坤二宫。（读自维基文库转录本，非逐字核验；与 engine PALACE_NAMES_9 / PALACE_BRANCHES 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_jiugong",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:palace:qimen_jiugong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：八门地盘配属为坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开；八门常为值使，随值符亦十时一易。论八门执事歌：欲求财利往生方，葬猎须知死路强；征战远行开门吉，休门见贵最为良；捉贼惊门无不获，杜门无事好逃藏；索债须防伤上去，思量饮酒景门高。（短句读自转录本，非逐字核验。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_bamen",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:shen_sha:qimen_bamen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：八门各有宜忌——开门宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建，不宜治政；休门宜面君谒贵、上官到任、嫁娶、移徙，不宜行刑断狱；生门宜征讨谋望，不宜埋葬治丧；伤门宜渔猎讨捕索债；杜门宜捕盗剪凶；景门宜上书献策、招贤谒贵；死门宜决断刑狱吊丧埋葬；惊门宜掩捕盗贼。八门最怕迫制。（摘录改写，非逐字核验。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_bamen_suozhu",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "rel:qimen_shuyu:bamen_kai",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：九星地盘配属为坎一天蓬、坤二天芮、震三天冲、巽四天辅、中五天禽、乾六天心、兑七天柱、艮八天任、离九天英。九星常为值符用，十时一易，每用加时干。天禽阳遁阴遁俱寄坤宫。（读自转录本，非逐字核验；与 engine NINE_STARS 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_jiuxing",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:main_star:qimen_jiuxing",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：九星各有宜忌，天辅、天禽、天心、天任、天冲为吉，天蓬、天芮、天柱、天英为凶（「天辅冲任禽心吉，天蓬天英芮柱凶」）。天蓬宜安抚边境、修筑城池；天辅宜修道设教、诛凶伐暴；天心宜兴师陈旅、诛暴伐恶；天芮宜崇尚道德、尊师亲友；天柱宜修筑营垒、训练士卒；天任宜立国邑、化人民；天英宜远行献书。九星旺于子月。（摘录改写，非逐字核验。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_jiuxing_suozhu",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·九星所主",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "rel:qimen_shuyu:jiuxing_tianfu",
+      "target_type": "relation"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：八神次第为一值符、二腾蛇、三太阴、四六合、五勾陈、六朱雀、七九地、八九天（阳遁）；阴遁则次第逆行，并注「朱雀下有玄武，勾陈下又白虎」。本 engine 采用通行八神命名（以白虎、玄武代勾陈、朱雀），语料按 engine 用名收录并在 attributes 保留异名。（读自转录本，非逐字核验；流派差异已显式登记。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_bashen",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:shen_sha:qimen_bashen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：八神类神——值符禀中央之土，为贵人之位，能育万物；腾蛇禀南方之火，为虚耗之神；太阴禀西方之金，为阴佑之神；六合禀东方之木，为护卫之神；勾陈（下有白虎）禀西方之金，为刚勇之神，主兵戈战斗；朱雀（下有玄武）禀北方之水，为刑戮奸谗之神；九地为坤土之象，万物之母；九天为乾金之象，万物之父。（摘录改写，非逐字核验。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_bashen_leishen",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神类神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:shen_sha:qimen_shen_zhifu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：阳遁九局顺布六仪、逆布三奇。一局甲子戊起坎一宫，甲戌己在坤二宫，甲申庚在震三宫，甲午辛在巽四宫，甲辰壬在中五宫，甲寅癸在乾六宫；丁在兑七宫，丙在艮八宫，乙在离九宫。二局甲子戊起坤二宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type=\"yang\") 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_yangdun",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阳遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_yangdun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：阴遁九局逆布六仪、顺布三奇。一局甲子戊起离九宫，甲戌己在艮八宫，甲申庚在兑七宫，甲午辛在乾六宫，甲辰壬在中五宫，甲寅癸在巽四宫；丁在震三宫，丙在坤二宫，乙在坎一宫。八局甲子戊起艮八宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type=\"yin\") 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_yindun",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阴遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_yindun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.7,
+      "passage": "摘要（佐证）：歌诀总纲述「阴阳二遁分顺逆，一气三元人莫测，五日都来换一元」及「节气推移时候定，阴阳顺逆要精通」，与《奇门遁甲统宗》阳遁/阴遁顺逆布仪之说平行。本语料以其为佐证来源，不据以做逐字核验（维基文库转录含异文校注）。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_yanbo_yinyang",
+      "school": null,
+      "source": {
+        "author": "赵普（旧题）",
+        "chapter": null,
+        "credibility": 0.7,
+        "page": null,
+        "text": "烟波钓叟歌",
+        "url": "https://zh.wikisource.org/wiki/煙波釣叟歌"
+      },
+      "target_id": "kn:pattern:qimen_yangdun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：旬首者，从用时之干溯至本旬之甲首；地盘旬首所临之宫，其星即为值符，其门即为值使。如旬首在坎宫，则天蓬星为值符，休门为值使。值符加时干法：看用时之干临于地盘何宫，即以天盘值符加于此宫，所谓伏吟者是也。（读自转录本，非逐字核验；与 engine 值符/天盘顺转一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_zhifu",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·以旬首取符使法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_zhifu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：八门常为值使，随值符亦十时一易；值使加时支——看用时之支临于地盘何宫，即以天盘值使加于其上，阳遁顺行、阴遁逆行。值符值使诀：一逢坎上一坎休，芮死还排第二流，更有冲伤居震位，巽逢杜辅数为头。（短句读自转录本，非逐字核验；与 engine 值使落宫一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_zhishi",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·值使加时支法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_zhishi",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：六仪为戊己庚辛壬癸；甲子遁于六戊、甲戌遁于六己、甲申遁于六庚、甲午遁于六辛、甲辰遁于六壬、甲寅遁于六癸。遁甲起例亦述「顺布六仪（甲子戊、甲戌己、甲申庚、甲午辛、甲辰壬、甲寅癸）」。（读自转录本，非逐字核验；与 engine LIUYI / LIUJIA 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_liuyi",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·六仪遁",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_liuyi",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：三奇为乙丙丁，乙为日奇、丙为月奇、丁为星奇，三奇之中星奇最灵。遁甲起例述「逆飞三奇（乙为日奇，丙为月奇，丁为星奇）」。三奇喜怒详列三奇到各宫之名（如乙奇到震为玉兔游宫、丁奇到坎为朱雀投江）。（摘录改写，非逐字核验；与 engine SANQI 一致。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_sanqi",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·三奇喜怒",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_sanqi",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.8,
+      "passage": "摘要：《奇门遁甲统宗》卷之三论「孤虚」：年月日时俱以前一位空亡为孤，孤之冲为虚，并按年孤/月孤/旬孤/日孤/时孤分量取用。本语料所收录之「空亡」为六甲旬空（旬中二支）之通行义，engine 将时柱旬空二支映射为宫位；二者为同类而不同义的方位法，宜分别看待。（摘录改写，非逐字核验。）",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:qimen_xunshou_kongwang",
+      "school": null,
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之三·孤虚",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "target_id": "kn:pattern:qimen_kongwang",
+      "target_type": "node"
+    }
+  ],
+  "relations": [
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 1
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘坎一宫固定配属九星天蓬（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong1_tianpeng",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kan",
+      "target_node_id": "kn:main_star:qimen_tianpeng",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 2
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘坤二宫固定配属九星天芮（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong2_tianrui",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kun",
+      "target_node_id": "kn:main_star:qimen_tianrui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 3
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘震三宫固定配属九星天冲（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong3_tianchong",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_zhen",
+      "target_node_id": "kn:main_star:qimen_tianchong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 4
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘巽四宫固定配属九星天辅（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong4_tianfu",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_xun",
+      "target_node_id": "kn:main_star:qimen_tianfu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 5
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘中五宫固定配属九星天禽（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong5_tianqin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_zhong",
+      "target_node_id": "kn:main_star:qimen_tianqin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 6
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘乾六宫固定配属九星天心（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong6_tianxin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_qian",
+      "target_node_id": "kn:main_star:qimen_tianxin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 7
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘兑七宫固定配属九星天柱（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong7_tianzhu",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_dui",
+      "target_node_id": "kn:main_star:qimen_tianzhu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 8
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘艮八宫固定配属九星天任（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong8_tianren",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_gen",
+      "target_node_id": "kn:main_star:qimen_tianren",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_star"
+        },
+        {
+          "field": "palace_number",
+          "value": 9
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘离九宫固定配属九星天英（九星值符图）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong9_tianying",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_li",
+      "target_node_id": "kn:main_star:qimen_tianying",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 1
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘坎一宫固定配属八门休门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong1_xiu",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kan",
+      "target_node_id": "kn:shen_sha:qimen_men_xiu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 2
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘坤二宫固定配属八门死门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong2_si",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kun",
+      "target_node_id": "kn:shen_sha:qimen_men_si",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 3
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘震三宫固定配属八门伤门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong3_shang",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_zhen",
+      "target_node_id": "kn:shen_sha:qimen_men_shang",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 4
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘巽四宫固定配属八门杜门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong4_du",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_xun",
+      "target_node_id": "kn:shen_sha:qimen_men_du",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 6
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘乾六宫固定配属八门开门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong6_kai",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_qian",
+      "target_node_id": "kn:shen_sha:qimen_men_kai",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 7
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘兑七宫固定配属八门惊门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong7_jing_dui",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_dui",
+      "target_node_id": "kn:shen_sha:qimen_men_jing_dui",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 8
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘艮八宫固定配属八门生门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong8_sheng",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_gen",
+      "target_node_id": "kn:shen_sha:qimen_men_sheng",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dipan_door"
+        },
+        {
+          "field": "palace_number",
+          "value": 9
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "地盘离九宫固定配属八门景门（八门值使图）；中五宫不开门，故无配属。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·八门值使图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:gong9_jing_li",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·八门值使图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_li",
+      "target_node_id": "kn:shen_sha:qimen_men_jing_li",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zhifu_god"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "值符之名兼指当值九星与八神之首：八神之值符神随值符落宫起布。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:zhifu_shen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_zhifu",
+      "target_node_id": "kn:shen_sha:qimen_shen_zhifu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "dun_pair"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "阳遁与阴遁相对：冬至后阳遁顺布六仪逆布三奇，夏至后阴遁逆布六仪顺布三奇。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·阳遁起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:yangdun_yindun",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阳遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_yangdun",
+      "target_node_id": "kn:pattern:qimen_yindun",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "xunshou_instrument"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "六甲旬首各遁于一仪：甲子戊、甲戌己、甲申庚、甲午辛、甲辰壬、甲寅癸。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·六仪遁",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:xunshou_liuyi",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·六仪遁",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_xunshou",
+      "target_node_id": "kn:pattern:qimen_liuyi",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "sanqi_instrument"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "三奇（乙丙丁）与六仪（戊己庚辛壬癸）并列布于九宫地盘，地盘布序为戊己庚辛壬癸丁丙乙。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·阳遁起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:sanqi_liuyi",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·阳遁起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_sanqi",
+      "target_node_id": "kn:pattern:qimen_liuyi",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "kongwang_xunshou"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "空亡（旬空）由旬首推得：六甲旬中十干配十二支，所余二支为空。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之三·孤虚",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:kongwang_xunshou",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之三·孤虚",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_kongwang",
+      "target_node_id": "kn:pattern:qimen_xunshou",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "sanyuan_dun"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "三元（上中下元）在上元/中元/下元之上叠加三元偏移，得阳遁各局之局数。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·三元",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:sanyuan_yangdun",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·三元",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_sanyuan",
+      "target_node_id": "kn:pattern:qimen_yangdun",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "sanyuan_dun"
+        }
+      ],
+      "direction": "undirected",
+      "evidence": [
+        {
+          "description": "三元（上中下元）在上元/中元/下元之上叠加三元偏移，得阴遁各局之局数。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·三元",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_duiying:sanyuan_yindun",
+      "relation_type": "duiying",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·三元",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_sanyuan",
+      "target_node_id": "kn:pattern:qimen_yindun",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坎一宫为洛书九宫之一，属于九宫体系（宫位序 1）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_kan",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kan",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "坤二宫为洛书九宫之一，属于九宫体系（宫位序 2）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_kun",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_kun",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "震三宫为洛书九宫之一，属于九宫体系（宫位序 3）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_zhen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_zhen",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "巽四宫为洛书九宫之一，属于九宫体系（宫位序 4）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_xun",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_xun",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "中五宫为洛书九宫之一，属于九宫体系（宫位序 5）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_zhong",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_zhong",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "乾六宫为洛书九宫之一，属于九宫体系（宫位序 6）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_qian",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_qian",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "兑七宫为洛书九宫之一，属于九宫体系（宫位序 7）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_dui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_dui",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "艮八宫为洛书九宫之一，属于九宫体系（宫位序 8）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_gen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_gen",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiugong_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "离九宫为洛书九宫之一，属于九宫体系（宫位序 9）。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·遁甲起例",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiugong_li",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·遁甲起例",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:palace:qimen_li",
+      "target_node_id": "kn:palace:qimen_jiugong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "休门为奇门八门之一，地盘固定配属坎一宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_xiu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_xiu",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "死门为奇门八门之一，地盘固定配属坤二宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_si",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_si",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "伤门为奇门八门之一，地盘固定配属震三宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_shang",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_shang",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "杜门为奇门八门之一，地盘固定配属巽四宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_du",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_du",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "开门为奇门八门之一，地盘固定配属乾六宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_kai",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_kai",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "惊门为奇门八门之一，地盘固定配属兑七宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_jing_dui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_jing_dui",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "生门为奇门八门之一，地盘固定配属艮八宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_sheng",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_sheng",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bamen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "景门为奇门八门之一，地盘固定配属离九宫，属于八门体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八门",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bamen_jing_li",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八门",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_men_jing_li",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天蓬为奇门九星之一，地盘固定配属坎一宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianpeng",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianpeng",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天芮为奇门九星之一，地盘固定配属坤二宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianrui",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianrui",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天冲为奇门九星之一，地盘固定配属震三宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianchong",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianchong",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天辅为奇门九星之一，地盘固定配属巽四宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianfu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianfu",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天禽为奇门九星之一，地盘固定配属中五宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianqin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianqin",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天心为奇门九星之一，地盘固定配属乾六宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianxin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianxin",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天柱为奇门九星之一，地盘固定配属兑七宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianzhu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianzhu",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天任为奇门九星之一，地盘固定配属艮八宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianren",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianren",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "jiuxing_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "天英为奇门九星之一，地盘固定配属离九宫，属于九星体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之一·九星值符图",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:jiuxing_tianying",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之一·九星值符图",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:main_star:qimen_tianying",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "值符神为奇门八神之一（第 1 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_zhifu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_zhifu",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "螣蛇为奇门八神之一（第 2 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_tengshe",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_tengshe",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "太阴为奇门八神之一（第 3 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_taiyin",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_taiyin",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "六合为奇门八神之一（第 4 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_liuhe",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_liuhe",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "白虎为奇门八神之一（第 5 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_baihu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_baihu",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "玄武为奇门八神之一（第 6 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_xuanwu",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_xuanwu",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "九地为奇门八神之一（第 7 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_jiudi",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_jiudi",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bashen_member"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "九天为奇门八神之一（第 8 位），属于八神体系。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·八神",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:bashen_jiutian",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·八神",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:shen_sha:qimen_shen_jiutian",
+      "target_node_id": "kn:shen_sha:qimen_bashen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zhifu_subsystem"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "值符（当值之九星）取自九星体系：旬首所临地盘宫之星即为值符星。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·以旬首取符使法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:zhifu_jiuxing",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·以旬首取符使法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_zhifu",
+      "target_node_id": "kn:main_star:qimen_jiuxing",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "zhishi_subsystem"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "值使（当值之门）取自八门体系：旬首所临地盘宫之地盘八门即为值使门。",
+          "source": {
+            "author": "程道生（旧题）",
+            "chapter": "卷之二·以旬首取符使法",
+            "credibility": 0.8,
+            "page": null,
+            "text": "奇门遁甲统宗",
+            "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:qimen_shuyu:zhishi_bamen",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "程道生（旧题）",
+        "chapter": "卷之二·以旬首取符使法",
+        "credibility": 0.8,
+        "page": null,
+        "text": "奇门遁甲统宗",
+        "url": "https://zh.wikisource.org/wiki/奇門遁甲統宗"
+      },
+      "source_node_id": "kn:pattern:qimen_zhishi",
+      "target_node_id": "kn:shen_sha:qimen_bamen",
+      "weight": 1.0
+    }
+  ]
+}

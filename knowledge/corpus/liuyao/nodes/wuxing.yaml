@@ -1,0 +1,65 @@
+# KnowledgeNode — 五行基础（wuxing, Liuyao Corpus, 5 个）
+# P2.3 Liuyao Knowledge Integration: 五行本体，作为六爻生克关系的域内端点。
+# 语义与 deterministic engine 一致: src/openmetaphysics/core/models.py
+#   WUXING_SHENG / WUXING_KE（木生火…金生水；木克土…金克木）。
+# 本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 命名说明: slug 加 `liuyao_` 域前缀, 避免与 Ziwei 冻结语料 kn:wuxing:* 及
+#   BaZi 语料 kn:wuxing:bazi_* 冲突（同一 retriever, ID 全局唯一）。
+# 证据: 增刪卜易/11 五行相生章 / /12 五行相克章（revision-pinned, 逐字核验）。
+
+nodes:
+  - id: kn:wuxing:liuyao_mu
+    node_type: wuxing
+    name_cn: 木
+    name_en: liuyao_wood
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 五行之木。六爻以五行生克定六亲与吉凶：木生火，木克土；生木者水，克木者金。地支寅卯属木，震巽二宫属木。
+    tags: [六爻, 五行, 木, 生克]
+    confidence: 0.9
+    attributes: { element: 木, branches: [寅, 卯], palaces: [震, 巽], generates: 火, controls: 土, generated_by: 水, controlled_by: 金 }
+
+  - id: kn:wuxing:liuyao_huo
+    node_type: wuxing
+    name_cn: 火
+    name_en: liuyao_fire
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 五行之火。六爻以五行生克定六亲与吉凶：火生土，火克金；生火者木，克火者水。地支巳午属火，离宫属火。
+    tags: [六爻, 五行, 火, 生克]
+    confidence: 0.9
+    attributes: { element: 火, branches: [巳, 午], palaces: [离], generates: 土, controls: 金, generated_by: 木, controlled_by: 水 }
+
+  - id: kn:wuxing:liuyao_tu
+    node_type: wuxing
+    name_cn: 土
+    name_en: liuyao_earth
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 五行之土。六爻以五行生克定六亲与吉凶：土生金，土克水；生土者火，克土者木。地支辰戌丑未属土，艮坤二宫属土。
+    tags: [六爻, 五行, 土, 生克]
+    confidence: 0.9
+    attributes: { element: 土, branches: [辰, 戌, 丑, 未], palaces: [艮, 坤], generates: 金, controls: 水, generated_by: 火, controlled_by: 木 }
+
+  - id: kn:wuxing:liuyao_jin
+    node_type: wuxing
+    name_cn: 金
+    name_en: liuyao_metal
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 五行之金。六爻以五行生克定六亲与吉凶：金生水，金克木；生金者土，克金者火。地支申酉属金，乾兑二宫属金。
+    tags: [六爻, 五行, 金, 生克]
+    confidence: 0.9
+    attributes: { element: 金, branches: [申, 酉], palaces: [乾, 兑], generates: 水, controls: 木, generated_by: 土, controlled_by: 火 }
+
+  - id: kn:wuxing:liuyao_shui
+    node_type: wuxing
+    name_cn: 水
+    name_en: liuyao_water
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 五行相生章第十一, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 五行之水。六爻以五行生克定六亲与吉凶：水生木，水克火；生水者金，克水者土。地支子亥属水，坎宫属水。
+    tags: [六爻, 五行, 水, 生克]
+    confidence: 0.9
+    attributes: { element: 水, branches: [子, 亥], palaces: [坎], generates: 木, controls: 火, generated_by: 金, controlled_by: 土 }

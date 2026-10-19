@@ -358,6 +358,12 @@ class KnowledgeRetrieverProtocol(Protocol):
 _DOMAIN_EXPLAINERS: dict[str, tuple[str, str]] = {
     "bazi": ("openmetaphysics.agents.bazi_explainer", "BaziExplainer"),
     "ziwei": ("openmetaphysics.agents.ziwei_explainer", "ZiweiExplainer"),
+    # P2.2: Qimen joins the same explainer chain (query construction only; the
+    # prompt contract and the offline fallback stay the generic ones).
+    "qimen": ("openmetaphysics.agents.qimen_explainer", "QimenExplainer"),
+    # P2.3: Liuyao joins the same chain for the same reason (卦名/六神/世应/纳甲
+    # never entered the generic query, which is filled by the six 六亲 values).
+    "liuyao": ("openmetaphysics.agents.liuyao_explainer", "LiuyaoExplainer"),
 }
 
 
@@ -368,8 +374,9 @@ def get_explainer_for(
 ) -> Explainer:
     """Return the explainer for an agent, falling back to the generic Explainer.
 
-    Wires the existing domain explainers (Bazi / Ziwei) that previously had no
-    caller. If the provider or retriever is omitted, the configured ones are used.
+    Wires the existing domain explainers (Bazi / Ziwei / Qimen / Liuyao) that
+    previously had no caller. If the provider or retriever is omitted, the
+    configured ones are used.
     """
     if provider is None:
         provider = get_provider()
