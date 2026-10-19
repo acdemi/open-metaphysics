@@ -1,0 +1,46 @@
+# KnowledgeNode — 用神体系（yong_shen / xi_shen / ji_shen, Liuyao Corpus, 3 个）
+# P2.3 Liuyao Knowledge Integration: 用神、元神、忌神。
+# 语义与 deterministic engine 一致: src/openmetaphysics/agents/liuyao.py
+#   YONG_SHEN_RULES / _select_yong_shen（用神按所测之事取六亲;
+#   无匹配或无问题时取世爻）。
+# 本语料为解释引用, 不参与计算, 不修改 deterministic result。
+# 规范: KB-001~003 / reference/knowledge.py::KnowledgeNode
+# 类型映射（GAP-LIUYAO-03）: 冻结 KB-002 无「元神」类别, 暂以 `xi_shen`
+#   （喜神/有益之神）承载; 语义经 tags/attributes 显式保留, **不修改冻结 Schema**。
+#   仇神见 patterns.yaml（GAP-LIUYAO-04）。
+# 证据: 增刪卜易/8 用神章第八 / /9 用神元神忌神仇神章第九 / /10 元神忌神衰旺章第十
+#   （revision-pinned, 逐字核验）。
+
+nodes:
+  - id: kn:yong_shen:liuyao_yongshen
+    node_type: yong_shen
+    name_cn: 用神
+    name_en: liuyao_yong_shen
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神章第八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 用神为一卦所测之事的核心爻。占父母以父母爻为用神，占功名官鬼、占财物妻财、占兄弟朋友兄弟、占子孙医药子孙；自占吉凶则以世爻为用神。用神既定，再察其旺衰、动静、空破，以及元神、忌神、仇神之生克。
+    tags: [六爻, 用神, 所测之事, 六亲取用]
+    confidence: 0.9
+    attributes: { selection: 六亲取用, self_question: 世爻, by_topic: { 父母: 父母, 功名: 官鬼, 财物: 妻财, 兄弟: 兄弟, 子孙: 子孙 } }
+
+  - id: kn:xi_shen:liuyao_yuanshen
+    node_type: xi_shen
+    name_cn: 元神
+    name_en: liuyao_generating_spirit
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 元神者，生用神之神也。元神虽生用神，须要旺相方可生得用神：旺相或临日月、日月动爻生扶、动化回头生及化进神、长生帝旺于日辰、与忌神同动、旺动临空化空，此五者为有力之元神，诸占皆吉。若休囚不动、自空月破、动化退神、衰而又绝、入三墓、化绝化克化破化散，则无力生用神。
+    tags: [六爻, 元神, 生用神, 用神体系, 旺衰]
+    confidence: 0.9
+    attributes: { role: 元神, generates: 用神, gapped_node_type: xi_shen }
+
+  - id: kn:ji_shen:liuyao_jishen
+    node_type: ji_shen
+    name_cn: 忌神
+    name_en: liuyao_controlling_spirit
+    systems: [liuyao]
+    source: { text: 增刪卜易, chapter: 用神元神忌神仇神章第九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    interpretation: 忌神者，克用神之爻也。忌神动而克害用神者有五：旺相或遇日月动爻生扶或临日月、动化回头生扶退神、旺动临空化空、长生帝旺与日辰、与仇神同动，此五者诸占大凶。若休囚不动、静临空破、入三墓、衰动化退神、衰而又绝、动化绝化破化克化散、与元神同动，则无力克用神。
+    tags: [六爻, 忌神, 克用神, 用神体系, 旺衰]
+    confidence: 0.9
+    attributes: { role: 忌神, controls: 用神 }

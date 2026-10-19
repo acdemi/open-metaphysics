@@ -1,0 +1,385 @@
+# KnowledgeRelation — 属于（shuyu, Liuyao Corpus, 27 条）
+# P2.3 Liuyao Knowledge Integration:
+#   八宫成员 8 + 宫属五行 8 + 六亲成员 5 + 六神成员 6。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 增刪卜易/2 卦象圖（八宮六十四卦、各宮所屬五行）/ /5 六親歌 /
+#   /18 六神章（revision-pinned, 逐字核验）。
+
+relations:
+  - id: rel:liuyao_shuyu:bagong_qian
+    source_node_id: kn:palace:liuyao_qian
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "乾宫为京房八宫之一，宫首乾为天，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_kan
+    source_node_id: kn:palace:liuyao_kan
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坎宫为京房八宫之一，宫首坎为水，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_gen
+    source_node_id: kn:palace:liuyao_gen
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "艮宫为京房八宫之一，宫首艮为山，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_zhen
+    source_node_id: kn:palace:liuyao_zhen
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "震宫为京房八宫之一，宫首震为雷，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_xun
+    source_node_id: kn:palace:liuyao_xun
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "巽宫为京房八宫之一，宫首巽为风，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_li
+    source_node_id: kn:palace:liuyao_li
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "离宫为京房八宫之一，宫首离为火，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_kun
+    source_node_id: kn:palace:liuyao_kun
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坤宫为京房八宫之一，宫首坤为地，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:bagong_dui
+    source_node_id: kn:palace:liuyao_dui
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "兑宫为京房八宫之一，宫首兑为泽，领八卦。"
+        source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦象圖第二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_member }
+
+  - id: rel:liuyao_shuyu:qian_jin
+    source_node_id: kn:palace:liuyao_qian
+    target_node_id: kn:wuxing:liuyao_jin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "乾宫属金：《增刪卜易》六親歌「乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:kan_shui
+    source_node_id: kn:palace:liuyao_kan
+    target_node_id: kn:wuxing:liuyao_shui
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坎宫属水：《增刪卜易》六親歌「坎宮水兄、火財、土鬼、金父、木子。坎宮八卦都屬水。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:gen_tu
+    source_node_id: kn:palace:liuyao_gen
+    target_node_id: kn:wuxing:liuyao_tu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "艮宫属土：《增刪卜易》六親歌「坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:zhen_mu
+    source_node_id: kn:palace:liuyao_zhen
+    target_node_id: kn:wuxing:liuyao_mu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "震宫属木：《增刪卜易》六親歌「震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:xun_mu
+    source_node_id: kn:palace:liuyao_xun
+    target_node_id: kn:wuxing:liuyao_mu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "巽宫属木：《增刪卜易》六親歌「震巽木兄、水父、金鬼、火子、土財。震巽宮八卦都屬木。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:li_huo
+    source_node_id: kn:palace:liuyao_li
+    target_node_id: kn:wuxing:liuyao_huo
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "离宫属火：《增刪卜易》六親歌「離宮火兄、水鬼、土子、木父，金財。離宮八卦都屬火。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:kun_tu
+    source_node_id: kn:palace:liuyao_kun
+    target_node_id: kn:wuxing:liuyao_tu
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "坤宫属土：《增刪卜易》六親歌「坤艮宮土兄、火父、木鬼、水財、金子。坤艮宮八卦都屬土。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:dui_jin
+    source_node_id: kn:palace:liuyao_dui
+    target_node_id: kn:wuxing:liuyao_jin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "兑宫属金：《增刪卜易》六親歌「乾兌宮金兄、土父、木財、火鬼、水子。乾兌宮八卦都屬金。」"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: palace_element }
+
+  - id: rel:liuyao_shuyu:liuqin_fumu
+    source_node_id: kn:ten_god:liuyao_fumu
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "父母为六亲之一，生我者为父母。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liuqin_member }
+
+  - id: rel:liuyao_shuyu:liuqin_xiongdi
+    source_node_id: kn:ten_god:liuyao_xiongdi
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "兄弟为六亲之一，比和者为兄弟。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liuqin_member }
+
+  - id: rel:liuyao_shuyu:liuqin_zisun
+    source_node_id: kn:ten_god:liuyao_zisun
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "子孙为六亲之一，我生者为子孙。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liuqin_member }
+
+  - id: rel:liuyao_shuyu:liuqin_qicai
+    source_node_id: kn:ten_god:liuyao_qicai
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "妻财为六亲之一，我克者为妻财。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liuqin_member }
+
+  - id: rel:liuyao_shuyu:liuqin_guangui
+    source_node_id: kn:ten_god:liuyao_guangui
+    target_node_id: kn:ten_god:liuyao_liuqin
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "官鬼为六亲之一，克我者为官鬼。"
+        source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六親歌章第五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liuqin_member }
+
+  - id: rel:liuyao_shuyu:liushen_qinglong
+    source_node_id: kn:shen_sha:liuyao_qinglong
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "青龙为六神之一，甲乙日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }
+
+  - id: rel:liuyao_shuyu:liushen_zhuque
+    source_node_id: kn:shen_sha:liuyao_zhuque
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "朱雀为六神之一，丙丁日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }
+
+  - id: rel:liuyao_shuyu:liushen_gouchen
+    source_node_id: kn:shen_sha:liuyao_gouchen
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "勾陈为六神之一，戊日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }
+
+  - id: rel:liuyao_shuyu:liushen_tengshe
+    source_node_id: kn:shen_sha:liuyao_tengshe
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "螣蛇为六神之一，己日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }
+
+  - id: rel:liuyao_shuyu:liushen_baihu
+    source_node_id: kn:shen_sha:liuyao_baihu
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "白虎为六神之一，庚辛日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }
+
+  - id: rel:liuyao_shuyu:liushen_xuanwu
+    source_node_id: kn:shen_sha:liuyao_xuanwu
+    target_node_id: kn:shen_sha:liuyao_liushen
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "玄武为六神之一，壬癸日起于初爻。"
+        source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 六神章第十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liushen_member }

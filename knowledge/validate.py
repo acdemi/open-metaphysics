@@ -13,6 +13,8 @@ retriever. The checks themselves are unchanged.
 P2.2 Qimen Knowledge Integration: ``qimen`` joins the domain tuple. The checks
 are still unchanged -- adding a domain requires no new validation rule.
 
+P2.3 Liuyao Knowledge Integration: ``liuyao`` joins the same tuple; no new rule.
+
 Run:  python knowledge/validate.py   (prints PASS/FAIL report)
 """
 
@@ -36,7 +38,7 @@ from reference.knowledge import (  # noqa: E402  (sys.path bootstrap above)
 )
 
 ROOT = Path(__file__).resolve().parent
-DOMAINS = ("ziwei", "bazi", "qimen")
+DOMAINS = ("ziwei", "bazi", "qimen", "liuyao")
 
 MIN_NODES = 10
 MIN_RELATIONS = 10
