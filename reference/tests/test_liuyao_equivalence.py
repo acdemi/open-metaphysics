@@ -104,6 +104,39 @@ def test_reference_rejects_inputs_the_production_rejects():
                 {"born_at": "2024-05-01T12:00:00+00:00", "casts": casts, "question": None}
             )
 
+    with pytest.raises(ValueError, match="timezone-aware"):
+        LiuyaoInput(
+            request_id="x",
+            born_at=datetime(2024, 5, 1, 12),
+            casts=[7] * 6,
+        )
+    with pytest.raises(ValueError, match="timezone-aware"):
+        reference_compute(
+            {"born_at": "2024-05-01T12:00:00", "casts": [7] * 6, "question": None}
+        )
+
+
+def test_auto_seed_path_is_outside_the_frozen_contract():
+    """LC-D04: no casts/seed is intentionally outside the contract.
+
+    Production may auto-seed for API convenience, but the Reference rejects it
+    because the result is not guaranteed across processes (PYTHONHASHSEED).
+    """
+    payload = LiuyaoInput(
+        request_id="auto",
+        born_at=datetime(2024, 5, 1, 12, tzinfo=ZoneInfo("UTC")),
+    )
+    assert LiuyaoAgent().compute(payload).result.original_hexagram in range(1, 65)
+    with pytest.raises(ValueError, match="explicit casts or an explicit seed"):
+        reference_compute(
+            {
+                "born_at": "2024-05-01T12:00:00+00:00",
+                "casts": None,
+                "question": None,
+                "seed": None,
+            }
+        )
+
 
 # == Equivalence ==
 

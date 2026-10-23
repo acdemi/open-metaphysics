@@ -1,6 +1,6 @@
 # OpenMetaphysics — Schema 设计
 
-> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Qimen / BaZi 契约均已 Frozen 并完成登记。
+> Pydantic v2 模型 + 导出 JSON Schema。所有智能体间/进程间通信都对照这些 schema 验证。状态：Qimen / BaZi / Ziwei / Liuyao 契约均已 Frozen 并完成登记。
 > Schema 是跨语言契约（Python / Rust / Go），由 Reference Runtime 定义。
 > **契约登记**: Qimen §3.3（qimen:behavior:v1.0.0）、BaZi §3.1（bazi:behavior:v1.0.0, Phase 6.6 登记）。
 
@@ -194,7 +194,14 @@ class QimenBoard(BaseModel):
 
 ### 3.4 六爻 (agents.liuyao)
 
-输入：LiuyaoInput(AgentInput) — 如果客户端已有则添加明确爻线；否则引擎从 seed 确定性起卦（后备种子使用 hash(request_id) — 确定性，永远不使用 random()）。
+输入：`LiuyaoInput(AgentInput)` — 若客户端给出 `casts` 则直接使用；否则用显式
+`seed` 确定性起卦。`casts` 与 `seed` 均缺省时生产引擎会经
+`derive_seed(request_id, client_nonce)` 自动 seed，但该路径受
+`PYTHONHASHSEED` 影响、跨进程不可复现，**不属于冻结契约**（LC-D04）。
+计算层永远不使用未播种的 `random()`。
+
+契约：`docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（`liuyao:behavior:v1.0.0`，
+**Frozen**，30 条；`ACP-LIUYAO-001`，2026-10-23）。
 
 ```python
 class YaoLine(BaseModel):
@@ -205,16 +212,19 @@ class YaoLine(BaseModel):
 
 class LiuyaoChart(BaseModel):
     original: list[YaoLine]           # 本卦 (6 线，下→上)
-    changed: list[YaoLine]            # 变卦 (不变爻位置为空)
-    mutual: list[YaoLine]             # 互卦
+    changed: list[YaoLine]            # 变卦 (恒 6 线；动爻翻转并稳定，静爻保持)
+    mutual: list[YaoLine]             # 互卦 (恒 6 线；全部稳定)
     original_hexagram: int            # 文王卦序 1..64
-    changed_hexagram: int | None
+    changed_hexagram: int | None      # 无动爻时为 None
+    mutual_hexagram: int | None       # 当前实现恒有值
     najia: list[str]                  # 每爻纳甲（干支）
     liu_qin: list[str]                # 每爻六亲（父母/兄弟/子孙/妻财/官鬼）
     liu_shen: list[str]               # 六神 (青龙/朱雀/勾陈/螣蛇/白虎/玄武)
     shi_position: int                 # 世爻 位置 1..6
     ying_position: int                # 应爻 位置 1..6
-    yong_shen: str | None = None      # 用神
+    palace: str                       # 京房八宫名（乾/坎/艮/震/巽/离/坤/兑）
+    palace_element: str               # 宫位五行
+    yong_shen: str | None = None      # 用神（无问题/无命中时为 "世爻"）
 ```
 
 ### 3.5 共识 (agents.consensus)

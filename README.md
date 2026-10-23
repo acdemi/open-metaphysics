@@ -17,7 +17,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |----------|------|------|
 | Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
 | 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
-| 测试 | `tests/` + `reference/tests/` | **578 个全部通过**（含 Qimen 24/24 向量回归、BaZi 24/24 等价） |
+| 测试 | `tests/` + `reference/tests/` | **1024 passed + 2 skipped**（2026-10-23；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
 | Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
@@ -29,7 +29,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 | **奇门遁甲 (Qimen)** | ✅ **Frozen + Certified** | 契约 `qimen:behavior:v1.0.0` + Reference 认证 + 24 向量双实现验证 |
 | **八字 (Bazi)** | ✅ **Integration Ready** | 契约 `bazi:behavior:v1.0.0` Frozen + Reference 独立实现 + 24/24 等价 |
 | **紫微斗数 (Ziwei)** | 🚧 Implemented（Phase 6.7.1 进行中） | 12 宫 + 14 主星；规则清单 ZW-001~017 审计完成 |
-| **六爻 (Liuyao)** | Implemented | 卦表、纳甲、六亲、六神 |
+| **六爻 (Liuyao)** | ✅ **Integration Ready** | 契约 `liuyao:behavior:v1.0.0` Frozen + 25 Frozen 向量 + Reference Certified（21/21 + 40/40） |
 | **共识 (Consensus)** | Reference 完成 | Evidence 聚合，多结论并存（`reference/consensus*.py`） |
 
 > 能力状态登记与生命周期：`docs/governance/CAPABILITY_STATUS.md`。
@@ -78,7 +78,7 @@ open-metaphysics/
 # 1. 安装依赖（自动创建 .venv）
 uv sync
 
-# 2. 运行全部测试（578 个）
+# 2. 运行全部测试（1024 passed + 2 skipped，2026-10-23）
 uv run pytest -q
 
 # 3. 启动 API（FastAPI, http://127.0.0.1:8000）

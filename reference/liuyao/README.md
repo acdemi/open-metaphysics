@@ -3,9 +3,9 @@
 自包含的六爻 Reference 实现，用于验证 Production Runtime 的行为等价性。
 
 - **入口**: `compute(payload: dict) -> dict`
-- **契约**: `docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（LC-001~LC-052，candidate）
-- **规则清单**: `docs/liuyao/LIUYAO_RULE_INVENTORY.md`（LY-01~LY-11）
-- **Golden Vectors**: `docs/liuyao/golden_vectors.json`（24）
+- **契约**: `docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（v1.0.0 **Frozen**；30 clauses，ID 范围 LC-001~LC-052）
+- **规则清单**: `docs/liuyao/LIUYAO_RULE_INVENTORY.md`（LY-01~LY-11，Frozen）
+- **Golden Vectors**: `docs/liuyao/golden_vectors.json`（25，Frozen）
 - **等价证明**: `reference/tests/test_liuyao_equivalence.py`
 
 ## 输入
@@ -22,6 +22,8 @@ compute(
 ```
 
 `casts` 与 `seed` 均缺省时抛 `ValueError`：Reference 不接受不可复现的输入。
+该自动 seed 路径明确不属于冻结契约（LC-D04）；冻结范围只覆盖显式
+`casts` / `seed`。
 
 ## 独立性
 

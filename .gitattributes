@@ -3,3 +3,10 @@
 context/*.md text eol=crlf
 # knowledge 语料 JSON: 规范 LF 存储（消除 sha 口径歧义, 2026-08-25）
 knowledge/**/*.json text eol=lf
+# Liuyao contract artifacts: canonical LF (SHA-256 evidence, 2026-10-23)
+docs/liuyao/** text eol=lf
+reference/liuyao/** text eol=lf
+reference/tests/test_liuyao_equivalence.py text eol=lf
+tests/test_liuyao.py text eol=lf
+tests/test_liuyao_golden_vectors.py text eol=lf
+tools/gen_liuyao_golden_vectors.py text eol=lf

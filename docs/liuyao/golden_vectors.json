@@ -7,13 +7,14 @@
       "normal"
     ],
     "contract": "docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md",
+    "contract_id": "liuyao:behavior:v1.0.0",
     "domain": "liuyao",
     "engine_version": "0.1.0",
     "generated_from": "src/openmetaphysics/agents/liuyao.py (existing behaviour)",
     "reference": "reference/liuyao/domain.py",
     "rule_inventory": "docs/liuyao/LIUYAO_RULE_INVENTORY.md",
-    "status": "candidate",
-    "total_vectors": 24
+    "status": "frozen",
+    "total_vectors": 25
   },
   "vectors": [
     {
@@ -3717,6 +3718,27 @@
           7,
           7,
           10
+        ],
+        "question": null,
+        "seed": null
+      }
+    },
+    {
+      "category": "invalid",
+      "coverage": [],
+      "description": "tz-naive born_at rejected",
+      "expected": null,
+      "expected_error": "timezone-aware",
+      "id": "LY_inv_004",
+      "input": {
+        "born_at": "2024-05-01T12:00:00",
+        "casts": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
         ],
         "question": null,
         "seed": null
