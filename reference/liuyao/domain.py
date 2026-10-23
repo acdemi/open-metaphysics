@@ -26,7 +26,6 @@ This module MUST NOT import ``openmetaphysics``.
 from __future__ import annotations
 
 from datetime import datetime, timedelta
-from datetime import timezone as _timezone
 from typing import Any
 
 from .astronomy import sexagenary_day_index
@@ -123,7 +122,7 @@ def compute(payload: dict[str, Any]) -> dict[str, Any]:
     born_at = payload["born_at"]
     born = datetime.fromisoformat(born_at) if isinstance(born_at, str) else born_at
     if born.tzinfo is None:
-        born = born.replace(tzinfo=_timezone.utc)
+        raise ValueError("born_at must be timezone-aware")
 
     casts = payload.get("casts")
     if casts is None:

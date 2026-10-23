@@ -1,15 +1,15 @@
 # Liuyao Rule Inventory（六爻规则清单）
 
-> **状态**: candidate · **日期**: 2026-09-16 · **阶段**: Phase B 契约化
+> **状态**: **FROZEN**（2026-10-23，ACP-LIUYAO-001）· **日期**: 2026-09-16 · **阶段**: Phase B 契约化
 > **来源**: `src/openmetaphysics/agents/liuyao.py`（既有实现，未做算法改动）
 > **Reference**: `reference/liuyao/domain.py`
-> **Golden Vectors**: `docs/liuyao/golden_vectors.json`（24 条）
+> **Golden Vectors**: `docs/liuyao/golden_vectors.json`（25 条）
 
 本清单只记录**现有实现已经具备的行为**，不设计新行为。每条的"依据"是既有代码位置。
 
 ---
 
-## 1. 已实现规则（Frozen candidates）
+## 1. 已实现规则（FROZEN）
 
 | ID | 规则 | 实现 | Golden Vector 覆盖 |
 |----|------|------|-------------------|
@@ -50,10 +50,10 @@
 | normal | 10 | 乾坤稳定/全动/老阴、混合动爻、单动爻、seed 掷卦、用神关键词 |
 | edge | 6 | 无用神默认、多关键词、出行/考试、互卦、22:00 不换日 |
 | boundary | 5 | 23:00 与 23:30 换日、00:00、闰日 2024-02-29、跨年 2023-12-31T23:59 |
-| invalid | 3 | 5 爻、cast=5、cast=10 |
+| invalid | 4 | 5 爻、cast=5、cast=10、tz-naive `born_at` |
 
 ## 5. 与 Production 的关系
 
 - **Reference**: `reference/liuyao/domain.py`（自包含，不导入 `openmetaphysics`）
-- **等价证明**: `reference/tests/test_liuyao_equivalence.py`（24 向量 + 40 生成输入 + 换日边界 + 表一致性）
+- **等价证明**: `reference/tests/test_liuyao_equivalence.py`（25 向量中 21 条合法路径 + 4 条拒绝路径 + 40 生成输入 + 换日边界 + 表一致性）
 - **生产回归**: `tests/test_liuyao_golden_vectors.py`
