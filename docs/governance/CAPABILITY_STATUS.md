@@ -15,6 +15,9 @@
 > 43/54/23；首个 revision-pinned 逐章逐字核验的来源域《增刪卜易》；
 > 接入同一条 RAG→Explain 链路；Ziwei / BaZi / Qimen 语料字节未变；
 > 不修改冻结 Schema / 契约 / 计算逻辑）
+> 2026-10-19（**P2.4 Liuyao Knowledge Enrichment II** —— `liuyao_corpus:0.2.0`
+> 61/66/41；新增 18 个结构/法则 pattern 节点与 18 条逐字引用；
+> 同域深化，Ziwei / BaZi / Qimen 语料字节未变；不修改冻结 Schema / 契约 / 计算逻辑）
 
 ---
 
@@ -27,7 +30,7 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.1.0`, 43 节点 / 54 关系 / 23 引用, 2026-10-19, P2.3 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.3 后全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1005 passed + 2 skipped） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.4 后全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1023 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -185,6 +188,19 @@
 > 已知缺口（GAP-LIUYAO-01 六亲无专用 node_type; -02 结构/法则无专用 node_type;
 > -03 元神无专用 node_type; -04 仇神无专用 node_type; -05 互卦无定义性原文故不生产）
 > 记录于 `knowledge/README.md` §7。
+> **P2.4 Liuyao Knowledge Enrichment II**（2026-10-19）—— 同一域、同一架构:
+> `liuyao_corpus` 0.1.0 → **0.2.0** = 61 节点（+18 结构/法则: 暗动·动散·卦变生克墓绝·
+> 反吟·伏吟·生旺墓绝·应期·游魂·归魂·月破·飞神·伏神·进神·退神·随鬼入墓·独发·独静·两现）
+> / 66 关系（+12）/ 41 引用（+18）。证据新增 7 个子页 revision pin（/22 /23 /24 /25
+> /26又1 /26又3 /26又4）+ 主页卷之二第 27–32 章逐字核验；每条 passage 以清洗后原文
+> 子串复核（保留 𨿽/眞/塡/﹐/﹑/﹕ 等异体字）。
+> 评估但**未采纳**查询扩展: 向 `LiuyaoExplainer` 增加 12 个结构术语会把
+> `kn:palace:liuyao_kan` 挤出 top-10（实测），损害卦盘特异检索；本轮保持 explainer
+> 不变，语料仅作为可检索引用层。
+> 结果: 36 项查询 top-1 命中（P2.3 18 + P2.4 18）；全仓库 1023 passed + 2 skipped；
+> `validate.py` PASS；corpus digest `52efbff5…`。Ziwei/BaZi/Qimen 字节未变。
+> 缺口: GAP-LIUYAO-02 扩展至 31 节点；GAP-LIUYAO-06 星煞章未收录（schema 归属与
+> 价值密度未定）。
 
 ---
 
