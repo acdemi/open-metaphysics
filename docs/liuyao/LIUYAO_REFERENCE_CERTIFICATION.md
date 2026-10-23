@@ -140,8 +140,9 @@ $env:PYTHONIOENCODING='utf-8'
 | `reference/tests/test_liuyao_equivalence.py` | `42658de540cf86f4179cc96b935f37639e69440ef2cb42cc46355f249fe2a667` |
 
 > 上述摘要基于 **LF 规范工作区**；`.gitattributes` 已将 `docs/liuyao/**`、
-> `reference/liuyao/**` 与 Liuyao 测试/生成器固定为 `text eol=lf`。批准时
-> 已复核这些摘要；后续任何变更须新 ACP 并重新登记。
+> `reference/liuyao/**`、`src/openmetaphysics/agents/liuyao.py` 与 Liuyao
+> 测试/生成器固定为 `text eol=lf`。批准时已复核这些摘要；后续任何变更须
+> 新 ACP 并重新登记。
 
 ---
 

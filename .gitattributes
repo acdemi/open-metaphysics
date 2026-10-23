@@ -10,3 +10,4 @@ reference/tests/test_liuyao_equivalence.py text eol=lf
 tests/test_liuyao.py text eol=lf
 tests/test_liuyao_golden_vectors.py text eol=lf
 tools/gen_liuyao_golden_vectors.py text eol=lf
+src/openmetaphysics/agents/liuyao.py text eol=lf
