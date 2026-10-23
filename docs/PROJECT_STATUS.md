@@ -1,11 +1,12 @@
 # PROJECT_STATUS
 
-> **最后更新**: 2026-09-16
+> **最后更新**: 2026-10-23
 > **项目阶段**: Reference Freeze Candidate（Knowledge 语料 **Ziwei 已冻结 v1.0.0**）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
-> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（Qimen Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
+> **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
+> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
 > **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 2026-09-16, D-12=A 批准 —— Ziwei **102 节点 + 47 关系 + 41 引用**, digest `69d6e2a6…`；变更须走 Corpus 级审查）
 
 ---
@@ -28,6 +29,9 @@
 | **Ziwei Behavior Contract** | **1.0.0（Frozen, Integration Ready）** |
 | **Ziwei Reference** | **Certified（24/24 等价）** |
 | **Ziwei Golden Vectors** | **24（normative fixtures）** |
+| **Liuyao Behavior Contract** | **1.0.0（Frozen, Integration Ready）** |
+| **Liuyao Reference** | **Certified（21/21 + 40/40 等价）** |
+| **Liuyao Golden Vectors** | **25（Frozen）** |
 | **Knowledge Behavior Contract** | **KB-001~020（Frozen）** |
 | **Knowledge Corpus** | **FROZEN-v1.0.0（`ziwei_corpus:v1.0.0`, 2026-09-16）—— 102/47/41** |
 
@@ -49,6 +53,7 @@
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
+| **Liuyao Domain** | **Integration Ready** | 契约 v1.0.0 Frozen（30 条）+ 25 向量 Frozen + Reference Certified（21/21 + 40/40）+ Freeze Review PASS；`ACP-LIUYAO-001` IMPLEMENTED |
 | **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `69d6e2a6…`, 2026-09-16; 变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现（含缺陷），Phase 9 仅桩；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
@@ -106,7 +111,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 |-------|------|------|------|
 | Phase 0 | 脚手架 | 完成 | pyproject.toml（src 布局）、ruff+pytest、sxtwl==2.0.7 锁定 |
 | Phase 1 | 基础 (schemas, models, calendar, engines, config) | 完成 | core 6 模块全部实现；JSON Schema **仅运行时导出**（`BaseAgent.schema()` + `GET /agents/{name}/schema` + MCP `agent_schema`），**无落盘工件** |
-| Phase 2 | 六爻 | 部分完成 | **领域专属 Schema 已存在**（`liuyao.py`：`LiuyaoInput`/`YaoLine`/`LiuyaoChart`/`LiuyaoOutput`）+ 纳甲/六亲/六神/世应/用神/本变互卦/种子起卦；缺契约化（规则清单→向量→契约→`reference/liuyao/`→等价认证） |
+| Phase 2 | 六爻 | **完成（Integration Ready）** | 领域专属 Schema + 规则清单 LY-01~11 + 契约 v1.0.0 Frozen（30 条）+ 25 Frozen 向量 + `reference/liuyao/` 独立实现（21/21 + 40/40 等价）+ Freeze Review PASS；`ACP-LIUYAO-001` IMPLEMENTED |
 | Phase 3 | 八字 | **完成（Integration Ready）** | 四柱引擎（五虎遁/五鼠遁/立春界/23:00 换日）+ 藏干/纳音/十神/大运；契约 v1.0.0 Frozen（BC-001~014）+ Reference 独立实现（24/24 等价）。可选：机器可读契约 MANIFEST |
 | Phase 4 | 紫微斗数 | **完成（Integration Ready）** | 定局表 + 十四主星 + 农历；契约 v1.0.0 Frozen（BC-001~014, ZW-001~017）+ Reference 独立实现（24/24 等价）；规则 ACP 已实施（Engine v0.3.0）。**边界**：辅星/四化/大限等属 ZW-017 未实现边界（须 ACP）；`agents/ziwei/pattern_matcher.py` 为死代码且不可导入（见审计 §2.3） |
 | Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md, QC-001~014) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
@@ -115,13 +120,17 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；**缺陷**：RAG 全仓无 `.add()` → 检索恒空；provider/RAG 零测试；`BaziExplainer`/`ZiweiExplainer` 未接线且坏死 |
 | Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 导入 `openmetaphysics.*`（`src/`）的测试文件 **20 个 / 230 例**，全部通过；另 `tests/test_qimen_reference_docs.py` 7 例（只读 docs 工件）与 `reference/tests/` 中直接对拍 `src` 的 9 例。**全仓收集 618 例**（2026-09-16 实测）。此前「457」口径已废弃。
+**Production Runtime 测试总计**: 导入 `openmetaphysics.*`（`src/`）的测试文件 **20 个 / 230 例**，全部通过；另 `tests/test_qimen_reference_docs.py` 7 例（只读 docs 工件）与 `reference/tests/` 中直接对拍 `src` 的 9 例。**全仓收集 618 例**（2026-09-16 实测）。此前「457」口径已废弃。**当前口径（2026-10-23）：1026 collected / 1024 passed + 2 skipped**，见 §5.1。
 
 ---
 
 ## 5. Golden Tests 状态
 
 ### 5.1 测试总计
+
+> **2026-10-23 现状**: 全仓 **1026 collected / 1024 passed + 2 skipped**（Liuyao
+> 契约冻结审查后实测）。下表与 §4 的 618 口径是 **2026-09-16 审计快照**，
+> 不再代表当前全仓；能力状态以 `docs/governance/CAPABILITY_STATUS.md` 为准。
 
 | 类别 | 测试数 | 通过 | 失败 |
 |------|--------|------|------|
@@ -358,8 +367,9 @@ Phase 7.2B-R/R2/R3 生产辅星 12 + 神煞 27，Phase 7.1.3 补齐 `yinyong(5)`
   为 `inference/providers.py` / `rag/retriever.py` 补测试
 
 **P2 —— 主线候选（1~2 周，择一，需授权）**
-- **A（推荐）六爻域契约化**：Schema 定稿 → 规则清单 → 向量 → Freeze Review → 契约 v1.0.0
-  → `reference/liuyao/` 独立实现 → 24/24 等价 → 治理注册（10+ 文件，零算法创新）
+- **A（已完成）六爻域契约化**：Schema 定稿 → 规则清单 → 25 向量 → Freeze Review PASS
+  → 契约 v1.0.0 Frozen → `reference/liuyao/` 独立实现 → 21/21 + 40/40 等价
+  → `ACP-LIUYAO-001` 批准并实施 → **Integration Ready**
 - **B Reference Runtime 最终冻结**（依赖 P1 的 ACP 补正与契约补全）
 - **C Production Runtime Phase 9 收口**：MCP transport 接线 + 依赖声明；compose 补应用服务；
   会话/追踪持久化；RAG 接线

@@ -73,6 +73,8 @@ CASES: list[dict] = [
          casts=[5, 7, 7, 7, 7, 7], born="2024-05-01T12:00:00+00:00", expected_error="each cast value must be 6,7,8 or 9"),
     dict(id="LY_inv_003", category="invalid", desc="cast value 10 rejected",
          casts=[7, 7, 7, 7, 7, 10], born="2024-05-01T12:00:00+00:00", expected_error="each cast value must be 6,7,8 or 9"),
+    dict(id="LY_inv_004", category="invalid", desc="tz-naive born_at rejected",
+         casts=[7, 7, 7, 7, 7, 7], born="2024-05-01T12:00:00", expected_error="timezone-aware"),
 ]
 
 
@@ -119,7 +121,8 @@ def main() -> None:
         "metadata": {
             "domain": "liuyao",
             "engine_version": "0.1.0",
-            "status": "candidate",
+            "status": "frozen",
+            "contract_id": "liuyao:behavior:v1.0.0",
             "contract": "docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md",
             "rule_inventory": "docs/liuyao/LIUYAO_RULE_INVENTORY.md",
             "reference": "reference/liuyao/domain.py",
