@@ -1,0 +1,176 @@
+# KnowledgeRelation — 结构/法则对应（duiying/shuyu, Liuyao Corpus P2.4, 12 条）
+# P2.4 Liuyao Knowledge Enrichment II: 月破、飞伏、进退、反伏、暗动、两现、
+#   卦变回头生克、随鬼入墓与八宫卦序的对应关系。
+# 规范: KR-001~003 / reference/knowledge.py::KnowledgeRelation
+# 证据: 增刪卜易 /22 暗動 / /24 卦變生克墓絕 / /25 反伏 / /26又4 歸魂遊魂 /
+#   主页卷之二 月破章第二十七 / 飛伏神章第二十八 / 進神退神章第二十九 /
+#   隨鬼入墓章第三十 / 兩現章第三十二（revision-pinned, 逐字核验）。
+
+relations:
+  - id: rel:liuyao_duiying:yuejian_yuepo
+    source_node_id: kn:pattern:liuyao_yuejian
+    target_node_id: kn:pattern:liuyao_yuepo
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "月建冲爻为月破：正月申、二月酉，逐月值冲之支即是月破。"
+        source: { text: 增刪卜易, chapter: 月破章第二十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 月破章第二十七, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: yuejian_chong }
+
+  - id: rel:liuyao_duiying:fushen_feishen
+    source_node_id: kn:pattern:liuyao_fushen
+    target_node_id: kn:pattern:liuyao_feishen
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "用神不上卦而伏于本宫首卦相应爻下：伏者为伏神，覆盖其上之现爻为飞神。"
+        source: { text: 增刪卜易, chapter: 飛伏神章第二十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 飛伏神章第二十八, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: feifu }
+
+  - id: rel:liuyao_duiying:dongyao_jinshen
+    source_node_id: kn:pattern:liuyao_dongyao
+    target_node_id: kn:pattern:liuyao_jinshen
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "进神为动爻所化地支按序前进，如亥化子、寅化卯、巳化午、申化酉、丑化辰、辰化未、未化戌。"
+        source: { text: 增刪卜易, chapter: 進神退神章第二十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 進神退神章第二十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: donghua_jintui }
+
+  - id: rel:liuyao_duiying:dongyao_tuishen
+    source_node_id: kn:pattern:liuyao_dongyao
+    target_node_id: kn:pattern:liuyao_tuishen
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "退神为动爻所化地支按序后退，如子化亥、卯化寅、午化巳、酉化申、辰化丑、未化辰、戌化未。"
+        source: { text: 增刪卜易, chapter: 進神退神章第二十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 進神退神章第二十九, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: donghua_jintui }
+
+  - id: rel:liuyao_shuyu:youhun_bagong
+    source_node_id: kn:pattern:liuyao_youhun
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "游魂卦为各宫之第七卦，如乾宫火地晋、坤宫水天需。"
+        source: { text: 增刪卜易, chapter: 歸魂遊魂章第又二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 歸魂遊魂章第又二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_position }
+
+  - id: rel:liuyao_shuyu:guihun_bagong
+    source_node_id: kn:pattern:liuyao_guihun
+    target_node_id: kn:palace:liuyao_bagong
+    relation_type: shuyu
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "归魂卦为各宫之第八卦，如乾宫火天大有、坤宫水地比。"
+        source: { text: 增刪卜易, chapter: 歸魂遊魂章第又二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 歸魂遊魂章第又二十六, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: bagong_position }
+
+  - id: rel:liuyao_duiying:biangua_fanyin
+    source_node_id: kn:pattern:liuyao_biangua
+    target_node_id: kn:pattern:liuyao_fanyin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卦变反吟：内卦动变反吟则内不安，外卦动变反吟则外不宁，皆主反复不定。"
+        source: { text: 增刪卜易, chapter: 反伏章第二十五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 反伏章第二十五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: guabian_fanyin }
+
+  - id: rel:liuyao_duiying:biangua_fuyin
+    source_node_id: kn:pattern:liuyao_biangua
+    target_node_id: kn:pattern:liuyao_fuyin
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "伏吟：卦动而六爻地支五行不变，内卦动变伏吟则内呻吟，外卦动变伏吟则外忧郁。"
+        source: { text: 增刪卜易, chapter: 反伏章第二十五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 反伏章第二十五, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: guabian_fuyin }
+
+  - id: rel:liuyao_duiying:richen_andong
+    source_node_id: kn:pattern:liuyao_richen
+    target_node_id: kn:pattern:liuyao_andong
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "静爻旺相，日辰冲之为暗动；静爻休囚，日辰冲之为日破。"
+        source: { text: 增刪卜易, chapter: 暗動章第二十二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 暗動章第二十二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: richen_chong }
+
+  - id: rel:liuyao_duiying:yongshen_liangxian
+    source_node_id: kn:yong_shen:liuyao_yongshen
+    target_node_id: kn:pattern:liuyao_liangxian
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "用神两现时须在旺衰、动静、月破、旬空、受伤与否之间取舍，古法与野鹤实测经验并用。"
+        source: { text: 增刪卜易, chapter: 兩現章第三十二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 兩現章第三十二, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: liangxian_selection }
+
+  - id: rel:liuyao_duiying:biangua_huitu
+    source_node_id: kn:pattern:liuyao_biangua
+    target_node_id: kn:pattern:liuyao_guabian_huitu
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "卦变有变生、变克、变墓、变绝、比和；震木化乾金为回头克，凡卦化克者不论用神衰旺皆凶。"
+        source: { text: 增刪卜易, chapter: 卦變生克墓絕章第二十四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 卦變生克墓絕章第二十四, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: guabian_huitu }
+
+  - id: rel:liuyao_duiying:suigui_guangui
+    source_node_id: kn:pattern:liuyao_suigui_rumu
+    target_node_id: kn:ten_god:liuyao_guangui
+    relation_type: duiying
+    direction: directed
+    weight: 1.0
+    evidence:
+      - description: "随鬼入墓之鬼即官鬼：世爻随鬼入日墓、入动墓、动而化墓，休囚被克又入墓者为凶。"
+        source: { text: 增刪卜易, chapter: 隨鬼入墓章第三十, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+        weight: 1.0
+    source: { text: 增刪卜易, chapter: 隨鬼入墓章第三十, author: 野鶴老人, url: "https://zh.wikisource.org/wiki/增刪卜易", credibility: 0.9 }
+    conditions:
+      - { field: relation_subtype, value: suigui }
