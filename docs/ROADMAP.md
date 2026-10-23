@@ -2,7 +2,7 @@
 
 > 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：**Production Runtime 收口（P0 状态对齐 + 死代码清理；P1 可信度与治理债务）**（三大计算域 Qimen/BaZi/Ziwei 已 **Frozen & Certified / Integration Ready**；Knowledge Ziwei 语料 **FROZEN-v1.0.0**，102/47/41）。
+> 当前开发位置：**Production Runtime 收口（P0 状态对齐 + 死代码清理；P1 可信度与治理债务）**（四大计算域 Qimen/BaZi/Ziwei/Liuyao 已 **Frozen & Certified / Integration Ready**；Knowledge Ziwei 语料 **FROZEN-v1.0.0**，102/47/41）。
 
 ## A. 两条时间线
 
@@ -33,11 +33,12 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Phase 6.0 | Domain Capability Framework Standardization（生命周期标准 + 状态模型 + 模板 + 领域审计） | 完成 | - |
 | Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
 
-**当前开发位置**: **Production Runtime 收口**（Qimen/BaZi/Ziwei 三大计算域已 Integration Ready / Certified；Knowledge Ziwei 语料已 Frozen v1.0.0）。详见
+**当前开发位置**: **Production Runtime 收口**（Qimen/BaZi/Ziwei/Liuyao 四大计算域已 Integration Ready / Certified；Knowledge Ziwei 语料已 Frozen v1.0.0）。详见
 `docs/PROJECT_REVIEW_2026-09-16.md` §4（P0/P1/P2 计划）与 `docs/PROJECT_STATUS.md` §4/§8。
 **领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /
-5 阶段）。BaZi / Ziwei 已达 **Integration Ready**（生命周期终点）；**Liuyào 仍处于
-Implemented**，待按标准逐级契约化。
+5 阶段）。BaZi / Ziwei / Liuyao 已达 **Integration Ready**（生命周期终点）；
+Liuyao 契约 v1.0.0 **Frozen**（30 条）+ 25 向量 **Frozen** + Reference
+**Certified**（`ACP-LIUYAO-001`，2026-10-23）。
 
 **关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
 实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。
@@ -57,7 +58,7 @@ Implemented**，待按标准逐级契约化。
 - core.config: 类型化配置（Ollama/Qwen/DeepSeek/Qdrant/PG 端点）。
 - **完成标准：** 日历/天干单元测试通过 + 黄金重放框架运行。
 
-## Phase 2 — 六爻（完整参考智能体）〔部分完成：算法已实现，契约化待办〕
+## Phase 2 — 六爻（完整参考智能体）〔✅ 完成 → Integration Ready〕
 - 卦表，纳甲，六亲，六神，世应，用神规则。
 - 种子起卦（从 seed 得到六爻）；本/变/互卦。
 - LiuyaoAgent + 黄金向量（标准起卦 → 期望图表）。
@@ -112,7 +113,7 @@ Implemented**，待按标准逐级契约化。
 |-------|------|
 | 0 脚手架 | 完成 |
 | 1 基础 | 完成（JSON Schema 仅运行时导出，无落盘工件） |
-| 2 六爻 | 部分完成（领域专属 Schema 已有；缺契约化流程） |
+| 2 六爻 | **完成 → Integration Ready**（v1.0.0 Frozen 契约 30 条 + 25 Frozen 向量 + Reference Certified） |
 | 3 八字 | **完成 → Integration Ready** |
 | 4 紫微斗数 | **完成 → Integration Ready**（辅星/四化/大限属 ZW-017 未实现边界） |
 | 5 奇门遁甲 | **完成 → Certified**（v1.0.0 契约 + Reference 认证 + 双实现验证 + 适配层/ABI/回归防护网） |
