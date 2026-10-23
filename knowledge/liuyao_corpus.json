@@ -2,17 +2,17 @@
   "metadata": {
     "corpus_id": "liuyao_corpus",
     "counts": {
-      "nodes": 43,
-      "references": 23,
-      "relations": 54
+      "nodes": 61,
+      "references": 41,
+      "relations": 66
     },
     "domain": "liuyao",
-    "pipeline": "knowledge/pipeline.py (P2.3 Liuyao Knowledge Integration)",
+    "pipeline": "knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II)",
     "source_digests": {
-      "source_liuyao_01.yaml": "2e402d986832d5234b4853dbc8cbc075282b47c1270255dc14184b759dcb3fce"
+      "source_liuyao_01.yaml": "7bcdd0b77d1cdf0dc15dbf8932f9aca3403707b5712770fe58a2047214630255"
     },
     "status": "candidate",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "nodes": [
     {
@@ -1644,6 +1644,688 @@
     },
     {
       "attributes": {
+        "opposite": "日破",
+        "polarity": "有喜有忌",
+        "trigger": "日辰冲旺相静爻"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_andong",
+      "interpretation": "旺相静爻被日辰冲为暗动，休囚静爻被日辰冲为日破。暗动有喜有忌：用神休囚得元神暗动相生为喜；忌神明动于卦中，得元神暗动而生用神亦为喜；用神休囚无助而忌神克害则为忌。暗动之应，祸福来时人不知不觉。",
+      "name_cn": "暗动",
+      "name_en": "liuyao_hidden_move",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "暗動章第二十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "暗动",
+        "日辰",
+        "静爻",
+        "旺相"
+      ]
+    },
+    {
+      "attributes": {
+        "aliases": [
+          "冲散"
+        ],
+        "not_dispersed_when": [
+          "旺相",
+          "有气"
+        ],
+        "recovery": "逢值日"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_dongsan",
+      "interpretation": "日辰冲动爻、或动爻冲爻，皆可谓之冲散。野鹤屡试：旺相者冲之不散，有气者冲之不散，休囚者偶有冲散，亦千百中之一二。神兆机于动，动必有因；今日受制，后逢值日则不散。",
+      "name_cn": "动散",
+      "name_en": "liuyao_dispersed_move",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動散章第二十三",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "动散",
+        "冲散",
+        "日辰"
+      ]
+    },
+    {
+      "attributes": {
+        "aliases": [
+          "反伏"
+        ],
+        "kinds": [
+          "卦变反吟",
+          "爻变反吟"
+        ],
+        "main_meaning": "反复不定"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_fanyin",
+      "interpretation": "反吟有卦变反吟与爻变反吟：卦变反吟如乾变坤、坎变离、震变兑、艮变坤等；爻变反吟为内外卦之爻相冲相克。主成而败、败而成，得失聚散反复不定。用神旺相而不变冲克者，虽反复事必成；用神化回头冲克者，则为大凶之象。",
+      "name_cn": "反吟",
+      "name_en": "liuyao_reverse_chant",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "反吟",
+        "反伏",
+        "卦变",
+        "冲克"
+      ]
+    },
+    {
+      "attributes": {
+        "aliases": [
+          "伏呤"
+        ],
+        "kinds": [
+          "内外伏吟",
+          "内卦伏吟",
+          "外卦伏吟"
+        ],
+        "main_meaning": "忧郁呻吟"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_fuyin",
+      "interpretation": "伏吟为卦动而六爻地支五行不变，有内外伏吟、外卦伏吟、内卦伏吟。主忧郁呻吟：占名久困官途，占利财源耗散，占婚姻不乐，占疾病呻吟。用神旺相，冲开之年月其志可伸；用神休囚，冲开之年月亦忧郁不吉。",
+      "name_cn": "伏吟",
+      "name_en": "liuyao_hidden_chant",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "伏吟",
+        "反伏",
+        "卦变",
+        "忧郁"
+      ]
+    },
+    {
+      "attributes": {
+        "table": {
+          "木": {
+            "墓": "未",
+            "旺": "卯",
+            "绝": "申",
+            "长生": "亥"
+          },
+          "水土": {
+            "墓": "辰",
+            "旺": "子",
+            "绝": "巳",
+            "长生": "申"
+          },
+          "金": {
+            "墓": "丑",
+            "旺": "酉",
+            "绝": "寅",
+            "长生": "巳"
+          }
+        },
+        "verified_stages": [
+          "长生",
+          "帝旺",
+          "墓",
+          "绝"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_shengwang_mujue",
+      "interpretation": "十二长生中，野鹤只验生旺墓绝，其余不验。金长生在巳、旺在酉、墓在丑、绝在寅；木长生在亥、旺在卯、墓在未、绝在申；水土长生在申、旺在子、墓在辰、绝在巳。主事爻遇日辰或动变之爻值此四者，即论生旺墓绝；又须兼旺衰，旺相逢墓绝论生不论墓绝，休囚逢生亦可能论克。",
+      "name_cn": "生旺墓绝",
+      "name_en": "liuyao_four_stages",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "生旺墓絕章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "生旺墓绝",
+        "长生十二宫",
+        "旺衰"
+      ]
+    },
+    {
+      "attributes": {
+        "horizon": "远事年月近事日时",
+        "rules": [
+          "静而逢值逢冲",
+          "动而逢合逢值",
+          "太旺者逢墓逢冲",
+          "衰绝者遇生遇旺",
+          "入三墓喜冲开",
+          "遇六合宜相击",
+          "月破喜填",
+          "旬空最爱填冲"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_yingqi",
+      "interpretation": "应期以用神为主：静而逢值逢冲、动而逢合逢值；太旺者逢墓逢冲，衰绝者遇生遇旺；入三墓喜冲开，遇六合宜相击；月破喜填，旬空最爱填冲。远事以年月，近事以日时；卦象不明可再占一卦，不可妄断。",
+      "name_cn": "应期",
+      "name_en": "liuyao_timing",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "各門類應期總注章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "应期",
+        "用神",
+        "月破",
+        "旬空"
+      ]
+    },
+    {
+      "attributes": {
+        "caution": "须以用神为主",
+        "examples": {
+          "乾宫": "火地晋",
+          "坤宫": "水天需"
+        },
+        "palace_position": 7
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_youhun",
+      "interpretation": "游魂卦为各宫第七卦，如乾宫火地晋、坤宫水天需。古以游魂行千里：所占之事欲久者不能久，心无定向、迁改不常；占身命无安家乐业之所，占行人游遍他乡。野鹤强调须以用神为主，不可舍用神而执卦断。",
+      "name_cn": "游魂",
+      "name_en": "liuyao_wandering_soul",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "游魂",
+        "八宫",
+        "卦序"
+      ]
+    },
+    {
+      "attributes": {
+        "caution": "须以用神为主",
+        "examples": {
+          "乾宫": "火天大有",
+          "坤宫": "水地比"
+        },
+        "palace_position": 8
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_guihun",
+      "interpretation": "归魂卦为各宫第八卦，如乾宫火天大有、坤宫水地比。古以归魂不出疆，诸事拘泥不行；野鹤亦强调须以用神为主，不可舍用神而执卦断。",
+      "name_cn": "归魂",
+      "name_en": "liuyao_returning_soul",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "归魂",
+        "八宫",
+        "卦序"
+      ]
+    },
+    {
+      "attributes": {
+        "by_month": {
+          "七月": "寅",
+          "三月": "戌",
+          "九月": "辰",
+          "二月": "酉",
+          "五月": "子",
+          "八月": "卯",
+          "六月": "丑",
+          "十一月": "午",
+          "十二月": "未",
+          "十月": "巳",
+          "四月": "亥",
+          "正月": "申"
+        },
+        "recovery": [
+          "出月",
+          "实破之日",
+          "合之日"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_yuepo",
+      "interpretation": "月建冲爻为月破：正月申、二月酉、三月戌、四月亥、五月子、六月丑、七月寅、八月卯、九月辰、十月巳、十一月午、十二月未。古书多用神临月破作无用论；野鹤验其动则能伤爻、变则能伤动，目下虽破，出月不破，实破之日、合之日亦不破；不动又无日辰动爻生助者，则到底而破。",
+      "name_cn": "月破",
+      "name_en": "liuyao_month_break",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月破章第二十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "月破",
+        "月建",
+        "旺衰"
+      ]
+    },
+    {
+      "attributes": {
+        "favorable": "飞来生伏",
+        "role": "覆盖伏神之爻",
+        "unfavorable": "飞来克伏"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_feishen",
+      "interpretation": "用神不上卦而伏于本宫首卦相应爻下时，覆盖伏神之现爻称飞神。飞神生伏神为飞来生伏，伏神得长生而有用；飞神克伏神为飞来克伏，伏神受制而无用。",
+      "name_cn": "飞神",
+      "name_en": "liuyao_flying_spirit",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "飛伏神章第二十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "飞神",
+        "伏神",
+        "用神不现"
+      ]
+    },
+    {
+      "attributes": {
+        "blocked_when": [
+          "休囚无气",
+          "被日月冲克",
+          "被旺相飞神克",
+          "墓绝于日月飞爻",
+          "休囚值空月破"
+        ],
+        "useful_when": [
+          "得日月生",
+          "旺相",
+          "得飞神生",
+          "得动爻生",
+          "日月动爻冲克飞神",
+          "飞神空破休囚墓绝"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_fushen",
+      "interpretation": "用神不现，先以日月为用神；日月非用神，则在本宫首卦寻之，伏于相应爻下者为伏神。伏神有用者有六：得日月生、旺相、得飞神生、得动爻生、日月动爻冲克飞神、飞神空破休囚墓绝。终不得出者有五：休囚无气、被日月冲克、被旺相飞神克、墓绝于日月飞爻、休囚值空月破。",
+      "name_cn": "伏神",
+      "name_en": "liuyao_hidden_spirit",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "飛伏神章第二十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "伏神",
+        "用神不现",
+        "飞神",
+        "取用"
+      ]
+    },
+    {
+      "attributes": {
+        "kinds": 4,
+        "transformations": [
+          "亥化子",
+          "寅化卯",
+          "巳化午",
+          "申化酉",
+          "丑化辰",
+          "辰化未",
+          "未化戌"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_jinshen",
+      "interpretation": "进神为动爻所化地支按序前进：亥化子、寅化卯、巳化午、申化酉、丑化辰、辰化未、未化戌。所喜者宜于化进。进神有四：旺相化旺、乘势而进；休囚化休囚、待时而进；动爻变爻有一值衰、待旺相之日而进；动爻变爻有一空破、待填实之日而进。",
+      "name_cn": "进神",
+      "name_en": "liuyao_advancing_spirit",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "进神",
+        "动变",
+        "化进"
+      ]
+    },
+    {
+      "attributes": {
+        "kinds": 4,
+        "transformations": [
+          "子化亥",
+          "卯化寅",
+          "午化巳",
+          "酉化申",
+          "辰化丑",
+          "未化辰",
+          "戌化未"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_tuishen",
+      "interpretation": "退神为动爻所化地支按序后退：子化亥、卯化寅、午化巳、酉化申、辰化丑、未化辰、戌化未。所忌者宜于化退。退神有四：旺相化旺相或得日月动爻生扶、占近事得时而不退；休囚化休囚、及时而退；动爻变爻有一旺相、待休囚之时而退；动爻变爻有一空破、待填实之日而退。",
+      "name_cn": "退神",
+      "name_en": "liuyao_retreating_spirit",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "退神",
+        "动变",
+        "化退"
+      ]
+    },
+    {
+      "attributes": {
+        "false_when": [
+          "旺相",
+          "墓神被冲破"
+        ],
+        "subject": [
+          "世爻",
+          "用神"
+        ],
+        "true_when": "休囚被克又入墓",
+        "verified_kinds": [
+          "日墓",
+          "动墓",
+          "化墓"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_suigui_rumu",
+      "interpretation": "古有日墓、动墓、化墓三墓，又有世爻、本命、卦身、世身随鬼入墓之说。野鹤屡试只验世爻随鬼入日墓、入动墓、动而化墓；自占看世爻，代占看用神，旺相者非真，惟休囚被克而又入墓者为凶。墓神被日月动爻冲破亦非真，墓破如破网，容易而出。",
+      "name_cn": "随鬼入墓",
+      "name_en": "liuyao_follow_ghost_to_tomb",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "隨鬼入墓章第三十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "随鬼入墓",
+        "三墓",
+        "官鬼",
+        "旺衰"
+      ]
+    },
+    {
+      "attributes": {
+        "counterpart": "独静",
+        "definition": "五爻不动一爻独动"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_dufa",
+      "interpretation": "五爻不动、一爻独动为独发（五爻俱动、一爻不动为独静）。事之成败由乎用神，应期迟速亦由乎用神；独发独静古有验之，但不可舍用神而执法断，否则为谬。",
+      "name_cn": "独发",
+      "name_en": "liuyao_single_move",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "獨發章第三十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "独发",
+        "独静",
+        "用神"
+      ]
+    },
+    {
+      "attributes": {
+        "counterpart": "独发",
+        "definition": "五爻俱动一爻不动"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_dujing",
+      "interpretation": "五爻俱动、一爻不动为独静（五爻不动、一爻独动为独发）。古法有以独静之爻断应期者，仍须以用神旺衰为准：用神旺则静爻可应，用神衰则静爻难凭，不可执静爻而断祸福。",
+      "name_cn": "独静",
+      "name_en": "liuyao_single_still",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "獨發章第三十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "独静",
+        "独发",
+        "用神"
+      ]
+    },
+    {
+      "attributes": {
+        "classical_rules": [
+          "舍休囚用旺相",
+          "舍静爻用动爻",
+          "舍月破用不破",
+          "舍旬空用不空",
+          "舍被伤用不伤"
+        ],
+        "verified_exceptions": [
+          "舍不空用旬空",
+          "舍不破用月破"
+        ]
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_liangxian",
+      "interpretation": "用神两现指卦中同一六亲出现两爻。古法舍休囚用旺相、舍静爻用动爻、舍月破用不破、舍旬空用不空、舍被伤用不伤；野鹤得验者，反有舍不空而用旬空、舍不破而用月破，须结合应期与旺衰。",
+      "name_cn": "两现",
+      "name_en": "liuyao_duplicate_yong_shen",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "兩現章第三十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "两现",
+        "用神",
+        "取用"
+      ]
+    },
+    {
+      "attributes": {
+        "kinds": [
+          "变生",
+          "变克",
+          "变墓",
+          "变绝",
+          "比和"
+        ],
+        "rule": "卦化克不论用神衰旺皆凶"
+      },
+      "confidence": 0.9,
+      "id": "kn:pattern:liuyao_guabian_huitu",
+      "interpretation": "卦变有变生、变克、变墓、变绝、比和。野鹤验凡卦化克者，不论用神衰旺皆以凶推；如震木化乾金为回头克，主凶。化生则如水回头生木，以吉断。",
+      "name_cn": "卦变回头生克",
+      "name_en": "liuyao_hexagram_return_effect",
+      "node_type": "pattern",
+      "schools": [],
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦變生克墓絕章第二十四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "systems": [
+        "liuyao"
+      ],
+      "tags": [
+        "六爻",
+        "卦变",
+        "回头生",
+        "回头克",
+        "变卦"
+      ]
+    },
+    {
+      "attributes": {
         "branches": [
           "寅",
           "卯"
@@ -2338,6 +3020,312 @@
         "url": "https://zh.wikisource.org/wiki/增刪卜易"
       },
       "target_id": "kn:pattern:liuyao_biangua",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "靜爻旺相日辰沖之爲暗動，靜爻休囚日辰沖之爲破，暗動者有喜有忌。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_andong",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "暗動章第二十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_andong",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "占以日辰而沖動爻，謂之沖散，又以爻動沖爻，亦能沖散，予屢試之，旺相者沖之不散，有气者沖之不散，休囚者間有沖散，亦千百中之一二也",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_dongsan",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "動散章第二十三",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_dongsan",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "卦有卦變，爻有爻變。卦變者內外動而反伏者同一卦也。……內卦反伏，內則不安。外卦反伏，外則不寧。內外反伏者，內外不寧之象也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_fanyin",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_fanyin",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "反伏者有內外伏呤者，內外憂鬱呻吟之象。內卦動變伏吟，內則呻吟，外卦動變伏吟，外則憂鬱。……伏吟之卦，用神旺相，沖開之年月，其志則伸，用神休囚，沖開之年月，憂鬱不吉。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_fuyin",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_fuyin",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "長生、沐浴、冠帶、臨官、帝旺、衰、病、死、墓、絕、胎、養。予得驗者，只驗生旺墓絕，其餘不驗，不必用之。……金長生在巳，旺在酉，墓在丑，絕在寅。木長生在亥，旺在卯，墓在未，絕在申。土水長生在申，旺在子，墓在辰，絕在巳。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_shengwang_mujue",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "生旺墓絕章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_shengwang_mujue",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "靜而逢值逢沖：如主事爻臨子水不動，後逢子日午日而應之，餘仿此。\n動而逢合逢值：如主事爻臨子水發動，後遇丑日子日而應之，餘仿此。\n太旺者逢墓逢沖：如主事爻臨午火，又遇巳火午月日占卦，或卦中巳午爻太多，後逢亥子日應之，又有戌日應之乃火入墓也，餘仿此。\n衰絕者，遇生遇旺：如主事爻屬金，占卦於巳午月日，卽是休囚無气，後逢土月日或至秋令當時，則旺矣！餘仿此。\n入三墓俱喜沖開：如主事爻臨午火，假使火墓於戌，後逢辰日則應之，餘仿此。\n遇六合亦宜相擊：如主事爻與月作合，或動而化合，吉凶必待沖開之月日應之。卽如主象臨子，與丑作合，後逢午未日應之是也，餘仿此，\n月破喜塡：如子月占，主事爻臨午火，乃爲月破。後逢未日應之，謂之破而逢合。又有逢午月應之，塡實之月，則不破矣！餘仿此。……勿謂爻之不驗，遠近當分：遠事定之以年月，近事應之於日時。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yingqi",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "各門類應期總注章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_yingqi",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "遊魂卦爲各宮之第七卦，如乾宮中之火地晉，坤宮中之水天需。……古以遊魂行千里，我行此事而欲久者，遊魂而不能久，心無定向，遷改不常。……野鶴曰：須以用神爲主，然後以此參之，若捨用神執此而斷者，謬也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_youhun",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_youhun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "歸魂卦爲各宮之第八卦，如乾宮中之火天大有，坤宮中之水地比。……古以歸魂不出疆，諸事拘泥不行，與遊魂卦相反而斷之，可也。……野鶴曰：亦須以用神爲主。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_guihun",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_guihun",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "正申﹑二酉﹑三戌﹐四亥﹑五子﹑六丑﹑七寅﹑八卯﹑九辰﹐十巳﹑十一午﹑十二未﹐月建沖之爲月破﹐逐月之破日是也。……野鶴曰﹕予得其驗﹐動則能傷於爻﹐變則能傷於動﹐何也﹖神兆機於動。……目下𨿽破﹐出月則不破﹐今日𨿽破﹐實破之日則不破﹐合之日則不破﹐近應日遠應年月。惟而不動又無日辰動爻生助者則到底而破矣。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_yuepo",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月破章第二十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_yuepo",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "姤卦二爻之亥水卽爲飛神﹐寅木妻財卽爲伏神﹐亥水而生寅木﹐謂之飛來生伏得長生……辰土卽是飛神﹐子水便是伏神﹐此乃飛來克伏﹐謂之飛克",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_feishen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "飛伏神章第二十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_feishen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "若用神不現﹐卽以日月爲用神﹐倘日月非用神者﹐則本宮首卦尋之……伏神有用者有六﹕伏神得日月生者一也﹔伏神旺相者二也﹔伏神得飛神生者三也﹔伏神得動爻生者四﹔伏神得遇日月動爻沖克飛神者五也﹔伏神得遇飛神空破休囚墓絕者六也。……又伏神終不得出者有五。伏神休囚無气者一也﹔伏神被日月沖克者二也﹔伏神被旺相之飛神克者三也﹔伏神墓絕於日月飛爻者四也﹔伏神伏囚值空月破者五也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_fushen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "飛伏神章第二十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_fushen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "進神亥化子﹐寅化卯﹐巳化午﹐申化酉﹐丑化辰﹐辰化未﹐未化戌。……野鶴曰﹕夫進神之有四﹕動旺相而化旺﹐乘勢而進﹐一也﹔動休囚而化休囚﹐待時而進﹐二也﹔動爻變爻有一而值衰﹐待旺相之日而進者﹐三也﹔動爻變爻有一而空破﹐待塡實之日而進者﹐四也",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_jinshen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_jinshen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "退神子化亥﹐卯化寅﹐午化巳﹐酉化申﹐辰化丑﹐未化辰﹐戌化未。……退神之法有四﹕動旺相而化旺相或有日月動爻生扶﹐占近事得時而不退者﹐一也﹔動休囚而化休囚及時而退者﹐二也﹔動爻變爻有一而旺相﹐待休囚之時而退者﹐三也﹔動爻變爻有一而逢空破﹐待塡實之日而退者﹐四也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_tuishen",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_tuishen",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "古有日墓﹑動墓﹑化墓之三墓。世爻隨鬼入墓﹑本命隨鬼入墓﹑卦身隨鬼入墓﹑世身隨鬼入墓。……予因屢試而得驗者﹐只驗世爻入墓有三﹕世爻隨鬼入日墓﹐入動墓﹐動而化墓。此三墓者﹐自占看世爻﹐旺相者非眞﹐代占看用神﹐用神旺相者非眞﹐惟世爻休囚被克﹐而又入墓者﹐是也。墓神破﹐日月動爻沖破﹐亦非眞也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_suigui_rumu",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "隨鬼入墓章第三十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_suigui_rumu",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "五爻俱動﹐一爻不動﹐謂之獨靜﹔五爻不動﹐一爻獨動﹐謂之獨發。事之成敗﹐由乎用神﹔應期遲速﹐亦由乎用神﹔獨發獨靜﹐古有驗之﹐予試亦有驗也……如捨其用神﹐執之而決事者﹐謬也﹐過也。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_dufa",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "獨發章第三十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_dufa",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "五爻俱動﹐一爻不動﹐謂之獨靜﹔五爻不動﹐一爻獨動﹐謂之獨發。……古有以獨靜之爻而斷應期﹐譬如此卦﹐寅木獨靜﹐若不看用神﹐斷寅日生也﹖斷寅日死也﹖……此𨿽應前卦一爻獨靜﹐必應用神之旺也",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_dujing",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "獨發章第三十一",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_dujing",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "用神兩現﹐如占父母卦中兩爻父母者是也。捨其休囚﹐用其旺相﹐捨其靜爻﹐而用動爻﹐捨其月破﹐而用不破﹐捨其旬空﹐用其不空﹐捨其被傷﹐用其不傷。此古法也。得其驗者﹐應乎旬空月破﹐捨其不空﹐而用旬空﹐捨其不破﹐而用月破。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_liangxian",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "兩現章第三十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_liangxian",
+      "target_type": "node"
+    },
+    {
+      "credibility": 0.9,
+      "passage": "卦變者：變生、變克、變墓、變絕、比和。予得驗者，凡遇卦化克者，不論用神之衰旺皆以凶推。……此乃震卦化乾卦，震木變乾金謂之化克，金回頭以克木，也卽以凶推。",
+      "ref_type": "classic_text",
+      "reference_id": "ref:classic:liuyao_guabian_huitu",
+      "school": null,
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦變生克墓絕章第二十四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "target_id": "kn:pattern:liuyao_guabian_huitu",
       "target_type": "node"
     }
   ],
@@ -4284,6 +5272,438 @@
       },
       "source_node_id": "kn:shen_sha:liuyao_xuanwu",
       "target_node_id": "kn:shen_sha:liuyao_liushen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "yuejian_chong"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "月建冲爻为月破：正月申、二月酉，逐月值冲之支即是月破。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "月破章第二十七",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:yuejian_yuepo",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "月破章第二十七",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_yuejian",
+      "target_node_id": "kn:pattern:liuyao_yuepo",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "feifu"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "用神不上卦而伏于本宫首卦相应爻下：伏者为伏神，覆盖其上之现爻为飞神。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "飛伏神章第二十八",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:fushen_feishen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "飛伏神章第二十八",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_fushen",
+      "target_node_id": "kn:pattern:liuyao_feishen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "donghua_jintui"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "进神为动爻所化地支按序前进，如亥化子、寅化卯、巳化午、申化酉、丑化辰、辰化未、未化戌。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "進神退神章第二十九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:dongyao_jinshen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_dongyao",
+      "target_node_id": "kn:pattern:liuyao_jinshen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "donghua_jintui"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "退神为动爻所化地支按序后退，如子化亥、卯化寅、午化巳、酉化申、辰化丑、未化辰、戌化未。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "進神退神章第二十九",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:dongyao_tuishen",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "進神退神章第二十九",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_dongyao",
+      "target_node_id": "kn:pattern:liuyao_tuishen",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_position"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "游魂卦为各宫之第七卦，如乾宫火地晋、坤宫水天需。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "歸魂遊魂章第又二十六",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:youhun_bagong",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_youhun",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "bagong_position"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "归魂卦为各宫之第八卦，如乾宫火天大有、坤宫水地比。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "歸魂遊魂章第又二十六",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_shuyu:guihun_bagong",
+      "relation_type": "shuyu",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "歸魂遊魂章第又二十六",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_guihun",
+      "target_node_id": "kn:palace:liuyao_bagong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "guabian_fanyin"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卦变反吟：内卦动变反吟则内不安，外卦动变反吟则外不宁，皆主反复不定。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "反伏章第二十五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:biangua_fanyin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_biangua",
+      "target_node_id": "kn:pattern:liuyao_fanyin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "guabian_fuyin"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "伏吟：卦动而六爻地支五行不变，内卦动变伏吟则内呻吟，外卦动变伏吟则外忧郁。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "反伏章第二十五",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:biangua_fuyin",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "反伏章第二十五",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_biangua",
+      "target_node_id": "kn:pattern:liuyao_fuyin",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "richen_chong"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "静爻旺相，日辰冲之为暗动；静爻休囚，日辰冲之为日破。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "暗動章第二十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:richen_andong",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "暗動章第二十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_richen",
+      "target_node_id": "kn:pattern:liuyao_andong",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "liangxian_selection"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "用神两现时须在旺衰、动静、月破、旬空、受伤与否之间取舍，古法与野鹤实测经验并用。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "兩現章第三十二",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:yongshen_liangxian",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "兩現章第三十二",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:yong_shen:liuyao_yongshen",
+      "target_node_id": "kn:pattern:liuyao_liangxian",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "guabian_huitu"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "卦变有变生、变克、变墓、变绝、比和；震木化乾金为回头克，凡卦化克者不论用神衰旺皆凶。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "卦變生克墓絕章第二十四",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:biangua_huitu",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "卦變生克墓絕章第二十四",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_biangua",
+      "target_node_id": "kn:pattern:liuyao_guabian_huitu",
+      "weight": 1.0
+    },
+    {
+      "conditions": [
+        {
+          "field": "relation_subtype",
+          "value": "suigui"
+        }
+      ],
+      "direction": "directed",
+      "evidence": [
+        {
+          "description": "随鬼入墓之鬼即官鬼：世爻随鬼入日墓、入动墓、动而化墓，休囚被克又入墓者为凶。",
+          "source": {
+            "author": "野鶴老人",
+            "chapter": "隨鬼入墓章第三十",
+            "credibility": 0.9,
+            "page": null,
+            "text": "增刪卜易",
+            "url": "https://zh.wikisource.org/wiki/增刪卜易"
+          },
+          "weight": 1.0
+        }
+      ],
+      "id": "rel:liuyao_duiying:suigui_guangui",
+      "relation_type": "duiying",
+      "source": {
+        "author": "野鶴老人",
+        "chapter": "隨鬼入墓章第三十",
+        "credibility": 0.9,
+        "page": null,
+        "text": "增刪卜易",
+        "url": "https://zh.wikisource.org/wiki/增刪卜易"
+      },
+      "source_node_id": "kn:pattern:liuyao_suigui_rumu",
+      "target_node_id": "kn:ten_god:liuyao_guangui",
       "weight": 1.0
     }
   ]

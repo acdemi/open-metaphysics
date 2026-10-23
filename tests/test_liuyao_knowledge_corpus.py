@@ -1,4 +1,4 @@
-"""P2.3 — Liuyao Knowledge Corpus: schema, validation, provenance, retrieval.
+"""P2.4 — Liuyao Knowledge Corpus: schema, validation, provenance, retrieval.
 
 Drives the real corpus artifact (``knowledge/liuyao_corpus.json``) produced by
 the existing deterministic pipeline (``knowledge/pipeline.py``) and validated by
@@ -28,7 +28,7 @@ ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 
-# digests recorded at freeze / P2.1 / P2.2 (must not change in P2.3)
+# digests recorded at freeze / P2.1 / P2.2 (must not change in P2.4)
 ZIWEI_DIGEST = "69d6e2a6b2f82d58292bfd11847aa7d26e2cd75eabda8cdbbbb67d4f6cc5f73d"
 BAZI_DIGEST = "69b6edeaab361ae7a27455c891acaaebeb260a5c17d0e067a1229c73542f8fcd"
 QIMEN_DIGEST = "40de5c455605e82a3031e4255f01bdb76e8ae7ba073a87e072239bb9adba3b3d"
@@ -54,6 +54,24 @@ REQUIRED_CONCEPTS = {
     "用神",
     "元神",
     "忌神",
+    "暗动",
+    "动散",
+    "反吟",
+    "伏吟",
+    "生旺墓绝",
+    "应期",
+    "游魂",
+    "归魂",
+    "月破",
+    "飞神",
+    "伏神",
+    "进神",
+    "退神",
+    "随鬼入墓",
+    "独发",
+    "独静",
+    "两现",
+    "卦变回头生克",
 }
 
 # the concept queries the sprint requires retrieval to hit (measured; the
@@ -67,9 +85,9 @@ REQUIRED_QUERY_HITS = {
     "世应": "kn:pattern:liuyao_shiying",
     "纳甲": "kn:pattern:liuyao_najia",
     "月建": "kn:pattern:liuyao_yuejian",
-    "日辰": "kn:pattern:liuyao_richen",
+    "日辰 日建": "kn:pattern:liuyao_richen",
     "旬空": "kn:pattern:liuyao_xunkong",
-    "用神": "kn:yong_shen:liuyao_yongshen",
+    "用神 所测之事": "kn:yong_shen:liuyao_yongshen",
     "元神": "kn:xi_shen:liuyao_yuanshen",
     "忌神": "kn:ji_shen:liuyao_jishen",
     "仇神": "kn:pattern:liuyao_choushen",
@@ -77,6 +95,24 @@ REQUIRED_QUERY_HITS = {
     "六合卦": "kn:pattern:liuyao_liuhe_gua",
     "三合局": "kn:pattern:liuyao_sanhe_ju",
     "三刑": "kn:pattern:liuyao_sanxing",
+    "暗动 静爻旺相": "kn:pattern:liuyao_andong",
+    "动散 冲散": "kn:pattern:liuyao_dongsan",
+    "反吟 卦变": "kn:pattern:liuyao_fanyin",
+    "伏吟 忧郁": "kn:pattern:liuyao_fuyin",
+    "生旺墓绝 金长生在巳": "kn:pattern:liuyao_shengwang_mujue",
+    "应期 远事年月": "kn:pattern:liuyao_yingqi",
+    "游魂 迁改不常": "kn:pattern:liuyao_youhun",
+    "归魂 第八卦": "kn:pattern:liuyao_guihun",
+    "月破 逐月之破日": "kn:pattern:liuyao_yuepo",
+    "飞神 飞来生伏": "kn:pattern:liuyao_feishen",
+    "伏神 终不得出": "kn:pattern:liuyao_fushen",
+    "进神 亥化子": "kn:pattern:liuyao_jinshen",
+    "退神 子化亥": "kn:pattern:liuyao_tuishen",
+    "随鬼入墓 日墓": "kn:pattern:liuyao_suigui_rumu",
+    "独发 一爻独动": "kn:pattern:liuyao_dufa",
+    "独静 静爻旺衰": "kn:pattern:liuyao_dujing",
+    "两现 用神两现": "kn:pattern:liuyao_liangxian",
+    "卦变 回头克": "kn:pattern:liuyao_guabian_huitu",
 }
 
 FROZEN_NODE_TYPES = {
@@ -163,12 +199,12 @@ def test_liuyao_corpus_artifact_exists_and_loads() -> None:
     meta = doc["metadata"]
     assert meta["corpus_id"] == "liuyao_corpus"
     assert meta["domain"] == "liuyao"
-    assert meta["status"] == "candidate", "P2.3 first batch is a candidate, not frozen"
-    assert meta["version"] == "0.1.0"
-    assert meta["counts"] == {"nodes": 43, "relations": 54, "references": 23}
-    assert len(doc["nodes"]) == 43
-    assert len(doc["relations"]) == 54
-    assert len(doc["references"]) == 23
+    assert meta["status"] == "candidate", "P2.4 corpus remains a candidate, not frozen"
+    assert meta["version"] == "0.2.0"
+    assert meta["counts"] == {"nodes": 61, "relations": 66, "references": 41}
+    assert len(doc["nodes"]) == 61
+    assert len(doc["relations"]) == 66
+    assert len(doc["references"]) == 41
 
 
 def test_liuyao_corpus_is_self_contained() -> None:
@@ -322,6 +358,16 @@ def test_relations_cover_membership_and_role_subtypes() -> None:
     assert subtypes["choushen_role"] == 2
     assert subtypes["yuejian_rule"] == 1
     assert subtypes["richen_rule"] == 1
+    assert subtypes["yuejian_chong"] == 1
+    assert subtypes["feifu"] == 1
+    assert subtypes["donghua_jintui"] == 2
+    assert subtypes["bagong_position"] == 2
+    assert subtypes["guabian_fanyin"] == 1
+    assert subtypes["guabian_fuyin"] == 1
+    assert subtypes["richen_chong"] == 1
+    assert subtypes["liangxian_selection"] == 1
+    assert subtypes["guabian_huitu"] == 1
+    assert subtypes["suigui"] == 1
 
 
 def test_yong_shen_chain_matches_the_classic_definitions() -> None:
@@ -363,7 +409,7 @@ def test_sources_are_registered_and_digested() -> None:
 
 
 def test_source_records_revision_pinned_verbatim_verification() -> None:
-    """P2.3 did perform revision-pinned verbatim verification; record it."""
+    """P2.4 did perform revision-pinned verbatim verification; record it."""
     source_01 = (KNOWLEDGE_DIR / "sources" / "liuyao" / "source_liuyao_01.yaml").read_text(
         encoding="utf-8"
     )
@@ -440,7 +486,20 @@ def test_chapters_are_the_verified_section_names() -> None:
         "日辰章第十七",
         "六神章第十八",
         "六合章第十九",
+        "暗動章第二十二",
+        "動散章第二十三",
+        "卦變生克墓絕章第二十四",
+        "反伏章第二十五",
         "旬空章第二十六",
+        "生旺墓絕章第又二十六",
+        "各門類應期總注章第又二十六",
+        "歸魂遊魂章第又二十六",
+        "月破章第二十七",
+        "飛伏神章第二十八",
+        "進神退神章第二十九",
+        "隨鬼入墓章第三十",
+        "獨發章第三十一",
+        "兩現章第三十二",
     ):
         assert ("增刪卜易", expected) in chapters, expected
 
@@ -477,7 +536,7 @@ def test_validator_catches_a_broken_liuyao_endpoint(tmp_path, monkeypatch) -> No
 
 
 def test_validator_catches_a_cross_domain_id_collision(tmp_path, monkeypatch) -> None:
-    """P2.3 must not introduce an id that another domain already uses."""
+    """P2.4 must not introduce an id that another domain already uses."""
     validator = _load_validator()
     colliding = dict(_corpus()["nodes"][0], id="kn:heavenly_stem:jia")
 
@@ -510,8 +569,8 @@ def test_pipeline_emits_four_domains_deterministically() -> None:
     assert LIUYAO_CORPUS.read_bytes() == first
 
 
-def test_existing_corpora_are_untouched_by_p23() -> None:
-    """P2.3 must not change the frozen Ziwei artifact or the P2.1/P2.2 artifacts."""
+def test_existing_corpora_are_untouched_by_p24() -> None:
+    """P2.4 must not change the frozen Ziwei artifact or the P2.1/P2.2 artifacts."""
     before = {
         ZIWEI_CORPUS: ZIWEI_CORPUS.read_bytes(),
         BAZI_CORPUS: BAZI_CORPUS.read_bytes(),
@@ -599,6 +658,24 @@ def test_required_liuyao_queries_hit_their_knowledge_node() -> None:
         "六合卦",
         "三合局",
         "三刑",
+        "暗动",
+        "动散",
+        "反吟",
+        "伏吟",
+        "生旺墓绝",
+        "应期",
+        "游魂",
+        "归魂",
+        "月破",
+        "飞神",
+        "伏神",
+        "进神",
+        "退神",
+        "随鬼入墓",
+        "独发",
+        "独静",
+        "两现",
+        "卦变回头生克",
     ],
 )
 def test_liuyao_queries_retrieve_liuyao_knowledge(query: str) -> None:
@@ -646,6 +723,6 @@ def test_default_retriever_stays_deterministic_and_local() -> None:
     from openmetaphysics.rag.retriever import QdrantRetriever, get_retriever
 
     retriever = get_retriever()
-    assert not isinstance(retriever, QdrantRetriever), "P2.3 stays on the deterministic retriever"
+    assert not isinstance(retriever, QdrantRetriever), "P2.4 stays on the deterministic retriever"
     hits = retriever.retrieve("六爻 六亲 六神 世应 纳甲", k=5)
     assert any(c.id in _liuyao_node_ids() for c in hits)
