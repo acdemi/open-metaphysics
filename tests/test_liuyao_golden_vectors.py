@@ -1,6 +1,6 @@
 """Liuyao golden vector regression tests (Phase B contractization).
 
-Verifies that the 24 candidate vectors still match the live deterministic
+Verifies that the 25 frozen vectors still match the live deterministic
 engine, that rejected inputs stay rejected, and that the engine is
 reproducible. Mirrors tests/test_bazi_golden_vectors.py.
 """
@@ -41,11 +41,11 @@ def test_vector_file_shape():
     doc = _load()
     meta = doc["metadata"]
     assert meta["domain"] == "liuyao"
-    assert meta["status"] == "candidate"
+    assert meta["status"] == "frozen"
     assert meta["reference"] == "reference/liuyao/domain.py"
     vectors = doc["vectors"]
-    assert len(vectors) == meta["total_vectors"] == 24
-    assert len({v["id"] for v in vectors}) == 24
+    assert len(vectors) == meta["total_vectors"] == 25
+    assert len({v["id"] for v in vectors}) == 25
     assert set(meta["categories"]) == {"normal", "edge", "boundary", "invalid"}
 
 
@@ -62,7 +62,7 @@ def test_every_vector_matches_live_engine():
 
 def test_invalid_vectors_are_rejected():
     invalid = [v for v in _vectors() if v.get("expected_error")]
-    assert len(invalid) == 3
+    assert len(invalid) == 4
     for vector in invalid:
         with pytest.raises(ValueError) as excinfo:
             _payload(vector)

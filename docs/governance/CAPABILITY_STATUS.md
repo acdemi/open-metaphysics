@@ -18,6 +18,10 @@
 > 2026-10-19（**P2.4 Liuyao Knowledge Enrichment II** —— `liuyao_corpus:0.2.0`
 > 61/66/41；新增 18 个结构/法则 pattern 节点与 18 条逐字引用；
 > 同域深化，Ziwei / BaZi / Qimen 语料字节未变；不修改冻结 Schema / 契约 / 计算逻辑）
+> 2026-10-23（**Liuyao Contract Freeze** —— `ACP-LIUYAO-001` 批准 D1-D4；
+> 契约 v1.0.0 **Frozen**（30 条）+ 25 Golden Vectors **Frozen** +
+> Reference **Certified**；Freeze Review / Audit PASS。Liuyao 状态升级
+> **Integration Ready（Certified Frozen Capability）**）
 
 ---
 
@@ -28,9 +32,9 @@
 | **Qimen** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen | 24（Frozen） | Certified（双实现验证） | 93 + 28 |
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
-| **Liuyào** | Implemented | 无 | 无 | 无 | 6 |
+| **Liuyào** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen（`liuyao:behavior:v1.0.0`, 2026-10-23, 30 条） | 25（Frozen） | Certified（独立实现；21/21 + 40/40） | 6 + 6 + 8 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（P2.4 后全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1023 passed + 2 skipped） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`, 2026-09-16, D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-23 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1024 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -386,37 +390,47 @@ Consensus（契约 §4 显式排除; 任何新增能力须 ACP）
 
 **Status**:
 
-**Integration Ready**（2026-09-16 Phase B 契约化：Reference 独立实现 + 24 向量 + 等价认证通过）
+**Integration Ready — Certified Frozen Capability**（2026-10-23，`ACP-LIUYAO-001`
+D1-D4 批准；完整生命周期 Stage 0→4）
 
 **Calculation Layer**:
 
 - 算法: `src/openmetaphysics/agents/liuyao.py`（361 行；起卦/纳甲/六亲/六神/世应/用神/本变互卦）
 - 确定性: 是（显式 `casts` 或显式 `seed` → `deterministic_rng(derive_seed(payload))`；
-  **注意**：自动 seed 受 `PYTHONHASHSEED` 影响，跨进程不可复现 —— 见 `LC-D04`）
+  **注意**：自动 seed 受 `PYTHONHASHSEED` 影响，跨进程不可复现 —— 见 `LC-D04`，
+  且该路径**不属于冻结契约**）
 - Schema: 领域专属模型 `LiuyaoInput` / `YaoLine` / `LiuyaoChart` / `LiuyaoOutput`
   （`agents/liuyao.py` L28 / L43 / L51 / L69），经 `AgentRegistry.schema()` 暴露为 JSON Schema；
   已在 `docs/SCHEMAS.md §3.4` 登记。
 - 测试: `tests/test_liuyao.py`（6 例）+ `tests/test_liuyao_golden_vectors.py`（6 例）
+  + `reference/tests/test_liuyao_equivalence.py`（8 例）
 
 **Contract Layer**:
 
 - 规则清单: `docs/liuyao/LIUYAO_RULE_INVENTORY.md`（LY-01~LY-11 + 输入校验 + 5 项已知边界）
-- 行为契约: `docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（**candidate** v1.0.0；LC-001~LC-052）
-- Golden Vectors: `docs/liuyao/golden_vectors.json`（**24**：normal 10 / edge 6 / boundary 5 / invalid 3）
+- 行为契约: `docs/liuyao/LIUYAO_BEHAVIOR_CONTRACT.md`（**Frozen** v1.0.0；
+  `liuyao:behavior:v1.0.0`；30 条，ID 范围 LC-001~LC-052）
+- Golden Vectors: `docs/liuyao/golden_vectors.json`（**25 Frozen**：normal 10 / edge 6 / boundary 5 / invalid 4）
+- Freeze Review: `docs/liuyao/LIUYAO_FREEZE_REVIEW.md`（**PASS**）
+- Reference Audit: `docs/liuyao/LIUYAO_REFERENCE_AUDIT.md`（**PASS**）
 
 **Reference Layer**:
 
 - `reference/liuyao/`（**自包含**，不导入 `openmetaphysics`）：`domain.py` + `tables.py` + `astronomy.py` + `README.md`
+- 认证: `docs/liuyao/LIUYAO_REFERENCE_CERTIFICATION.md`（**CERTIFIED**，2026-10-23）
 - 等价证明: `reference/tests/test_liuyao_equivalence.py`
-  —— 24 向量 + **40/40** 生成输入**逐字节一致**；含 23:00 换日边界、seed 掷卦路径、
-  Reference 表与生产表**一致性守卫**、Reference 源码独立性断言
+  —— 21/21 合法向量 + **40/40** 生成输入**逐字节一致**；4 条拒绝路径、
+  4 个显式 seed、5 个换日边界；Reference 表与生产表**一致性守卫**、
+  Reference 源码独立性断言
 
 **下一步**:
 
 - ~~领域专属 Schema 定义~~ → **已完成**（`docs/SCHEMAS.md §3.4`）
 - ~~规则清单 + Golden Vectors → Reference 独立实现 → 等价认证~~ → **已完成**（Phase B，2026-09-16）
-- 待办（非阻塞）：契约从 `candidate` **Frozen**（须 ACP）；Golden Vector 数量从 24 提升至与
-  BaZi/Ziwei 同级覆盖密度；补 `docs/liuyao/LIUYAO_FREEZE_REVIEW.md`
+- ~~ACP 批准 + 冻结 metadata + 认证生效 + 状态升级~~ → **已完成**（2026-10-23）。
+- 剩余：按 H7 取得合并授权；合并后归档 ≤15 行。不推送 origin。
+- 文档：`ROADMAP` / `PROJECT_STATUS` / `README` / `SCHEMAS` / `reference/liuyao/README.md`
+  / 规则清单已同步为 Integration Ready（见 `docs/liuyao/LIUYAO_INTEGRATION_READINESS.md` §5）。
 
 **已知代码缺陷（2026-09-16 审计，非计算域契约影响；Phase B 未改动算法）**:
 
