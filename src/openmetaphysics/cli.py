@@ -17,7 +17,7 @@ from typing import Any
 
 from .agents.registry import get_registry
 from .consensus import ConsensusEngine, ConsensusInput
-from .core.schemas import AgentOutput
+from .core.schemas import AgentOutput, agent_output_from_envelope
 from .inference.explainer import get_explainer_for
 
 
@@ -97,7 +97,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "explain":
         try:
-            output = AgentOutput.model_validate(_load(args.output))
+            output = agent_output_from_envelope(_load(args.output))
         except Exception as exc:
             print(f"invalid output: {exc}", file=sys.stderr)
             return 2
