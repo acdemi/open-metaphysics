@@ -72,6 +72,6 @@
 | `KNOWLEDGE_PHASE_LIUYAO_CORPUS_FREEZE.md` 冻结记录 | DONE |
 | 状态指针（knowledge/README、CAPABILITY_STATUS、PROJECT_STATUS、项目进展梳理） | DONE |
 | 门槛复跑（pipeline 双跑 / validate / 定向 + 全量 pytest / ruff） | DONE |
-| H7 合并 | 待授权 |
+| H7 合并 | DONE（`0fdd9e9`，2026-10-24） |
 
 **用户裁定**：只冻结 Liuyao；BaZi 推迟（`BAZI_CORPUS_FREEZE_READINESS.md` 选 A）。
