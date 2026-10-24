@@ -124,16 +124,119 @@ def load_chunks(path: str | Path | None = None) -> list[KnowledgeChunk]:
     return [node_to_chunk(node) for node in corpus.get("nodes", [])]
 
 
-def load_all_chunks(base: str | Path | None = None) -> list[KnowledgeChunk]:
+def load_all_chunks(
+    base: str | Path | None = None, *, include_evidence: bool = False
+) -> list[KnowledgeChunk]:
     """Load every available domain corpus into one deterministic chunk list.
 
     A domain whose corpus file is absent is skipped (offline degradation), so a
     missing BaZi corpus never disables the frozen Ziwei corpus and vice versa.
+
+    ``include_evidence`` appends relation/reference chunks after the node chunks;
+    the default (False) keeps the historical node-only corpus unchanged.
     """
     chunks: list[KnowledgeChunk] = []
     for path in resolve_corpus_paths(base):
         if path.is_file():
             chunks.extend(load_chunks(path))
+    if include_evidence:
+        chunks.extend(load_evidence_chunks(base))
+    return chunks
+
+
+def _source_label(source: dict[str, Any] | None) -> str:
+    if not source:
+        return ""
+    label = str(source.get("text", ""))
+    chapter = source.get("chapter")
+    if chapter:
+        label = f"{label} · {chapter}" if label else str(chapter)
+    return label
+
+
+def relation_to_chunk(
+    relation: dict[str, Any], nodes: dict[str, dict[str, Any]]
+) -> KnowledgeChunk | None:
+    """Map one KnowledgeRelation to a chunk (None when endpoints are missing)."""
+    source = nodes.get(str(relation.get("source_node_id", "")))
+    target = nodes.get(str(relation.get("target_node_id", "")))
+    if source is None or target is None:
+        return None
+
+    relation_type = str(relation.get("relation_type", ""))
+    parts = [
+        str(source.get("name_cn", "")),
+        relation_type,
+        str(target.get("name_cn", "")),
+    ]
+    for evidence in relation.get("evidence", []) or []:
+        description = str(evidence.get("description", "")).strip()
+        if description:
+            parts.append(description)
+
+    tags: list[str] = [relation_type, "relation"]
+    for node in (source, target):
+        for system in node.get("systems", []) or []:
+            tag = str(system)
+            if tag not in tags:
+                tags.append(tag)
+    subtype = (relation.get("conditions") or [{}])[0].get("relation_subtype")
+    if subtype:
+        tags.append(str(subtype))
+
+    return KnowledgeChunk(
+        id=str(relation.get("id", "")),
+        text=" ".join(part for part in parts if part),
+        source=_source_label(relation.get("source")),
+        tags=tags,
+    )
+
+
+def reference_to_chunk(reference: dict[str, Any]) -> KnowledgeChunk | None:
+    """Map one KnowledgeReference to a chunk (None when the passage is empty)."""
+    passage = str(reference.get("passage", "")).strip()
+    if not passage:
+        return None
+    ref_type = str(reference.get("ref_type", ""))
+    tags = [ref_type, "reference"]
+    source = reference.get("source") or {}
+    for value in (source.get("text"), source.get("chapter")):
+        if value:
+            tags.append(str(value))
+    return KnowledgeChunk(
+        id=str(reference.get("reference_id", "")),
+        text=passage,
+        source=_source_label(source),
+        tags=tags,
+    )
+
+
+def load_evidence_chunks(base: str | Path | None = None) -> list[KnowledgeChunk]:
+    """Load relation + reference chunks from every available corpus.
+
+    Deterministic: relations then references per corpus, each sorted by id,
+    duplicates skipped, invalid entries (missing endpoints / empty passage)
+    dropped instead of raising.
+    """
+    chunks: list[KnowledgeChunk] = []
+    seen: set[str] = set()
+    for path in resolve_corpus_paths(base):
+        if not path.is_file():
+            continue
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        nodes = {str(n.get("id", "")): n for n in doc.get("nodes", [])}
+        for relation in sorted(doc.get("relations", []), key=lambda r: str(r.get("id", ""))):
+            chunk = relation_to_chunk(relation, nodes)
+            if chunk is not None and chunk.id and chunk.id not in seen:
+                seen.add(chunk.id)
+                chunks.append(chunk)
+        for reference in sorted(
+            doc.get("references", []), key=lambda r: str(r.get("reference_id", ""))
+        ):
+            chunk = reference_to_chunk(reference)
+            if chunk is not None and chunk.id and chunk.id not in seen:
+                seen.add(chunk.id)
+                chunks.append(chunk)
     return chunks
 
 
@@ -167,14 +270,19 @@ def load_into(
     return len(chunks)
 
 
-def load_all_into(retriever: KnowledgeRetriever, base: str | Path | None = None) -> int:
+def load_all_into(
+    retriever: KnowledgeRetriever,
+    base: str | Path | None = None,
+    *,
+    include_evidence: bool = False,
+) -> int:
     """Load every available domain corpus into a retriever.
 
     Returns the number of chunks added. One retriever serves all domains: the
     domain distinction is carried by the chunk tags (``systems``), which the
     existing scorer already uses for exact-match filtering.
     """
-    chunks = load_all_chunks(base)
+    chunks = load_all_chunks(base, include_evidence=include_evidence)
     for chunk in chunks:
         retriever.add(chunk)  # type: ignore[attr-defined]
     return len(chunks)
