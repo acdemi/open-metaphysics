@@ -75,9 +75,11 @@ DOMAINS: dict[str, DomainSpec] = {
     ),
     "liuyao": DomainSpec(
         corpus_id="liuyao_corpus",
-        status="candidate",
-        version="0.2.0",
-        pipeline="knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II)",
+        status="frozen",
+        version="1.0.0",
+        # 2026-10-24 Corpus Freeze: revision-pinned verbatim evidence; any
+        # node/relation/reference change now goes through corpus-level review.
+        pipeline="knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II; frozen v1.0.0)",
     ),
 }
 DEFAULT_DOMAIN = "ziwei"
