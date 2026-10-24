@@ -193,6 +193,7 @@ class QdrantRetriever:
 
 
 _default: KnowledgeRetriever | None = None
+_default_evidence: KnowledgeRetriever | None = None
 
 
 def _load_default_corpus(retriever: InMemoryRetriever) -> int:
@@ -237,6 +238,30 @@ def get_retriever() -> KnowledgeRetriever:
     return _default
 
 
+def get_evidence_retriever() -> KnowledgeRetriever:
+    """Node + relation/reference retrieval (opt-in; explain keeps nodes only)."""
+    global _default_evidence
+    if _default_evidence is None:
+        from .corpus import load_all_chunks
+
+        retriever = InMemoryRetriever(load_all_chunks(include_evidence=True))
+        if not retriever.chunks:
+            # corpus unavailable: fall back to the populated default retriever
+            return get_retriever()
+        _default_evidence = retriever
+    return _default_evidence
+
+
+def search_knowledge(
+    query: str, *, k: int = 5, include_evidence: bool = False
+) -> list[KnowledgeChunk]:
+    """Retrieve knowledge chunks; nodes only by default, evidence opt-in."""
+    if include_evidence:
+        return get_evidence_retriever().retrieve(query, k=k)
+    return get_retriever().retrieve(query, k=k)
+
+
 def reset_retriever() -> None:
-    global _default
+    global _default, _default_evidence
     _default = None
+    _default_evidence = None
