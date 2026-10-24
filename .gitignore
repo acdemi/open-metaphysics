@@ -26,6 +26,7 @@ services/gateway/gateway
 node_modules/
 frontend/dist/
 frontend/.svelte-kit/
+frontend/.artifacts/
 packages/*/dist/
 
 # Proto generated

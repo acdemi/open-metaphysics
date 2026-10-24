@@ -20,7 +20,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 | 测试 | `tests/` + `reference/tests/` | **1087 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
-| Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
+| Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 前端 MVP 已实现（零构建 SPA，连接 `/orchestrate`）；Python 服务 / Proto 为占位 / IDL 定义 |
 
 ## 智能体（均已实现确定性引擎）
 
@@ -60,6 +60,7 @@ open-metaphysics/
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
 ├── tests/                   # 生产测试（1089 collected / 1087 passed + 2 skipped）
+├── frontend/                # 前端 MVP（零构建 SPA：计算/证据/解释/共识/执行详情）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -122,6 +123,22 @@ uv run openmetaphysics-cli consensus --input '{"evidence":[]}'
 curl -X POST http://127.0.0.1:8000/mcp -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
 ```
 
+### 前端 MVP
+
+`frontend/` 提供一个零构建的中文单页应用，直接连接上面的真实 API：
+计算事实 / 知识证据 / 生成解释 / 综合共识（≥2 域时由后端返回）分区展示，并附执行详情与请求 ID。
+
+```powershell
+# 终端 1：后端（允许前端来源跨域）
+$env:OM_CORS_ORIGINS='http://127.0.0.1:5173'; uv run openmetaphysics
+
+# 终端 2：前端静态服务器
+uv run python frontend/serve.py        # http://127.0.0.1:5173/
+```
+
+端到端冒烟（真实 Chrome 无头浏览器）：`uv run python frontend/tests/e2e_smoke.py`。
+详见 `frontend/README.md`。
+
 ## 常用命令
 
 | 命令 | 说明 |
@@ -133,6 +150,8 @@ curl -X POST http://127.0.0.1:8000/mcp -H "Content-Type: application/json" -d '{
 | `uv run openmetaphysics` | 启动 API |
 | `uv run python -m reference.demo` | Reference 演示 |
 | `uv run openmetaphysics-mcp` | MCP stdio server（JSON-RPC） |
+| `uv run python frontend/serve.py` | 前端 MVP 静态服务器（127.0.0.1:5173） |
+| `uv run python frontend/tests/e2e_smoke.py` | 前端端到端冒烟（需后端 + 前端已启动） |
 | `uv run openmetaphysics-cli compute bazi --input '{...}'` | 离线计算（`--explain` 附解释链） |
 | `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |
 
