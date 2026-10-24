@@ -38,13 +38,15 @@
 
 ## 3. Qimen
 
-- 两个来源已 **revision-pinned**（oldid/revid + sha256，见 §1），`evidence_status: revision_pinned`。
-- 逐条逐字核验未完成 → Qimen 冻结仍推迟。
-- 建议后续 Sprint：按 `verified_scope` 章节抽取 九宫/八门/九星/八神/六仪三奇/阴阳遁 原文并逐条核验。
+- 两来源已 **revision-pinned**（oldid/revid + sha256，见 §1）。
+- **离线逐字核验（2026-10-24）**：**10/15 引用 VERBATIM**（jiugong、bamen、bamen_suozhu、jiuxing_suozhu、bashen、bashen_leishen、yangdun、yindun、yanbo_yinyang、liuyi）；
+  **5/15 仍为摘要**（jiuxing、zhifu、zhishi、sanqi、xunshou_kongwang），不虚构。
+- 语料 digest 更新为 `76e4a4d0…`；`source_qimen_01` evidence_status → `revision_pinned_verbatim_verified（partial）`。
+- 冻结建议：与 BaZi 同法走 **有界冻结**（`QIMEN_CORPUS_FREEZE_REVIEW.md`，待批准）。
 
-## 4. 后续（需新 H6 授权）
+## 4. 后续
 
-| 需求 | 目标 | 候选来源 |
-|------|------|----------|
-| 旺衰/六合/六冲/三会/相破 原文 | BaZi 5 条 GAP 闭合 | 渊海子平其余章节；三命通會 卷一/卷三等（需登记 oldid） |
-| Qimen 逐条核验 | Qimen corpus 冻结前提 | 奇門遁甲統宗（已 pin）+ 煙波釣叟歌（已 pin） |
+| 需求 | 目标 | 状态 |
+|------|------|------|
+| BaZi 5 条 GAP | convention-level 边界 | 已通过有界冻结（`488ce510…`） |
+| Qimen 5 条摘要 | 有界冻结或追加来源 | 见 `QIMEN_CORPUS_FREEZE_REVIEW.md`（待批准） |

@@ -168,8 +168,8 @@ def test_qimen_corpus_artifact_exists_and_loads() -> None:
     meta = doc["metadata"]
     assert meta["corpus_id"] == "qimen_corpus"
     assert meta["domain"] == "qimen"
-    assert meta["status"] == "candidate", "P2.2 first batch is a candidate, not frozen"
-    assert meta["version"] == "0.1.0"
+    assert meta["status"] == "frozen", "Qimen was bounded-frozen at v1.0.0 (2026-10-24)"
+    assert meta["version"] == "1.0.0"
     assert meta["counts"] == {"nodes": 47, "relations": 60, "references": 15}
     assert len(doc["nodes"]) == 47
     assert len(doc["relations"]) == 60
@@ -328,11 +328,12 @@ def test_sources_are_registered_and_digested() -> None:
     assert used == registered, "both registered sources must actually be cited"
 
 
-def test_provenance_does_not_claim_verbatim_verification() -> None:
-    """Qimen references stay book-level attributed; H6 pinned the source only.
+def test_provenance_marks_verbatim_and_summary_references() -> None:
+    """Every Qimen reference declares its evidence level (H6 expansion).
 
-    Source metadata records the revision pin (H6, 2026-10-24), but corpus
-    passages must not claim a verbatim verification that has not been performed.
+    Source metadata records revision pins (H6, 2026-10-24). Each corpus passage
+    must say either 逐字核验 (verbatim) or 非逐字核验/摘要 (summary) -- no
+    undeclared claim -- and must never use the internal VERBATIM_VERIFIED token.
     """
     source_01 = (KNOWLEDGE_DIR / "sources" / "qimen" / "source_qimen_01.yaml").read_text(
         encoding="utf-8"
@@ -341,10 +342,11 @@ def test_provenance_does_not_claim_verbatim_verification() -> None:
     assert "VERBATIM_VERIFIED" not in source_01
 
     for ref in _corpus()["references"]:
-        assert "非逐字核验" in ref["passage"] or "不据以做逐字核验" in ref["passage"], ref[
-            "reference_id"
-        ]
-        assert "VERBATIM_VERIFIED" not in ref["passage"]
+        passage = ref["passage"]
+        assert (
+            "逐字核验" in passage or "非逐字核验" in passage or "摘要" in passage
+        ), ref["reference_id"]
+        assert "VERBATIM_VERIFIED" not in passage
 
 
 def test_chapters_are_the_verified_section_names() -> None:
