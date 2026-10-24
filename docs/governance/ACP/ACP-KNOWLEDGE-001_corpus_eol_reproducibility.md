@@ -128,7 +128,22 @@ digest 登记可独立保留（候选语料，不涉冻结变更）。
 | D2 LF 工作区重生成 Ziwei 语料（`93dba067…`，内容零变化） | DONE |
 | D3 测试门控修复 + Ziwei/BaZi/Qimen/Liuyao digest 锚定 | DONE |
 | D4 `knowledge/README.md` / `CAPABILITY_STATUS.md` / `PROJECT_STATUS.md` / Freeze 记录收口 | DONE |
-| LF + Windows 全量回归 / ruff / validate | DONE（见 §5） |
+| LF + Windows 全量回归 / ruff / validate | DONE（回执见下） |
 | H7 合并到 main | **PENDING USER AUTHORIZATION** |
 
+**验证回执（2026-10-24）**：
+
+- Windows 工作区全量：**1024 passed + 2 skipped**（1026 collected）；`ruff check src reference tests tools` PASS。
+- 定向知识套件：**162 passed**（bazi/qimen/liuyao corpus + knowledge pipeline）。
+- 全新 LF checkout（temp worktree，`core.autocrlf=false`，模拟 Linux CI）：定向 **152 passed**、
+  全量 **1024 passed + 2 skipped**、`knowledge/validate.py` PASSED；冻结件未被改写，
+  `ziwei_corpus.json` digest = `93dba067…`。
+- 内容对账：Ziwei nodes/relations/references/counts 与 v1.0.0 逐对象相等；仅
+  `metadata.source_digests` 变化。
+
 版本处理按 §3-D2 采用 **v1.0.0 metadata EOL 勘误**（内容与计数零变化）。
+
+**顺带发现（不属本 ACP，记为后续）**：`reference/conformance_runner.generate_golden_vectors`
+以文本模式写 `reference/conformance/golden/*.json`，未固定 LF；在 `core.autocrlf=false`
+的 Windows checkout 上运行会以 CRLF 重写这些参考 Golden 向量（内容相同、仅 EOL）。
+因涉 Reference 冻结工件，建议并入 `ACP-REF-002` 或另立小 ACP处理，不在本 Sprint 修改。
