@@ -43,33 +43,36 @@ the Reference Runtime.**
 
 ## How to Regenerate
 
-### Evidence Contract
+All five contracts are regenerated from the Reference Runtime:
 
 ```bash
-# Regenerate the Evidence Layer Contract from the Reference Runtime
-python -c "from reference.evidence_builder import export_evidence_contract, CONTRACT_PATH; export_evidence_contract(output_path=str(CONTRACT_PATH))"
-```
+python - <<'PY'
+from reference.engine import export_rule_contract, CONTRACT_PATH as RULE
+from reference.pattern_matcher import export_pattern_contract, CONTRACT_PATH as PATTERN
+from reference.evidence_builder import export_evidence_contract, CONTRACT_PATH as EVIDENCE
+from reference.knowledge_query import export_knowledge_contract, KNOWLEDGE_CONTRACT_PATH as KNOWLEDGE
+from reference.consensus_builder import export_consensus_contract, CONSENSUS_CONTRACT_PATH as CONSENSUS
 
-This command:
-1. Loads golden example YAML files from `reference/examples/`.
-2. Runs the full Reference Runtime (RuleEngine -> PatternMatcher ->
-   EvidenceBuilder).
-3. Collects the Evidence output.
-4. Builds the Contract dict with model specifications and golden
-   examples.
-5. Writes the JSON to `evidence_contract.json`.
+export_rule_contract(output_path=RULE)
+export_pattern_contract(output_path=PATTERN)
+export_evidence_contract(output_path=EVIDENCE)
+export_knowledge_contract(output_path=KNOWLEDGE)
+export_consensus_contract(output_path=CONSENSUS)
+PY
+```
 
 ### Verification
 
-After regeneration, verify:
-
 ```bash
-# Contract file matches runtime output
-python -m pytest tests/test_reference_evidence.py::TestContract::test_contract_file_matches_runtime -v
-
-# Contract is deterministic
-python -m pytest tests/test_reference_evidence.py::TestContract::test_contract_determinism -v
+python -m pytest tests/test_reference_rules.py::TestRuleContract -v
+python -m pytest tests/test_reference_patterns.py::TestPatternContract -v
+python -m pytest tests/test_reference_evidence.py::TestContract -v
+python -m pytest tests/test_reference_knowledge.py::TestContract -v
+python -m pytest tests/test_reference_consensus.py -k contract -v
 ```
+
+Every diff test asserts the committed contract matches the runtime
+export, and the determinism test asserts two exports are identical.
 
 ---
 
@@ -77,10 +80,11 @@ python -m pytest tests/test_reference_evidence.py::TestContract::test_contract_d
 
 | Contract | File | Version | Status | Export Function |
 |----------|------|---------|--------|-----------------|
+| Rule Layer | `rule_contract.json` | 1.0.0 | Active | `reference.engine.export_rule_contract` |
+| Pattern Layer | `pattern_contract.json` | 1.0.0 | Active | `reference.pattern_matcher.export_pattern_contract` |
 | Evidence Layer | `evidence_contract.json` | 1.0.0 | Active | `reference.evidence_builder.export_evidence_contract` |
-| Rule Layer | (future) | - | Planned | - |
-| Pattern Layer | (future) | - | Planned | - |
-| Consensus Layer | (future) | - | Planned | - |
+| Knowledge Layer | `knowledge_contract.json` | 1.0.0 | Active | `reference.knowledge_query.export_knowledge_contract` |
+| Consensus Layer | `consensus_contract.json` | 1.0.0 | Active | `reference.consensus_builder.export_consensus_contract` |
 
 ---
 
@@ -90,6 +94,7 @@ All Contracts **MUST** follow this format:
 
 ```
 Encoding:       UTF-8 (no BOM)
+Line endings:   LF only (canonical; ACP-REF-002, 2026-10-24)
 Key order:      sorted (sort_keys=True)
 Indentation:    2 spaces
 Ensure ASCII:   False (Chinese characters as literals)

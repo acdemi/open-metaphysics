@@ -7,8 +7,8 @@
 
 ## 0. 当前架构状态（四域 Integration Ready / Certified）
 
-OpenMetaphysics 项目当前处于 **计算域收口完成、Reference Runtime 最终冻结待
-`ACP-REF-002`** 阶段。
+OpenMetaphysics 项目当前处于 **计算域收口完成、Reference Runtime 已 Frozen**
+（`ACP-REF-002`，2026-10-24）阶段。
 
 **四个计算域均已完成完整生命周期**（Domain Calculation Layer → Behavior Contract
 Layer → Reference Verification Layer）：
@@ -87,8 +87,8 @@ Contract Frozen → Reference Certified → Integration Ready）。阶段要求�
 
 **Qimen / BaZi / Ziwei / Liuyao 均已完成完整生命周期**（Stage 0→4,
 **Integration Ready / Certified**）：各域契约 v1.0.0 + Reference 认证 +
-Golden Vectors。下一步为 Reference Runtime 最终冻结（`ACP-REF-002`）与
-Consensus Evidence 引擎收口。
+Golden Vectors。Reference Runtime 已 **Frozen**（`ACP-REF-002`）；下一步为
+Consensus Evidence 引擎收口与生产运行时硬化。
 
 ### 领域边界（Domain Boundary）
 
