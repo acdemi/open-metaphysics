@@ -186,7 +186,7 @@
 > 结果: 九宫/八门/九星/八神/阴遁/阳遁/值符/值使 八项必需术语 **top-1 命中**;
 > `POST /agents/qimen/explain` HTTP E2E（含 provider timeout / knowledge 不可用）
 > 全绿。**未修改 Qimen frozen contract、golden vectors、计算逻辑、KB Schema**;
-> Ziwei 冻结语料 digest `69d6e2a6…` 与 BaZi 语料 digest `69b6edea…` 均未变。
+> Ziwei 冻结语料 digest `69d6e2a6…` 与 BaZi 语料 digest `69b6edea…` 均未变（当时口径）。
 > 已知缺口（GAP-QIMEN-01 八门无专用 node_type; GAP-QIMEN-02 结构/法则无专用
 > node_type; GAP-QIMEN-03 八神流派命名差异; Qimen 无 revision-pin 逐字核验;
 > 跨平台 YAML EOL 会影响 `source_digests`）记录于 `knowledge/README.md` §7。
@@ -206,7 +206,7 @@
 > 结果: 18 项组合/单术语查询 top-1 命中 Liuyao 节点；`POST /agents/liuyao/explain`
 > HTTP E2E（含 provider timeout / knowledge 不可用 / k 边界 / 可复现）全绿。
 > **未修改任何冻结契约、golden vectors、计算逻辑、KB Schema**；Ziwei digest
-> `69d6e2a6…`、BaZi `69b6edea…`、Qimen `40de5c45…` 均未变。
+> `69d6e2a6…`、BaZi `69b6edea…`、Qimen `40de5c45…` 均未变（当时口径）。
 > 已知缺口（GAP-LIUYAO-01 六亲无专用 node_type; -02 结构/法则无专用 node_type;
 > -03 元神无专用 node_type; -04 仇神无专用 node_type; -05 互卦无定义性原文故不生产）
 > 记录于 `knowledge/README.md` §7。

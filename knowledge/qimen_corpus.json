@@ -9,8 +9,8 @@
     "domain": "qimen",
     "pipeline": "knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
     "source_digests": {
-      "source_qimen_01.yaml": "544ff3360137552a5756f53ad588b7a7329334519eba0ac964c9bf8fc624dec9",
-      "source_qimen_02.yaml": "50b1759d50b6be168defdb4d6d4a8ed467a2f0b3dc8f15f6287c14b6a65e4e5a"
+      "source_qimen_01.yaml": "293b5c2df3d74a039ba6b9f83a6232d39dba72d9b2d9d62d00f7ae9e5a83c865",
+      "source_qimen_02.yaml": "850131c1f69b4b6a43add5737c5edb04788f0d30f47cd3b27a23645c0d874017"
     },
     "status": "candidate",
     "version": "0.1.0"

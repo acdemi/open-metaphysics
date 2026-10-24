@@ -30,7 +30,7 @@ ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 # digests recorded at freeze / P2.1 (must not change in P2.2; Ziwei digest
 # re-registered by ACP-KNOWLEDGE-001 EOL erratum, 2026-10-24, content unchanged)
 ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
-BAZI_DIGEST = "69b6edeaab361ae7a27455c891acaaebeb260a5c17d0e067a1229c73542f8fcd"
+BAZI_DIGEST = "165047e06b024378a30e96848938f3bc2032b7684ecf84f70c90813d2f8ee628"
 
 REQUIRED_NINE_PALACES = {
     "坎一宫",
@@ -329,15 +329,15 @@ def test_sources_are_registered_and_digested() -> None:
 
 
 def test_provenance_does_not_claim_verbatim_verification() -> None:
-    """P2.2 records book-level attribution only -- no fabricated quotations.
+    """Qimen references stay book-level attributed; H6 pinned the source only.
 
-    The evidence status must say so, and no reference may claim a
-    revision-pinned verbatim verification that this Sprint did not perform.
+    Source metadata records the revision pin (H6, 2026-10-24), but corpus
+    passages must not claim a verbatim verification that has not been performed.
     """
     source_01 = (KNOWLEDGE_DIR / "sources" / "qimen" / "source_qimen_01.yaml").read_text(
         encoding="utf-8"
     )
-    assert "source_level_attributed" in source_01
+    assert "revision_pinned" in source_01
     assert "VERBATIM_VERIFIED" not in source_01
 
     for ref in _corpus()["references"]:
