@@ -81,7 +81,7 @@
 
 > **✅ 已执行（2026-09-16, D-12=A 批准）** —— 冻结记录:
 > `KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`; 冻结版本 `ziwei_corpus:v1.0.0`
-> （102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…`）;
+> （102 节点 / 47 关系 / 41 引用, digest `69d6e2a6…` → 2026-10-24 EOL 勘误 `93dba067…`）;
 > `CAPABILITY_STATUS.md` 已更新为 **FROZEN-v1.0.0**。
 > 至此本 Build Plan 执行序列（7.1.1 → 7.1.6）**全部完成**。
 

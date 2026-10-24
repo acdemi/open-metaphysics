@@ -27,8 +27,9 @@ QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 
-# digests recorded at freeze / P2.1 (must not change in P2.2)
-ZIWEI_DIGEST = "69d6e2a6b2f82d58292bfd11847aa7d26e2cd75eabda8cdbbbb67d4f6cc5f73d"
+# digests recorded at freeze / P2.1 (must not change in P2.2; Ziwei digest
+# re-registered by ACP-KNOWLEDGE-001 EOL erratum, 2026-10-24, content unchanged)
+ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
 BAZI_DIGEST = "69b6edeaab361ae7a27455c891acaaebeb260a5c17d0e067a1229c73542f8fcd"
 
 REQUIRED_NINE_PALACES = {
@@ -429,14 +430,10 @@ def test_frozen_and_p21_corpora_are_untouched_by_p22() -> None:
 
     assert ZIWEI_CORPUS.read_bytes() == ziwei_before
     assert BAZI_CORPUS.read_bytes() == bazi_before
-    # the recorded digests only match on the LF working copy (see .gitattributes:
-    # only knowledge/**/*.json is EOL-pinned, not the source YAML)
-    lf_sources = all(
-        b"\r\n" not in path.read_bytes()
-        for path in (KNOWLEDGE_DIR / "sources" / "bazi").glob("*.yaml")
-    )
-    if lf_sources:
-        assert hashlib.sha256(bazi_before).hexdigest() == BAZI_DIGEST
+    # knowledge/**/*.yaml is EOL-pinned (ACP-KNOWLEDGE-001, 2026-10-24):
+    # canonical digests on every checkout, asserted unconditionally.
+    assert hashlib.sha256(ziwei_before).hexdigest() == ZIWEI_DIGEST
+    assert hashlib.sha256(bazi_before).hexdigest() == BAZI_DIGEST
 
 
 def test_qimen_corpus_has_no_ascii_in_searchable_node_text() -> None:
