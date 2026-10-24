@@ -26,8 +26,9 @@ BAZI_DIR = KNOWLEDGE_DIR / "corpus" / "bazi"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 
-# the frozen Ziwei digest recorded at Corpus Freeze v1.0.0 (must not change)
-ZIWEI_DIGEST = "69d6e2a6b2f82d58292bfd11847aa7d26e2cd75eabda8cdbbbb67d4f6cc5f73d"
+# the frozen Ziwei digest: Corpus Freeze v1.0.0, EOL-erratum re-registered
+# by ACP-KNOWLEDGE-001 (2026-10-24; content unchanged, LF canonical)
+ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
 
 REQUIRED_TEN_GODS = {
     "比肩",
@@ -342,16 +343,12 @@ def test_ziwei_corpus_is_byte_identical_to_the_freeze() -> None:
     """P2.1 must not change the frozen Ziwei artifact in any way."""
     before = ZIWEI_CORPUS.read_bytes()
 
-    # The source digests embedded in the artifact are raw-byte hashes of the
-    # source YAML, and only knowledge/**/*.json is EOL-pinned by .gitattributes.
-    # On a CRLF working copy the register legitimately differs from the recorded
-    # freeze digest, so the exact digest is asserted for LF sources only.
-    lf_sources = all(
-        b"\r\n" not in path.read_bytes()
-        for path in (KNOWLEDGE_DIR / "sources" / "ziwei").glob("*.yaml")
+    # knowledge/**/*.yaml is EOL-pinned (ACP-KNOWLEDGE-001, 2026-10-24), so the
+    # embedded source digests and this corpus digest are canonical on every
+    # checkout; assert unconditionally to catch non-canonical EOL worktrees.
+    assert hashlib.sha256(before).hexdigest() == ZIWEI_DIGEST, (
+        "frozen Ziwei digest mismatch (non-canonical EOL checkout?)"
     )
-    if lf_sources:
-        assert hashlib.sha256(before).hexdigest() == ZIWEI_DIGEST
 
     _run_pipeline()
     after = ZIWEI_CORPUS.read_bytes()
