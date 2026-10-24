@@ -9,8 +9,8 @@
     "domain": "qimen",
     "pipeline": "knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
     "source_digests": {
-      "source_qimen_01.yaml": "293b5c2df3d74a039ba6b9f83a6232d39dba72d9b2d9d62d00f7ae9e5a83c865",
-      "source_qimen_02.yaml": "850131c1f69b4b6a43add5737c5edb04788f0d30f47cd3b27a23645c0d874017"
+      "source_qimen_01.yaml": "977239b9a67ddc86a88a2ecc2fb20f3a7917ebaf1ff1a9c0b4688fb7f931424e",
+      "source_qimen_02.yaml": "439cb99bdd3ca762edba8f4191d1a96a5aea5c8f25005b539db6b4fa9c2e38fb"
     },
     "status": "candidate",
     "version": "0.1.0"
@@ -1663,7 +1663,7 @@
   "references": [
     {
       "credibility": 0.8,
-      "passage": "摘要：洛书九宫为奇门之祖，戴九履一，左三右七，二四为肩，六八为足，五居中宫；上法九宫、下应九州，中建八门。九宫为地盘，六仪三奇按阴阳遁顺逆布之，中宫寄坤二宫。（读自维基文库转录本，非逐字核验；与 engine PALACE_NAMES_9 / PALACE_BRANCHES 一致。）",
+      "passage": "戴九履一者，河洛之精蕴。配以八门，八神列矣；加以三盘，三才正矣；重以三奇，三光耀矣。（逐字核验；与 engine PALACE_NAMES_9 / PALACE_BRANCHES 一致。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_jiugong",
       "school": null,
@@ -1680,7 +1680,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：八门地盘配属为坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开；八门常为值使，随值符亦十时一易。论八门执事歌：欲求财利往生方，葬猎须知死路强；征战远行开门吉，休门见贵最为良；捉贼惊门无不获，杜门无事好逃藏；索债须防伤上去，思量饮酒景门高。（短句读自转录本，非逐字核验。）",
+      "passage": "坎休、艮生、震伤、巽杜、离景、坤死、兑惊、乾开。……论八门执事歌 欲求财利往生方，葬猎须知死路强。征战远行开门吉，休门见贵最为良。捉贼惊门无不获，杜门无事好逃藏。索债须防伤上去，思量饮酒景门高。（逐字核验；`……` 连接不连续原文段。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_bamen",
       "school": null,
@@ -1697,7 +1697,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：八门各有宜忌——开门宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建，不宜治政；休门宜面君谒贵、上官到任、嫁娶、移徙，不宜行刑断狱；生门宜征讨谋望，不宜埋葬治丧；伤门宜渔猎讨捕索债；杜门宜捕盗剪凶；景门宜上书献策、招贤谒贵；死门宜决断刑狱吊丧埋葬；惊门宜掩捕盗贼。八门最怕迫制。（摘录改写，非逐字核验。）",
+      "passage": "开门所主：开门宜征讨、谋望、入官见贵、应举、远行、嫁娶、移徙、商贾、营建，不宜治政，有私人窥伺。休门所主：休门宜面君谒贵、上官到任、嫁娶、移徙、商贾、营建，诸事皆吉，不宜行刑断狱。生门所主：生门宜征讨、谋望、入官见贵、嫁娶、移徙，诸事皆吉，不宜埋葬治丧。伤门所主：伤门宜渔猎、讨捕索债、博戏、收敛货财，余俱不宜。杜门所主：杜门宜捕盗、剪凶、决隐、狱形、填塞沟壑，余俱不宜。（逐字核验。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_bamen_suozhu",
       "school": null,
@@ -1731,7 +1731,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：九星各有宜忌，天辅、天禽、天心、天任、天冲为吉，天蓬、天芮、天柱、天英为凶（「天辅冲任禽心吉，天蓬天英芮柱凶」）。天蓬宜安抚边境、修筑城池；天辅宜修道设教、诛凶伐暴；天心宜兴师陈旅、诛暴伐恶；天芮宜崇尚道德、尊师亲友；天柱宜修筑营垒、训练士卒；天任宜立国邑、化人民；天英宜远行献书。九星旺于子月。（摘录改写，非逐字核验。）",
+      "passage": "天辅冲任禽心吉，天蓬天英芮柱凶。凡时下得辅禽心大吉，任冲小吉，蓬芮大凶，英柱小凶。（逐字核验。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_jiuxing_suozhu",
       "school": null,
@@ -1748,7 +1748,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：八神次第为一值符、二腾蛇、三太阴、四六合、五勾陈、六朱雀、七九地、八九天（阳遁）；阴遁则次第逆行，并注「朱雀下有玄武，勾陈下又白虎」。本 engine 采用通行八神命名（以白虎、玄武代勾陈、朱雀），语料按 engine 用名收录并在 attributes 保留异名。（读自转录本，非逐字核验；流派差异已显式登记。）",
+      "passage": "八神：一值符、二腾蛇、三太阴、四六合、五勾陈、六朱雀、七九地、八九天，此谓阳遁也。阴遁则一值符、二九天、三九地、四朱雀、五勾陈、六六合、七太阴、八腾蛇（朱雀下有玄武，勾陈下又白虎）。（逐字核验；语料按 engine 用名收录并在 attributes 保留异名。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_bashen",
       "school": null,
@@ -1765,7 +1765,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：八神类神——值符禀中央之土，为贵人之位，能育万物；腾蛇禀南方之火，为虚耗之神；太阴禀西方之金，为阴佑之神；六合禀东方之木，为护卫之神；勾陈（下有白虎）禀西方之金，为刚勇之神，主兵戈战斗；朱雀（下有玄武）禀北方之水，为刑戮奸谗之神；九地为坤土之象，万物之母；九天为乾金之象，万物之父。（摘录改写，非逐字核验。）",
+      "passage": "值符：禀中央之土，为贵人之位，能育万物，大将利居其下。……腾蛇：禀南方之火，为虚耗之神。（逐字核验；`……` 连接不连续原文段。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_bashen_leishen",
       "school": null,
@@ -1782,7 +1782,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：阳遁九局顺布六仪、逆布三奇。一局甲子戊起坎一宫，甲戌己在坤二宫，甲申庚在震三宫，甲午辛在巽四宫，甲辰壬在中五宫，甲寅癸在乾六宫；丁在兑七宫，丙在艮八宫，乙在离九宫。二局甲子戊起坤二宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type=\"yang\") 一致。）",
+      "passage": "阳遁：阳遁九局，顺布六仪逆布三奇。如一局，甲子戊起坎一宫，则甲戌己在坤二宫，甲申庚在震三宫，甲午辛在巽四宫，甲辰壬在中五宫，甲寅癸在乾六宫，此顺布六仪也。丁在兑七宫，丙在艮八宫，乙在离九宫，此逆布三奇也。（逐字核验；与 engine earth_placement(dun_type=\"yang\") 一致。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_yangdun",
       "school": null,
@@ -1799,7 +1799,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：阴遁九局逆布六仪、顺布三奇。一局甲子戊起离九宫，甲戌己在艮八宫，甲申庚在兑七宫，甲午辛在乾六宫，甲辰壬在中五宫，甲寅癸在巽四宫；丁在震三宫，丙在坤二宫，乙在坎一宫。八局甲子戊起艮八宫，余仿此。（读自转录本，非逐字核验；与 engine earth_placement(dun_type=\"yin\") 一致。）",
+      "passage": "阴遁：阴遁九局逆布六仪顺布三奇。如甲子戊起离九宫，则甲戌己在艮八宫，甲申庚在兑七宫，甲午辛在乾六宫，甲辰壬在中五宫，甲寅癸在巽四宫，此逆布六仪也。（逐字核验；与 engine earth_placement(dun_type=\"yin\") 一致。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_yindun",
       "school": null,
@@ -1816,7 +1816,7 @@
     },
     {
       "credibility": 0.7,
-      "passage": "摘要（佐证）：歌诀总纲述「阴阳二遁分顺逆，一气三元人莫测，五日都来换一元」及「节气推移时候定，阴阳顺逆要精通」，与《奇门遁甲统宗》阳遁/阴遁顺逆布仪之说平行。本语料以其为佐证来源，不据以做逐字核验（维基文库转录含异文校注）。",
+      "passage": "陰陽二遁分順逆，一氣三元人莫測。五日都來接一元，接氣超神為準則。認取九宮為九星，八門又逐九宮行。（逐字核验；转录本繁体原字，异文校注不引用。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_yanbo_yinyang",
       "school": null,
@@ -1867,7 +1867,7 @@
     },
     {
       "credibility": 0.8,
-      "passage": "摘要：六仪为戊己庚辛壬癸；甲子遁于六戊、甲戌遁于六己、甲申遁于六庚、甲午遁于六辛、甲辰遁于六壬、甲寅遁于六癸。遁甲起例亦述「顺布六仪（甲子戊、甲戌己、甲申庚、甲午辛、甲辰壬、甲寅癸）」。（读自转录本，非逐字核验；与 engine LIUYI / LIUJIA 一致。）",
+      "passage": "六仪：戊己庚辛壬癸为六仪。甲子遁于六戊，甲戌遁于六己，甲申遁于六庚，甲午遁于六辛，甲辰遁于六壬，甲寅遁于六癸。（逐字核验；与 engine LIUYI / LIUJIA 一致。）",
       "ref_type": "classic_text",
       "reference_id": "ref:classic:qimen_liuyi",
       "school": null,

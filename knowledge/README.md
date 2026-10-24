@@ -104,7 +104,7 @@ knowledge/
 |------|------|-------|-----------|------------|
 | `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
 | `bazi_corpus` | frozen 1.0.0（有界证据；digest `488ce510…`） | 40 | 67 | 14 |
-| `qimen_corpus` | candidate 0.1.0 (digest `abdc2080…`) | 47 | 60 | 15 |
+| `qimen_corpus` | candidate 0.1.0 (digest `76e4a4d0…`) | 47 | 60 | 15 |
 | `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
 
 Ziwei 类型覆盖: nodes wuxing(5)/main_star(14)/palace(12)/ten_god(10)/
