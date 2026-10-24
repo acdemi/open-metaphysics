@@ -121,7 +121,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 8 | 推理 + RAG | 部分完成 | provider + Explainer 确定性后备 + InMemory/Qdrant 检索器；RAG 已接线（`rag/corpus.py:146-160` + `rag/retriever.py`），四域 explainer 已接线；**Qdrant 已补 ingestion（upsert + 自动建 collection）、`query_points` 与 legacy `search` 回退，失败时回退 InMemory**；provider HTTP 已有离线 mock 测试；**剩余**：MCP transport / 持久化 |
 | Phase 9 | 运维 + 可扩展性 | **核心收口** | MCP **stdio JSON-RPC transport** 已实现（无外部 SDK；`initialize`/`tools/list`/`tools/call`/notifications；console script `openmetaphysics-mcp`）；Postgres **会话/追踪持久化**（SQLAlchemy，`OM_POSTGRES_DSN`，失败回退 InMemory）+ `GET /sessions|traces/{id}`；`Dockerfile` + compose `app` profile；**Valkey 预留**（无消费者） |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1089 collected / 1087 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1169 collected / 1167 passed + 2 skipped**（含领域准确性评估集 `tests/test_domain_accuracy.py` 27 例）；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -129,8 +129,9 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.1 测试总计
 
-> **2026-10-24 当前口径**: 全仓 **1089 collected / 1087 passed + 2 skipped**
-> （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
+> **2026-10-24 当前口径**: 全仓 **1169 collected / 1167 passed + 2 skipped**
+> （Windows 工作区实测；含领域准确性评估集 `test_domain_accuracy.py` 27 例：计算/边界/
+> 证据/解释/共识/预期未确定 六类）。Liuyao 冻结合并后。Linux/LF 语料复现性缺陷见
 > `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
 
@@ -142,7 +143,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
 | **总计（2026-09-16 快照）** | **618** | **618** | **0** |
 
-> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1089/1087+2）。
+> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1169/1167+2）。
 > Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
 > **对账**：304 + 237 + 29 + 48 = 618。
 > 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试

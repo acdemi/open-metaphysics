@@ -101,7 +101,7 @@ USER_PROMPT_TEMPLATE = Template("""
 
 【基础信息】
 五行局：{{wuxing_ju}}
-命宫位置：{{fate_palace_name}}，干支：{{fate_palace_ganzhi}}，主星：{{fate_palace_stars}}
+命宫位置：{{fate_palace_branch}}，干支：{{fate_palace_ganzhi}}，主星：{{fate_palace_stars}}
 身宫位置：{{body_palace_name}}，主星：{{body_palace_stars}}
 出生性别：{{gender_text}}
 当前输入问题：{{question}}
@@ -177,7 +177,7 @@ class ZiweiExplainer(Explainer):
 
         return {
             "wuxing_ju": chart.wuxing_ju,
-            "fate_palace_name": fate_palace.name,
+            "fate_palace_branch": fate_palace.earthly_branch,
             "fate_palace_ganzhi": fate_palace.heavenly_stem + fate_palace.earthly_branch,
             "fate_palace_stars": "、".join(fate_palace.main_stars)
             if fate_palace.main_stars
@@ -246,8 +246,10 @@ class ZiweiExplainer(Explainer):
             total_stars = len([s for p in chart.palaces for s in p.main_stars])
 
             fallback = (
-                f"此紫微命盘为{chart.wuxing_ju} | 命宫在{fate_palace.name}，主星[{fate_stars}] | "
-                f"身宫在{body_palace.name}，主星[{body_stars}] | 共{total_stars}颗主星入庙。"
+                f"此紫微命盘为{chart.wuxing_ju} | "
+                f"命宫在{fate_palace.earthly_branch}宫，主星[{fate_stars}] | "
+                f"身宫在{body_palace.name}宫（{body_palace.earthly_branch}），"
+                f"主星[{body_stars}] | 共{total_stars}颗主星入盘。"
             )
             if note:
                 fallback += f" ({note})"

@@ -220,11 +220,27 @@ class Explainer:
         return " ".join(ordered)
 
     def retrieve(self, output: AgentOutput, *, k: int = 3) -> list[Any]:
-        """Retrieve authoritative knowledge for this output; never raises."""
+        """Retrieve authoritative knowledge for this output; never raises.
+
+        Candidates are restricted to the agent's own domain tags first: a Ziwei
+        explanation must not cite BaZi-only knowledge. ``k`` candidates are
+        over-fetched before filtering so the domain still fills the quota when
+        adjacent domains rank higher on raw character overlap. If no
+        domain-tagged candidate exists (sparse corpus), retrieval degrades to
+        the unfiltered result instead of dropping its context.
+        """
         if self.retriever is None:
             return []
         try:
-            return list(self.retriever.retrieve(self.build_query(output), k=k))
+            query = self.build_query(output)
+            domain = str(getattr(output, "agent", "") or "")
+            candidates = list(self.retriever.retrieve(query, k=max(k * 20, 60)))
+            domain_chunks = [
+                chunk for chunk in candidates if domain and domain in getattr(chunk, "tags", [])
+            ]
+            if domain_chunks:
+                return domain_chunks[:k]
+            return candidates[:k]
         except Exception:
             return []
 
