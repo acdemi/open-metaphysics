@@ -1,8 +1,9 @@
 # ACP-REF-002 — Reference Runtime 范围扩张追认与契约层补全
 
-> **Status**: **PROPOSED**（2026-09-16 · 待人工批准 · 未实施任何变更）
+> **Status**: **IMPLEMENTED**（2026-10-24 人工批准并实施；H7 合并待授权）
 > **触发**: 2026-09-16 全项目审计 §2.7（`docs/PROJECT_REVIEW_2026-09-16.md`）
 > **范围**: `docs/specification/REFERENCE_RUNTIME_SPEC.md`（冻结规范）+ `reference/` 契约层
+> **Approved by**: 用户（2026-10-24，选项 A，含最终冻结推进）
 > **纪律**: 依 H3 —— 冻结工件/规范变更须 ACP + 人工批准
 
 ---
@@ -73,9 +74,25 @@ Reference Runtime 进入 **Frozen** 的完成条件（本 ACP 提案的判据部
 
 ## 6. 待批准事项
 
-- [ ] 选项 A / B / C？
-- [ ] 若 A：授权修订 `REFERENCE_RUNTIME_SPEC.md`（含版本递增）并在 `CAPABILITY_STATUS.md` 增加 Reference Runtime 行？
-- [ ] 若 A：授权同批补 `rule`/`pattern` 契约与生成器（`reference/` 冻结域）？
-- [ ] 最终冻结是否在本批一并推进（`REFERENCE_FREEZE_REVIEW.md`）？
+- [x] 选项 A（追认 + 规范修订 + 契约补全）
+- [x] 授权修订 `REFERENCE_RUNTIME_SPEC.md`（v1.1.0）并在 `CAPABILITY_STATUS.md` 增加 Reference Runtime 行
+- [x] 授权同批补 `rule`/`pattern` 契约与生成器（`reference/` 冻结域）
+- [x] 最终冻结在本批一并推进（`REFERENCE_FREEZE_REVIEW.md`）
 
-> 批准后执行；在此之前**不修改** `docs/specification/` 与 `reference/` 的任何文件。
+---
+
+## 7. 实施记录（2026-10-24）
+
+| 项 | 交付 | 状态 |
+|----|------|------|
+| A-1 规范追认 | `REFERENCE_RUNTIME_SPEC.md` v1.1.0（§3.1/§3.2/§6.1/§10）；`CONFORMANCE_SPEC.md` v1.1.0（CF-015 措辞 + 修订历史）；`RUNTIME_CONTRACT.md` v1.1.0（5 层 inventory） | DONE |
+| A-2 契约补全 | `export_rule_contract` / `export_pattern_contract` + `rule_contract.json` / `pattern_contract.json` + 2 个 diff/determinism 测试 | DONE |
+| 契约齐平 | 5 层契约（rule/pattern/evidence/knowledge/consensus）；`ConformanceRunner.certify().supported_contracts` 动态 5 项 | DONE |
+| Conformance 收口 | CF-016~CF-019 实装；D-16 裁定（executed representation）；`generate_golden_vectors` 固定 LF | DONE |
+| 冻结审查 | `docs/governance/REFERENCE_FREEZE_REVIEW.md`（PASS） | DONE |
+| 状态登记 | `CAPABILITY_STATUS.md` Reference Runtime 行 + 6 条判据 | DONE |
+| 验证 | Reference 373 passed；Conformance 176/176 certified；全仓 1028+2；5 层 golden 重生成逐字节一致；ruff PASS | DONE |
+| H7 合并到 main | — | **PENDING USER AUTHORIZATION** |
+
+> 本批未改变任何 Reference 运行时行为：新增契约导出、conformance 检查与
+> EOL 固定均为非行为性变更；5 层契约版本维持 1.0.0。

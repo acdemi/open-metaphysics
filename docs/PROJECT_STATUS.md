@@ -1,13 +1,14 @@
 # PROJECT_STATUS
 
 > **最后更新**: 2026-10-24
-> **项目阶段**: 四域计算域 **Integration Ready / Certified**；Reference 最终冻结待 `ACP-REF-002`（PROPOSED）
+> **项目阶段**: 四域计算域 **Integration Ready / Certified**；**Reference Runtime Frozen**（`ACP-REF-002`，2026-10-24）
 > **Qimen Domain**: **Frozen and Certified**（契约冻结 + Reference 认证 + 双实现验证）
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
 > **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
 > **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`，2026-10-24 EOL 勘误），BaZi/Qimen/Liuyao **candidate**（`69b6edea…` / `40de5c45…` / `52efbff5…`）；`ACP-KNOWLEDGE-001` 已批准并实施（YAML LF 固定 + digest 重登记）
+> **Reference Runtime**: **Frozen**（`ACP-REF-002`，2026-10-24；5 层契约 v1.0.0 + 5 层 Golden Vectors + 176/176 certified；`docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS）
 
 ---
 
@@ -15,7 +16,7 @@
 
 | 项目 | 版本 |
 |------|------|
-| OpenMetaphysics | Reference Freeze Candidate |
+| OpenMetaphysics | **Reference Runtime Frozen**（2026-10-24, ACP-REF-002） |
 | Reference Runtime | 1.0.0 (Contract Version) |
 | Behavior Version | 1.0.0 |
 | Contract Version | 1.0.0 |
@@ -120,7 +121,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；RAG 已接线（`rag/corpus.py:146-160` 灌入 + `rag/retriever.py:131-158`），四域 explainer 已接线（`inference/explainer.py:358-367`）；**剩余缺陷**：Qdrant 无 ingestion/旧 `client.search` API、provider HTTP 无离线测试、MCP 无 transport |
 | Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1026 collected / 1024 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1030 collected / 1028 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -128,7 +129,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.1 测试总计
 
-> **2026-10-24 当前口径**: 全仓 **1026 collected / 1024 passed + 2 skipped**
+> **2026-10-24 当前口径**: 全仓 **1030 collected / 1028 passed + 2 skipped**
 > （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
 > `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
@@ -141,7 +142,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
 | **总计（2026-09-16 快照）** | **618** | **618** | **0** |
 
-> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1026/1024+2）。
+> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1030/1028+2）。
 > Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
 > **对账**：304 + 237 + 29 + 48 = 618。
 > 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
@@ -347,7 +348,7 @@ Proposal (ACP)。
 - 其它领域契约化路径复用 Qimen/BaZi 流程（标准: `docs/governance/CAPABILITY_LIFECYCLE.md`；
   状态: `docs/governance/CAPABILITY_STATUS.md`）
 - Qimen/BaZi/Ziwei 功能扩展（格局判断 / 用神，需新授权）
-- Reference Runtime 最终冻结（Reference Freeze Candidate -> Frozen）
+- ~~Reference Runtime 最终冻结~~ → **DONE**（`ACP-REF-002`，2026-10-24；`REFERENCE_FREEZE_REVIEW.md` PASS）
 - 本文档 + docs/governance/CAPABILITY_STATUS.md + knowledge/README.md 等随各 Sprint 持续刷新
 
 ### 8.1 Production Runtime 收口（2026-09-16 只读代码审计新增）
@@ -364,10 +365,10 @@ Proposal (ACP)。
   未合并分支 7 条逐条给结论：Consensus A1 待裁定合并、D-16 待批、Phase 4 证据谱系保留、archify 不整支合并
 
 **P1 —— 可信度与治理债务（建议优先于新功能）**
-- ~~D-13 Conformance 空转处置~~ → **部分闭环**：ACP-REF-001 已实施行为覆盖 52/52；
-  派生检查空转与 CF-016~019 仍待 `ACP-REF-002`
-- **D-14 Reference Runtime 范围扩张 ACP 补正** = `ACP-REF-002`（PROPOSED；含规范修订 +
-  `rule_contract.json` / `pattern_contract.json` + diff 测试）
+- ~~D-13 Conformance 空转处置~~ → **已闭环**：ACP-REF-001 行为覆盖 52/52；
+  CF-016~019 已由 ACP-REF-002 实装；派生检查仍在消息中如实标注（见 Freeze Review §4）
+- ~~D-14 Reference Runtime 范围扩张 ACP 补正~~ → **DONE**（`ACP-REF-002` IMPLEMENTED；
+  `rule_contract.json` / `pattern_contract.json` + diff 测试 + 规范 v1.1.0）
 - **坏死/空转修复**：`ZiweiExplainer`/RAG 已接线（2026-10 合并）；剩余 Qdrant ingestion、
   provider HTTP 离线测试、MCP transport
 - **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED + MERGED `a77c7f6`）修复 YAML EOL +
@@ -377,13 +378,13 @@ Proposal (ACP)。
 - **A（已完成）六爻域契约化**：Schema 定稿 → 规则清单 → 25 向量 → Freeze Review PASS
   → 契约 v1.0.0 Frozen → `reference/liuyao/` 独立实现 → 21/21 + 40/40 等价
   → `ACP-LIUYAO-001` 批准并实施 → **Integration Ready**
-- **B Reference Runtime 最终冻结**（依赖 `ACP-REF-002` 批准与实施）
+- **B（已完成）Reference Runtime 最终冻结**：`ACP-REF-002` 批准并实施（规范 v1.1.0 + 5 层契约 + CF-016~019）；`REFERENCE_FREEZE_REVIEW.md` PASS；状态 **Frozen**
 - **C Production Runtime Phase 9 收口**：MCP transport 接线 + 依赖声明；compose 补应用服务；
   会话/追踪持久化（RAG 已接线，移出本项）
 
 **GAP 登记状态（2026-10-24 对账）**:
 - ~~GAP-16~~ 已由 ACP-REF-001 修复（行为覆盖 52/52）
-- **GAP-17** OPEN = `ACP-REF-002` PROPOSED（Reference Runtime 范围扩张未走 ACP）
+- ~~GAP-17~~ 已由 `ACP-REF-002` 修复（范围追认 + 规范 v1.1.0，2026-10-24）
 - ~~GAP-18~~ 已修复（`ZiweiExplainer` 已接线，测试 `test_explain_pipeline.py`）
 - ~~GAP-19~~ 已修复（RAG 已灌入 `KnowledgeChunk`，`rag/retriever.py:155-156`）
 
@@ -434,7 +435,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（1024 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
+uv run pytest -q                             # 运行全量测试（1028 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
 ```
 
 ---

@@ -27,6 +27,9 @@
 > 2026-10-24（**Sprint 1 / ACP-KNOWLEDGE-001** —— YAML 固定 LF，Ziwei 冻结语料
 > digest `69d6e2a6…` → `93dba067…`（EOL 勘误，内容零变化）；Liuyao/BaZi/Qimen
 > 全量 digest 由测试锚定；Linux/LF 与 Windows 均可复现；已合并 `a77c7f6`）
+> 2026-10-24（**Sprint 2 / ACP-REF-002** —— Reference Runtime 范围追认与契约补全；
+> Rule/Pattern 契约补齐至 5 层；CF-016~CF-019 落地；规范 v1.1.0；
+> `REFERENCE_FREEZE_REVIEW.md` PASS，Reference Runtime 状态升级 **Frozen**）
 
 ---
 
@@ -38,8 +41,9 @@
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen（`liuyao:behavior:v1.0.0`, 2026-10-23, 30 条） | 25（Frozen） | Certified（独立实现；21/21 + 40/40） | 6 + 6 + 8 |
+| **Reference Runtime** | **Frozen**（ACP-REF-002，2026-10-24） | 5 层契约 v1.0.0 | 5 层 / 19 向量 | Self-conformant（176/176 certified） | 373 |
 | Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-23 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1024 passed + 2 skipped） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1028 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -74,7 +78,7 @@
 > 统一规则 起宫 丑/辰/亥/午/酉 + 步长 2/3/3/3/3）、ACP-ZW-002（廉贞 -8）、
 > ACP-ZW-003（输入校验显式化）、ACP-ZW-004（sxtwl==2.0.7 pin）全部
 > **IMPLEMENTED**（记录: `docs/governance/ACP/`）; Engine **v0.3.0**;
-> 快照/校验测试迁移; 全仓库 578/578 全绿（2026-08-13 当时口径，现为 1026 collected / 1024 passed + 2 skipped）; Ziwei 规则集无 ACP 阻塞,
+> 快照/校验测试迁移; 全仓库 578/578 全绿（2026-08-13 当时口径，现为 1030 collected / 1028 passed + 2 skipped）; Ziwei 规则集无 ACP 阻塞,
 > Phase 6.7.2 向量生成可按修订规则集启动。状态维持 **Implemented**。
 > **Phase 6.7.2**: Golden Vector 生成（2026-08-13）—— 24 个规范性向量
 > `docs/ziwei/golden_vectors.json`（Engine v0.3.0 输出生成, status=candidate,
@@ -441,6 +445,31 @@ D1-D4 批准；完整生命周期 Stage 0→4）
 
 - `LiuyaoEngine._changed_yao` 中 `flipped` 重复赋值（`agents/liuyao.py` L258-260，首处为死赋值）
 - `_select_yong_shen` 经 `LiuyaoEngine._yong_shen = staticmethod(...)` 猴子补丁挂载（L336）
+
+---
+
+## Reference Runtime（行为规范层）
+
+**Status**: **Frozen**（2026-10-24，`ACP-REF-002` 批准并实施；`REFERENCE_FREEZE_REVIEW.md` PASS）
+
+**范围**: 核心模块家族（models / parser / engine / patterns / pattern_matcher /
+evidence_builder / knowledge_query / consensus_builder / conformance_runner）+
+4 域 Reference（qimen / bazi / ziwei / liuyao）+ 5 层契约 + 5 层 Golden Vectors。
+
+**冻结判据（ACP-REF-002 §5）**:
+
+| # | 判据 | 状态 |
+|---|------|------|
+| 1 | ACP-REF-002 追认与规范修订 | DONE（`REFERENCE_RUNTIME_SPEC` v1.1.0） |
+| 2 | ACP-REF-001 认证口径定稿（D-16） | DONE（`CONFORMANCE_SPEC` v1.1.0：executed representation） |
+| 3 | 契约层 5 份齐平 | DONE（rule/pattern/evidence/knowledge/consensus，各 v1.0.0 + diff 测试） |
+| 4 | CAPABILITY_STATUS 登记行 + 退出判据 | DONE（本节） |
+| 5 | Reference 级冻结审查工件 | DONE（`docs/governance/REFERENCE_FREEZE_REVIEW.md`） |
+| 6 | 门槛验证 | DONE（Reference 373 测试；全仓 1028+2；Conformance 176/176 certified；5 层 golden 重生成逐字节一致） |
+
+**已知边界（不阻塞冻结）**: derived ordering/hash/null/enum 检查仍标注
+“derived from golden match”（D-13 遗留）；CF-015 显式要求 52 个行为 ID
+（非全部 80）；其他语言实现未纳入本冻结面。
 
 ---
 
