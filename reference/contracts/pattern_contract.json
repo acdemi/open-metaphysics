@@ -1,0 +1,429 @@
+{
+  "categories": [
+    "geju",
+    "shensha",
+    "relation",
+    "wuxing",
+    "cross_system",
+    "personality",
+    "career"
+  ],
+  "contract_name": "pattern",
+  "contract_version": "1.0.0",
+  "description": "Reference Runtime Pattern Layer Contract. Generated from golden examples. All future implementations must conform to this contract.",
+  "generated_by": "reference.pattern_matcher.export_pattern_contract",
+  "golden_examples": [
+    {
+      "description": "One matched rule satisfies the pattern requirement.",
+      "input": {
+        "evaluations": [
+          {
+            "confidence": 0.9,
+            "matched": true,
+            "priority": 60,
+            "results": [
+              {
+                "conclusion": "性格刚毅果敢",
+                "conclusion_node_id": "kn:personality:resolute",
+                "direction": "positive",
+                "domain": "personality",
+                "weight": 0.75
+              }
+            ],
+            "rule_id": "rule:bazi:yang_ren_ge:v1"
+          }
+        ],
+        "mode": "single_system",
+        "pattern_file": "01_single_rule.yaml"
+      },
+      "match": {
+        "category": "geju",
+        "confidence": 0.85,
+        "evidence": [
+          {
+            "conclusions": [
+              "性格刚毅果敢"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:yang_ren_ge:v1",
+            "system": "bazi"
+          }
+        ],
+        "knowledge_node_ids": [],
+        "matched": true,
+        "matched_by": "bazi",
+        "matched_rule_ids": [
+          "rule:bazi:yang_ren_ge:v1"
+        ],
+        "pattern_id": "pattern:bazi:yang_ren_ge:v1",
+        "pattern_name": "羊刃格"
+      },
+      "name": "single_rule_match"
+    },
+    {
+      "description": "Three matched rules satisfy an ALL requirement.",
+      "input": {
+        "evaluations": [
+          {
+            "confidence": 0.9,
+            "matched": true,
+            "priority": 50,
+            "results": [
+              {
+                "conclusion": "命中有伤官",
+                "conclusion_node_id": null,
+                "direction": "neutral",
+                "domain": "personality",
+                "weight": 0.5
+              }
+            ],
+            "rule_id": "rule:bazi:has_shang_guan:v1"
+          },
+          {
+            "confidence": 0.9,
+            "matched": true,
+            "priority": 50,
+            "results": [
+              {
+                "conclusion": "命中有正印",
+                "conclusion_node_id": null,
+                "direction": "neutral",
+                "domain": "personality",
+                "weight": 0.5
+              }
+            ],
+            "rule_id": "rule:bazi:has_zheng_yin:v1"
+          },
+          {
+            "confidence": 0.85,
+            "matched": true,
+            "priority": 50,
+            "results": [
+              {
+                "conclusion": "日主偏弱",
+                "conclusion_node_id": null,
+                "direction": "neutral",
+                "domain": "overall",
+                "weight": 0.5
+              }
+            ],
+            "rule_id": "rule:bazi:weak_day_master:v1"
+          }
+        ],
+        "mode": "single_system",
+        "pattern_file": "02_multi_rule.yaml"
+      },
+      "match": {
+        "category": "geju",
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "conclusions": [
+              "命中有伤官"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:has_shang_guan:v1",
+            "system": "bazi"
+          },
+          {
+            "conclusions": [
+              "命中有正印"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:has_zheng_yin:v1",
+            "system": "bazi"
+          },
+          {
+            "conclusions": [
+              "日主偏弱"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:weak_day_master:v1",
+            "system": "bazi"
+          }
+        ],
+        "knowledge_node_ids": [
+          "kn:pattern:shang_guan_pei_yin"
+        ],
+        "matched": true,
+        "matched_by": "bazi",
+        "matched_rule_ids": [
+          "rule:bazi:has_shang_guan:v1",
+          "rule:bazi:has_zheng_yin:v1",
+          "rule:bazi:weak_day_master:v1"
+        ],
+        "pattern_id": "pattern:bazi:shang_guan_pei_yin_geju:v1",
+        "pattern_name": "伤官佩印格局"
+      },
+      "name": "multi_rule_match"
+    },
+    {
+      "description": "An ANY requirement with min_matches=1 matches via DNF expansion.",
+      "input": {
+        "evaluations": [
+          {
+            "confidence": 0.85,
+            "matched": true,
+            "priority": 65,
+            "results": [
+              {
+                "conclusion": "命中有财星，主财运",
+                "conclusion_node_id": "kn:wealth:star_present",
+                "direction": "positive",
+                "domain": "wealth",
+                "weight": 0.8
+              }
+            ],
+            "rule_id": "rule:bazi:cai_xing_ge:v1#1"
+          },
+          {
+            "confidence": 0.85,
+            "matched": false,
+            "priority": 65,
+            "results": [],
+            "rule_id": "rule:bazi:cai_xing_ge:v1#2"
+          }
+        ],
+        "mode": "single_system",
+        "pattern_file": "03_any_logic.yaml"
+      },
+      "match": {
+        "category": "shensha",
+        "confidence": 0.75,
+        "evidence": [
+          {
+            "conclusions": [
+              "命中有财星，主财运"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:cai_xing_ge:v1#1",
+            "system": "bazi"
+          },
+          {
+            "conclusions": [],
+            "matched": false,
+            "rule_id": "rule:bazi:cai_xing_ge:v1#2",
+            "system": "bazi"
+          }
+        ],
+        "knowledge_node_ids": [],
+        "matched": true,
+        "matched_by": "bazi",
+        "matched_rule_ids": [
+          "rule:bazi:cai_xing_ge:v1#1"
+        ],
+        "pattern_id": "pattern:bazi:wealth_indicator:v1",
+        "pattern_name": "财星指示"
+      },
+      "name": "any_logic_match"
+    },
+    {
+      "description": "A cross-system pattern matches bazi + qimen evaluations.",
+      "input": {
+        "evaluations": {
+          "bazi": [
+            {
+              "confidence": 0.9,
+              "matched": true,
+              "priority": 60,
+              "results": [
+                {
+                  "conclusion": "性格刚毅果敢",
+                  "conclusion_node_id": "kn:personality:resolute",
+                  "direction": "positive",
+                  "domain": "personality",
+                  "weight": 0.75
+                }
+              ],
+              "rule_id": "rule:bazi:yang_ren_ge:v1"
+            }
+          ],
+          "qimen": [
+            {
+              "confidence": 0.8,
+              "matched": true,
+              "priority": 55,
+              "results": [
+                {
+                  "conclusion": "阳遁金局，主肃杀果断",
+                  "conclusion_node_id": null,
+                  "direction": "neutral",
+                  "domain": "overall",
+                  "weight": 0.65
+                }
+              ],
+              "rule_id": "rule:qimen:yang_dun_jin:v1"
+            }
+          ]
+        },
+        "mode": "cross_system",
+        "pattern_file": "04_cross_system.yaml"
+      },
+      "match": {
+        "category": "cross_system",
+        "confidence": 0.8,
+        "evidence": [
+          {
+            "conclusions": [
+              "性格刚毅果敢"
+            ],
+            "matched": true,
+            "rule_id": "rule:bazi:yang_ren_ge:v1",
+            "system": "bazi"
+          },
+          {
+            "conclusions": [
+              "阳遁金局，主肃杀果断"
+            ],
+            "matched": true,
+            "rule_id": "rule:qimen:yang_dun_jin:v1",
+            "system": "qimen"
+          }
+        ],
+        "knowledge_node_ids": [
+          "kn:cross:gang_yi"
+        ],
+        "matched": true,
+        "matched_by": "cross_system",
+        "matched_rule_ids": [
+          "rule:bazi:yang_ren_ge:v1",
+          "rule:qimen:yang_dun_jin:v1"
+        ],
+        "pattern_id": "pattern:cross:gang_yi_jin_dun:v1",
+        "pattern_name": "刚毅金遁"
+      },
+      "name": "cross_system_match"
+    },
+    {
+      "description": "A referenced pattern whose requirement is not satisfied returns matched=false.",
+      "input": {
+        "evaluations": [
+          {
+            "confidence": 0.85,
+            "matched": false,
+            "priority": 70,
+            "results": [],
+            "rule_id": "rule:bazi:shang_guan_wu_yin:v1"
+          }
+        ],
+        "mode": "single_system",
+        "pattern_file": "05_no_match.yaml"
+      },
+      "match": {
+        "category": "geju",
+        "confidence": 0.0,
+        "evidence": [
+          {
+            "conclusions": [],
+            "matched": false,
+            "rule_id": "rule:bazi:shang_guan_wu_yin:v1",
+            "system": "bazi"
+          }
+        ],
+        "knowledge_node_ids": [],
+        "matched": false,
+        "matched_by": "bazi",
+        "matched_rule_ids": [],
+        "pattern_id": "pattern:bazi:shang_guan_wu_yin_geju:v1",
+        "pattern_name": "伤官无印格局"
+      },
+      "name": "pattern_not_triggered"
+    },
+    {
+      "description": "Evaluations without any pattern rule yield no PatternMatch (null).",
+      "input": {
+        "evaluations": [
+          {
+            "confidence": 0.85,
+            "matched": true,
+            "priority": 65,
+            "results": [
+              {
+                "conclusion": "命中有财星，主财运",
+                "conclusion_node_id": "kn:wealth:star_present",
+                "direction": "positive",
+                "domain": "wealth",
+                "weight": 0.8
+              }
+            ],
+            "rule_id": "rule:bazi:cai_xing_ge:v1#1"
+          },
+          {
+            "confidence": 0.85,
+            "matched": false,
+            "priority": 65,
+            "results": [],
+            "rule_id": "rule:bazi:cai_xing_ge:v1#2"
+          }
+        ],
+        "mode": "single_system",
+        "pattern_file": "01_single_rule.yaml"
+      },
+      "match": null,
+      "name": "unrelated_evaluations_none"
+    }
+  ],
+  "models": {
+    "PatternEvidence": {
+      "field_types": {
+        "conclusions": "array<string>",
+        "matched": "boolean",
+        "rule_id": "string",
+        "system": "string"
+      },
+      "required": [
+        "rule_id",
+        "system",
+        "matched",
+        "conclusions"
+      ],
+      "type": "object"
+    },
+    "PatternMatch": {
+      "field_types": {
+        "category": "enum | null",
+        "confidence": "number [0,1]",
+        "evidence": "array<PatternEvidence>",
+        "knowledge_node_ids": "array<string>",
+        "matched": "boolean",
+        "matched_by": "string",
+        "matched_rule_ids": "array<string>",
+        "pattern_id": "string",
+        "pattern_name": "string"
+      },
+      "optional": [
+        "category"
+      ],
+      "required": [
+        "pattern_id",
+        "pattern_name",
+        "matched",
+        "matched_by",
+        "confidence",
+        "matched_rule_ids",
+        "evidence",
+        "knowledge_node_ids"
+      ],
+      "type": "object"
+    },
+    "PatternRequirement": {
+      "field_types": {
+        "logic": "enum",
+        "min_matches": "integer >= 1",
+        "rule_ids": "array<string> (min_length=1)"
+      },
+      "optional": [
+        "logic",
+        "min_matches"
+      ],
+      "required": [
+        "rule_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "requirement_logic": [
+    "all",
+    "any"
+  ]
+}

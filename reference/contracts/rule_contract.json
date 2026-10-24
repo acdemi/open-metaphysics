@@ -1,0 +1,354 @@
+{
+  "conflict_strategies": [
+    "highest_priority_wins",
+    "retain_all",
+    "merge"
+  ],
+  "contract_name": "rule",
+  "contract_version": "1.0.0",
+  "description": "Reference Runtime Rule Layer Contract. Generated from golden examples. All future implementations must conform to this contract.",
+  "generated_by": "reference.engine.export_rule_contract",
+  "golden_examples": [
+    {
+      "description": "A single condition matches and emits its declared results.",
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": true,
+          "priority": 60,
+          "results": [
+            {
+              "conclusion": "性格刚毅果敢",
+              "conclusion_node_id": "kn:personality:resolute",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.75
+            }
+          ],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.35,
+          "shen_sha_list": [
+            "羊刃",
+            "天乙贵人"
+          ],
+          "ten_gods_map": {
+            "values": [
+              "伤官",
+              "正印"
+            ]
+          }
+        },
+        "rule_file": "01_single_condition.yaml"
+      },
+      "name": "single_condition_matched"
+    },
+    {
+      "description": "All conditions of an 'all' rule match.",
+      "evaluations": [
+        {
+          "confidence": 1.0,
+          "matched": true,
+          "priority": 80,
+          "results": [
+            {
+              "conclusion": "适合科研",
+              "conclusion_node_id": "kn:career:research",
+              "direction": "positive",
+              "domain": "career",
+              "weight": 0.91
+            },
+            {
+              "conclusion": "聪慧好学",
+              "conclusion_node_id": "kn:personality:intellectual",
+              "direction": "positive",
+              "domain": "personality",
+              "weight": 0.85
+            }
+          ],
+          "rule_id": "rule:bazi:shang_guan_pei_yin:v1"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.35,
+          "shen_sha_list": [
+            "羊刃",
+            "天乙贵人"
+          ],
+          "ten_gods_map": {
+            "values": [
+              "伤官",
+              "正印"
+            ]
+          }
+        },
+        "rule_file": "02_and.yaml"
+      },
+      "name": "all_conditions_matched"
+    },
+    {
+      "description": "An 'any' rule expands to two DNF rules; one matches.",
+      "evaluations": [
+        {
+          "confidence": 0.85,
+          "matched": true,
+          "priority": 65,
+          "results": [
+            {
+              "conclusion": "命中有财星，主财运",
+              "conclusion_node_id": "kn:wealth:star_present",
+              "direction": "positive",
+              "domain": "wealth",
+              "weight": 0.8
+            }
+          ],
+          "rule_id": "rule:bazi:cai_xing_ge:v1#1"
+        },
+        {
+          "confidence": 0.85,
+          "matched": false,
+          "priority": 65,
+          "results": [],
+          "rule_id": "rule:bazi:cai_xing_ge:v1#2"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.35,
+          "shen_sha_list": [
+            "羊刃",
+            "天乙贵人"
+          ],
+          "ten_gods_map": {
+            "values": [
+              "正财",
+              "伤官",
+              "正印"
+            ]
+          }
+        },
+        "rule_file": "03_or.yaml"
+      },
+      "name": "any_dnf_expansion"
+    },
+    {
+      "description": "A negated leaf condition matches when the field is absent.",
+      "evaluations": [
+        {
+          "confidence": 0.85,
+          "matched": true,
+          "priority": 70,
+          "results": [
+            {
+              "conclusion": "伤官无印，傲慢不羁",
+              "conclusion_node_id": "kn:personality:arrogant",
+              "direction": "negative",
+              "domain": "personality",
+              "weight": 0.7
+            }
+          ],
+          "rule_id": "rule:bazi:shang_guan_wu_yin:v1"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.35,
+          "shen_sha_list": [
+            "羊刃"
+          ],
+          "ten_gods_map": {
+            "values": [
+              "伤官"
+            ]
+          }
+        },
+        "rule_file": "04_not.yaml"
+      },
+      "name": "not_negation"
+    },
+    {
+      "description": "A scoped rule evaluates against Qimen chart data.",
+      "evaluations": [
+        {
+          "confidence": 0.8,
+          "matched": true,
+          "priority": 55,
+          "results": [
+            {
+              "conclusion": "阳遁金局，主肃杀果断",
+              "conclusion_node_id": null,
+              "direction": "neutral",
+              "domain": "overall",
+              "weight": 0.65
+            }
+          ],
+          "rule_id": "rule:qimen:yang_dun_jin:v1"
+        }
+      ],
+      "input": {
+        "chart": {
+          "dun_type": "yang",
+          "ju": 6
+        },
+        "rule_file": "05_scope.yaml"
+      },
+      "name": "scope_qimen"
+    },
+    {
+      "description": "Nested any/not expands to DNF and evaluates deterministically.",
+      "evaluations": [
+        {
+          "confidence": 0.85,
+          "matched": true,
+          "priority": 75,
+          "results": [
+            {
+              "conclusion": "官杀混杂，事业多变动",
+              "conclusion_node_id": "kn:career:unstable",
+              "direction": "negative",
+              "domain": "career",
+              "weight": 0.72
+            },
+            {
+              "conclusion": "感情复杂，易有纠葛",
+              "conclusion_node_id": "kn:marriage:complicated",
+              "direction": "negative",
+              "domain": "marriage",
+              "weight": 0.68
+            }
+          ],
+          "rule_id": "rule:bazi:guan_sha_hun:v1#1"
+        },
+        {
+          "confidence": 0.85,
+          "matched": false,
+          "priority": 75,
+          "results": [],
+          "rule_id": "rule:bazi:guan_sha_hun:v1#2"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.35,
+          "shen_sha_list": [],
+          "ten_gods_map": {
+            "values": [
+              "正官"
+            ]
+          }
+        },
+        "rule_file": "06_complex.yaml"
+      },
+      "name": "complex_nested_dnf"
+    },
+    {
+      "description": "A non-matching rule reports matched=false and empty results.",
+      "evaluations": [
+        {
+          "confidence": 0.9,
+          "matched": false,
+          "priority": 60,
+          "results": [],
+          "rule_id": "rule:bazi:yang_ren_ge:v1"
+        }
+      ],
+      "input": {
+        "chart": {
+          "day_master_strength": 0.8,
+          "shen_sha_list": [],
+          "ten_gods_map": {
+            "values": [
+              "正印"
+            ]
+          }
+        },
+        "rule_file": "01_single_condition.yaml"
+      },
+      "name": "no_match"
+    }
+  ],
+  "models": {
+    "RuleCondition": {
+      "field_types": {
+        "description": "string",
+        "field": "string (dotted path)",
+        "negate": "boolean",
+        "operator": "enum",
+        "value": "any | null"
+      },
+      "optional": [
+        "value",
+        "negate",
+        "description"
+      ],
+      "required": [
+        "field",
+        "operator"
+      ],
+      "type": "object"
+    },
+    "RuleEvaluation": {
+      "field_types": {
+        "confidence": "number [0,1]",
+        "matched": "boolean",
+        "priority": "integer [0,100]",
+        "results": "array<RuleResult>",
+        "rule_id": "string"
+      },
+      "required": [
+        "rule_id",
+        "matched",
+        "results",
+        "priority",
+        "confidence"
+      ],
+      "type": "object"
+    },
+    "RuleResult": {
+      "field_types": {
+        "conclusion": "string",
+        "conclusion_node_id": "string | null",
+        "direction": "enum",
+        "domain": "enum",
+        "weight": "number [0,1]"
+      },
+      "optional": [
+        "conclusion_node_id"
+      ],
+      "required": [
+        "domain",
+        "conclusion",
+        "weight",
+        "direction"
+      ],
+      "type": "object"
+    }
+  },
+  "operators": [
+    "equals",
+    "not_equals",
+    "contains",
+    "not_contains",
+    "in",
+    "not_in",
+    "greater_than",
+    "less_than",
+    "exists",
+    "not_exists",
+    "matches"
+  ],
+  "rule_types": [
+    "pattern_recognition",
+    "relation_derivation",
+    "ten_god_determination",
+    "yong_shen_determination",
+    "element_balance",
+    "domain_inference",
+    "conflict_resolution",
+    "da_yun_analysis"
+  ]
+}

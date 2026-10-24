@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +29,7 @@ from .conformance import (
 
 GOLDEN_DIR = Path(__file__).parent / "conformance" / "golden"
 CONTRACTS_DIR = Path(__file__).parent / "contracts"
+SPEC_DIR = Path(__file__).parent.parent / "docs" / "specification"
 
 # Phase 7.4 (ACP-REF-001 Option A) -- CF-015 required behavior-contract IDs.
 # CF-015 ("Behavior Contract Coverage") enumerates exactly these IDs and states
@@ -312,13 +314,15 @@ def generate_golden_vectors(output_dir: Path | None = None) -> list[GoldenVector
             )
         )
 
-    # Write golden vectors
+    # Write golden vectors (LF canonical; ACP-REF-002 conformance EOL fix)
     by_layer: dict[str, list[dict]] = {}
     for v in vectors:
         by_layer.setdefault(v.layer.value, []).append(v.model_dump(mode="json"))
     for layer, vecs in by_layer.items():
-        with open(output_dir / f"{layer}_vectors.json", "w", encoding="utf-8") as f:
-            json.dump(vecs, f, ensure_ascii=False, indent=2, sort_keys=True)
+        text = json.dumps(vecs, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+        (output_dir / f"{layer}_vectors.json").write_text(
+            text, encoding="utf-8", newline="\n"
+        )
 
     return vectors
 
@@ -370,6 +374,10 @@ class ConformanceRunner:
         self._check_contract_diff(result)
         self._check_behavior_coverage(result)
         self._check_architecture_boundary(adapter, result)
+        self._check_behavior_immunity(result)
+        self._check_golden_auto_discovery(result)
+        self._check_golden_reproducibility(result)
+        self._check_layer_coverage(result)
 
         return result
 
@@ -704,16 +712,120 @@ class ConformanceRunner:
         )
 
 
+    def _check_behavior_immunity(self, result: ConformanceResult) -> None:
+        """CF-016: every required behavior ID is declared by the specifications."""
+        pattern = re.compile(r"\b(?:BC-[A-Z]+-\d{3}|KB-\d{3}|CS-\d{3})\b")
+        spec_files = [
+            SPEC_DIR / "BEHAVIOR_SPEC.md",
+            SPEC_DIR / "KNOWLEDGE_BEHAVIOR_SPEC.md",
+            SPEC_DIR / "CONSENSUS_BEHAVIOR_SPEC.md",
+        ]
+        declared: set[str] = set()
+        missing_files: list[str] = []
+        for path in spec_files:
+            if path.exists():
+                declared.update(pattern.findall(path.read_text(encoding="utf-8")))
+            else:
+                missing_files.append(path.name)
+        unknown = sorted(set(REQUIRED_BEHAVIOR_IDS) - declared)
+        passed = not missing_files and not unknown
+        result.add_check(
+            ConformanceCheckResult(
+                check_id="CF-016",
+                category=ConformanceCategory.ARCHITECTURE_BOUNDARY,
+                name="behavior_contract_immunity",
+                passed=passed,
+                message=(
+                    "Required behavior IDs are declared by the specifications"
+                    if passed
+                    else f"missing_files={missing_files} undeclared={unknown}"
+                ),
+            )
+        )
+
+    def _check_golden_auto_discovery(self, result: ConformanceResult) -> None:
+        """CF-017: golden vectors are auto-discovered, one file per layer."""
+        files = sorted(self._golden_dir.glob("*_vectors.json"))
+        layer_files = {f.stem.removesuffix("_vectors") for f in files}
+        expected = {layer.value for layer in ConformanceLayer}
+        passed = len(files) == len(expected) and layer_files == expected
+        result.add_check(
+            ConformanceCheckResult(
+                check_id="CF-017",
+                category=ConformanceCategory.GOLDEN_JSON,
+                name="golden_auto_discovery",
+                passed=passed,
+                message=(
+                    f"discovered {len(files)} layer files"
+                    if passed
+                    else f"expected {sorted(expected)}, found {sorted(layer_files)}"
+                ),
+            )
+        )
+
+    def _check_golden_reproducibility(self, result: ConformanceResult) -> None:
+        """CF-018: regenerating golden vectors yields identical vectors."""
+        loaded = {
+            v.vector_id: _canonical_json(v.expected_output)
+            for v in load_golden_vectors(self._golden_dir)
+        }
+        fresh_vectors = generate_golden_vectors(self._golden_dir)
+        fresh = {
+            v.vector_id: _canonical_json(v.expected_output) for v in fresh_vectors
+        }
+        passed = loaded == fresh
+        result.add_check(
+            ConformanceCheckResult(
+                check_id="CF-018",
+                category=ConformanceCategory.GOLDEN_JSON,
+                name="golden_reproducibility",
+                passed=passed,
+                message=(
+                    f"regenerated {len(fresh)} vectors identical"
+                    if passed
+                    else f"regenerated vectors differ: loaded={len(loaded)} fresh={len(fresh)}"
+                ),
+            )
+        )
+
+    def _check_layer_coverage(self, result: ConformanceResult) -> None:
+        """CF-019: every conformance layer has at least one golden vector."""
+        present = {v.layer for v in load_golden_vectors(self._golden_dir)}
+        missing = sorted(
+            layer.value for layer in ConformanceLayer if layer not in present
+        )
+        passed = not missing
+        result.add_check(
+            ConformanceCheckResult(
+                check_id="CF-019",
+                category=ConformanceCategory.GOLDEN_JSON,
+                name="layer_coverage",
+                passed=passed,
+                message="All five layers covered" if passed else f"missing layers: {missing}",
+            )
+        )
+
+
 def certify(result: ConformanceResult) -> ConformanceManifest:
     """Produce a ConformanceManifest from a ConformanceResult.
 
     Only certified (100% pass) runtimes get certified=True.
     """
+    contracts: dict[str, str] = {}
+    for path in sorted(CONTRACTS_DIR.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        name = data.get("contract_name")
+        version = data.get("contract_version")
+        if isinstance(name, str) and isinstance(version, str):
+            contracts[name] = version
     return ConformanceManifest(
         runtime_name=result.runtime_name,
         runtime_version=result.runtime_version,
         supported_layers=sorted({c.layer.value for c in result.checks if c.layer and c.passed}),
-        supported_contracts={"evidence": "1.0.0", "knowledge": "1.0.0", "consensus": "1.0.0"},
+        supported_contracts=contracts,
         supported_behaviors=sorted(
             {
                 c.name
