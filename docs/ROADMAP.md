@@ -3,7 +3,7 @@
 > 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
 > 当前开发位置（2026-10-24）：四域计算域 **Integration Ready / Certified**；
-> Reference 最终冻结待 `ACP-REF-002`；知识语料复现性提案 `ACP-KNOWLEDGE-001` PROPOSED。
+> Reference 最终冻结待 `ACP-REF-002`；知识语料复现性 `ACP-KNOWLEDGE-001` IMPLEMENTED（H7 合并待授权）。
 
 ## A. 两条时间线
 
@@ -36,7 +36,7 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 
 **当前开发位置**: 四域计算域已 **Integration Ready / Certified**（Qimen/BaZi/Ziwei/Liuyao）；
 Reference Runtime 最终冻结与 rule/pattern 契约补全见 `ACP-REF-002`（PROPOSED）；
-知识语料 EOL/digest 复现性见 `ACP-KNOWLEDGE-001`（PROPOSED）。现况以
+知识语料 EOL/digest 复现性见 `ACP-KNOWLEDGE-001`（IMPLEMENTED，H7 合并待授权）。现况以
 `docs/governance/CAPABILITY_STATUS.md` 与 `docs/PROJECT_STATUS.md` 为准；
 `docs/PROJECT_REVIEW_2026-09-16.md` 为历史快照。
 **领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /

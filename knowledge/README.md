@@ -23,7 +23,7 @@
   Phase 7.1.1~7.1.6 全量建设（核心词汇 → 天干/地支/关系/引用扩展）→
   Phase 7.2A Schema 门 → 7.2B-R/·R2/·R3 证据驱动生产（辅星/神煞）→
   **Phase 7.1.6 关系层补齐（yinyong/shuyu）+ Corpus Freeze v1.0.0**。
-  当前 **102 节点 + 47 关系 + 41 引用**（`ziwei_corpus.json` 实测, digest `69d6e2a6…`）。
+  当前 **102 节点 + 47 关系 + 41 引用**（`ziwei_corpus.json` 实测, digest `93dba067…`；2026-10-24 EOL 勘误后）。
   治理进展见 `docs/governance/knowledge/`（Scope/Source/Admission/Build Plan/
   Coverage Matrix/Gaps/各 Phase 报告/**7.1.6 FREEZE**）。
 - **BaZi 演进（P2.1, 2026-10-03）**: 首批**最小而有实际价值**的结构化语料 ——
@@ -101,7 +101,7 @@ knowledge/
 
 | 语料 | 状态 | nodes | relations | references |
 |------|------|-------|-----------|------------|
-| `ziwei_corpus` | frozen 1.0.0 (digest `69d6e2a6…`) | 102 | 47 | 41 |
+| `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
 | `bazi_corpus` | candidate 0.1.0 (digest `69b6edea…`) | 40 | 67 | 14 |
 | `qimen_corpus` | candidate 0.1.0 (digest `40de5c45…`) | 47 | 60 | 15 |
 | `liuyao_corpus` | candidate 0.2.0 (digest `52efbff5…`) | 61 | 66 | 41 |
@@ -171,9 +171,10 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 - ❌ 不引入 LLM/RAG 重写/embedding/向量库/外部检索服务到 Pipeline
 - ❌ 不修改冻结规范（KB-001~020）；Schema 变更须 ACP/门控
 - ❌ 不生产无 Tier 1 来源的节点/关系（Gate C 证据规则）
-- ❌ 不修改已冻结的 Ziwei 语料（P2.1 / P2.2 / P2.3 / P2.4 均未改动 `ziwei_corpus.json`
-  一个字节，digest 恒为 `69d6e2a6…`）；BaZi（`69b6edea…`）与 Qimen（`40de5c45…`）
-  语料在 P2.4 亦逐字节未变
+- ❌ 不修改已冻结的 Ziwei 语料（P2.1 / P2.2 / P2.3 / P2.4 均未改动内容）；
+  2026-10-24 经 `ACP-KNOWLEDGE-001` 仅做 EOL/digest 勘误（内容零变化），digest 由
+  `69d6e2a6…` 变为 `93dba067…`；BaZi（`69b6edea…`）与 Qimen（`40de5c45…`）
+  语料在 P2.4 及本次勘误中逐字节未变
 - ❌ 可检索节点文本（`name_cn + interpretation`）不写 ASCII 技术标识符：字符级评分
   的稀有度权重（`1 + ln(N/df)`）会把 "engine" / "normative" 一类拉丁词当成极稀有
   「字符」，压过真正的中文术语命中。技术字段写进 `attributes` / `tags` / `name_en`。
@@ -198,5 +199,5 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 | 章节级逐字核验范围有限（BaZi） | 仅 三命通会 卷二·论十干化气/论三刑/论六害 与 渊海子平 论大运/论命细法 为已核验章节 | 其余条目为书级来源归属，不引用未核验原文；待后续 Evidence Review |
 | 章节级逐字核验范围有限（Qimen） | `奇门遁甲统宗` 仅在线通读章节结构与短锚点，**无 revision-pin 抓取件**；`烟波钓叟歌` 仅确认来源存在 | `evidence_status: source_level_attributed`；所有 `passage` 明示「非逐字核验 / 不据以做逐字核验」；**不声称 VERBATIM_VERIFIED** |
 | 默认 k=3 检索排序 | 确定性字符重叠评分偏好覆盖面广的长文（Phase C 已记录） | BaZi 专项查询命中 BaZi 语料 top-1/3；Qimen 八项必需术语（九宫/八门/九星/八神/阴遁/阳遁/值符/值使）均 top-1 命中；Liuyao 组合/单术语查询 36 项（P2.3 18 项 + 暗动/动散/反吟/伏吟/生旺墓绝/应期/游魂/归魂/月破/飞神/伏神/进神/退神/随鬼入墓/独发/独静/两现/卦变回头生克）top-1 命中（测试已锁定实测值；容器术语「六亲/六神」短查询会先命中总纲节点，属预期） |
-| **跨平台 EOL 与 `source_digests`** | `source_digests` 为来源 YAML 的**原始字节**摘要；`.gitattributes` 只固定了 `knowledge/**/*.json text eol=lf`，YAML 未固定。在 `core.autocrlf=true` 的 Windows checkout 上 YAML 被检出为 CRLF，digest 随之改变 | **P2.2 未修改 `.gitattributes`**：建议规则 `knowledge/**/*.yaml text eol=lf` 经实测会改变**冻结 Ziwei 语料**的 `source_digests`（该登记值本身即 CRLF 基准），故不满足「不改变现有 frozen Ziwei corpus digest」的前提；详见 P2.2 报告（`knowledge/sources/bazi` 的登记值为 LF 基准，故 BaZi/Qimen 在 CRLF checkout 下会漂移）。2026-10-24 审计确认：LF checkout 下该路径会由测试触发 pipeline 重写冻结件并失败（CI 为 `ubuntu-latest`）；已提 **`ACP-KNOWLEDGE-001`（PROPOSED）** 修复，含 YAML LF 固定、Ziwei digest 重登记（`69d6e2a6…` → `93dba067…`，内容零变化）与四域 digest 锚定 |
+| **跨平台 EOL 与 `source_digests`** | `source_digests` 为来源 YAML 的**原始字节**摘要；此前 `.gitattributes` 只固定 JSON，YAML 未固定，digest 随 checkout EOL 漂移 | **已解决（`ACP-KNOWLEDGE-001`，2026-10-24）**：`.gitattributes` 增加 `knowledge/**/*.yaml text eol=lf`；Ziwei digest 重登记为 `93dba067…`（内容零变化）；BaZi/Qimen/Liuyao digest 由测试锚定；Linux/LF 与 Windows 均可复现，pipeline 不再改写冻结件 |
 | 未覆盖范畴 | BaZi: 格局/用神/大运/流年/神煞等细目、藏干独立节点；Qimen: 三奇喜怒/八门迫制/九星旺相/格局（龙回首·鸟跌穴等）/克应/占法，以及完整的节气局数对照表；Liuyao: 六十四卦各卦本体/卦辞/爻辞、互卦（GAP-LIUYAO-05）、六亲取用细则、神煞（星煞章本轮未收）、卦变全组合与占验案例 | 后续 Knowledge Sprint（本轮不做完整体命理百科） |

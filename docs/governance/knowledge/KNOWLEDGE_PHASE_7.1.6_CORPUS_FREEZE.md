@@ -12,11 +12,23 @@
 |----|----|
 | 冻结产物 | `knowledge/ziwei_corpus.json` |
 | 版本 | **`ziwei_corpus:v1.0.0`** |
-| digest (SHA-256) | `69d6e2a6b2f82d58292bfd11847aa7d26e2cd75eabda8cdbbbb67d4f6cc5f73d` |
+| digest (SHA-256) | `93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f`（2026-10-24 EOL 勘误后；原 CRLF 基准 `69d6e2a6…` 见 §1.1） |
 | 计数 | **102 nodes / 47 relations / 41 references** |
 | 规范输入 | `knowledge/corpus/ziwei/{nodes,relations,references}/*.yaml`（与产物同源、同提交） |
 | 生成器 | `knowledge/pipeline.py`（确定性；LF 输出，DEF-02 已修复） |
 | 生效 | 本记录提交后 |
+
+### 1.1 ACP-KNOWLEDGE-001 EOL 勘误（2026-10-24）
+
+| 项 | 值 |
+|----|----|
+| 触发 | `knowledge/sources/ziwei/*.yaml` 未 EOL 固定；`source_digests` 与 digest 为 CRLF 基准，LF checkout 下 pipeline 会重写冻结件 |
+| 批准 | `ACP-KNOWLEDGE-001`（D1-D4，2026-10-24 人工批准） |
+| 规则变更 | `.gitattributes` 增加 `knowledge/**/*.yaml text eol=lf` |
+| 新 digest | **`93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f`** |
+| source_digests | `source_01.yaml: 8f18dccd…` / `source_02.yaml: 186bed3e…` / `source_03.yaml: 3fcb4c62…`（完整值见 ACP §2） |
+| 内容变化 | **零**：nodes 102 / relations 47 / references 41 与 v1.0.0 逐对象相等 |
+| 版本 | 维持 `ziwei_corpus:v1.0.0`（metadata EOL 勘误；语义与内容未变） |
 
 **内容覆盖（冻结基线）**
 
@@ -56,7 +68,8 @@
 | `version` | （无） | **`1.0.0`** |
 
 > 因此冻结 digest 由就绪审计时的候选值 `bac1b1ef…` 变为
-> `69d6e2a6…`；**节点 / 关系 / 引用内容零变化**（仅 metadata 自我标识）。
+> `69d6e2a6…`（该值为当时 CRLF 工作区基准，已被 §1.1 的
+> `93dba067…` 取代）；**节点 / 关系 / 引用内容零变化**（仅 metadata 自我标识）。
 
 ## 4. D-9 追认（人工裁定）
 
@@ -86,7 +99,7 @@
 
 | 检查 | 结果 |
 |------|------|
-| pipeline 双跑 digest | 一致（`69d6e2a6…`） |
+| pipeline 双跑 digest | 一致（`93dba067…`，2026-10-24 LF 勘误后） |
 | 文件字节哈希 == 登记 digest | ✅ |
 | `validate.py` | `VALIDATION PASSED`（KB-001~020 + 端点/唯一性） |
 | 回归测试 | **618 / 618**（failures=0 errors=0） |
