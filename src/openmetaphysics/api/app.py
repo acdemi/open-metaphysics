@@ -52,6 +52,7 @@ class ExplainRequest(BaseModel):
 class KnowledgeSearchRequest(BaseModel):
     query: str
     k: int = 5
+    include_evidence: bool = False
 
 
 # -- public error model ----------------------------------------------------
@@ -261,12 +262,19 @@ def create_app() -> FastAPI:
 
     @app.post("/knowledge/search")
     def knowledge_search(req: KnowledgeSearchRequest) -> dict[str, Any]:
-        """Deterministic frozen-corpus retrieval (offline; optional Qdrant)."""
-        from ..rag.retriever import get_retriever
+        """Deterministic frozen-corpus retrieval (offline; optional Qdrant).
 
-        chunks = get_retriever().retrieve(req.query, k=req.k)
+        Nodes only by default; ``include_evidence=true`` adds relation and
+        reference chunks (source-attributed) to the same retriever.
+        """
+        from ..rag.retriever import search_knowledge
+
+        chunks = search_knowledge(
+            req.query, k=req.k, include_evidence=req.include_evidence
+        )
         return {
             "query": req.query,
+            "include_evidence": req.include_evidence,
             "chunks": [
                 {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
             ],
