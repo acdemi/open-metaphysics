@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from reference.engine import RuleEngine, resolve_field
+from reference.engine import CONTRACT_PATH, RuleEngine, export_rule_contract, resolve_field
 from reference.models import Rule
 from reference.parser import parse_rule_file
 
@@ -332,3 +332,22 @@ class TestGoldenChain:
         ev2 = engine.evaluate(rules[0], CHART_WITH_SEAL)
 
         assert ev1.model_dump_json() == ev2.model_dump_json()
+
+
+# ==================================================================
+# Rule Layer Contract
+# ==================================================================
+
+
+class TestRuleContract:
+    def test_contract_file_matches_runtime(self):
+        with open(CONTRACT_PATH, encoding="utf-8") as f:
+            file_contract = json.load(f)
+        runtime_contract = export_rule_contract()
+        assert file_contract == runtime_contract
+
+    def test_contract_determinism(self):
+        c1 = export_rule_contract()
+        c2 = export_rule_contract()
+        assert c1 == c2
+        assert json.dumps(c1, sort_keys=True) == json.dumps(c2, sort_keys=True)

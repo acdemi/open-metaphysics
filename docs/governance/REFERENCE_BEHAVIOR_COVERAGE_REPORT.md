@@ -61,9 +61,9 @@ python -c "from reference.conformance_runner import ConformanceRunner, Reference
 
 | 项 | 状态 |
 |----|------|
-| **待确认（D-16）** | CF-015 原文用词为 "at least one **golden vector**"；本次代表物为**可执行行为验证器**（更强、执行真实断言）与对应层 golden 检查，**字面**不完全一致。若要求严格一致，须再出一小 ACP 明确代表物形态或补生成对应向量 |
-| D-13 | 已由本 Sprint 关闭（认证口径与空转检查处置完成） |
-| `ACP-REF-002` | 仍 **PROPOSED**（范围扩张追认 + rule/pattern 契约），拟与 Reference 最终冻结同批 |
+| **D-16** | **已裁定（ACP-REF-002，2026-10-24）**：`CONFORMANCE_SPEC` v1.1.0 将 CF-015 的 "golden vector" 明确为 **executed representation**（golden vector 或可执行行为验证器） |
+| D-13 | 已由本 Sprint 关闭（认证口径与空转检查处置完成）；派生检查仍在消息中如实标注（Freeze Review §4） |
+| `ACP-REF-002` | **IMPLEMENTED**（2026-10-24）：范围追认 + 规范 v1.1.0 + rule/pattern 契约 + CF-016~019 |
 
 ## 5. 产出物清单
 

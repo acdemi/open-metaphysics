@@ -24,7 +24,7 @@
 | `ACP-SCHEMA-001` | earthly_branch Schema 归位审计 | NOT REQUIRED（撤回） | 2026-08-13 | KB Schema（无需变更） |
 | `ACP-SCHEMA-001`（自审） | 门 A 审计自审 8/8 | —（记录） | 2026-08-13 | KB Schema |
 | **`ACP-REF-001`** | **Conformance 行为覆盖与"空转检查"处置** | **IMPLEMENTED**（选项 A） | 2026-09-16 | `reference/conformance_runner.py`、`knowledge_behavior.py`、`consensus_behavior.py`、`conformance.py`（**CF-015 规范未改**） |
-| **`ACP-REF-002`** | **Reference Runtime 范围扩张追认与契约层补全** | **PROPOSED** | 2026-09-16 | `REFERENCE_RUNTIME_SPEC` §3.1/§3.2/§6.1/§10、`reference/contracts/` |
+| **`ACP-REF-002`** | **Reference Runtime 范围扩张追认与契约层补全** | **IMPLEMENTED** | 2026-10-24 | `REFERENCE_RUNTIME_SPEC` v1.1.0、`CONFORMANCE_SPEC` v1.1.0、`reference/contracts/`（5 层）、`REFERENCE_FREEZE_REVIEW.md` |
 | **`ACP-LIUYAO-001`** | **六爻行为契约冻结与 Reference 认证** | **IMPLEMENTED** | 2026-10-23 | `docs/liuyao/` 契约/25 向量、`reference/liuyao/`、`CAPABILITY_STATUS.md` |
 | **`ACP-KNOWLEDGE-001`** | **知识语料 EOL 固定与跨平台 digest 复现性修复** | **IMPLEMENTED** | 2026-10-24 | `knowledge/**/*.yaml`、`knowledge/ziwei_corpus.json`、语料 digest 登记 |
 
@@ -36,16 +36,24 @@
   **结果：检查 135 → 170、行为覆盖 52/52、`behavior_coverage = 1.0`、`unrepresented = []`、
   `certified = True`（强度已如实）**；`CONFORMANCE_SPEC` **零修改**（走 A 而非 B）。
   测试 618 → **627**（含 2 个负向对照锁定机制非空转）。
-  ⚠ 待你确认一点：CF-015 原文用词是 "at least one **golden vector**"，本次代表物为**可执行行为验证器**
-  （更强、执行真实断言），若要求字面一致需再出一次小 ACP。
+  D-16（CF-015 原文 "golden vector" vs 行为验证器）已由 `ACP-REF-002` 在
+  `CONFORMANCE_SPEC` v1.1.0 中裁定为 "executed representation"。
+
+### `ACP-REF-002`（2026-10-24，选项 A 批准并实施）
+
+- 追认 KnowledgeStore / Consensus 范围扩张：`REFERENCE_RUNTIME_SPEC` v1.1.0
+  §3.1/§3.2/§6.1/§10。
+- 契约层补齐 5/5：新增 `rule_contract.json` / `pattern_contract.json` +
+  `export_*_contract` + diff/determinism 测试；`CONFORMANCE_SPEC` v1.1.0；
+  `RUNTIME_CONTRACT` v1.1.0。
+- CF-016~CF-019 实装；Conformance **176/176 certified**；`supported_contracts` 5 项。
+- `docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS；Reference Runtime 状态
+  **Frozen**；`CAPABILITY_STATUS.md` 新增 Reference Runtime 行 + 6 条判据。
+- **合并状态**：待 H7 用户授权；未推送 origin。
 
 ## 待批准（PROPOSED）
 
-- **`ACP-REF-002`**：`REFERENCE_RUNTIME_SPEC` §3.2 把 KnowledgeStore / Consensus 列为
-  *Out of Scope*「MUST NOT be added without ACP」，而二者**已实现且有 v1.0.0 契约**；
-  同时缺 `rule_contract.json` / `pattern_contract.json`。需裁定：追认 + 修订规范 + 补契约。
-> `ACP-REF-001` 已实施且**未触碰 CF-015 规范**；`ACP-REF-002` 仍未实施：
-> 获批前仓库对 `docs/specification/` 保持零改动。
+- 当前无待批准 ACP（`ACP-REF-002` 已于 2026-10-24 实施；D-16 已裁定）。
 
 ### `ACP-LIUYAO-001`（2026-10-23，D1-D4 批准并实施）
 
