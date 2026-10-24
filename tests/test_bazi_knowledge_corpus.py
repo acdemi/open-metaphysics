@@ -116,8 +116,8 @@ def test_bazi_corpus_artifact_exists_and_loads() -> None:
     meta = doc["metadata"]
     assert meta["corpus_id"] == "bazi_corpus"
     assert meta["domain"] == "bazi"
-    assert meta["status"] == "candidate", "P2.1 first batch is a candidate, not frozen"
-    assert meta["version"] == "0.1.0"
+    assert meta["status"] == "frozen", "BaZi was bounded-frozen at v1.0.0 (2026-10-24)"
+    assert meta["version"] == "1.0.0"
     assert meta["counts"] == {"nodes": 40, "relations": 67, "references": 14}
     assert len(doc["nodes"]) == 40
     assert len(doc["relations"]) == 67

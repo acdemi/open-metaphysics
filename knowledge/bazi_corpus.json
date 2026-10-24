@@ -7,13 +7,13 @@
       "relations": 67
     },
     "domain": "bazi",
-    "pipeline": "knowledge/pipeline.py (P2.1 BaZi Knowledge Integration)",
+    "pipeline": "knowledge/pipeline.py (P2.1 BaZi Knowledge Integration; frozen v1.0.0)",
     "source_digests": {
       "source_bazi_01.yaml": "bf50d3f6354ab1e4d0394bf3e8b2d52ac9001a985dc590f1ceff915fe227b3a3",
       "source_bazi_02.yaml": "63d8f2652185ee233a4b97527a64fee145fcea5c87b55e2cd6865ebbd02624c3"
     },
-    "status": "candidate",
-    "version": "0.1.0"
+    "status": "frozen",
+    "version": "1.0.0"
   },
   "nodes": [
     {
