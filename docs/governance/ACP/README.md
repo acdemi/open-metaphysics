@@ -49,7 +49,7 @@
 - CF-016~CF-019 实装；Conformance **176/176 certified**；`supported_contracts` 5 项。
 - `docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS；Reference Runtime 状态
   **Frozen**；`CAPABILITY_STATUS.md` 新增 Reference Runtime 行 + 6 条判据。
-- **合并状态**：待 H7 用户授权；未推送 origin。
+- **合并状态**：已获 H7 授权并合并（`275fb88`，2026-10-24）；未推送 origin。
 
 ## 待批准（PROPOSED）
 
