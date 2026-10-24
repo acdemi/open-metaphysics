@@ -1,34 +1,73 @@
-"""MCP server stub — exposes agents as tool surface (transport is Phase 9).
+"""MCP stdio server — exposes the deterministic agents as MCP tools.
 
-This module defines the tool contracts an MCP-compatible client would call.
-v1 ships the interface only; no transport is wired.
+Transport is a dependency-free JSON-RPC 2.0 server over newline-delimited
+stdin/stdout, which is the MCP stdio transport framing. The official ``mcp``
+SDK is intentionally not required so the server stays offline-testable; the
+tool surface is the same one clients would consume.
+
+Run: ``python -m openmetaphysics.mcp`` or ``openmetaphysics-mcp``.
 """
 
 from __future__ import annotations
 
+import json
+import sys
 from typing import Any
 
 from ..agents.registry import get_registry
 from ..orchestration.graph import OrchestrationRequest, orchestrate
 
+SERVER_NAME = "openmetaphysics"
+SERVER_VERSION = "0.1.0"
+PROTOCOL_VERSION = "2024-11-05"
+
+_EMPTY_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": False,
+}
+
 
 def list_tools() -> list[dict[str, Any]]:
+    """MCP tool definitions (name/description/inputSchema)."""
     return [
-        {"name": "list_agents", "description": "List available agents and engine versions."},
+        {
+            "name": "list_agents",
+            "description": "List available agents and engine versions.",
+            "inputSchema": _EMPTY_SCHEMA,
+        },
         {
             "name": "agent_schema",
             "description": "Get JSON Schema for an agent's input/output.",
-            "args": {"name": "str"},
+            "inputSchema": {
+                "type": "object",
+                "properties": {"name": {"type": "string"}},
+                "required": ["name"],
+                "additionalProperties": False,
+            },
         },
         {
             "name": "compute",
-            "description": "Run one agent deterministically.",
-            "args": {"name": "str", "input": "dict"},
+            "description": "Run one agent deterministically (no LLM).",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "input": {"type": "object"},
+                },
+                "required": ["name", "input"],
+                "additionalProperties": False,
+            },
         },
         {
             "name": "orchestrate",
             "description": "Run multiple agents + consensus.",
-            "args": {"request": "dict"},
+            "inputSchema": {
+                "type": "object",
+                "properties": {"request": {"type": "object"}},
+                "required": ["request"],
+                "additionalProperties": False,
+            },
         },
     ]
 
@@ -47,3 +86,72 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
         req = OrchestrationRequest.model_validate(args["request"])
         return orchestrate(req).model_dump(mode="json")
     raise ValueError(f"unknown tool: {name}")
+
+
+def _error_response(message_id: Any, code: int, message: str) -> dict[str, Any]:
+    return {"jsonrpc": "2.0", "id": message_id, "error": {"code": code, "message": message}}
+
+
+def _tool_result(value: Any) -> dict[str, Any]:
+    text = json.dumps(value, ensure_ascii=False, sort_keys=True)
+    return {"content": [{"type": "text", "text": text}]}
+
+
+def handle_message(message: dict[str, Any]) -> dict[str, Any] | None:
+    """Handle one JSON-RPC message; returns None for notifications."""
+    message_id = message.get("id")
+    if message.get("jsonrpc") != "2.0" or "method" not in message:
+        return _error_response(message_id, -32600, "invalid request")
+    if "id" not in message:  # notification (e.g. notifications/initialized)
+        return None
+
+    method = message["method"]
+    if method == "initialize":
+        result: dict[str, Any] = {
+            "protocolVersion": PROTOCOL_VERSION,
+            "capabilities": {"tools": {}},
+            "serverInfo": {"name": SERVER_NAME, "version": SERVER_VERSION},
+        }
+    elif method == "tools/list":
+        result = {"tools": list_tools()}
+    elif method == "tools/call":
+        params = message.get("params") or {}
+        name = params.get("name")
+        args = params.get("arguments") or {}
+        if not isinstance(name, str):
+            return _error_response(message_id, -32602, "invalid params: name required")
+        try:
+            value = call_tool(name, args)
+        except Exception as exc:
+            return {
+                "jsonrpc": "2.0",
+                "id": message_id,
+                "result": {
+                    "content": [{"type": "text", "text": str(exc)}],
+                    "isError": True,
+                },
+            }
+        result = _tool_result(value)
+    elif method == "ping":
+        result = {}
+    else:
+        return _error_response(message_id, -32601, f"method not found: {method}")
+
+    return {"jsonrpc": "2.0", "id": message_id, "result": result}
+
+
+def main() -> None:
+    """Read newline-delimited JSON-RPC from stdin, write responses to stdout."""
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            message = json.loads(line)
+        except json.JSONDecodeError:
+            response = _error_response(None, -32700, "parse error")
+        else:
+            response = handle_message(message)
+        if response is not None:
+            sys.stdout.write(json.dumps(response, ensure_ascii=False) + "\n")
+            sys.stdout.flush()
