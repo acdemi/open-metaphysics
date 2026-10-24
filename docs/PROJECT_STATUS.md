@@ -6,7 +6,7 @@
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
-> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
+> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现；Phase 9 核心已收口（MCP stdio transport + Postgres 会话/追踪持久化 + compose app 服务；Valkey 预留）。本节部分依据 **2026-09-16 只读代码审计**，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
 > **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`）与 Liuyao **FROZEN v1.0.0**（61/66/41，`3a09a08e…`，2026-10-24 Corpus Freeze）；BaZi/Qimen **candidate**（`69b6edea…` / `40de5c45…`）；`ACP-KNOWLEDGE-001` 已实施（YAML LF 固定 + digest 重登记）
 > **Reference Runtime**: **Frozen**（`ACP-REF-002`，2026-10-24；5 层契约 v1.0.0 + 5 层 Golden Vectors + 176/176 certified；`docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS）
 
@@ -57,7 +57,7 @@
 | **Liuyao Domain** | **Integration Ready** | 契约 v1.0.0 Frozen（30 条）+ 25 向量 Frozen + Reference Certified（21/21 + 40/40）+ Freeze Review PASS；`ACP-LIUYAO-001` IMPLEMENTED |
 | **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `93dba067…`，2026-10-24 EOL 勘误；变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
-| Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现（含缺陷），Phase 9 仅桩；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
+| Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现，Phase 9 核心已收口（MCP/持久化/compose app）；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
 
 ---
 
@@ -119,9 +119,9 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 6 | 共识智能体 | 部分完成 | Cross-Modal `agents/consensus.py` 保持接入编排（`/orchestrate`）；Evidence 生产引擎 + `ConsensusContractAdapter`（`build_consensus`）已落地并合并（S-1 = 并列，52 输入等价 + 3 向量；`b0ce66f`）；`majority`/`all` 表决语义仍属 Cross-Modal 边界 |
 | Phase 7 | 编排 + API | 部分完成（≈达成） | LangGraph 五步（validate→route→fan_out→consensus→respond）齐全 + 6 端点 + 自动 OpenAPI；缺独立 `/consensus` 端点、知识端点、鉴权/CORS |
 | Phase 8 | 推理 + RAG | 部分完成 | provider + Explainer 确定性后备 + InMemory/Qdrant 检索器；RAG 已接线（`rag/corpus.py:146-160` + `rag/retriever.py`），四域 explainer 已接线；**Qdrant 已补 ingestion（upsert + 自动建 collection）、`query_points` 与 legacy `search` 回退，失败时回退 InMemory**；provider HTTP 已有离线 mock 测试；**剩余**：MCP transport / 持久化 |
-| Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
+| Phase 9 | 运维 + 可扩展性 | **核心收口** | MCP **stdio JSON-RPC transport** 已实现（无外部 SDK；`initialize`/`tools/list`/`tools/call`/notifications；console script `openmetaphysics-mcp`）；Postgres **会话/追踪持久化**（SQLAlchemy，`OM_POSTGRES_DSN`，失败回退 InMemory）+ `GET /sessions|traces/{id}`；`Dockerfile` + compose `app` profile；**Valkey 预留**（无消费者） |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1073 collected / 1071 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1089 collected / 1087 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -129,7 +129,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.1 测试总计
 
-> **2026-10-24 当前口径**: 全仓 **1073 collected / 1071 passed + 2 skipped**
+> **2026-10-24 当前口径**: 全仓 **1089 collected / 1087 passed + 2 skipped**
 > （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
 > `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
@@ -142,7 +142,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
 | **总计（2026-09-16 快照）** | **618** | **618** | **0** |
 
-> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1073/1071+2）。
+> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1089/1087+2）。
 > Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
 > **对账**：304 + 237 + 29 + 48 = 618。
 > 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
@@ -371,7 +371,7 @@ Proposal (ACP)。
   `rule_contract.json` / `pattern_contract.json` + diff 测试 + 规范 v1.1.0）
 - ~~坏死/空转修复~~ → **已闭环（2026-10-24 生产硬化）**：`ZiweiExplainer`/RAG 已接线；
   Qdrant ingestion + `query_points` + InMemory 回退已实现；provider HTTP 离线测试已补；
-  剩余仅 MCP transport / 持久化（Phase 9）
+  MCP transport、Postgres 持久化与 compose app 已于 Phase 9 收口（2026-10-24）；Valkey 预留
 - **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED + MERGED `a77c7f6`）修复 YAML EOL +
   Ziwei digest 重登记 + Liuyao digest 锚定
 
@@ -380,8 +380,8 @@ Proposal (ACP)。
   → 契约 v1.0.0 Frozen → `reference/liuyao/` 独立实现 → 21/21 + 40/40 等价
   → `ACP-LIUYAO-001` 批准并实施 → **Integration Ready**
 - **B（已完成）Reference Runtime 最终冻结**：`ACP-REF-002` 批准并实施（规范 v1.1.0 + 5 层契约 + CF-016~019）；`REFERENCE_FREEZE_REVIEW.md` PASS；状态 **Frozen**
-- **C Production Runtime Phase 9 收口**：MCP transport 接线 + 依赖声明；compose 补应用服务；
-  会话/追踪持久化（RAG/Qdrant/provider 已于 2026-10-24 硬化，移出本项）
+- **C（已完成）Production Runtime Phase 9 核心收口**：MCP stdio transport、Postgres
+  会话/追踪持久化、Dockerfile + compose app profile（2026-10-24）；Valkey 无消费者、保留为预留
 
 **GAP 登记状态（2026-10-24 对账）**:
 - ~~GAP-16~~ 已由 ACP-REF-001 修复（行为覆盖 52/52）
@@ -436,7 +436,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（1071 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
+uv run pytest -q                             # 运行全量测试（1087 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
 ```
 
 ---

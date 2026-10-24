@@ -203,7 +203,7 @@ OpenMetaphysics 通过 **确定性规则引擎** 计算中国命理图表（八�
 | 大语言模型推理 | Ollama         | 本地；通义千问/DeepSeek 通过相同提供者     |
 | 向量数据库(RAG)| Qdrant         | 本地，快速 ANN                             |
 | 关系数据库     | PostgreSQL     | 会话，推理追踪，审计                        |
-| 可扩展性       | MCP            | 未来工具/插件接口（已占位）                |
+| 可扩展性       | MCP            | stdio JSON-RPC transport（已实现，2026-10-24） |
 
 重型依赖（Postgres/Qdrant/Ollama）都是**可选**的：核心计算不依赖任何外部服务，可以完全测试。集成优雅降级，通过配置启用。
 
@@ -231,7 +231,7 @@ open-metaphysics/                    # Monorepo（单仓多语言）
 │   ├── rag/                         # qdrant client + retriever
 │   ├── orchestration/               # langgraph graph
 │   ├── api/                         # fastapi app + routes
-│   └── mcp/                         # future MCP server stub
+│   └── mcp/                         # MCP stdio server (JSON-RPC)
 ├── crates/                          # Production Rust（om-calendar 等）
 ├── services/                        # Production Go
 ├── proto/                           # gRPC/Protobuf 契约
