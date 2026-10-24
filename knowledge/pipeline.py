@@ -71,9 +71,11 @@ DOMAINS: dict[str, DomainSpec] = {
     ),
     "qimen": DomainSpec(
         corpus_id="qimen_corpus",
-        status="candidate",
-        version="0.1.0",
-        pipeline="knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
+        status="frozen",
+        version="1.0.0",
+        # 2026-10-24 bounded freeze: 10/15 refs verbatim; 5 summaries
+        # (see QIMEN_CORPUS_FREEZE_REVIEW.md). Changes now go through review.
+        pipeline="knowledge/pipeline.py (P2.2 Qimen Knowledge Integration; frozen v1.0.0)",
     ),
     "liuyao": DomainSpec(
         corpus_id="liuyao_corpus",

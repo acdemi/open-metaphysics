@@ -15,7 +15,7 @@
 | url | https://zh.wikisource.org/wiki/煙波釣叟歌 |
 | revid | **1336835**（2018-01-05T02:12:12Z；H6 2026-10-24 登记） |
 | acquisition_status | acquired  # H6 2026-10-24: 抓取件保存在仓库外，未入库 |
-| evidence_status | revision_pinned  # H6 2026-10-24: 已固定 revid + sha256；逐字核验待后续 Sprint |
+| evidence_status | revision_pinned_verbatim_verified  # H6 2026-10-24: 歌诀总纲片段逐字核验（佐证来源，单条引用） |
 | verified_scope | 仅确认维基文库存在独立作品页且为公有领域; 未做章节级逐条核验 |
 | blocker | 无 |
 | retrieved_utc | 2026-10-24（H6 抓取）；P2.2 在线读取时间 2026-10-03T14:43:00Z |
