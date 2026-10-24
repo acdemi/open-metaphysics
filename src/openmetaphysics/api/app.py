@@ -272,6 +272,25 @@ def create_app() -> FastAPI:
             ],
         }
 
+    @app.post("/mcp")
+    async def mcp_endpoint(http_request: Request) -> Any:
+        """MCP JSON-RPC over HTTP (same handlers as the stdio transport)."""
+        from ..mcp.server import handle_message
+
+        try:
+            message = await http_request.json()
+        except Exception:
+            message = None
+        if not isinstance(message, dict):
+            return JSONResponse(
+                status_code=400,
+                content=_error_body("invalid_request", "body must be a JSON-RPC object"),
+            )
+        response = handle_message(message)
+        if response is None:
+            return JSONResponse(status_code=202, content=None)
+        return JSONResponse(content=response)
+
     @app.get("/consensus/schema")
     def consensus_schema() -> dict[str, Any]:
         return {
