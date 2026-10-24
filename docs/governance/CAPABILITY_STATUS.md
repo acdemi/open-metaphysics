@@ -42,8 +42,8 @@
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen（`liuyao:behavior:v1.0.0`, 2026-10-23, 30 条） | 25（Frozen） | Certified（独立实现；21/21 + 40/40） | 6 + 6 + 8 |
 | **Reference Runtime** | **Frozen**（ACP-REF-002，2026-10-24） | 5 层契约 v1.0.0 | 5 层 / 19 向量 | Self-conformant（176/176 certified） | 373 |
-| Consensus | N/A（非计算域） | — | — | — | — |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1028 passed + 2 skipped） |
+| Consensus | N/A（非计算域；Evidence 引擎独立实现） | — | — | 等价认证（52 输入 + 3 向量） | 32 |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi CANDIDATE**（`bazi_corpus:0.1.0`, 40 节点 / 67 关系 / 14 引用, 2026-10-03, P2.1）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao CANDIDATE**（`liuyao_corpus:0.2.0`, 61 节点 / 66 关系 / 41 引用, 2026-10-19, P2.3/P2.4 —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1057 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -78,7 +78,7 @@
 > 统一规则 起宫 丑/辰/亥/午/酉 + 步长 2/3/3/3/3）、ACP-ZW-002（廉贞 -8）、
 > ACP-ZW-003（输入校验显式化）、ACP-ZW-004（sxtwl==2.0.7 pin）全部
 > **IMPLEMENTED**（记录: `docs/governance/ACP/`）; Engine **v0.3.0**;
-> 快照/校验测试迁移; 全仓库 578/578 全绿（2026-08-13 当时口径，现为 1030 collected / 1028 passed + 2 skipped）; Ziwei 规则集无 ACP 阻塞,
+> 快照/校验测试迁移; 全仓库 578/578 全绿（2026-08-13 当时口径，现为 1059 collected / 1057 passed + 2 skipped）; Ziwei 规则集无 ACP 阻塞,
 > Phase 6.7.2 向量生成可按修订规则集启动。状态维持 **Implemented**。
 > **Phase 6.7.2**: Golden Vector 生成（2026-08-13）—— 24 个规范性向量
 > `docs/ziwei/golden_vectors.json`（Engine v0.3.0 输出生成, status=candidate,
@@ -483,11 +483,12 @@ evidence_builder / knowledge_query / consensus_builder / conformance_runner）+
 | Capability | 实现 | 输入 | 输出 | 治理 |
 |---|---|---|---|---|
 | **Cross-Modal Consensus**（`CrossModalConsensus`，现名 `ConsensusAgent`） | `src/openmetaphysics/agents/consensus.py` | `list[AgentOutput]` | 一致矩阵 / 冲突 / 综合（`contributions`+`agreement_matrix`+`synthesis`） | 无契约；由 `tests/test_consensus.py` 覆盖 |
-| **Evidence Consensus** | `reference/consensus_builder.py`（**仅 Reference**） | `list[Evidence]` + `ConsensusConfig` | `ConsensusReport{conclusions, conflicts, evidence_ids}` | `CONSENSUS_BEHAVIOR_SPEC.md`（CS-001~025，**Frozen**）+ `reference/contracts/consensus_contract.json` v1.0.0 + conformance CONSENSUS 层（3 向量） |
+| **Evidence Consensus** | `reference/consensus_builder.py` + **生产** `src/openmetaphysics/consensus/`（2026-10-24 并列落地） | `list[Evidence]` + `ConsensusConfig` | `ConsensusReport{conclusions, conflicts, evidence_ids}` | `CONSENSUS_BEHAVIOR_SPEC.md`（CS-001~025，**Frozen**）+ `reference/contracts/consensus_contract.json` v1.0.0 + `ConsensusContractAdapter`（含 `build_consensus`）+ conformance CONSENSUS 层（3 向量） |
 
-- orchestration（`orchestration/graph.py::_consensus`）使用的是 **Cross-Modal Consensus**。
-- 生产侧**没有** Evidence Consensus 实现；Reference 契约描述的是后者。
-- 两者目前**未连接**；是否让生产侧也具备 Evidence 聚合能力属 **A1 结构裁定**（仍挂起）。
+- orchestration（`orchestration/graph.py::_consensus`）使用的是 **Cross-Modal Consensus**（API 不变）。
+- Evidence Consensus 自 2026-10-24 起有**独立生产实现**：52 输入与 Reference 逐字节等价、
+  冻结向量 3/3 复放一致；`ConsensusContractAdapter` 经 `openmetaphysics.contracts` 导出。
+- 两个 capability **并列共存**（S-1 = 并列，2026-10-24 裁定），互不影响。
 
 ---
 

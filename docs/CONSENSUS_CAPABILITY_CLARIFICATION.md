@@ -1,8 +1,10 @@
 # Consensus Capability Clarification（事实报告）
 
-> **性质**: **事实报告 + 最小命名/文档澄清**。本文件**不修改**任何 Consensus 代码或契约，
-> **不创建 ACP**，不合并两个 capability。
+> **性质**: **事实报告 + 结构裁定记录**。2026-10-24 已裁定 **S-1 = 并列**：
+> 保留 Cross-Modal `ConsensusAgent`，并行新增 Evidence 生产引擎（不替换、不重命名）。
 > **日期**: 2026-09-16 · **阶段**: Phase C4 · **基线**: `main`
+> **2026-10-24 更新**: A1 等价实现（`498189a`）已 cherry-pick 到
+> `work/consensus/evidence-engine`，补 RuntimeAdapter/包导出接线后待 H7 合并。
 
 ## 0. 结论（一句话）
 
@@ -58,11 +60,13 @@ Production 的 `ConsensusAgent` 与 Reference 的 `ConsensusBuilder` 是**两个
 |---|---|
 | `orchestration/graph.py`（`_consensus` 节点） | `agents.consensus.ConsensusAgent` |
 | `tests/test_consensus.py` | `agents.consensus.ConsensusAgent` |
-| `tests/test_consensus_engine.py`（Phase A1 分支，未合并） | `openmetaphysics.consensus.ConsensusEngine`（Evidence 版） |
+| `tests/test_consensus_engine.py`（A1 并列实现，2026-10-24） | `openmetaphysics.consensus.ConsensusEngine`（Evidence 版） |
 | `reference/*`、`reference/tests/*`、conformance | `reference.consensus` + `consensus_builder` |
 
-**关键事实**：**没有任何生产代码**引用 `reference.consensus*`。
-两个 capability 目前**完全没有连接**（Reference 版没有生产实现，生产版没有 Reference 对手方）。
+**关键事实**：**没有任何生产代码**引用 `reference.consensus*`（独立实现原则）。
+自 2026-10-24 起，Reference Evidence 契约已有**独立生产实现**（`openmetaphysics.consensus`，
+52 输入逐字节等价）与契约适配器；Cross-Modal 与 Evidence 两个 capability **并列共存**，
+互不影响。
 
 ## 5. Reference 契约归属
 
@@ -83,27 +87,31 @@ conformance **CONSENSUS 层**（`reference/conformance/golden/consensus_vectors.
    并声明它**不是** Reference Evidence-consensus 契约的实现。
 2. `docs/governance/CAPABILITY_STATUS.md` 的 Consensus 章节：拆为两个具名 capability。
 
-**未实施（不做，避免结构变更）**：
-- 不重命名类/模块/导入路径 —— 那会波及 orchestration、API、测试与外部引用。
-- 不删除任何一侧。
-- 不为 Reference Evidence 版补生产实现（那属 A1 的结构裁定，仍挂起）。
+**2026-10-24 结构裁定（S-1 = 并列）后已实施**：
+- 保留 `agents.consensus.ConsensusAgent`（Cross-Modal）与 orchestration/API 不变。
+- 新增 `openmetaphysics.consensus`（Evidence 引擎）与
+  `contracts.consensus_contract.ConsensusContractAdapter`（含 `build_consensus`
+  RuntimeAdapter 方法），并经 `openmetaphysics.contracts` 包导出。
+- 未重命名既有类/模块/导入路径；不删除任何一侧。
 
-## 7. 建议的后续（需另行授权）
+## 7. 后续状态
 
-| 项 | 内容 | 前置 |
+| 项 | 内容 | 状态 |
 |----|------|------|
-| S-1 | 若要让生产侧也具备 Evidence 聚合能力，需先裁定 A1（就地扩展 / 替换 / 保留并列） | 人工裁定 |
-| S-2 | 若采纳并列，建议正式命名 `CrossModalConsensus`（现 `ConsensusAgent`）与 `EvidenceConsensus`（Reference 版） | 采纳 S-1 后 |
-| S-3 | `CAPABILITY_STATUS` 已按 capability 分开登记；如采纳 S-2，再同步类名 | S-2 |
+| S-1 | 结构裁定：就地扩展 / 替换 / 保留并列 | **已裁定 = 并列**（2026-10-24 人工裁定） |
+| S-2 | 并列命名 `CrossModalConsensus` / `EvidenceConsensus` | 未执行（避免破坏性重命名；以包/文档区分） |
+| S-3 | `CAPABILITY_STATUS` 按 capability 登记 | DONE（两个具名 capability） |
 
-> 2026-10-24 审计复核：`work/consensus/phase-a1-equivalence`（`498189a`）已含
-> 生产 Evidence 引擎 + 契约适配器 + 等价测试（52 输入），待 S-1 人工裁定后
-> rebase 到当前 main 并按 H7 合并。
+> 2026-10-24 实施：`498189a` cherry-pick 为 `work/consensus/evidence-engine`；
+> 补 `build_consensus` + `ConsensusConclusion` runtime alignment + 包导出；
+> 等价 52 输入、冻结向量 3/3 复放一致；待 H7 合并。
 
 ## 8. 判定
 
 ```text
 C4 判定: 两个不同的 capability（不同问题 / 不同输入 / 不同输出）
-处置:     不合并；仅命名与文档澄清（已完成）
-是否 STOP: 否 —— 可继续 C1/C2/C3/C5
+处置 A (2026-09-16): 不合并；仅命名与文档澄清
+处置 B (2026-10-24): S-1 = 并列；Evidence 生产引擎 + 契约适配器落地
+                     （独立实现；52 输入逐字节等价；冻结向量 3/3）
+是否 STOP: 否
 ```

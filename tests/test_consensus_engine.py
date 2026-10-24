@@ -283,3 +283,15 @@ def test_production_consensus_does_not_import_reference():
     for path in sources:
         text = path.read_text(encoding="utf-8")
         assert not pattern.search(text), f"{path.name} imports reference"
+
+
+def test_adapter_build_consensus_matches_frozen_vector():
+    """ConsensusContractAdapter satisfies the RuntimeAdapter consensus method."""
+    adapter = ConsensusContractAdapter()
+    vector = adapter.load_vectors()[0]
+    actual = adapter.build_consensus(
+        json.dumps(vector["input"]["evidence"], ensure_ascii=False),
+        json.dumps(vector["input"]["config"], ensure_ascii=False),
+    )
+    expected = json.dumps(vector["expected_output"], ensure_ascii=False, sort_keys=True)
+    assert actual == expected
