@@ -42,6 +42,6 @@ B 级说明（不虚构）：
 | 测试 `QIMEN_DIGEST` / status / version 断言更新 | DONE |
 | 状态指针（knowledge/README、CAPABILITY_STATUS、PROJECT_STATUS、项目进展梳理） | DONE |
 | 门槛复跑（pipeline 双跑 / validate / 定向 + 全量 pytest / ruff） | DONE |
-| H7 合并 | 待授权 |
+| H7 合并 | DONE（`09fecd4`，2026-10-24） |
 
 **批准语（已使用）**：`批准 Qimen 有界冻结 v1.0.0（接受 5 条摘要边界）。`
