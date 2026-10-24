@@ -253,6 +253,12 @@ def create_app() -> FastAPI:
         payload = _explain_payload(name, output, style=style, k=k)
         return {"agent": name, **payload}
 
+    @app.get("/knowledge/corpora")
+    def knowledge_corpora() -> dict[str, Any]:
+        from ..rag.corpus import corpus_stats
+
+        return {"corpora": corpus_stats()}
+
     @app.post("/knowledge/search")
     def knowledge_search(req: KnowledgeSearchRequest) -> dict[str, Any]:
         """Deterministic frozen-corpus retrieval (offline; optional Qdrant)."""

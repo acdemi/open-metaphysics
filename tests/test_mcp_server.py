@@ -40,6 +40,7 @@ def test_tools_list_exposes_six_tools() -> None:
         "explain",
         "consensus_evidence",
         "knowledge_search",
+        "knowledge_stats",
     ]
     assert all("inputSchema" in tool for tool in list_tools())
 
@@ -198,6 +199,26 @@ def test_tools_call_knowledge_search() -> None:
     assert all(chunk["id"].startswith("kn:") for chunk in chunks)
 
 
+def test_tools_call_knowledge_stats() -> None:
+    response = handle_message(
+        {
+            "jsonrpc": "2.0",
+            "id": 14,
+            "method": "tools/call",
+            "params": {"name": "knowledge_stats", "arguments": {}},
+        }
+    )
+    assert response is not None
+    corpora = json.loads(response["result"]["content"][0]["text"])
+    assert {c["corpus_id"] for c in corpora} == {
+        "ziwei_corpus",
+        "bazi_corpus",
+        "qimen_corpus",
+        "liuyao_corpus",
+    }
+    assert all(c["status"] == "frozen" for c in corpora)
+
+
 def test_stdio_transport_end_to_end() -> None:
     lines = [
         json.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}}),
@@ -226,4 +247,5 @@ def test_stdio_transport_end_to_end() -> None:
         "explain",
         "consensus_evidence",
         "knowledge_search",
+        "knowledge_stats",
     ]
