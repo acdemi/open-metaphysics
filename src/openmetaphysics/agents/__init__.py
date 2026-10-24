@@ -4,6 +4,7 @@ from .consensus import ConsensusAgent
 from .liuyao import LiuyaoAgent
 from .liuyao_explainer import LiuyaoExplainer
 from .qimen import QimenAgent
+from .qimen_explainer import QimenExplainer
 from .ziwei import ZiweiAgent
 from .ziwei_explainer import ZiweiExplainer
 
@@ -19,6 +20,7 @@ __all__ = [
     "LiuyaoAgent",
     "LiuyaoExplainer",
     "QimenAgent",
+    "QimenExplainer",
     "ZiweiAgent",
     "ZiweiExplainer",
 ]

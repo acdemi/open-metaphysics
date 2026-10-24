@@ -15,6 +15,9 @@ import sys
 from typing import Any
 
 from ..agents.registry import get_registry
+from ..consensus import ConsensusEngine, ConsensusInput
+from ..core.schemas import AgentOutput
+from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
 
 SERVER_NAME = "openmetaphysics"
@@ -69,6 +72,34 @@ def list_tools() -> list[dict[str, Any]]:
                 "additionalProperties": False,
             },
         },
+        {
+            "name": "explain",
+            "description": "Explain an already-computed agent output (LLM optional).",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "agent": {"type": "string"},
+                    "output": {"type": "object"},
+                    "style": {"type": "string"},
+                    "k": {"type": "integer"},
+                },
+                "required": ["agent", "output"],
+                "additionalProperties": False,
+            },
+        },
+        {
+            "name": "consensus_evidence",
+            "description": "Evidence[] + config -> ConsensusReport (frozen contract).",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "evidence": {"type": "array"},
+                    "config": {"type": "object"},
+                },
+                "required": ["evidence"],
+                "additionalProperties": False,
+            },
+        },
     ]
 
 
@@ -85,6 +116,24 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
     if name == "orchestrate":
         req = OrchestrationRequest.model_validate(args["request"])
         return orchestrate(req).model_dump(mode="json")
+    if name == "explain":
+        output = AgentOutput.model_validate(args["output"])
+        result = get_explainer_for(args["agent"]).explain(
+            output, style=args.get("style", "concise"), k=int(args.get("k", 3))
+        )
+        return {
+            "explanation": result["explanation"],
+            "provider": result["provider"],
+            "degraded": result["degraded"],
+            "knowledge": [{"id": c["id"], "source": c["source"]} for c in result.get("knowledge", [])],
+            "evidence": result["evidence"],
+            "error": result.get("error"),
+        }
+    if name == "consensus_evidence":
+        payload = ConsensusInput.model_validate(
+            {"evidence": args.get("evidence", []), "config": args.get("config", {})}
+        )
+        return ConsensusEngine().build(payload).model_dump(mode="json")
     raise ValueError(f"unknown tool: {name}")
 
 

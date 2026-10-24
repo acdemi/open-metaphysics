@@ -28,11 +28,18 @@ def test_initialize_declares_tools_capability() -> None:
     assert result["serverInfo"]["name"] == SERVER_NAME
 
 
-def test_tools_list_exposes_four_agents_tools() -> None:
+def test_tools_list_exposes_six_tools() -> None:
     response = handle_message({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
     assert response is not None
     names = [tool["name"] for tool in response["result"]["tools"]]
-    assert names == ["list_agents", "agent_schema", "compute", "orchestrate"]
+    assert names == [
+        "list_agents",
+        "agent_schema",
+        "compute",
+        "orchestrate",
+        "explain",
+        "consensus_evidence",
+    ]
     assert all("inputSchema" in tool for tool in list_tools())
 
 
@@ -102,6 +109,79 @@ def test_ping() -> None:
     assert response is not None and response["result"] == {}
 
 
+def test_tools_call_consensus_evidence() -> None:
+    evidence = {
+        "evidence_id": "ev:mcp:1",
+        "domain": "career",
+        "conclusion": "晋升机会",
+        "confidence": 0.8,
+        "system": "bazi",
+        "items": [
+            {
+                "evidence_id": "evi:1",
+                "source_type": "rule",
+                "source_id": "rule:mcp",
+                "system": "bazi",
+                "domain": "career",
+                "confidence": 0.8,
+                "conclusion": "晋升机会",
+                "weight": 1.0,
+                "trace": [],
+                "metadata": {},
+                "timestamp": None,
+                "version": "1.0.0",
+            }
+        ],
+    }
+    response = handle_message(
+        {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "method": "tools/call",
+            "params": {
+                "name": "consensus_evidence",
+                "arguments": {"evidence": [evidence], "config": {"strategy": "retain_all"}},
+            },
+        }
+    )
+    assert response is not None
+    report = json.loads(response["result"]["content"][0]["text"])
+    assert report["report_id"].startswith("cr:")
+    assert report["conclusions"][0]["domain"] == "career"
+
+
+def test_tools_call_explain() -> None:
+    computed = handle_message(
+        {
+            "jsonrpc": "2.0",
+            "id": 11,
+            "method": "tools/call",
+            "params": {
+                "name": "compute",
+                "arguments": {
+                    "name": "bazi",
+                    "input": {"request_id": "m1", "born_at": "1985-08-15T10:00:00+08:00", "gender": "male"},
+                },
+            },
+        }
+    )
+    assert computed is not None
+    output = json.loads(computed["result"]["content"][0]["text"])
+
+    explained = handle_message(
+        {
+            "jsonrpc": "2.0",
+            "id": 12,
+            "method": "tools/call",
+            "params": {"name": "explain", "arguments": {"agent": "bazi", "output": output}},
+        }
+    )
+    assert explained is not None
+    payload = json.loads(explained["result"]["content"][0]["text"])
+    assert "explanation" in payload
+    assert "degraded" in payload
+
+
 def test_stdio_transport_end_to_end() -> None:
     lines = [
         json.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}}),
@@ -127,4 +207,6 @@ def test_stdio_transport_end_to_end() -> None:
         "agent_schema",
         "compute",
         "orchestrate",
+        "explain",
+        "consensus_evidence",
     ]
