@@ -39,7 +39,7 @@ from pydantic import BaseModel, ValidationError
 from ..agents.registry import get_registry
 from ..consensus import ConsensusEngine, ConsensusInput, ConsensusReport
 from ..core.config import get_settings
-from ..core.schemas import AgentOutput
+from ..core.schemas import AgentOutput, agent_output_from_envelope
 from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
 from ..persistence import SessionStore, create_store
@@ -247,7 +247,7 @@ def create_app() -> FastAPI:
             return _unknown_agent(name)
 
         try:
-            output = AgentOutput.model_validate(req.output)
+            output = agent_output_from_envelope(req.output)
         except ValidationError as exc:
             return _invalid_request(exc)
 

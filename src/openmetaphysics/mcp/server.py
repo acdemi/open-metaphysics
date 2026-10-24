@@ -16,7 +16,7 @@ from typing import Any
 
 from ..agents.registry import get_registry
 from ..consensus import ConsensusEngine, ConsensusInput
-from ..core.schemas import AgentOutput
+from ..core.schemas import agent_output_from_envelope
 from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
 
@@ -136,7 +136,7 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
         req = OrchestrationRequest.model_validate(args["request"])
         return orchestrate(req).model_dump(mode="json")
     if name == "explain":
-        output = AgentOutput.model_validate(args["output"])
+        output = agent_output_from_envelope(args["output"])
         result = get_explainer_for(args["agent"]).explain(
             output, style=args.get("style", "concise"), k=int(args.get("k", 3))
         )
