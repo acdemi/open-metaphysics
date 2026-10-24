@@ -104,6 +104,8 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 uv run openmetaphysics-cli agents
 uv run openmetaphysics-cli compute bazi --input '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}'
 uv run openmetaphysics-cli compute bazi --input '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}' --explain
+uv run openmetaphysics-cli knowledge --query 紫微 --k 3
+uv run openmetaphysics-cli consensus --input '{"evidence":[]}'
 ```
 
 ## 常用命令
