@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import uuid
 from typing import Protocol, runtime_checkable
 
 from pydantic import BaseModel
@@ -87,13 +88,29 @@ class InMemoryRetriever:
         return [c for score, c in scored[:k] if score > 0]
 
 
+def _point_id(chunk_id: str) -> str:
+    """Deterministic Qdrant point id (UUIDv5) for a chunk id.
+
+    Qdrant point ids must be UUIDs or unsigned integers; chunk ids are
+    ``kn:<type>:<name>`` strings, so a namespaced UUIDv5 keeps them stable.
+    """
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"openmetaphysics:{chunk_id}"))
+
+
 class QdrantRetriever:
-    """Qdrant-backed retriever. Lazily imports qdrant_client; degrades on failure."""
+    """Qdrant-backed retriever with ingestion and deterministic point ids.
+
+    Lazily imports ``qdrant_client`` (optional ``[rag]`` extra) and requires an
+    inference provider for embeddings. ``get_retriever`` falls back to the
+    in-memory retriever when either is unavailable, so enabling Qdrant never
+    yields a silently empty knowledge path.
+    """
 
     def __init__(self, url: str, collection: str) -> None:
         self.url = url
         self.collection = collection
         self._client = None
+        self._vector_size: int | None = None
 
     def _ensure(self):
         if self._client is None:
@@ -102,6 +119,46 @@ class QdrantRetriever:
             self._client = QdrantClient(url=self.url)
         return self._client
 
+    def _ensure_collection(self, size: int) -> None:
+        """Create the collection on first ingest (idempotent per size)."""
+        if self._vector_size == size:
+            return
+        client = self._ensure()
+        if hasattr(client, "collection_exists"):
+            exists = client.collection_exists(self.collection)
+        else:  # pragma: no cover - legacy client path
+            names = {c.name for c in client.get_collections().collections}
+            exists = self.collection in names
+        if not exists:
+            client.create_collection(
+                collection_name=self.collection,
+                vectors_config={"size": size, "distance": "Cosine"},
+            )
+        self._vector_size = size
+
+    def add(self, chunk: KnowledgeChunk) -> None:
+        """Embed and upsert one chunk; raises when no provider is configured."""
+        client = self._ensure()
+        from ..inference.providers import get_provider  # local import to avoid cycle
+
+        provider = get_provider()
+        if provider is None:
+            raise RuntimeError("Qdrant ingestion requires an inference provider")
+        vec = list(provider.embed(chunk.text, model=get_settings().ollama_model))
+        if not vec:
+            raise RuntimeError(f"empty embedding for chunk {chunk.id}")
+        self._ensure_collection(len(vec))
+        client.upsert(
+            collection_name=self.collection,
+            points=[
+                {
+                    "id": _point_id(chunk.id),
+                    "vector": vec,
+                    "payload": chunk.model_dump(),
+                }
+            ],
+        )
+
     def retrieve(self, query: str, *, k: int = 5) -> list[KnowledgeChunk]:
         client = self._ensure()
         from ..inference.providers import get_provider  # local import to avoid cycle
@@ -109,10 +166,20 @@ class QdrantRetriever:
         provider = get_provider()
         if provider is None:
             return []
-        vec = provider.embed(query, model=get_settings().ollama_model)
-        res = client.search(collection_name=self.collection, query_vector=vec, limit=k)
+        vec = list(provider.embed(query, model=get_settings().ollama_model))
+        if not vec:
+            return []
+        if hasattr(client, "query_points"):
+            response = client.query_points(
+                collection_name=self.collection, query=vec, limit=k
+            )
+            points = getattr(response, "points", response)
+        else:  # pragma: no cover - legacy client path
+            points = client.search(
+                collection_name=self.collection, query_vector=vec, limit=k
+            )
         out = []
-        for p in res:
+        for p in points:
             payload = p.payload or {}
             out.append(
                 KnowledgeChunk(
@@ -150,7 +217,19 @@ def get_retriever() -> KnowledgeRetriever:
     if _default is None:
         s = get_settings()
         if s.rag_enabled and s.qdrant_url:
-            _default = QdrantRetriever(s.qdrant_url, s.qdrant_collection)
+            qdrant = QdrantRetriever(s.qdrant_url, s.qdrant_collection)
+            try:
+                from .corpus import load_all_into
+
+                load_all_into(qdrant)
+                _default = qdrant
+            except Exception:
+                # No qdrant-client, no provider, or no reachable server:
+                # degrade to the populated in-memory retriever instead of an
+                # empty knowledge path.
+                retriever = InMemoryRetriever()
+                _load_default_corpus(retriever)
+                _default = retriever
         else:
             retriever = InMemoryRetriever()
             _load_default_corpus(retriever)
