@@ -1,8 +1,9 @@
 # ACP-KNOWLEDGE-001 — 知识语料 EOL 固定与跨平台 digest 复现性修复
 
-> **Status**: **PROPOSED**（2026-10-24 · 待人工批准 · 未实施任何变更）
+> **Status**: **IMPLEMENTED**（2026-10-24 人工批准 D1-D4 并实施；H7 合并待授权）
 > **Date**: 2026-10-24
 > **Domain**: Knowledge（语料冻结工件）
+> **Approved by**: 用户（2026-10-24，D1-D4）
 > **Approval required**: 是（H3 冻结工件 + Corpus 级变更流程）
 > **Related**: `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`、
 > `docs/specification/RUNTIME_CONTRACT.md` 合并门、`ACP-REF-002`
@@ -115,3 +116,19 @@
 若本 ACP 被否决或撤销：恢复 `.gitattributes` 原状与
 `knowledge/ziwei_corpus.json` 原字节（`69d6e2a6…`），恢复测试门控；Liuyao
 digest 登记可独立保留（候选语料，不涉冻结变更）。
+
+---
+
+## 8. 实施记录（2026-10-24）
+
+| 步骤 | 状态 |
+|------|------|
+| 人工批准 D1-D4 | DONE（用户批准） |
+| D1 `.gitattributes`：`knowledge/**/*.yaml text eol=lf` | DONE |
+| D2 LF 工作区重生成 Ziwei 语料（`93dba067…`，内容零变化） | DONE |
+| D3 测试门控修复 + Ziwei/BaZi/Qimen/Liuyao digest 锚定 | DONE |
+| D4 `knowledge/README.md` / `CAPABILITY_STATUS.md` / `PROJECT_STATUS.md` / Freeze 记录收口 | DONE |
+| LF + Windows 全量回归 / ruff / validate | DONE（见 §5） |
+| H7 合并到 main | **PENDING USER AUTHORIZATION** |
+
+版本处理按 §3-D2 采用 **v1.0.0 metadata EOL 勘误**（内容与计数零变化）。
