@@ -48,11 +48,3 @@ Thumbs.db
 
 # Misc
 *.log
-
-
-# Docs
-.knowledge/
-.docs/
-.prompts/
-.context/
-.agents/
