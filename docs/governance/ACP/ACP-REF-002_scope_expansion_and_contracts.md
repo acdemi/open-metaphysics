@@ -1,6 +1,6 @@
 # ACP-REF-002 — Reference Runtime 范围扩张追认与契约层补全
 
-> **Status**: **IMPLEMENTED**（2026-10-24 人工批准并实施；H7 合并待授权）
+> **Status**: **IMPLEMENTED**（2026-10-24 人工批准、实施并合并 `275fb88`）
 > **触发**: 2026-09-16 全项目审计 §2.7（`docs/PROJECT_REVIEW_2026-09-16.md`）
 > **范围**: `docs/specification/REFERENCE_RUNTIME_SPEC.md`（冻结规范）+ `reference/` 契约层
 > **Approved by**: 用户（2026-10-24，选项 A，含最终冻结推进）
@@ -92,7 +92,7 @@ Reference Runtime 进入 **Frozen** 的完成条件（本 ACP 提案的判据部
 | 冻结审查 | `docs/governance/REFERENCE_FREEZE_REVIEW.md`（PASS） | DONE |
 | 状态登记 | `CAPABILITY_STATUS.md` Reference Runtime 行 + 6 条判据 | DONE |
 | 验证 | Reference 373 passed；Conformance 176/176 certified；全仓 1028+2；5 层 golden 重生成逐字节一致；ruff PASS | DONE |
-| H7 合并到 main | — | **PENDING USER AUTHORIZATION** |
+| H7 合并到 main | `275fb88`（2026-10-24） | DONE |
 
 > 本批未改变任何 Reference 运行时行为：新增契约导出、conformance 检查与
 > EOL 固定均为非行为性变更；5 层契约版本维持 1.0.0。
