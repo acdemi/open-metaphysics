@@ -118,10 +118,10 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md, QC-001~014) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
 | Phase 6 | 共识智能体 | 部分完成 | Cross-Modal `agents/consensus.py` 保持接入编排（`/orchestrate`）；Evidence 生产引擎 + `ConsensusContractAdapter`（`build_consensus`）已落地并合并（S-1 = 并列，52 输入等价 + 3 向量；`b0ce66f`）；`majority`/`all` 表决语义仍属 Cross-Modal 边界 |
 | Phase 7 | 编排 + API | 部分完成（≈达成） | LangGraph 五步（validate→route→fan_out→consensus→respond）齐全 + 6 端点 + 自动 OpenAPI；缺独立 `/consensus` 端点、知识端点、鉴权/CORS |
-| Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；RAG 已接线（`rag/corpus.py:146-160` 灌入 + `rag/retriever.py:131-158`），四域 explainer 已接线（`inference/explainer.py:358-367`）；**剩余缺陷**：Qdrant 无 ingestion/旧 `client.search` API、provider HTTP 无离线测试、MCP 无 transport |
+| Phase 8 | 推理 + RAG | 部分完成 | provider + Explainer 确定性后备 + InMemory/Qdrant 检索器；RAG 已接线（`rag/corpus.py:146-160` + `rag/retriever.py`），四域 explainer 已接线；**Qdrant 已补 ingestion（upsert + 自动建 collection）、`query_points` 与 legacy `search` 回退，失败时回退 InMemory**；provider HTTP 已有离线 mock 测试；**剩余**：MCP transport / 持久化 |
 | Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1059 collected / 1057 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1073 collected / 1071 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -129,7 +129,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.1 测试总计
 
-> **2026-10-24 当前口径**: 全仓 **1059 collected / 1057 passed + 2 skipped**
+> **2026-10-24 当前口径**: 全仓 **1073 collected / 1071 passed + 2 skipped**
 > （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
 > `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
@@ -142,7 +142,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
 | **总计（2026-09-16 快照）** | **618** | **618** | **0** |
 
-> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1059/1057+2）。
+> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1073/1071+2）。
 > Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
 > **对账**：304 + 237 + 29 + 48 = 618。
 > 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
@@ -369,8 +369,9 @@ Proposal (ACP)。
   CF-016~019 已由 ACP-REF-002 实装；派生检查仍在消息中如实标注（见 Freeze Review §4）
 - ~~D-14 Reference Runtime 范围扩张 ACP 补正~~ → **DONE**（`ACP-REF-002` IMPLEMENTED；
   `rule_contract.json` / `pattern_contract.json` + diff 测试 + 规范 v1.1.0）
-- **坏死/空转修复**：`ZiweiExplainer`/RAG 已接线（2026-10 合并）；剩余 Qdrant ingestion、
-  provider HTTP 离线测试、MCP transport
+- ~~坏死/空转修复~~ → **已闭环（2026-10-24 生产硬化）**：`ZiweiExplainer`/RAG 已接线；
+  Qdrant ingestion + `query_points` + InMemory 回退已实现；provider HTTP 离线测试已补；
+  剩余仅 MCP transport / 持久化（Phase 9）
 - **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED + MERGED `a77c7f6`）修复 YAML EOL +
   Ziwei digest 重登记 + Liuyao digest 锚定
 
@@ -380,7 +381,7 @@ Proposal (ACP)。
   → `ACP-LIUYAO-001` 批准并实施 → **Integration Ready**
 - **B（已完成）Reference Runtime 最终冻结**：`ACP-REF-002` 批准并实施（规范 v1.1.0 + 5 层契约 + CF-016~019）；`REFERENCE_FREEZE_REVIEW.md` PASS；状态 **Frozen**
 - **C Production Runtime Phase 9 收口**：MCP transport 接线 + 依赖声明；compose 补应用服务；
-  会话/追踪持久化（RAG 已接线，移出本项）
+  会话/追踪持久化（RAG/Qdrant/provider 已于 2026-10-24 硬化，移出本项）
 
 **GAP 登记状态（2026-10-24 对账）**:
 - ~~GAP-16~~ 已由 ACP-REF-001 修复（行为覆盖 52/52）
@@ -435,7 +436,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（1057 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
+uv run pytest -q                             # 运行全量测试（1071 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
 ```
 
 ---
