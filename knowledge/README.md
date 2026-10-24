@@ -4,7 +4,8 @@
 > + **P2.1 BaZi Knowledge Integration**（2026-10-03, BaZi Corpus candidate 0.1.0）
 > + **P2.2 Qimen Knowledge Integration**（2026-10-03, Qimen Corpus candidate 0.1.0）
 > + **P2.3 Liuyao Knowledge Integration**（2026-10-19, Liuyao Corpus candidate 0.1.0）
-> + **P2.4 Liuyao Knowledge Enrichment II**（2026-10-19, Liuyao Corpus candidate 0.2.0）
+> + **P2.4 Liuyao Knowledge Enrichment II**（2026-10-19, Liuyao Corpus candidate 0.2.0
+>   → **2026-10-24 Corpus Freeze v1.0.0**）
 > **状态**: **Pipeline Validated**；Ziwei Corpus **FROZEN（`ziwei_corpus:v1.0.0`）**；
 > BaZi / Qimen Corpus **CANDIDATE（各 `0.1.0`）**；Liuyao Corpus **CANDIDATE（`0.2.0`）**
 > **规范基准**: `docs/specification/KNOWLEDGE_BEHAVIOR_SPEC.md`（KB-001~020, Frozen）+
@@ -54,7 +55,7 @@
   游魂·归魂·月破·飞神·伏神·进神·退神·随鬼入墓·独发·独静·两现）/ 五行域内端点 = 5 /
   用神体系（用神·元神·忌神）= 3 = **61 节点**；关系（成员归属 + 宫属五行 + 生克 +
   结构对应 + 月建/日辰作用）= **66 关系**；条目级引用 **41**
-  （`liuyao_corpus.json` 0.2.0）。
+  （`liuyao_corpus.json` 1.0.0，**frozen**）。
   本语料是 P2 系列新增语料中**首个在 Sources 侧完成 revision-pinned 抓取 +
   逐章逐字核验**的域（《增刪卜易》主页 revid 2572918 + 24 个子页 revid/SHA-256
   登记 + 主页卷之二第 27–32 章逐字核验）。
@@ -104,7 +105,7 @@ knowledge/
 | `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
 | `bazi_corpus` | candidate 0.1.0 (digest `69b6edea…`) | 40 | 67 | 14 |
 | `qimen_corpus` | candidate 0.1.0 (digest `40de5c45…`) | 47 | 60 | 15 |
-| `liuyao_corpus` | candidate 0.2.0 (digest `52efbff5…`) | 61 | 66 | 41 |
+| `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
 
 Ziwei 类型覆盖: nodes wuxing(5)/main_star(14)/palace(12)/ten_god(10)/
 heavenly_stem(10)/earthly_branch(12)/auxiliary_star(12)/shen_sha(27);
