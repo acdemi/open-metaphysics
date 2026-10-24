@@ -61,6 +61,11 @@ def main(argv: list[str] | None = None) -> int:
     knowledge = sub.add_parser("knowledge", help="search the frozen knowledge corpora")
     knowledge.add_argument("--query", required=True)
     knowledge.add_argument("--k", type=int, default=5)
+    knowledge.add_argument(
+        "--include-evidence",
+        action="store_true",
+        help="also search relation/reference chunks",
+    )
 
     consensus = sub.add_parser("consensus", help="Evidence[] + config -> ConsensusReport")
     consensus.add_argument("--input", required=True, help="JSON with evidence[] and config")
@@ -100,9 +105,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.command == "knowledge":
-        from .rag.retriever import get_retriever
+        from .rag.retriever import search_knowledge
 
-        chunks = get_retriever().retrieve(args.query, k=args.k)
+        chunks = search_knowledge(
+            args.query, k=args.k, include_evidence=args.include_evidence
+        )
         _print(
             [
                 {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags}

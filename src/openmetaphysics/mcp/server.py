@@ -108,6 +108,7 @@ def list_tools() -> list[dict[str, Any]]:
                 "properties": {
                     "query": {"type": "string"},
                     "k": {"type": "integer"},
+                    "include_evidence": {"type": "boolean"},
                 },
                 "required": ["query"],
                 "additionalProperties": False,
@@ -153,9 +154,13 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
         )
         return ConsensusEngine().build(payload).model_dump(mode="json")
     if name == "knowledge_search":
-        from ..rag.retriever import get_retriever
+        from ..rag.retriever import search_knowledge
 
-        chunks = get_retriever().retrieve(str(args["query"]), k=int(args.get("k", 5)))
+        chunks = search_knowledge(
+            str(args["query"]),
+            k=int(args.get("k", 5)),
+            include_evidence=bool(args.get("include_evidence", False)),
+        )
         return [
             {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
         ]
