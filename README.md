@@ -89,6 +89,7 @@ uv run openmetaphysics
 **无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务，可完全离线运行。
 `docker-compose.yml` 提供 PostgreSQL / Qdrant / Valkey / Ollama 等可选服务；
 `--profile app` 可构建并启动 API（含 Postgres 会话/追踪持久化）。
+Valkey 当前为**预留**（无消费者）；Dockerfile 已本地构建验证，容器 `/health` 冒烟通过。
 
 ### 快速体验
 
