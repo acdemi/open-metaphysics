@@ -1,6 +1,6 @@
 # BaZi Corpus Freeze Readiness（八字语料冻结就绪评估）
 
-> **Status**: **NOT READY（逐字级冻结）— 建议先行证据扩展，或由人工选择有界冻结**
+> **Status**: **PARTIAL（9/14 逐字核验；5 GAP 待补）— H6 证据扩展已执行（2026-10-24）**
 > **Date**: 2026-10-24
 > **Domain**: Knowledge / BaZi
 > **当前**: `bazi_corpus:0.1.0 (candidate)`，40 nodes / 67 relations / 14 references
@@ -28,8 +28,10 @@
 | `ref:classic:bazi_hai` | 三命通会 卷二·论六害 | **逐字核验** |
 | `bazi_wuxing_shengke` / `bazi_wangshuai` / `bazi_ten_god` / `bazi_day_master` / `bazi_month_order` / `bazi_zhi_he` / `bazi_chong` / `bazi_sanhe` / `bazi_sanhui` / `bazi_po` | 渊海子平（部分有章节） | **摘要式归属**（非引文；`classics.yaml` 头注明示“其余为书级来源归属，不书写未核验原文”） |
 
-**结论**：10/14 引用为摘要式说明，无法提供“revision-pinned 原文子串匹配回执”，
-不满足 7.1.6 冻结流程的逐字核验要求。
+**结论（2026-10-24 H6 扩展后）**：9/14 引用已提供 revision-pinned 原文精确子串回执
+（wuxing/shengke、ten_god、day_master、month_order、gan_he、sanhe、xing_wuen、
+xing_shishi、hai）；其余 5 条（wangshuai、zhi_he、chong、sanhui、po）仍为摘要/GAP，
+尚不满足 7.1.6 的完整逐字核验要求。详见 `KNOWLEDGE_H6_EVIDENCE_DOSSIER.md`。
 
 ## 3. 覆盖与结构
 
@@ -55,15 +57,15 @@
 
 ## 5. 裁定与后续（2026-10-24）
 
-**人工裁定：选 A（推迟冻结）**。BaZi 维持 `candidate`；待 H6 授权窗口内完成 10 条
-摘要引用的 revision-pinned 逐字核验后，再按 7.1.6 流程提交冻结评审。
+**人工裁定：选 A（推迟冻结）** → **H6 证据扩展已部分执行**。
 
 | 步骤 | 状态 |
 |------|------|
 | 维持 `bazi_corpus:0.1.0 (candidate)` | DONE |
-| H6 授权 + revision-pinned 抓取 | PENDING（需人工授权） |
-| 10 条摘要引用逐字核验回执 | PENDING |
+| H6 授权 + revision-pinned 抓取（淵海子平/三命通會卷二） | DONE（sha256 与 pin 一致） |
+| 9/14 引用逐字核验回执 | DONE（digest `525dab22…`） |
+| 5 条 GAP（wangshuai/zhi_he/chong/sanhui/po）闭合 | PENDING（需追加 H6 章节） |
 | 冻结评审 + 人工批准 | PENDING |
 
-> 若后续改为选项 B（有界冻结），需明确批准语：
-> `批准 BaZi 有界冻结 v1.0.0（接受 source_level_attributed）`。
+> 备选：若接受 5 条 GAP 的摘要式归属，可走有界冻结：
+> `批准 BaZi 有界冻结 v1.0.0（接受 5 条 source_level_attributed 边界）`。
