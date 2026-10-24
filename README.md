@@ -17,7 +17,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |----------|------|------|
 | Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
 | 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
-| 测试 | `tests/` + `reference/tests/` | **1071 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
+| 测试 | `tests/` + `reference/tests/` | **1087 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
 | Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
@@ -49,7 +49,7 @@ open-metaphysics/
 │   ├── inference/           # LLM 解释层（与计算核心严格隔离）
 │   ├── orchestration/       # LangGraph 编排
 │   ├── rag/                 # 检索器（Qdrant 可选，内存后备）
-│   └── mcp/                 # MCP 服务器桩
+│   └── mcp/                 # MCP stdio server（JSON-RPC，无外部 SDK）
 ├── reference/               # 规范性 Reference Runtime（行为规范，权威）
 │   ├── engine.py / parser.py / patterns.py / pattern_matcher.py
 │   ├── evidence*.py / knowledge*.py / consensus*.py / conformance*.py
@@ -59,7 +59,7 @@ open-metaphysics/
 │   ├── conformance/golden/  # 自动生成 Golden Vectors
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
-├── tests/                   # 生产测试（1073 collected / 1071 passed + 2 skipped）
+├── tests/                   # 生产测试（1089 collected / 1087 passed + 2 skipped）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -78,7 +78,7 @@ open-metaphysics/
 # 1. 安装依赖（自动创建 .venv）
 uv sync
 
-# 2. 运行全部测试（1071 passed + 2 skipped，2026-10-24）
+# 2. 运行全部测试（1087 passed + 2 skipped，2026-10-24）
 uv run pytest -q
 
 # 3. 启动 API（FastAPI, http://127.0.0.1:8000）
@@ -86,9 +86,9 @@ uv run openmetaphysics
 #   或: uv run uvicorn openmetaphysics.api.app:app --reload
 ```
 
-**无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务。
-`docker-compose.yml`（PostgreSQL+AGE / Qdrant / Valkey / Ollama）仅在未来
-RAG 与持久化阶段需要，当前可完全离线运行。
+**无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务，可完全离线运行。
+`docker-compose.yml` 提供 PostgreSQL / Qdrant / Valkey / Ollama 等可选服务；
+`--profile app` 可构建并启动 API（含 Postgres 会话/追踪持久化）。
 
 ### 快速体验
 
@@ -105,11 +105,12 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 | 命令 | 说明 |
 |------|------|
 | `uv sync` | 安装依赖 |
-| `uv run pytest -q` | 全量测试（1071 passed + 2 skipped，2026-10-24） |
+| `uv run pytest -q` | 全量测试（1087 passed + 2 skipped，2026-10-24） |
 | `uv run ruff check src/ tests/ reference/` | lint |
 | `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
 | `uv run openmetaphysics` | 启动 API |
 | `uv run python -m reference.demo` | Reference 演示 |
+| `uv run openmetaphysics-mcp` | MCP stdio server（JSON-RPC） |
 | `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |
 
 ## 规范与治理
