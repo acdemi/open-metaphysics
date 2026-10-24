@@ -28,6 +28,9 @@ class Settings(BaseModel):
     # Persistence (optional)
     postgres_dsn: str | None = None
 
+    # API (optional): comma-separated allowed origins for CORS
+    cors_origins: str | None = None
+
     # Orchestration
     default_strategy: str = "weighted"
 
