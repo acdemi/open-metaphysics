@@ -26,7 +26,7 @@
 > Certified 与生产运行时真实缺口；清理 12 条已合并分支、修正状态指针与 GAP 记录）
 > 2026-10-24（**Sprint 1 / ACP-KNOWLEDGE-001** —— YAML 固定 LF，Ziwei 冻结语料
 > digest `69d6e2a6…` → `93dba067…`（EOL 勘误，内容零变化）；Liuyao/BaZi/Qimen
-> 全量 digest 由测试锚定；Linux/LF 与 Windows 均可复现）
+> 全量 digest 由测试锚定；Linux/LF 与 Windows 均可复现；已合并 `a77c7f6`）
 
 ---
 
