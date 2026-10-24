@@ -604,7 +604,7 @@ def export_knowledge_contract(
     if output_path is not None:
         out = Path(output_path)
         out.parent.mkdir(parents=True, exist_ok=True)
-        with open(out, "w", encoding="utf-8") as f:
-            json.dump(contract, f, ensure_ascii=False, indent=2, sort_keys=True)
+        text = json.dumps(contract, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+        out.write_text(text, encoding="utf-8", newline="\n")
 
     return contract
