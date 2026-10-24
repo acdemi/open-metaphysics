@@ -7,7 +7,7 @@
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
 > **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
-> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`69d6e2a6…`），BaZi/Qimen/Liuyao **candidate**（`69b6edea…` / `40de5c45…` / `52efbff5…`）；**`ACP-KNOWLEDGE-001` PROPOSED** 修复 YAML EOL/digest 跨平台复现性
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`，2026-10-24 EOL 勘误），BaZi/Qimen/Liuyao **candidate**（`69b6edea…` / `40de5c45…` / `52efbff5…`）；`ACP-KNOWLEDGE-001` 已批准并实施（YAML LF 固定 + digest 重登记）
 
 ---
 
@@ -54,7 +54,7 @@
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
 | **Liuyao Domain** | **Integration Ready** | 契约 v1.0.0 Frozen（30 条）+ 25 向量 Frozen + Reference Certified（21/21 + 40/40）+ Freeze Review PASS；`ACP-LIUYAO-001` IMPLEMENTED |
-| **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `69d6e2a6…`, 2026-09-16; 变更须走 Corpus 级审查）+ Provenance AUDITED |
+| **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `93dba067…`，2026-10-24 EOL 勘误；变更须走 Corpus 级审查）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现（含缺陷），Phase 9 仅桩；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
 
@@ -120,7 +120,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；RAG 已接线（`rag/corpus.py:146-160` 灌入 + `rag/retriever.py:131-158`），四域 explainer 已接线（`inference/explainer.py:358-367`）；**剩余缺陷**：Qdrant 无 ingestion/旧 `client.search` API、provider HTTP 无离线测试、MCP 无 transport |
 | Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1026 collected / 1024 passed + 2 skipped**；Linux/LF 语料复现性缺陷见 `ACP-KNOWLEDGE-001`（PROPOSED）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1026 collected / 1024 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复（H7 合并待授权）。详见 §5.1。
 
 ---
 
@@ -130,7 +130,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 > **2026-10-24 当前口径**: 全仓 **1026 collected / 1024 passed + 2 skipped**
 > （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
-> `ACP-KNOWLEDGE-001`（PROPOSED），修复后须在 LF 工作区重跑全量。
+> `ACP-KNOWLEDGE-001` 已实施（H7 合并待授权）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
 
 | 类别 | 测试数 | 通过 | 失败 |
@@ -256,10 +256,11 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint（2026-10-24）**: 项目审计 + **Sprint 0 文档真实性收口**；**Sprint 1 提案
-`ACP-KNOWLEDGE-001`（知识语料 EOL/digest 跨平台复现性）已 PROPOSED，待人工批准**。
+**当前 Sprint（2026-10-24）**: Sprint 0 文档真实性收口（已完成）+ **Sprint 1
+`ACP-KNOWLEDGE-001` 知识语料 EOL/digest 复现性修复**（已批准并实施于
+`work/knowledge/eol-reproducibility`，**H7 合并待授权**）。
 最近完成：Liuyao 契约冻结与合并（`7a6d7bb` / 归档 `930ae70` / EOL `a27bb4a`）。
-历史 Sprint：Phase 7.1.6 Ziwei Corpus Freeze（`69d6e2a6…`，102/47/41），详见
+历史 Sprint：Phase 7.1.6 Ziwei Corpus Freeze（`69d6e2a6…` → 2026-10-24 EOL 勘误 `93dba067…`，102/47/41），详见
 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`。
 
 **Qimen Domain 状态**: **Frozen and Certified**（Integration Ready）
@@ -321,7 +322,7 @@ Proposal (ACP)。
 - Phase 7.1.3 补齐（Knowledge, 2026-09-16）: 关系层 `yinyong(5)` + `shuyu(5)`
   → 语料 **102/47/41**; 引文逐字 10/10 + 端点 10/10 PASS
 - **Phase 7.1.6 Corpus Freeze（Knowledge, 2026-09-16, D-12=A 批准）**:
-  `ziwei_corpus:v1.0.0` 正式冻结（102 节点 + 47 关系 + 41 引用, digest `69d6e2a6…`）;
+  `ziwei_corpus:v1.0.0` 正式冻结（102 节点 + 47 关系 + 41 引用, digest `69d6e2a6…`；后经 2026-10-24 EOL 勘误为 `93dba067…`）;
   Coverage Matrix §1/§2 无未闭合项，唯一引用缺口 GAP-02; 此后变更须走 **Corpus 级审查**;
   回归 **618/618**（2026-09-16 当时口径）。详见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`
 
@@ -369,8 +370,8 @@ Proposal (ACP)。
   `rule_contract.json` / `pattern_contract.json` + diff 测试）
 - **坏死/空转修复**：`ZiweiExplainer`/RAG 已接线（2026-10 合并）；剩余 Qdrant ingestion、
   provider HTTP 离线测试、MCP transport
-- **语料复现性**：`ACP-KNOWLEDGE-001`（PROPOSED）修复 YAML EOL + Ziwei digest 重登记 +
-  Liuyao digest 锚定
+- **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED，H7 合并待授权）修复 YAML EOL +
+  Ziwei digest 重登记 + Liuyao digest 锚定
 
 **P2 —— 主线候选（1~2 周，择一，需授权）**
 - **A（已完成）六爻域契约化**：Schema 定稿 → 规则清单 → 25 向量 → Freeze Review PASS
@@ -433,7 +434,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（1024 passed + 2 skipped，2026-10-24；LF 复现性待 ACP-KNOWLEDGE-001）
+uv run pytest -q                             # 运行全量测试（1024 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
 ```
 
 ---

@@ -28,10 +28,12 @@ ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 
-# digests recorded at freeze / P2.1 / P2.2 (must not change in P2.4)
-ZIWEI_DIGEST = "69d6e2a6b2f82d58292bfd11847aa7d26e2cd75eabda8cdbbbb67d4f6cc5f73d"
+# digests recorded at freeze / P2.1 / P2.2 / P2.3-P2.4; Ziwei re-registered by
+# ACP-KNOWLEDGE-001 EOL erratum (2026-10-24; content unchanged)
+ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
 BAZI_DIGEST = "69b6edeaab361ae7a27455c891acaaebeb260a5c17d0e067a1229c73542f8fcd"
 QIMEN_DIGEST = "40de5c455605e82a3031e4255f01bdb76e8ae7ba073a87e072239bb9adba3b3d"
+LIUYAO_DIGEST = "52efbff57c31e4d2a5bf8e79c7ed5eee948477d9b71ecbcb7a0fdb1b5e4c755a"
 
 REQUIRED_EIGHT_PALACES = {"乾宫", "坎宫", "艮宫", "震宫", "巽宫", "离宫", "坤宫", "兑宫"}
 REQUIRED_FIVE_RELATIVES = {"父母", "兄弟", "子孙", "妻财", "官鬼"}
@@ -575,6 +577,7 @@ def test_existing_corpora_are_untouched_by_p24() -> None:
         ZIWEI_CORPUS: ZIWEI_CORPUS.read_bytes(),
         BAZI_CORPUS: BAZI_CORPUS.read_bytes(),
         QIMEN_CORPUS: QIMEN_CORPUS.read_bytes(),
+        LIUYAO_CORPUS: LIUYAO_CORPUS.read_bytes(),
     }
 
     _run_pipeline()
@@ -582,18 +585,13 @@ def test_existing_corpora_are_untouched_by_p24() -> None:
     for path, payload in before.items():
         assert path.read_bytes() == payload, f"{path.name} changed"
 
-    # the recorded digests only match on the LF working copy (see .gitattributes:
-    # only knowledge/**/*.json is EOL-pinned, not the source YAML)
-    if not any(
-        b"\r\n" in p.read_bytes()
-        for p in (KNOWLEDGE_DIR / "sources" / "qimen").glob("*.yaml")
-    ):
-        assert hashlib.sha256(before[QIMEN_CORPUS]).hexdigest() == QIMEN_DIGEST
-    if not any(
-        b"\r\n" in p.read_bytes()
-        for p in (KNOWLEDGE_DIR / "sources" / "bazi").glob("*.yaml")
-    ):
-        assert hashlib.sha256(before[BAZI_CORPUS]).hexdigest() == BAZI_DIGEST
+    # knowledge/**/*.yaml is EOL-pinned (ACP-KNOWLEDGE-001, 2026-10-24):
+    # canonical digests on every checkout, asserted unconditionally; this also
+    # anchors the Liuyao corpus digest in governance.
+    assert hashlib.sha256(before[ZIWEI_CORPUS]).hexdigest() == ZIWEI_DIGEST
+    assert hashlib.sha256(before[BAZI_CORPUS]).hexdigest() == BAZI_DIGEST
+    assert hashlib.sha256(before[QIMEN_CORPUS]).hexdigest() == QIMEN_DIGEST
+    assert hashlib.sha256(before[LIUYAO_CORPUS]).hexdigest() == LIUYAO_DIGEST
 
 
 def test_liuyao_corpus_has_no_ascii_in_searchable_node_text() -> None:
