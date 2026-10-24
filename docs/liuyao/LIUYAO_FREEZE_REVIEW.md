@@ -158,5 +158,5 @@
 3. `CAPABILITY_STATUS.md` 等状态指针已升级为 `Integration Ready`。
 4. 全量验证见 `LIUYAO_INTEGRATION_READINESS.md` §4。
 
-**剩余**：按 H7 取得合并授权；合并前不 push origin。Liuyao 当前准确状态为
-**Integration Ready（Certified Frozen Capability）**。
+**合并**：已获 H7 授权并完成（`7a6d7bb`；归档 `930ae70`；EOL 固定 `a27bb4a`）。
+Liuyao 当前准确状态为 **Integration Ready（Certified Frozen Capability）**；不 push origin。

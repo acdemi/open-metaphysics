@@ -1,8 +1,9 @@
 # OpenMetaphysics — 开发路线图
 
-> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。Reference Freeze Candidate (2026-08-09)。
+> 分阶段交付。每个阶段都可以独立测试，交付后仓库保持可运行状态。
 > 包含两条时间线：Product Roadmap（Phase 0~9）和 Reference Runtime（Sprint 1~5.5）。
-> 当前开发位置：**Production Runtime 收口（P0 状态对齐 + 死代码清理；P1 可信度与治理债务）**（四大计算域 Qimen/BaZi/Ziwei/Liuyao 已 **Frozen & Certified / Integration Ready**；Knowledge Ziwei 语料 **FROZEN-v1.0.0**，102/47/41）。
+> 当前开发位置（2026-10-24）：四域计算域 **Integration Ready / Certified**；
+> Reference 最终冻结待 `ACP-REF-002`；知识语料复现性提案 `ACP-KNOWLEDGE-001` PROPOSED。
 
 ## A. 两条时间线
 
@@ -31,14 +32,16 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | Doc Refresh | Documentation Refresh (Architecture Governance) | 完成 | - |
 | Governance Sync | Governance Synchronization（Qimen 冻结后状态同步） | 完成 | - |
 | Phase 6.0 | Domain Capability Framework Standardization（生命周期标准 + 状态模型 + 模板 + 领域审计） | 完成 | - |
-| Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 进行中 | - |
+| Repository Hygiene | 标准环境（uv + Python 3.11）+ 文档刷新 | 完成（文档刷新持续） | - |
 
-**当前开发位置**: **Production Runtime 收口**（Qimen/BaZi/Ziwei/Liuyao 四大计算域已 Integration Ready / Certified；Knowledge Ziwei 语料已 Frozen v1.0.0）。详见
-`docs/PROJECT_REVIEW_2026-09-16.md` §4（P0/P1/P2 计划）与 `docs/PROJECT_STATUS.md` §4/§8。
+**当前开发位置**: 四域计算域已 **Integration Ready / Certified**（Qimen/BaZi/Ziwei/Liuyao）；
+Reference Runtime 最终冻结与 rule/pattern 契约补全见 `ACP-REF-002`（PROPOSED）；
+知识语料 EOL/digest 复现性见 `ACP-KNOWLEDGE-001`（PROPOSED）。现况以
+`docs/governance/CAPABILITY_STATUS.md` 与 `docs/PROJECT_STATUS.md` 为准；
+`docs/PROJECT_REVIEW_2026-09-16.md` 为历史快照。
 **领域能力标准已确立**: `docs/governance/CAPABILITY_LIFECYCLE.md`（6 状态 /
-5 阶段）。BaZi / Ziwei / Liuyao 已达 **Integration Ready**（生命周期终点）；
-Liuyao 契约 v1.0.0 **Frozen**（30 条）+ 25 向量 **Frozen** + Reference
-**Certified**（`ACP-LIUYAO-001`，2026-10-23）。
+5 阶段）。Qimen Certified；BaZi / Ziwei / Liuyao 已达 **Integration Ready**
+（生命周期终点）。
 
 **关键原则**: Reference Runtime 永远优先于 Production Runtime。任何正式
 实现必须以 Reference Runtime 的 Contract 和 Behavior 为唯一标准。

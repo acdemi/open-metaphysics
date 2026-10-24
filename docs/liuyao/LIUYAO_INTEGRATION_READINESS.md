@@ -14,8 +14,9 @@ Liuyao 已达成 **Integration Ready** 的全部条件：生产 Agent、领域 S
 API、编排、解释链路、知识语料、独立 Reference、Frozen 契约、25 向量与
 等价认证均已存在并通过测试。
 
-`ACP-LIUYAO-001` 已于 **2026-10-23** 获人工批准（D1-D4）并实施；当前唯一
-剩余动作是按 H7 取得合并授权。无新增算法代码。
+`ACP-LIUYAO-001` 已于 **2026-10-23** 获人工批准（D1-D4）并实施；后续已获
+H7 合并授权并完成收口（`7a6d7bb` / 归档 `930ae70` / EOL `a27bb4a`）。
+无新增算法代码。
 
 ---
 
@@ -123,8 +124,8 @@ collected）；`ruff check src reference tests tools` 通过；
 | 契约/向量 metadata → `frozen`；登记 SHA-256 | DONE |
 | 更新 `CAPABILITY_STATUS.md` 及 ROADMAP / PROJECT_STATUS / README / SCHEMAS / reference README / rule inventory | DONE |
 | 全量 pytest + ruff + validate | DONE（1024 + 2 skipped；ruff/validate PASS） |
-| 按 H7 取得合并授权后 `git merge --no-ff` | **PENDING USER AUTHORIZATION** |
-| 合并后向 `context/归档.md` 追加 ≤15 行 | PENDING |
+| 按 H7 取得合并授权后 `git merge --no-ff` | DONE（`7a6d7bb`，2026-10-23） |
+| 合并后向 `context/归档.md` 追加 ≤15 行 | DONE（`930ae70`） |
 
 合并后删除或保留分支由用户决定；不推送 origin。
 
@@ -138,4 +139,4 @@ collected）；`ruff check src reference tests tools` 通过；
 | 认证就绪 | CERTIFIED |
 | 治理就绪 | PASS（ACP-LIUYAO-001 IMPLEMENTED） |
 | 当前对外状态 | **Integration Ready（Certified Frozen Capability）** |
-| 合并状态 | **PENDING USER AUTHORIZATION（H7）** |
+| 合并状态 | **MERGED（`7a6d7bb`）+ 归档（`930ae70`）** |
