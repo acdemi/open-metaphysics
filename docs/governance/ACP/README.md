@@ -26,7 +26,7 @@
 | **`ACP-REF-001`** | **Conformance 行为覆盖与"空转检查"处置** | **IMPLEMENTED**（选项 A） | 2026-09-16 | `reference/conformance_runner.py`、`knowledge_behavior.py`、`consensus_behavior.py`、`conformance.py`（**CF-015 规范未改**） |
 | **`ACP-REF-002`** | **Reference Runtime 范围扩张追认与契约层补全** | **PROPOSED** | 2026-09-16 | `REFERENCE_RUNTIME_SPEC` §3.1/§3.2/§6.1/§10、`reference/contracts/` |
 | **`ACP-LIUYAO-001`** | **六爻行为契约冻结与 Reference 认证** | **IMPLEMENTED** | 2026-10-23 | `docs/liuyao/` 契约/25 向量、`reference/liuyao/`、`CAPABILITY_STATUS.md` |
-| **`ACP-KNOWLEDGE-001`** | **知识语料 EOL 固定与跨平台 digest 复现性修复** | **PROPOSED** | 2026-10-24 | `knowledge/**/*.yaml`、`knowledge/ziwei_corpus.json`、语料 digest 登记 |
+| **`ACP-KNOWLEDGE-001`** | **知识语料 EOL 固定与跨平台 digest 复现性修复** | **IMPLEMENTED** | 2026-10-24 | `knowledge/**/*.yaml`、`knowledge/ziwei_corpus.json`、语料 digest 登记 |
 
 ## 已实施（IMPLEMENTED）
 
@@ -44,12 +44,8 @@
 - **`ACP-REF-002`**：`REFERENCE_RUNTIME_SPEC` §3.2 把 KnowledgeStore / Consensus 列为
   *Out of Scope*「MUST NOT be added without ACP」，而二者**已实现且有 v1.0.0 契约**；
   同时缺 `rule_contract.json` / `pattern_contract.json`。需裁定：追认 + 修订规范 + 补契约。
-- **`ACP-KNOWLEDGE-001`**：固定 `knowledge/**/*.yaml` 为 LF；在 LF 工作区重新登记
-  `ziwei_corpus` digest（`69d6e2a6…` → `93dba067…`，内容零变化）；修复 Linux/LF 下
-  测试重写冻结语料与门控方向；补 BaZi/Qimen/Liuyao 全量 digest 锚定。
-> `ACP-REF-001` 已实施且**未触碰 CF-015 规范**；`ACP-REF-002` 与
-> `ACP-KNOWLEDGE-001` 均未实施：获批前仓库对 `docs/specification/` 与
-> `knowledge/ziwei_corpus.json`（冻结件）保持零改动。
+> `ACP-REF-001` 已实施且**未触碰 CF-015 规范**；`ACP-REF-002` 仍未实施：
+> 获批前仓库对 `docs/specification/` 保持零改动。
 
 ### `ACP-LIUYAO-001`（2026-10-23，D1-D4 批准并实施）
 
@@ -59,3 +55,11 @@
 - Liuyao 已升级为 **Integration Ready（Certified Frozen Capability）**；全量
   回归 1024 passed + 2 skipped。
 - **合并状态**：已获 H7 授权并合并（`7a6d7bb`）；归档 `930ae70`；EOL 固定 `a27bb4a`；未推送 origin。
+
+### `ACP-KNOWLEDGE-001`（2026-10-24，D1-D4 批准并实施）
+
+- `.gitattributes` 增加 `knowledge/**/*.yaml text eol=lf`；LF 工作区重生成
+  `ziwei_corpus.json`：digest `69d6e2a6…` → **`93dba067…`**（内容/计数零变化）。
+- 测试门控改为无条件 digest 断言；Ziwei/BaZi/Qimen/Liuyao 四域 digest 均被锚定。
+- 修复 Linux/LF 下 pipeline 重写冻结语料并失败的问题。
+- **合并状态**：待 H7 用户授权；未推送 origin。
