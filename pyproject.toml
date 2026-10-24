@@ -28,6 +28,7 @@ dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
 openmetaphysics = "openmetaphysics.api.__main__:main"
+openmetaphysics-mcp = "openmetaphysics.mcp.server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
