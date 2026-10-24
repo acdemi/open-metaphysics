@@ -25,6 +25,20 @@ def test_knowledge_search_empty_query() -> None:
     assert response.json()["chunks"] == []
 
 
+def test_knowledge_corpora_stats() -> None:
+    response = client.get("/knowledge/corpora")
+    assert response.status_code == 200
+    corpora = response.json()["corpora"]
+    assert {c["corpus_id"] for c in corpora} == {
+        "ziwei_corpus",
+        "bazi_corpus",
+        "qimen_corpus",
+        "liuyao_corpus",
+    }
+    assert all(c["status"] == "frozen" for c in corpora)
+    assert all(c["counts"]["nodes"] > 0 for c in corpora)
+
+
 def test_knowledge_search_invalid_422() -> None:
     response = client.post("/knowledge/search", json={"k": 3})
     assert response.status_code == 422
