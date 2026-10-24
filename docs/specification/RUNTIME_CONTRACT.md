@@ -464,13 +464,16 @@ Each model in `models` **MUST** include:
 
 | Contract | File | Version | Status | Sprint |
 |----------|------|---------|--------|--------|
+| Rule Layer | `reference/contracts/rule_contract.json` | 1.0.0 | Active | Sprint 1 |
+| Pattern Layer | `reference/contracts/pattern_contract.json` | 1.0.0 | Active | Sprint 2 |
 | Evidence Layer | `reference/contracts/evidence_contract.json` | 1.0.0 | Active | Sprint 3 |
-| Rule Layer | (future) | - | Planned | - |
-| Pattern Layer | (future) | - | Planned | - |
-| Consensus Layer | (future) | - | Planned | - |
+| Knowledge Layer | `reference/contracts/knowledge_contract.json` | 1.0.0 | Active | Sprint 4 |
+| Consensus Layer | `reference/contracts/consensus_contract.json` | 1.0.0 | Active | Sprint 5 |
 
 Future contracts **MUST** follow the same format, governance, and
 auto-generation rules defined in this document.
+As of ACP-REF-002 (2026-10-24) all five layers are Active and the
+contract/golden files are canonical LF.
 
 ---
 
@@ -479,3 +482,4 @@ auto-generation rules defined in this document.
 | Date | Version | Change |
 |------|---------|--------|
 | 2026-07-12 | 1.0.0 | Initial creation - Contract lifecycle and governance defined |
+| 2026-10-24 | 1.1.0 | ACP-REF-002: Rule/Pattern contracts added; 5-layer inventory complete; canonical LF for contract files |

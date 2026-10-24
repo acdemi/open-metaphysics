@@ -1,6 +1,7 @@
 # Reference Runtime Specification (Normative)
 
 > **Status**: Normative — Binding on all implementations.
+> **Spec version**: **1.1.0**（2026-10-24，ACP-REF-002 范围追认与契约补全）
 > **Authority**: Highest priority in the open-metaphysics project.
 > **Phase**: 6B Sprint 3.5 — Normative Reference Runtime Upgrade.
 > **Keywords**: This document uses RFC 2119 keywords (**MUST**, **MUST NOT**,
@@ -70,13 +71,21 @@ The Reference Runtime covers the following components:
 reference/
 ├── models.py            Phase 6 Pydantic models (Rule layer)
 ├── parser.py            DSL Parser: YAML → Rule (with DNF expansion)
-├── engine.py            RuleEngine: Rule × chart-data → RuleEvaluation
+├── engine.py            RuleEngine + Rule Contract export
 ├── patterns.py          Pattern models + YAML parser
-├── pattern_matcher.py   PatternMatcher: Pattern × RuleEvaluation[] → PatternMatch
+├── pattern_matcher.py   PatternMatcher + Pattern Contract export
 ├── evidence.py          Evidence domain models + Knowledge protocol
-├── evidence_builder.py  EvidenceBuilder + Contract export
-├── contracts/
-│   └── evidence_contract.json   Auto-generated Architecture Contract
+├── evidence_builder.py  EvidenceBuilder + Evidence Contract export
+├── knowledge.py         KnowledgeStore (ratified by ACP-REF-002)
+├── knowledge_query.py   Knowledge queries + Knowledge Contract export
+├── consensus.py         Consensus models (ratified by ACP-REF-002)
+├── consensus_builder.py ConsensusBuilder + Consensus Contract export
+├── consensus_behavior.py CS-001~025 behavior validators
+├── conformance.py       Conformance models + RuntimeAdapter protocol
+├── conformance_runner.py ConformanceRunner + golden-vector generation
+├── contracts/           Auto-generated Architecture Contracts (5 layers)
+├── conformance/golden/  Auto-generated Golden Vectors (5 layers)
+├── {qimen,bazi,ziwei,liuyao}/  Domain Reference implementations
 └── examples/            Golden example YAML files (rules + patterns)
 ```
 
@@ -88,15 +97,21 @@ reference/
 | Rule Engine | `reference/engine.py` | Sprint 1 | 29 |
 | Pattern Matcher | `reference/pattern_matcher.py` | Sprint 2 | 31 |
 | Evidence Layer | `reference/evidence.py` + `reference/evidence_builder.py` | Sprint 3 | 46 |
-| **Total** | | | **106** |
+| Knowledge Store | `reference/knowledge.py` + `reference/knowledge_query.py` | Sprint 4 | 71 |
+| Consensus Engine | `reference/consensus.py` + `reference/consensus_builder.py` + `reference/consensus_behavior.py` | Sprint 5 | 70 |
+| Conformance Framework | `reference/conformance.py` + `reference/conformance_runner.py` | Sprint 5.5 | 57 |
+| Domain References | `reference/{qimen,bazi,ziwei,liuyao}/` | Phase 5~7 | 48 |
+| **Total** | | | **352** |
 
-### 3.2 Out of Scope (Sprint 3.5)
+> History: before ACP-REF-002 this inventory listed only Rule/Pattern/Evidence
+> (106 tests) and treated Knowledge/Consensus as out of scope. The expansion
+> happened in Sprints 4/5/5.5 and is ratified by ACP-REF-002 (2026-10-24).
+
+### 3.2 Out of Scope
 
 The following are **NOT** part of the Reference Runtime and **MUST NOT**
 be added without an Architecture Change Proposal (see Section 8):
 
-- KnowledgeStore implementation
-- Consensus Engine
 - Explain Engine
 - RAG / Vector search
 - Graph database integration
@@ -199,10 +214,11 @@ If a formal implementation fails conformance:
 | Rule Engine | `reference/engine.py` | Rust |
 | Pattern Matcher | `reference/pattern_matcher.py` | Rust |
 | Evidence Builder | `reference/evidence_builder.py` | Rust |
-| Consensus Engine | (not yet implemented) | Go |
-| Knowledge Service | (not yet implemented) | Go |
-| Explain / LLM | (not yet implemented) | Python |
-| Frontend | (not yet implemented) | TypeScript |
+| Knowledge Service | `reference/knowledge.py` + `reference/knowledge_query.py` | Go |
+| Consensus Engine | `reference/consensus.py` + `reference/consensus_builder.py` | Go |
+| Conformance Framework | `reference/conformance.py` + `reference/conformance_runner.py` | Any (adapter-based) |
+| Explain / LLM | (not part of Reference Runtime) | Python |
+| Frontend | (not part of Reference Runtime) | TypeScript |
 
 ### 6.2 Contract Boundary
 
@@ -382,3 +398,4 @@ ACP:
 | Date | Version | Change |
 |------|---------|--------|
 | 2026-07-12 | 1.0.0 | Initial creation — Sprint 3.5 Normative Reference Runtime Upgrade |
+| 2026-10-24 | 1.1.0 | ACP-REF-002: ratify KnowledgeStore/Consensus scope expansion (Sprints 4/5/5.5); add Rule/Pattern contracts to the Contract layer; implement Conformance CF-016~CF-019; canonical LF for `reference/contracts/**` and `reference/conformance/golden/**` |
