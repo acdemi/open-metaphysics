@@ -30,7 +30,7 @@ ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 # digests recorded at freeze / P2.1 (must not change in P2.2; Ziwei digest
 # re-registered by ACP-KNOWLEDGE-001 EOL erratum, 2026-10-24, content unchanged)
 ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
-BAZI_DIGEST = "165047e06b024378a30e96848938f3bc2032b7684ecf84f70c90813d2f8ee628"
+BAZI_DIGEST = "488ce51099c18546aa693d364954cf1adf25b5ddb29921469d1c57a9e195f4ea"
 
 REQUIRED_NINE_PALACES = {
     "坎一宫",

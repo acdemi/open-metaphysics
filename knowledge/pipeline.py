@@ -63,9 +63,11 @@ DOMAINS: dict[str, DomainSpec] = {
     ),
     "bazi": DomainSpec(
         corpus_id="bazi_corpus",
-        status="candidate",
-        version="0.1.0",
-        pipeline="knowledge/pipeline.py (P2.1 BaZi Knowledge Integration)",
+        status="frozen",
+        version="1.0.0",
+        # 2026-10-24 bounded freeze: 9/14 refs verbatim; 5 convention-level
+        # (see BAZI_CORPUS_FREEZE_REVIEW.md). Changes now go through review.
+        pipeline="knowledge/pipeline.py (P2.1 BaZi Knowledge Integration; frozen v1.0.0)",
     ),
     "qimen": DomainSpec(
         corpus_id="qimen_corpus",
