@@ -86,6 +86,16 @@ uv run openmetaphysics
 #   或: uv run uvicorn openmetaphysics.api.app:app --reload
 ```
 
+**可选环境变量**：
+
+| 变量 | 用途 |
+|------|------|
+| `OM_ENABLE_EXPLAINER` | 启用 LLM 解释（默认关闭；离线确定性后备） |
+| `OM_INFERENCE_PROVIDER` | `ollama` / `qwen` / `deepseek` |
+| `OM_RAG_ENABLED` / `OM_QDRANT_URL` | 启用 Qdrant 检索（默认 InMemory） |
+| `OM_POSTGRES_DSN` | 会话/追踪持久化（缺省回退内存） |
+| `OM_CORS_ORIGINS` | 允许跨域来源（逗号分隔；默认关闭） |
+
 **无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务，可完全离线运行。
 `docker-compose.yml` 提供 PostgreSQL / Qdrant / Valkey / Ollama 等可选服务；
 `--profile app` 可构建并启动 API（含 Postgres 会话/追踪持久化）。
