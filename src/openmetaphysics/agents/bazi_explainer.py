@@ -197,8 +197,12 @@ class BaziExplainer(Explainer):
             dominant_hidden = hidden_stems[0] if hidden_stems else ""
             pattern_ten_god = chart.ten_gods_map.get(dominant_hidden, "未知格局")
 
-            # Find current dayun (first entry is the first, approximate)
-            current_dayun = f"{chart.dayun[0].stem}{chart.dayun[0].branch}" if chart.dayun else "无"
+            # Current dayun = the window containing the computation instant.
+            # Deterministic for a given output; never "the first step".
+            computed_at = output.computed_at
+            started = [d for d in chart.dayun if d.start_at <= computed_at]
+            current = started[-1] if started else (chart.dayun[0] if chart.dayun else None)
+            current_dayun = f"{current.stem}{current.branch}" if current else "无"
 
             fallback = (
                 f"此命造日主【{chart.day_master}】生于【{mp.stem}{mp.branch}】，"
