@@ -49,6 +49,8 @@ class SessionStore(Protocol):
 
     def get_traces(self, request_id: str) -> list[dict[str, Any]]: ...
 
+    def list_sessions(self) -> list[dict[str, Any]]: ...
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -82,6 +84,12 @@ class InMemorySessionStore:
 
     def get_traces(self, request_id: str) -> list[dict[str, Any]]:
         return list(self._traces.get(request_id, []))
+
+    def list_sessions(self) -> list[dict[str, Any]]:
+        return [
+            {"request_id": request_id, "created_at": session["created_at"]}
+            for request_id, session in self._sessions.items()
+        ]
 
 
 class SqlAlchemySessionStore:
@@ -162,6 +170,15 @@ class SqlAlchemySessionStore:
                 .order_by(self._traces.c.id)
             ).all()
         return [{"agent": row.agent, "steps": row.steps} for row in rows]
+
+    def list_sessions(self) -> list[dict[str, Any]]:
+        with self._engine.connect() as conn:
+            rows = conn.execute(
+                select(self._sessions.c.request_id, self._sessions.c.created_at).order_by(
+                    self._sessions.c.created_at.desc()
+                )
+            ).all()
+        return [{"request_id": row.request_id, "created_at": row.created_at} for row in rows]
 
 
 def _normalize_dsn(dsn: str) -> str:
