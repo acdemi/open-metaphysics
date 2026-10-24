@@ -18,7 +18,7 @@
 
 ## 1. 范围
 
-- **语料域**: Ziwei（冻结 v1.0.0）+ BaZi（P2.1 候选 0.1.0）+ Qimen（P2.2 候选 0.1.0）
+- **语料域**: Ziwei（冻结 v1.0.0）+ BaZi（**有界冻结 v1.0.0**，2026-10-24）+ Qimen（P2.2 候选 0.1.0）
   + Liuyao（P2.3/P2.4 候选 0.2.0）。
 - **Ziwei 演进**: Phase 7.0 试点（20 节点/12 关系/3 引用，验证 Pipeline）→
   Phase 7.1.1~7.1.6 全量建设（核心词汇 → 天干/地支/关系/引用扩展）→
@@ -103,7 +103,7 @@ knowledge/
 | 语料 | 状态 | nodes | relations | references |
 |------|------|-------|-----------|------------|
 | `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
-| `bazi_corpus` | candidate 0.1.0 (digest `165047e0…`) | 40 | 67 | 14 |
+| `bazi_corpus` | frozen 1.0.0（有界证据；digest `488ce510…`） | 40 | 67 | 14 |
 | `qimen_corpus` | candidate 0.1.0 (digest `abdc2080…`) | 47 | 60 | 15 |
 | `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
 
@@ -175,7 +175,7 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 - ❌ 不修改已冻结的 Ziwei 语料（P2.1 / P2.2 / P2.3 / P2.4 均未改动内容）；
   2026-10-24 经 `ACP-KNOWLEDGE-001` 仅做 EOL/digest 勘误（内容零变化），digest 由
   `69d6e2a6…` 变为 `93dba067…`；BaZi 与 Qimen 语料在 P2.4 及本次勘误中逐字节未变
-  （BaZi 另于 2026-10-24 H6 证据扩展后重生成，digest `165047e0…`，见 §7）
+  （BaZi 另于 2026-10-24 H6 证据扩展后重生成并**有界冻结 v1.0.0**，digest `488ce510…`，见 §7 与 `BAZI_CORPUS_FREEZE_REVIEW.md`）
 - ❌ 可检索节点文本（`name_cn + interpretation`）不写 ASCII 技术标识符：字符级评分
   的稀有度权重（`1 + ln(N/df)`）会把 "engine" / "normative" 一类拉丁词当成极稀有
   「字符」，压过真正的中文术语命中。技术字段写进 `attributes` / `tags` / `name_en`。
