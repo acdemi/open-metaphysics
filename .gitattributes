@@ -4,6 +4,9 @@ context/*.md text eol=crlf
 # knowledge 语料 JSON/YAML: 规范 LF 存储（消除 sha 口径歧义, 2026-08-25; YAML 由 ACP-KNOWLEDGE-001 于 2026-10-24 补齐）
 knowledge/**/*.json text eol=lf
 knowledge/**/*.yaml text eol=lf
+# Reference contracts / conformance golden vectors: canonical LF (ACP-REF-002, 2026-10-24)
+reference/contracts/** text eol=lf
+reference/conformance/golden/** text eol=lf
 # Liuyao contract artifacts: canonical LF (SHA-256 evidence, 2026-10-23)
 docs/liuyao/** text eol=lf
 reference/liuyao/** text eol=lf
