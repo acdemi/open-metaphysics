@@ -53,9 +53,17 @@
 | B | **有界冻结**：以 `source_level_attributed` 冻结 `bazi_corpus:v1.0.0`，在冻结记录中显式声明“摘要式归属、无逐字回执”、列明 4 条已核章节与全部 GAP | 可立即收口，但降低证据等级；须人工明确接受 |
 | C | 维持 candidate | 不计入冻结域；继续以候选状态使用 |
 
-## 5. 建议
+## 5. 裁定与后续（2026-10-24）
 
-选 **A**：BaZi 内容（十神/干支/合冲刑害）本身已由引擎与测试锁定，缺的是**来源逐字回执**；
-完成 10 条核验即可达到与 Liuyao 同级证据，不建议为提前收口而降低 H5 标准。
+**人工裁定：选 A（推迟冻结）**。BaZi 维持 `candidate`；待 H6 授权窗口内完成 10 条
+摘要引用的 revision-pinned 逐字核验后，再按 7.1.6 流程提交冻结评审。
 
-若选 B，需在批准语中明确：`批准 BaZi 有界冻结 v1.0.0（接受 source_level_attributed）`。
+| 步骤 | 状态 |
+|------|------|
+| 维持 `bazi_corpus:0.1.0 (candidate)` | DONE |
+| H6 授权 + revision-pinned 抓取 | PENDING（需人工授权） |
+| 10 条摘要引用逐字核验回执 | PENDING |
+| 冻结评审 + 人工批准 | PENDING |
+
+> 若后续改为选项 B（有界冻结），需明确批准语：
+> `批准 BaZi 有界冻结 v1.0.0（接受 source_level_attributed）`。
