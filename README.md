@@ -45,7 +45,7 @@ open-metaphysics/
 │   │                        # engines（BaseAgent）、models、schemas、config
 │   ├── domain/qimen/        # Qimen 域建模（types / abi / adapter / structural）
 │   ├── contracts/           # qimen_contract.py + JSON Schema
-│   ├── api/                 # FastAPI（health/agents/schema/compute/explain/orchestrate）+ CLI
+│   ├── api/                 # FastAPI（health/agents/schema/compute/explain/orchestrate/sessions/traces/consensus）+ CLI
 │   ├── inference/           # LLM 解释层（与计算核心严格隔离）
 │   ├── orchestration/       # LangGraph 编排
 │   ├── rag/                 # 检索器（Qdrant 可选，内存后备）
@@ -99,6 +99,11 @@ uv run python -m reference.demo
 
 # API 示例（排八字）
 curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: application/json" -d '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}'
+
+# 离线 CLI（无需启动服务器）
+uv run openmetaphysics-cli agents
+uv run openmetaphysics-cli compute bazi --input '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}'
+uv run openmetaphysics-cli compute bazi --input '{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male"}' --explain
 ```
 
 ## 常用命令
@@ -112,6 +117,7 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 | `uv run openmetaphysics` | 启动 API |
 | `uv run python -m reference.demo` | Reference 演示 |
 | `uv run openmetaphysics-mcp` | MCP stdio server（JSON-RPC） |
+| `uv run openmetaphysics-cli compute bazi --input '{...}'` | 离线计算（`--explain` 附解释链） |
 | `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |
 
 ## 规范与治理

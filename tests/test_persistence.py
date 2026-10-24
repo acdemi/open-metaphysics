@@ -23,6 +23,7 @@ def test_inmemory_roundtrip() -> None:
     assert store.get_traces("r1") == [{"agent": "bazi", "steps": [{"step": 1}]}]
     assert store.get_session("missing") is None
     assert store.get_traces("missing") == []
+    assert [s["request_id"] for s in store.list_sessions()] == ["r1"]
 
 
 def test_sqlalchemy_sqlite_persists_across_instances(tmp_path) -> None:
@@ -40,6 +41,7 @@ def test_sqlalchemy_sqlite_persists_across_instances(tmp_path) -> None:
     assert session is not None
     assert session["response"]["value"] == 3
     assert second.get_traces("r2") == [{"agent": "ziwei", "steps": [{"step": 1}, {"step": 2}]}]
+    assert [s["request_id"] for s in second.list_sessions()] == ["r2"]
 
 
 def test_create_store_defaults_to_memory() -> None:
@@ -65,6 +67,9 @@ def test_compute_persists_session_and_traces() -> None:
     assert traces[0]["steps"], "reasoning trace must be persisted"
 
     assert client.get("/sessions/p1").status_code == 200
+    listing = client.get("/sessions")
+    assert listing.status_code == 200
+    assert listing.json()["sessions"][0]["request_id"] == "p1"
     trailer = client.get("/traces/p1")
     assert trailer.status_code == 200
     assert trailer.json()["traces"][0]["agent"] == "bazi"
