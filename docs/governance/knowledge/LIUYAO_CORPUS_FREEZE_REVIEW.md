@@ -1,9 +1,11 @@
 # Liuyao Corpus Freeze Review（六爻语料冻结审查）
 
-> **Status**: **PASS — 建议冻结**（待人工批准；批准前不得改 `liuyao_corpus` metadata/digest）
+> **Status**: **PASS / FROZEN**（2026-10-24 人工批准“只冻结 Liuyao”；已实施）
 > **Date**: 2026-10-24
 > **Domain**: Knowledge / Liuyao
 > **方案**: `liuyao_corpus:0.2.0 (candidate)` → **`liuyao_corpus:1.0.0 (frozen)`**
+> **冻结 digest**: `3a09a08eccd72a24363b64fa28fee4d01f80a4bfae8d4a366ae75360e2c8a53b`
+> **冻结记录**: `KNOWLEDGE_PHASE_LIUYAO_CORPUS_FREEZE.md`
 > **依据**: `KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` §2 变更流程
 > **输入**: `knowledge/liuyao_corpus.json`、`knowledge/corpus/liuyao/**`、
 > `knowledge/sources/liuyao/source_liuyao_01.yaml`
@@ -60,16 +62,16 @@
 | 定向测试 | `tests/test_liuyao_knowledge_corpus.py` **79 passed** |
 | 当前 metadata | `status: candidate`、`version: 0.2.0` |
 
-## 5. 冻结变更提案（批准后实施）
+## 5. 冻结变更与实施记录（2026-10-24）
 
-1. `knowledge/pipeline.py` 的 `DOMAINS["liuyao"]`：`status: frozen`、`version: 1.0.0`。
-2. 重生成 `knowledge/liuyao_corpus.json`：metadata 两字段变化；nodes/relations/references
-   **逐对象零变化**；新 digest 于实施时登记。
-3. 更新测试常量：`tests/test_liuyao_knowledge_corpus.py` 的 `LIUYAO_DIGEST` 与
-   `status`/`version` 断言；其余 corpus digest 锚定不变。
-4. 新增 `KNOWLEDGE_PHASE_LIUYAO_CORPUS_FREEZE.md` 冻结记录（对齐 7.1.6 格式）。
-5. 状态指针：`knowledge/README.md`、`CAPABILITY_STATUS.md`、`PROJECT_STATUS.md`、
-   `docs/governance/项目进展梳理.md` 的 Liuyao corpus 行。
-6. 门槛复跑：pipeline 双跑、validate、定向 + 全量 pytest、ruff。
+| 步骤 | 状态 |
+|------|------|
+| `pipeline.py` `DOMAINS["liuyao"]` → `frozen` / `1.0.0` | DONE |
+| 重生成 `liuyao_corpus.json`（metadata 变化；内容逐对象零变化） | DONE（digest `3a09a08e…`） |
+| 测试常量与 status/version 断言更新 | DONE |
+| `KNOWLEDGE_PHASE_LIUYAO_CORPUS_FREEZE.md` 冻结记录 | DONE |
+| 状态指针（knowledge/README、CAPABILITY_STATUS、PROJECT_STATUS、项目进展梳理） | DONE |
+| 门槛复跑（pipeline 双跑 / validate / 定向 + 全量 pytest / ruff） | DONE |
+| H7 合并 | 待授权 |
 
-**批准语**：`批准 Liuyao 语料冻结 v1.0.0。`
+**用户裁定**：只冻结 Liuyao；BaZi 推迟（`BAZI_CORPUS_FREEZE_READINESS.md` 选 A）。

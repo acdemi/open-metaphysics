@@ -33,7 +33,7 @@ QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
 BAZI_DIGEST = "69b6edeaab361ae7a27455c891acaaebeb260a5c17d0e067a1229c73542f8fcd"
 QIMEN_DIGEST = "40de5c455605e82a3031e4255f01bdb76e8ae7ba073a87e072239bb9adba3b3d"
-LIUYAO_DIGEST = "52efbff57c31e4d2a5bf8e79c7ed5eee948477d9b71ecbcb7a0fdb1b5e4c755a"
+LIUYAO_DIGEST = "3a09a08eccd72a24363b64fa28fee4d01f80a4bfae8d4a366ae75360e2c8a53b"
 
 REQUIRED_EIGHT_PALACES = {"乾宫", "坎宫", "艮宫", "震宫", "巽宫", "离宫", "坤宫", "兑宫"}
 REQUIRED_FIVE_RELATIVES = {"父母", "兄弟", "子孙", "妻财", "官鬼"}
@@ -201,8 +201,8 @@ def test_liuyao_corpus_artifact_exists_and_loads() -> None:
     meta = doc["metadata"]
     assert meta["corpus_id"] == "liuyao_corpus"
     assert meta["domain"] == "liuyao"
-    assert meta["status"] == "candidate", "P2.4 corpus remains a candidate, not frozen"
-    assert meta["version"] == "0.2.0"
+    assert meta["status"] == "frozen", "Liuyao corpus was frozen at v1.0.0 (2026-10-24)"
+    assert meta["version"] == "1.0.0"
     assert meta["counts"] == {"nodes": 61, "relations": 66, "references": 41}
     assert len(doc["nodes"]) == 61
     assert len(doc["relations"]) == 66
