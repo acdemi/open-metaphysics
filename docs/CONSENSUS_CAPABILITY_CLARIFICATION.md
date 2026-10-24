@@ -4,7 +4,7 @@
 > 保留 Cross-Modal `ConsensusAgent`，并行新增 Evidence 生产引擎（不替换、不重命名）。
 > **日期**: 2026-09-16 · **阶段**: Phase C4 · **基线**: `main`
 > **2026-10-24 更新**: A1 等价实现（`498189a`）已 cherry-pick 到
-> `work/consensus/evidence-engine`，补 RuntimeAdapter/包导出接线后待 H7 合并。
+> `work/consensus/evidence-engine`，补 RuntimeAdapter/包导出接线后已合并（`b0ce66f`）。
 
 ## 0. 结论（一句话）
 
@@ -104,7 +104,7 @@ conformance **CONSENSUS 层**（`reference/conformance/golden/consensus_vectors.
 
 > 2026-10-24 实施：`498189a` cherry-pick 为 `work/consensus/evidence-engine`；
 > 补 `build_consensus` + `ConsensusConclusion` runtime alignment + 包导出；
-> 等价 52 输入、冻结向量 3/3 复放一致；待 H7 合并。
+> 等价 52 输入、冻结向量 3/3 复放一致；已合并 `b0ce66f`（2026-10-24）。
 
 ## 8. 判定
 
