@@ -168,7 +168,7 @@
 | D4 CAPABILITY_STATUS 等状态指针 → Integration Ready | DONE |
 | ACP README 登记 → IMPLEMENTED | DONE |
 | 全量 pytest / ruff / validate | DONE |
-| 合并（H7） | **PENDING USER AUTHORIZATION** |
+| 合并（H7） | DONE（`7a6d7bb`，2026-10-23；归档 `930ae70`；EOL `a27bb4a`） |
 
 冻结工件摘要见 `LIUYAO_REFERENCE_CERTIFICATION.md` §5；合并前不得推送 origin。
 

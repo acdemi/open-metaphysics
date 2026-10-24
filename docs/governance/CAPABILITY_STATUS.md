@@ -22,6 +22,9 @@
 > 契约 v1.0.0 **Frozen**（30 条）+ 25 Golden Vectors **Frozen** +
 > Reference **Certified**；Freeze Review / Audit PASS。Liuyao 状态升级
 > **Integration Ready（Certified Frozen Capability）**）
+> 2026-10-24（**项目审计 + Sprint 0 真实性收口** —— 复核四域 Integration Ready /
+> Certified 与生产运行时真实缺口；`ACP-KNOWLEDGE-001`（语料 EOL/digest 复现性）
+> PROPOSED；清理 12 条已合并分支、修正状态指针与 GAP 记录）
 
 ---
 
@@ -69,11 +72,11 @@
 > 统一规则 起宫 丑/辰/亥/午/酉 + 步长 2/3/3/3/3）、ACP-ZW-002（廉贞 -8）、
 > ACP-ZW-003（输入校验显式化）、ACP-ZW-004（sxtwl==2.0.7 pin）全部
 > **IMPLEMENTED**（记录: `docs/governance/ACP/`）; Engine **v0.3.0**;
-> 快照/校验测试迁移; 全仓库 578/578 全绿; Ziwei 规则集无 ACP 阻塞,
+> 快照/校验测试迁移; 全仓库 578/578 全绿（2026-08-13 当时口径，现为 1026 collected / 1024 passed + 2 skipped）; Ziwei 规则集无 ACP 阻塞,
 > Phase 6.7.2 向量生成可按修订规则集启动。状态维持 **Implemented**。
 > **Phase 6.7.2**: Golden Vector 生成（2026-08-13）—— 24 个规范性向量
 > `docs/ziwei/golden_vectors.json`（Engine v0.3.0 输出生成, status=candidate,
-> 17/17 规则覆盖 + A-1/A-2 专项 PASS）+ 回归测试 7 例; 全仓库 585/585 全绿。
+> 17/17 规则覆盖 + A-1/A-2 专项 PASS）+ 回归测试 7 例; 全仓库 585/585 全绿（2026-08-13 当时口径）。
 > 状态维持 **Implemented**。
 > **Phase 6.7.3**: Freeze Review & Gate（2026-08-13）—— 证据审查 6/6 PASS;
 > 边界裁定 A-3/A-4/A-6/A-7 全部 **FROZEN**（显式声明）; 17 规则终态
@@ -428,7 +431,7 @@ D1-D4 批准；完整生命周期 Stage 0→4）
 - ~~领域专属 Schema 定义~~ → **已完成**（`docs/SCHEMAS.md §3.4`）
 - ~~规则清单 + Golden Vectors → Reference 独立实现 → 等价认证~~ → **已完成**（Phase B，2026-09-16）
 - ~~ACP 批准 + 冻结 metadata + 认证生效 + 状态升级~~ → **已完成**（2026-10-23）。
-- 剩余：按 H7 取得合并授权；合并后归档 ≤15 行。不推送 origin。
+- 合并收口：已获 H7 授权，合并 `7a6d7bb`、归档 `930ae70`、EOL 固定 `a27bb4a`（2026-10-23）。未推送 origin。
 - 文档：`ROADMAP` / `PROJECT_STATUS` / `README` / `SCHEMAS` / `reference/liuyao/README.md`
   / 规则清单已同步为 Integration Ready（见 `docs/liuyao/LIUYAO_INTEGRATION_READINESS.md` §5）。
 

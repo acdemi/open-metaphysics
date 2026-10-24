@@ -1,20 +1,22 @@
 # OpenMetaphysics — 架构设计
 
 > 完全本地运行、隐私保护、多智能体命理推理框架
-> 状态：Reference Freeze Candidate (2026-08-09)
-> Qimen Domain: **Frozen and Certified**（契约 v1.0.0 + Reference 认证）
+> 状态：四域计算域 Integration Ready / Certified（2026-10-24）
+> Qimen **Frozen + Certified**；BaZi / Ziwei / Liuyao **Integration Ready**
 > Reference Runtime 已成为行为规范（Normative Reference Implementation）
 
-## 0. 当前架构状态（Reference Freeze Candidate + Qimen Certified）
+## 0. 当前架构状态（四域 Integration Ready / Certified）
 
-OpenMetaphysics 项目当前处于 **Reference Freeze Candidate** 阶段。
+OpenMetaphysics 项目当前处于 **计算域收口完成、Reference Runtime 最终冻结待
+`ACP-REF-002`** 阶段。
 
-**Qimen 域已完成完整生命周期**（Domain Calculation Layer → Behavior Contract
-Layer → Reference Verification Layer），状态为 **Frozen and Certified**：
-- 行为契约 `QIMEN_BEHAVIOR_CONTRACT.md` v1.0.0（Frozen）
-- Reference Runtime 认证（`docs/qimen/reference_certification.md`）
-- 24 个 Golden Vectors（Frozen Verification Artifacts）
-- 双实现验证（Product Runtime 与 Reference Runtime 逐字节一致）
+**四个计算域均已完成完整生命周期**（Domain Calculation Layer → Behavior Contract
+Layer → Reference Verification Layer）：
+- Qimen：`QIMEN_BEHAVIOR_CONTRACT.md` v1.0.0（Frozen）+ Reference 认证 + 24 向量双实现验证
+- BaZi：`bazi:behavior:v1.0.0`（Frozen）+ Reference Certified（24/24 等价）
+- Ziwei：`ziwei:behavior:v1.0.0`（Frozen）+ Reference Certified（24/24 等价）
+- Liuyao：`liuyao:behavior:v1.0.0`（Frozen，30 条）+ 25 Frozen 向量 + Reference Certified
+  （21/21 + 40/40 等价）
 
 Reference Runtime（`reference/`，Python，内存实现，确定性）已成为整个项目的
 **行为规范**（Normative Reference Implementation）。所有正式实现
@@ -83,9 +85,10 @@ Contract Frozen → Reference Certified → Integration Ready）。阶段要求�
 权威状态登记见 `docs/governance/CAPABILITY_STATUS.md`（只标记实际状态，
 不得虚报成熟度）。
 
-**Qimen 已完成完整生命周期**（Stage 0→4, **Integration Ready**）:
-契约 v1.0.0 + Reference 认证 + 24 向量双实现验证。其他领域处于
-**Implemented**，按标准流程逐步契约化。
+**Qimen / BaZi / Ziwei / Liuyao 均已完成完整生命周期**（Stage 0→4,
+**Integration Ready / Certified**）：各域契约 v1.0.0 + Reference 认证 +
+Golden Vectors。下一步为 Reference Runtime 最终冻结（`ACP-REF-002`）与
+Consensus Evidence 引擎收口。
 
 ### 领域边界（Domain Boundary）
 
@@ -210,7 +213,7 @@ OpenMetaphysics 通过 **确定性规则引擎** 计算中国命理图表（八�
 open-metaphysics/                    # Monorepo（单仓多语言）
 ├── .python-version                  # 固定 Python 3.11（标准环境）
 ├── pyproject.toml                   # Python 工作区 + uv 锁文件 (uv.lock)
-├── AGENTS.md                        # 长期规则（Sprint Discipline 等）
+├── AGENTS.md                        # 长期规则（H1~H8 硬规则 + E1~E7 效率规则）
 ├── context/                         # 项目状态笔记（快速参考）
 ├── docs/
 │   ├── design/phase6/               # Phase 6 架构冻结（不可修改）

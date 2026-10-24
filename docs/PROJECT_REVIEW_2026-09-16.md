@@ -5,6 +5,11 @@
 > **实测口径**: `pytest` 收集 **618**、全绿 exit 0 · `ruff check`/`format --check` **clean** · Conformance `135/135 certified` · 语料 digest `69d6e2a6…`
 > **测试构成**: 618 = Reference 核心 304 + Knowledge 29 + `reference/tests` 48 + Production 相关 237
 > **方法**: 代码/文档逐项核对 + CI 命令本地复现；所有结论均带文件证据
+>
+> **⚠️ 历史快照（2026-09-16）**: 本报告的基线/测试数/状态已被 2026-10 的后续合并取代
+> （Qimen/BaZi/Ziwei/Liuyao 均 Integration Ready；测试 1026 collected / 1024 passed + 2 skipped；
+> RAG/Explainer 已接线；`pattern_matcher.py` 已删除）。**现况以
+> `docs/governance/CAPABILITY_STATUS.md` 与 `docs/PROJECT_STATUS.md` 为准**；本报告仅作审计留档。
 
 ---
 
