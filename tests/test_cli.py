@@ -81,3 +81,30 @@ def test_consensus(capsys) -> None:
     report = json.loads(capsys.readouterr().out)
     assert report["report_id"].startswith("cr:")
     assert report["conclusions"][0]["domain"] == "career"
+
+
+def test_orchestrate(capsys) -> None:
+    request = json.dumps(
+        {
+            "request_id": "cli-orch",
+            "payload": {
+                "request_id": "cli-orch",
+                "born_at": "1990-06-15T08:30:00+08:00",
+                "gender": "male",
+                "question": "事业",
+            },
+            "agents": ["bazi", "ziwei"],
+            "explain": True,
+        },
+        ensure_ascii=False,
+    )
+    assert main(["orchestrate", "--input", request]) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert data["errors"] == []
+    assert [o["agent"] for o in data["outputs"]] == ["bazi", "ziwei"]
+    assert data["consensus"]["result"]["contributions"]
+
+
+def test_orchestrate_invalid_input(capsys) -> None:
+    assert main(["orchestrate", "--input", '{"payload": "not-a-request"}']) == 2
+    assert "invalid input" in capsys.readouterr().err

@@ -17,7 +17,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |----------|------|------|
 | Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
 | 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
-| 测试 | `tests/` + `reference/tests/` | **1087 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
+| 测试 | `tests/` + `reference/tests/` | **1140 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
 | Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
@@ -59,7 +59,7 @@ open-metaphysics/
 │   ├── conformance/golden/  # 自动生成 Golden Vectors
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
-├── tests/                   # 生产测试（1089 collected / 1087 passed + 2 skipped）
+├── tests/                   # 生产测试（1142 collected / 1140 passed + 2 skipped）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -78,7 +78,7 @@ open-metaphysics/
 # 1. 安装依赖（自动创建 .venv）
 uv sync
 
-# 2. 运行全部测试（1087 passed + 2 skipped，2026-10-24）
+# 2. 运行全部测试（1140 passed + 2 skipped，2026-10-24）
 uv run pytest -q
 
 # 3. 启动 API（FastAPI, http://127.0.0.1:8000）
@@ -117,23 +117,34 @@ uv run openmetaphysics-cli compute bazi --input '{"request_id":"demo","born_at":
 uv run openmetaphysics-cli knowledge --query 紫微 --k 3
 uv run openmetaphysics-cli knowledge --query 帝座 --include-evidence
 uv run openmetaphysics-cli consensus --input '{"evidence":[]}'
+uv run openmetaphysics-cli orchestrate --input '{"request_id":"demo","payload":{"request_id":"demo","born_at":"1990-06-15T08:30:00+08:00","gender":"male","question":"事业与财运"},"agents":["bazi","ziwei"],"explain":true}'
 
 # MCP over HTTP（与 stdio 相同的工具面）
 curl -X POST http://127.0.0.1:8000/mcp -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
 ```
+
+## 安全边界（本地可用 ≠ 生产就绪）
+
+本框架按**本地优先**设计，当前形态适合个人/内网使用，**未达到公开部署标准**：
+
+- API 默认绑定 `127.0.0.1`；无认证 / 授权 / 限流，`/docs` 与 OpenAPI 公开可访问。
+- 公开部署前必须自行增加：反向代理 + TLS、认证与限流、收紧 CORS（`OM_CORS_ORIGINS` 仅在明确设置时启用）。
+- 敏感配置（`OM_POSTGRES_DSN`、推理服务密钥）不要写入镜像或提交到仓库。
+- 计算核心可完全离线运行，不外发数据；启用外部 LLM/Qdrant 时数据才会离开本机。
 
 ## 常用命令
 
 | 命令 | 说明 |
 |------|------|
 | `uv sync` | 安装依赖 |
-| `uv run pytest -q` | 全量测试（1087 passed + 2 skipped，2026-10-24） |
+| `uv run pytest -q` | 全量测试（1140 passed + 2 skipped，2026-10-24） |
 | `uv run ruff check src/ tests/ reference/` | lint |
 | `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
 | `uv run openmetaphysics` | 启动 API |
 | `uv run python -m reference.demo` | Reference 演示 |
 | `uv run openmetaphysics-mcp` | MCP stdio server（JSON-RPC） |
 | `uv run openmetaphysics-cli compute bazi --input '{...}'` | 离线计算（`--explain` 附解释链） |
+| `uv run openmetaphysics-cli orchestrate --input '{...}'` | 离线多智能体编排（计算+共识+解释，一次完成） |
 | `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |
 
 ## 规范与治理
