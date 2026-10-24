@@ -137,6 +137,25 @@ def load_all_chunks(base: str | Path | None = None) -> list[KnowledgeChunk]:
     return chunks
 
 
+def corpus_stats(base: str | Path | None = None) -> list[dict[str, Any]]:
+    """Return metadata for every available domain corpus (offline, no retriever)."""
+    stats: list[dict[str, Any]] = []
+    for path in resolve_corpus_paths(base):
+        if not path.is_file():
+            continue
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        meta = doc.get("metadata", {})
+        stats.append(
+            {
+                "corpus_id": meta.get("corpus_id", path.stem),
+                "status": meta.get("status"),
+                "version": meta.get("version"),
+                "counts": meta.get("counts", {}),
+            }
+        )
+    return stats
+
+
 def load_into(
     retriever: KnowledgeRetriever,
     path: str | Path | None = None,

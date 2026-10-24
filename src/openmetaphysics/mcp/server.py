@@ -113,6 +113,11 @@ def list_tools() -> list[dict[str, Any]]:
                 "additionalProperties": False,
             },
         },
+        {
+            "name": "knowledge_stats",
+            "description": "List frozen corpus metadata (status/version/counts).",
+            "inputSchema": _EMPTY_SCHEMA,
+        },
     ]
 
 
@@ -154,6 +159,10 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
         return [
             {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
         ]
+    if name == "knowledge_stats":
+        from ..rag.corpus import corpus_stats
+
+        return corpus_stats()
     raise ValueError(f"unknown tool: {name}")
 
 
