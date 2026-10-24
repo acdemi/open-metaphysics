@@ -45,7 +45,7 @@ open-metaphysics/
 │   │                        # engines（BaseAgent）、models、schemas、config
 │   ├── domain/qimen/        # Qimen 域建模（types / abi / adapter / structural）
 │   ├── contracts/           # qimen_contract.py + JSON Schema
-│   ├── api/                 # FastAPI（health/agents/schema/compute/explain/orchestrate/sessions/traces/consensus）+ CLI
+│   ├── api/                 # FastAPI（health/agents/schema/compute/explain/orchestrate/knowledge/sessions/traces/consensus）+ CLI
 │   ├── inference/           # LLM 解释层（与计算核心严格隔离）
 │   ├── orchestration/       # LangGraph 编排
 │   ├── rag/                 # 检索器（Qdrant 可选，内存后备）

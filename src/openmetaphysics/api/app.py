@@ -47,6 +47,11 @@ class ExplainRequest(BaseModel):
     output: dict[str, Any]
 
 
+class KnowledgeSearchRequest(BaseModel):
+    query: str
+    k: int = 5
+
+
 # -- public error model ----------------------------------------------------
 
 
@@ -227,6 +232,19 @@ def create_app() -> FastAPI:
 
         payload = _explain_payload(name, output, style=style, k=k)
         return {"agent": name, **payload}
+
+    @app.post("/knowledge/search")
+    def knowledge_search(req: KnowledgeSearchRequest) -> dict[str, Any]:
+        """Deterministic frozen-corpus retrieval (offline; optional Qdrant)."""
+        from ..rag.retriever import get_retriever
+
+        chunks = get_retriever().retrieve(req.query, k=req.k)
+        return {
+            "query": req.query,
+            "chunks": [
+                {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
+            ],
+        }
 
     @app.get("/consensus/schema")
     def consensus_schema() -> dict[str, Any]:

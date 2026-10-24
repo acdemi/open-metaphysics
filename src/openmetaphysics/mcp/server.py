@@ -100,6 +100,19 @@ def list_tools() -> list[dict[str, Any]]:
                 "additionalProperties": False,
             },
         },
+        {
+            "name": "knowledge_search",
+            "description": "Search the frozen knowledge corpora (offline retrieval).",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string"},
+                    "k": {"type": "integer"},
+                },
+                "required": ["query"],
+                "additionalProperties": False,
+            },
+        },
     ]
 
 
@@ -134,6 +147,13 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
             {"evidence": args.get("evidence", []), "config": args.get("config", {})}
         )
         return ConsensusEngine().build(payload).model_dump(mode="json")
+    if name == "knowledge_search":
+        from ..rag.retriever import get_retriever
+
+        chunks = get_retriever().retrieve(str(args["query"]), k=int(args.get("k", 5)))
+        return [
+            {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
+        ]
     raise ValueError(f"unknown tool: {name}")
 
 
