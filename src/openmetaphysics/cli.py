@@ -1,4 +1,4 @@
-"""Offline CLI: agents / compute / explain without running a server.
+"""Offline CLI: agents / compute / explain / knowledge / consensus / orchestrate.
 
 Examples::
 
@@ -6,6 +6,7 @@ Examples::
     openmetaphysics-cli compute bazi --input '{"request_id":"c1","born_at":"1985-08-15T10:00:00+08:00","gender":"male"}'
     openmetaphysics-cli compute bazi --input '{...}' --explain
     openmetaphysics-cli explain bazi --output '{...}'
+    openmetaphysics-cli orchestrate --input '{"request_id":"r1","payload":{"request_id":"r1","born_at":"1990-06-15T08:30:00+08:00","gender":"male","question":"事业与财运"},"agents":["bazi","ziwei"],"explain":true}'
 """
 
 from __future__ import annotations
@@ -19,6 +20,7 @@ from .agents.registry import get_registry
 from .consensus import ConsensusEngine, ConsensusInput
 from .core.schemas import AgentOutput, agent_output_from_envelope
 from .inference.explainer import get_explainer_for
+from .orchestration.graph import OrchestrationRequest, orchestrate
 
 
 def _print(value: Any) -> None:
@@ -69,6 +71,9 @@ def main(argv: list[str] | None = None) -> int:
 
     consensus = sub.add_parser("consensus", help="Evidence[] + config -> ConsensusReport")
     consensus.add_argument("--input", required=True, help="JSON with evidence[] and config")
+
+    orch = sub.add_parser("orchestrate", help="run multiple agents + cross-modal consensus + explain")
+    orch.add_argument("--input", required=True, help="OrchestrationRequest JSON")
 
     args = parser.parse_args(argv)
     registry = get_registry()
@@ -125,6 +130,15 @@ def main(argv: list[str] | None = None) -> int:
             print(f"invalid input: {exc}", file=sys.stderr)
             return 2
         _print(ConsensusEngine().build(payload).model_dump(mode="json"))
+        return 0
+
+    if args.command == "orchestrate":
+        try:
+            req = OrchestrationRequest.model_validate(_load(args.input))
+        except Exception as exc:
+            print(f"invalid input: {exc}", file=sys.stderr)
+            return 2
+        _print(orchestrate(req).model_dump(mode="json"))
         return 0
 
     return 2
