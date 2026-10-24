@@ -14,8 +14,9 @@
 | edition | 通行古籍本（public domain 范围） |
 | url | https://zh.wikisource.org/wiki/渊海子平 |
 | acquisition_status | acquired  # revision-pinned 抓取件（保存在仓库外），非入库 |
-| evidence_status | source_level_attributed  # P2.1: 语料条目按书级来源归属；本轮未做逐条逐字核验 |
-| verified_scope | 限 Phase 7.1.4B/7.1.5 已核章节（论大运: 寅巳申三刑；论命细法: 子卯相刑）；P2.1 新增条目不在该范围内 |
+| evidence_status | source_level_attributed + partial_verbatim  # H6 扩展: 部分条目已逐字核验（见下） |
+| verified_scope | Phase 7.1.4B/7.1.5: 论大运（寅巳申三刑）、论命细法（子卯相刑）；**H6 2026-10-24**: 论日为主、论大运、论五行生剋制化、十神（基础）、论征太岁 等章节逐字核验；余下 5 条摘要引用待补 |
+| h6_fetch_2026-10-24 | `淵海子平 oldid=2593607 action=raw`：HTTP 200，173237 B，sha256 `a4447be5…`（与 2026-09-15 pin 一致）；抓取件仓库外保全 |
 | blocker | 无（Phase 7.3.1 HTTPS 直取成功） |
 | retrieved_utc | 2026-09-15T16:14:37Z |
 | revision_pin | 淵海子平 revid 2593607（2025-08-24T18:41:12Z, 173237 B, sha256 a4447be5d95eb073857cb8cba8f0e58a500de1c283016c76cfdedb0d1b2bb133） |

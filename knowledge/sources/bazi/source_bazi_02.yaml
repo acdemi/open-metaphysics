@@ -14,8 +14,9 @@
 | edition | 通行本（public domain 范围） |
 | url | https://zh.wikisource.org/wiki/三命通會 |
 | acquisition_status | acquired  # revision-pinned 抓取件（保存在仓库外）；卷一~卷九全量获取 |
-| evidence_status | source_level_attributed  # P2.1: 条目按书级/卷级来源归属；仅卷二·论十干化气/论三刑/论六害为已核章节 |
-| verified_scope | 卷二·论十干化气（五合）/ 卷二·论三刑（恃势之刑）/ 卷二·论六害（六配对）—— Phase 7.1.5/7.1.6 逐字核验 |
+| evidence_status | source_level_attributed + partial_verbatim  # H6 扩展: 卷二已核章节逐字核验 |
+| verified_scope | 卷二·论十干化气 / 论三刑 / 论六害 —— Phase 7.1.5/7.1.6 逐字核验；**H6 2026-10-24** 以同 oldid 原文复核全部已核章节 |
+| h6_fetch_2026-10-24 | `三命通會/卷二 oldid=2292392 action=raw`：HTTP 200，66693 B，sha256 `e58c3f48…`（与 2026-09-15 pin 一致）；抓取件仓库外保全 |
 | blocker | 无（Phase 7.3.1 HTTPS 直取成功） |
 | retrieved_utc | 2026-09-15T16:14:37Z |
 | revision_pin | 卷二 revid 2292392（2023-05-28T01:06:07Z, 66693 B, sha256 e58c3f48d5f983548a35783c8f4961768a5c71edfa6d88f8fb37bc07acd53e0d）；卷三 revid 2184219；卷六 revid 845352；余卷见 SOURCE_STATUS.md |

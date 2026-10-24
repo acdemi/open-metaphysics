@@ -103,8 +103,8 @@ knowledge/
 | 语料 | 状态 | nodes | relations | references |
 |------|------|-------|-----------|------------|
 | `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
-| `bazi_corpus` | candidate 0.1.0 (digest `69b6edea…`) | 40 | 67 | 14 |
-| `qimen_corpus` | candidate 0.1.0 (digest `40de5c45…`) | 47 | 60 | 15 |
+| `bazi_corpus` | candidate 0.1.0 (digest `165047e0…`) | 40 | 67 | 14 |
+| `qimen_corpus` | candidate 0.1.0 (digest `abdc2080…`) | 47 | 60 | 15 |
 | `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
 
 Ziwei 类型覆盖: nodes wuxing(5)/main_star(14)/palace(12)/ten_god(10)/
@@ -174,8 +174,8 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 - ❌ 不生产无 Tier 1 来源的节点/关系（Gate C 证据规则）
 - ❌ 不修改已冻结的 Ziwei 语料（P2.1 / P2.2 / P2.3 / P2.4 均未改动内容）；
   2026-10-24 经 `ACP-KNOWLEDGE-001` 仅做 EOL/digest 勘误（内容零变化），digest 由
-  `69d6e2a6…` 变为 `93dba067…`；BaZi（`69b6edea…`）与 Qimen（`40de5c45…`）
-  语料在 P2.4 及本次勘误中逐字节未变
+  `69d6e2a6…` 变为 `93dba067…`；BaZi 与 Qimen 语料在 P2.4 及本次勘误中逐字节未变
+  （BaZi 另于 2026-10-24 H6 证据扩展后重生成，digest `165047e0…`，见 §7）
 - ❌ 可检索节点文本（`name_cn + interpretation`）不写 ASCII 技术标识符：字符级评分
   的稀有度权重（`1 + ln(N/df)`）会把 "engine" / "normative" 一类拉丁词当成极稀有
   「字符」，压过真正的中文术语命中。技术字段写进 `attributes` / `tags` / `name_en`。
