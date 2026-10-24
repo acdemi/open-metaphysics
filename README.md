@@ -8,7 +8,7 @@
 
 ---
 
-## 当前实现状态（2026-08-13）
+## 当前实现状态（2026-10-24）
 
 本仓库以 **Python 实现为主**：`src/`（生产代码）+ `reference/`（规范性 Reference Runtime）。
 Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs/engineering/14_polyglot_architecture.md`）。
@@ -28,7 +28,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |--------|------|------|
 | **奇门遁甲 (Qimen)** | ✅ **Frozen + Certified** | 契约 `qimen:behavior:v1.0.0` + Reference 认证 + 24 向量双实现验证 |
 | **八字 (Bazi)** | ✅ **Integration Ready** | 契约 `bazi:behavior:v1.0.0` Frozen + Reference 独立实现 + 24/24 等价 |
-| **紫微斗数 (Ziwei)** | 🚧 Implemented（Phase 6.7.1 进行中） | 12 宫 + 14 主星；规则清单 ZW-001~017 审计完成 |
+| **紫微斗数 (Ziwei)** | ✅ **Integration Ready** | 契约 `ziwei:behavior:v1.0.0` Frozen + Reference Certified（24/24）；辅星/四化/大限属 ZW-017 边界 |
 | **六爻 (Liuyao)** | ✅ **Integration Ready** | 契约 `liuyao:behavior:v1.0.0` Frozen + 25 Frozen 向量 + Reference Certified（21/21 + 40/40） |
 | **共识 (Consensus)** | Reference 完成 | Evidence 聚合，多结论并存（`reference/consensus*.py`） |
 
@@ -59,7 +59,7 @@ open-metaphysics/
 │   ├── conformance/golden/  # 自动生成 Golden Vectors
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
-├── tests/                   # 生产测试（578 例全绿）
+├── tests/                   # 生产测试（1026 collected / 1024 passed + 2 skipped）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -105,7 +105,7 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 | 命令 | 说明 |
 |------|------|
 | `uv sync` | 安装依赖 |
-| `uv run pytest -q` | 全量测试（578） |
+| `uv run pytest -q` | 全量测试（1024 passed + 2 skipped；Linux 语料复现性待 Sprint 1 修复） |
 | `uv run ruff check src/ tests/ reference/` | lint |
 | `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
 | `uv run openmetaphysics` | 启动 API |
@@ -116,7 +116,7 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 
 | 文档 | 内容 |
 |------|------|
-| `AGENTS.md` | 长期规则（Sprint Discipline + 对话工作流） |
+| `AGENTS.md` | 长期规则（H1~H8 硬规则 + E1~E7 效率规则） |
 | `docs/specification/` | 行为规范：BEHAVIOR_SPEC（35 条）/ KNOWLEDGE（20 条）/ CONSENSUS（25 条）/ CONFORMANCE（20 条）+ Contract 治理 |
 | `docs/governance/` | 能力生命周期 + 状态登记（CAPABILITY_STATUS）+ 各域审计工件 |
 | `docs/ARCHITECTURE.md` | 系统架构概览 |
@@ -136,6 +136,7 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 | Qimen | `docs/qimen/`（契约、认证、向量、Freeze 记录） |
 | BaZi | `docs/bazi/`（契约 v1.0.0、认证、黄金向量、集成就绪审查） |
 | Ziwei | `docs/governance/ziwei/`（规则清单、算法假设、审计、决策解析） |
+| Liuyao | `docs/liuyao/`（契约 v1.0.0、Freeze Review、认证、25 向量、集成就绪审查） |
 
 ## License
 

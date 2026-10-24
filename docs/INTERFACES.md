@@ -1,7 +1,7 @@
 # OpenMetaphysics — 接口设计
 
-> 层与层之间的契约。下面每个接口都是 Python Protocol/ABC，由 Pydantic 模型实现，并覆盖测试。Reference Freeze Candidate (2026-08-09)。
-> Reference Runtime 接口已实现，Production Runtime 接口待实现。
+> 层与层之间的契约。下面每个接口都是 Python Protocol/ABC，由 Pydantic 模型实现，并覆盖测试。状态更新 2026-10-24。
+> Reference Runtime 接口已实现；Python 生产侧（`src/`）已实现领域 Agent / API / 编排 / RAG / Explain（Phase 0~8），其余语言的通用层仍待实现。
 
 ## 0. Reference Runtime 接口位置
 
@@ -72,8 +72,12 @@ Production Runtime 必须实现等价接口并通过 Conformance Suite 验证。
 | Knowledge | 完成（Python 内存） | 未实现 |
 | Consensus | 完成（Python 内存） | 未实现 |
 | Conformance | 完成（Python 内存） | 未实现 |
-| Calendar | 未实现（Reference） | 部分实现（`src/`） |
-| API | 未实现（Reference） | 部分实现（`src/`） |
+| Calendar | 未实现（Reference） | 已实现（`src/core/calendar.py`） |
+| API | 未实现（Reference） | 已实现（FastAPI 6 端点，`src/openmetaphysics/api/`） |
+
+> 表中 Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 的「Production 未实现」
+> 指 **通用跨语言层**；Python 生产侧已通过各域 Agent 与 Qimen/Consensus 契约适配器
+> 覆盖域内等价，通用层的生产化仍以 Reference 为规范。
 
 ---
 

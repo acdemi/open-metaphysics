@@ -96,6 +96,10 @@ conformance **CONSENSUS 层**（`reference/conformance/golden/consensus_vectors.
 | S-2 | 若采纳并列，建议正式命名 `CrossModalConsensus`（现 `ConsensusAgent`）与 `EvidenceConsensus`（Reference 版） | 采纳 S-1 后 |
 | S-3 | `CAPABILITY_STATUS` 已按 capability 分开登记；如采纳 S-2，再同步类名 | S-2 |
 
+> 2026-10-24 审计复核：`work/consensus/phase-a1-equivalence`（`498189a`）已含
+> 生产 Evidence 引擎 + 契约适配器 + 等价测试（52 输入），待 S-1 人工裁定后
+> rebase 到当前 main 并按 H7 合并。
+
 ## 8. 判定
 
 ```text
