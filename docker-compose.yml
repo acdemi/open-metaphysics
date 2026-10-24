@@ -1,8 +1,9 @@
 # OpenMetaphysics -- Infrastructure Services
 # Usage:
-#   docker compose up -d              # Start core services (PG, Qdrant, Valkey)
-#   docker compose --profile llm up -d # Also start Ollama for local LLM
-#   docker compose down               # Stop all services
+#   docker compose up -d               # Start core services (PG, Qdrant, Valkey)
+#   docker compose --profile app up -d  # Also build/start the API service (port 8000)
+#   docker compose --profile llm up -d  # Also start Ollama for local LLM
+#   docker compose down                # Stop all services
 
 services:
   postgres:
@@ -53,6 +54,25 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  app:
+    build: .
+    container_name: om-app
+    profiles: ["app"]
+    restart: unless-stopped
+    environment:
+      # persistence: PostgreSQL store (Valkey remains reserved, no consumer yet)
+      OM_POSTGRES_DSN: "postgresql+psycopg://om:om_dev@postgres:5432/openmetaphysics"
+      # RAG/explain stay offline by default; enabling requires the llm profile + Ollama
+      OM_RAG_ENABLED: "false"
+      OM_ENABLE_EXPLAINER: "false"
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
 
   ollama:
     image: ollama/ollama:latest
