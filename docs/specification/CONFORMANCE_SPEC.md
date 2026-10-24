@@ -1,6 +1,7 @@
 # Conformance Specification (Normative)
 
 > **Status**: Normative - Binding on all implementations.
+> **Spec version**: **1.1.0**（2026-10-24，ACP-REF-002：CF-015 措辞裁定 + CF-016~CF-019 落地）
 > **Authority**: Defines immutable Runtime Conformance rules for
 > validating Production Runtimes (Rust / Go / Python / WASM) against
 > the Reference Runtime.
@@ -272,7 +273,9 @@ behavior versions.
   BC-JSON-001, BC-DET-001, BC-EDGE-001, KB-001 through KB-020,
   CS-001 through CS-025).
 - Each behavior contract **MUST** be represented by at least one
-  golden vector.
+  **executed representation**: a golden vector, or an executable
+  behavior verifier that performs an independent assertion
+  (D-16 resolution, ACP-REF-001/ACP-REF-002).
 - Missing coverage **MUST** fail conformance.
 
 **Test**: `test_reference_conformance.py::TestConformanceRules::test_behavior_coverage_checks_present`
@@ -419,3 +422,12 @@ If any gate fails, the merge **MUST** be blocked.
 
 This is the enforcement mechanism for Reference Runtime Supremacy
 (see `REFERENCE_RUNTIME_SPEC.md` and `AGENTS.md` Section 7).
+
+---
+
+## 9. Revision History
+
+| Date | Version | Change |
+|------|---------|--------|
+| 2026-07-12 | 1.0.0 | Initial creation — CF-001~CF-020 defined |
+| 2026-10-24 | 1.1.0 | ACP-REF-002: CF-015 wording resolved to "executed representation" (D-16); CF-016~CF-019 implemented in `ConformanceRunner`; Rule/Pattern contracts added to the certified contract set |

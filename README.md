@@ -17,7 +17,7 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |----------|------|------|
 | Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
 | 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
-| 测试 | `tests/` + `reference/tests/` | **1024 passed + 2 skipped**（2026-10-23；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
+| 测试 | `tests/` + `reference/tests/` | **1028 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
 | Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
@@ -59,7 +59,7 @@ open-metaphysics/
 │   ├── conformance/golden/  # 自动生成 Golden Vectors
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
-├── tests/                   # 生产测试（1026 collected / 1024 passed + 2 skipped）
+├── tests/                   # 生产测试（1030 collected / 1028 passed + 2 skipped）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -78,7 +78,7 @@ open-metaphysics/
 # 1. 安装依赖（自动创建 .venv）
 uv sync
 
-# 2. 运行全部测试（1024 passed + 2 skipped，2026-10-23）
+# 2. 运行全部测试（1028 passed + 2 skipped，2026-10-24）
 uv run pytest -q
 
 # 3. 启动 API（FastAPI, http://127.0.0.1:8000）
@@ -105,7 +105,7 @@ curl -X POST http://127.0.0.1:8000/agents/bazi/compute -H "Content-Type: applica
 | 命令 | 说明 |
 |------|------|
 | `uv sync` | 安装依赖 |
-| `uv run pytest -q` | 全量测试（1024 passed + 2 skipped；Linux 语料复现性待 Sprint 1 修复） |
+| `uv run pytest -q` | 全量测试（1028 passed + 2 skipped；Linux 语料复现性待 Sprint 1 修复） |
 | `uv run ruff check src/ tests/ reference/` | lint |
 | `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
 | `uv run openmetaphysics` | 启动 API |
