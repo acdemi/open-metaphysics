@@ -16,6 +16,7 @@ import sys
 from typing import Any
 
 from .agents.registry import get_registry
+from .consensus import ConsensusEngine, ConsensusInput
 from .core.schemas import AgentOutput
 from .inference.explainer import get_explainer_for
 
@@ -57,6 +58,13 @@ def main(argv: list[str] | None = None) -> int:
     explain.add_argument("--output", required=True, help="agent output JSON object")
     explain.add_argument("--k", type=int, default=3)
 
+    knowledge = sub.add_parser("knowledge", help="search the frozen knowledge corpora")
+    knowledge.add_argument("--query", required=True)
+    knowledge.add_argument("--k", type=int, default=5)
+
+    consensus = sub.add_parser("consensus", help="Evidence[] + config -> ConsensusReport")
+    consensus.add_argument("--input", required=True, help="JSON with evidence[] and config")
+
     args = parser.parse_args(argv)
     registry = get_registry()
 
@@ -89,6 +97,27 @@ def main(argv: list[str] | None = None) -> int:
             print(f"invalid output: {exc}", file=sys.stderr)
             return 2
         _print(_explain_payload(args.agent, output, k=args.k))
+        return 0
+
+    if args.command == "knowledge":
+        from .rag.retriever import get_retriever
+
+        chunks = get_retriever().retrieve(args.query, k=args.k)
+        _print(
+            [
+                {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags}
+                for c in chunks
+            ]
+        )
+        return 0
+
+    if args.command == "consensus":
+        try:
+            payload = ConsensusInput.model_validate(_load(args.input))
+        except Exception as exc:
+            print(f"invalid input: {exc}", file=sys.stderr)
+            return 2
+        _print(ConsensusEngine().build(payload).model_dump(mode="json"))
         return 0
 
     return 2
