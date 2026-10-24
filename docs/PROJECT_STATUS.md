@@ -361,8 +361,9 @@ Proposal (ACP)。
 - **仓库清理**：根目录 `phase_7.2b_r2_status.txt` 一次性状态戳 —— ✅ **已执行（2026-09-16）**：
   内容 `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.` 已就地留档于 R2 报告与证据复核两处，
   引用同步改写，不再作为独立文件存在
-- **分支清账**：2026-10-24 审计复核后，清理已合并分支（保留当前 `work/liuyao/contract-freeze`）；
-  未合并分支 7 条逐条给结论：Consensus A1 待裁定合并、D-16 待批、Phase 4 证据谱系保留、archify 不整支合并
+- **分支清账（2026-10-24 工程收尾）**：已合并分支全部清理（main 之外仅剩 7 条未合并）；
+  逐条结论见 `docs/governance/项目进展梳理.md`：Consensus A1 已被 `6dd8077` 取代（保留历史）、
+  D-16 已由 `ACP-REF-002` 裁定（保留历史）、archify 不整支合并、Phase 4 四支保留待授权窗口
 
 **P1 —— 可信度与治理债务（建议优先于新功能）**
 - ~~D-13 Conformance 空转处置~~ → **已闭环**：ACP-REF-001 行为覆盖 52/52；
