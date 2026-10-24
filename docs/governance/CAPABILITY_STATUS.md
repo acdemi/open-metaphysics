@@ -42,6 +42,9 @@
 > 2026-10-24（**BaZi Corpus Freeze v1.0.0（有界）** —— H6 9/14 逐字 +
 > 5 convention-level；metadata candidate→frozen、0.1.0→1.0.0；digest `488ce510…`；
 > Qimen 维持 candidate（revision pin 已登记））
+> 2026-10-24（**Qimen Corpus Freeze v1.0.0（有界）** —— 10/15 revision-pinned 逐字 +
+> 5 摘要；metadata candidate→frozen、0.1.0→1.0.0；digest `ffeb3319…`；
+> 四域语料全部 frozen）
 
 ---
 
@@ -55,7 +58,7 @@
 | **Liuyào** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen（`liuyao:behavior:v1.0.0`, 2026-10-23, 30 条） | 25（Frozen） | Certified（独立实现；21/21 + 40/40） | 6 + 6 + 8 |
 | **Reference Runtime** | **Frozen**（ACP-REF-002，2026-10-24） | 5 层契约 v1.0.0 | 5 层 / 19 向量 | Self-conformant（176/176 certified） | 373 |
 | Consensus | N/A（非计算域；Evidence 引擎独立实现） | — | — | 等价认证（52 输入 + 3 向量） | 32 |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi FROZEN v1.0.0（有界证据）**（`bazi_corpus:v1.0.0`, 40 节点 / 67 关系 / 14 引用, digest `488ce510…`, 2026-10-24：9/14 逐字 + 5 convention-level）+ **Qimen CANDIDATE**（`qimen_corpus:0.1.0`, 47 节点 / 60 关系 / 15 引用, 2026-10-03, P2.2）+ **Liuyao FROZEN v1.0.0**（`liuyao_corpus:v1.0.0`, 61 节点 / 66 关系 / 41 引用, digest `3a09a08e…`, 2026-10-24 Corpus Freeze —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1087 passed + 2 skipped） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi FROZEN v1.0.0（有界证据）**（`bazi_corpus:v1.0.0`, 40 节点 / 67 关系 / 14 引用, digest `488ce510…`, 2026-10-24：9/14 逐字 + 5 convention-level）+ **Qimen FROZEN v1.0.0（有界证据）**（`qimen_corpus:v1.0.0`, 47 节点 / 60 关系 / 15 引用, digest `ffeb3319…`, 2026-10-24：10/15 逐字 + 5 摘要）+ **Liuyao FROZEN v1.0.0**（`liuyao_corpus:v1.0.0`, 61 节点 / 66 关系 / 41 引用, digest `3a09a08e…`, 2026-10-24 Corpus Freeze —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1087 passed + 2 skipped） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。

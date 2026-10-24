@@ -168,8 +168,8 @@ def test_qimen_corpus_artifact_exists_and_loads() -> None:
     meta = doc["metadata"]
     assert meta["corpus_id"] == "qimen_corpus"
     assert meta["domain"] == "qimen"
-    assert meta["status"] == "candidate", "P2.2 first batch is a candidate, not frozen"
-    assert meta["version"] == "0.1.0"
+    assert meta["status"] == "frozen", "Qimen was bounded-frozen at v1.0.0 (2026-10-24)"
+    assert meta["version"] == "1.0.0"
     assert meta["counts"] == {"nodes": 47, "relations": 60, "references": 15}
     assert len(doc["nodes"]) == 47
     assert len(doc["relations"]) == 60

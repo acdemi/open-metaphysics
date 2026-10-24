@@ -18,7 +18,7 @@
 
 ## 1. 范围
 
-- **语料域**: Ziwei（冻结 v1.0.0）+ BaZi（**有界冻结 v1.0.0**，2026-10-24）+ Qimen（P2.2 候选 0.1.0）
+- **语料域**: Ziwei（冻结 v1.0.0）+ BaZi（**有界冻结 v1.0.0**）+ Qimen（**有界冻结 v1.0.0**，2026-10-24）
   + Liuyao（P2.3/P2.4 候选 0.2.0）。
 - **Ziwei 演进**: Phase 7.0 试点（20 节点/12 关系/3 引用，验证 Pipeline）→
   Phase 7.1.1~7.1.6 全量建设（核心词汇 → 天干/地支/关系/引用扩展）→
@@ -104,7 +104,7 @@ knowledge/
 |------|------|-------|-----------|------------|
 | `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
 | `bazi_corpus` | frozen 1.0.0（有界证据；digest `488ce510…`） | 40 | 67 | 14 |
-| `qimen_corpus` | candidate 0.1.0 (digest `76e4a4d0…`) | 47 | 60 | 15 |
+| `qimen_corpus` | frozen 1.0.0（有界证据；digest `ffeb3319…`） | 47 | 60 | 15 |
 | `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
 
 Ziwei 类型覆盖: nodes wuxing(5)/main_star(14)/palace(12)/ten_god(10)/
