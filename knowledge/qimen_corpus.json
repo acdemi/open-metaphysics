@@ -7,13 +7,13 @@
       "relations": 60
     },
     "domain": "qimen",
-    "pipeline": "knowledge/pipeline.py (P2.2 Qimen Knowledge Integration)",
+    "pipeline": "knowledge/pipeline.py (P2.2 Qimen Knowledge Integration; frozen v1.0.0)",
     "source_digests": {
       "source_qimen_01.yaml": "977239b9a67ddc86a88a2ecc2fb20f3a7917ebaf1ff1a9c0b4688fb7f931424e",
       "source_qimen_02.yaml": "439cb99bdd3ca762edba8f4191d1a96a5aea5c8f25005b539db6b4fa9c2e38fb"
     },
-    "status": "candidate",
-    "version": "0.1.0"
+    "status": "frozen",
+    "version": "1.0.0"
   },
   "nodes": [
     {
