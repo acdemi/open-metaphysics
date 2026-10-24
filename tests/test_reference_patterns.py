@@ -17,7 +17,11 @@ import pytest
 
 from reference.engine import RuleEngine
 from reference.parser import parse_rule_file
-from reference.pattern_matcher import PatternMatcher
+from reference.pattern_matcher import (
+    CONTRACT_PATH,
+    PatternMatcher,
+    export_pattern_contract,
+)
 from reference.patterns import (
     PatternCategory,
     RequirementLogic,
@@ -437,3 +441,22 @@ class TestGolden:
         assert len(j["evidence"]) == 2
         systems = {e["system"] for e in j["evidence"]}
         assert systems == {"bazi", "qimen"}
+
+
+# ==================================================================
+# Pattern Layer Contract
+# ==================================================================
+
+
+class TestPatternContract:
+    def test_contract_file_matches_runtime(self):
+        with open(CONTRACT_PATH, encoding="utf-8") as f:
+            file_contract = json.load(f)
+        runtime_contract = export_pattern_contract()
+        assert file_contract == runtime_contract
+
+    def test_contract_determinism(self):
+        c1 = export_pattern_contract()
+        c2 = export_pattern_contract()
+        assert c1 == c2
+        assert json.dumps(c1, sort_keys=True) == json.dumps(c2, sort_keys=True)
