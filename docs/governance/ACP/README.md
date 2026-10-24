@@ -62,4 +62,4 @@
   `ziwei_corpus.json`：digest `69d6e2a6…` → **`93dba067…`**（内容/计数零变化）。
 - 测试门控改为无条件 digest 断言；Ziwei/BaZi/Qimen/Liuyao 四域 digest 均被锚定。
 - 修复 Linux/LF 下 pipeline 重写冻结语料并失败的问题。
-- **合并状态**：待 H7 用户授权；未推送 origin。
+- **合并状态**：已获 H7 授权并合并（`a77c7f6`，2026-10-24）；未推送 origin。

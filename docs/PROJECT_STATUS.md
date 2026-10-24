@@ -120,7 +120,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 8 | 推理 + RAG | 部分完成 | provider（Ollama / OpenAI 兼容 Qwen·DeepSeek）+ Explainer 确定性后备 + InMemory/Qdrant 检索器均已实现；RAG 已接线（`rag/corpus.py:146-160` 灌入 + `rag/retriever.py:131-158`），四域 explainer 已接线（`inference/explainer.py:358-367`）；**剩余缺陷**：Qdrant 无 ingestion/旧 `client.search` API、provider HTTP 无离线测试、MCP 无 transport |
 | Phase 9 | 运维 + 可扩展性 | **仅桩** | `mcp/server.py` 49 行契约桩（无 transport，`pyproject.toml` 无 mcp 依赖）；`docker-compose.yml` 已定义 PG/Qdrant/Valkey/Ollama 但 `src/` 零消费者；会话/追踪持久化未实现；无冒烟测试 |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1026 collected / 1024 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复（H7 合并待授权）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1026 collected / 1024 passed + 2 skipped**；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -130,7 +130,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 > **2026-10-24 当前口径**: 全仓 **1026 collected / 1024 passed + 2 skipped**
 > （Windows 工作区实测；Liuyao 冻结合并后）。Linux/LF 语料复现性缺陷见
-> `ACP-KNOWLEDGE-001` 已实施（H7 合并待授权）；LF 工作区回归回执见该 ACP §5/§8。
+> `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
 
 | 类别 | 测试数 | 通过 | 失败 |
@@ -257,8 +257,8 @@ Proposal (ACP)。
 ## 7. Current Sprint
 
 **当前 Sprint（2026-10-24）**: Sprint 0 文档真实性收口（已完成）+ **Sprint 1
-`ACP-KNOWLEDGE-001` 知识语料 EOL/digest 复现性修复**（已批准并实施于
-`work/knowledge/eol-reproducibility`，**H7 合并待授权**）。
+`ACP-KNOWLEDGE-001` 知识语料 EOL/digest 复现性修复**（已批准、实施并合并
+`a77c7f6`）。
 最近完成：Liuyao 契约冻结与合并（`7a6d7bb` / 归档 `930ae70` / EOL `a27bb4a`）。
 历史 Sprint：Phase 7.1.6 Ziwei Corpus Freeze（`69d6e2a6…` → 2026-10-24 EOL 勘误 `93dba067…`，102/47/41），详见
 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`。
@@ -370,7 +370,7 @@ Proposal (ACP)。
   `rule_contract.json` / `pattern_contract.json` + diff 测试）
 - **坏死/空转修复**：`ZiweiExplainer`/RAG 已接线（2026-10 合并）；剩余 Qdrant ingestion、
   provider HTTP 离线测试、MCP transport
-- **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED，H7 合并待授权）修复 YAML EOL +
+- **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED + MERGED `a77c7f6`）修复 YAML EOL +
   Ziwei digest 重登记 + Liuyao digest 锚定
 
 **P2 —— 主线候选（1~2 周，择一，需授权）**

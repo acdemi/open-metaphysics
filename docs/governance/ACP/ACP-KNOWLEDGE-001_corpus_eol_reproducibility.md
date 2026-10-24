@@ -1,6 +1,6 @@
 # ACP-KNOWLEDGE-001 — 知识语料 EOL 固定与跨平台 digest 复现性修复
 
-> **Status**: **IMPLEMENTED**（2026-10-24 人工批准 D1-D4 并实施；H7 合并待授权）
+> **Status**: **IMPLEMENTED**（2026-10-24 人工批准 D1-D4、实施并合并 `a77c7f6`）
 > **Date**: 2026-10-24
 > **Domain**: Knowledge（语料冻结工件）
 > **Approved by**: 用户（2026-10-24，D1-D4）
@@ -129,7 +129,7 @@ digest 登记可独立保留（候选语料，不涉冻结变更）。
 | D3 测试门控修复 + Ziwei/BaZi/Qimen/Liuyao digest 锚定 | DONE |
 | D4 `knowledge/README.md` / `CAPABILITY_STATUS.md` / `PROJECT_STATUS.md` / Freeze 记录收口 | DONE |
 | LF + Windows 全量回归 / ruff / validate | DONE（回执见下） |
-| H7 合并到 main | **PENDING USER AUTHORIZATION** |
+| H7 合并到 main | DONE（`a77c7f6`，2026-10-24） |
 
 **验证回执（2026-10-24）**：
 
