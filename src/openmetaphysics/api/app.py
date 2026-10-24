@@ -32,11 +32,13 @@ from typing import Any
 from fastapi import FastAPI, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ValidationError
 
 from ..agents.registry import get_registry
 from ..consensus import ConsensusEngine, ConsensusInput, ConsensusReport
+from ..core.config import get_settings
 from ..core.schemas import AgentOutput
 from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
@@ -158,6 +160,24 @@ def create_app() -> FastAPI:
         description="Local-first deterministic multi-agent metaphysics framework.",
     )
     app.state.session_store = create_store()
+
+    origins = [o.strip() for o in (get_settings().cors_origins or "").split(",") if o.strip()]
+    if origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=origins,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+
+    @app.get("/")
+    def root() -> dict[str, Any]:
+        return {
+            "name": "OpenMetaphysics",
+            "version": "0.1.0",
+            "docs": "/docs",
+            "health": "/health",
+        }
 
     @app.get("/health")
     def health() -> dict[str, Any]:
