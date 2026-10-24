@@ -65,7 +65,7 @@ xing_shishi、hai）；其余 5 条（wangshuai、zhi_he、chong、sanhui、po�
 | H6 授权 + revision-pinned 抓取（淵海子平/三命通會卷二） | DONE（sha256 与 pin 一致） |
 | 9/14 引用逐字核验回执 | DONE（digest `525dab22…`） |
 | 5 条 GAP（wangshuai/zhi_he/chong/sanhui/po）闭合 | PENDING（需追加 H6 章节） |
-| 冻结评审 + 人工批准 | PENDING |
+| 冻结评审 + 人工批准 | **DONE（有界冻结）**：`BAZI_CORPUS_FREEZE_REVIEW.md` + `KNOWLEDGE_PHASE_BAZI_CORPUS_FREEZE.md` |
 
-> 备选：若接受 5 条 GAP 的摘要式归属，可走有界冻结：
-> `批准 BaZi 有界冻结 v1.0.0（接受 5 条 source_level_attributed 边界）`。
+> 2026-10-24：用户批准有界冻结 → `bazi_corpus:v1.0.0 (frozen, bounded evidence)`，
+> digest `488ce510…`；5 条 GAP 以 convention-level 边界显式记录。
