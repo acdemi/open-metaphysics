@@ -39,6 +39,7 @@ from ..agents.registry import get_registry
 from ..core.schemas import AgentOutput
 from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
+from ..persistence import SessionStore, create_store
 
 
 class ExplainRequest(BaseModel):
@@ -121,12 +122,36 @@ def _explain_payload(
     }
 
 
+def _persist_session(
+    store: SessionStore | None,
+    request_id: str,
+    request: dict[str, Any],
+    response: dict[str, Any],
+    outputs: list[Any],
+) -> None:
+    """Best-effort persistence; a store failure never affects the response."""
+    if store is None:
+        return
+    traces = [
+        {
+            "agent": out.agent,
+            "steps": [step.model_dump(mode="json") for step in out.reasoning_trace],
+        }
+        for out in outputs
+    ]
+    try:
+        store.save_session(request_id, request, response, traces)
+    except Exception:
+        return
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title="OpenMetaphysics",
         version="0.1.0",
         description="Local-first deterministic multi-agent metaphysics framework.",
     )
+    app.state.session_store = create_store()
 
     @app.get("/health")
     def health() -> dict[str, Any]:
@@ -148,6 +173,7 @@ def create_app() -> FastAPI:
     def agent_compute(
         name: str,
         body: dict[str, Any],
+        http_request: Request,
         explain: bool = False,
         style: str = "concise",
         k: int = 3,
@@ -180,6 +206,7 @@ def create_app() -> FastAPI:
             )
 
         data: dict[str, Any] = output.model_dump(mode="json")
+        _persist_session(http_request.app.state.session_store, output.request_id, body, data, [output])
         if explain:
             data["explain"] = _explain_payload(name, output, style=style, k=k)
         return data
@@ -201,7 +228,7 @@ def create_app() -> FastAPI:
         return {"agent": name, **payload}
 
     @app.post("/orchestrate")
-    def orchestrate_endpoint(req: OrchestrationRequest) -> Any:
+    def orchestrate_endpoint(req: OrchestrationRequest, http_request: Request) -> Any:
         # Request-level check: if the caller explicitly named agents and none of
         # them exist there is nothing to orchestrate -> 404, matching the
         # single-agent operations. Partially-unknown requests keep the batch
@@ -223,7 +250,37 @@ def create_app() -> FastAPI:
             resp = orchestrate(req)
         except ValidationError as exc:
             return _invalid_request(exc)
-        return resp.model_dump(mode="json")
+        payload = resp.model_dump(mode="json")
+        _persist_session(
+            http_request.app.state.session_store,
+            req.request_id,
+            req.model_dump(mode="json"),
+            payload,
+            resp.outputs,
+        )
+        return payload
+
+    @app.get("/sessions/{request_id}")
+    def get_session(request_id: str, http_request: Request) -> Any:
+        session = http_request.app.state.session_store.get_session(request_id)
+        if session is None:
+            message = f"session not found: {request_id}"
+            return JSONResponse(
+                status_code=404,
+                content={"detail": message, "error": _error_body("not_found", message)},
+            )
+        return session
+
+    @app.get("/traces/{request_id}")
+    def get_traces(request_id: str, http_request: Request) -> Any:
+        traces = http_request.app.state.session_store.get_traces(request_id)
+        if not traces:
+            message = f"no traces: {request_id}"
+            return JSONResponse(
+                status_code=404,
+                content={"detail": message, "error": _error_body("not_found", message)},
+            )
+        return {"request_id": request_id, "traces": traces}
 
     @app.exception_handler(RequestValidationError)
     def request_validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:
