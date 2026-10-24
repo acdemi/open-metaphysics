@@ -36,6 +36,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ValidationError
 
 from ..agents.registry import get_registry
+from ..consensus import ConsensusEngine, ConsensusInput, ConsensusReport
 from ..core.schemas import AgentOutput
 from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, orchestrate
@@ -227,6 +228,22 @@ def create_app() -> FastAPI:
         payload = _explain_payload(name, output, style=style, k=k)
         return {"agent": name, **payload}
 
+    @app.get("/consensus/schema")
+    def consensus_schema() -> dict[str, Any]:
+        return {
+            "input_schema": ConsensusInput.model_json_schema(),
+            "output_schema": ConsensusReport.model_json_schema(),
+        }
+
+    @app.post("/consensus/evidence")
+    def consensus_evidence(req: ConsensusInput) -> Any:
+        """Evidence[] + config -> ConsensusReport (frozen Reference contract)."""
+        try:
+            report = ConsensusEngine().build(req)
+        except Exception as exc:
+            return _error(500, "consensus_failed", str(exc), type=type(exc).__name__)
+        return report.model_dump(mode="json")
+
     @app.post("/orchestrate")
     def orchestrate_endpoint(req: OrchestrationRequest, http_request: Request) -> Any:
         # Request-level check: if the caller explicitly named agents and none of
@@ -259,6 +276,10 @@ def create_app() -> FastAPI:
             resp.outputs,
         )
         return payload
+
+    @app.get("/sessions")
+    def list_sessions(http_request: Request) -> dict[str, Any]:
+        return {"sessions": http_request.app.state.session_store.list_sessions()}
 
     @app.get("/sessions/{request_id}")
     def get_session(request_id: str, http_request: Request) -> Any:
