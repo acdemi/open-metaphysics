@@ -96,6 +96,19 @@ class AgentOutput(BaseModel):
     result: dict[str, Any] = Field(default_factory=dict)
 
 
+def agent_output_from_envelope(data: dict[str, Any]) -> AgentOutput:
+    """Validate an ``AgentOutput``, dropping an attached ``explain`` block.
+
+    A ``compute?explain=true`` (or CLI ``compute --explain``) response embeds
+    the explanation under ``explain``. Feeding such a response back into an
+    explain surface must not fail on that attachment; every other extra key is
+    still rejected by ``AgentOutput``'s strict validation.
+    """
+    payload = dict(data)
+    payload.pop("explain", None)
+    return AgentOutput.model_validate(payload)
+
+
 def canonical_input(payload: BaseModel) -> str:
     """Deterministic JSON serialization of an input model (for hashing/replay)."""
     return json.dumps(
@@ -118,6 +131,7 @@ __all__ = [
     "ReasoningStep",
     "ConfidenceScore",
     "AgentOutput",
+    "agent_output_from_envelope",
     "canonical_input",
     "hash_input",
     "utcnow",
