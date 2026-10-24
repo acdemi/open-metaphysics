@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from ..consensus import (
+    ConsensusConclusion,
     ConsensusConfig,
     ConsensusEngine,
     ConsensusInput,
@@ -159,6 +160,7 @@ class ConsensusContractAdapter:
         runtime = {
             "ConsensusInput": ConsensusInput,
             "ConsensusConfig": ConsensusConfig,
+            "ConsensusConclusion": ConsensusConclusion,
             "ConsensusReport": ConsensusReport,
         }
         for name, model in runtime.items():
@@ -232,6 +234,21 @@ class ConsensusContractAdapter:
             errs.append("CS-022: overall_confidence mismatch")
 
         return errs
+
+    # -- RuntimeAdapter protocol (consensus layer) ---------------------------
+
+    def build_consensus(self, evidence_json: str, config_json: str) -> str:
+        """RuntimeAdapter entry point: ``Evidence[] + Config -> Report`` JSON.
+
+        Mirrors the Reference Runtime adapter contract so this adapter can
+        participate in a future composite production ``RuntimeAdapter``.
+        """
+        evidence = json.loads(evidence_json)
+        config = json.loads(config_json)
+        report = ConsensusEngine().build(
+            ConsensusInput(evidence=evidence, config=config)
+        )
+        return _canonical_json(report.model_dump(mode="json"))
 
     # -- 规范向量 ------------------------------------------------------------
 
