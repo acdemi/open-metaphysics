@@ -17,7 +17,7 @@
 | pageid | （P2.2 未登记 pageid） |
 | revid | **1378608**（H6 2026-10-24 以 oldid 固定抓取） |
 | acquisition_status | acquired  # H6 2026-10-24: revision-pinned 抓取件（保存在仓库外），未入库 |
-| evidence_status | revision_pinned  # H6 2026-10-24: 已固定 revid + sha256；逐条逐字核验待后续 Sprint |
+| evidence_status | revision_pinned_verbatim_verified（partial）  # H6 2026-10-24: 10/15 条目逐字核验；余 5 条摘要 |
 | verified_scope | 本 Sprint 已在线读取并核对章节结构: 卷之一（奇门秘诀总赋/遁甲起例/九星值符图/八门值使图/值符值使诀/论八门执事歌）、卷之二（奇门妙秘赋/九星/八门/六仪/八神/阴遁起例/阳遁起例/三元/八节/以旬首取符使法/值符加时干法/值使加时支法/八门所主/九星所主/三奇喜怒/八卦类神/九星类神/八神类神）、卷之三（十干类神/十二支类神） |
 | blocker | 无 |
 | retrieved_utc | 2026-10-24（H6 抓取）；P2.2 在线读取时间 2026-10-03T14:43:00Z |
