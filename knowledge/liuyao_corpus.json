@@ -7,12 +7,12 @@
       "relations": 66
     },
     "domain": "liuyao",
-    "pipeline": "knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II)",
+    "pipeline": "knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II; frozen v1.0.0)",
     "source_digests": {
       "source_liuyao_01.yaml": "7bcdd0b77d1cdf0dc15dbf8932f9aca3403707b5712770fe58a2047214630255"
     },
-    "status": "candidate",
-    "version": "0.2.0"
+    "status": "frozen",
+    "version": "1.0.0"
   },
   "nodes": [
     {

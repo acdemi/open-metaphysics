@@ -7,7 +7,7 @@
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
 > **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现（含待修缺陷）；Phase 9 **仅桩**。本节依据 **2026-09-16 只读代码审计**刷新，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
-> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`，2026-10-24 EOL 勘误），BaZi/Qimen/Liuyao **candidate**（`69b6edea…` / `40de5c45…` / `52efbff5…`）；`ACP-KNOWLEDGE-001` 已批准并实施（YAML LF 固定 + digest 重登记）
+> **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`）与 Liuyao **FROZEN v1.0.0**（61/66/41，`3a09a08e…`，2026-10-24 Corpus Freeze）；BaZi/Qimen **candidate**（`69b6edea…` / `40de5c45…`）；`ACP-KNOWLEDGE-001` 已实施（YAML LF 固定 + digest 重登记）
 > **Reference Runtime**: **Frozen**（`ACP-REF-002`，2026-10-24；5 层契约 v1.0.0 + 5 层 Golden Vectors + 176/176 certified；`docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS）
 
 ---
@@ -412,7 +412,7 @@ Proposal (ACP)。
 | Qimen 认证工件 | `docs/qimen/reference_certification.md` | Qimen Reference 认证记录 |
 | Ziwei 认证工件 | `docs/ziwei/ZIWEI_BEHAVIOR_CONTRACT.md` / `reference/ziwei/` | Ziwei 契约 / Reference 认证 |
 | Knowledge 治理 | `docs/governance/knowledge/` | Scope / Source / Admission / Build Plan / Coverage / Gaps / 各 Phase 报告 |
-| Knowledge 语料 | `knowledge/` | 数据源（sources/{ziwei,bazi,qimen,liuyao}）、语料（corpus/{ziwei,bazi,qimen,liuyao}）、Pipeline（pipeline.py / validate.py，多域）、输出（ziwei_corpus.json 冻结 1.0.0 / bazi_corpus.json 候选 0.1.0，P2.1 / qimen_corpus.json 候选 0.1.0，P2.2 / liuyao_corpus.json 候选 0.2.0，P2.3/P2.4） |
+| Knowledge 语料 | `knowledge/` | 数据源（sources/{ziwei,bazi,qimen,liuyao}）、语料（corpus/{ziwei,bazi,qimen,liuyao}）、Pipeline（pipeline.py / validate.py，多域）、输出（ziwei_corpus.json 冻结 1.0.0 / bazi_corpus.json 候选 0.1.0，P2.1 / qimen_corpus.json 候选 0.1.0，P2.2 / liuyao_corpus.json 冻结 1.0.0，P2.3/P2.4+2026-10-24 Freeze） |
 
 ---
 
