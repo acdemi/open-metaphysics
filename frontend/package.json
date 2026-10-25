@@ -1,0 +1,27 @@
+{
+  "name": "openmetaphysics-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "OpenMetaphysics 前端 MVP：Vue 3 + TypeScript，连接真实 FastAPI 后端。",
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173 --strictPort",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "vue": "^3.5.44"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.7",
+    "vitest": "^3.2.7",
+    "vue-tsc": "^3.3.13"
+  }
+}

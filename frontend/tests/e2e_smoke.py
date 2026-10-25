@@ -5,7 +5,7 @@
   1. 后端已启动并允许本页面来源跨域，例如 PowerShell：
        $env:OM_CORS_ORIGINS='http://127.0.0.1:5173'; uv run openmetaphysics
   2. 前端静态服务器已启动：
-       uv run python frontend/serve.py
+       cd frontend && npm run dev
 
 运行：
   uv run python frontend/tests/e2e_smoke.py
@@ -159,9 +159,9 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
             html = response.read().decode("utf-8")
     except Exception as error:
         print(f"[FAIL] 前端不可达：{page_url}（{error}）")
-        print("       请先运行：uv run python frontend/serve.py")
+        print("       请先运行：cd frontend && npm run dev")
         return 2
-    check("前端页面可访问且返回 SPA 入口", "analysis-form" in html, page_url)
+    check("前端页面可访问且返回 SPA 入口", 'id="app"' in html, page_url)
 
     chrome = pick_chrome(chrome)
     port = 9333
@@ -407,12 +407,15 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
 
             # 9. 多域：触发真实共识
             await cdp.evaluate("document.querySelector('[data-testid=tab-calculation]').click()")
-            await cdp.evaluate(
-                "(() => {for (const id of ['ziwei','qimen','liuyao']) {"
-                " const input = document.querySelector('[data-testid=domain-' + id + ']');"
-                " input.checked = true; input.dispatchEvent(new Event('change', {bubbles:true}));"
-                " } document.getElementById('btn-submit').click();})()"
-            )
+            # 像真实用户一样逐个勾选（每次点击后让 Vue 完成一次渲染再点下一个）
+            for domain in ("ziwei", "qimen", "liuyao"):
+                checked = await cdp.evaluate(
+                    f"(() => {{const input = document.querySelector('[data-testid=domain-{domain}]');"
+                    " if (!input.checked) input.click(); return input.checked;})()"
+                )
+                check(f"勾选领域 {domain}", checked is True, str(checked))
+                await asyncio.sleep(0.15)
+            await cdp.evaluate("document.getElementById('btn-submit').click()")
             await wait_for(
                 cdp,
                 "document.querySelector('#summary-meta dd').textContent.includes('ui-') && "
@@ -518,6 +521,7 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
             await cdp.evaluate(
                 "(() => {const input=document.getElementById('settings-api-base');"
                 " input.value='http://127.0.0.1:8199';"
+                " input.dispatchEvent(new Event('input',{bubbles:true}));"
                 " document.getElementById('settings-form').requestSubmit();})()"
             )
             down_text = await wait_for(
@@ -555,7 +559,36 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
             )
             check("恢复默认 API 地址后健康检查重新通过", "后端正常" in recovered, recovered)
 
-            # 12. 前端无未捕获 JS 错误
+            # 12. 请求取消：真实网络节流下点击「取消请求」
+            await cdp.send("Network.enable")
+            await cdp.send(
+                "Network.emulateNetworkConditions",
+                {"offline": False, "latency": 4000, "downloadThroughput": -1, "uploadThroughput": -1},
+            )
+            await cdp.evaluate("document.getElementById('btn-submit').click()")
+            await wait_for(
+                cdp,
+                "!!document.getElementById('results-loading') && !document.getElementById('results-loading').hidden",
+                timeout=10,
+                desc="加载状态",
+            )
+            await cdp.evaluate("document.getElementById('btn-cancel').click()")
+            cancelled_title = await wait_for(
+                cdp,
+                "(() => {const title=document.getElementById('error-title');"
+                " const view=document.getElementById('results-error');"
+                " if (!title || !view || view.hidden) return ''; return title.textContent;})()",
+                timeout=20,
+                desc="取消后的状态",
+            )
+            check("取消请求后显示「已取消」状态", "已取消" in cancelled_title, cancelled_title)
+            await cdp.send(
+                "Network.emulateNetworkConditions",
+                {"offline": False, "latency": 0, "downloadThroughput": -1, "uploadThroughput": -1},
+            )
+            await cdp.send("Network.disable")
+
+            # 13. 前端无未捕获 JS 错误
             js_errors = await cdp.evaluate("window.__omErrors || []")
             check(
                 "页面运行期间无未捕获 JS 错误",
