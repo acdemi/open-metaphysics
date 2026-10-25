@@ -46,11 +46,11 @@
 | Phase 6.5 Engineering Freeze | **Frozen** | `docs/engineering/01_rule_dsl.md` 等 |
 | Phase 6.6 Technology Selection | **Frozen** | `docs/engineering/11~14` |
 | Phase 6.8 Repository Bootstrap | **Frozen** | Monorepo 基础设施 |
-| Reference Runtime | **Candidate** | 行为规范已完成，待最终冻结 |
+| Reference Runtime | **Frozen** | `ACP-REF-002` 已实施（2026-10-24）；见 `docs/governance/REFERENCE_FREEZE_REVIEW.md` |
 | Behavior Contracts | **Frozen** | 100 条合约，不可修改（需 ACP） |
 | Contract JSON | **Frozen** | 3 份 Contract，v1.0.0 |
 | Conformance Rules | **Frozen** | CF-001~020，不可修改 |
-| Golden Vectors | **Auto-generated** | 19 个向量，自动发现 |
+| Golden Vectors | **Frozen / Certified** | Reference Runtime 五层 Golden Vectors；176/176 certified，详见冻结审查与各域向量文件 |
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
