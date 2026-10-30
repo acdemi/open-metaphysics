@@ -1,15 +1,22 @@
-/* 后端契约类型（手写，来源见每个类型注释）。
+/* 后端契约类型。
  *
- * 依据：
- *   - `src/openmetaphysics/core/schemas.py`（AgentInput / AgentOutput / ConfidenceScore / ReasoningStep / GeoPoint / Gender）
- *   - `src/openmetaphysics/agents/{bazi,ziwei,qimen,liuyao}.py`（各域 result 模型）
- *   - `src/openmetaphysics/agents/consensus.py`、`src/openmetaphysics/consensus/models.py`
- *   - `src/openmetaphysics/orchestration/graph.py`（OrchestrationRequest / Response）
- *   - `src/openmetaphysics/api/app.py`（/health、/orchestrate、/agents/{name}/explain 的 explain 块、错误模型）
- *   - 实际 HTTP 响应（本轮迁移前对运行中的后端逐端点采样核对）
+ * 静态形状优先来自 OpenAPI 生成类型（`./generated.ts`，由
+ * `npm run gen:api` 从 `frontend/openapi.json` 生成，后者由
+ * `uv run python scripts/export_openapi.py` 从 FastAPI app 导出）。
+ * 生成命令与更新方式见 `frontend/README.md`。
+ *
+ * 仍然手写的部分（以及原因）：
+ *   - 四个域的 `result` 图表：OpenAPI 中 `AgentOutput.result` 只是 free-form
+ *     object（各域 Output 模型未注册为 response），生成类型无法表达。
+ *   - `explanation_detail`：OpenAPI 中为 `dict[str, dict[str, Any]]`，没有逐字段契约。
+ *   - 错误响应体：路由直接返回 `JSONResponse`，未纳入 OpenAPI response model。
  *
  * 运行时校验在 `parse.ts`：这里只是静态形状，不能假设响应一定符合。
  */
+
+import type { components } from './generated'
+
+export type Schemas = components['schemas']
 
 export type JsonValue =
   | string
@@ -19,70 +26,31 @@ export type JsonValue =
   | JsonValue[]
   | { [key: string]: JsonValue }
 
-export type Gender = 'male' | 'female' | 'unknown'
+/* ------------------------------------------------------- 生成类型（OpenAPI） */
+export type Gender = Schemas['Gender']
+export type GeoPoint = Schemas['GeoPoint']
+export type AgentInput = Schemas['AgentInput']
+export type OrchestrationRequest = Schemas['OrchestrationRequest']
+export type ConfidenceScore = Schemas['ConfidenceScore']
+export type HealthResponse = Schemas['HealthResponse']
+export type AgentsResponse = Schemas['AgentsResponse']
+export type AgentInfo = Schemas['AgentInfo']
 
 export const AGENT_NAMES = ['bazi', 'ziwei', 'qimen', 'liuyao'] as const
 
 export type AgentName = (typeof AGENT_NAMES)[number]
 
-export interface GeoPoint {
-  latitude: number
-  longitude: number
-  elevation_m?: number | null
-  timezone?: string | null
-}
-
-/** core/schemas.py::AgentInput */
-export interface AgentInput {
-  request_id: string
-  /** ISO 8601，必须带时区偏移 */
-  born_at: string
-  born_location?: GeoPoint | null
-  gender?: Gender
-  question?: string | null
-  locale?: string
-  seed?: number | null
-  client_nonce?: string | null
-}
-
-/** orchestration/graph.py::OrchestrationRequest */
-export interface OrchestrationRequest {
-  request_id: string
-  payload: AgentInput
-  agents?: AgentName[] | null
-  strategy?: string
-  explain?: boolean
-}
-
-export interface ConfidenceScore {
-  value: number
-  method: string
-  factors: Record<string, number>
-}
-
+/* --------------------------------------------------------- 信封（生成类型） */
 export type TraceScalar = string | number | boolean
 
-export interface ReasoningStep {
-  step: number
-  rule_ref: string
-  description: string
-  inputs: Record<string, TraceScalar>
-  outputs: Record<string, TraceScalar>
-}
+/** Pydantic 把 `inputs`/`outputs` 标成可选（有默认值），实际总有值；解析后必填。 */
+export type ReasoningStep = Required<Schemas['ReasoningStep']>
 
-export type OutputMetadata = Record<string, TraceScalar>
+export type OutputMetadata = NonNullable<Schemas['AgentOutput']['metadata']>
 
-/** core/schemas.py::AgentOutput —— 所有域共用的信封。 */
-export interface AgentOutputEnvelope {
-  request_id: string
-  agent: string
-  engine_version: string
-  input_hash: string
-  computed_at: string
-  confidence: ConfidenceScore
+/** 生成类型把有默认值的字段标为可选；`/orchestrate` 实际总是返回它们。 */
+export type AgentOutputEnvelope = Omit<Required<Schemas['AgentOutput']>, 'reasoning_trace'> & {
   reasoning_trace: ReasoningStep[]
-  metadata: OutputMetadata
-  result: unknown
 }
 
 /* ------------------------------------------------------------- 八字 / Bazi */
@@ -110,7 +78,7 @@ export interface BaziDaYun {
   start_at: string
 }
 
-/** agents/bazi.py::BaziChart */
+/** agents/bazi.py::BaziChart（OpenAPI 中 result 为 free-form，故手写） */
 export interface BaziChart {
   day_master: string
   day_master_element: string
@@ -134,7 +102,7 @@ export interface ZiweiPalace {
   is_body_palace: boolean
 }
 
-/** agents/ziwei.py::ZiweiChart */
+/** agents/ziwei.py::ZiweiChart（OpenAPI 中 result 为 free-form，故手写） */
 export interface ZiweiChart {
   fate_palace_index: number
   body_palace_index: number
@@ -158,7 +126,7 @@ export interface QimenCell {
   is_central: boolean
 }
 
-/** agents/qimen.py::QimenBoard */
+/** agents/qimen.py::QimenBoard（OpenAPI 中 result 为 free-form，故手写） */
 export interface QimenBoard {
   solar_term: string | null
   ju: number
@@ -177,7 +145,7 @@ export interface YaoLine {
   cast_value: number
 }
 
-/** agents/liuyao.py::LiuyaoChart */
+/** agents/liuyao.py::LiuyaoChart（OpenAPI 中 result 为 free-form，故手写） */
 export interface LiuyaoChart {
   original: YaoLine[]
   changed: YaoLine[]
@@ -196,28 +164,28 @@ export interface LiuyaoChart {
 }
 
 /* --------------------------------------------------------- 领域输出联合体 */
-export interface BaziOutput extends AgentOutputEnvelope {
+export type BaziOutput = Omit<AgentOutputEnvelope, 'agent' | 'result'> & {
   agent: 'bazi'
   result: BaziChart
 }
 
-export interface ZiweiOutput extends AgentOutputEnvelope {
+export type ZiweiOutput = Omit<AgentOutputEnvelope, 'agent' | 'result'> & {
   agent: 'ziwei'
   result: ZiweiChart
 }
 
-export interface QimenOutput extends AgentOutputEnvelope {
+export type QimenOutput = Omit<AgentOutputEnvelope, 'agent' | 'result'> & {
   agent: 'qimen'
   result: QimenBoard
 }
 
-export interface LiuyaoOutput extends AgentOutputEnvelope {
+export type LiuyaoOutput = Omit<AgentOutputEnvelope, 'agent' | 'result'> & {
   agent: 'liuyao'
   result: LiuyaoChart
 }
 
 /** 未知域（后端注册了但前端暂无专用渲染器）——保留原始 result。 */
-export interface GenericOutput extends AgentOutputEnvelope {
+export type GenericOutput = Omit<AgentOutputEnvelope, 'agent' | 'result'> & {
   agent: string
   result: unknown
 }
@@ -250,7 +218,7 @@ export interface ExplainErrorInfo {
   provider?: string | null
 }
 
-/** 后端 explain 块的统一形状（compute?explain / explain / orchestrate.detail）。 */
+/** 后端 explain 块的统一形状；OpenAPI 中该块是 `dict[str, Any]`，故手写。 */
 export interface ExplainDetail {
   explanation: string
   provider: string | null
@@ -260,69 +228,42 @@ export interface ExplainDetail {
   error: ExplainErrorInfo | null
 }
 
-export interface ConsensusContribution {
-  agent: string
-  confidence: number
-  weight: number
-  element: string | null
-  summary: string
-}
-
-export interface ConsensusConflict {
-  agents: string[]
-  field: string
-  values: string[]
-  severity: string
-}
-
-export interface ConsensusResult {
-  overall_confidence: number
-  contributions: ConsensusContribution[]
-  agreement_matrix: Record<string, Record<string, number>>
-  conflicts: ConsensusConflict[]
-  synthesis: string
-  recommendation: string | null
-}
+/* 共识结果直接使用生成类型（ConsensusOutput / ConsensusReport / AgentContribution / Conflict）。 */
+export type ConsensusContribution = Schemas['AgentContribution']
+export type ConsensusConflict = Schemas['Conflict']
 
 /** 后端 ConsensusAgent 的 metadata 是自由标量字典（含 strategy / agent_count）。 */
 export type ConsensusMetadata = Record<string, TraceScalar>
 
-/** agents/consensus.py::ConsensusOutput（result 为 ConsensusResult）。 */
-export interface ConsensusOutput {
-  request_id: string
-  agent: 'consensus'
-  engine_version: string
-  computed_at: string
-  /** 注意：后端 ConsensusOutput.confidence 是 float（不是 ConfidenceScore 对象）。 */
-  confidence: number
+/** ConsensusReport 的 `recommendation` 在 OpenAPI 中有默认值（可选），实际总是返回。 */
+export type ConsensusResult = Required<Schemas['ConsensusReport']>
+
+/** agents/consensus.py::ConsensusOutput；confidence 是 float，不是 ConfidenceScore。 */
+export type ConsensusOutput = Omit<
+  Required<Schemas['ConsensusOutput']>,
+  'reasoning_trace' | 'metadata'
+> & {
   reasoning_trace: ReasoningStep[]
   metadata: ConsensusMetadata
-  result: ConsensusResult
 }
 
-/** orchestration/graph.py::OrchestrationResponse */
-export interface OrchestrationResponse {
-  request_id: string
+/** `/orchestrate` 的实际响应：outputs 已按域窄化、explanation_detail 已解析。 */
+export type OrchestrationResponse = Omit<
+  Required<Schemas['OrchestrationResponse']>,
+  'outputs' | 'consensus' | 'explanation_detail'
+> & {
   outputs: AnyOutput[]
   consensus: ConsensusOutput | null
-  explanation: Record<string, string>
   explanation_detail: Record<string, ExplainDetail>
-  errors: string[]
 }
 
 /* ------------------------------------------------------------- 其他端点 */
-/** api/app.py::health */
-export interface HealthResponse {
-  status: string
-  agents: string[]
-}
-
 export interface Timed<T> {
   data: T
   elapsedMs: number
 }
 
-/** error 对象的稳定判别键（api/app.py 的公开错误模型）。 */
+/** error 对象的稳定判别键（api/app.py 的公开错误模型；OpenAPI 未描述，故手写）。 */
 export type BackendErrorKind =
   | 'invalid_request'
   | 'unknown_agent'

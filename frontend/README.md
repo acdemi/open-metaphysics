@@ -60,6 +60,7 @@ uv run uvicorn openmetaphysics.api.app:app --host 127.0.0.1 --port 8080
 | `npm run preview` | 预览生产构建（127.0.0.1:5173） |
 | `npm run typecheck` | `vue-tsc --noEmit`（与构建独立的类型检查） |
 | `npm run test` | Vitest 单元测试（时区换算、请求构造、响应解析、错误归一化） |
+| `npm run gen:api` | 由 `frontend/openapi.json` 生成 `src/api/generated.ts`（生成文件禁止手改） |
 
 ## 使用的后端端点
 
@@ -123,14 +124,43 @@ uv run uvicorn openmetaphysics.api.app:app --host 127.0.0.1 --port 8080
 
 ## 类型与 API 边界
 
-- `src/api/types.ts`：手写类型，来源为后端 `core/schemas.py`、各域 agent 模型、`orchestration/graph.py`、
-  `api/app.py` 与实测响应（每个类型有注释）。
+- `src/api/generated.ts`：**自动生成**（`openapi-typescript@7.13.0`），来源是后端
+  `frontend/openapi.json`；不要手改，更新方式见下节。
+- `src/api/types.ts`：以生成类型为主（请求 / 响应 envelope、`ConsensusOutput`、
+  `ConsensusReport`、`/health`、`/agents`）；只有 OpenAPI 无法表达的部分才手写并注明原因：
+  四个域的 `result` 图表（OpenAPI 中 `AgentOutput.result` 是 free-form object）、
+  `explanation_detail`（`dict[str, dict[str, Any]]`）、错误响应体（路由直接返回 `JSONResponse`）。
 - `src/api/parse.ts`：运行时逐字段收窄；未知域保留为通用输出，不伪造专用结果。
 - `src/api/errors.ts`：HTTP / 网络 / 超时 / 取消统一为 `ApiError`；`src/api/client.ts` 是唯一 `fetch` 出口。
 - `src/config/index.ts`：API 地址解析（含 `?api=` 与 localStorage）、预填示例、领域元数据。
 - `src/utils/timezone.ts`：IANA 时区 → 带偏移 ISO 8601（含历史夏令时与 DST 边界修正）。
 - `src/utils/validation.ts`：表单校验与 `/orchestrate` 请求构造的唯一入口。
 - `src/composables/`：`useAnalysis`（分析工作流）、`useConnection`（健康检查/API 地址）、`useToast`。
+
+## API 类型生成（OpenAPI → TypeScript）
+
+后端路由的响应模型（`OrchestrationResponse`、`AgentOutput`、`ConsensusOutput`、
+`ConsensusReport`、`HealthResponse`、`AgentsResponse`）会进入 FastAPI 的
+`/openapi.json`。前端类型以该文档为单一来源：
+
+```bash
+# 1) 后端 OpenAPI 有变化时，刷新快照（仓库根目录）
+uv run python scripts/export_openapi.py     # 写 frontend/openapi.json（确定性：排序键 + 2 空格缩进）
+
+# 2) 由快照生成 TypeScript 类型（frontend 目录）
+cd frontend
+npm run gen:api                              # openapi-typescript@7.13.0 → src/api/generated.ts
+```
+
+约束：
+
+- `src/api/generated.ts` 与 `frontend/openapi.json` 都是产物；**只允许脚本重写，禁止手改**。
+  重复执行 `npm run gen:api` 不产生额外 diff（工具版本固定在 `package.json`）。
+- `frontend/openapi.json` 必须与 `app.openapi()` 的确定性导出逐字节一致；
+  `tests/test_api_openapi_contract.py::test_frontend_openapi_snapshot_is_current` 会强制这一点。
+- 领域 `result` 仍由 `parse.ts` 运行时校验并以手写图表类型呈现，直到 OpenAPI 真实携带
+  四个域的 Output 结构为止；生成类型不会假装具备域级类型安全。
+- 新增依赖的审计入口：`openapi-typescript` 仅作为 devDependency（固定版本，见 `package-lock.json`）。
 
 ## 端到端测试（真实浏览器）
 
@@ -156,9 +186,10 @@ frontend/
 ├── vite.config.ts            # 端口 / 构建配置
 ├── tsconfig.json             # strict TypeScript（含 tests）
 ├── package.json              # 依赖与脚本（package-lock.json 提交）
+├── openapi.json              # 后端 OpenAPI 快照（由 scripts/export_openapi.py 生成）
 ├── src/
 │   ├── main.ts / App.vue     # 入口与应用外壳（健康状态、设置、toast）
-│   ├── api/                  # types / parse / errors / client
+│   ├── api/                  # generated（自动生成）/ types / parse / errors / client
 │   ├── config/               # API 地址、预填示例、领域元数据、时区与性别选项
 │   ├── composables/          # useAnalysis / useConnection / useToast
 │   ├── components/           # 表单、状态视图、结果标签页、执行详情、设置

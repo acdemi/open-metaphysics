@@ -41,8 +41,9 @@ from ..consensus import ConsensusEngine, ConsensusInput, ConsensusReport
 from ..core.config import get_settings
 from ..core.schemas import AgentOutput
 from ..inference.explainer import get_explainer_for
-from ..orchestration.graph import OrchestrationRequest, orchestrate
+from ..orchestration.graph import OrchestrationRequest, OrchestrationResponse, orchestrate
 from ..persistence import SessionStore, create_store
+from .models import AgentInfo, AgentsResponse, HealthResponse
 
 
 class ExplainRequest(BaseModel):
@@ -180,14 +181,16 @@ def create_app() -> FastAPI:
             "health": "/health",
         }
 
-    @app.get("/health")
-    def health() -> dict[str, Any]:
-        return {"status": "ok", "agents": get_registry().names()}
+    @app.get("/health", response_model=HealthResponse)
+    def health() -> HealthResponse:
+        return HealthResponse(status="ok", agents=get_registry().names())
 
-    @app.get("/agents")
-    def list_agents() -> dict[str, Any]:
+    @app.get("/agents", response_model=AgentsResponse)
+    def list_agents() -> AgentsResponse:
         reg = get_registry()
-        return {"agents": [{"name": a.name, "engine_version": a.engine_version} for a in reg.all()]}
+        return AgentsResponse(
+            agents=[AgentInfo(name=a.name, engine_version=a.engine_version) for a in reg.all()]
+        )
 
     @app.get("/agents/{name}/schema")
     def agent_schema(name: str) -> Any:
@@ -315,7 +318,7 @@ def create_app() -> FastAPI:
             return _error(500, "consensus_failed", str(exc), type=type(exc).__name__)
         return report.model_dump(mode="json")
 
-    @app.post("/orchestrate")
+    @app.post("/orchestrate", response_model=OrchestrationResponse)
     def orchestrate_endpoint(req: OrchestrationRequest, http_request: Request) -> Any:
         # Request-level check: if the caller explicitly named agents and none of
         # them exist there is nothing to orchestrate -> 404, matching the

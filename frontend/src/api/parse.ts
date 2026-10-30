@@ -147,7 +147,7 @@ function parseReasoningStep(value: unknown, path: string): ReasoningStep {
   }
 }
 
-function parseEnvelopeBase(value: unknown, path: string): AgentOutputEnvelope {
+function parseEnvelopeBase(value: unknown, path: string): Omit<AgentOutputEnvelope, 'result'> & { result: unknown } {
   const record = asRecord(value, path)
   return {
     request_id: asString(record.request_id, `${path}.request_id`),
@@ -402,13 +402,21 @@ function parseConsensusContribution(value: unknown, path: string): ConsensusCont
   }
 }
 
+function asSeverity(value: unknown, path: string): ConsensusConflict['severity'] {
+  const severity = asString(value, path)
+  if (severity !== 'low' && severity !== 'medium' && severity !== 'high') {
+    fail(path, `未知严重度 ${severity}`)
+  }
+  return severity
+}
+
 function parseConsensusConflict(value: unknown, path: string): ConsensusConflict {
   const record = asRecord(value, path)
   return {
     agents: asStringArray(record.agents, `${path}.agents`),
     field: asString(record.field, `${path}.field`),
     values: asStringArray(record.values, `${path}.values`),
-    severity: asString(record.severity, `${path}.severity`),
+    severity: asSeverity(record.severity, `${path}.severity`),
   }
 }
 
