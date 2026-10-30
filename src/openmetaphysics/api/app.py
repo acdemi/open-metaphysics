@@ -27,6 +27,7 @@ errors.
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
 from fastapi import FastAPI, Request
@@ -44,6 +45,8 @@ from ..inference.explainer import get_explainer_for
 from ..orchestration.graph import OrchestrationRequest, OrchestrationResponse, orchestrate
 from ..persistence import SessionStore, create_store
 from .models import AgentInfo, AgentsResponse, HealthResponse
+
+logger = logging.getLogger(__name__)
 
 
 class ExplainRequest(BaseModel):
@@ -151,8 +154,11 @@ def _persist_session(
     ]
     try:
         store.save_session(request_id, request, response, traces)
-    except Exception:
-        return
+    except Exception as exc:  # best-effort: the response has already been computed
+        logger.warning(
+            "persistence: session write failed (%s); the computed response is unaffected",
+            type(exc).__name__,
+        )
 
 
 def create_app() -> FastAPI:

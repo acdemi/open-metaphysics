@@ -13,8 +13,11 @@ calculation, so callers wrap ``save_*`` and ignore errors.
 
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timezone
 from typing import Any, Protocol, runtime_checkable
+
+logger = logging.getLogger(__name__)
 
 try:  # optional [persist] extra
     from sqlalchemy import (
@@ -190,15 +193,30 @@ def _normalize_dsn(dsn: str) -> str:
 
 
 def create_store(settings: Any | None = None) -> SessionStore:
-    """Build the configured store; degrade to memory when unavailable."""
+    """Build the configured store; degrade to memory when unavailable.
+
+    Degradation is observable: a configured-but-unusable store logs one warning
+    naming only the failure class (never the DSN or credentials) and falls back
+    to the in-memory store.
+    """
     if settings is None:
         from ..core.config import get_settings
 
         settings = get_settings()
     dsn = getattr(settings, "postgres_dsn", None)
-    if dsn and SQLALCHEMY_AVAILABLE:
-        try:
-            return SqlAlchemySessionStore(dsn)
-        except Exception:
-            return InMemorySessionStore()
-    return InMemorySessionStore()
+    if not dsn:
+        return InMemorySessionStore()
+    if not SQLALCHEMY_AVAILABLE:
+        logger.warning(
+            "persistence: PostgreSQL DSN is configured but SQLAlchemy is unavailable; "
+            "falling back to in-memory store"
+        )
+        return InMemorySessionStore()
+    try:
+        return SqlAlchemySessionStore(dsn)
+    except Exception as exc:
+        logger.warning(
+            "persistence: session store initialization failed (%s); falling back to in-memory store",
+            type(exc).__name__,
+        )
+        return InMemorySessionStore()
