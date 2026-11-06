@@ -1,6 +1,90 @@
 {
   "components": {
     "schemas": {
+      "AgentComputeResponse": {
+        "additionalProperties": false,
+        "description": "``POST /agents/{name}/compute`` — one domain's ``AgentOutput`` envelope.\n\n``explain`` is only present when ``?explain=true``; the route serializes\nwith ``response_model_exclude_none`` so non-explain responses keep the exact\npre-existing wire shape (no ``explain: null`` key).",
+        "properties": {
+          "agent": {
+            "title": "Agent",
+            "type": "string"
+          },
+          "computed_at": {
+            "format": "date-time",
+            "title": "Computed At",
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/ConfidenceScore"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "explain": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explain"
+          },
+          "input_hash": {
+            "title": "Input Hash",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Metadata",
+            "type": "object"
+          },
+          "reasoning_trace": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningStep"
+            },
+            "title": "Reasoning Trace",
+            "type": "array"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "result": {
+            "additionalProperties": true,
+            "title": "Result",
+            "type": "object"
+          }
+        },
+        "required": [
+          "request_id",
+          "agent",
+          "engine_version",
+          "input_hash",
+          "computed_at",
+          "confidence"
+        ],
+        "title": "AgentComputeResponse",
+        "type": "object"
+      },
       "AgentContribution": {
         "additionalProperties": false,
         "properties": {
@@ -59,79 +143,6 @@
           "engine_version"
         ],
         "title": "AgentInfo",
-        "type": "object"
-      },
-      "AgentInput": {
-        "additionalProperties": false,
-        "description": "Base input envelope. Subclasses add agent-specific fields.",
-        "properties": {
-          "born_at": {
-            "format": "date-time",
-            "title": "Born At",
-            "type": "string"
-          },
-          "born_location": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/GeoPoint"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "client_nonce": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Nonce"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender",
-            "default": "unknown"
-          },
-          "locale": {
-            "default": "zh-CN",
-            "title": "Locale",
-            "type": "string"
-          },
-          "question": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Question"
-          },
-          "request_id": {
-            "title": "Request Id",
-            "type": "string"
-          },
-          "seed": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Seed"
-          }
-        },
-        "required": [
-          "request_id",
-          "born_at"
-        ],
-        "title": "AgentInput",
         "type": "object"
       },
       "AgentOutput": {
@@ -206,6 +217,35 @@
         "title": "AgentOutput",
         "type": "object"
       },
+      "AgentSchemaResponse": {
+        "description": "``GET /agents/{name}/schema`` — the agent's own JSON Schemas.",
+        "properties": {
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "input_schema": {
+            "additionalProperties": true,
+            "title": "Input Schema",
+            "type": "object"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "output_schema": {
+            "additionalProperties": true,
+            "title": "Output Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "engine_version"
+        ],
+        "title": "AgentSchemaResponse",
+        "type": "object"
+      },
       "AgentsResponse": {
         "description": "``GET /agents``.",
         "properties": {
@@ -225,19 +265,23 @@
       },
       "ConfidenceScore": {
         "additionalProperties": false,
+        "description": "Confidence envelope for a deterministic result — declared, not measured.\n\n``value`` is a **declared baseline** (currently ``0.95`` from\n``core.engines``), not a statistical probability and not a measured\nrule-coverage ratio: the deterministic engines have no calibrated ground\ntruth. The current value is tagged ``method=\"placeholder_baseline\"`` with\n``factors[\"calibrated\"] == 0.0``. Consumers (Consensus weighted strategy,\nExplain prompts) must not present it as a probability.",
         "properties": {
           "factors": {
             "additionalProperties": {
               "type": "number"
             },
+            "description": "Explainability signals; factors['calibrated'] == 0.0 means the value is not calibrated against ground truth.",
             "title": "Factors",
             "type": "object"
           },
           "method": {
+            "description": "How the value was produced. \"placeholder_baseline\" means a declared constant, not measured rule coverage or statistics.",
             "title": "Method",
             "type": "string"
           },
           "value": {
+            "description": "Declared baseline in [0,1]; NOT a calibrated probability or coverage ratio.",
             "maximum": 1.0,
             "minimum": 0.0,
             "title": "Value",
@@ -730,6 +774,97 @@
         "title": "HealthResponse",
         "type": "object"
       },
+      "KnowledgeCorporaResponse": {
+        "description": "``GET /knowledge/corpora``.",
+        "properties": {
+          "corpora": {
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeCorpusInfo"
+            },
+            "title": "Corpora",
+            "type": "array"
+          }
+        },
+        "required": [
+          "corpora"
+        ],
+        "title": "KnowledgeCorporaResponse",
+        "type": "object"
+      },
+      "KnowledgeCorpusInfo": {
+        "description": "One frozen corpus entry from ``GET /knowledge/corpora``.",
+        "properties": {
+          "corpus_id": {
+            "title": "Corpus Id",
+            "type": "string"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Counts",
+            "type": "object"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "required": [
+          "corpus_id"
+        ],
+        "title": "KnowledgeCorpusInfo",
+        "type": "object"
+      },
+      "KnowledgeSearchChunk": {
+        "description": "One chunk returned by ``POST /knowledge/search``.\n\nMirrors ``rag.retriever.KnowledgeChunk`` as exposed by the route: no\nrelevance score is returned by the API (the UI must not invent one).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "default": "",
+            "title": "Source",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "title": "KnowledgeSearchChunk",
+        "type": "object"
+      },
       "KnowledgeSearchRequest": {
         "properties": {
           "include_evidence": {
@@ -753,8 +888,117 @@
         "title": "KnowledgeSearchRequest",
         "type": "object"
       },
-      "OrchestrationRequest": {
+      "KnowledgeSearchResponse": {
+        "description": "``POST /knowledge/search`` — independent frozen-corpus retrieval.",
         "properties": {
+          "chunks": {
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeSearchChunk"
+            },
+            "title": "Chunks",
+            "type": "array"
+          },
+          "include_evidence": {
+            "title": "Include Evidence",
+            "type": "boolean"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query",
+          "include_evidence",
+          "chunks"
+        ],
+        "title": "KnowledgeSearchResponse",
+        "type": "object"
+      },
+      "OrchestrationPayload": {
+        "additionalProperties": true,
+        "description": "Common envelope that may also carry domain fields for per-agent dispatch.\n\nThe shared ``payload`` is typed as ``AgentInput`` by the single-agent\nendpoints. For orchestration the domain fields (``casts``/``seed`` for\nLiuyao, ``lunar_month``/``lunar_day`` for Ziwei, ``dayun_count`` for Bazi,\n...) are allowed on the payload and copied only to the agents whose input\nschema declares them, so a request can stay \"one envelope + selected\nagents\". Per-agent ``agent_params`` take precedence over these fields.",
+        "properties": {
+          "born_at": {
+            "format": "date-time",
+            "title": "Born At",
+            "type": "string"
+          },
+          "born_location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GeoPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "client_nonce": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Nonce"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender",
+            "default": "unknown"
+          },
+          "locale": {
+            "default": "zh-CN",
+            "title": "Locale",
+            "type": "string"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          }
+        },
+        "required": [
+          "request_id",
+          "born_at"
+        ],
+        "title": "OrchestrationPayload",
+        "type": "object"
+      },
+      "OrchestrationRequest": {
+        "description": "A batch request over the shared ``payload`` envelope.\n\nDomain-specific fields (``casts``/``seed`` for Liuyao, ``lunar_month`` /\n``lunar_day`` for Ziwei, ``dayun_count`` for Bazi, ...) are not part of the\ncommon ``AgentInput`` contract. They can be supplied in either of two ways:\n\n* directly on ``payload`` -- dispatched to every selected agent whose input\n  schema declares the field;\n* per agent in ``agent_params``, which is merged over ``payload`` for that\n  agent only and wins on conflicts::\n\n      {\"request_id\": \"r\", \"payload\": {...},\n       \"agents\": [\"bazi\", \"liuyao\"],\n       \"agent_params\": {\"bazi\": {\"dayun_count\": 6},\n                        \"liuyao\": {\"casts\": [7, 7, 8, 8, 7, 8]}}}\n\nBoth are optional: requests without them keep the previous behaviour (the\ncommon envelope only).",
+        "properties": {
+          "agent_params": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Agent Params",
+            "type": "object"
+          },
           "agents": {
             "anyOf": [
               {
@@ -775,7 +1019,7 @@
             "type": "boolean"
           },
           "payload": {
-            "$ref": "#/components/schemas/AgentInput"
+            "$ref": "#/components/schemas/OrchestrationPayload"
           },
           "request_id": {
             "title": "Request Id",
@@ -1070,7 +1314,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Agent Compute Agents  Name  Compute Post"
+                  "$ref": "#/components/schemas/AgentComputeResponse"
                 }
               }
             },
@@ -1179,7 +1423,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "Response Agent Schema Agents  Name  Schema Get"
+                  "$ref": "#/components/schemas/AgentSchemaResponse"
                 }
               }
             },
@@ -1284,9 +1528,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Knowledge Corpora Knowledge Corpora Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/KnowledgeCorporaResponse"
                 }
               }
             },
@@ -1315,9 +1557,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Knowledge Search Knowledge Search Post",
-                  "type": "object"
+                  "$ref": "#/components/schemas/KnowledgeSearchResponse"
                 }
               }
             },
@@ -1396,7 +1636,39 @@
     },
     "/sessions": {
       "get": {
+        "description": "List stored sessions.\n\nWithout ``limit``/``offset`` this keeps the exact legacy envelope\n(``{\"sessions\": [...]}``) so pre-P2.2 clients are unaffected. Passing\neither parameter opts into the paginated envelope\n``{sessions,total,limit,offset}`` (``limit`` defaults to 50, max 200).\nBirth data is never part of this summary (ids/timestamps only).",
         "operationId": "list_sessions_sessions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 200,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -1409,6 +1681,16 @@
               }
             },
             "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
           }
         },
         "summary": "List Sessions"

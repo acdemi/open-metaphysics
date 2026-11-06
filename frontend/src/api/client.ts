@@ -1,10 +1,43 @@
 /* HTTP 客户端：只调用仓库既有的 FastAPI 端点，所有响应在边界处解析。 */
 
 import { ApiError, asErrorMessage, backendErrorBody } from './errors'
-import { parseHealthResponse, parseOrchestrationResponse } from './parse'
-import type { HealthResponse, OrchestrationRequest, OrchestrationResponse, Timed } from './types'
+import {
+  parseAgentComputeResponse,
+  parseAgentExplainResponse,
+  parseAgentListResponse,
+  parseAgentSchemaResponse,
+  parseHealthResponse,
+  parseKnowledgeCorporaResponse,
+  parseKnowledgeSearchResponse,
+  parseOrchestrationResponse,
+  parseSessionList,
+  parseStoredSession,
+} from './parse'
+import type {
+  AgentExplainResponse,
+  AgentName,
+  AgentSchemaResponse,
+  AgentsResponse,
+  AnyOutput,
+  HealthResponse,
+  KnowledgeCorporaResponse,
+  KnowledgeSearchResponse,
+  OrchestrationRequest,
+  OrchestrationResponse,
+  SessionListResponse,
+  StoredSession,
+  Timed,
+} from './types'
 
 export const DEFAULT_TIMEOUT_MS = 90_000
+
+export interface KnowledgeSearchParams {
+  query: string
+  /** 返回条数，后端默认 5（k <= 0 时后端返回空数组）。 */
+  k?: number
+  /** true 时额外检索 relation/reference 证据片段（默认 false，仅节点）。 */
+  includeEvidence?: boolean
+}
 
 export interface JsonRequestOptions {
   method?: 'GET' | 'POST'
@@ -134,6 +167,110 @@ export async function fetchTraces(base: string, requestId: string): Promise<Time
     timeoutMs: 10_000,
   })
   return { data: response.data, elapsedMs: response.elapsedMs }
+}
+
+/** GET /sessions —— 持久化会话列表（P2.2 分页；默认 50 条/页）。 */
+export async function fetchSessionList(
+  base: string,
+  limit = 50,
+  offset = 0,
+): Promise<Timed<SessionListResponse>> {
+  const response = await requestJson(base, `/sessions?limit=${limit}&offset=${offset}`, {
+    timeoutMs: 10_000,
+  })
+  return { data: parseSessionList(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** GET /sessions/{request_id} —— 校验会话信封；request/response 仍是原始 JSON。 */
+export async function fetchStoredSession(base: string, requestId: string): Promise<Timed<StoredSession>> {
+  const response = await requestJson(base, `/sessions/${encodeURIComponent(requestId)}`, {
+    timeoutMs: 10_000,
+  })
+  return { data: parseStoredSession(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** GET /agents —— 已注册的领域 Agent（名称 + 引擎版本）。 */
+export async function fetchAgentList(base: string): Promise<Timed<AgentsResponse>> {
+  const response = await requestJson(base, '/agents', { timeoutMs: 10_000 })
+  return { data: parseAgentListResponse(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** GET /agents/{name}/schema —— 该领域的输入/输出 JSON Schema（字段与约束的唯一来源）。 */
+export async function fetchAgentSchema(
+  base: string,
+  name: AgentName,
+): Promise<Timed<AgentSchemaResponse>> {
+  const response = await requestJson(base, `/agents/${encodeURIComponent(name)}/schema`, {
+    timeoutMs: 10_000,
+  })
+  return { data: parseAgentSchemaResponse(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** POST /agents/{name}/compute —— 单域独立计算；响应是单个 AgentOutput 信封。 */
+export async function computeAgent(
+  base: string,
+  name: AgentName,
+  payload: Record<string, unknown>,
+  options: { signal?: AbortSignal | null } = {},
+): Promise<Timed<AnyOutput>> {
+  const response = await requestJson(base, `/agents/${encodeURIComponent(name)}/compute`, {
+    method: 'POST',
+    body: payload,
+    signal: options.signal ?? null,
+    timeoutMs: 30_000,
+  })
+  return { data: parseAgentComputeResponse(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** POST /agents/{name}/explain —— 对已计算的单个 AgentOutput 解释（后端不重新计算）。 */
+export async function explainAgent(
+  base: string,
+  name: AgentName,
+  output: AnyOutput,
+  options: { style?: string; k?: number; signal?: AbortSignal | null } = {},
+): Promise<Timed<AgentExplainResponse>> {
+  const params = new URLSearchParams({
+    style: options.style ?? 'concise',
+    k: String(options.k ?? 3),
+  })
+  const response = await requestJson(
+    base,
+    `/agents/${encodeURIComponent(name)}/explain?${params.toString()}`,
+    {
+      method: 'POST',
+      body: { output },
+      signal: options.signal ?? null,
+      timeoutMs: 60_000,
+    },
+  )
+  return { data: parseAgentExplainResponse(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** GET /knowledge/corpora —— 冻结语料状态（status / version / counts）。 */
+export async function fetchKnowledgeCorpora(
+  base: string,
+): Promise<Timed<KnowledgeCorporaResponse>> {
+  const response = await requestJson(base, '/knowledge/corpora', { timeoutMs: 10_000 })
+  return { data: parseKnowledgeCorporaResponse(response.data), elapsedMs: response.elapsedMs }
+}
+
+/** POST /knowledge/search —— 独立知识检索；结果不是解释/结论的证据链。 */
+export async function fetchKnowledgeSearch(
+  base: string,
+  params: KnowledgeSearchParams,
+  options: { signal?: AbortSignal | null } = {},
+): Promise<Timed<KnowledgeSearchResponse>> {
+  const response = await requestJson(base, '/knowledge/search', {
+    method: 'POST',
+    body: {
+      query: params.query,
+      k: params.k ?? 5,
+      include_evidence: params.includeEvidence ?? false,
+    },
+    signal: options.signal ?? null,
+    timeoutMs: 30_000,
+  })
+  return { data: parseKnowledgeSearchResponse(response.data), elapsedMs: response.elapsedMs }
 }
 
 /**

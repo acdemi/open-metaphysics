@@ -236,7 +236,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Sessions */
+        /**
+         * List Sessions
+         * @description List stored sessions.
+         *
+         *     Without ``limit``/``offset`` this keeps the exact legacy envelope
+         *     (``{"sessions": [...]}``) so pre-P2.2 clients are unaffected. Passing
+         *     either parameter opts into the paginated envelope
+         *     ``{sessions,total,limit,offset}`` (``limit`` defaults to 50, max 200).
+         *     Birth data is never part of this summary (ids/timestamps only).
+         */
         get: operations["list_sessions_sessions_get"];
         put?: never;
         post?: never;
@@ -284,6 +293,44 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AgentComputeResponse
+         * @description ``POST /agents/{name}/compute`` — one domain's ``AgentOutput`` envelope.
+         *
+         *     ``explain`` is only present when ``?explain=true``; the route serializes
+         *     with ``response_model_exclude_none`` so non-explain responses keep the exact
+         *     pre-existing wire shape (no ``explain: null`` key).
+         */
+        AgentComputeResponse: {
+            /** Agent */
+            agent: string;
+            /**
+             * Computed At
+             * Format: date-time
+             */
+            computed_at: string;
+            confidence: components["schemas"]["ConfidenceScore"];
+            /** Engine Version */
+            engine_version: string;
+            /** Explain */
+            explain?: {
+                [key: string]: unknown;
+            } | null;
+            /** Input Hash */
+            input_hash: string;
+            /** Metadata */
+            metadata?: {
+                [key: string]: string | number | boolean;
+            };
+            /** Reasoning Trace */
+            reasoning_trace?: components["schemas"]["ReasoningStep"][];
+            /** Request Id */
+            request_id: string;
+            /** Result */
+            result?: {
+                [key: string]: unknown;
+            };
+        };
         /** AgentContribution */
         AgentContribution: {
             /** Agent */
@@ -306,33 +353,6 @@ export interface components {
             engine_version: string;
             /** Name */
             name: string;
-        };
-        /**
-         * AgentInput
-         * @description Base input envelope. Subclasses add agent-specific fields.
-         */
-        AgentInput: {
-            /**
-             * Born At
-             * Format: date-time
-             */
-            born_at: string;
-            born_location?: components["schemas"]["GeoPoint"] | null;
-            /** Client Nonce */
-            client_nonce?: string | null;
-            /** @default unknown */
-            gender: components["schemas"]["Gender"];
-            /**
-             * Locale
-             * @default zh-CN
-             */
-            locale: string;
-            /** Question */
-            question?: string | null;
-            /** Request Id */
-            request_id: string;
-            /** Seed */
-            seed?: number | null;
         };
         /**
          * AgentOutput
@@ -365,6 +385,24 @@ export interface components {
             };
         };
         /**
+         * AgentSchemaResponse
+         * @description ``GET /agents/{name}/schema`` — the agent's own JSON Schemas.
+         */
+        AgentSchemaResponse: {
+            /** Engine Version */
+            engine_version: string;
+            /** Input Schema */
+            input_schema?: {
+                [key: string]: unknown;
+            };
+            /** Name */
+            name: string;
+            /** Output Schema */
+            output_schema?: {
+                [key: string]: unknown;
+            };
+        };
+        /**
          * AgentsResponse
          * @description ``GET /agents``.
          */
@@ -372,15 +410,34 @@ export interface components {
             /** Agents */
             agents: components["schemas"]["AgentInfo"][];
         };
-        /** ConfidenceScore */
+        /**
+         * ConfidenceScore
+         * @description Confidence envelope for a deterministic result — declared, not measured.
+         *
+         *     ``value`` is a **declared baseline** (currently ``0.95`` from
+         *     ``core.engines``), not a statistical probability and not a measured
+         *     rule-coverage ratio: the deterministic engines have no calibrated ground
+         *     truth. The current value is tagged ``method="placeholder_baseline"`` with
+         *     ``factors["calibrated"] == 0.0``. Consumers (Consensus weighted strategy,
+         *     Explain prompts) must not present it as a probability.
+         */
         ConfidenceScore: {
-            /** Factors */
+            /**
+             * Factors
+             * @description Explainability signals; factors['calibrated'] == 0.0 means the value is not calibrated against ground truth.
+             */
             factors?: {
                 [key: string]: number;
             };
-            /** Method */
+            /**
+             * Method
+             * @description How the value was produced. "placeholder_baseline" means a declared constant, not measured rule coverage or statistics.
+             */
             method: string;
-            /** Value */
+            /**
+             * Value
+             * @description Declared baseline in [0,1]; NOT a calibrated probability or coverage ratio.
+             */
             value: number;
         };
         /** Conflict */
@@ -593,6 +650,50 @@ export interface components {
             /** Status */
             status: string;
         };
+        /**
+         * KnowledgeCorporaResponse
+         * @description ``GET /knowledge/corpora``.
+         */
+        KnowledgeCorporaResponse: {
+            /** Corpora */
+            corpora: components["schemas"]["KnowledgeCorpusInfo"][];
+        };
+        /**
+         * KnowledgeCorpusInfo
+         * @description One frozen corpus entry from ``GET /knowledge/corpora``.
+         */
+        KnowledgeCorpusInfo: {
+            /** Corpus Id */
+            corpus_id: string;
+            /** Counts */
+            counts?: {
+                [key: string]: number;
+            };
+            /** Status */
+            status?: string | null;
+            /** Version */
+            version?: string | null;
+        };
+        /**
+         * KnowledgeSearchChunk
+         * @description One chunk returned by ``POST /knowledge/search``.
+         *
+         *     Mirrors ``rag.retriever.KnowledgeChunk`` as exposed by the route: no
+         *     relevance score is returned by the API (the UI must not invent one).
+         */
+        KnowledgeSearchChunk: {
+            /** Id */
+            id: string;
+            /**
+             * Source
+             * @default
+             */
+            source: string;
+            /** Tags */
+            tags?: string[];
+            /** Text */
+            text: string;
+        };
         /** KnowledgeSearchRequest */
         KnowledgeSearchRequest: {
             /**
@@ -608,8 +709,82 @@ export interface components {
             /** Query */
             query: string;
         };
-        /** OrchestrationRequest */
+        /**
+         * KnowledgeSearchResponse
+         * @description ``POST /knowledge/search`` — independent frozen-corpus retrieval.
+         */
+        KnowledgeSearchResponse: {
+            /** Chunks */
+            chunks: components["schemas"]["KnowledgeSearchChunk"][];
+            /** Include Evidence */
+            include_evidence: boolean;
+            /** Query */
+            query: string;
+        };
+        /**
+         * OrchestrationPayload
+         * @description Common envelope that may also carry domain fields for per-agent dispatch.
+         *
+         *     The shared ``payload`` is typed as ``AgentInput`` by the single-agent
+         *     endpoints. For orchestration the domain fields (``casts``/``seed`` for
+         *     Liuyao, ``lunar_month``/``lunar_day`` for Ziwei, ``dayun_count`` for Bazi,
+         *     ...) are allowed on the payload and copied only to the agents whose input
+         *     schema declares them, so a request can stay "one envelope + selected
+         *     agents". Per-agent ``agent_params`` take precedence over these fields.
+         */
+        OrchestrationPayload: {
+            /**
+             * Born At
+             * Format: date-time
+             */
+            born_at: string;
+            born_location?: components["schemas"]["GeoPoint"] | null;
+            /** Client Nonce */
+            client_nonce?: string | null;
+            /** @default unknown */
+            gender: components["schemas"]["Gender"];
+            /**
+             * Locale
+             * @default zh-CN
+             */
+            locale: string;
+            /** Question */
+            question?: string | null;
+            /** Request Id */
+            request_id: string;
+            /** Seed */
+            seed?: number | null;
+        } & {
+            [key: string]: unknown;
+        };
+        /**
+         * OrchestrationRequest
+         * @description A batch request over the shared ``payload`` envelope.
+         *
+         *     Domain-specific fields (``casts``/``seed`` for Liuyao, ``lunar_month`` /
+         *     ``lunar_day`` for Ziwei, ``dayun_count`` for Bazi, ...) are not part of the
+         *     common ``AgentInput`` contract. They can be supplied in either of two ways:
+         *
+         *     * directly on ``payload`` -- dispatched to every selected agent whose input
+         *       schema declares the field;
+         *     * per agent in ``agent_params``, which is merged over ``payload`` for that
+         *       agent only and wins on conflicts::
+         *
+         *           {"request_id": "r", "payload": {...},
+         *            "agents": ["bazi", "liuyao"],
+         *            "agent_params": {"bazi": {"dayun_count": 6},
+         *                             "liuyao": {"casts": [7, 7, 8, 8, 7, 8]}}}
+         *
+         *     Both are optional: requests without them keep the previous behaviour (the
+         *     common envelope only).
+         */
         OrchestrationRequest: {
+            /** Agent Params */
+            agent_params?: {
+                [key: string]: {
+                    [key: string]: unknown;
+                };
+            };
             /** Agents */
             agents?: string[] | null;
             /**
@@ -617,7 +792,7 @@ export interface components {
              * @default false
              */
             explain: boolean;
-            payload: components["schemas"]["AgentInput"];
+            payload: components["schemas"]["OrchestrationPayload"];
             /** Request Id */
             request_id: string;
             /**
@@ -763,7 +938,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["AgentComputeResponse"];
                 };
             };
             /** @description Validation Error */
@@ -832,7 +1007,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["AgentSchemaResponse"];
                 };
             };
             /** @description Validation Error */
@@ -936,9 +1111,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
+                    "application/json": components["schemas"]["KnowledgeCorporaResponse"];
                 };
             };
         };
@@ -962,9 +1135,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
+                    "application/json": components["schemas"]["KnowledgeSearchResponse"];
                 };
             };
             /** @description Validation Error */
@@ -1033,7 +1204,10 @@ export interface operations {
     };
     list_sessions_sessions_get: {
         parameters: {
-            query?: never;
+            query?: {
+                limit?: number | null;
+                offset?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1049,6 +1223,15 @@ export interface operations {
                     "application/json": {
                         [key: string]: unknown;
                     };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

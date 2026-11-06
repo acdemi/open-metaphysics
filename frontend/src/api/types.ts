@@ -29,12 +29,26 @@ export type JsonValue =
 /* ------------------------------------------------------- 生成类型（OpenAPI） */
 export type Gender = Schemas['Gender']
 export type GeoPoint = Schemas['GeoPoint']
-export type AgentInput = Schemas['AgentInput']
+/* The OpenAPI document now publishes the shared orchestration envelope as
+ * `OrchestrationPayload` (the `AgentInput` fields plus optional per-agent
+ * domain fields), so the alias points there; `AgentInput` alone is no longer a
+ * component because no request body references it anymore. */
+export type AgentInput = Schemas['OrchestrationPayload']
 export type OrchestrationRequest = Schemas['OrchestrationRequest']
 export type ConfidenceScore = Schemas['ConfidenceScore']
 export type HealthResponse = Schemas['HealthResponse']
 export type AgentsResponse = Schemas['AgentsResponse']
 export type AgentInfo = Schemas['AgentInfo']
+
+/* ------------------------------------------------- 知识检索（OpenAPI 已描述，7A） */
+export type KnowledgeCorpusInfo = Schemas['KnowledgeCorpusInfo']
+export type KnowledgeCorporaResponse = Schemas['KnowledgeCorporaResponse']
+export type KnowledgeSearchChunk = Schemas['KnowledgeSearchChunk']
+export type KnowledgeSearchResponse = Schemas['KnowledgeSearchResponse']
+
+/* ------------------------------------------- 领域 Agent 独立计算（OpenAPI 已描述，8A） */
+export type AgentSchemaResponse = Schemas['AgentSchemaResponse']
+export type AgentComputeResponse = Schemas['AgentComputeResponse']
 
 export const AGENT_NAMES = ['bazi', 'ziwei', 'qimen', 'liuyao'] as const
 
@@ -228,6 +242,15 @@ export interface ExplainDetail {
   error: ExplainErrorInfo | null
 }
 
+/**
+ * `POST /agents/{name}/explain`：与 orchestration 的 `explanation_detail[agent]` 同一 explain 块，
+ * 多一个 `agent` 字段。注意：单域 explain 的 `knowledge` 后端只投影 `{id, source}`（无 text），
+ * 前端不得补造原文；orchestration 的 `explanation_detail` 才带 text。
+ */
+export interface AgentExplainResponse extends ExplainDetail {
+  agent: string
+}
+
 /* 共识结果直接使用生成类型（ConsensusOutput / ConsensusReport / AgentContribution / Conflict）。 */
 export type ConsensusContribution = Schemas['AgentContribution']
 export type ConsensusConflict = Schemas['Conflict']
@@ -255,6 +278,30 @@ export type OrchestrationResponse = Omit<
   outputs: AnyOutput[]
   consensus: ConsensusOutput | null
   explanation_detail: Record<string, ExplainDetail>
+}
+
+/* ------------------------------------------------- 会话历史（OpenAPI 未描述，手写） */
+/** `GET /sessions` 的一项：持久化层只投影 request_id / created_at。 */
+export interface SessionSummary {
+  request_id: string
+  created_at: string
+}
+
+/** `GET /sessions` */
+export interface SessionListResponse {
+  sessions: SessionSummary[]
+  /** P2.2: present when the request used the paginated envelope (`limit`/`offset`). */
+  total?: number
+  limit?: number
+  offset?: number
+}
+
+/** `GET /sessions/{request_id}`：request/response 为后端存储的原始 JSON。 */
+export interface StoredSession {
+  request_id: string
+  created_at: string
+  request: unknown
+  response: unknown
 }
 
 /* ------------------------------------------------------------- 其他端点 */

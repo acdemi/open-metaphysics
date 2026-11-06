@@ -6,6 +6,10 @@
 
 import { ApiError } from './errors'
 import type {
+  AgentExplainResponse,
+  AgentInfo,
+  AgentSchemaResponse,
+  AgentsResponse,
   AgentOutputEnvelope,
   AnyOutput,
   BaziChart,
@@ -23,6 +27,10 @@ import type {
   ExplainEvidence,
   HealthResponse,
   KnowledgeChunk,
+  KnowledgeCorporaResponse,
+  KnowledgeCorpusInfo,
+  KnowledgeSearchChunk,
+  KnowledgeSearchResponse,
   LiuyaoChart,
   LiuyaoOutput,
   OrchestrationResponse,
@@ -30,6 +38,9 @@ import type {
   QimenCell,
   QimenOutput,
   ReasoningStep,
+  SessionListResponse,
+  SessionSummary,
+  StoredSession,
   TraceScalar,
   YaoLine,
   ZiweiChart,
@@ -342,7 +353,11 @@ function parseKnowledgeChunk(value: unknown, path: string): KnowledgeChunk {
   const record = asRecord(value, path)
   const chunk: KnowledgeChunk = {
     id: asString(record.id, `${path}.id`),
-    source: asString(record.source, `${path}.source`),
+    // 单域 explain 可能只投影 {id, source}；来源缺失时保留空串，由 UI 明确显示缺失。
+    source:
+      record.source === undefined || record.source === null
+        ? ''
+        : asString(record.source, `${path}.source`),
   }
   if (typeof record.text === 'string') chunk.text = record.text
   return chunk
@@ -389,6 +404,14 @@ export function parseExplainDetail(value: unknown, path: string): ExplainDetail 
     evidence: parseExplainEvidence(record.evidence, `${path}.evidence`),
     error: parseExplainError(record.error, `${path}.error`),
   }
+}
+
+/** `POST /agents/{name}/explain`：explain 块 + `agent`；解析逻辑与 orchestration 完全复用。 */
+export function parseAgentExplainResponse(value: unknown): AgentExplainResponse {
+  const path = 'agent.explain'
+  const record = asRecord(value, path)
+  const detail = parseExplainDetail(record, path)
+  return { agent: asString(record.agent, `${path}.agent`), ...detail }
 }
 
 function parseConsensusContribution(value: unknown, path: string): ConsensusContribution {
@@ -488,4 +511,129 @@ export function parseHealthResponse(value: unknown): HealthResponse {
     status: asString(record.status, 'health.status'),
     agents: asStringArray(record.agents, 'health.agents'),
   }
+}
+
+/* --------------------------------------------- 会话历史（OpenAPI 未描述，手写） */
+function parseSessionSummary(value: unknown, path: string): SessionSummary {
+  const record = asRecord(value, path)
+  return {
+    request_id: asString(record.request_id, `${path}.request_id`),
+    created_at: asString(record.created_at, `${path}.created_at`),
+  }
+}
+
+export function parseSessionList(value: unknown): SessionListResponse {
+  const record = asRecord(value, 'sessions')
+  const response: SessionListResponse = {
+    sessions: asArray(record.sessions, 'sessions.sessions').map((item, index) =>
+      parseSessionSummary(item, `sessions.sessions[${index}]`),
+    ),
+  }
+  // P2.2 paginated envelope is additive; legacy `{sessions}` responses stay valid.
+  if (record.total !== undefined) response.total = asNumber(record.total, 'sessions.total')
+  if (record.limit !== undefined) response.limit = asNumber(record.limit, 'sessions.limit')
+  if (record.offset !== undefined) response.offset = asNumber(record.offset, 'sessions.offset')
+  return response
+}
+
+export function parseStoredSession(value: unknown): StoredSession {
+  const path = 'session'
+  const record = asRecord(value, path)
+  return {
+    request_id: asString(record.request_id, `${path}.request_id`),
+    created_at: asString(record.created_at, `${path}.created_at`),
+    request: asRecord(record.request, `${path}.request`),
+    response: asRecord(record.response, `${path}.response`),
+  }
+}
+
+/* ------------------------------------------------- 知识检索（OpenAPI 已描述，7A） */
+function parseCorpusInfo(value: unknown, path: string): KnowledgeCorpusInfo {
+  const record = asRecord(value, path)
+  const corpus: KnowledgeCorpusInfo = {
+    corpus_id: asString(record.corpus_id, `${path}.corpus_id`),
+  }
+  if (record.status !== undefined && record.status !== null) {
+    corpus.status = asString(record.status, `${path}.status`)
+  }
+  if (record.version !== undefined && record.version !== null) {
+    corpus.version = asString(record.version, `${path}.version`)
+  }
+  if (record.counts !== undefined && record.counts !== null) {
+    corpus.counts = asNumberRecord(record.counts, `${path}.counts`)
+  }
+  return corpus
+}
+
+export function parseKnowledgeCorporaResponse(value: unknown): KnowledgeCorporaResponse {
+  const record = asRecord(value, 'knowledge.corpora')
+  return {
+    corpora: asArray(record.corpora, 'knowledge.corpora.corpora').map((item, index) =>
+      parseCorpusInfo(item, `knowledge.corpora.corpora[${index}]`),
+    ),
+  }
+}
+
+function parseKnowledgeSearchChunk(value: unknown, path: string): KnowledgeSearchChunk {
+  const record = asRecord(value, path)
+  const chunk: KnowledgeSearchChunk = {
+    id: asString(record.id, `${path}.id`),
+    text: asString(record.text, `${path}.text`),
+    source: record.source === undefined || record.source === null ? '' : asString(record.source, `${path}.source`),
+  }
+  if (record.tags !== undefined && record.tags !== null) {
+    chunk.tags = asStringArray(record.tags, `${path}.tags`)
+  }
+  return chunk
+}
+
+export function parseKnowledgeSearchResponse(value: unknown): KnowledgeSearchResponse {
+  const path = 'knowledge.search'
+  const record = asRecord(value, path)
+  return {
+    query: asString(record.query, `${path}.query`),
+    include_evidence: asBoolean(record.include_evidence, `${path}.include_evidence`),
+    chunks: asArray(record.chunks, `${path}.chunks`).map((item, index) =>
+      parseKnowledgeSearchChunk(item, `${path}.chunks[${index}]`),
+    ),
+  }
+}
+
+/* --------------------------------------- 领域 Agent 独立计算（OpenAPI 已描述，8A） */
+function parseAgentInfo(value: unknown, path: string): AgentInfo {
+  const record = asRecord(value, path)
+  return {
+    name: asString(record.name, `${path}.name`),
+    engine_version: asString(record.engine_version, `${path}.engine_version`),
+  }
+}
+
+export function parseAgentListResponse(value: unknown): AgentsResponse {
+  const record = asRecord(value, 'agents')
+  return {
+    agents: asArray(record.agents, 'agents.agents').map((item, index) =>
+      parseAgentInfo(item, `agents.agents[${index}]`),
+    ),
+  }
+}
+
+export function parseAgentSchemaResponse(value: unknown): AgentSchemaResponse {
+  const path = 'agent.schema'
+  const record = asRecord(value, path)
+  const inputSchema = asRecord(record.input_schema, `${path}.input_schema`)
+  // 表单只依赖 properties/required；这里先验证这两个键，未知字段保留给领域表单。
+  asRecord(inputSchema.properties, `${path}.input_schema.properties`)
+  asStringArray(inputSchema.required, `${path}.input_schema.required`)
+  const outputSchema = asRecord(record.output_schema, `${path}.output_schema`)
+  return {
+    name: asString(record.name, `${path}.name`),
+    engine_version: asString(record.engine_version, `${path}.engine_version`),
+    input_schema: inputSchema,
+    output_schema: outputSchema,
+  }
+}
+
+/** 单域计算响应与 /orchestrate 的 outputs[] 是同一个 AgentOutput 信封；复用域解析。 */
+export function parseAgentComputeResponse(value: unknown): AnyOutput {
+  return parseOutput(value, 'agent.compute')
 }
