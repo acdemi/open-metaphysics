@@ -29,7 +29,7 @@
 | **真太阳时** | **不使用**（仅 Qimen D13 使用 `core.solar_time`） | 显式差异：八字不修正经度均时差；契约须声明"钟表时"为标准 |
 | **午夜边界** | 日柱 23:00 换日（B3）；子时 = 23:00~00:59（B4） | 晚子时行为与 Qimen D14（不换日）跨域不一致，属既定分歧 |
 | **闰月** | **不适用**：八字计算纯太阳历（节气），不依赖农历；`solar_to_lunar`（sxtwl）仅供紫微等域 | 无闰月路径 → 无闰月风险 |
-| **历法依赖** | `core/calendar.py`（Meeus 截断，黄经精度 ~0.01° < 1 分钟）；`solar_terms_for_year`/`_month_boundaries` 使用 `lru_cache`（纯缓存，不影响确定性）；**compute() 不导入 sxtwl** | 节气时刻精度 ~1 分钟内（`solar_term_precision: "approx_1min"`）；缓存不影响结果 |
+| **历法依赖** | `core/calendar.py`（Meeus 截断；黄经截断误差 ~0.01°，但 **0.01° ≈ 14.6 min 时间**）；`solar_terms_for_year`/`_month_boundaries` 使用 `lru_cache`（纯缓存，不影响确定性）；**compute() 不导入 sxtwl** | 节气时刻精度**不是** sub-minute：实测 1900–2100 全量 4824 个节气对 sxtwl/寿星天文历 最大 780.6 s（≈13.0 min）、中位 180 s（≈3 min）；引擎元数据 `solar_term_precision = "meeus_truncated: |err| <= 781 s (median ~180 s, 1900-2100)"`；出生时刻距真实节气 <±13 min 时可能落到边界另一侧（`tests/test_solar_term_precision.py` 锁定） |
 | **边界比较** | 年/月边界均在 **UTC 时刻**比较（B1/B2） | 与本地时区判定差异仅在边界时刻 ±数小时，向量需覆盖 |
 
 ---

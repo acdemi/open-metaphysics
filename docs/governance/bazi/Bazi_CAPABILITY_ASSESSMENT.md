@@ -31,7 +31,7 @@
 | 输入/输出 Schema 存在 | ✅ | `BaziInput(AgentInput)`（含 `dayun_count`, gender, born_at, born_location）；`BaziChart`/`Pillar`/`DaYun` 均 `extra="forbid"`；`BaziOutput` 信封 |
 | Schema 文档化/导出 | ❌ | 无 JSON Schema 导出；未登记 `docs/SCHEMAS.md`（Qimen 有 §3.3 登记） |
 | 边界用例文档化 | ⚠️ 部分 | 测试覆盖：立春年界（`test_lichun_boundary_switches_year`）、23:00 晚子时换日（`test_2300_day_rollover`）、性别未知回退（`test_gender_assumed_flag`）；但**无独立算法假设文档**（Qimen 有 QIMEN_ALGORITHM_ASSUMPTIONS.md） |
-| 历法/时间规则显式 | ✅ | `core/calendar.py` 显式函数：`solar_term_time`（Meeus）、`lichun_time`、`sexagenary_day_index`（JDN+49）、`month_boundary_before`、`bazi_year_index`；engine 元数据声明 `solar_term_precision: "approx_1min"` |
+| 历法/时间规则显式 | ✅ | `core/calendar.py` 显式函数：`solar_term_time`（Meeus）、`lichun_time`、`sexagenary_day_index`（JDN+49）、`month_boundary_before`、`bazi_year_index`；engine 元数据声明 `solar_term_precision = SOLAR_TERM_PRECISION`（实测 \|Δ\| ≤ 781 s、中位 ~180 s，1900–2100；非 sub-minute，2026-10-31 H6 更正） |
 | 主要规则 | — | 年柱=立春界；月柱=节界+五虎遁；日柱=干支日序（23:00 换日）；时柱=五鼠遁；十神/藏干/纳音/大运（性别+年干阴阳定顺逆, 3 天=1 年） |
 
 **结论**: Stage 1（Calculation Runtime）**实质性满足**（确定性算法 + 领域 Schema + 测试）。
@@ -86,7 +86,7 @@
 按迁移顺序（对齐 `CAPABILITY_LIFECYCLE.md` §5）:
 
 1. **BaZi 算法假设文档**（Stage 0 补完）: 明确记录 立春年界、23:00 换日、
-   approx_1min 节气精度、大运起运（3 天=1 年取整）、性别 UNKNOWN 回退
+   approx_1min 节气精度 → 已更正为实测精度（\|Δ\| ≤ 781 s、中位 ~180 s，见 `SOLAR_TERM_PRECISION`）、大运起运（3 天=1 年取整）、性别 UNKNOWN 回退
    —— 与 Qimen D2 同性质（近似显式声明为规范候选）。
 2. **规则裁定文档**（Stage 2 前置）: 将 engine 规则枚举为冻结规则清单
    （如 B1: 年柱立春界 / B2: 月柱节界+五虎遁 / B3: 日柱 23:00 换日 /

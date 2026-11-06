@@ -14,6 +14,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict
 
 from ..core.calendar import (
+    SOLAR_TERM_PRECISION,
     UTC,
     _month_boundaries,
     bazi_year_index,
@@ -33,6 +34,7 @@ from ..core.models import (
     wuxing_relation,
 )
 from ..core.schemas import AgentInput, AgentOutput, Gender
+from ..core.solar_time import local_datetime
 
 
 class BaziInput(AgentInput):
@@ -121,17 +123,6 @@ def _add_years(dt, n: int):
         return dt.replace(year=y, day=28)
 
 
-def _local_tz(payload: BaziInput):
-    if payload.born_location and payload.born_location.timezone:
-        from zoneinfo import ZoneInfo
-
-        try:
-            return ZoneInfo(payload.born_location.timezone)
-        except Exception:
-            return payload.born_at.tzinfo or UTC
-    return payload.born_at.tzinfo or UTC
-
-
 # ---------------------------------------------------------------------------
 # Engine
 # ---------------------------------------------------------------------------
@@ -166,8 +157,9 @@ class BaziEngine(DeterministicEngine):
         )
 
         # --- day pillar (sexagenary day, 23:00 rollover) ---
-        tz = _local_tz(payload)
-        local = born.astimezone(tz)
+        # Uniform timezone policy (H5): local clock in the birth location's
+        # timezone, then the existing 23:00 rollover policy is applied unchanged.
+        local = local_datetime(born, payload.born_location, strict=False)
         eff = local + timedelta(days=1) if local.hour >= 23 else local
         day_idx = sexagenary_day_index(eff.year, eff.month, eff.day)
         day_stem, day_branch = sexagenary_pair(day_idx)
@@ -291,7 +283,7 @@ class BaziAgent(BaseAgent):
         return {
             "engine_version": self.engine_version,
             "deterministic": True,
-            "solar_term_precision": "approx_1min",
+            "solar_term_precision": SOLAR_TERM_PRECISION,
         }
 
     def _explain_fallback(self, output: BaziOutput, *, style: str = "concise") -> str:
