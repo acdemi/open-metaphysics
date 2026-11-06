@@ -49,3 +49,32 @@ Thumbs.db
 
 # Misc
 *.log
+
+# ---------------------------------------------------------------------------
+# Development process — never pushed to GitHub
+# Session archives, inspection/test reports, prompt library and agent tooling
+# state are working artefacts of the development process, not the project.
+context/
+prompts/
+.agents/
+.claude/
+.codex/
+.cursor/
+.dsh/
+.specstory/
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Local scratch dirs and tool output
+om-e2e-profile-*/
+pytest-of-*/
+playwright-report/
+test-results/
+.env.*
+!.env.example
+
+# Local pytest/ruff dumps (kept on disk, not committed)
+reports/audit_pytest*.txt
+reports/ruff_format.txt
