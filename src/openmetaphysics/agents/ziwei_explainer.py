@@ -118,14 +118,9 @@ USER_PROMPT_TEMPLATE = Template("""
 {{stars_distribution}}
 
 【引擎计算置信度】
-Confidence Score: {{confidence_value}}
+Confidence Score: {{confidence_value}} (method: {{confidence_method}})
+说明：该置信度为声明式基线（declared baseline），不是统计概率，也不是规则覆盖率；不得解读为可信度百分比。
 计算因子：{{confidence_factors}}
-
-{% if confidence_value < 0.6 %}
-【关键警告】
-由于本次排盘置信度低于阈值（Confidence < 0.6），可能是由于出生时间不精确或处于节气交接时刻。
-请在回答开篇声明："此局边界模糊，以下分析需结合具体流年及面诊核实，请谨慎参考。"
-{% endif %}
 
 ---
 请严格按照 System Prompt 的 SOP 展开分析，输出 300-500 字的结构化解读。必须首先提及所有识别到的格局。
@@ -193,6 +188,7 @@ class ZiweiExplainer(Explainer):
             "core_palaces": core_palaces,
             "stars_distribution": stars_distribution,
             "confidence_value": output.confidence.value,
+            "confidence_method": output.confidence.method,
             "confidence_factors": ", ".join(output.confidence.factors.keys()),
         }
 
@@ -220,7 +216,7 @@ class ZiweiExplainer(Explainer):
         s = get_settings()
         return self.provider.generate(
             prompt,
-            model=s.ollama_model,
+            model=self._provider_model(),
             temperature=s.explain_temperature,
             max_tokens=s.explain_max_tokens,
         )

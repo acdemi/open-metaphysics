@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import math
 import uuid
 from typing import Protocol, runtime_checkable
@@ -9,6 +10,8 @@ from typing import Protocol, runtime_checkable
 from pydantic import BaseModel
 
 from ..core.config import get_settings
+
+logger = logging.getLogger(__name__)
 
 
 class KnowledgeChunk(BaseModel):
@@ -144,7 +147,9 @@ class QdrantRetriever:
         provider = get_provider()
         if provider is None:
             raise RuntimeError("Qdrant ingestion requires an inference provider")
-        vec = list(provider.embed(chunk.text, model=get_settings().ollama_model))
+        settings = get_settings()
+        embedding_model = settings.embedding_model_for(getattr(provider, "name", ""))
+        vec = list(provider.embed(chunk.text, model=embedding_model))
         if not vec:
             raise RuntimeError(f"empty embedding for chunk {chunk.id}")
         self._ensure_collection(len(vec))
@@ -166,18 +171,15 @@ class QdrantRetriever:
         provider = get_provider()
         if provider is None:
             return []
-        vec = list(provider.embed(query, model=get_settings().ollama_model))
+        embedding_model = get_settings().embedding_model_for(getattr(provider, "name", ""))
+        vec = list(provider.embed(query, model=embedding_model))
         if not vec:
             return []
         if hasattr(client, "query_points"):
-            response = client.query_points(
-                collection_name=self.collection, query=vec, limit=k
-            )
+            response = client.query_points(collection_name=self.collection, query=vec, limit=k)
             points = getattr(response, "points", response)
         else:  # pragma: no cover - legacy client path
-            points = client.search(
-                collection_name=self.collection, query_vector=vec, limit=k
-            )
+            points = client.search(collection_name=self.collection, query_vector=vec, limit=k)
         out = []
         for p in points:
             payload = p.payload or {}
@@ -201,16 +203,36 @@ def _load_default_corpus(retriever: InMemoryRetriever) -> int:
 
     P2.1: every registered domain corpus (Ziwei + BaZi) is indexed into the
     same retriever -- no second retriever and no architecture change. Degrades
-    to an empty retriever when the corpora are unavailable, so the offline
-    default path never raises; a missing domain corpus simply contributes no
-    chunks to the others.
+    A missing corpus must not break the offline default path, but it must not be
+    silent either: the resolved directory/present files are logged as a warning
+    so a broken wheel/Docker deployment is visible (H9).
     """
     try:
-        from .corpus import load_all_into
+        from .corpus import knowledge_status, load_all_into
 
-        return load_all_into(retriever)
-    except Exception:
+        count = load_all_into(retriever)
+    except Exception:  # pragma: no cover - defensive: corrupt corpus JSON
+        logger.warning(
+            "failed to load the knowledge corpora; RAG/Explain citations will be "
+            "empty (set OM_KNOWLEDGE_DIR to the knowledge directory)",
+            exc_info=True,
+        )
         return 0
+    if count == 0:
+        try:
+            status = knowledge_status()
+        except Exception:  # pragma: no cover - defensive
+            status = {"dir": "<unresolved>", "present": [], "missing": []}
+        logger.warning(
+            "knowledge corpora unavailable: no chunks loaded from %s "
+            "(present=%s, missing=%s); Explain will run without citations. "
+            "Set OM_KNOWLEDGE_DIR to the directory that contains "
+            "*_corpus.json, or run from the repository checkout.",
+            status.get("dir"),
+            status.get("present"),
+            status.get("missing"),
+        )
+    return count
 
 
 def get_retriever() -> KnowledgeRetriever:
