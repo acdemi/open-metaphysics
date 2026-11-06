@@ -27,10 +27,11 @@ QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 
-# digests recorded at freeze / P2.1 (must not change in P2.2; Ziwei digest
-# re-registered by ACP-KNOWLEDGE-001 EOL erratum, 2026-10-24, content unchanged)
-ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
-BAZI_DIGEST = "488ce51099c18546aa693d364954cf1adf25b5ddb29921469d1c57a9e195f4ea"
+# digests recorded at freeze / P2.1; H10 (2026-10-31) made the source dossiers
+# valid YAML, so the embedded source_digests (and thus corpus digests) changed
+# while nodes/relations/references stayed byte-identical.
+ZIWEI_DIGEST = "8c95256b038e6cab92ace40dbf9c6f5e24397afb57bec74516bec93b73ba45ec"
+BAZI_DIGEST = "8b07346f3bde76d6f982755f3ccfdeba37f6d41b788525aad6ba89b223c3f602"
 
 REQUIRED_NINE_PALACES = {
     "坎一宫",
@@ -343,9 +344,9 @@ def test_provenance_marks_verbatim_and_summary_references() -> None:
 
     for ref in _corpus()["references"]:
         passage = ref["passage"]
-        assert (
-            "逐字核验" in passage or "非逐字核验" in passage or "摘要" in passage
-        ), ref["reference_id"]
+        assert "逐字核验" in passage or "非逐字核验" in passage or "摘要" in passage, ref[
+            "reference_id"
+        ]
         assert "VERBATIM_VERIFIED" not in passage
 
 

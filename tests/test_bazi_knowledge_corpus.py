@@ -26,9 +26,10 @@ BAZI_DIR = KNOWLEDGE_DIR / "corpus" / "bazi"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 
-# the frozen Ziwei digest: Corpus Freeze v1.0.0, EOL-erratum re-registered
-# by ACP-KNOWLEDGE-001 (2026-10-24; content unchanged, LF canonical)
-ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
+# the frozen Ziwei digest: Corpus Freeze v1.0.0; H10 (2026-10-31) made the
+# source dossiers valid YAML, so metadata.source_digests (and the digest) change
+# while nodes/relations/references stay byte-identical.
+ZIWEI_DIGEST = "8c95256b038e6cab92ace40dbf9c6f5e24397afb57bec74516bec93b73ba45ec"
 
 REQUIRED_TEN_GODS = {
     "比肩",

@@ -1,0 +1,94 @@
+# OpenMetaphysics -- machine-readable knowledge source registry (H10, 2026-10-31).
+#
+# The per-domain source files (sources/<domain>/*.yaml) carry the full provenance
+# dossiers (revision pins, verification scope, transcription notes) and are valid
+# YAML after H10. This registry is the single allow-list the validator uses for
+# the "source is registered" check: every citation label used by corpus nodes,
+# relations and references MUST appear here.
+#
+# classification: classic_text | school_commentary | modern_interpretation |
+#                 internal_contract
+# evidence_status is the *declared* level of evidence; the validator can only
+# check that the declaration exists and is consistent -- it cannot re-fetch the
+# classical text offline (see knowledge/README.md section 7).
+schema: openmetaphysics.knowledge.sources.v1
+sources:
+  - title: 紫微斗数全书
+    source_id: source_ziwei_01
+    domains: [ziwei]
+    files: [ziwei/source_01.yaml]
+    classification: classic_text
+    evidence_status: verbatim_verified
+    tier: 1
+  - title: 渊海子平
+    source_id: source_bazi_01
+    domains: [ziwei, bazi]
+    files: [ziwei/source_02.yaml, bazi/source_bazi_01.yaml]
+    classification: classic_text
+    evidence_status: source_level_attributed + partial_verbatim
+    evidence_status_by_domain:
+      ziwei: verbatim_verified
+      bazi: source_level_attributed + partial_verbatim
+    tier: 1
+  - title: 三命通会
+    source_id: source_sanming_01
+    domains: [ziwei, bazi]
+    files: [ziwei/source_03.yaml, bazi/source_bazi_02.yaml]
+    classification: classic_text
+    evidence_status: source_level_attributed + partial_verbatim
+    evidence_status_by_domain:
+      ziwei: verbatim_verified
+      bazi: source_level_attributed + partial_verbatim
+    tier: 1
+  - title: 奇门遁甲统宗
+    source_id: source_qimen_01
+    domains: [qimen]
+    files: [qimen/source_qimen_01.yaml]
+    classification: classic_text
+    evidence_status: revision_pinned_verbatim_verified (partial)
+    tier: 1
+  - title: 烟波钓叟歌
+    source_id: source_qimen_02
+    domains: [qimen]
+    files: [qimen/source_qimen_02.yaml]
+    classification: classic_text
+    evidence_status: revision_pinned_verbatim_verified
+    tier: 1
+  - title: 增刪卜易
+    source_id: source_liuyao_01
+    domains: [liuyao]
+    files: [liuyao/source_liuyao_01.yaml]
+    classification: classic_text
+    evidence_status: revision_pinned_verbatim_verified
+    tier: 1
+  # -- non-canonical labels already present in the frozen corpora -------------
+  # These are NOT classical texts. They are registered here so the validator can
+  # distinguish "documented non-classic citation" from an unregistered source;
+  # they are counted separately in the coverage report (never as verbatim
+  # evidence). See knowledge/README.md section 7 (GAP-02 etc.).
+  - title: 中州派紫微斗数讲义
+    source_id: source_zhongzhou_school
+    domains: [ziwei]
+    files: []
+    classification: school_commentary
+    evidence_status: unverified_provenance
+    tier: 0
+    note: >-
+      GAP-02: 中州派 provenance 不可核实。语料中仅 1 条 school_commentary 引用使用该
+      来源；不得作为逐字证据，也不得据此提升任何节点/关系的证据级别。
+  - title: iztro（紫微斗数开源引擎文档）
+    source_id: source_iztro_docs
+    domains: [ziwei]
+    files: []
+    classification: modern_interpretation
+    evidence_status: engine_documentation_unverified
+    tier: 0
+    note: 开源引擎文档，非典籍原文；仅 1 条 modern_interpretation 引用使用。
+  - title: Ziwei Behavior Contract v1.0.0
+    source_id: source_ziwei_behavior_contract
+    domains: [ziwei]
+    files: []
+    classification: internal_contract
+    evidence_status: internal_frozen_contract
+    tier: 0
+    note: 项目内部冻结契约（reference/contracts/ziwei_contract.json），不是典籍；仅作为关系节点 provenance 使用。

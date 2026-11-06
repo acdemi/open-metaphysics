@@ -28,12 +28,13 @@ ZIWEI_CORPUS = KNOWLEDGE_DIR / "ziwei_corpus.json"
 BAZI_CORPUS = KNOWLEDGE_DIR / "bazi_corpus.json"
 QIMEN_CORPUS = KNOWLEDGE_DIR / "qimen_corpus.json"
 
-# digests recorded at freeze / P2.1 / P2.2 / P2.3-P2.4; Ziwei re-registered by
-# ACP-KNOWLEDGE-001 EOL erratum (2026-10-24; content unchanged)
-ZIWEI_DIGEST = "93dba0673b8b0c45f083c1760465a08f2444275485c160bb2e1a02c23735257f"
-BAZI_DIGEST = "488ce51099c18546aa693d364954cf1adf25b5ddb29921469d1c57a9e195f4ea"
-QIMEN_DIGEST = "ffeb3319fcd8e8b01b1834c8b174587814cf2d4f5abd911fcaa06118f72d2032"
-LIUYAO_DIGEST = "3a09a08eccd72a24363b64fa28fee4d01f80a4bfae8d4a366ae75360e2c8a53b"
+# digests recorded at freeze / P2.1 / P2.2 / P2.3-P2.4; H10 (2026-10-31) made
+# the source dossiers valid YAML, so the embedded source_digests (and thus corpus
+# digests) changed while nodes/relations/references stayed byte-identical.
+ZIWEI_DIGEST = "8c95256b038e6cab92ace40dbf9c6f5e24397afb57bec74516bec93b73ba45ec"
+BAZI_DIGEST = "8b07346f3bde76d6f982755f3ccfdeba37f6d41b788525aad6ba89b223c3f602"
+QIMEN_DIGEST = "666e8a1e3cc295473eca151ea25549ba65e72d0b2ef37faef0ba915024bf916d"
+LIUYAO_DIGEST = "3039bfc8368bd382e22ac891deece765a3e1a6c630a77f637f64d052737a533c"
 
 REQUIRED_EIGHT_PALACES = {"乾宫", "坎宫", "艮宫", "震宫", "巽宫", "离宫", "坤宫", "兑宫"}
 REQUIRED_FIVE_RELATIVES = {"父母", "兄弟", "子孙", "妻财", "官鬼"}
@@ -374,7 +375,10 @@ def test_relations_cover_membership_and_role_subtypes() -> None:
 
 def test_yong_shen_chain_matches_the_classic_definitions() -> None:
     """元神生用神、忌神克用神、仇神克元神而生忌神 (relations, not prose)."""
-    rels = {(r["source_node_id"], r["relation_type"], r["target_node_id"]) for r in _corpus()["relations"]}
+    rels = {
+        (r["source_node_id"], r["relation_type"], r["target_node_id"])
+        for r in _corpus()["relations"]
+    }
     assert ("kn:xi_shen:liuyao_yuanshen", "sheng", "kn:yong_shen:liuyao_yongshen") in rels
     assert ("kn:ji_shen:liuyao_jishen", "ke", "kn:yong_shen:liuyao_yongshen") in rels
     assert ("kn:pattern:liuyao_choushen", "ke", "kn:xi_shen:liuyao_yuanshen") in rels

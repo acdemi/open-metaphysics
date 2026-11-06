@@ -1,26 +1,27 @@
-# Source 02 — 《煙波釣叟歌》(Qimen Corpus)
+source_id: source_qimen_02
+title: 烟波钓叟歌
+title_wikisource: 煙波釣叟歌
+author: 旧题 宋·赵普（传本归属, 本语料不据此断言作者）
+school: 奇门遁甲（歌诀总纲）
+edition: 通行古籍本（public domain 范围; 维基文库转录, PD-old 模板）
+url: https://zh.wikisource.org/wiki/煙波釣叟歌
+revid: '**1336835**（2018-01-05T02:12:12Z；H6 2026-10-24 登记）'
+acquisition_status: 'acquired  # H6 2026-10-24: 抓取件保存在仓库外，未入库'
+evidence_status: 'revision_pinned_verbatim_verified  # H6 2026-10-24: 歌诀总纲片段逐字核验（佐证来源，单条引用）'
+verified_scope: 仅确认维基文库存在独立作品页且为公有领域; 未做章节级逐条核验
+blocker: 无
+retrieved_utc: 2026-10-24（H6 抓取）；P2.2 在线读取时间 2026-10-03T14:43:00Z
+revision_pin: revid **1336835**；sha256 `702f6311b7b5f19812f4ccf73a5523e877617f807eb6d55cb03f851bd6812d55`（5935 B，H6 2026-10-24 action=raw）
+evidence_scope: '本语料以其佐证: 阴阳二遁顺逆 / 九宫 / 八门三奇六仪 之通行口诀语义'
+transcription_note: 维基文库转录为繁体, 含异文校注（一作「…」）; 本语料不引用异文
+note: 奇门歌诀之宗; 与 奇门遁甲统宗 平行佐证, 两组独立来源不互为逐字核验
+digest_note: '版本追踪: 本文件（pipeline source_digests）+ H6 revision_pin（revid / sha256）双重登记'
+notes: '# Source 02 — 《煙波釣叟歌》(Qimen Corpus)
 
-> Qimen 语料佐证来源元数据（原始数据引用，非数据本身）。
-> 歌诀类文献, 为奇门遁甲之「总纲」; 本语料以其作为九宫/八门/三奇/六仪等
-> 通行口诀的平行佐证, 不作为逐字核验依据。
+  > Qimen 语料佐证来源元数据（原始数据引用，非数据本身）。
 
-| 项 | 值 |
-|----|-----|
-| source_id | source_qimen_02 |
-| title | 烟波钓叟歌 |
-| title_wikisource | 煙波釣叟歌 |
-| author | 旧题 宋·赵普（传本归属, 本语料不据此断言作者） |
-| school | 奇门遁甲（歌诀总纲） |
-| edition | 通行古籍本（public domain 范围; 维基文库转录, PD-old 模板） |
-| url | https://zh.wikisource.org/wiki/煙波釣叟歌 |
-| revid | **1336835**（2018-01-05T02:12:12Z；H6 2026-10-24 登记） |
-| acquisition_status | acquired  # H6 2026-10-24: 抓取件保存在仓库外，未入库 |
-| evidence_status | revision_pinned_verbatim_verified  # H6 2026-10-24: 歌诀总纲片段逐字核验（佐证来源，单条引用） |
-| verified_scope | 仅确认维基文库存在独立作品页且为公有领域; 未做章节级逐条核验 |
-| blocker | 无 |
-| retrieved_utc | 2026-10-24（H6 抓取）；P2.2 在线读取时间 2026-10-03T14:43:00Z |
-| revision_pin | revid **1336835**；sha256 `702f6311b7b5f19812f4ccf73a5523e877617f807eb6d55cb03f851bd6812d55`（5935 B，H6 2026-10-24 action=raw） |
-| evidence_scope | 本语料以其佐证: 阴阳二遁顺逆 / 九宫 / 八门三奇六仪 之通行口诀语义 |
-| transcription_note | 维基文库转录为繁体, 含异文校注（一作「…」）; 本语料不引用异文 |
-| note | 奇门歌诀之宗; 与 奇门遁甲统宗 平行佐证, 两组独立来源不互为逐字核验 |
-| digest_note | 版本追踪: 本文件（pipeline source_digests）+ H6 revision_pin（revid / sha256）双重登记 |
+  > 歌诀类文献, 为奇门遁甲之「总纲」; 本语料以其作为九宫/八门/三奇/六仪等
+
+  > 通行口诀的平行佐证, 不作为逐字核验依据。
+
+  '
