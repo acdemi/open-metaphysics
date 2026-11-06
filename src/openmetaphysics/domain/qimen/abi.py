@@ -10,12 +10,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from ...core.paths import project_root
 from .structural import type_name
 from .types import TYPE_SPECS
 
-_REPO_ROOT = Path(__file__).resolve().parents[4]
-
-SNAPSHOT_PATH = _REPO_ROOT / "docs" / "qimen" / "qimen_abi_snapshot.json"
+# Documentation snapshot (validation/tests only). A checkout marker replaces the
+# old parents[4] index; in an installed package the relative fallback makes a
+# missing snapshot an explicit FileNotFoundError instead of a wrong path.
+SNAPSHOT_PATH = (project_root() or Path.cwd()) / "docs" / "qimen" / "qimen_abi_snapshot.json"
 
 
 def build_abi_snapshot() -> dict:

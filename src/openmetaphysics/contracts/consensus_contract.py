@@ -32,14 +32,16 @@ from ..consensus import (
     ConsensusStrategy,
     Domain,
 )
+from ..core.paths import data_path
 
 __version__ = "1.0.0"
 
 _CONTRACT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _CONTRACT_DIR.parents[2]
-
-CONTRACT_FILE = _REPO_ROOT / "reference" / "contracts" / "consensus_contract.json"
-VECTOR_FILE = _REPO_ROOT / "reference" / "conformance" / "golden" / "consensus_vectors.json"
+# The frozen contracts live in ``reference/`` outside the Python package: resolve
+# the directory (OM_REFERENCE_DIR / bundled / checkout marker) instead of
+# indexing Path.parents, which breaks after a wheel or Docker install.
+CONTRACT_FILE = data_path("contracts/consensus_contract.json", reference=True)
+VECTOR_FILE = data_path("conformance/golden/consensus_vectors.json", reference=True)
 
 # ---------------------------------------------------------------------------
 # 契约清单 (机器可读; 与冻结契约共识一致)
@@ -245,9 +247,7 @@ class ConsensusContractAdapter:
         """
         evidence = json.loads(evidence_json)
         config = json.loads(config_json)
-        report = ConsensusEngine().build(
-            ConsensusInput(evidence=evidence, config=config)
-        )
+        report = ConsensusEngine().build(ConsensusInput(evidence=evidence, config=config))
         return _canonical_json(report.model_dump(mode="json"))
 
     # -- 规范向量 ------------------------------------------------------------

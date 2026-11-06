@@ -21,6 +21,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from ...core.paths import project_root
+
 # ---------------------------------------------------------------------------
 # 校验范围常量 (仅类型/范围/结构)
 # ---------------------------------------------------------------------------
@@ -170,7 +172,9 @@ class QimenContractAdapter:
         """读取规范向量 (可选; 不校验时无需调用)."""
         path = self._vectors_path
         if path is None:
-            path = Path(__file__).resolve().parents[3] / "docs" / "qimen" / "golden_vectors.json"
+            # Documentation golden vectors live outside the package: resolve the
+            # checkout by marker instead of a fixed parents index (H9).
+            path = (project_root() or Path.cwd()) / "docs" / "qimen" / "golden_vectors.json"
         if not path.exists():
             raise FileNotFoundError(f"vectors missing: {path}")
         data = json.loads(path.read_text(encoding="utf-8"))
