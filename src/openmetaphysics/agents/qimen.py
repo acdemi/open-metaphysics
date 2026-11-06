@@ -23,7 +23,10 @@ Phase 5 核心实现。全部为纯函数、确定性计算: 无 I/O、无系统
    坤未申 / 兑酉 / 乾戌亥)。
 9. 中宫寄坤二宫: 值符/值使落中宫时寄坤二宫; 九星天禽参与转盘 (简化, 不寄宫)。
 10. 真太阳时: 提供 born_location 时, 用真太阳时 (core.solar_time) 确定时辰
-    (时支); 日期与日干支仍用钟表日。
+    (时支); 日期与日干支仍用钟表日 —— 且钟表日/钟表时统一先换算到
+    born_location.timezone 的本地时间 (H5)。标准经线由本地时钟的 UTC 偏移
+    推导 (UTC+8→120°E, UTC+1→15°E, UTC→0°), 不再固定 120°E; 支持任意有效
+    IANA 时区, 非法时区名显式报错 (不静默按错误时区计算)。
 11. 晚子时 (23:00-24:00) 不换日柱。
 
 盘面语义 (与 docs/SCHEMAS.md §3.3 一致, 不修改 Schema):
@@ -40,13 +43,18 @@ import datetime
 from dataclasses import dataclass
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ..core.calendar import sexagenary_day_index, solar_term_time
 from ..core.engines import BaseAgent, DeterministicEngine
 from ..core.models import EARTHLY_BRANCHES, HEAVENLY_STEMS, SOLAR_TERMS_24
 from ..core.schemas import AgentInput, AgentOutput
-from ..core.solar_time import true_solar_time
+from ..core.solar_time import (
+    local_datetime,
+    resolve_timezone,
+    standard_meridian_for,
+    true_solar_time,
+)
 
 # 后天八卦 宫位 1..9 对应宫名 (洛书顺序)
 PALACE_NAMES_9 = {
@@ -141,9 +149,20 @@ def ju_from_day_of_month(day: int) -> int:
 
 
 class QimenInput(AgentInput):
-    """奇门遁甲排盘输入。默认使用时家奇门：排盘时间 = 问卦时间。"""
+    """奇门遁甲排盘输入。默认使用时家奇门：排盘时间 = 问卦时间。
 
-    pass
+    Timezone policy (H5): any valid IANA ``born_location.timezone`` is
+    supported -- the standard meridian is derived from the location clock's UTC
+    offset, so non-China charts are not silently computed against 120°E. An
+    unknown IANA name is an explicit validation error (422), not a fallback.
+    """
+
+    @model_validator(mode="after")
+    def _validate_location_timezone(self) -> QimenInput:
+        location = self.born_location
+        if location is not None and location.timezone:
+            resolve_timezone(location.timezone)
+        return self
 
 
 class QimenCell(BaseModel):
@@ -417,11 +436,19 @@ def build_palaces(
 
 
 def effective_hour(payload: QimenInput) -> int:
-    """时辰用真太阳时 (有坐标时), 否则用钟表时."""
-    loc = payload.born_location
-    if loc is not None:
-        return true_solar_time(payload.born_at, loc.longitude)["true_solar_time"].hour
-    return payload.born_at.hour
+    """时辰: 有坐标时用真太阳时, 否则回退钟表时.
+
+    The clock is first read in the birth location's timezone (uniform policy,
+    H5); the true-solar correction is applied against the standard meridian
+    implied by that local clock's UTC offset instead of a hard-coded 120°E.
+    """
+    location = payload.born_location
+    local = local_datetime(payload.born_at, location)
+    if location is None:
+        return local.hour
+    meridian = standard_meridian_for(local)
+    true_solar = true_solar_time(local, location.longitude, standard_meridian=meridian)
+    return true_solar["true_solar_time"].hour
 
 
 class QimenEngine(DeterministicEngine):
@@ -429,11 +456,14 @@ class QimenEngine(DeterministicEngine):
 
     def calculate(self, payload: QimenInput) -> dict[str, Any]:
         born = payload.born_at
+        # Local clock day in the birth location's timezone (not the offset the
+        # caller happened to serialize born_at with, and not UTC).
+        local_date = local_datetime(born, payload.born_location).date()
         utc = born.astimezone(datetime.timezone.utc)
         dun_type, base_ju, term_name = dun_type_and_base_ju(utc)
 
         hour = effective_hour(payload)
-        cells, ju, triple_offset, plan = build_palaces(dun_type, base_ju, born.date(), hour)
+        cells, ju, triple_offset, plan = build_palaces(dun_type, base_ju, local_date, hour)
 
         self.trace.record(
             "qimen.dun_type",
@@ -443,7 +473,7 @@ class QimenEngine(DeterministicEngine):
         self.trace.record(
             "qimen.ju",
             "局数 from 节气三元",
-            outputs={"ju": ju, "triple_offset": triple_offset, "day_of_month": born.day},
+            outputs={"ju": ju, "triple_offset": triple_offset, "day_of_month": local_date.day},
         )
         self.trace.record(
             "qimen.zhifu",
@@ -473,7 +503,7 @@ class QimenEngine(DeterministicEngine):
             solar_term=term_name,
             ju=ju,
             dun_type=dun_type,
-            day_of_month=born.day,
+            day_of_month=local_date.day,
             triple_offset=triple_offset,
             cells=cells,
         )

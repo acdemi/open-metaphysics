@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import math
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, ConfigDict
 
 from . import calendar as c
+from .schemas import GeoPoint
 
 """Deterministic True Solar Time (真太阳时) calculation.
 
@@ -67,22 +69,79 @@ def equation_of_time(jd: float) -> float:
     return eot * 4
 
 
-def longitude_offset_minutes(longitude: float) -> float:
-    """Calculate longitude offset in minutes from standard meridian (120°E for China).
+def longitude_offset_minutes(longitude: float, standard_meridian: float = 120.0) -> float:
+    """Longitude correction in minutes relative to a timezone's standard meridian.
 
-    China standard time is UTC+8 based on 120°E longitude.
-    Each degree east of 120 adds 4 minutes, each degree west subtracts 4 minutes.
+    ``standard_meridian`` is the meridian the clock time is based on: 120°E for
+    China Standard Time (UTC+8), 15°E for UTC+1, 0° for UTC, and so on. Each
+    degree east of it adds 4 minutes of mean solar time, each degree west
+    subtracts 4 minutes. The default keeps the historical China behaviour; every
+    non-China caller must pass the meridian implied by its own UTC offset (see
+    ``standard_meridian_for``).
     """
-    standard_meridian = 120.0  # for China Standard Time (UTC+8)
     return (longitude - standard_meridian) * 4.0
+
+
+def standard_meridian_for(local_dt: datetime) -> float:
+    """Standard meridian (degrees east) implied by a clock's UTC offset.
+
+    ``UTC+8 -> 120°E``, ``UTC+1 -> 15°E``, ``UTC+0 -> 0°``, ``UTC+5:30 -> 82.5°E``.
+    This is what makes true solar time independent of any hard-coded China
+    meridian: the correction is expressed against the meridian the clock itself
+    follows.
+    """
+    offset = local_dt.utcoffset()
+    if offset is None:
+        raise ValueError("datetime must be timezone-aware to derive a standard meridian")
+    return offset.total_seconds() / 3600.0 * 15.0
+
+
+def resolve_timezone(name: str) -> ZoneInfo:
+    """Resolve an IANA timezone name; an unknown name is an explicit error."""
+    try:
+        return ZoneInfo(name)
+    except Exception as exc:  # ZoneInfoNotFoundError / ValueError
+        raise ValueError(f"unknown IANA timezone: {name!r}") from exc
+
+
+def local_datetime(
+    born_at: datetime,
+    born_location: GeoPoint | None,
+    *,
+    strict: bool = True,
+) -> datetime:
+    """Convert an instant to the clock time of the birth location's timezone.
+
+    This is the single timezone policy for every domain: date/hour/pillar
+    decisions are made on the returned local clock time, never on the offset the
+    caller happened to serialize ``born_at`` with. Without a location timezone
+    the input's own offset is kept (documented fallback).
+
+    ``strict=True`` raises :class:`ValueError` for an unknown IANA name instead
+    of silently computing with the wrong zone. Bazi/Ziwei keep their historical
+    ``strict=False`` fallback; Liuyao/Qimen use the strict policy.
+    """
+    if born_at.tzinfo is None:
+        raise ValueError("born_at must be timezone-aware")
+    zone_name = born_location.timezone if born_location is not None else None
+    if not zone_name:
+        return born_at
+    try:
+        local = born_at.astimezone(resolve_timezone(zone_name))
+    except ValueError:
+        if strict:
+            raise
+        return born_at
+    return local
 
 
 def standard_to_local_mean(
     standard_dt: datetime,
     longitude: float,
+    standard_meridian: float = 120.0,
 ) -> datetime:
     """Convert standard clock time to local mean solar time."""
-    offset_min = longitude_offset_minutes(longitude)
+    offset_min = longitude_offset_minutes(longitude, standard_meridian)
     return standard_dt + timedelta(minutes=offset_min)
 
 
@@ -96,6 +155,7 @@ def true_solar_time(
     born_at: datetime,
     longitude: float,
     daylight_saving: bool = False,
+    standard_meridian: float | None = None,
 ) -> dict[str, float | datetime | dict]:
     """Calculate true solar time from input datetime.
 
@@ -103,6 +163,10 @@ def true_solar_time(
         born_at: Timezone-aware input datetime (usually from birth record).
         longitude: Longitude of the location in degrees (east positive).
         daylight_saving: Whether daylight saving was in effect.
+        standard_meridian: Meridian (degrees east) the input clock is based on.
+            ``None`` derives it from ``born_at``'s own UTC offset via
+            :func:`standard_meridian_for`, so a London clock is corrected
+            against 0°/15°E instead of the historical fixed 120°E.
 
     Returns:
         Dict with all intermediate results:
@@ -112,11 +176,15 @@ def true_solar_time(
         - equation_of_time_minutes: Equation of Time in minutes
         - true_solar_time: Final true solar time
         - longitude_offset_minutes: Longitude correction in minutes
-        - metadata: calculation metadata
+        - metadata: calculation metadata (incl. the standard meridian used)
     """
     # Convert to UTC
     utc_dt = born_at.astimezone(timezone.utc)
     jd = c.julian_day(utc_dt)
+
+    meridian = (
+        standard_meridian_for(born_at) if standard_meridian is None else float(standard_meridian)
+    )
 
     # Handle DST: if DST is on, clock is +1hr, subtract it
     if daylight_saving:
@@ -125,8 +193,8 @@ def true_solar_time(
         standard_dt = born_at
 
     # Longitude correction → local mean time
-    lon_offset_min = longitude_offset_minutes(longitude)
-    local_mean_dt = standard_to_local_mean(standard_dt, longitude)
+    lon_offset_min = longitude_offset_minutes(longitude, meridian)
+    local_mean_dt = standard_to_local_mean(standard_dt, longitude, meridian)
 
     # Add equation of time → true solar time
     eot_min = equation_of_time(jd)
@@ -142,7 +210,7 @@ def true_solar_time(
         "metadata": {
             "daylight_saving": daylight_saving,
             "input_longitude": longitude,
-            "standard_meridian": 120.0,
+            "standard_meridian": meridian,
         },
     }
 
@@ -161,6 +229,9 @@ class TrueSolarTimeResult(BaseModel):
 __all__ = [
     "equation_of_time",
     "longitude_offset_minutes",
+    "standard_meridian_for",
+    "resolve_timezone",
+    "local_datetime",
     "standard_to_local_mean",
     "add_equation_of_time",
     "true_solar_time",

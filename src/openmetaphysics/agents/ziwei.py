@@ -23,6 +23,7 @@ from ..core.models import (
     nayin_for,
 )
 from ..core.schemas import AgentInput, AgentOutput
+from ..core.solar_time import local_datetime
 
 # 12-palace array starting at 寅 (clockwise branch order, index 0..11)
 PALACE_BRANCHES = ["寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"]
@@ -134,17 +135,6 @@ class ZiweiOutput(AgentOutput):
     result: ZiweiChart
 
 
-def _local_tz(payload: ZiweiInput):
-    if payload.born_location and payload.born_location.timezone:
-        from zoneinfo import ZoneInfo
-
-        try:
-            return ZoneInfo(payload.born_location.timezone)
-        except Exception:
-            return payload.born_at.tzinfo
-    return payload.born_at.tzinfo
-
-
 def _local_hour_branch(local_dt) -> int:
     # hour branch index 0..11 (子=0..亥=11) from local civil hour
     return ((local_dt.hour + 1) // 2) % 12
@@ -155,8 +145,9 @@ class ZiweiEngine(DeterministicEngine):
 
     def calculate(self, payload: ZiweiInput) -> dict[str, Any]:
         born = payload.born_at
-        local_tz = _local_tz(payload)
-        local = born.astimezone(local_tz)
+        # Uniform timezone policy (H5): local clock in the birth location's
+        # timezone. Ziwei keeps its historical fallback for unknown zone names.
+        local = local_datetime(born, payload.born_location, strict=False)
         hour_idx = _local_hour_branch(local)
         calendar_note = None
 
