@@ -24,7 +24,7 @@ dependencies = [
 [project.optional-dependencies]
 rag = ["qdrant-client>=1.10"]
 persist = ["sqlalchemy>=2.0", "psycopg[binary]>=3.1"]
-dev = ["pytest>=8", "ruff>=0.5"]
+dev = ["pytest>=8", "ruff>=0.16.2"]
 
 [project.scripts]
 openmetaphysics = "openmetaphysics.api.__main__:main"
@@ -38,10 +38,24 @@ where = ["src"]
 testpaths = ["tests", "reference/tests"]
 pythonpath = ["src", "reference"]
 addopts = "-q"
+markers = [
+    "slow: heavy/optional checks excluded from PR CI (wheel install, docker smoke)",
+    "docker: requires a Docker daemon (nightly only)",
+]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+# P2.3: two files under the frozen Reference Runtime (`reference/engine.py`,
+# `reference/tests/test_liuyao_equivalence.py`) predate the current formatter and
+# cannot be reformatted without an ACP (ACP-REF-002 freezes `reference/`).
+# Exclude exactly these two frozen files from the formatter gate rather than
+# silently modifying frozen artifacts; all other `reference/` files are checked.
+extend-exclude = [
+    "reference/engine.py",
+    "reference/tests/test_liuyao_equivalence.py",
+]
+force-exclude = true
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

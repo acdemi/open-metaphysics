@@ -14,8 +14,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
       - run: uv sync --all-extras
-      - run: uv run ruff check src/ tests/ reference/
-      - run: uv run ruff format --check src/ tests/ reference/
+      # P2.3: scripts/ is part of the lint gate now. The two frozen reference
+      # files excluded in pyproject.toml stay untouched (ACP-REF-002); every
+      # other reference file is still linted/formatted.
+      - run: uv run ruff check src/ tests/ reference/ scripts/
+      - run: uv run ruff format --check src/ tests/ reference/ scripts/
 
   rust:
     name: Rust Lint
