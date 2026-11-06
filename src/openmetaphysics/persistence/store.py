@@ -29,6 +29,7 @@ try:  # optional [persist] extra
         Table,
         create_engine,
         delete,
+        func,
         insert,
         select,
     )
@@ -52,7 +53,9 @@ class SessionStore(Protocol):
 
     def get_traces(self, request_id: str) -> list[dict[str, Any]]: ...
 
-    def list_sessions(self) -> list[dict[str, Any]]: ...
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]: ...
+
+    def count_sessions(self) -> int: ...
 
 
 def _now() -> str:
@@ -88,11 +91,17 @@ class InMemorySessionStore:
     def get_traces(self, request_id: str) -> list[dict[str, Any]]:
         return list(self._traces.get(request_id, []))
 
-    def list_sessions(self) -> list[dict[str, Any]]:
-        return [
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]:
+        sessions = [
             {"request_id": request_id, "created_at": session["created_at"]}
             for request_id, session in self._sessions.items()
         ]
+        if limit is None:
+            return sessions[offset:]
+        return sessions[offset : offset + limit]
+
+    def count_sessions(self) -> int:
+        return len(self._sessions)
 
 
 class SqlAlchemySessionStore:
@@ -174,14 +183,21 @@ class SqlAlchemySessionStore:
             ).all()
         return [{"agent": row.agent, "steps": row.steps} for row in rows]
 
-    def list_sessions(self) -> list[dict[str, Any]]:
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]:
+        statement = select(self._sessions.c.request_id, self._sessions.c.created_at).order_by(
+            self._sessions.c.created_at.desc()
+        )
+        if limit is not None:
+            statement = statement.limit(limit).offset(offset)
+        elif offset:
+            statement = statement.offset(offset)
         with self._engine.connect() as conn:
-            rows = conn.execute(
-                select(self._sessions.c.request_id, self._sessions.c.created_at).order_by(
-                    self._sessions.c.created_at.desc()
-                )
-            ).all()
+            rows = conn.execute(statement).all()
         return [{"request_id": row.request_id, "created_at": row.created_at} for row in rows]
+
+    def count_sessions(self) -> int:
+        with self._engine.connect() as conn:
+            return int(conn.execute(select(func.count()).select_from(self._sessions)).scalar_one())
 
 
 def _normalize_dsn(dsn: str) -> str:
