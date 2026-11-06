@@ -144,7 +144,9 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
             "explanation": result["explanation"],
             "provider": result["provider"],
             "degraded": result["degraded"],
-            "knowledge": [{"id": c["id"], "source": c["source"]} for c in result.get("knowledge", [])],
+            "knowledge": [
+                {"id": c["id"], "source": c["source"]} for c in result.get("knowledge", [])
+            ],
             "evidence": result["evidence"],
             "error": result.get("error"),
         }
@@ -161,9 +163,7 @@ def call_tool(name: str, args: dict[str, Any]) -> Any:
             k=int(args.get("k", 5)),
             include_evidence=bool(args.get("include_evidence", False)),
         )
-        return [
-            {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks
-        ]
+        return [{"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks]
     if name == "knowledge_stats":
         from ..rag.corpus import corpus_stats
 

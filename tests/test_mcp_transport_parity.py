@@ -156,8 +156,12 @@ def test_errors_have_identical_codes_and_messages() -> None:
     requests = [
         {"jsonrpc": "2.0", "id": 201, "method": "does/not/exist"},
         {"jsonrpc": "2.0", "id": 202, "method": "tools/call", "params": {}},
-        {"jsonrpc": "2.0", "id": 203, "method": "tools/call",
-         "params": {"name": "nope", "arguments": {}}},
+        {
+            "jsonrpc": "2.0",
+            "id": 203,
+            "method": "tools/call",
+            "params": {"name": "nope", "arguments": {}},
+        },
     ]
     stdio = _stdio_roundtrip(requests)
     (_, unknown_method), (_, missing_name), (_, unknown_tool) = _http_roundtrip(requests)
@@ -208,7 +212,9 @@ def test_notification_has_no_jsonrpc_response_in_either_transport() -> None:
     client = TestClient(create_app())
     response = client.post("/mcp", json=notification)
     assert response.status_code == 202
-    assert response.json() is None, "HTTP transport acknowledges notifications with an empty JSON body"
+    assert response.json() is None, (
+        "HTTP transport acknowledges notifications with an empty JSON body"
+    )
 
     proc = subprocess.run(
         [sys.executable, "-m", "openmetaphysics.mcp"],

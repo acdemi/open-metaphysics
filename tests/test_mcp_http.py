@@ -25,9 +25,7 @@ def test_http_tools_list() -> None:
 
 
 def test_http_notification_returns_202() -> None:
-    response = client.post(
-        "/mcp", json={"jsonrpc": "2.0", "method": "notifications/initialized"}
-    )
+    response = client.post("/mcp", json={"jsonrpc": "2.0", "method": "notifications/initialized"})
     assert response.status_code == 202
 
 

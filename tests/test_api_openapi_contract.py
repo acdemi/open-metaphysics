@@ -103,9 +103,9 @@ def test_orchestration_components_are_published():
 
 def test_orchestrate_and_simple_routes_reference_models():
     paths = _openapi()["paths"]
-    assert paths["/orchestrate"]["post"]["responses"]["200"]["content"]["application/json"]["schema"] == {
-        "$ref": "#/components/schemas/OrchestrationResponse"
-    }
+    assert paths["/orchestrate"]["post"]["responses"]["200"]["content"]["application/json"][
+        "schema"
+    ] == {"$ref": "#/components/schemas/OrchestrationResponse"}
     assert paths["/health"]["get"]["responses"]["200"]["content"]["application/json"]["schema"] == {
         "$ref": "#/components/schemas/HealthResponse"
     }

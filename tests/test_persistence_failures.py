@@ -63,12 +63,20 @@ def _app_with_store(store: Any) -> TestClient:
 
 
 def _compute_body(request_id: str) -> dict[str, Any]:
-    return {"request_id": request_id, "born_at": BORN, "gender": "male", "question": SECRET_QUESTION}
+    return {
+        "request_id": request_id,
+        "born_at": BORN,
+        "gender": "male",
+        "question": SECRET_QUESTION,
+    }
 
 
 def _without_computed_at(value: Any) -> Any:
     if isinstance(value, dict):
-        return {key: ("<volatile>" if key == "computed_at" else _without_computed_at(item)) for key, item in value.items()}
+        return {
+            key: ("<volatile>" if key == "computed_at" else _without_computed_at(item))
+            for key, item in value.items()
+        }
     if isinstance(value, list):
         return [_without_computed_at(item) for item in value]
     return value

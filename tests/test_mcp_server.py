@@ -162,7 +162,11 @@ def test_tools_call_explain() -> None:
                 "name": "compute",
                 "arguments": {
                     "name": "bazi",
-                    "input": {"request_id": "m1", "born_at": "1985-08-15T10:00:00+08:00", "gender": "male"},
+                    "input": {
+                        "request_id": "m1",
+                        "born_at": "1985-08-15T10:00:00+08:00",
+                        "gender": "male",
+                    },
                 },
             },
         }

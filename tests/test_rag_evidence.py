@@ -31,14 +31,20 @@ def _node(node_id: str, name: str) -> dict:
     }
 
 
-def _corpus(nodes: list[dict], relations: list[dict] | None = None, references: list[dict] | None = None) -> dict:
+def _corpus(
+    nodes: list[dict], relations: list[dict] | None = None, references: list[dict] | None = None
+) -> dict:
     return {
         "metadata": {
             "corpus_id": "ziwei_corpus",
             "domain": "ziwei",
             "status": "frozen",
             "version": "1.0.0",
-            "counts": {"nodes": len(nodes), "relations": len(relations or []), "references": len(references or [])},
+            "counts": {
+                "nodes": len(nodes),
+                "relations": len(relations or []),
+                "references": len(references or []),
+            },
         },
         "nodes": nodes,
         "relations": relations or [],
@@ -95,12 +101,42 @@ def test_invalid_entries_are_skipped(tmp_path: Path) -> None:
     doc = _corpus(
         nodes=[_node("kn:a", "甲")],
         relations=[
-            {"id": "rel:he:broken", "source_node_id": "kn:a", "target_node_id": "kn:missing", "relation_type": "he", "evidence": [], "conditions": [], "source": {}},
-            {"id": "rel:he:valid", "source_node_id": "kn:a", "target_node_id": "kn:a", "relation_type": "he", "evidence": [{"description": "自合"}], "conditions": [], "source": {"text": "契约"}},
+            {
+                "id": "rel:he:broken",
+                "source_node_id": "kn:a",
+                "target_node_id": "kn:missing",
+                "relation_type": "he",
+                "evidence": [],
+                "conditions": [],
+                "source": {},
+            },
+            {
+                "id": "rel:he:valid",
+                "source_node_id": "kn:a",
+                "target_node_id": "kn:a",
+                "relation_type": "he",
+                "evidence": [{"description": "自合"}],
+                "conditions": [],
+                "source": {"text": "契约"},
+            },
         ],
         references=[
-            {"reference_id": "ref:empty", "target_type": "node", "target_id": "kn:a", "ref_type": "classic_text", "passage": "", "source": {}},
-            {"reference_id": "ref:valid", "target_type": "node", "target_id": "kn:a", "ref_type": "classic_text", "passage": "甲为帝座。", "source": {"text": "某书", "chapter": "卷"}},
+            {
+                "reference_id": "ref:empty",
+                "target_type": "node",
+                "target_id": "kn:a",
+                "ref_type": "classic_text",
+                "passage": "",
+                "source": {},
+            },
+            {
+                "reference_id": "ref:valid",
+                "target_type": "node",
+                "target_id": "kn:a",
+                "ref_type": "classic_text",
+                "passage": "甲为帝座。",
+                "source": {"text": "某书", "chapter": "卷"},
+            },
         ],
     )
     path = tmp_path / "ziwei_corpus.json"
@@ -119,7 +155,10 @@ def test_duplicate_ids_are_deduped(tmp_path: Path) -> None:
         "passage": "重复引用。",
         "source": {"text": "某书"},
     }
-    for name, corpus_id in (("ziwei_corpus.json", "ziwei_corpus"), ("bazi_corpus.json", "bazi_corpus")):
+    for name, corpus_id in (
+        ("ziwei_corpus.json", "ziwei_corpus"),
+        ("bazi_corpus.json", "bazi_corpus"),
+    ):
         doc = _corpus(nodes=[_node("kn:a", "甲")], references=[reference])
         doc["metadata"]["corpus_id"] = corpus_id
         (tmp_path / name).write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
