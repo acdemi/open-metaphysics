@@ -7,8 +7,12 @@ No I/O, no wall-clock, no unseeded RNG. An optional, isolated ``explainer``
 
 from __future__ import annotations
 
+import hashlib
 import random
 from abc import ABC, abstractmethod
+from collections.abc import Iterator
+from contextlib import contextmanager
+from contextvars import ContextVar
 from typing import Any, Protocol, runtime_checkable
 
 from pydantic import BaseModel
@@ -22,13 +26,51 @@ from .schemas import (
     utcnow,
 )
 
+# Declared baseline, NOT a calibrated probability / measured rule coverage (H8).
+# All four deterministic domains run a fixed, fully-applied rule pipeline, so
+# there is no held-out population or ground truth to calibrate against. Keeping
+# the number stable preserves API/Consensus compatibility; only the *meaning*
+# is declared honestly via ``method``/``factors``.
+PLACEHOLDER_CONFIDENCE_VALUE = 0.95
+PLACEHOLDER_CONFIDENCE_METHOD = "placeholder_baseline"
 
-class TraceRecorder:
-    """Accumulates auditable ReasoningStep records during a computation."""
+
+class _TraceState:
+    """Steps and counter for exactly one computation (context-local)."""
+
+    __slots__ = ("n", "steps")
 
     def __init__(self) -> None:
         self.steps: list[ReasoningStep] = []
-        self._n = 0
+        self.n = 0
+
+
+_CURRENT_TRACE: ContextVar[_TraceState | None] = ContextVar(
+    "openmetaphysics_current_trace", default=None
+)
+
+
+class TraceRecorder:
+    """Accumulates auditable ReasoningStep records during a computation.
+
+    The recorder is a *view* over the context-local trace: while
+    ``DeterministicEngine.isolated_trace`` is active every thread/async task
+    records into its own state, so concurrent computes never interleave.
+    Outside such a scope it falls back to an instance-owned state, keeping
+    direct ``engine.calculate`` use working as before.
+    """
+
+    def __init__(self) -> None:
+        self._own = _TraceState()
+
+    @property
+    def _state(self) -> _TraceState:
+        current = _CURRENT_TRACE.get()
+        return current if current is not None else self._own
+
+    @property
+    def steps(self) -> list[ReasoningStep]:
+        return self._state.steps
 
     def record(
         self,
@@ -37,10 +79,11 @@ class TraceRecorder:
         inputs: dict[str, Any] | None = None,
         outputs: dict[str, Any] | None = None,
     ) -> None:
-        self._n += 1
-        self.steps.append(
+        state = self._state
+        state.n += 1
+        state.steps.append(
             ReasoningStep(
-                step=self._n,
+                step=state.n,
                 rule_ref=rule_ref,
                 description=description,
                 inputs=_coerce(inputs),
@@ -53,6 +96,15 @@ class TraceRecorder:
         result = fn(**inputs)
         self.record(rule_ref, description, inputs=inputs, outputs=_as_outputs(result))
         return result
+
+    def reset(self) -> None:
+        """Clear the trace visible in the current context."""
+        current = _CURRENT_TRACE.get()
+        if current is None:
+            self._own = _TraceState()
+        else:
+            current.steps.clear()
+            current.n = 0
 
 
 def _coerce(d: dict[str, Any] | None) -> dict[str, str | int | float | bool]:
@@ -78,12 +130,27 @@ class DeterministicEngine(ABC):
     def __init__(self) -> None:
         self.trace = TraceRecorder()
 
+    @contextmanager
+    def isolated_trace(self) -> Iterator[TraceRecorder]:
+        """Bind a fresh, context-local trace to one computation.
+
+        Used by ``BaseAgent.compute``: an engine instance may be shared by
+        concurrent requests, so the trace must never be written to shared
+        state. A ``ContextVar`` (not a lock) gives every thread/async task its
+        own recorder while keeping the public ``engine.trace`` API unchanged.
+        """
+        token = _CURRENT_TRACE.set(_TraceState())
+        try:
+            yield self.trace
+        finally:
+            _CURRENT_TRACE.reset(token)
+
     @abstractmethod
     def calculate(self, payload: AgentInput) -> dict[str, Any]:
         """Pure function: same input -> byte-identical output. No LLM, no I/O."""
 
     def reset(self) -> None:
-        self.trace = TraceRecorder()
+        self.trace.reset()
 
 
 def deterministic_rng(seed: int) -> random.Random:
@@ -92,10 +159,18 @@ def deterministic_rng(seed: int) -> random.Random:
 
 
 def derive_seed(payload: AgentInput) -> int:
-    """Deterministic seed from input: explicit ``seed`` else hash of request_id."""
+    """Deterministic seed from input: explicit ``seed`` else SHA-256 of the envelope.
+
+    Python's built-in ``hash()`` is salted per process (``PYTHONHASHSEED``), so
+    using it made the auto-cast Liuyao path unreproducible across processes.
+    SHA-256 of ``request_id`` + ``client_nonce`` is stable everywhere; the
+    explicit ``seed`` path is unchanged.
+    """
     if payload.seed is not None:
         return payload.seed
-    return abs(hash((payload.request_id, payload.client_nonce))) % (2**31)
+    material = f"{payload.request_id}\x1f{payload.client_nonce or ''}".encode()
+    digest = hashlib.sha256(material).digest()
+    return int.from_bytes(digest[:8], "big") % (2**31)
 
 
 @runtime_checkable
@@ -120,9 +195,13 @@ class BaseAgent(ABC):
 
     def compute(self, payload: AgentInput) -> AgentOutput:
         validated = self.input_schema.model_validate(payload.model_dump())
-        self.engine.reset()
-        result = self._compute_result(validated)
-        confidence = self._confidence(result, self.engine.trace.steps)
+        # The engine is shared by the singleton agents, so its trace is bound
+        # context-locally for the duration of this call: concurrent requests get
+        # independent step lists and cannot pollute each other's reasoning_trace.
+        with self.engine.isolated_trace() as trace:
+            result = self._compute_result(validated)
+            steps = list(trace.steps)
+        confidence = self._confidence(result, steps)
         return self.output_schema(
             request_id=validated.request_id,
             agent=self.name,
@@ -130,7 +209,7 @@ class BaseAgent(ABC):
             input_hash=hash_input(validated),
             computed_at=utcnow(),
             confidence=confidence,
-            reasoning_trace=list(self.engine.trace.steps),
+            reasoning_trace=steps,
             metadata=self._output_metadata(validated),
             result=result,
         )
@@ -139,9 +218,18 @@ class BaseAgent(ABC):
     def _compute_result(self, payload: AgentInput) -> dict[str, Any]: ...
 
     def _confidence(self, result: dict[str, Any], steps: list[ReasoningStep]) -> ConfidenceScore:
-        """Default confidence: high for fully rule-covered deterministic output."""
+        """Declared baseline confidence — explicitly NOT statistical coverage.
+
+        The previous ``method="rule_coverage"`` was misleading: the value was a
+        constant 0.95, not a ratio of covered rules, and there is no calibrated
+        ground truth behind it. ``placeholder_baseline`` + ``calibrated == 0.0``
+        make that machine-readable. A real scorer must change method and value
+        together and re-derive the Consensus weighting (which uses the value).
+        """
         return ConfidenceScore(
-            value=0.95, method="rule_coverage", factors={"steps": float(len(steps))}
+            value=PLACEHOLDER_CONFIDENCE_VALUE,
+            method=PLACEHOLDER_CONFIDENCE_METHOD,
+            factors={"steps": float(len(steps)), "calibrated": 0.0},
         )
 
     def _metadata(self) -> dict[str, str | int | float | bool]:
