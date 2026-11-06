@@ -89,6 +89,10 @@ function providerError(agent: string): { kind: string; type: string | null; prov
         <span>解释来源：<code>explanation_detail["{{ output.agent }}"]</code></span>
         <span>与「{{ domainLabel(output.agent) }}」的计算结果一一对应</span>
       </div>
+      <p class="card-note">
+        解释引用的知识条目见「知识证据」标签页；用户主动发起的独立检索在「知识检索」。
+        两者不是同一证据链，不能仅凭相同节点 id 推断某次检索参与了本次解释。
+      </p>
     </div>
   </article>
 </template>

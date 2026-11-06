@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import type { ConnectionApi } from '../composables/useConnection'
 
-const props = defineProps<{ connection: ConnectionApi }>()
-const emit = defineEmits<{ openSettings: [] }>()
+const props = defineProps<{ connection: ConnectionApi; mode: 'analysis' | 'agent' }>()
+const emit = defineEmits<{
+  openSettings: []
+  openHistory: []
+  switchMode: [mode: 'analysis' | 'agent']
+}>()
 
 function refresh(): void {
   void props.connection.refresh()
@@ -20,6 +24,39 @@ function refresh(): void {
     </div>
 
     <div class="header-actions">
+      <div class="mode-switch" role="group" aria-label="业务入口">
+        <button
+          type="button"
+          class="mode-btn"
+          :class="{ 'is-active': mode === 'analysis' }"
+          :aria-pressed="mode === 'analysis' ? 'true' : 'false'"
+          data-testid="mode-analysis"
+          @click="emit('switchMode', 'analysis')"
+        >
+          综合分析
+        </button>
+        <button
+          type="button"
+          class="mode-btn"
+          :class="{ 'is-active': mode === 'agent' }"
+          :aria-pressed="mode === 'agent' ? 'true' : 'false'"
+          data-testid="mode-agent"
+          @click="emit('switchMode', 'agent')"
+        >
+          独立计算
+        </button>
+      </div>
+      <button
+        type="button"
+        class="btn btn-small"
+        id="btn-history"
+        data-testid="btn-history"
+        aria-haspopup="dialog"
+        title="查看后端持久化的历史会话并恢复结果"
+        @click="emit('openHistory')"
+      >
+        历史会话
+      </button>
       <button
         type="button"
         id="health-pill"

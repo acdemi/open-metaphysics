@@ -3,8 +3,7 @@ import { ref } from 'vue'
 
 import { fetchSession, fetchTraces } from '../../api/client'
 import { isApiError } from '../../api/errors'
-import type { OrchestrationRequest, OrchestrationResponse, ReasoningStep } from '../../api/types'
-import type { AgentName } from '../../api/types'
+import type { OrchestrationResponse, ReasoningStep } from '../../api/types'
 import { domainLabel } from '../../config'
 import type { ToastApi } from '../../composables/useToast'
 import { elapsedLabel, formatScalar, scalarEntries } from '../../utils/format'
@@ -13,10 +12,11 @@ import JsonBlock from '../JsonBlock.vue'
 
 const props = defineProps<{
   result: OrchestrationResponse
-  lastPayload: OrchestrationRequest | null
+  lastPayload: unknown
   apiBase: string
   elapsedMs: number
-  domains: readonly AgentName[]
+  domains: readonly string[]
+  restored?: boolean
   toast: ToastApi
 }>()
 
@@ -69,7 +69,7 @@ async function load(kind: 'session' | 'traces'): Promise<void> {
         <div class="kv"><dt>agents（请求）</dt><dd>{{ domains.join(', ') || '—' }}</dd></div>
         <div class="kv"><dt>explain</dt><dd>true</dd></div>
         <div class="kv"><dt>strategy</dt><dd>weighted</dd></div>
-        <div class="kv"><dt>HTTP 耗时</dt><dd>{{ elapsedLabel(elapsedMs) }}</dd></div>
+        <div class="kv"><dt>HTTP 耗时</dt><dd>{{ restored ? '—（历史会话）' : elapsedLabel(elapsedMs) }}</dd></div>
         <div class="kv"><dt>会话 / 追踪</dt><dd>可按下按钮从后端读取</dd></div>
       </div>
 

@@ -9,17 +9,19 @@ import {
   isApiError,
   validationDetailMessages,
 } from '../api/errors'
-import type { OrchestrationRequest, OrchestrationResponse } from '../api/types'
+import { parseOrchestrationResponse } from '../api/parse'
+import type { OrchestrationRequest, OrchestrationResponse, SessionSummary, StoredSession } from '../api/types'
 import { DEMO_DEFAULTS } from '../config'
 import { buildRequest, makeRequestId, type FieldError, type FieldKey, type FormValues } from '../utils/validation'
 
 export type ViewState = 'empty' | 'loading' | 'error' | 'results'
 
-export type TabName = 'calculation' | 'evidence' | 'explanation' | 'consensus' | 'execution'
+export type TabName = 'calculation' | 'evidence' | 'knowledge' | 'explanation' | 'consensus' | 'execution'
 
 export const RESULT_TABS: readonly { id: TabName; label: string }[] = [
   { id: 'calculation', label: '计算结果' },
   { id: 'evidence', label: '知识证据' },
+  { id: 'knowledge', label: '知识检索' },
   { id: 'explanation', label: '解释' },
   { id: 'consensus', label: '综合共识' },
   { id: 'execution', label: '执行详情' },
@@ -50,6 +52,10 @@ export interface AnalysisApi {
   error: Ref<AnalysisErrorView | null>
   activeTab: Ref<TabName>
   lastPayload: Ref<OrchestrationRequest | null>
+  /** 非空表示当前结果来自历史会话（耗时等运行期字段不适用）。 */
+  restoredFrom: Ref<SessionSummary | null>
+  /** 历史会话里存储的原始请求体（仅展示）。 */
+  restoredRequest: Ref<unknown | null>
   activeDomainLabels: ComputedRef<string>
   submit(): Promise<void>
   rerun(): Promise<void>
@@ -59,7 +65,11 @@ export interface AnalysisApi {
   setTab(tab: TabName): void
   fieldError(field: FieldKey): string | null
   errorForField(field: FieldKey): boolean
+  /** 用后端 GET /sessions/{id} 的会话恢复结果视图；失败时返回可展示的原因。 */
+  restoreSession(session: StoredSession): RestoreOutcome
 }
+
+export type RestoreOutcome = { ok: true } | { ok: false; message: string }
 
 function demoForm(): FormValues {
   return {
@@ -95,6 +105,8 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
   const errorView = ref<AnalysisErrorView | null>(null)
   const activeTab = ref<TabName>('calculation')
   const lastPayload = ref<OrchestrationRequest | null>(null)
+  const restoredFrom = ref<SessionSummary | null>(null)
+  const restoredRequest = ref<unknown | null>(null)
 
   let abortController: AbortController | null = null
   let timer: ReturnType<typeof setInterval> | null = null
@@ -139,6 +151,8 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
     result.value = null
     errorView.value = null
     lastPayload.value = null
+    restoredFrom.value = null
+    restoredRequest.value = null
     elapsedMs.value = 0
     steps.value = initialSteps()
     activeTab.value = 'calculation'
@@ -258,6 +272,8 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
 
   async function run(payload: OrchestrationRequest): Promise<void> {
     lastPayload.value = payload
+    restoredFrom.value = null
+    restoredRequest.value = null
     loading.value = true
     view.value = 'loading'
     errorView.value = null
@@ -318,6 +334,26 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
     abortController?.abort()
   }
 
+  function restoreSession(session: StoredSession): RestoreOutcome {
+    let parsed: OrchestrationResponse
+    try {
+      parsed = parseOrchestrationResponse(session.response)
+    } catch (error) {
+      return { ok: false, message: isApiError(error) ? error.message : asErrorMessage(error) }
+    }
+    result.value = parsed
+    lastPayload.value = null
+    restoredRequest.value = session.request
+    restoredFrom.value = { request_id: session.request_id, created_at: session.created_at }
+    elapsedMs.value = 0
+    steps.value = initialSteps()
+    for (const step of steps.value) step.state = 'done'
+    errorView.value = null
+    activeTab.value = 'calculation'
+    view.value = 'results'
+    return { ok: true }
+  }
+
   return {
     form,
     errors,
@@ -330,6 +366,8 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
     error: errorView,
     activeTab,
     lastPayload,
+    restoredFrom,
+    restoredRequest,
     activeDomainLabels,
     submit,
     rerun,
@@ -339,5 +377,6 @@ export function useAnalysis(apiBase: Ref<string>): AnalysisApi {
     setTab,
     fieldError,
     errorForField,
+    restoreSession,
   }
 }

@@ -51,7 +51,7 @@ function knowledgeCount(agent: string): number {
     </div>
     <div class="card-body">
       <p v-if="narrativeChunks(output.agent).length > 0" class="card-note">
-        <strong>如何阅读：</strong>以下片段由后端在冻结知识语料中检索后随解释返回，含来源书名 / 章节与节点 ID；它们用于给解释提供语境，<strong>不是</strong>对上方计算结论的证明。当前接口只返回 <code>id</code>、<code>source</code> 与片段原文。
+        <strong>如何阅读：</strong>以下片段由后端在冻结知识语料中检索后随解释返回，含来源书名 / 章节与节点 ID；它们用于给解释提供语境，<strong>不是</strong>对上方计算结论的证明。这些引用由后端解释链绑定；与「知识检索」标签页里用户主动发起的独立检索无关（即使节点 id 相同，也不能推断该次检索参与了本次解释）。
       </p>
       <p v-else class="card-note">
         该域本次没有返回知识片段；页面不会用本地知识或模型记忆补齐。

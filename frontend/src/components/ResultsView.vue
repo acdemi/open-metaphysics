@@ -13,6 +13,7 @@ import ConsensusPanel from './panels/ConsensusPanel.vue'
 import EvidencePanel from './panels/EvidencePanel.vue'
 import ExecutionPanel from './panels/ExecutionPanel.vue'
 import ExplanationPanel from './panels/ExplanationPanel.vue'
+import KnowledgeSearchPanel from './panels/KnowledgeSearchPanel.vue'
 
 const props = defineProps<{
   analysis: AnalysisApi
@@ -26,7 +27,12 @@ const consensus = computed(() => result.value?.consensus ?? null)
 const details = computed(() => result.value?.explanation_detail ?? {})
 const runErrors = computed(() => result.value?.errors ?? [])
 const requestId = computed(() => result.value?.request_id ?? '')
+const restored = computed(() => props.analysis.restoredFrom.value)
 const domainNames = computed(() => outputs.value.map((output) => domainLabel(output.agent)).join(' · '))
+/** 历史会话只保存结果；执行详情里的「请求 agents」以实际输出为准，避免与表单错位。 */
+const executionDomains = computed<readonly string[]>(() =>
+  restored.value ? outputs.value.map((output) => output.agent) : props.analysis.form.domains,
+)
 const computedAt = computed(() => {
   const stamps = outputs.value.map((output) => output.computed_at).filter((stamp) => stamp.length > 0)
   return [...stamps].sort().at(-1) ?? null
@@ -41,13 +47,21 @@ const activeTab = computed<TabName>(() => props.analysis.activeTab.value)
 const tabCounts = computed<Record<TabName, string>>(() => ({
   calculation: outputs.value.length > 0 ? String(outputs.value.length) : '',
   evidence: knowledgeCount.value > 0 ? String(knowledgeCount.value) : '',
+  knowledge: '',
   explanation: outputs.value.length > 0 ? String(outputs.value.length) : '',
   consensus: '',
   execution: '',
 }))
 
 function tabVisible(tab: TabName): boolean {
-  return tab !== 'consensus' || consensus.value !== null
+  // 单域成功时后端按规则不生成共识，保持不显示；
+  // 有运行错误（部分失败）或 ≥2 个成功域时显示，用于解释 consensus 为空的原因。
+  return (
+    tab !== 'consensus' ||
+    consensus.value !== null ||
+    runErrors.value.length > 0 ||
+    outputs.value.length >= 2
+  )
 }
 
 function selectTab(tab: TabName): void {
@@ -75,7 +89,14 @@ function onTabKeydown(event: KeyboardEvent): void {
   if (!target) return
   event.preventDefault()
   const tab = target.dataset.tab
-  if (tab === 'calculation' || tab === 'evidence' || tab === 'explanation' || tab === 'consensus' || tab === 'execution') {
+  if (
+    tab === 'calculation' ||
+    tab === 'evidence' ||
+    tab === 'knowledge' ||
+    tab === 'explanation' ||
+    tab === 'consensus' ||
+    tab === 'execution'
+  ) {
     selectTab(tab)
   }
   target.focus()
@@ -113,7 +134,7 @@ function rerun(): void {
         </div>
         <div>
           <dt>耗时</dt>
-          <dd>{{ elapsedLabel(analysis.elapsedMs.value) }}</dd>
+          <dd>{{ restored ? '—（历史会话）' : elapsedLabel(analysis.elapsedMs.value) }}</dd>
         </div>
         <div>
           <dt>计算完成时间</dt>
@@ -128,6 +149,14 @@ function rerun(): void {
           <dd>{{ connection.apiBase.value }}</dd>
         </div>
       </dl>
+    </div>
+
+    <div v-if="restored" id="restored-banner" data-testid="restored-banner" class="history-banner">
+      <span class="badge badge-neutral">历史会话</span>
+      <span>
+        已从 <code>GET /sessions/{{ restored.request_id }}</code> 恢复（创建于
+        {{ formatDateTime(restored.created_at) }}）；运行耗时等仅属于新请求的字段不适用。
+      </span>
     </div>
 
     <nav class="tabs" id="tabs" role="tablist" aria-label="结果分区">
@@ -176,6 +205,19 @@ function rerun(): void {
       <div
         class="tab-panel"
         role="tabpanel"
+        id="panel-knowledge"
+        data-testid="panel-knowledge"
+        aria-labelledby="tab-knowledge"
+        :hidden="activeTab !== 'knowledge'"
+      >
+        <KnowledgeSearchPanel
+          :api-base="connection.apiBase.value"
+          :question="analysis.form.question"
+        />
+      </div>
+      <div
+        class="tab-panel"
+        role="tabpanel"
         id="panel-explanation"
         data-testid="panel-explanation"
         aria-labelledby="tab-explanation"
@@ -191,7 +233,7 @@ function rerun(): void {
         aria-labelledby="tab-consensus"
         :hidden="activeTab !== 'consensus'"
       >
-        <ConsensusPanel :consensus="consensus" />
+        <ConsensusPanel :consensus="consensus" :outputs="outputs" :run-errors="runErrors" />
       </div>
       <div
         class="tab-panel"
@@ -204,10 +246,11 @@ function rerun(): void {
         <ExecutionPanel
           v-if="result"
           :result="result"
-          :last-payload="analysis.lastPayload.value"
+          :last-payload="restored ? analysis.restoredRequest.value : analysis.lastPayload.value"
           :api-base="connection.apiBase.value"
           :elapsed-ms="analysis.elapsedMs.value"
-          :domains="analysis.form.domains"
+          :domains="executionDomains"
+          :restored="restored !== null"
           :toast="toast"
         />
       </div>

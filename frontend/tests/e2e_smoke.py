@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """真实浏览器端到端冒烟测试（Chrome DevTools Protocol，无第三方依赖）。
 
+触发方式：**nightly / 手动**，不在 PR CI 必跑。`.github/workflows/frontend.yml`
+只执行 typecheck / vitest / build / OpenAPI TS 漂移校验；e2e 需要后端 + 前端 dev
+server + 可用 Chrome，故保留为本地或 nightly 任务。
+
 前置条件：
   1. 后端已启动并允许本页面来源跨域，例如 PowerShell：
        $env:OM_CORS_ORIGINS='http://127.0.0.1:5173'; uv run openmetaphysics
@@ -321,6 +325,11 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
                 "不是" in evidence_text and "证明" in evidence_text,
                 evidence_text[:160],
             )
+            check(
+                "知识证据明确区分独立知识检索",
+                "知识检索" in evidence_text and "独立检索" in evidence_text,
+                evidence_text[:200],
+            )
             await cdp.evaluate(
                 "(() => {const b=document.querySelector('.evidence-toggle'); if(b) b.click();})()"
             )
@@ -424,6 +433,9 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
                 timeout=120,
                 desc="多域分析结果",
             )
+            multi_request_id = await cdp.evaluate(
+                "document.querySelector('#summary-meta dd').textContent.replace(' 复制','').trim()"
+            )
             await wait_for(
                 cdp,
                 "!document.getElementById('tab-consensus').hidden",
@@ -485,7 +497,501 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
                 "synthesis" in consensus_text.lower() or "合成结论" in consensus_text,
                 consensus_text[:160],
             )
+            consensus_status = await cdp.evaluate(
+                "document.querySelector('[data-testid=consensus-status-label]').innerText"
+            )
+            check(
+                "共识状态与实际数据对应（后端无 status 字段，界面按响应归纳）",
+                "共识已生成" in consensus_status or "部分共识" in consensus_status,
+                consensus_status,
+            )
+            participant_count = await cdp.evaluate(
+                "document.querySelectorAll('[data-testid^=consensus-participant-]').length"
+            )
+            check(
+                "展示实际参与共识的领域（result.contributions）",
+                participant_count >= 2,
+                f"count={participant_count}",
+            )
+            uncertainty_text = await cdp.evaluate(
+                "document.querySelector('[data-testid=consensus-uncertainty]').innerText"
+            )
+            check(
+                "展示后端冲突与一致性矩阵（不计算支持率）",
+                "一致性矩阵" in uncertainty_text
+                and ("冲突" in uncertainty_text or "conflicts" in uncertainty_text),
+                uncertainty_text[:160],
+            )
+            evidence_unavailable = await cdp.evaluate(
+                "document.querySelector('[data-testid=consensus-evidence-unavailable]').innerText"
+            )
+            check(
+                "明确标注 Consensus 无证据来源并区分解释/知识检索",
+                "不含 evidence" in evidence_unavailable
+                and "知识证据" in evidence_unavailable
+                and "知识检索" in evidence_unavailable,
+                evidence_unavailable[:200],
+            )
+            consensus_fake_evidence = await cdp.evaluate(
+                "document.querySelectorAll('#panel-consensus .evidence-item').length"
+            )
+            check(
+                "Consensus 区域未伪造证据条目",
+                consensus_fake_evidence == 0,
+                f"evidence-items={consensus_fake_evidence}",
+            )
+            trace_steps = await cdp.evaluate(
+                "document.querySelectorAll('[data-testid=consensus-trace-step]').length"
+            )
+            check(
+                "展示后端 reasoning_trace 审计步骤（非证据来源）",
+                trace_steps >= 1,
+                f"steps={trace_steps}",
+            )
             await screenshot(cdp, screenshot_dir, "07-consensus-desktop.png")
+
+            # 9b. 重新分析（单域）后旧 Consensus 不得残留
+            await cdp.evaluate("document.querySelector('[data-testid=domain-ziwei]').click()")
+            await cdp.evaluate("document.querySelector('[data-testid=domain-qimen]').click()")
+            await cdp.evaluate("document.querySelector('[data-testid=domain-liuyao]').click()")
+            await cdp.evaluate("document.getElementById('btn-submit').click()")
+            await wait_for(
+                cdp,
+                "document.getElementById('tab-consensus').hidden && "
+                "!!document.querySelector('[data-testid=domain-card-bazi]') && "
+                "!document.querySelector('[data-testid=domain-card-ziwei]')",
+                timeout=120,
+                desc="单域重新分析（旧共识重置）",
+            )
+            stale_consensus = await cdp.evaluate(
+                "document.getElementById('panel-consensus').innerText"
+            )
+            check(
+                "重新分析后共识标签页隐藏且不残留旧共识",
+                "综合置信度" not in stale_consensus
+                and "Cross-modal consensus" not in stale_consensus,
+                stale_consensus[:160],
+            )
+
+            # 9c. 历史会话：GET /sessions → 恢复 → 按 request_id 读取 /traces
+            await cdp.evaluate("document.getElementById('btn-history').click()")
+            await wait_for(
+                cdp,
+                "document.getElementById('session-history-dialog').open",
+                timeout=10,
+                desc="历史会话对话框",
+            )
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('.session-item').length >= 1",
+                timeout=20,
+                desc="会话列表",
+            )
+            session_count = await cdp.evaluate("document.querySelectorAll('.session-item').length")
+            check(
+                "历史会话列出后端持久化会话（≥2 条）", session_count >= 2, f"count={session_count}"
+            )
+            has_multi = await cdp.evaluate(
+                f"!!document.querySelector('[data-session-id={json.dumps(multi_request_id)}]')"
+            )
+            check("会话列表包含本次多域分析 request_id", bool(has_multi), multi_request_id)
+            await cdp.evaluate(
+                f"document.querySelector('[data-session-id={json.dumps(multi_request_id)}]"
+                " .session-restore').click()"
+            )
+            await wait_for(
+                cdp,
+                "!document.getElementById('session-history-dialog').open && "
+                "!!document.getElementById('restored-banner')",
+                timeout=20,
+                desc="恢复历史会话",
+            )
+            restored_banner = await cdp.evaluate(
+                "document.getElementById('restored-banner').innerText"
+            )
+            restored_count = await cdp.evaluate(
+                "document.querySelectorAll('[data-testid^=domain-card-]').length"
+            )
+            restored_id = await cdp.evaluate(
+                "document.querySelector('#summary-meta dd').textContent.replace(' 复制','').trim()"
+            )
+            check("恢复后显示历史会话横幅", "历史会话" in restored_banner, restored_banner[:160])
+            check(
+                "恢复的 request_id 与所选会话一致",
+                restored_id == multi_request_id,
+                f"{restored_id} != {multi_request_id}",
+            )
+            check("恢复后多域结果全部还原", restored_count >= 4, f"cards={restored_count}")
+            consensus_restored = await cdp.evaluate(
+                "!document.getElementById('tab-consensus').hidden"
+            )
+            check("恢复后共识标签页仍可见", bool(consensus_restored))
+            await cdp.evaluate("document.querySelector('[data-testid=tab-execution]').click()")
+            await wait_for(cdp, "!document.getElementById('panel-execution').hidden")
+            await cdp.evaluate("document.querySelector('[data-testid=btn-load-traces]').click()")
+            restored_traces = await wait_for(
+                cdp,
+                "(() => {const t=document.getElementById('session-trace-output').textContent;"
+                " return t.includes('\"traces\"') || t.includes('读取失败') ? t : '';})()",
+                timeout=15,
+                desc="恢复会话后读取 /traces",
+            )
+            check(
+                "恢复会话后可按 request_id 读取 /traces",
+                '"traces"' in restored_traces and "读取失败" not in restored_traces,
+                restored_traces[:160],
+            )
+            await screenshot(cdp, screenshot_dir, "07b-history-restored.png")
+            await cdp.evaluate("document.querySelector('[data-testid=tab-calculation]').click()")
+
+            # 9d. 知识检索：POST /knowledge/search（独立检索参考，不是结论依据）
+            await cdp.evaluate("document.querySelector('[data-testid=tab-knowledge]').click()")
+            await wait_for(
+                cdp, "!document.getElementById('panel-knowledge').hidden", desc="知识检索标签页"
+            )
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('[data-testid=knowledge-corpora] .chip').length >= 4",
+                timeout=20,
+                desc="语料状态",
+            )
+            corpora_text = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-corpora]').innerText"
+            )
+            check(
+                "知识检索显示冻结语料状态与计数",
+                "ziwei_corpus" in corpora_text
+                and "frozen" in corpora_text
+                and "节点" in corpora_text,
+                corpora_text[:160],
+            )
+            disclaimer = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-disclaimer]').innerText"
+            )
+            check(
+                "明确标注「检索参考」而非本次结论依据",
+                "不是本次命理结论或解释的证据链" in disclaimer,
+                disclaimer[:200],
+            )
+            await cdp.evaluate(
+                "(() => {const i=document.getElementById('knowledge-query'); i.value='紫微';"
+                " i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-knowledge-search]').click()")
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('.knowledge-result').length >= 1",
+                timeout=30,
+                desc="知识检索结果",
+            )
+            result_count = await cdp.evaluate("document.querySelectorAll('.knowledge-result').length")
+            first_text = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-text-0]').innerText"
+            )
+            first_source = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-source-0]').innerText"
+            )
+            first_id = await cdp.evaluate("document.querySelector('[data-testid=knowledge-id]').innerText")
+            check(
+                "真实返回知识片段",
+                result_count >= 1 and len(first_text.strip()) >= 10,
+                f"count={result_count} text={first_text[:80]}",
+            )
+            check(
+                "检索结果展示真实来源",
+                "来源：" in first_source and len(first_source.strip()) > 4,
+                first_source[:120],
+            )
+            check("检索结果带文档标识", first_id.startswith("kn:"), first_id)
+            clamped_before = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-text-0]').classList.contains('clamped')"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=knowledge-toggle-0]').click()")
+            clamped_after = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-text-0]').classList.contains('clamped')"
+            )
+            check(
+                "知识片段可展开/收起",
+                clamped_before is True and clamped_after is False,
+                f"{clamped_before}->{clamped_after}",
+            )
+            await cdp.evaluate(
+                "(() => {const i=document.getElementById('knowledge-query');"
+                " i.value='qqqqzzzz'; i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-knowledge-search]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=knowledge-empty]')",
+                timeout=30,
+                desc="知识检索空结果",
+            )
+            check("无匹配时显示空结果状态", True)
+            await cdp.evaluate(
+                "(() => {const i=document.getElementById('knowledge-query'); i.value='八字';"
+                " i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-knowledge-search]').click()")
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('.knowledge-result').length >= 1",
+                timeout=30,
+                desc="再次检索",
+            )
+            check("连续查询可再次返回结果（旧响应未覆盖）", True)
+            await screenshot(cdp, screenshot_dir, "09b-knowledge-search.png")
+            await cdp.evaluate("document.querySelector('[data-testid=tab-calculation]').click()")
+
+            # 9e. 独立计算：四个领域分别真实调用 POST /agents/{name}/compute
+            await cdp.evaluate("document.querySelector('[data-testid=mode-agent]').click()")
+            await wait_for(
+                cdp, "!!document.getElementById('agent-compute')", timeout=15, desc="独立计算入口"
+            )
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('[data-testid=agent-domain-list] button').length === 4",
+                timeout=20,
+                desc="四个领域选择",
+            )
+            check("独立计算入口列出四个领域", True)
+            await cdp.evaluate("document.querySelector('[data-testid=agent-domain-bazi]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-dayun-count]')",
+                timeout=20,
+                desc="八字领域参数",
+            )
+            bazi_has_casts = await cdp.evaluate(
+                "!!document.querySelector('[data-testid=agent-casts]')"
+            )
+            check("八字表单含 dayun_count 且不含六爻 casts", not bazi_has_casts)
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-compute]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=domain-card-bazi]')",
+                timeout=60,
+                desc="八字独立计算",
+            )
+            bazi_domain = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-result-domain]').innerText.trim()"
+            )
+            check("八字独立计算返回真实结果", bazi_domain == "bazi", bazi_domain)
+            isolation_note = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-isolation-note]').innerText"
+            )
+            no_consensus_tabs = await cdp.evaluate(
+                "document.querySelectorAll('[data-testid^=tab-]').length === 0"
+            )
+            check(
+                "独立计算不产生跨域共识",
+                "不产生跨域共识" in isolation_note and bool(no_consensus_tabs),
+                isolation_note[:160],
+            )
+            # 9f. 独立计算 → 请求解释 → 展示真实知识引用（不重新计算）
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-explain]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-explain-text]')",
+                timeout=60,
+                desc="八字解释",
+            )
+            bazi_explain = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-explain-text]').innerText"
+            )
+            check(
+                "独立计算后可请求解释并展示真实解释文本",
+                len(bazi_explain.strip()) >= 20,
+                bazi_explain[:120],
+            )
+            await wait_for(
+                cdp,
+                "document.querySelectorAll('[data-testid=agent-knowledge-ref]').length >= 1",
+                timeout=20,
+                desc="解释知识引用",
+            )
+            knowledge_count = await cdp.evaluate(
+                "document.querySelectorAll('[data-testid=agent-knowledge-ref]').length"
+            )
+            knowledge_id = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-knowledge-id]').innerText"
+            )
+            knowledge_source = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-knowledge-source]').innerText"
+            )
+            check(
+                "解释展示后端绑定的知识引用（id）",
+                knowledge_count >= 1 and knowledge_id.strip().startswith("kn:"),
+                f"count={knowledge_count} id={knowledge_id}",
+            )
+            check(
+                "解释知识引用带真实来源",
+                "来源：" in knowledge_source and len(knowledge_source.strip()) > 6,
+                knowledge_source[:120],
+            )
+            boundary_text = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-knowledge-boundary]').innerText"
+            )
+            check(
+                "解释引用与独立知识检索明确区分",
+                "不是" in boundary_text and "独立检索" in boundary_text,
+                boundary_text[:160],
+            )
+            check(
+                "独立计算模式不混入知识检索面板",
+                bool(await cdp.evaluate("!document.querySelector('[data-testid=knowledge-search]')")),
+            )
+
+            await cdp.evaluate("document.querySelector('[data-testid=agent-domain-ziwei]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-lunar-month]') && "
+                "!!document.querySelector('[data-testid=agent-lunar-day]')",
+                timeout=20,
+                desc="紫微领域参数",
+            )
+            check("紫微表单含农历月/日字段", True)
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-compute]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=domain-card-ziwei]')",
+                timeout=60,
+                desc="紫微独立计算",
+            )
+            check("紫微独立计算返回真实结果", True)
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-explain]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-explain-text]')",
+                timeout=60,
+                desc="紫微解释",
+            )
+            ziwei_explain = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-explain-text]').innerText"
+            )
+            check("紫微可独立请求解释", len(ziwei_explain.strip()) >= 20, ziwei_explain[:120])
+
+            await cdp.evaluate("document.querySelector('[data-testid=agent-domain-qimen]').click()")
+            await wait_for(
+                cdp,
+                "!document.querySelector('[data-testid=agent-dayun-count]') && "
+                "!document.querySelector('[data-testid=agent-lunar-month]') && "
+                "!document.querySelector('[data-testid=agent-casts]')",
+                timeout=20,
+                desc="奇门领域参数",
+            )
+            check("奇门表单不包含其他领域专属参数", True)
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-schema-status]')",
+                timeout=20,
+                desc="奇门 Schema",
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-compute]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=domain-card-qimen]')",
+                timeout=60,
+                desc="奇门独立计算",
+            )
+            check("奇门独立计算返回真实结果", True)
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-explain]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-explain-text]')",
+                timeout=60,
+                desc="奇门解释",
+            )
+            qimen_explain = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-explain-text]').innerText"
+            )
+            check("奇门可独立请求解释", len(qimen_explain.strip()) >= 20, qimen_explain[:120])
+
+            await cdp.evaluate("document.querySelector('[data-testid=agent-domain-liuyao]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-casts]')",
+                timeout=20,
+                desc="六爻领域参数",
+            )
+            await cdp.evaluate(
+                "(() => {const i=document.querySelector('[data-testid=agent-casts]');"
+                " i.value='7,8,9'; i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-compute]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-field-error-casts]')",
+                timeout=10,
+                desc="六爻 casts 前端校验",
+            )
+            casts_error = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-field-error-casts]').innerText"
+            )
+            check("六爻 casts 非法值被前端校验拦截", "6 个" in casts_error, casts_error[:120])
+            await cdp.evaluate(
+                "(() => {const i=document.querySelector('[data-testid=agent-casts]');"
+                " i.value='7,8,9,6,7,8'; i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-compute]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=domain-card-liuyao]')",
+                timeout=60,
+                desc="六爻独立计算",
+            )
+            liuyao_result = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-result]').innerText"
+            )
+            check(
+                "六爻独立计算返回真实结果且带后端 request_id",
+                "liuyao" in liuyao_result and "ui-" in liuyao_result,
+                liuyao_result[:160],
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-explain]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-explain-text]')",
+                timeout=60,
+                desc="六爻解释",
+            )
+            liuyao_explain = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-explain-text]').innerText"
+            )
+            check("六爻可独立请求解释", len(liuyao_explain.strip()) >= 20, liuyao_explain[:120])
+
+            # 解释失败不得清除原计算结果（仅拦截 /explain 请求，其他请求不受影响）
+            await cdp.evaluate(
+                "window.__omOrigFetch = window.fetch;"
+                " window.fetch = (u, i) => String(u).includes('/explain')"
+                " ? Promise.reject(new TypeError('Failed to fetch')) : window.__omOrigFetch(u, i)"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-agent-explain]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-explain-error]')",
+                timeout=30,
+                desc="解释失败错误",
+            )
+            explain_error = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-explain-error]').innerText"
+            )
+            retained = await cdp.evaluate(
+                "!!document.querySelector('[data-testid=domain-card-liuyao]') && "
+                "!!document.querySelector('[data-testid=agent-result]')"
+            )
+            check(
+                "解释失败显示明确错误",
+                "无法连接后端" in explain_error or "解释" in explain_error,
+                explain_error[:160],
+            )
+            check("解释失败时原计算结果仍然存在", bool(retained))
+            await cdp.evaluate("window.fetch = window.__omOrigFetch")
+            await screenshot(cdp, screenshot_dir, "09c-agent-compute.png")
+            await cdp.evaluate("document.querySelector('[data-testid=mode-analysis]').click()")
+            await wait_for(
+                cdp, "!!document.getElementById('analysis-form')", timeout=15, desc="回到综合分析"
+            )
+            check("可切回综合分析入口", True)
 
             # 10. 移动端布局
             await cdp.send(
@@ -532,6 +1038,66 @@ async def run(page_url: str, screenshot_dir: Path, chrome: str | None = None) ->
                 desc="健康检查失败状态",
             )
             check("切换错误 API 地址后健康状态变为不可用", "不可用" in down_text, down_text)
+            # 历史会话的错误状态：后端不可达时必须显示错误，而不是空列表/静默失败
+            await cdp.evaluate("document.getElementById('btn-history').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=history-error]')",
+                timeout=25,
+                desc="历史会话错误状态",
+            )
+            history_error = await cdp.evaluate(
+                "document.querySelector('[data-testid=history-error]').innerText"
+            )
+            check(
+                "后端不可达时历史会话显示明确错误",
+                "无法连接后端" in history_error or "请求失败" in history_error,
+                history_error[:160],
+            )
+            await cdp.evaluate(
+                "document.querySelector('[data-testid=btn-history-close]').click()"
+            )
+            # 知识检索的错误状态：后端不可达时不得静默
+            await cdp.evaluate("document.querySelector('[data-testid=tab-knowledge]').click()")
+            await cdp.evaluate(
+                "(() => {const i=document.getElementById('knowledge-query'); i.value='紫微';"
+                " i.dispatchEvent(new Event('input',{bubbles:true}));})()"
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=btn-knowledge-search]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=knowledge-error]')",
+                timeout=30,
+                desc="知识检索错误状态",
+            )
+            knowledge_error = await cdp.evaluate(
+                "document.querySelector('[data-testid=knowledge-error]').innerText"
+            )
+            check(
+                "后端不可达时知识检索显示明确错误",
+                "无法连接后端" in knowledge_error or "检索超时" in knowledge_error,
+                knowledge_error[:160],
+            )
+            # 独立计算在后端不可达时同样必须显示错误
+            await cdp.evaluate("document.querySelector('[data-testid=mode-agent]').click()")
+            await wait_for(
+                cdp,
+                "!!document.querySelector('[data-testid=agent-schema-error]')",
+                timeout=30,
+                desc="独立计算 Schema 错误状态",
+            )
+            agent_schema_error = await cdp.evaluate(
+                "document.querySelector('[data-testid=agent-schema-error]').innerText"
+            )
+            check(
+                "后端不可达时独立计算显示明确错误",
+                "无法连接后端" in agent_schema_error,
+                agent_schema_error[:160],
+            )
+            await cdp.evaluate("document.querySelector('[data-testid=mode-analysis]').click()")
+            await wait_for(
+                cdp, "!!document.getElementById('btn-submit')", timeout=15, desc="回到综合分析表单"
+            )
             await cdp.evaluate("document.getElementById('btn-submit').click()")
             await wait_for(
                 cdp, "!document.getElementById('results-error').hidden", timeout=40, desc="错误提示"
