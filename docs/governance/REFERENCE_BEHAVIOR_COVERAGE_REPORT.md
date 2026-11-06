@@ -4,6 +4,14 @@
 > **授权**: 人工裁定「补齐实现（选项 A），授权一个 Sprint，接受期间 CI 红灯」
 > **依据**: `docs/governance/ACP/ACP-REF-001_conformance_behavior_coverage.md`
 
+> ⚠ **H11/H12 历史更正（2026-10-31）**：本报告是 2026-09-16 的历史记录，其中
+> "170/170 certified、certified=True 强度已如实" 的说法**不再成立**。当时
+> `CF-SORT/CF-HASH/CF-NULL/CF-ENUM` 仍是硬编码 `passed=True`，且 conformance 运行会重写
+> golden 文件。H11/H12 后：派生检查按真实强度标记为 `skipped/partial`，`ConformanceRunner.run()`
+> 只读，`certified` 仅在 100% full pass 时为 True；当前 ReferenceAdapter 结果为
+> **176 checks（106 passed / 13 partial / 57 skipped / 0 failed）→ `certified=False`、
+> `contract_conformant=True`**。最新状态以 `docs/governance/REFERENCE_FREEZE_REVIEW.md` §2/§5 为准。
+
 ---
 
 ## 1. 结果

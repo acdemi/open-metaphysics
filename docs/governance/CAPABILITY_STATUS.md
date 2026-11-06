@@ -45,6 +45,20 @@
 > 2026-10-24（**Qimen Corpus Freeze v1.0.0（有界）** —— 10/15 revision-pinned 逐字 +
 > 5 摘要；metadata candidate→frozen、0.1.0→1.0.0；digest `ffeb3319…`；
 > 四域语料全部 frozen）
+> 2026-10-31（**H10 知识证据真实性收口** —— 8 个 `sources/*.yaml` 原为非法 YAML（Markdown 表格），
+> 已改写为合法 YAML + 新增 `sources/registry.yaml` 与 `coverage_baseline.json`；validator 不再静默 PASS：
+> 实测 250 节点仅 85 有节点级引用、240 关系仅 18 有引用、111 引用中 16 条来源无逐字核验声明、
+> 6 条 classic_text 缺章节锚点；默认门=结构+登记+冻结 digest+无新增缺口，`--strict` 暴露 409 项缺口。
+> 来源 digest 重登记导致四 corpus digest 变化，但 nodes/relations/references 数组逐字节未变；
+> 未新增/删除任何节点或引用（补证需人工确认与可核验来源））
+> 2026-10-31（**H11/H12 Conformance 强度与只读收口** —— `ConformanceRunner.run()` 不再重写冻结
+> golden（改内存逐字节比对；空目录不自动生成，drift 直接 fail）；`CF-SORT/CF-HASH/CF-NULL`
+> 由硬编码 `passed=True` 改为 `skipped`（无第二实现），`CF-ENUM` 改为真实枚举序列化检查，
+> `CF-CONTRACT-*` 升级为逐模型字段 diff，`CF-ARCH-001` 增加 adapter 源码 import 扫描；
+> `ConformanceCheckResult.status ∈ {passed,failed,partial,skipped}`，新增 partial/skipped 计数与
+> `contract_conformant`；ReferenceAdapter 结果 = 176 checks（106 passed / 13 partial / 57 skipped / 0 failed），
+> `certified=False`、`contract_conformant=True`（行为覆盖仍 52/52）。文档措辞改为
+> **"contract-conformant, checks partial"**，不再宣称 176/176 certified；`CONFORMANCE_SPEC` 冻结未改）
 
 ---
 
@@ -56,9 +70,9 @@
 | **BaZi** | **Integration Ready**（Certified Capability） | v1.0.0 Frozen | 24（normative） | Certified（24/24 等价） | 11 + 14 + 7 + 6 |
 | **Ziwei** | **Integration Ready**（Certified Capability） | v1.0.0 **Frozen**（`ziwei:behavior:v1.0.0`, 2026-08-13） | 24（normative fixtures） | Certified（24/24 等价, `reference/ziwei/`） | 33 + 7 + 4 |
 | **Liuyào** | **Integration Ready**（Certified Frozen Capability） | v1.0.0 Frozen（`liuyao:behavior:v1.0.0`, 2026-10-23, 30 条） | 25（Frozen） | Certified（独立实现；21/21 + 40/40） | 6 + 6 + 8 |
-| **Reference Runtime** | **Frozen**（ACP-REF-002，2026-10-24） | 5 层契约 v1.0.0 | 5 层 / 19 向量 | Self-conformant（176/176 certified） | 373 |
+| **Reference Runtime** | **Frozen**（ACP-REF-002，2026-10-24）；Conformance **contract-conformant, checks partial**（H11/H12） | 5 层契约 v1.0.0 | 5 层 / 19 向量 | **Contract-conformant**（176 checks: passed 106 / partial 13 / skipped 57 / failed 0；`certified=False`；运行只读不重写 golden） | 373 |
 | Consensus | N/A（非计算域；Evidence 引擎独立实现） | — | — | 等价认证（52 输入 + 3 向量） | 32 |
-| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `93dba067…`，2026-10-24 EOL 勘误（内容零变化），原 `69d6e2a6…`，2026-09-16 D-12=A 批准）+ **BaZi FROZEN v1.0.0（有界证据）**（`bazi_corpus:v1.0.0`, 40 节点 / 67 关系 / 14 引用, digest `488ce510…`, 2026-10-24：9/14 逐字 + 5 convention-level）+ **Qimen FROZEN v1.0.0（有界证据）**（`qimen_corpus:v1.0.0`, 47 节点 / 60 关系 / 15 引用, digest `ffeb3319…`, 2026-10-24：10/15 逐字 + 5 摘要）+ **Liuyao FROZEN v1.0.0**（`liuyao_corpus:v1.0.0`, 61 节点 / 66 关系 / 41 引用, digest `3a09a08e…`, 2026-10-24 Corpus Freeze —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1087 passed + 2 skipped） |
+| Knowledge Layer | 引用层（不产生计算输出） | Architecture **FROZEN**（KB-001~020）; Pipeline **VALIDATED**（多域）; Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点 / 47 关系 / 41 引用, digest `8c95256b…`；2026-10-24 EOL 勘误内容零变化，2026-10-31 H10 来源档案 YAML 化后重登记，节点/关系/引用数组逐字节未变）+ **BaZi FROZEN v1.0.0（有界证据）**（`bazi_corpus:v1.0.0`, 40 节点 / 67 关系 / 14 引用, digest `8b07346f…`，2026-10-24：9/14 逐字 + 5 convention-level）+ **Qimen FROZEN v1.0.0（有界证据）**（`qimen_corpus:v1.0.0`, 47 节点 / 60 关系 / 15 引用, digest `666e8a1e…`，2026-10-24：10/15 逐字 + 5 摘要）+ **Liuyao FROZEN v1.0.0**（`liuyao_corpus:v1.0.0`, 61 节点 / 66 关系 / 41 引用, digest `3039bfc8…`，2026-10-24 Corpus Freeze —— P2 系列首个 revision-pin 逐章逐字核验域）; Provenance **AUDITED**（Qimen 为书级归属 + 章节锚点；Liuyao 为 revision pin + 逐字核验）。**H10（2026-10-31）证据真实性收口**: 来源档案改为合法 YAML + `sources/registry.yaml` + `coverage_baseline.json`；validator 输出真实覆盖（250 节点仅 85 有节点级引用、240 关系仅 18 有引用），默认 PASS **明确注明非全覆盖**，`--strict` 暴露 409 项已登记证据缺口；旧 "all corpus entries conform" 的夸大 PASS 已删除。冻结程序与变更门槛见 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md` | — | — | 全仓库回归（2026-10-24 全绿, 含 BaZi/Qimen/Liuyao 语料/检索/Explain E2E, 1087 passed + 2 skipped；2026-10-31 H10 后全量 pytest 见报告） |
 
 > **只标记实际状态**: 本表仅反映已完成的工件与验证。未达到的阶段不得
 > 标注为已完成。
@@ -480,10 +494,11 @@ evidence_builder / knowledge_query / consensus_builder / conformance_runner）+
 | 3 | 契约层 5 份齐平 | DONE（rule/pattern/evidence/knowledge/consensus，各 v1.0.0 + diff 测试） |
 | 4 | CAPABILITY_STATUS 登记行 + 退出判据 | DONE（本节） |
 | 5 | Reference 级冻结审查工件 | DONE（`docs/governance/REFERENCE_FREEZE_REVIEW.md`） |
-| 6 | 门槛验证 | DONE（Reference 373 测试；全仓 1028+2；Conformance 176/176 certified；5 层 golden 重生成逐字节一致） |
+| 6 | 门槛验证 | DONE（Reference 373 测试；全仓 1028+2；Conformance **contract-conformant**（176: 106 passed / 13 partial / 57 skipped / 0 failed，`certified=False`，H11/H12）；5 层 golden 内存重生成逐字节一致且运行不写文件） |
 
-**已知边界（不阻塞冻结）**: derived ordering/hash/null/enum 检查仍标注
-“derived from golden match”（D-13 遗留）；CF-015 显式要求 52 个行为 ID
+**已知边界（不阻塞冻结）**: `CF-SORT/CF-HASH/CF-NULL` 无第二实现/独立 oracle，
+标 `skipped`；`CF-ENUM` 为真实枚举序列化属性检查（无枚举字段的向量记 `partial`）；
+三者均不计入 `certified`（D-13 遗留，独立验证需第二套实现/Sprint）。CF-015 显式要求 52 个行为 ID
 （非全部 80）；其他语言实现未纳入本冻结面。
 
 ---

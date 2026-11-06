@@ -79,7 +79,11 @@ def test_conformance_reports_full_behavior_coverage() -> None:
     result = ConformanceRunner().run(ReferenceAdapter(), "reference", "1.0.0")
     assert result.behavior_coverage == 1.0
     assert result.unrepresented_behaviors == []
-    assert result.certified is True
+    # H11/H12: behavior coverage is full, but derived checks are partial/skipped,
+    # so the runtime is contract-conformant and NOT "certified".
+    assert result.failed == 0
+    assert result.certified is False
+    assert result.contract_conformant is True
 
     behavior_checks = [
         c for c in result.checks if c.category == ConformanceCategory.BEHAVIOR_COVERAGE

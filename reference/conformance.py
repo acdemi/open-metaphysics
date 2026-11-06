@@ -15,7 +15,23 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Protocol, runtime_checkable
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+
+class CheckStatus(str, Enum):
+    """Strength of one conformance check (H11/H12).
+
+    ``passed``/``failed`` are real checks. ``partial`` means the check executed
+    but only proves a weaker property than the check name implies; ``skipped``
+    means it was **not** independently verified (e.g. it needs a second
+    implementation). Neither partial nor skipped may be reported as passed, and
+    neither contributes to certification.
+    """
+
+    PASSED = "passed"
+    FAILED = "failed"
+    PARTIAL = "partial"
+    SKIPPED = "skipped"
 
 
 class ConformanceLayer(str, Enum):
@@ -59,6 +75,19 @@ class ConformanceCheckResult(BaseModel):
     name: str
     passed: bool
     message: str = ""
+    # H11/H12: explicit strength. ``passed`` is kept for the frozen
+    # CONFORMANCE_SPEC field set; ``status`` is the truthful one. When the
+    # caller omits it, it is derived from ``passed``.
+    status: CheckStatus | None = None
+
+    @model_validator(mode="after")
+    def _sync_status(self) -> ConformanceCheckResult:
+        if self.status is None:
+            object.__setattr__(
+                self, "status", CheckStatus.PASSED if self.passed else CheckStatus.FAILED
+            )
+        object.__setattr__(self, "passed", self.status == CheckStatus.PASSED)
+        return self
 
 
 class ConformanceResult(BaseModel):
@@ -67,6 +96,8 @@ class ConformanceResult(BaseModel):
     runtime_version: str
     passed: int = 0
     failed: int = 0
+    partial: int = 0
+    skipped: int = 0
     total: int = 0
     coverage: float = Field(default=0.0, ge=0.0, le=1.0)
     contract_version: str = "1.0.0"
@@ -82,15 +113,27 @@ class ConformanceResult(BaseModel):
     unrepresented_behaviors: list[str] = Field(default_factory=list)
 
     def add_check(self, check: ConformanceCheckResult) -> None:
+        status = check.status or (CheckStatus.PASSED if check.passed else CheckStatus.FAILED)
         self.checks.append(check)
         self.total += 1
-        if check.passed:
+        if status == CheckStatus.PASSED:
             self.passed += 1
-        else:
+        elif status == CheckStatus.FAILED:
             self.failed += 1
-        self.certified = self.failed == 0 and self.total > 0
-        if self.total > 0:
-            self.coverage = self.passed / self.total
+        elif status == CheckStatus.PARTIAL:
+            self.partial += 1
+        else:
+            self.skipped += 1
+        # CONFORMANCE_SPEC (frozen): certified iff failed == 0, total > 0 and
+        # coverage == 1.0. partial/skipped are not failures but they keep
+        # coverage below 1.0, so they cannot certify a runtime (H11/H12).
+        self.coverage = self.passed / self.total if self.total else 0.0
+        self.certified = self.failed == 0 and self.total > 0 and self.passed == self.total
+
+    @property
+    def contract_conformant(self) -> bool:
+        """No failures, but possibly partial/skipped checks (not certified)."""
+        return self.failed == 0 and self.total > 0 and self.behavior_coverage >= 1.0
 
 
 class ConformanceManifest(BaseModel):
@@ -101,6 +144,9 @@ class ConformanceManifest(BaseModel):
     supported_contracts: dict[str, str] = Field(default_factory=dict)
     supported_behaviors: list[str] = Field(default_factory=list)
     certified: bool = False
+    # H12: "certified" is only claimed for full-strength runs. Contract
+    # conformance with partial/skipped checks is recorded separately.
+    contract_conformant: bool = False
 
 
 @runtime_checkable
