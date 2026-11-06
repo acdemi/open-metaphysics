@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ..core.engines import BaseAgent, DeterministicEngine, derive_seed, deterministic_rng
 from ..core.models import (
@@ -20,6 +20,7 @@ from ..core.models import (
     wuxing_relation,
 )
 from ..core.schemas import AgentInput, AgentOutput
+from ..core.solar_time import local_datetime, resolve_timezone
 
 
 # ---------------------------------------------------------------------------
@@ -38,6 +39,14 @@ class LiuyaoInput(AgentInput):
         if any(c not in (6, 7, 8, 9) for c in v):
             raise ValueError("each cast value must be 6,7,8 or 9")
         return v
+
+    @model_validator(mode="after")
+    def _validate_location_timezone(self) -> LiuyaoInput:
+        """Reject an unknown IANA timezone instead of silently mis-dating the 卦."""
+        location = self.born_location
+        if location is not None and location.timezone:
+            resolve_timezone(location.timezone)
+        return self
 
 
 class YaoLine(BaseModel):
@@ -278,10 +287,11 @@ class LiuyaoEngine(DeterministicEngine):
         shi,
         ying,
     ) -> dict[str, Any]:
-        # 六神 needs the day stem -> compute from born_at's sexagenary day index
+        # 六神 needs the day stem -> compute from the **location-local** clock
+        # (uniform timezone policy, H5): the input offset is not authoritative.
         from ..core.calendar import sexagenary_day_index
 
-        b = payload.born_at
+        b = local_datetime(payload.born_at, payload.born_location)
         day_idx = sexagenary_day_index(b.year, b.month, b.day)
         # apply 23:00 day rollover for 六神 day stem consistency
         if b.hour >= 23:

@@ -1,4 +1,4 @@
-# OpenMetaphysics 开放形而上学
+# OpenMetaphysics 开源多模命理
 
 **完全本地运行、隐私保护、多智能体命理推理框架。**
 
@@ -17,10 +17,12 @@ Rust / Go / TypeScript 目录当前为占位骨架，属未来阶段（见 `docs
 |----------|------|------|
 | Reference Runtime（行为规范） | `reference/` | 完成：Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 全套 |
 | 生产代码（确定性引擎 + API） | `src/openmetaphysics/` | Qimen/BaZi/Ziwei/Liuyao/Consensus 智能体 + FastAPI |
-| 测试 | `tests/` + `reference/tests/` | **1167 passed + 2 skipped**（2026-10-24；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价；领域准确性评估集 `tests/test_domain_accuracy.py` 27 例） |
+| 测试 | `tests/` + `reference/tests/` | **1335 passed, 3 skipped, 0 failed**（1338 collected，2026-11-06；含 Qimen 24/24、BaZi 24/24、Liuyao 21/21 + 40/40 等价；领域准确性评估集 `tests/test_domain_accuracy.py` 27 例） |
 | Rust crates | `crates/om-calendar/` | 占位（Phase 7+） |
 | Go 服务 | `services/gateway/` | 占位（Phase 9+） |
-| Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 占位 / IDL 定义 |
+| Frontend / Python 服务 / Proto | `frontend/` `python/` `proto/` | 前端 MVP 已实现（Vue 3 + TypeScript + Vite，连接 `/orchestrate`）；Python 服务 / Proto 为占位 / IDL 定义 |
+
+> 测试口径历史：2026-10-24 main 侧为 1167 passed + 2 skipped（1169 collected，含领域准确性评估集 27 例）；mcp-http 分支 2026-11-06 为 1287 passed + 3 skipped（1290 collected）；本次合并后实测为 1335 passed, 3 skipped, 0 failed（1338 collected）。
 
 ## 智能体（均已实现确定性引擎）
 
@@ -59,7 +61,8 @@ open-metaphysics/
 │   ├── conformance/golden/  # 自动生成 Golden Vectors
 │   ├── examples/            # 示例数据（YAML）
 │   └── tests/               # Reference 独立测试套件
-├── tests/                   # 生产测试（1169 collected / 1167 passed + 2 skipped）
+├── tests/                   # 生产测试（1338 collected：1335 passed, 3 skipped, 0 failed）
+├── frontend/                # 前端 MVP（Vue 3 + TS + Vite：计算/证据/解释/共识/执行详情）
 ├── docs/                    # 文档（见下节）
 ├── context/                 # 对话归档与项目状态
 ├── crates/om-calendar/      # Rust 占位（Phase 7+）
@@ -78,7 +81,7 @@ open-metaphysics/
 # 1. 安装依赖（自动创建 .venv）
 uv sync
 
-# 2. 运行全部测试（1167 passed + 2 skipped，2026-10-24）
+# 2. 运行全部测试（1335 passed, 3 skipped, 0 failed；1338 collected，2026-11-06）
 uv run pytest -q
 
 # 3. 启动 API（FastAPI, http://127.0.0.1:8000）
@@ -86,19 +89,30 @@ uv run openmetaphysics
 #   或: uv run uvicorn openmetaphysics.api.app:app --reload
 ```
 
-**可选环境变量**：
+**可选环境变量**（应用只读取**进程环境**，不会自动解析 `.env`；模板见 `.env.example`）：
 
 | 变量 | 用途 |
 |------|------|
+| `OM_KNOWLEDGE_DIR` / `OM_REFERENCE_DIR` | 知识语料 / 冻结契约目录。源码检出时自动探测；`pip install` 后的 wheel 或 Docker 中**必须**指向实际目录（镜像已固定为 `/app/knowledge`、`/app/reference`） |
 | `OM_ENABLE_EXPLAINER` | 启用 LLM 解释（默认关闭；离线确定性后备） |
 | `OM_INFERENCE_PROVIDER` | `ollama` / `qwen` / `deepseek` |
+| `OM_OLLAMA_MODEL` / `OM_QWEN_MODEL` / `OM_DEEPSEEK_MODEL` | 每个 provider **各自**的聊天模型（默认 `qwen2.5:7b` / `qwen-plus` / `deepseek-chat`）；不再统一传 Ollama 模型 |
+| `OM_QWEN_API_KEY` / `OM_DEEPSEEK_API_KEY` | 远程 provider 密钥（缺失时该 provider 视为未配置，解释回退离线渲染） |
+| `OM_EMBEDDING_MODEL` | RAG 嵌入模型（缺省按 provider 取 `nomic-embed-text` / `text-embedding-v3`） |
 | `OM_RAG_ENABLED` / `OM_QDRANT_URL` | 启用 Qdrant 检索（默认 InMemory） |
 | `OM_POSTGRES_DSN` | 会话/追踪持久化（缺省回退内存） |
 | `OM_CORS_ORIGINS` | 允许跨域来源（逗号分隔；默认关闭） |
+| `OM_API_KEY` | **可选** API 保护（默认关闭 = 不鉴权，行为与旧版完全一致）；设置后 `/sessions*`、`/traces/*`、`/orchestrate`、`/agents/{name}/compute\\|explain` 需 `Authorization: Bearer <key>` 或 `X-API-Key: <key>` |
+| `OM_RATE_LIMIT_PER_MINUTE` | 启用 `OM_API_KEY` 后的限流阈值（默认 `60`，`0`=关闭）；**进程内内存滑动窗口，多 worker 不共享、不是分布式限流** |
+| `OM_SESSION_REDACT_BIRTH` | `true` 时从 `/sessions/{id}`、`/traces/{id}` 响应中移除 `born_at` / `born_location`（默认 `false` = 保持兼容；出生信息属敏感数据，建议开启 API key 后再暴露） |
+
+`.env` 不会被应用自动加载（无 dotenv 依赖）：请 `export`、`docker compose --env-file .env`，或用自定义 dotenv 加载器在启动前导入。
 
 **无外部依赖**：计算核心不依赖任何数据库 / 向量库 / LLM 服务，可完全离线运行。
 `docker-compose.yml` 提供 PostgreSQL / Qdrant / Valkey / Ollama 等可选服务；
 `--profile app` 可构建并启动 API（含 Postgres 会话/追踪持久化）。
+镜像内置 `/health`、`/knowledge/corpora`、Explain 的 `HEALTHCHECK`
+（`python -m openmetaphysics.healthcheck`），知识库路径失效会直接标记 unhealthy。
 Valkey 当前为**预留**（无消费者）；Dockerfile 已本地构建验证，容器 `/health` 冒烟通过。
 
 ### 快速体验
@@ -132,17 +146,43 @@ curl -X POST http://127.0.0.1:8000/mcp -H "Content-Type: application/json" -d '{
 - 敏感配置（`OM_POSTGRES_DSN`、推理服务密钥）不要写入镜像或提交到仓库。
 - 计算核心可完全离线运行，不外发数据；启用外部 LLM/Qdrant 时数据才会离开本机。
 
+### 前端 MVP
+
+`frontend/` 提供 Vue 3 + TypeScript + Vite 的中文单页应用，直接连接上面的真实 API：
+计算事实 / 知识证据 / 生成解释 / 综合共识（≥2 域时由后端返回）分区展示，并附执行详情与请求 ID。
+要求 Node.js `^20.19.0 || >=22.12.0`；依赖由提交的 `package-lock.json` 固定。
+
+```powershell
+# 终端 1：后端（允许前端来源跨域）
+$env:OM_CORS_ORIGINS='http://127.0.0.1:5173'; uv run openmetaphysics
+
+# 终端 2：前端（首次先 npm ci；lockfile 可复现）
+cd frontend
+npm ci
+npm run dev            # http://127.0.0.1:5173/
+```
+
+生产构建 / 类型检查 / 单元测试：`npm run build`、`npm run typecheck`、`npm run test`。
+端到端冒烟（真实 Chrome 无头浏览器）：`uv run python frontend/tests/e2e_smoke.py`。
+详见 `frontend/README.md`。
+
 ## 常用命令
 
 | 命令 | 说明 |
 |------|------|
 | `uv sync` | 安装依赖 |
-| `uv run pytest -q` | 全量测试（1167 passed + 2 skipped，2026-10-24） |
+| `uv run pytest -q` | 全量测试（1335 passed, 3 skipped, 0 failed；1338 collected，2026-11-06） |
 | `uv run ruff check src/ tests/ reference/` | lint |
 | `uv run ruff format --check src/ tests/ reference/` | 格式检查 |
 | `uv run openmetaphysics` | 启动 API |
 | `uv run python -m reference.demo` | Reference 演示 |
 | `uv run openmetaphysics-mcp` | MCP stdio server（JSON-RPC） |
+| `cd frontend && npm ci` | 安装前端依赖（lockfile 复现） |
+| `cd frontend && npm run dev` | 前端开发服务器（127.0.0.1:5173） |
+| `cd frontend && npm run build` | 前端生产构建 |
+| `cd frontend && npm run typecheck` | 前端类型检查（vue-tsc） |
+| `cd frontend && npm run test` | 前端单元测试（Vitest） |
+| `uv run python frontend/tests/e2e_smoke.py` | 前端端到端冒烟（需后端 + 前端已启动） |
 | `uv run openmetaphysics-cli compute bazi --input '{...}'` | 离线计算（`--explain` 附解释链） |
 | `uv run openmetaphysics-cli orchestrate --input '{...}'` | 离线多智能体编排（计算+共识+解释，一次完成） |
 | `make test` / `make lint` | 兼容入口（Rust/Go 部分为占位） |

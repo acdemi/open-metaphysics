@@ -13,8 +13,11 @@ calculation, so callers wrap ``save_*`` and ignore errors.
 
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timezone
 from typing import Any, Protocol, runtime_checkable
+
+logger = logging.getLogger(__name__)
 
 try:  # optional [persist] extra
     from sqlalchemy import (
@@ -26,6 +29,7 @@ try:  # optional [persist] extra
         Table,
         create_engine,
         delete,
+        func,
         insert,
         select,
     )
@@ -49,7 +53,9 @@ class SessionStore(Protocol):
 
     def get_traces(self, request_id: str) -> list[dict[str, Any]]: ...
 
-    def list_sessions(self) -> list[dict[str, Any]]: ...
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]: ...
+
+    def count_sessions(self) -> int: ...
 
 
 def _now() -> str:
@@ -85,11 +91,17 @@ class InMemorySessionStore:
     def get_traces(self, request_id: str) -> list[dict[str, Any]]:
         return list(self._traces.get(request_id, []))
 
-    def list_sessions(self) -> list[dict[str, Any]]:
-        return [
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]:
+        sessions = [
             {"request_id": request_id, "created_at": session["created_at"]}
             for request_id, session in self._sessions.items()
         ]
+        if limit is None:
+            return sessions[offset:]
+        return sessions[offset : offset + limit]
+
+    def count_sessions(self) -> int:
+        return len(self._sessions)
 
 
 class SqlAlchemySessionStore:
@@ -171,14 +183,21 @@ class SqlAlchemySessionStore:
             ).all()
         return [{"agent": row.agent, "steps": row.steps} for row in rows]
 
-    def list_sessions(self) -> list[dict[str, Any]]:
+    def list_sessions(self, limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]:
+        statement = select(self._sessions.c.request_id, self._sessions.c.created_at).order_by(
+            self._sessions.c.created_at.desc()
+        )
+        if limit is not None:
+            statement = statement.limit(limit).offset(offset)
+        elif offset:
+            statement = statement.offset(offset)
         with self._engine.connect() as conn:
-            rows = conn.execute(
-                select(self._sessions.c.request_id, self._sessions.c.created_at).order_by(
-                    self._sessions.c.created_at.desc()
-                )
-            ).all()
+            rows = conn.execute(statement).all()
         return [{"request_id": row.request_id, "created_at": row.created_at} for row in rows]
+
+    def count_sessions(self) -> int:
+        with self._engine.connect() as conn:
+            return int(conn.execute(select(func.count()).select_from(self._sessions)).scalar_one())
 
 
 def _normalize_dsn(dsn: str) -> str:
@@ -190,15 +209,30 @@ def _normalize_dsn(dsn: str) -> str:
 
 
 def create_store(settings: Any | None = None) -> SessionStore:
-    """Build the configured store; degrade to memory when unavailable."""
+    """Build the configured store; degrade to memory when unavailable.
+
+    Degradation is observable: a configured-but-unusable store logs one warning
+    naming only the failure class (never the DSN or credentials) and falls back
+    to the in-memory store.
+    """
     if settings is None:
         from ..core.config import get_settings
 
         settings = get_settings()
     dsn = getattr(settings, "postgres_dsn", None)
-    if dsn and SQLALCHEMY_AVAILABLE:
-        try:
-            return SqlAlchemySessionStore(dsn)
-        except Exception:
-            return InMemorySessionStore()
-    return InMemorySessionStore()
+    if not dsn:
+        return InMemorySessionStore()
+    if not SQLALCHEMY_AVAILABLE:
+        logger.warning(
+            "persistence: PostgreSQL DSN is configured but SQLAlchemy is unavailable; "
+            "falling back to in-memory store"
+        )
+        return InMemorySessionStore()
+    try:
+        return SqlAlchemySessionStore(dsn)
+    except Exception as exc:
+        logger.warning(
+            "persistence: session store initialization failed (%s); falling back to in-memory store",
+            type(exc).__name__,
+        )
+        return InMemorySessionStore()

@@ -54,7 +54,7 @@ B_dayun_003 = True）、`day_rollover_policy: "23:00 local time"`、
 | 晚子时流派分歧（子初/子正/子时换日） | **Deferred** | 已记录（B3 裁定 + 向量 B_late_001~003 + 跨域对照）; Freeze Review 裁定 |
 | 大运算法变体（起运舍入/方向） | **Deferred** | 已记录; `round(x.5)` banker's rounding 显式锁定（B5 + B_dayun_004/005）; 其余变体待 Review |
 | UNKNOWN 性别处理 | **Frozen candidate** | B6 已锁定（按男处理 + gender_assumed）; 向量 B_dayun_003 + 测试 test_gender_unknown_locked |
-| 节气时刻误差 | **Infrastructure dependency** | Meeus 截断 ~0.01°（<1 分钟, `approx_1min`）; 立春向量 ±3h 远离临界; 持续监控 |
+| 节气时刻误差 | **Infrastructure dependency** | Meeus 截断：实测 \|Δ\| ≤ 780.6 s（≈13.0 min，1900–2100 全量 4824 节气；中位 ~3 min），对 sxtwl/寿星天文历；引擎元数据声明 `solar_term_precision = "meeus_truncated: |err| <= 781 s (...)"`；立春向量 ±3h 远离临界；持续监控。2026-10-31 H6 更正原 "<1 分钟" 声明 |
 | 时区回退链 | **Implemented** | 已记录于假设文档（born_location → born_at.tzinfo → UTC）; 向量 B_tz_002 覆盖 UTC+0 路径 |
 
 ---

@@ -27,9 +27,10 @@ errors.
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Query, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,11 +39,28 @@ from pydantic import BaseModel, ValidationError
 
 from ..agents.registry import get_registry
 from ..consensus import ConsensusEngine, ConsensusInput, ConsensusReport
-from ..core.config import get_settings
+from ..core.config import Settings, get_settings
 from ..core.schemas import AgentOutput, agent_output_from_envelope
 from ..inference.explainer import get_explainer_for
-from ..orchestration.graph import OrchestrationRequest, orchestrate
+from ..orchestration.graph import OrchestrationRequest, OrchestrationResponse, orchestrate
 from ..persistence import SessionStore, create_store
+from .models import (
+    AgentComputeResponse,
+    AgentInfo,
+    AgentSchemaResponse,
+    AgentsResponse,
+    HealthResponse,
+    KnowledgeCorporaResponse,
+    KnowledgeSearchResponse,
+)
+from .security import (
+    SlidingWindowRateLimiter,
+    build_auth_dependency,
+    build_rate_limit_dependency,
+    redact_birth_data,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class ExplainRequest(BaseModel):
@@ -150,19 +168,38 @@ def _persist_session(
     ]
     try:
         store.save_session(request_id, request, response, traces)
-    except Exception:
-        return
+    except Exception as exc:  # best-effort: the response has already been computed
+        logger.warning(
+            "persistence: session write failed (%s); the computed response is unaffected",
+            type(exc).__name__,
+        )
 
 
-def create_app() -> FastAPI:
+def create_app(settings: Settings | None = None) -> FastAPI:
+    """Build the HTTP app.
+
+    ``settings`` is injectable for tests; production uses the cached
+    ``get_settings()`` (process environment). API protection is **opt-in**:
+    when ``Settings.api_key`` is unset (default), auth and rate limiting are
+    no-ops and responses are unchanged (P2.2 backwards compatibility).
+    """
+    settings = settings or get_settings()
     app = FastAPI(
         title="OpenMetaphysics",
         version="0.1.0",
         description="Local-first deterministic multi-agent metaphysics framework.",
     )
-    app.state.session_store = create_store()
+    app.state.session_store = create_store(settings)
+    app.state.settings = settings
+    limiter = SlidingWindowRateLimiter()
+    app.state.rate_limiter = limiter
+    #: Applied to /sessions*, /traces/*, /orchestrate and compute/explain routes.
+    protected = [
+        Depends(build_auth_dependency(settings)),
+        Depends(build_rate_limit_dependency(settings, limiter)),
+    ]
 
-    origins = [o.strip() for o in (get_settings().cors_origins or "").split(",") if o.strip()]
+    origins = [o.strip() for o in (settings.cors_origins or "").split(",") if o.strip()]
     if origins:
         app.add_middleware(
             CORSMiddleware,
@@ -180,23 +217,30 @@ def create_app() -> FastAPI:
             "health": "/health",
         }
 
-    @app.get("/health")
-    def health() -> dict[str, Any]:
-        return {"status": "ok", "agents": get_registry().names()}
+    @app.get("/health", response_model=HealthResponse)
+    def health() -> HealthResponse:
+        return HealthResponse(status="ok", agents=get_registry().names())
 
-    @app.get("/agents")
-    def list_agents() -> dict[str, Any]:
+    @app.get("/agents", response_model=AgentsResponse)
+    def list_agents() -> AgentsResponse:
         reg = get_registry()
-        return {"agents": [{"name": a.name, "engine_version": a.engine_version} for a in reg.all()]}
+        return AgentsResponse(
+            agents=[AgentInfo(name=a.name, engine_version=a.engine_version) for a in reg.all()]
+        )
 
-    @app.get("/agents/{name}/schema")
+    @app.get("/agents/{name}/schema", response_model=AgentSchemaResponse)
     def agent_schema(name: str) -> Any:
         try:
             return get_registry().get(name).schema()
         except KeyError:
             return _unknown_agent(name)
 
-    @app.post("/agents/{name}/compute")
+    @app.post(
+        "/agents/{name}/compute",
+        response_model=AgentComputeResponse,
+        response_model_exclude_none=True,
+        dependencies=protected,
+    )
     def agent_compute(
         name: str,
         body: dict[str, Any],
@@ -233,12 +277,14 @@ def create_app() -> FastAPI:
             )
 
         data: dict[str, Any] = output.model_dump(mode="json")
-        _persist_session(http_request.app.state.session_store, output.request_id, body, data, [output])
+        _persist_session(
+            http_request.app.state.session_store, output.request_id, body, data, [output]
+        )
         if explain:
             data["explain"] = _explain_payload(name, output, style=style, k=k)
         return data
 
-    @app.post("/agents/{name}/explain")
+    @app.post("/agents/{name}/explain", dependencies=protected)
     def agent_explain(name: str, req: ExplainRequest, style: str = "concise", k: int = 3) -> Any:
         """Explain an already-computed output (no recalculation)."""
         try:
@@ -254,13 +300,13 @@ def create_app() -> FastAPI:
         payload = _explain_payload(name, output, style=style, k=k)
         return {"agent": name, **payload}
 
-    @app.get("/knowledge/corpora")
+    @app.get("/knowledge/corpora", response_model=KnowledgeCorporaResponse)
     def knowledge_corpora() -> dict[str, Any]:
         from ..rag.corpus import corpus_stats
 
         return {"corpora": corpus_stats()}
 
-    @app.post("/knowledge/search")
+    @app.post("/knowledge/search", response_model=KnowledgeSearchResponse)
     def knowledge_search(req: KnowledgeSearchRequest) -> dict[str, Any]:
         """Deterministic frozen-corpus retrieval (offline; optional Qdrant).
 
@@ -269,9 +315,7 @@ def create_app() -> FastAPI:
         """
         from ..rag.retriever import search_knowledge
 
-        chunks = search_knowledge(
-            req.query, k=req.k, include_evidence=req.include_evidence
-        )
+        chunks = search_knowledge(req.query, k=req.k, include_evidence=req.include_evidence)
         return {
             "query": req.query,
             "include_evidence": req.include_evidence,
@@ -315,7 +359,7 @@ def create_app() -> FastAPI:
             return _error(500, "consensus_failed", str(exc), type=type(exc).__name__)
         return report.model_dump(mode="json")
 
-    @app.post("/orchestrate")
+    @app.post("/orchestrate", response_model=OrchestrationResponse, dependencies=protected)
     def orchestrate_endpoint(req: OrchestrationRequest, http_request: Request) -> Any:
         # Request-level check: if the caller explicitly named agents and none of
         # them exist there is nothing to orchestrate -> 404, matching the
@@ -348,11 +392,32 @@ def create_app() -> FastAPI:
         )
         return payload
 
-    @app.get("/sessions")
-    def list_sessions(http_request: Request) -> dict[str, Any]:
-        return {"sessions": http_request.app.state.session_store.list_sessions()}
+    @app.get("/sessions", dependencies=protected)
+    def list_sessions(
+        http_request: Request,
+        limit: int | None = Query(default=None, ge=1, le=200),
+        offset: int = Query(default=0, ge=0),
+    ) -> dict[str, Any]:
+        """List stored sessions.
 
-    @app.get("/sessions/{request_id}")
+        Without ``limit``/``offset`` this keeps the exact legacy envelope
+        (``{"sessions": [...]}``) so pre-P2.2 clients are unaffected. Passing
+        either parameter opts into the paginated envelope
+        ``{sessions,total,limit,offset}`` (``limit`` defaults to 50, max 200).
+        Birth data is never part of this summary (ids/timestamps only).
+        """
+        store = http_request.app.state.session_store
+        if limit is None and offset == 0:
+            return {"sessions": store.list_sessions()}
+        effective_limit = 50 if limit is None else limit
+        return {
+            "sessions": store.list_sessions(limit=effective_limit, offset=offset),
+            "total": store.count_sessions(),
+            "limit": effective_limit,
+            "offset": offset,
+        }
+
+    @app.get("/sessions/{request_id}", dependencies=protected)
     def get_session(request_id: str, http_request: Request) -> Any:
         session = http_request.app.state.session_store.get_session(request_id)
         if session is None:
@@ -361,9 +426,12 @@ def create_app() -> FastAPI:
                 status_code=404,
                 content={"detail": message, "error": _error_body("not_found", message)},
             )
+        settings_obj: Settings = http_request.app.state.settings
+        if settings_obj.session_redact_birth:
+            session = redact_birth_data(session)
         return session
 
-    @app.get("/traces/{request_id}")
+    @app.get("/traces/{request_id}", dependencies=protected)
     def get_traces(request_id: str, http_request: Request) -> Any:
         traces = http_request.app.state.session_store.get_traces(request_id)
         if not traces:
@@ -372,6 +440,9 @@ def create_app() -> FastAPI:
                 status_code=404,
                 content={"detail": message, "error": _error_body("not_found", message)},
             )
+        settings_obj: Settings = http_request.app.state.settings
+        if settings_obj.session_redact_birth:
+            traces = redact_birth_data(traces)
         return {"request_id": request_id, "traces": traces}
 
     @app.exception_handler(RequestValidationError)

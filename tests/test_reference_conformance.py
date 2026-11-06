@@ -22,8 +22,8 @@ from reference.conformance_runner import (
     ConformanceRunner,
     ReferenceAdapter,
     _canonical_json,
+    build_golden_vectors,
     certify,
-    generate_golden_vectors,
     load_golden_vectors,
 )
 
@@ -300,7 +300,8 @@ class TestGoldenVectorGeneration:
         assert len(files) == 5
 
     def test_regenerate_matches_loaded(self):
-        fresh = generate_golden_vectors()
+        # Read-only: build in memory; never rewrite the frozen golden files.
+        fresh = build_golden_vectors()
         loaded = load_golden_vectors()
         assert len(fresh) == len(loaded)
         fresh_map = {v.vector_id: v for v in fresh}
@@ -317,11 +318,20 @@ class TestConformanceRunner:
     def test_total_checks_positive(self, result):
         assert result.total > 0
 
-    def test_certified(self, result):
-        assert result.certified is True
+    def test_not_certified_but_contract_conformant(self, result):
+        """H12: partial/skipped checks must block "certified" (no overclaiming)."""
+        assert result.failed == 0
+        assert result.skipped > 0 and result.partial > 0
+        assert result.certified is False
+        assert result.contract_conformant is True
 
-    def test_full_coverage(self, result):
-        assert result.coverage == 1.0
+    def test_no_failed_checks(self, result):
+        assert result.failed == 0
+
+    def test_coverage_is_passed_over_total(self, result):
+        assert result.coverage == result.passed / result.total
+        assert result.passed + result.failed + result.partial + result.skipped == result.total
+        assert result.coverage < 1.0  # skipped/partial checks exist
 
     def test_contract_version(self, result):
         assert result.contract_version == "1.0.0"
@@ -385,9 +395,10 @@ class TestCertification:
         m = certify(result)
         assert isinstance(m, ConformanceManifest)
 
-    def test_certified_manifest(self, result):
+    def test_not_certified_manifest(self, result):
         m = certify(result)
-        assert m.certified is True
+        assert m.certified is False
+        assert m.contract_conformant is True
 
     def test_supported_layers_populated(self, result):
         m = certify(result)
@@ -434,6 +445,17 @@ class TestConformanceRules:
         data = m.model_dump(mode="json")
         json.dumps(data, ensure_ascii=False, sort_keys=True)
 
-    def test_all_checks_pass(self, result):
-        for c in result.checks:
-            assert c.passed, f"Failed: {c.check_id} - {c.message}"
+    def test_all_checks_statuses_are_truthful(self, result):
+        """No fake passes: passed must equal status==PASSED, and no FAILED checks."""
+        from reference.conformance import CheckStatus
+
+        assert result.failed == 0
+        for check in result.checks:
+            assert check.status in (
+                CheckStatus.PASSED,
+                CheckStatus.PARTIAL,
+                CheckStatus.SKIPPED,
+            ), f"{check.check_id}: unexpected status {check.status}"
+            assert check.passed is (check.status == CheckStatus.PASSED), (
+                f"{check.check_id}: passed={check.passed} contradicts status={check.status}"
+            )

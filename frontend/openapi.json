@@ -1,0 +1,1778 @@
+{
+  "components": {
+    "schemas": {
+      "AgentComputeResponse": {
+        "additionalProperties": false,
+        "description": "``POST /agents/{name}/compute`` — one domain's ``AgentOutput`` envelope.\n\n``explain`` is only present when ``?explain=true``; the route serializes\nwith ``response_model_exclude_none`` so non-explain responses keep the exact\npre-existing wire shape (no ``explain: null`` key).",
+        "properties": {
+          "agent": {
+            "title": "Agent",
+            "type": "string"
+          },
+          "computed_at": {
+            "format": "date-time",
+            "title": "Computed At",
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/ConfidenceScore"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "explain": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explain"
+          },
+          "input_hash": {
+            "title": "Input Hash",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Metadata",
+            "type": "object"
+          },
+          "reasoning_trace": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningStep"
+            },
+            "title": "Reasoning Trace",
+            "type": "array"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "result": {
+            "additionalProperties": true,
+            "title": "Result",
+            "type": "object"
+          }
+        },
+        "required": [
+          "request_id",
+          "agent",
+          "engine_version",
+          "input_hash",
+          "computed_at",
+          "confidence"
+        ],
+        "title": "AgentComputeResponse",
+        "type": "object"
+      },
+      "AgentContribution": {
+        "additionalProperties": false,
+        "properties": {
+          "agent": {
+            "title": "Agent",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "element": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Element"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          },
+          "weight": {
+            "title": "Weight",
+            "type": "number"
+          }
+        },
+        "required": [
+          "agent",
+          "confidence",
+          "weight",
+          "element",
+          "summary"
+        ],
+        "title": "AgentContribution",
+        "type": "object"
+      },
+      "AgentInfo": {
+        "description": "One registered agent as listed by ``GET /agents``.",
+        "properties": {
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "engine_version"
+        ],
+        "title": "AgentInfo",
+        "type": "object"
+      },
+      "AgentOutput": {
+        "additionalProperties": false,
+        "description": "Base output envelope. Subclasses override ``result`` typing.",
+        "properties": {
+          "agent": {
+            "title": "Agent",
+            "type": "string"
+          },
+          "computed_at": {
+            "format": "date-time",
+            "title": "Computed At",
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/ConfidenceScore"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "input_hash": {
+            "title": "Input Hash",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Metadata",
+            "type": "object"
+          },
+          "reasoning_trace": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningStep"
+            },
+            "title": "Reasoning Trace",
+            "type": "array"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "result": {
+            "additionalProperties": true,
+            "title": "Result",
+            "type": "object"
+          }
+        },
+        "required": [
+          "request_id",
+          "agent",
+          "engine_version",
+          "input_hash",
+          "computed_at",
+          "confidence"
+        ],
+        "title": "AgentOutput",
+        "type": "object"
+      },
+      "AgentSchemaResponse": {
+        "description": "``GET /agents/{name}/schema`` — the agent's own JSON Schemas.",
+        "properties": {
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "input_schema": {
+            "additionalProperties": true,
+            "title": "Input Schema",
+            "type": "object"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "output_schema": {
+            "additionalProperties": true,
+            "title": "Output Schema",
+            "type": "object"
+          }
+        },
+        "required": [
+          "name",
+          "engine_version"
+        ],
+        "title": "AgentSchemaResponse",
+        "type": "object"
+      },
+      "AgentsResponse": {
+        "description": "``GET /agents``.",
+        "properties": {
+          "agents": {
+            "items": {
+              "$ref": "#/components/schemas/AgentInfo"
+            },
+            "title": "Agents",
+            "type": "array"
+          }
+        },
+        "required": [
+          "agents"
+        ],
+        "title": "AgentsResponse",
+        "type": "object"
+      },
+      "ConfidenceScore": {
+        "additionalProperties": false,
+        "description": "Confidence envelope for a deterministic result — declared, not measured.\n\n``value`` is a **declared baseline** (currently ``0.95`` from\n``core.engines``), not a statistical probability and not a measured\nrule-coverage ratio: the deterministic engines have no calibrated ground\ntruth. The current value is tagged ``method=\"placeholder_baseline\"`` with\n``factors[\"calibrated\"] == 0.0``. Consumers (Consensus weighted strategy,\nExplain prompts) must not present it as a probability.",
+        "properties": {
+          "factors": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "description": "Explainability signals; factors['calibrated'] == 0.0 means the value is not calibrated against ground truth.",
+            "title": "Factors",
+            "type": "object"
+          },
+          "method": {
+            "description": "How the value was produced. \"placeholder_baseline\" means a declared constant, not measured rule coverage or statistics.",
+            "title": "Method",
+            "type": "string"
+          },
+          "value": {
+            "description": "Declared baseline in [0,1]; NOT a calibrated probability or coverage ratio.",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Value",
+            "type": "number"
+          }
+        },
+        "required": [
+          "value",
+          "method"
+        ],
+        "title": "ConfidenceScore",
+        "type": "object"
+      },
+      "Conflict": {
+        "additionalProperties": false,
+        "properties": {
+          "agents": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Agents",
+            "type": "array"
+          },
+          "field": {
+            "title": "Field",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Values",
+            "type": "array"
+          }
+        },
+        "required": [
+          "agents",
+          "field",
+          "values",
+          "severity"
+        ],
+        "title": "Conflict",
+        "type": "object"
+      },
+      "ConsensusConfig": {
+        "additionalProperties": false,
+        "description": "Configuration for the Consensus Engine.",
+        "properties": {
+          "cross_system_bonus_per_system": {
+            "default": 0.1,
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Cross System Bonus Per System",
+            "type": "number"
+          },
+          "max_confidence": {
+            "default": 1.0,
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Max Confidence",
+            "type": "number"
+          },
+          "max_cross_system_bonus": {
+            "default": 0.3,
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Max Cross System Bonus",
+            "type": "number"
+          },
+          "min_confidence": {
+            "default": 0.0,
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Min Confidence",
+            "type": "number"
+          },
+          "strategy": {
+            "$ref": "#/components/schemas/ConsensusStrategy",
+            "default": "retain_all"
+          }
+        },
+        "title": "ConsensusConfig",
+        "type": "object"
+      },
+      "ConsensusInput": {
+        "additionalProperties": false,
+        "description": "Input to the Consensus Engine: Evidence[] + config.",
+        "properties": {
+          "config": {
+            "$ref": "#/components/schemas/ConsensusConfig"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "title": "Evidence",
+            "type": "array"
+          }
+        },
+        "title": "ConsensusInput",
+        "type": "object"
+      },
+      "ConsensusOutput": {
+        "additionalProperties": false,
+        "properties": {
+          "agent": {
+            "default": "consensus",
+            "title": "Agent",
+            "type": "string"
+          },
+          "computed_at": {
+            "title": "Computed At"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "engine_version": {
+            "title": "Engine Version",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "reasoning_trace": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Reasoning Trace",
+            "type": "array"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/ConsensusReport"
+          }
+        },
+        "required": [
+          "request_id",
+          "engine_version",
+          "computed_at",
+          "confidence",
+          "result"
+        ],
+        "title": "ConsensusOutput",
+        "type": "object"
+      },
+      "ConsensusReport": {
+        "additionalProperties": false,
+        "properties": {
+          "agreement_matrix": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            "title": "Agreement Matrix",
+            "type": "object"
+          },
+          "conflicts": {
+            "items": {
+              "$ref": "#/components/schemas/Conflict"
+            },
+            "title": "Conflicts",
+            "type": "array"
+          },
+          "contributions": {
+            "items": {
+              "$ref": "#/components/schemas/AgentContribution"
+            },
+            "title": "Contributions",
+            "type": "array"
+          },
+          "overall_confidence": {
+            "title": "Overall Confidence",
+            "type": "number"
+          },
+          "recommendation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recommendation"
+          },
+          "synthesis": {
+            "title": "Synthesis",
+            "type": "string"
+          }
+        },
+        "required": [
+          "overall_confidence",
+          "contributions",
+          "agreement_matrix",
+          "conflicts",
+          "synthesis"
+        ],
+        "title": "ConsensusReport",
+        "type": "object"
+      },
+      "ConsensusStrategy": {
+        "description": "Conflict resolution strategy.",
+        "enum": [
+          "retain_all",
+          "highest_confidence",
+          "majority"
+        ],
+        "title": "ConsensusStrategy",
+        "type": "string"
+      },
+      "Domain": {
+        "description": "Result domains (10 values), mirroring the frozen contract.",
+        "enum": [
+          "career",
+          "personality",
+          "marriage",
+          "health",
+          "wealth",
+          "education",
+          "family",
+          "travel",
+          "legal",
+          "overall"
+        ],
+        "title": "Domain",
+        "type": "string"
+      },
+      "Evidence": {
+        "additionalProperties": false,
+        "description": "Evidence consumed by the Consensus Engine.",
+        "properties": {
+          "conclusion": {
+            "title": "Conclusion",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "minItems": 1,
+            "title": "Items",
+            "type": "array"
+          },
+          "system": {
+            "title": "System",
+            "type": "string"
+          },
+          "version": {
+            "default": "1.0.0",
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "domain",
+          "conclusion",
+          "confidence",
+          "system",
+          "items"
+        ],
+        "title": "Evidence",
+        "type": "object"
+      },
+      "EvidenceItem": {
+        "additionalProperties": false,
+        "description": "A single evidence item produced by an upstream layer.",
+        "properties": {
+          "conclusion": {
+            "title": "Conclusion",
+            "type": "string"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "direction": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResultDirection"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/EvidenceType"
+          },
+          "system": {
+            "title": "System",
+            "type": "string"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          },
+          "trace": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Trace",
+            "type": "array"
+          },
+          "version": {
+            "default": "1.0.0",
+            "title": "Version",
+            "type": "string"
+          },
+          "weight": {
+            "default": 1.0,
+            "title": "Weight",
+            "type": "number"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "source_type",
+          "source_id",
+          "system",
+          "domain",
+          "confidence",
+          "conclusion"
+        ],
+        "title": "EvidenceItem",
+        "type": "object"
+      },
+      "EvidenceType": {
+        "description": "Evidence source types (4 values).",
+        "enum": [
+          "rule",
+          "pattern",
+          "knowledge_node",
+          "relation"
+        ],
+        "title": "EvidenceType",
+        "type": "string"
+      },
+      "ExplainRequest": {
+        "properties": {
+          "output": {
+            "additionalProperties": true,
+            "title": "Output",
+            "type": "object"
+          }
+        },
+        "required": [
+          "output"
+        ],
+        "title": "ExplainRequest",
+        "type": "object"
+      },
+      "Gender": {
+        "enum": [
+          "male",
+          "female",
+          "unknown"
+        ],
+        "title": "Gender",
+        "type": "string"
+      },
+      "GeoPoint": {
+        "properties": {
+          "elevation_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elevation M"
+          },
+          "latitude": {
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Latitude",
+            "type": "number"
+          },
+          "longitude": {
+            "maximum": 180.0,
+            "minimum": -180.0,
+            "title": "Longitude",
+            "type": "number"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "title": "GeoPoint",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "description": "``GET /health`` — liveness plus the registered agent names.",
+        "properties": {
+          "agents": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Agents",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "agents"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "KnowledgeCorporaResponse": {
+        "description": "``GET /knowledge/corpora``.",
+        "properties": {
+          "corpora": {
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeCorpusInfo"
+            },
+            "title": "Corpora",
+            "type": "array"
+          }
+        },
+        "required": [
+          "corpora"
+        ],
+        "title": "KnowledgeCorporaResponse",
+        "type": "object"
+      },
+      "KnowledgeCorpusInfo": {
+        "description": "One frozen corpus entry from ``GET /knowledge/corpora``.",
+        "properties": {
+          "corpus_id": {
+            "title": "Corpus Id",
+            "type": "string"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Counts",
+            "type": "object"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "required": [
+          "corpus_id"
+        ],
+        "title": "KnowledgeCorpusInfo",
+        "type": "object"
+      },
+      "KnowledgeSearchChunk": {
+        "description": "One chunk returned by ``POST /knowledge/search``.\n\nMirrors ``rag.retriever.KnowledgeChunk`` as exposed by the route: no\nrelevance score is returned by the API (the UI must not invent one).",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "default": "",
+            "title": "Source",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "title": "KnowledgeSearchChunk",
+        "type": "object"
+      },
+      "KnowledgeSearchRequest": {
+        "properties": {
+          "include_evidence": {
+            "default": false,
+            "title": "Include Evidence",
+            "type": "boolean"
+          },
+          "k": {
+            "default": 5,
+            "title": "K",
+            "type": "integer"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "KnowledgeSearchRequest",
+        "type": "object"
+      },
+      "KnowledgeSearchResponse": {
+        "description": "``POST /knowledge/search`` — independent frozen-corpus retrieval.",
+        "properties": {
+          "chunks": {
+            "items": {
+              "$ref": "#/components/schemas/KnowledgeSearchChunk"
+            },
+            "title": "Chunks",
+            "type": "array"
+          },
+          "include_evidence": {
+            "title": "Include Evidence",
+            "type": "boolean"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query",
+          "include_evidence",
+          "chunks"
+        ],
+        "title": "KnowledgeSearchResponse",
+        "type": "object"
+      },
+      "OrchestrationPayload": {
+        "additionalProperties": true,
+        "description": "Common envelope that may also carry domain fields for per-agent dispatch.\n\nThe shared ``payload`` is typed as ``AgentInput`` by the single-agent\nendpoints. For orchestration the domain fields (``casts``/``seed`` for\nLiuyao, ``lunar_month``/``lunar_day`` for Ziwei, ``dayun_count`` for Bazi,\n...) are allowed on the payload and copied only to the agents whose input\nschema declares them, so a request can stay \"one envelope + selected\nagents\". Per-agent ``agent_params`` take precedence over these fields.",
+        "properties": {
+          "born_at": {
+            "format": "date-time",
+            "title": "Born At",
+            "type": "string"
+          },
+          "born_location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GeoPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "client_nonce": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Nonce"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender",
+            "default": "unknown"
+          },
+          "locale": {
+            "default": "zh-CN",
+            "title": "Locale",
+            "type": "string"
+          },
+          "question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          }
+        },
+        "required": [
+          "request_id",
+          "born_at"
+        ],
+        "title": "OrchestrationPayload",
+        "type": "object"
+      },
+      "OrchestrationRequest": {
+        "description": "A batch request over the shared ``payload`` envelope.\n\nDomain-specific fields (``casts``/``seed`` for Liuyao, ``lunar_month`` /\n``lunar_day`` for Ziwei, ``dayun_count`` for Bazi, ...) are not part of the\ncommon ``AgentInput`` contract. They can be supplied in either of two ways:\n\n* directly on ``payload`` -- dispatched to every selected agent whose input\n  schema declares the field;\n* per agent in ``agent_params``, which is merged over ``payload`` for that\n  agent only and wins on conflicts::\n\n      {\"request_id\": \"r\", \"payload\": {...},\n       \"agents\": [\"bazi\", \"liuyao\"],\n       \"agent_params\": {\"bazi\": {\"dayun_count\": 6},\n                        \"liuyao\": {\"casts\": [7, 7, 8, 8, 7, 8]}}}\n\nBoth are optional: requests without them keep the previous behaviour (the\ncommon envelope only).",
+        "properties": {
+          "agent_params": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Agent Params",
+            "type": "object"
+          },
+          "agents": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Agents"
+          },
+          "explain": {
+            "default": false,
+            "title": "Explain",
+            "type": "boolean"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/OrchestrationPayload"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "strategy": {
+            "default": "weighted",
+            "title": "Strategy",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id",
+          "payload"
+        ],
+        "title": "OrchestrationRequest",
+        "type": "object"
+      },
+      "OrchestrationResponse": {
+        "properties": {
+          "consensus": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ConsensusOutput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Errors",
+            "type": "array"
+          },
+          "explanation": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Explanation",
+            "type": "object"
+          },
+          "explanation_detail": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Explanation Detail",
+            "type": "object"
+          },
+          "outputs": {
+            "items": {
+              "$ref": "#/components/schemas/AgentOutput"
+            },
+            "title": "Outputs",
+            "type": "array"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id"
+        ],
+        "title": "OrchestrationResponse",
+        "type": "object"
+      },
+      "ReasoningStep": {
+        "additionalProperties": false,
+        "description": "One auditable step of a deterministic computation.",
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "inputs": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Inputs",
+            "type": "object"
+          },
+          "outputs": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "title": "Outputs",
+            "type": "object"
+          },
+          "rule_ref": {
+            "title": "Rule Ref",
+            "type": "string"
+          },
+          "step": {
+            "title": "Step",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "step",
+          "rule_ref",
+          "description"
+        ],
+        "title": "ReasoningStep",
+        "type": "object"
+      },
+      "ResultDirection": {
+        "description": "Result direction (3 values).",
+        "enum": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "title": "ResultDirection",
+        "type": "string"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Local-first deterministic multi-agent metaphysics framework.",
+    "title": "OpenMetaphysics",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Root  Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Root"
+      }
+    },
+    "/agents": {
+      "get": {
+        "operationId": "list_agents_agents_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Agents"
+      }
+    },
+    "/agents/{name}/compute": {
+      "post": {
+        "description": "Calculate (and optionally explain) with one domain agent.\n\n``?explain=true`` adds the explanation, with its knowledge provenance,\nunder an ``explain`` key; the calculation result itself is unchanged.",
+        "operationId": "agent_compute_agents__name__compute_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "explain",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Explain",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "style",
+            "required": false,
+            "schema": {
+              "default": "concise",
+              "title": "Style",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "k",
+            "required": false,
+            "schema": {
+              "default": 3,
+              "title": "K",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "title": "Body",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentComputeResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agent Compute"
+      }
+    },
+    "/agents/{name}/explain": {
+      "post": {
+        "description": "Explain an already-computed output (no recalculation).",
+        "operationId": "agent_explain_agents__name__explain_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "style",
+            "required": false,
+            "schema": {
+              "default": "concise",
+              "title": "Style",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "k",
+            "required": false,
+            "schema": {
+              "default": 3,
+              "title": "K",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExplainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Agent Explain Agents  Name  Explain Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agent Explain"
+      }
+    },
+    "/agents/{name}/schema": {
+      "get": {
+        "operationId": "agent_schema_agents__name__schema_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "title": "Name",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentSchemaResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agent Schema"
+      }
+    },
+    "/consensus/evidence": {
+      "post": {
+        "description": "Evidence[] + config -> ConsensusReport (frozen Reference contract).",
+        "operationId": "consensus_evidence_consensus_evidence_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsensusInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Consensus Evidence Consensus Evidence Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Consensus Evidence"
+      }
+    },
+    "/consensus/schema": {
+      "get": {
+        "operationId": "consensus_schema_consensus_schema_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Consensus Schema Consensus Schema Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Consensus Schema"
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/knowledge/corpora": {
+      "get": {
+        "operationId": "knowledge_corpora_knowledge_corpora_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeCorporaResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Knowledge Corpora"
+      }
+    },
+    "/knowledge/search": {
+      "post": {
+        "description": "Deterministic frozen-corpus retrieval (offline; optional Qdrant).\n\nNodes only by default; ``include_evidence=true`` adds relation and\nreference chunks (source-attributed) to the same retriever.",
+        "operationId": "knowledge_search_knowledge_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KnowledgeSearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeSearchResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Knowledge Search"
+      }
+    },
+    "/mcp": {
+      "post": {
+        "description": "MCP JSON-RPC over HTTP (same handlers as the stdio transport).",
+        "operationId": "mcp_endpoint_mcp_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Mcp Endpoint Mcp Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Mcp Endpoint"
+      }
+    },
+    "/orchestrate": {
+      "post": {
+        "operationId": "orchestrate_endpoint_orchestrate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrchestrationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrchestrationResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Orchestrate Endpoint"
+      }
+    },
+    "/sessions": {
+      "get": {
+        "description": "List stored sessions.\n\nWithout ``limit``/``offset`` this keeps the exact legacy envelope\n(``{\"sessions\": [...]}``) so pre-P2.2 clients are unaffected. Passing\neither parameter opts into the paginated envelope\n``{sessions,total,limit,offset}`` (``limit`` defaults to 50, max 200).\nBirth data is never part of this summary (ids/timestamps only).",
+        "operationId": "list_sessions_sessions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 200,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response List Sessions Sessions Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Sessions"
+      }
+    },
+    "/sessions/{request_id}": {
+      "get": {
+        "operationId": "get_session_sessions__request_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "request_id",
+            "required": true,
+            "schema": {
+              "title": "Request Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Session Sessions  Request Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Session"
+      }
+    },
+    "/traces/{request_id}": {
+      "get": {
+        "operationId": "get_traces_traces__request_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "request_id",
+            "required": true,
+            "schema": {
+              "title": "Request Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Traces Traces  Request Id  Get"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Traces"
+      }
+    }
+  }
+}

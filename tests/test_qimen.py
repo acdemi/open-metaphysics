@@ -261,11 +261,14 @@ def test_winter_solstice_boundary_switch():
 
 
 def test_summer_solstice_boundary_switch():
-    t = solar_term_time(2024, 90)  # 夏至 2024
-    before = _run(t - timedelta(hours=1))
-    after = _run(t + timedelta(hours=1))
-    assert before.dun_type == "yang" and before.ju == 6  # 芒种 阳遁十二局 + 中元
-    assert after.dun_type == "yin" and after.ju == 4  # 夏至 阴遁一局 + 中元
+    t = solar_term_time(2024, 90)  # 夏至 2024 (UTC instant)
+    # H5: the domain reads the clock in born_location's timezone. The same
+    # instant expressed in Asia/Shanghai lands on the local clock day 06-21
+    # (夏至 2024-06-21 04:49 +08:00), so the 三元 day number is 21 (下元, +6).
+    before = _run((t - timedelta(hours=1)).astimezone(SHANGHAI))
+    after = _run((t + timedelta(hours=1)).astimezone(SHANGHAI))
+    assert before.dun_type == "yang" and before.ju == 9  # 芒种 阳遁十二局 + 下元(+6)
+    assert after.dun_type == "yin" and after.ju == 7  # 夏至 阴遁一局 + 下元(+6)
 
 
 # ---------------------------------------------------------------------------

@@ -6,9 +6,9 @@
 > **BaZi Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Ziwei Domain**: **Integration Ready**（契约 v1.0.0 Frozen + Reference Certified + 集成就绪审查 7/7）
 > **Liuyao Domain**: **Integration Ready**（契约 v1.0.0 Frozen + 25 向量 Frozen + Reference Certified）
-> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现；Phase 9 核心已收口（MCP stdio transport + Postgres 会话/追踪持久化 + compose app 服务；Valkey 预留）。本节部分依据 **2026-09-16 只读代码审计**，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
+> **Production Runtime（`src/`）**: **部分实现** —— Phase 0~5 完成/认证（四域 Integration Ready/Certified）；Phase 6/7/8 已实现；Phase 9 核心已收口（MCP stdio + HTTP transport + Postgres 会话/追踪持久化 + compose app 服务；Valkey 预留）。本节部分依据 **2026-09-16 只读代码审计**，明细见 §4 与 `docs/PROJECT_REVIEW_2026-09-16.md`
 > **Knowledge Layer**: Architecture **Frozen** / Pipeline **Validated** / Corpus：Ziwei **FROZEN v1.0.0**（102/47/41，`93dba067…`）、Liuyao **FROZEN v1.0.0**（61/66/41，`3a09a08e…`）与 BaZi **有界冻结 v1.0.0**（40/67/14，`488ce510…`）与 Qimen **有界冻结 v1.0.0**（47/60/15，`ffeb3319…`，2026-10-24）；四域语料全部 frozen；`ACP-KNOWLEDGE-001` 已实施（YAML LF 固定 + digest 重登记）
-> **Reference Runtime**: **Frozen**（`ACP-REF-002`，2026-10-24；5 层契约 v1.0.0 + 5 层 Golden Vectors + 176/176 certified；`docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS）
+> **Reference Runtime**: **Frozen**（`ACP-REF-002`，2026-10-24；5 层契约 v1.0.0 + 5 层 Golden Vectors + Conformance **contract-conformant, checks partial**（H11/H12：176 checks = 106 passed / 13 partial / 57 skipped / 0 failed，`certified=False`）；`docs/governance/REFERENCE_FREEZE_REVIEW.md` PASS）
 
 ---
 
@@ -34,7 +34,7 @@
 | **Liuyao Reference** | **Certified（21/21 + 40/40 等价）** |
 | **Liuyao Golden Vectors** | **25（Frozen）** |
 | **Knowledge Behavior Contract** | **KB-001~020（Frozen）** |
-| **Knowledge Corpus** | **FROZEN-v1.0.0（`ziwei_corpus:v1.0.0`, 2026-09-16）—— 102/47/41** |
+| **Knowledge Corpus** | **四域语料均 FROZEN v1.0.0**（Ziwei / Liuyao / BaZi 有界 / Qimen 有界）；计数、digest 与证据边界见 `docs/governance/CAPABILITY_STATUS.md` 与 `knowledge/README.md` |
 
 ---
 
@@ -44,18 +44,18 @@
 |--------|------|------|
 | Phase 6 Architecture Freeze | **Frozen** | `docs/design/phase6/` 10 份文档，不可修改 |
 | Phase 6.5 Engineering Freeze | **Frozen** | `docs/engineering/01_rule_dsl.md` 等 |
-| Phase 6.6 Technology Selection | **Frozen** | `docs/engineering/11~14` |
+| Phase 6.6 Technology Selection | **Frozen** | `docs/engineering/12_open_source_evaluation.md`、`13_component_decision_matrix.md`、`14_polyglot_architecture.md`（当前仓库无 `11_technology_stack.md`） |
 | Phase 6.8 Repository Bootstrap | **Frozen** | Monorepo 基础设施 |
-| Reference Runtime | **Candidate** | 行为规范已完成，待最终冻结 |
+| Reference Runtime | **Frozen** | `ACP-REF-002`（2026-10-24）；冻结范围为整个 Reference Runtime（核心模块家族 + 4 域 Reference + 5 层契约 + 5 层 Golden Vectors；模块家族清单以 `docs/governance/REFERENCE_FREEZE_REVIEW.md` §3 为准） |
 | Behavior Contracts | **Frozen** | 100 条合约，不可修改（需 ACP） |
-| Contract JSON | **Frozen** | 3 份 Contract，v1.0.0 |
+| Contract JSON | **Frozen** | **5 个契约 JSON 文件**（Rule / Pattern / Evidence / Knowledge / Consensus），各 v1.0.0；文件清单见 `reference/contracts/README.md` |
 | Conformance Rules | **Frozen** | CF-001~020，不可修改 |
-| Golden Vectors | **Auto-generated** | 19 个向量，自动发现 |
+| Golden Vectors | **Auto-generated** | 5 层 / 19 个向量，自动发现 |
 | **Qimen Domain** | **Frozen + Certified** | 契约 v1.0.0 + Reference 认证 + 24 向量双实现验证 |
 | **BaZi Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.6） |
 | **Ziwei Domain** | **Integration Ready** | 契约 v1.0.0 Frozen + Reference Certified + Schema 登记 + 变更政策生效（Phase 6.7.5） |
 | **Liuyao Domain** | **Integration Ready** | 契约 v1.0.0 Frozen（30 条）+ 25 向量 Frozen + Reference Certified（21/21 + 40/40）+ Freeze Review PASS；`ACP-LIUYAO-001` IMPLEMENTED |
-| **Knowledge Domain** | **引用层（Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + Corpus **FROZEN-v1.0.0**（`ziwei_corpus:v1.0.0`, 102 节点/47 关系/41 引用, digest `93dba067…`，2026-10-24 EOL 勘误；变更须走 Corpus 级审查）+ Provenance AUDITED |
+| **Knowledge Domain** | **引用层（四域 Corpus FROZEN-v1.0.0）** | Architecture Frozen（KB-001~020）+ Pipeline Validated + **四域 Corpus 均 FROZEN v1.0.0**（Ziwei / Liuyao / BaZi 有界 / Qimen 有界；计数、digest、证据级别与变更门槛见 `docs/governance/CAPABILITY_STATUS.md` 与 `knowledge/README.md`）+ Provenance AUDITED |
 | **Knowledge/Schema** | **门控** | node_type/relation_type/ref_type 变更须 ACP/Schema Gate（参考 7.2A 流程） |
 | Production Runtime | **部分实现** | Python 侧（`src/`）为唯一可用实现：Phase 0~5 完成/认证，Phase 6/7/8 已实现，Phase 9 核心已收口（MCP/持久化/compose app）；`crates/` 与 `services/` 仍是 bootstrap 占位。详见 §4 |
 
@@ -76,7 +76,9 @@ Reference Runtime（`reference/`）是整个项目的行为规范。全部 Pytho
 | Sprint 5 | Consensus: ConsensusBuilder -> ConsensusReport | 完成 | 70 | `consensus.py`, `consensus_builder.py` |
 | Sprint 5.5 | Conformance: ConformanceRunner -> ConformanceResult | 完成 | 57 | `conformance.py`, `conformance_runner.py` |
 
-**Reference Runtime 测试总计**: 304 个，全部通过。
+**Reference Runtime 测试总计**: 上表为 2026-09-16 快照（304 个，当时全部通过）。
+最近一次记录为 **2026-10-24 Reference 冻结审查回执：373 passed**（Reference 子集，含 Reference 核心、域 Reference 与 `reference/tests`；不是全仓结果），
+证据见 `docs/governance/REFERENCE_FREEZE_REVIEW.md` §2；该回执不代表当前 HEAD 的复跑结果。
 
 ### Reference Runtime 模块清单
 
@@ -92,11 +94,17 @@ Reference Runtime（`reference/`）是整个项目的行为规范。全部 Pytho
 
 ### Contract 清单
 
-| Contract | 文件 | 版本 | Golden Examples |
-|----------|------|------|-----------------|
+当前共有 **5 个 Contract JSON 文件**，对应 **5 个契约层**。文件数量与层数在此项目中
+一致，但概念不同；契约定义、再生成与验证流程以 `reference/contracts/README.md` 为准。
+
+| Contract 层 | 文件 | 版本 | Golden Examples |
+|-------------|------|------|-----------------|
+| Rule | `reference/contracts/rule_contract.json` | 1.0.0 | 7 |
+| Pattern | `reference/contracts/pattern_contract.json` | 1.0.0 | 6 |
 | Evidence | `reference/contracts/evidence_contract.json` | 1.0.0 | 5 |
 | Knowledge | `reference/contracts/knowledge_contract.json` | 1.0.0 | 7 |
 | Consensus | `reference/contracts/consensus_contract.json` | 1.0.0 | 6 |
+
 ---
 
 ## 4. Product Runtime Progress
@@ -117,11 +125,14 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Phase 4 | 紫微斗数 | **完成（Integration Ready）** | 定局表 + 十四主星 + 农历；契约 v1.0.0 Frozen（BC-001~014, ZW-001~017）+ Reference 独立实现（24/24 等价）；规则 ACP 已实施（Engine v0.3.0）。**边界**：辅星/四化/大限等属 ZW-017 未实现边界（须 ACP）；历史死代码 `agents/ziwei/pattern_matcher.py` 已于 2026-10-02 删除（`8c9c421`） |
 | Phase 5 | 奇门遁甲 | **完成（Certified）** | 时家转盘排盘核心 + 契约冻结 v1.0.0 (QIMEN_BEHAVIOR_CONTRACT.md, QC-001~014) + 24 规范向量 + 适配层/ABI/Reference 域建模 + **Reference 认证（独立实现, 双实现验证）**；流派假设 D2/D14 已政策裁定 |
 | Phase 6 | 共识智能体 | 部分完成 | Cross-Modal `agents/consensus.py` 保持接入编排（`/orchestrate`）；Evidence 生产引擎 + `ConsensusContractAdapter`（`build_consensus`）已落地并合并（S-1 = 并列，52 输入等价 + 3 向量；`b0ce66f`）；`majority`/`all` 表决语义仍属 Cross-Modal 边界 |
-| Phase 7 | 编排 + API | 部分完成（≈达成） | LangGraph 五步（validate→route→fan_out→consensus→respond）+ 自动 OpenAPI；端点含 agents/schema/compute/explain/orchestrate + `POST /consensus/evidence`、`GET /consensus/schema` + knowledge/corpora/search + sessions/traces（list+get）+ 根路由/可选 CORS + MCP HTTP + 离线 CLI（compute/explain/knowledge/consensus/orchestrate）；缺鉴权/限流 |
-| Phase 8 | 推理 + RAG | 部分完成 | provider + Explainer 确定性后备 + InMemory/Qdrant 检索器；RAG 已接线（`rag/corpus.py:146-160` + `rag/retriever.py`），四域 explainer 已接线；**Qdrant 已补 ingestion（upsert + 自动建 collection）、`query_points` 与 legacy `search` 回退，失败时回退 InMemory**；provider HTTP 已有离线 mock 测试；**剩余**：MCP transport / 持久化 |
-| Phase 9 | 运维 + 可扩展性 | **核心收口** | MCP **stdio JSON-RPC transport** 已实现（无外部 SDK；`initialize`/`tools/list`/`tools/call`/notifications；console script `openmetaphysics-mcp`）；Postgres **会话/追踪持久化**（SQLAlchemy，`OM_POSTGRES_DSN`，失败回退 InMemory）+ `GET /sessions|traces/{id}`；`Dockerfile` + compose `app` profile；**Valkey 预留**（无消费者） |
+| Phase 7 | 编排 + API | **完成（核心端点）** | LangGraph 五步（validate→route→fan_out→consensus→respond）+ 自动 OpenAPI；HTTP 路由清单见 `docs/INTERFACES.md` §6（含 knowledge、MCP HTTP、consensus、sessions/traces）；CORS 可选（`OM_CORS_ORIGINS`）；鉴权/限流为 opt-in（P2.2：`OM_API_KEY` / `OM_RATE_LIMIT_PER_MINUTE`，默认关闭）；sessions/traces 分页（`limit`/`offset`） |
+| Phase 8 | 推理 + RAG | **完成（本地/离线路径）** | provider + Explainer 确定性后备 + InMemory/Qdrant 检索器；RAG 已接线（`rag/corpus.py:146-160` + `rag/retriever.py`），四域 explainer 已接线；Qdrant ingestion（upsert + 自动建 collection）、`query_points` 与 legacy `search` 回退，失败时回退 InMemory；provider HTTP 已有离线 mock 测试。**外部 provider 与 Qdrant 服务的真实连通仍属可选运行环境，不是本地核心依赖** |
+| Phase 9 | 运维 + 可扩展性 | **核心收口** | MCP **stdio JSON-RPC transport** 与 FastAPI `POST /mcp` HTTP transport 已实现（无外部 SDK；`initialize`/`tools/list`/`tools/call`/notifications；console script `openmetaphysics-mcp`）；Postgres **会话/追踪持久化**（SQLAlchemy，`OM_POSTGRES_DSN`，失败回退 InMemory）+ `GET /sessions|traces/{id}`；`Dockerfile` + compose `app` profile；**Valkey 预留**（无消费者） |
 
-**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。**当前口径（2026-10-24，Windows）**：**1169 collected / 1167 passed + 2 skipped**（含领域准确性评估集 `tests/test_domain_accuracy.py` 27 例）；Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
+**Production Runtime 测试总计**: 2026-09-16 审计快照为导入 `openmetaphysics.*`（`src/`）的测试 20 文件 / 230 例（另 docs 工件 7 例、`reference/tests` 对拍 9 例），全仓收集 618 例。
+**合并后实测（2026-11-06，Windows）**：**1338 collected / 1335 passed + 3 skipped**（含领域准确性评估集 `tests/test_domain_accuracy.py` 27 例）。
+合并前记录：main 为 1169 collected / 1167 passed + 2 skipped（2026-10-24）；mcp-http 为 1290 collected / 1287 passed + 3 skipped（2026-11-06）。
+Linux/LF 语料复现性缺陷已由 `ACP-KNOWLEDGE-001` 修复并合并（`a77c7f6`）。详见 §5.1。
 
 ---
 
@@ -129,9 +140,11 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.1 测试总计
 
-> **2026-10-24 当前口径**: 全仓 **1169 collected / 1167 passed + 2 skipped**
+> **2026-11-06 合并后实测**: 全仓 **1338 collected / 1335 passed + 3 skipped**
 > （Windows 工作区实测；含领域准确性评估集 `test_domain_accuracy.py` 27 例：计算/边界/
-> 证据/解释/共识/预期未确定 六类）。Liuyao 冻结合并后。Linux/LF 语料复现性缺陷见
+> 证据/解释/共识/预期未确定 六类）。
+> 合并前记录：main 为 1169 collected / 1167 passed + 2 skipped（2026-10-24）；
+> mcp-http 为 1290 collected / 1287 passed + 3 skipped（2026-11-06）。Linux/LF 语料复现性缺陷见
 > `ACP-KNOWLEDGE-001` 已实施并合并（`a77c7f6`）；LF 工作区回归回执见该 ACP §5/§8。
 > 以下表格为 **2026-09-16 审计快照**，保留用于历史对账与 §5.2 明细。
 
@@ -143,7 +156,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 | Reference 独立套件（`reference/tests/`，5 文件） | 48 | 48 | 0 |
 | **总计（2026-09-16 快照）** | **618** | **618** | **0** |
 
-> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；现为 1169/1167+2）。
+> **以下为 2026-09-16 历史说明**：实测 `pytest --collect-only -q` 收集 **618** 个测试（当时口径；合并后当前实测为 1338 collected / 1335 passed + 3 skipped，见 §5.1）。
 > Conformance Suite（57 测试 / 135 检查）已含于上表第一行的 304 例内，非独立增量。
 > **对账**：304 + 237 + 29 + 48 = 618。
 > 注：本机 DSH 文件沙箱曾以 `WinError 5/EPERM` 拒绝 4 个「子进程管道捕获」测试
@@ -153,7 +166,7 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 ### 5.2 测试文件明细（2026-09-16 快照）
 
-> 下表缺 2026-10 新增的 API closure / RAG / explain / provider / knowledge E2E 等测试文件；当前全量口径见 §5.1。
+> 下表缺 2026-10 新增的 API closure / RAG / explain / provider / knowledge E2E 等测试文件；全量测试的最近一次记录见 §5.1。
 
 | 文件 | 测试数 | 状态 |
 |------|--------|------|
@@ -218,13 +231,25 @@ Production Runtime（`src/`, `crates/`, `services/`）是正式实现。Python �
 
 | 指标 | 值 |
 |------|-----|
-| 总检查数 | **170** |
-| 通过 | **170** |
-| 失败 | 0 |
+| 总检查数 | **176** |
+| 通过（full pass） | **106** |
+| 部分（partial，无枚举字段可验） | **13** |
+| 跳过（skipped，无第二实现/独立 oracle） | **57** |
+| 失败 | **0** |
 | **行为合约覆盖** | **52/52（`behavior_coverage = 1.0`，`unrepresented_behaviors = []`）** |
-| 认证状态 | **Certified**（强度已如实，见下注） |
+| 认证状态 | **contract-conformant, checks partial**（`certified=False`，H11/H12 更正；不再宣称 176/176 certified） |
 
-> ✅ **认证强度已修复（2026-09-16，ACP-REF-001 选项 A 已实施）**：
+> ⚠ **H11/H12（2026-10-31）强度更正**：旧文 "170/170 Certified" 高估了检查强度。
+> `ConformanceRunner.run()` 现为**只读**（H11 前 `_check_golden_reproducibility` 会重写冻结 golden 文件，
+> 可能静默修复 drift；现改为内存重生成逐字节比较，drift 直接 fail，空目录不再自动生成）；
+> `CF-SORT/CF-HASH/CF-NULL` 由硬编码 `passed=True` 改为 `skipped`（无第二实现/独立 oracle），
+> `CF-ENUM` 改为真实枚举序列化属性检查（13 个向量无枚举字段 → partial），
+> `CF-CONTRACT-*` 升级为逐模型 `required`/`field_types` diff，`CF-ARCH-001` 增加 adapter 源码 import 扫描。
+> `certified` 仅在 100% full pass 时为 True（与冻结 `CONFORMANCE_SPEC` 的 `failed==0 && coverage==1.0` 一致）；
+> 本运行时 0 failure 但存在 partial/skipped → `contract_conformant=True`、`certified=False`。
+> 详见 `docs/governance/REFERENCE_FREEZE_REVIEW.md` §2/§5 与 `tests/test_conformance_readonly.py`。
+
+> ✅ **行为覆盖强度已修复（2026-09-16，ACP-REF-001 选项 A 已实施）**：
 > 原先 `_check_behavior_coverage` 硬编码 **17 个** ID 且一律 `passed=True`（不校验代表物）；
 > **CF-015** 要求 **52 个** ID（7 BC + KB-001~020 + CS-001~025）全覆盖，缺失 **MUST fail**。
 > 实施内容：新增 `REQUIRED_BEHAVIOR_IDS`(52) 与逐 ID 代表物校验（无代表物→FAIL）；
@@ -258,10 +283,19 @@ Proposal (ACP)。
 
 ## 7. Current Sprint
 
-**当前 Sprint（2026-10-24）**: Sprint 0 文档真实性收口（已完成）+ **Sprint 1
-`ACP-KNOWLEDGE-001` 知识语料 EOL/digest 复现性修复**（已批准、实施并合并
-`a77c7f6`）。
-最近完成：Liuyao 契约冻结与合并（`7a6d7bb` / 归档 `930ae70` / EOL `a27bb4a`）。
+**当前 Sprint（2026-10-24）**: 无进行中的 Sprint；主线处于 Sprint 0–5 与工程收尾完成后的维护态。
+当前能力与语料状态以 `docs/governance/CAPABILITY_STATUS.md` 为准。
+
+| Sprint | 结果 | 合并证据 |
+|---|---|---|
+| Sprint 0 | 文档真实性收口 | 完成 |
+| Sprint 1 | `ACP-KNOWLEDGE-001` 语料 EOL/digest 复现性修复 | `a77c7f6` |
+| Sprint 2 | `ACP-REF-002` Reference Runtime 范围追认与契约补全 | `275fb88` |
+| Sprint 3 | Qdrant / provider 生产硬化 | `a968c9b` |
+| Sprint 4 | Liuyao Corpus Freeze v1.0.0 | `0fdd9e9` |
+| Sprint 5 | Phase 9 核心收口（MCP / 持久化 / compose app） | `395e5d0` |
+| 工程收尾 | Docker 构建验证、分支清账、状态指针刷新 | 见 `context/归档.md` |
+
 历史 Sprint：Phase 7.1.6 Ziwei Corpus Freeze（`69d6e2a6…` → 2026-10-24 EOL 勘误 `93dba067…`，102/47/41），详见
 `docs/governance/knowledge/KNOWLEDGE_PHASE_7.1.6_CORPUS_FREEZE.md`。
 
@@ -350,23 +384,26 @@ Proposal (ACP)。
   状态: `docs/governance/CAPABILITY_STATUS.md`）
 - Qimen/BaZi/Ziwei 功能扩展（格局判断 / 用神，需新授权）
 - ~~Reference Runtime 最终冻结~~ → **DONE**（`ACP-REF-002`，2026-10-24；`REFERENCE_FREEZE_REVIEW.md` PASS）
-- 本文档 + docs/governance/CAPABILITY_STATUS.md + knowledge/README.md 等随各 Sprint 持续刷新
+- 本文档仅在阶段边界更新；能力/语料增量统一刷新 `docs/governance/CAPABILITY_STATUS.md`（见 `AGENTS.md` E3）
 
-### 8.1 Production Runtime 收口（2026-09-16 只读代码审计新增）
+### 8.1 Production Runtime 收口（2026-09-16 审计历史清单）
 
-**P0 —— 立即（无需新授权）**
+> 本节保留 2026-09-16 的收口语境，不是当前待办清单。条目状态以行内标记与当前
+> `CAPABILITY_STATUS.md` 为准；不要据此重复执行已完成事项。
+
+**P0 —— 历史清单（当时已执行）**
 - **状态指针刷新**：`PROJECT_STATUS.md` §1/§2/§4/§5/§7/§9/§10/§11 + `CAPABILITY_STATUS.md`
   + `ROADMAP.md` + `项目进展梳理.md`（^ 本次已执行）
 - **死代码清理**：`src/openmetaphysics/agents/ziwei/pattern_matcher.py`（108 行；零导入、
-  目录缺 `__init__.py` 导致不可导入、且落在紫微契约 §4 显式排除的「格局识别」范围内）
+  目录缺 `__init__.py` 导致不可导入、且落在紫微契约 §4 显式排除的「格局识别」范围内）—— 已于 `8c9c421` 删除
 - **仓库清理**：根目录 `phase_7.2b_r2_status.txt` 一次性状态戳 —— ✅ **已执行（2026-09-16）**：
   内容 `Phase 7.2B-R2 COMPLETE. BLOCKED for Evidence Review.` 已就地留档于 R2 报告与证据复核两处，
   引用同步改写，不再作为独立文件存在
-- **分支清账（2026-10-24 工程收尾）**：已合并分支全部清理（main 之外仅剩 7 条未合并）；
+- **分支清账（2026-10-24 工程收尾，当时记录）**：当时已合并分支清理后仅剩 7 条未合并；
   逐条结论见 `docs/governance/项目进展梳理.md`：Consensus A1 已被 `6dd8077` 取代（保留历史）、
   D-16 已由 `ACP-REF-002` 裁定（保留历史）、archify 不整支合并、Phase 4 四支保留待授权窗口
 
-**P1 —— 可信度与治理债务（建议优先于新功能）**
+**P1 —— 历史清单（已闭环）**
 - ~~D-13 Conformance 空转处置~~ → **已闭环**：ACP-REF-001 行为覆盖 52/52；
   CF-016~019 已由 ACP-REF-002 实装；派生检查仍在消息中如实标注（见 Freeze Review §4）
 - ~~D-14 Reference Runtime 范围扩张 ACP 补正~~ → **DONE**（`ACP-REF-002` IMPLEMENTED；
@@ -377,7 +414,7 @@ Proposal (ACP)。
 - **语料复现性**：`ACP-KNOWLEDGE-001`（IMPLEMENTED + MERGED `a77c7f6`）修复 YAML EOL +
   Ziwei digest 重登记 + Liuyao digest 锚定
 
-**P2 —— 主线候选（1~2 周，择一，需授权）**
+**P2 —— 历史候选（A/B/C 均已完成）**
 - **A（已完成）六爻域契约化**：Schema 定稿 → 规则清单 → 25 向量 → Freeze Review PASS
   → 契约 v1.0.0 Frozen → `reference/liuyao/` 独立实现 → 21/21 + 40/40 等价
   → `ACP-LIUYAO-001` 批准并实施 → **Integration Ready**
@@ -389,7 +426,7 @@ Proposal (ACP)。
 - ~~GAP-16~~ 已由 ACP-REF-001 修复（行为覆盖 52/52）
 - ~~GAP-17~~ 已由 `ACP-REF-002` 修复（范围追认 + 规范 v1.1.0，2026-10-24）
 - ~~GAP-18~~ 已修复（`ZiweiExplainer` 已接线，测试 `test_explain_pipeline.py`）
-- ~~GAP-19~~ 已修复（RAG 已灌入 `KnowledgeChunk`，`rag/retriever.py:155-156`）
+- ~~GAP-19~~ 已修复（RAG 已灌入 `KnowledgeChunk`；见 `rag/retriever.py::_load_default_corpus` 与 `rag/corpus.py::load_all_chunks`）
 
 ---
 
@@ -438,7 +475,7 @@ Proposal (ACP)。
 
 ```bash
 uv sync --all-extras                         # 创建 .venv 并安装全部依赖
-uv run pytest -q                             # 运行全量测试（1087 passed + 2 skipped，2026-10-24；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
+uv run pytest -q                             # 运行全量测试（最近一次记录 1087 passed + 2 skipped，2026-10-24，早于 HEAD 400973c，未复跑；LF 复现性已由 ACP-KNOWLEDGE-001 修复）
 ```
 
 ---

@@ -32,12 +32,16 @@ from ..agents.qimen import (
     QimenBoard,
     QimenInput,
 )
+from ..core.paths import project_root
 from ..core.schemas import GeoPoint
 
 __version__ = "0.3.0"
 
 _CONTRACT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _CONTRACT_DIR.parents[2]
+# Vectors live outside the package; a checkout marker replaces the old
+# parents[2] index so a pip/Docker install fails with a clear FileNotFoundError
+# (the adapter is validation-only and does not run the HTTP request path).
+_REPO_ROOT = project_root() or Path.cwd()
 
 # ---------------------------------------------------------------------------
 # 契约清单 (机器可读; 与 qimen_contract.schema.json 严格一致)

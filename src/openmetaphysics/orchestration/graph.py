@@ -9,19 +9,69 @@ from __future__ import annotations
 from typing import Any, TypedDict
 
 from langgraph.graph import END, START, StateGraph
-from pydantic import BaseModel, Field, SerializeAsAny
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    SerializeAsAny,
+    ValidationError,
+    field_validator,
+)
 
 from ..agents.consensus import ConsensusAgent, ConsensusOutput
 from ..agents.registry import get_registry
 from ..core.schemas import AgentInput, AgentOutput
 
 
+class OrchestrationPayload(AgentInput):
+    """Common envelope that may also carry domain fields for per-agent dispatch.
+
+    The shared ``payload`` is typed as ``AgentInput`` by the single-agent
+    endpoints. For orchestration the domain fields (``casts``/``seed`` for
+    Liuyao, ``lunar_month``/``lunar_day`` for Ziwei, ``dayun_count`` for Bazi,
+    ...) are allowed on the payload and copied only to the agents whose input
+    schema declares them, so a request can stay "one envelope + selected
+    agents". Per-agent ``agent_params`` take precedence over these fields.
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+
 class OrchestrationRequest(BaseModel):
+    """A batch request over the shared ``payload`` envelope.
+
+    Domain-specific fields (``casts``/``seed`` for Liuyao, ``lunar_month`` /
+    ``lunar_day`` for Ziwei, ``dayun_count`` for Bazi, ...) are not part of the
+    common ``AgentInput`` contract. They can be supplied in either of two ways:
+
+    * directly on ``payload`` -- dispatched to every selected agent whose input
+      schema declares the field;
+    * per agent in ``agent_params``, which is merged over ``payload`` for that
+      agent only and wins on conflicts::
+
+          {"request_id": "r", "payload": {...},
+           "agents": ["bazi", "liuyao"],
+           "agent_params": {"bazi": {"dayun_count": 6},
+                            "liuyao": {"casts": [7, 7, 8, 8, 7, 8]}}}
+
+    Both are optional: requests without them keep the previous behaviour (the
+    common envelope only).
+    """
+
     request_id: str
-    payload: AgentInput
+    payload: OrchestrationPayload
     agents: list[str] | None = None  # None -> all registered agents
+    agent_params: dict[str, dict[str, Any]] = Field(default_factory=dict)
     strategy: str = "weighted"
     explain: bool = False
+
+    @field_validator("payload", mode="before")
+    @classmethod
+    def _accept_plain_envelope(cls, value: Any) -> Any:
+        """Accept a plain ``AgentInput`` from existing in-process callers."""
+        if isinstance(value, AgentInput):
+            return value.model_dump()
+        return value
 
 
 class OrchestrationResponse(BaseModel):
@@ -35,7 +85,7 @@ class OrchestrationResponse(BaseModel):
 
 class _State(TypedDict, total=False):
     request: OrchestrationRequest
-    payload: AgentInput
+    payload: OrchestrationPayload
     selected: list[str]
     outputs: list[AgentOutput]
     consensus: ConsensusOutput | None
@@ -44,10 +94,22 @@ class _State(TypedDict, total=False):
     errors: list[str]
 
 
+_COMMON_FIELDS = frozenset(AgentInput.model_fields)
+
+
+def _split_payload(payload: OrchestrationPayload) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Split the payload into the common envelope and domain-specific extras."""
+    data = payload.model_dump()
+    common = {key: value for key, value in data.items() if key in _COMMON_FIELDS}
+    extras = {key: value for key, value in data.items() if key not in _COMMON_FIELDS}
+    return common, extras
+
+
 def _validate(state: _State) -> dict:
     req = state["request"]
-    # Pydantic re-validation enforces the tz-aware datetime etc.
-    return {"payload": AgentInput.model_validate(req.payload.model_dump()), "errors": []}
+    # Pydantic re-validation enforces the tz-aware datetime etc. while keeping
+    # the domain-specific payload extras usable by the fan-out step.
+    return {"payload": OrchestrationPayload.model_validate(req.payload.model_dump()), "errors": []}
 
 
 def _route(state: _State) -> dict:
@@ -57,17 +119,53 @@ def _route(state: _State) -> dict:
     unknown = [a for a in selected if a not in registry.names()]
     errors = list(state.get("errors", [])) + [f"unknown agent: {a}" for a in unknown]
     selected = [a for a in selected if a in registry.names()]
+    errors += [
+        f"unknown agent in agent_params: {name}"
+        for name in sorted(req.agent_params)
+        if name not in registry.names()
+    ]
     return {"selected": selected, "errors": errors}
 
 
 def _fan_out(state: _State) -> dict:
     registry = get_registry()
     payload = state["payload"]
-    outputs: list[AgentOutput] = []
+    params = state["request"].agent_params
+    selected = state["selected"]
+    common, extras = _split_payload(payload)
+    accepted_fields = {
+        field for name in selected for field in registry.get(name).input_schema.model_fields
+    }
     errors = list(state.get("errors", []))
-    for name in state["selected"]:
+    unmatched = sorted(set(extras) - accepted_fields)
+    if unmatched:
+        errors.append("payload field(s) not accepted by selected agents: " + ", ".join(unmatched))
+    outputs: list[AgentOutput] = []
+    for name in selected:
+        agent = registry.get(name)
+        accepted = set(agent.input_schema.model_fields)
+        # Domain fields are merged over the common envelope and validated with
+        # the agent's own schema, so a bad field is reported per agent instead
+        # of failing the whole batch (matching the batch error semantics).
+        merged = {
+            **common,
+            **{key: value for key, value in extras.items() if key in accepted},
+            **params.get(name, {}),
+        }
         try:
-            outputs.append(registry.get(name).compute(payload))
+            agent_input = agent.input_schema.model_validate(merged)
+        except ValidationError as exc:
+            details = "; ".join(
+                f"{'.'.join(str(part) for part in error['loc'])}: {error['msg']}"
+                for error in exc.errors()
+            )
+            errors.append(f"{name}: invalid agent_params: {details}")
+            continue
+        except Exception as exc:  # defensive: never let one agent break the run
+            errors.append(f"{name}: {type(exc).__name__}: {exc}")
+            continue
+        try:
+            outputs.append(agent.compute(agent_input))
         except Exception as exc:  # one agent failing must not break the run
             errors.append(f"{name}: {type(exc).__name__}: {exc}")
     return {"outputs": outputs, "errors": errors}

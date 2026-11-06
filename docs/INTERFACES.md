@@ -1,7 +1,7 @@
 # OpenMetaphysics — 接口设计
 
-> 层与层之间的契约。下面每个接口都是 Python Protocol/ABC，由 Pydantic 模型实现，并覆盖测试。状态更新 2026-10-24。
-> Reference Runtime 接口已实现；Python 生产侧（`src/`）已实现领域 Agent / API / 编排 / RAG / Explain（Phase 0~8），其余语言的通用层仍待实现。
+> 层与层之间的契约。本文同时描述 Python Protocol/ABC 契约、HTTP API 与 MCP 传输接口；各节分别标注状态。状态更新 2026-10-24。
+> Reference Runtime 接口已实现；Python 生产侧（`src/`）已实现领域 Agent / API / 编排 / RAG / Explain / MCP / 持久化（Phase 0~9 的 Python 路径），其余语言的通用层仍待实现。
 
 ## 0. Reference Runtime 接口位置
 
@@ -16,7 +16,7 @@ Production Runtime 必须实现等价接口并通过 Conformance Suite 验证。
 | `parse_rule_document(yaml) -> list[Rule]` | `reference/parser.py` | Reference 完成 |
 | `RuleEngine.evaluate_all(rules, chart) -> list[RuleEvaluation]` | `reference/engine.py` | Reference 完成 |
 | `RuleEvaluation` (model) | `reference/models.py` | Reference 完成 |
-| Production: `AgentProtocol.compute()` | `src/openmetaphysics/agents/` | **未实现** |
+| Production: `AgentProtocol.compute()` | `src/openmetaphysics/agents/` | **Python 生产侧已实现**；通用跨语言层见 §0.7 注 |
 
 ### 0.2 Pattern 层
 
@@ -64,20 +64,21 @@ Production Runtime 必须实现等价接口并通过 Conformance Suite 验证。
 
 ### 0.7 已实现 vs 待实现总览
 
-| 层 | Reference Runtime | Production Runtime |
-|----|-------------------|--------------------|
+| 层 | Reference Runtime | Production Runtime（通用跨语言服务） |
+|----|-------------------|--------------------------------------|
 | Rule | 完成（Python 内存） | 未实现 |
 | Pattern | 完成（Python 内存） | 未实现 |
 | Evidence | 完成（Python 内存） | 未实现 |
 | Knowledge | 完成（Python 内存） | 未实现 |
 | Consensus | 完成（Python 内存） | 未实现 |
 | Conformance | 完成（Python 内存） | 未实现 |
-| Calendar | 未实现（Reference） | 已实现（`src/core/calendar.py`） |
-| API | 未实现（Reference） | 已实现（FastAPI 6 端点，`src/openmetaphysics/api/`） |
+| Calendar | 未实现（Reference） | 已实现（`src/openmetaphysics/core/calendar.py`） |
+| API | 未实现（Reference） | 已实现（FastAPI，路由清单见 §6） |
 
-> 表中 Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 的「Production 未实现」
-> 指 **通用跨语言层**；Python 生产侧已通过各域 Agent 与 Qimen/Consensus 契约适配器
-> 覆盖域内等价，通用层的生产化仍以 Reference 为规范。
+> 表中 Rule/Pattern/Evidence/Knowledge/Consensus/Conformance 的“Production 未实现”
+> 仅指 **Rust / Go / WASM 通用跨语言服务**；Python 生产侧已通过各域 Agent、
+> `openmetaphysics.consensus` Evidence 引擎与 Qimen/Consensus 契约适配器覆盖域内实现。
+> 不得将本表读成“Python 生产侧未实现”。
 
 ---
 
@@ -207,14 +208,42 @@ class OrchestrationRequest(BaseModel):
 
 ### 6.1 路由
 
+以下为 `src/openmetaphysics/api/app.py` 中由 `@app` 显式注册的 HTTP 路由；
+按用途分为服务/发现、单域计算、知识与共识、MCP 协议与会话追踪。
+FastAPI 自动提供的 `/docs`、`/redoc`、`/openapi.json` 未列入本表。
+
 | 方法 | 路径 | 用途 |
 |------|------|------|
+| GET  | `/` | 服务名称、版本、文档与健康入口 |
 | GET  | `/health` | 存活 + 已注册 agent 列表 |
 | GET  | `/agents` | 列出 agent + engine 版本 |
 | GET  | `/agents/{name}/schema` | 输入/输出 JSON Schema |
 | POST | `/agents/{name}/compute` | 单域确定性计算（可选解释） |
 | POST | `/agents/{name}/explain` | 对**既有**输出做解释（不重算） |
+| GET  | `/knowledge/corpora` | 已加载语料的状态、版本与计数 |
+| POST | `/knowledge/search` | 冻结语料检索（可选 relation/reference evidence） |
+| POST | `/mcp` | MCP JSON-RPC over HTTP（与 stdio 共用处理器） |
+| GET  | `/consensus/schema` | Evidence Consensus 输入/输出 Schema |
+| POST | `/consensus/evidence` | Evidence[] + config → ConsensusReport |
 | POST | `/orchestrate` | 多 agent + 共识（可选解释） |
+| GET  | `/sessions` | 列出持久化会话（可选分页） |
+| GET  | `/sessions/{request_id}` | 读取单个会话 |
+| GET  | `/traces/{request_id}` | 读取单个会话的推理追踪 |
+
+#### API 保护与分页（P2.2，默认关闭）
+
+- **鉴权（opt-in）**：未设置 `OM_API_KEY` 时完全不鉴权，行为与旧版本一致；设置后
+  `/sessions*`、`/traces/*`、`/orchestrate`、`/agents/{name}/compute|explain`
+  需要 `Authorization: Bearer <key>` 或 `X-API-Key: <key>`（缺失 401、错误 403）。
+- **限流**：仅在设置 `OM_API_KEY` 后生效，按 key/IP 计数；默认
+  `OM_RATE_LIMIT_PER_MINUTE=60`（`0`=关闭），超限返回 429 + `Retry-After`。
+  实现是**进程内内存滑动窗口**：多 worker/多副本**不共享**计数，不是分布式限流。
+- **分页**：`GET /sessions?limit=50&offset=0`（`limit` 1–200，默认 50；`offset` ≥0）
+  返回 `{sessions,total,limit,offset}`；**不带 limit/offset 时保留旧信封**
+  `{sessions}`，旧客户端不受影响。列表只含 `request_id` / `created_at`，不含出生信息。
+- **出生信息**：`GET /sessions/{id}` 默认保留 `born_at` / `born_location`（兼容）；
+  `OM_SESSION_REDACT_BIRTH=true` 时从会话/追踪响应中递归移除这两个字段。出生信息属
+  **敏感数据**：公网部署应先启用 `OM_API_KEY`，再按需决定是否暴露。
 
 `{name} ∈ {bazi, ziwei, qimen, liuyao}`。**四个域的接口形状一致**（见 6.2）。
 
@@ -241,6 +270,10 @@ class OrchestrationRequest(BaseModel):
 - `result` 是**确定性事实**，与 `explain` 是否开启无关。
 - `computed_at` 是**信封字段**（墙钟），不属于事实层；事实、共识与解释均不依赖它。
 - `metadata` 携带 `question`（若提供），供解释链路使用。
+- `confidence` 当前是**声明式基线**（`value=0.95`, `method="placeholder_baseline"`,
+  `factors["calibrated"]=0.0`）：**不是统计概率，也不是规则覆盖率**。API 与 Consensus
+  保留该字段/数值以维持兼容；不得在 UI/解释中把它展示为可信度百分比。未来若引入
+  校准评分，会同时修改 method 与数值，并重算 Consensus 权重。
 
 `?explain=true` 追加一个块（四个域形状相同）：
 
@@ -261,15 +294,21 @@ class OrchestrationRequest(BaseModel):
 
 ### 6.4 错误模型
 
-每个失败响应都带**一个机器可读** `error` 对象，`kind` 为稳定判别键；FastAPI 既有 `detail` 保留。
+本节所列 FastAPI 业务路由的失败响应（404/422/500）带**一个机器可读** `error` 对象，`kind` 为稳定判别键；FastAPI 既有 `detail` 保留。MCP 协议错误体（§8.2）与框架级 405 等不使用该 `error` 包装。
 
 | HTTP | `error.kind` | 触发 |
 |------|--------------|------|
 | 404 | `unknown_agent` | 未知 `{name}`；`/orchestrate` 显式指定的 agent **全部**未知 |
+| 404 | `not_found` | `GET /sessions/{request_id}` 或 `GET /traces/{request_id}` 目标不存在 |
 | 422 | `invalid_request` | 请求体/查询/路径校验失败（含 FastAPI 层校验） |
+| 401 | （`detail`，无 `error` 包装） | 仅启用 `OM_API_KEY` 时：受保护路由缺少 API key；响应带 `WWW-Authenticate: Bearer` |
+| 403 | （`detail`，无 `error` 包装） | 仅启用 `OM_API_KEY` 时：API key 错误 |
+| 429 | （`detail`，无 `error` 包装） | 仅启用 `OM_API_KEY` 时：超过限流阈值；响应带 `Retry-After`（秒） |
 | 500 | `calculation_failed` | 确定性计算抛错（附 `type`、`agent`） |
+| 500 | `consensus_failed` | `POST /consensus/evidence` 构建共识失败（附 `type`） |
 | 500 | `internal_error` | 未预期异常兜底 |
 | 200 | （块内 `explain.error.kind`） | provider 失败：`timeout` / `rate_limit` / `unavailable` / `invalid_response` / `error` |
+| 200 | `explain_failed`（解释结果内） | `/agents/{name}/explain` 顶层或 compute 的 `explain` 块内；解释器链内部异常兜底，不是 HTTP 错误 |
 
 **关键语义**：provider / 解释失败**不是** HTTP 错误 —— 仍返回 200，确定性 `result` 完好，
 失败记录在 `explain.error`，因此 provider 错误不会冒充计算错误。
@@ -293,6 +332,26 @@ class AgentRegistry:
 
 智能体在导入时自我注册；API 和编排器按名称解析。这是唯一扩展点：新的命理方式 = 新的 BaseAgent 子类 + 注册。
 
-## 8. MCP 扩展点（未来）
+## 8. MCP 传输接口（已实现）
 
-mcp/server.py 桩将把智能体 compute/schema 暴露为 MCP 工具，因此外部 MCP 兼容客户端可以调用 OpenMetaphysics。v1 仅发布接口契约；不包含传输层。
+MCP 是**协议接口**，不是 REST 业务路由的替代物；其传输层与 HTTP API 共享同一组工具处理器。
+
+### 8.1 stdio
+
+`src/openmetaphysics/mcp/server.py` 实现依赖零外部 MCP SDK 的 JSON-RPC 2.0
+newline-delimited stdio server，入口为 `openmetaphysics-mcp` 或
+`python -m openmetaphysics.mcp`。支持 `initialize`、`tools/list`、`tools/call`、
+`ping` 与 notifications。
+
+当前工具面：`list_agents`、`agent_schema`、`compute`、`orchestrate`、`explain`、
+`consensus_evidence`、`knowledge_search`、`knowledge_stats`。
+
+### 8.2 HTTP
+
+FastAPI 的 `POST /mcp` 将同一 JSON-RPC 消息交给 `handle_message()`：
+
+- 普通 JSON-RPC 请求 → 200 + JSON-RPC 响应；
+- notification → 202，响应体为 JSON `null`（不返回 JSON-RPC 响应对象）；
+- 非 JSON object 请求体 → 400 + 顶层 `kind=invalid_request`；该 MCP 协议错误体没有 `error` 包装对象。
+
+stdio 与 HTTP 只是传输方式不同，工具语义一致；不要把 `/mcp` 当作独立业务 REST 端点。

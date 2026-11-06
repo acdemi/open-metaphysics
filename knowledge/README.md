@@ -6,11 +6,15 @@
 > + **P2.3 Liuyao Knowledge Integration**（2026-10-19, Liuyao Corpus candidate 0.1.0）
 > + **P2.4 Liuyao Knowledge Enrichment II**（2026-10-19, Liuyao Corpus candidate 0.2.0
 >   → **2026-10-24 Corpus Freeze v1.0.0**）
-> **状态**: **Pipeline Validated**；Ziwei Corpus **FROZEN（`ziwei_corpus:v1.0.0`）**；
-> BaZi / Qimen Corpus **CANDIDATE（各 `0.1.0`）**；Liuyao Corpus **CANDIDATE（`0.2.0`）**
+> **状态**: **Pipeline Validated + Validator Coverage-Gated（H10, 2026-10-31）**；
+> 四域语料均 **FROZEN v1.0.0**（Ziwei / BaZi / Qimen / Liuyao；H10 将来源档案改为合法 YAML 并重登记
+> digest，节点/关系/引用内容逐字节未变）
 > **规范基准**: `docs/specification/KNOWLEDGE_BEHAVIOR_SPEC.md`（KB-001~020, Frozen）+
 > `docs/design/phase6/01_knowledge_layer_architecture.md`（Frozen）+
 > 规范性模型 `reference/knowledge.py`
+> **证据边界（H10 实测）**: 250 节点中 **85 个有节点级引用、165 个没有**；240 关系中 **18 个有引用、222 个没有**；
+> 111 条引用中 **16 条**所引来源未登记逐字核验声明。缺口登记于 `knowledge/coverage_baseline.json`，
+> `validate.py` 默认模式只保证"结构与登记无漂移、无新增缺口"，**不等于全覆盖**；`--strict` 才是全证据门。
 > **边界**: Knowledge 为**只读引用层**，不参与任何计算、不产生结论、
 > 不修改 Evidence / Confidence（KB 契约架构边界）。
 
@@ -85,13 +89,15 @@
 knowledge/
 ├── README.md                  # 本文件
 ├── sources/<domain>/          # 来源元数据（引用，非数据）
+├── sources/                   # 来源档案（合法 YAML, H10）+ registry.yaml（机器可读登记表）
 ├── corpus/<domain>/
 │   ├── nodes/                 # KnowledgeNode
 │   ├── relations/             # KnowledgeRelation
 │   └── references/            # KnowledgeReference
 │   # <domain> ∈ {ziwei, bazi, qimen, liuyao}
 ├── pipeline.py                # 确定性合并 + 校验 + checksum（多域）
-├── validate.py                # Schema 校验（KB-001~020，多域 + 跨域 ID 唯一性）
+├── validate.py                # Schema + 来源登记 + 证据覆盖 + 冻结 digest 校验（H10）
+├── coverage_baseline.json     # 冻结语料 digest/counts + 已登记证据缺口的基线（H10）
 ├── ziwei_corpus.json          # Pipeline 输出（确定性 JSON, 勿手改）
 ├── bazi_corpus.json           # Pipeline 输出（确定性 JSON, 勿手改）
 ├── qimen_corpus.json          # Pipeline 输出（确定性 JSON, 勿手改）
@@ -100,12 +106,16 @@ knowledge/
 
 ## 3. 统计
 
-| 语料 | 状态 | nodes | relations | references |
-|------|------|-------|-----------|------------|
-| `ziwei_corpus` | frozen 1.0.0 (digest `93dba067…`；EOL 勘误) | 102 | 47 | 41 |
-| `bazi_corpus` | frozen 1.0.0（有界证据；digest `488ce510…`） | 40 | 67 | 14 |
-| `qimen_corpus` | frozen 1.0.0（有界证据；digest `ffeb3319…`） | 47 | 60 | 15 |
-| `liuyao_corpus` | frozen 1.0.0 (digest `3a09a08e…`) | 61 | 66 | 41 |
+| 语料 | 状态 | nodes | relations | references | 节点级引用覆盖 |
+|------|------|-------|-----------|------------|----------------|
+| `ziwei_corpus` | frozen 1.0.0 (digest `8c95256b…`；H10 重登记) | 102 | 47 | 41 | 31/102 |
+| `bazi_corpus` | frozen 1.0.0（有界证据；digest `8b07346f…`） | 40 | 67 | 14 | 4/40 |
+| `qimen_corpus` | frozen 1.0.0（有界证据；digest `666e8a1e…`） | 47 | 60 | 15 | 12/47 |
+| `liuyao_corpus` | frozen 1.0.0 (digest `3039bfc8…`) | 61 | 66 | 41 | 38/61 |
+
+> H10（2026-10-31）：8 个来源档案原为 Markdown 表格却使用 `.yaml` 扩展名（非法 YAML，`check-yaml` 必失败），
+> 已改写为合法 YAML；pipeline 中的 `source_digests` 因此变化，四个 corpus digest 重新登记，
+> **节点/关系/引用数组逐字节未变**（见 `tests/test_knowledge_evidence_h10.py` 与 `coverage_baseline.json`）。
 
 Ziwei 类型覆盖: nodes wuxing(5)/main_star(14)/palace(12)/ten_god(10)/
 heavenly_stem(10)/earthly_branch(12)/auxiliary_star(12)/shen_sha(27);
@@ -146,23 +156,30 @@ uv run python knowledge/pipeline.py            # 生成全部域 corpus + sha256
 uv run python knowledge/pipeline.py bazi       # 仅生成 BaZi corpus
 uv run python knowledge/pipeline.py qimen      # 仅生成 Qimen corpus
 uv run python knowledge/pipeline.py liuyao     # 仅生成 Liuyao corpus
-uv run python knowledge/validate.py            # 多域校验（PASS/FAIL 报告）
+uv run python knowledge/validate.py            # 结构 + 登记 + 冻结 digest + 已登记缺口（真实覆盖报告）
+uv run python knowledge/validate.py --strict   # 全证据门：任何无条目级引用的节点/关系即失败
+uv run python knowledge/validate.py --json     # 机器可读报告（CI/审计）
 uv run pytest tests/test_knowledge_pipeline.py tests/test_bazi_knowledge_corpus.py \
               tests/test_qimen_knowledge_corpus.py tests/test_liuyao_knowledge_corpus.py \
-              tests/test_liuyao_explain_integration.py -q
+              tests/test_knowledge_evidence_h10.py tests/test_liuyao_explain_integration.py -q
 ```
 
+> `validate.py` 默认模式会打印每个域的真实覆盖数，并注明 **"NOT a full-coverage claim"**；
+> 覆盖缺口或冻结 digest 变化必须先更新 `coverage_baseline.json`（经语料级审查）才能通过。
+> `--strict` 失败数（当前 409）就是实际证据缺口数，不是工具误报。
+
 Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True`；
-来源 digest（SHA-256）嵌入 corpus metadata 用于版本追踪。
+来源 digest（SHA-256）嵌入 corpus metadata 用于版本追踪；source 档案必须是合法 YAML。
 
 ## 5. 添加新来源 / 节点
 
-1. `sources/<domain>/source_XX.yaml` 登记来源元数据（title/author/school/url）
-2. `corpus/<domain>/nodes|relations|references/*.yaml` 追加条目
+1. `sources/<domain>/source_XX.yaml` 登记来源元数据（合法 YAML：`source_id/title/author/school/url/evidence_status/...`）
+2. 在 `sources/registry.yaml` 增加该来源的 title（validator 的唯一 allow-list；非典籍来源须登记 classification）
+3. `corpus/<domain>/nodes|relations|references/*.yaml` 追加条目
    （顶层 `nodes:`/`relations:`/`references:` 列表；字段按 reference/knowledge.py）
-3. 重跑 `pipeline.py` + `validate.py` + 回归测试
-4. 保持 `provenance`（source.text）非空；id 唯一（含跨域）；relation 端点必须存在
-5. 新增语料域: 在 `pipeline.py::DOMAINS`、`validate.py::DOMAINS` 与
+4. 重跑 `pipeline.py` + 更新 `coverage_baseline.json`（digest/counts/已登记缺口）+ `validate.py` + 回归测试
+5. 保持 `provenance`（source.text）非空且已登记；id 唯一（含跨域）；relation 端点必须存在
+6. 新增语料域: 在 `pipeline.py::DOMAINS`、`validate.py::DOMAINS` 与
    `src/openmetaphysics/rag/corpus.py::DOMAIN_CORPUS_FILES` 登记（复用同一
    Pipeline / 校验器 / Retriever，不新建第二套架构）
 
@@ -173,9 +190,11 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 - ❌ 不修改冻结规范（KB-001~020）；Schema 变更须 ACP/门控
 - ❌ 不生产无 Tier 1 来源的节点/关系（Gate C 证据规则）
 - ❌ 不修改已冻结的 Ziwei 语料（P2.1 / P2.2 / P2.3 / P2.4 均未改动内容）；
-  2026-10-24 经 `ACP-KNOWLEDGE-001` 仅做 EOL/digest 勘误（内容零变化），digest 由
-  `69d6e2a6…` 变为 `93dba067…`；BaZi 与 Qimen 语料在 P2.4 及本次勘误中逐字节未变
-  （BaZi 另于 2026-10-24 H6 证据扩展后重生成并**有界冻结 v1.0.0**，digest `488ce510…`，见 §7 与 `BAZI_CORPUS_FREEZE_REVIEW.md`）
+  2026-10-24 经 `ACP-KNOWLEDGE-001` 仅做 EOL/digest 勘误（内容零变化）；
+  **H10（2026-10-31）**：来源档案（sources/*.yaml）改为合法 YAML 并新增 registry/baseline，
+  四个 corpus 的 `metadata.source_digests` 随之变化并重登记（Ziwei `93dba067…`→`8c95256b…`、
+  BaZi `488ce510…`→`8b07346f…`、Qimen `ffeb3319…`→`666e8a1e…`、Liuyao `3a09a08e…`→`3039bfc8…`），
+  **节点/关系/引用数组逐字节未变**（`tests/test_knowledge_evidence_h10.py` 与 `coverage_baseline.json` 锁定）
 - ❌ 可检索节点文本（`name_cn + interpretation`）不写 ASCII 技术标识符：字符级评分
   的稀有度权重（`1 + ln(N/df)`）会把 "engine" / "normative" 一类拉丁词当成极稀有
   「字符」，压过真正的中文术语命中。技术字段写进 `attributes` / `tags` / `name_en`。
@@ -201,4 +220,7 @@ Pipeline 确定性要求（硬性）：无时钟/随机/网络；`sort_keys=True
 | 章节级逐字核验范围有限（Qimen） | `奇门遁甲统宗` 仅在线通读章节结构与短锚点，**无 revision-pin 抓取件**；`烟波钓叟歌` 仅确认来源存在 | `evidence_status: source_level_attributed`；所有 `passage` 明示「非逐字核验 / 不据以做逐字核验」；**不声称 VERBATIM_VERIFIED** |
 | 默认 k=3 检索排序 | 确定性字符重叠评分偏好覆盖面广的长文（Phase C 已记录） | BaZi 专项查询命中 BaZi 语料 top-1/3；Qimen 八项必需术语（九宫/八门/九星/八神/阴遁/阳遁/值符/值使）均 top-1 命中；Liuyao 组合/单术语查询 36 项（P2.3 18 项 + 暗动/动散/反吟/伏吟/生旺墓绝/应期/游魂/归魂/月破/飞神/伏神/进神/退神/随鬼入墓/独发/独静/两现/卦变回头生克）top-1 命中（测试已锁定实测值；容器术语「六亲/六神」短查询会先命中总纲节点，属预期） |
 | **跨平台 EOL 与 `source_digests`** | `source_digests` 为来源 YAML 的**原始字节**摘要；此前 `.gitattributes` 只固定 JSON，YAML 未固定，digest 随 checkout EOL 漂移 | **已解决（`ACP-KNOWLEDGE-001`，2026-10-24）**：`.gitattributes` 增加 `knowledge/**/*.yaml text eol=lf`；Ziwei digest 重登记为 `93dba067…`（内容零变化）；BaZi/Qimen/Liuyao digest 由测试锚定；Linux/LF 与 Windows 均可复现，pipeline 不再改写冻结件 |
+| **H10 证据覆盖缺口（实测 2026-10-31）** | 250 节点中 **165 个无节点级 KnowledgeReference**；240 关系中 **222 个无引用**；111 条引用中 **16 条**所引来源未登记逐字核验声明；**6 条** classic_text 引用缺 chapter/page 锚点。旧 validator 仍打印 "PASSED: all corpus entries conform" | 已登记于 `coverage_baseline.json`；`validate.py` 默认模式禁止**新增**缺口/冻结 digest 漂移，`--strict` 暴露全部 **409** 项；补证必须逐条可核验且不得虚构（本轮未增删任何节点/引用） |
+| **H10 sources/*.yaml 不是合法 YAML** | 8 个来源档案实为 Markdown 表格却使用 `.yaml` 扩展名（`yaml.safe_load` 全部失败，pre-commit `check-yaml` 必失败）；pipeline 只对其做原始字节摘要，从未解析 | 已改写为合法 YAML（结构化来源字段 + `notes` + Liuyao 子页/异文列表），并新增 `sources/registry.yaml` 机器可读登记表；corpus `source_digests` 重登记（内容逐字节未变）；新增 `tests/test_knowledge_evidence_h10.py` 防回归 |
+| **H10 Validator PASS 被夸大** | 旧 `validate.py` 只查最小数量与 provenance 非空，不检查节点是否有引用、来源是否登记、冻结 digest 是否漂移 | 新版输出真实覆盖报告；默认门 = 结构 + 来源登记 + 冻结 digest/counts + 无新增缺口；`--strict` = 全证据门；pre-commit 新增 `knowledge-validate` hook |
 | 未覆盖范畴 | BaZi: 格局/用神/大运/流年/神煞等细目、藏干独立节点；Qimen: 三奇喜怒/八门迫制/九星旺相/格局（龙回首·鸟跌穴等）/克应/占法，以及完整的节气局数对照表；Liuyao: 六十四卦各卦本体/卦辞/爻辞、互卦（GAP-LIUYAO-05）、六亲取用细则、神煞（星煞章本轮未收）、卦变全组合与占验案例 | 后续 Knowledge Sprint（本轮不做完整体命理百科） |

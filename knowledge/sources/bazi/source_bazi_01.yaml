@@ -1,26 +1,28 @@
-# Source 01 — 《渊海子平》(BaZi Corpus)
+source_id: source_bazi_01
+title: 渊海子平
+author: 徐升（宋）；杨淙（增校）
+school: 子平（八字）
+edition: 通行古籍本（public domain 范围）
+url: https://zh.wikisource.org/wiki/渊海子平
+acquisition_status: 'acquired  # revision-pinned 抓取件（保存在仓库外），非入库'
+evidence_status: 'source_level_attributed + partial_verbatim  # H6 扩展: 部分条目已逐字核验（见下）'
+verified_scope: 'Phase 7.1.4B/7.1.5: 论大运（寅巳申三刑）、论命细法（子卯相刑）；**H6 2026-10-24**: 论日为主、论大运、论五行生剋制化、十神（基础）、论征太岁 等章节逐字核验；余下 5 条摘要引用待补'
+h6_fetch_2026-10-24: '`淵海子平 oldid=2593607 action=raw`：HTTP 200，173237 B，sha256 `a4447be5…`（与 2026-09-15 pin 一致）；抓取件仓库外保全'
+blocker: 无（Phase 7.3.1 HTTPS 直取成功）
+retrieved_utc: '2026-09-15T16:14:37Z'
+revision_pin: 淵海子平 revid 2593607（2025-08-24T18:41:12Z, 173237 B, sha256 a4447be5d95eb073857cb8cba8f0e58a500de1c283016c76cfdedb0d1b2bb133）
+evidence_scope: '本语料涉及: 十神/五行生克/天干地支本体/合冲刑害基础概念'
+transcription_note: 转录含 {{No source}} / {{傳統漢字化}} 模板，需注意
+note: 子平法（八字）之权威出处；十神、五行生克、干支关系之依据
+digest_note: '版本追踪: 本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记'
+notes: '# Source 01 — 《渊海子平》(BaZi Corpus)
 
-> BaZi 语料来源元数据（原始数据引用，非数据本身）。
-> 古籍原文不在仓库内；条目级引用经 SourceRef 登记于 corpus 与 references。
-> 与 Ziwei 语料共用同一已获取、revision-pinned 的 Tier 1 来源
-> （见 knowledge/sources/ziwei/SOURCE_STATUS.md）。
+  > BaZi 语料来源元数据（原始数据引用，非数据本身）。
 
-| 项 | 值 |
-|----|-----|
-| source_id | source_bazi_01 |
-| title | 渊海子平 |
-| author | 徐升（宋）；杨淙（增校） |
-| school | 子平（八字） |
-| edition | 通行古籍本（public domain 范围） |
-| url | https://zh.wikisource.org/wiki/渊海子平 |
-| acquisition_status | acquired  # revision-pinned 抓取件（保存在仓库外），非入库 |
-| evidence_status | source_level_attributed + partial_verbatim  # H6 扩展: 部分条目已逐字核验（见下） |
-| verified_scope | Phase 7.1.4B/7.1.5: 论大运（寅巳申三刑）、论命细法（子卯相刑）；**H6 2026-10-24**: 论日为主、论大运、论五行生剋制化、十神（基础）、论征太岁 等章节逐字核验；余下 5 条摘要引用待补 |
-| h6_fetch_2026-10-24 | `淵海子平 oldid=2593607 action=raw`：HTTP 200，173237 B，sha256 `a4447be5…`（与 2026-09-15 pin 一致）；抓取件仓库外保全 |
-| blocker | 无（Phase 7.3.1 HTTPS 直取成功） |
-| retrieved_utc | 2026-09-15T16:14:37Z |
-| revision_pin | 淵海子平 revid 2593607（2025-08-24T18:41:12Z, 173237 B, sha256 a4447be5d95eb073857cb8cba8f0e58a500de1c283016c76cfdedb0d1b2bb133） |
-| evidence_scope | 本语料涉及: 十神/五行生克/天干地支本体/合冲刑害基础概念 |
-| transcription_note | 转录含 {{No source}} / {{傳統漢字化}} 模板，需注意 |
-| note | 子平法（八字）之权威出处；十神、五行生克、干支关系之依据 |
-| digest_note | 版本追踪: 本文件（pipeline source_digests）+ revision_pin（revid / 抓取件 sha256）双重登记 |
+  > 古籍原文不在仓库内；条目级引用经 SourceRef 登记于 corpus 与 references。
+
+  > 与 Ziwei 语料共用同一已获取、revision-pinned 的 Tier 1 来源
+
+  > （见 knowledge/sources/ziwei/SOURCE_STATUS.md）。
+
+  '

@@ -37,6 +37,12 @@ Production 的 `ConsensusAgent` 与 Reference 的 `ConsensusBuilder` 是**两个
 | 策略 | `weighted` / `majority` / `all`（权重语义） | `retain_all` / `highest_confidence` / `majority`（裁决语义） |
 | 冲突判据 | 五行 `ke` / `being_ke` 关系对，`severity` 恒 `medium` | 同域多结论，按策略判定存活/丢弃 |
 
+> **H8 说明（权重语义）**：Legacy `weighted` 用 `AgentOutput.confidence.value` 作权重；
+> 四个确定性域当前都输出声明式基线 `0.95`（`method="placeholder_baseline"`），
+> 所以 weighted 在数值上等价于等权。这不是统计可信度，只是声明值；若未来引入
+> 校准评分，必须同时重算 weighted 的权重与测试。Reference `ConsensusBuilder`
+> 完全不用该字段（它消费显式 `Evidence.confidence`），因此不受影响。
+
 **结论**：输入不同 → 问题不同 → 两者不是同一 capability 的两种实现。
 
 ## 3. 输出对比（字段集不相交）

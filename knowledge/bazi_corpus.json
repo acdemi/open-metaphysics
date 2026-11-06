@@ -9,8 +9,8 @@
     "domain": "bazi",
     "pipeline": "knowledge/pipeline.py (P2.1 BaZi Knowledge Integration; frozen v1.0.0)",
     "source_digests": {
-      "source_bazi_01.yaml": "bf50d3f6354ab1e4d0394bf3e8b2d52ac9001a985dc590f1ceff915fe227b3a3",
-      "source_bazi_02.yaml": "63d8f2652185ee233a4b97527a64fee145fcea5c87b55e2cd6865ebbd02624c3"
+      "source_bazi_01.yaml": "8a76c8712c43b4efe9bc9611f6065f6efcdfb372e3e1afcfe0734e3449a005a6",
+      "source_bazi_02.yaml": "6a7d19de9fc6fc9189b94a0190e9d4f5bb78fce989686dffceaaa9c0e512c69f"
     },
     "status": "frozen",
     "version": "1.0.0"

@@ -87,30 +87,30 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 - **完成标准：** ✅ 契约冻结 + Reference 认证 + 双实现验证（独立测试套件 + 30/30 等价 + 认证工件）。
 - **变更政策**: 任何算法/规则/向量变更须 **ACP** + 契约版本递增 + Golden Vector 迁移 + Reference 更新（详见 `docs/governance/CAPABILITY_STATUS.md`）。
 
-## Phase 6 — 共识智能体〔部分完成：已实现并接线，缺契约校验与等价测试〕
+## Phase 6 — 共识智能体〔历史阶段定义；当前能力状态见 `docs/CONSENSUS_CAPABILITY_CLARIFICATION.md` 与 `docs/governance/CAPABILITY_STATUS.md`〕
 - ConsensusAgent: 加权聚合，一致矩阵，冲突检测。
 - 确定性综合模板。
 - **完成标准：** 多智能体共识测试绿色。
 
-## Phase 7 — 编排 + API〔部分完成 ≈ 达成：五步 LangGraph + 6 端点齐全〕
+## Phase 7 — 编排 + API〔历史阶段定义；当前 HTTP 路由清单见 `docs/INTERFACES.md`，不在路线图维护端点数量〕
 - LangGraph Orchestrator (validate→route→fan_out→consensus→respond)。
 - FastAPI app 带所有端点 + OpenAPI。
 - **完成标准：** /orchestrate 端到端测试绿色。
 
-## Phase 8 — 推理 + RAG（隔离）〔部分完成：实现齐备；RAG 未接线、零测试、专属 explainer 坏死〕
+## Phase 8 — 推理 + RAG（隔离）〔历史阶段定义；当前实现状态见 `docs/PROJECT_STATUS.md` §4〕
 - OllamaProvider（+ 通义千问/DeepSeek 通过相同接口，可选远程）。
 - Explainer 带确定性后备；KnowledgeRetriever (Qdrant + 内存)。
 - **完成标准：** 离线解释工作（后备），Ollama 存在时也工作。
 
-## Phase 9 — 运维 + 可扩展性〔仅桩：MCP 无 transport、无持久化、无冒烟测试〕
+## Phase 9 — 运维 + 可扩展性〔历史阶段定义；当前为“核心收口”，见 `docs/PROJECT_STATUS.md` §4〕
 - Docker Compose (Postgres/Qdrant/Ollama) + 会话/追踪持久化。
 - mcp/server.py 工具接口桩。
 - 文档合并，示例。
 - **完成标准：** docker compose up + 冒烟测试通过。
 
-## 当前交付范围
+## 历史交付范围（2026-09-16 审计快照，非当前状态）
 
-**Product Roadmap 现状（2026-09-16 只读代码审计口径；明细见 `docs/PROJECT_STATUS.md` §4）**：
+**Product Roadmap 历史快照（2026-09-16 只读代码审计口径；当前状态见 `docs/governance/CAPABILITY_STATUS.md` 与 `docs/PROJECT_STATUS.md`）**：
 
 | Phase | 状态 |
 |-------|------|
@@ -120,10 +120,14 @@ OpenMetaphysics 有两条并行的时间线，不得混淆：
 | 3 八字 | **完成 → Integration Ready** |
 | 4 紫微斗数 | **完成 → Integration Ready**（辅星/四化/大限属 ZW-017 未实现边界） |
 | 5 奇门遁甲 | **完成 → Certified**（v1.0.0 契约 + Reference 认证 + 双实现验证 + 适配层/ABI/回归防护网） |
-| 6 共识 | 部分完成（已实现并接线；缺契约校验与等价测试） |
-| 7 编排 + API | 部分完成 ≈ 达成（五步 LangGraph + 6 端点） |
-| 8 推理 + RAG | 部分完成（RAG 未接线、provider/RAG 零测试、专属 explainer 坏死） |
-| 9 运维 + 可扩展性 | **仅桩** |
+| 6 共识 | 历史部分完成（当时已实现并接线；缺契约校验与等价测试） |
+| 7 编排 + API | 历史部分完成 ≈ 达成（五步 LangGraph + 当时端点集） |
+| 8 推理 + RAG | 历史部分完成（当时 RAG 未接线、provider/RAG 零测试、专属 explainer 坏死） |
+| 9 运维 + 可扩展性 | **历史：仅桩** |
+
+> 上表是 2026-09-16 的历史快照，不再作为当前事实；Phase 6–9 的后续实现与验证已由
+> `docs/PROJECT_STATUS.md`、`docs/INTERFACES.md` 和 `docs/governance/CAPABILITY_STATUS.md` 更新。
+> 不要把旧端点数量、旧阶段状态当作当前状态。
 
 `crates/om-calendar` 与 `services/gateway` 仍为 bootstrap 占位。所有重型服务保持可选；
 核心完全可以离线测试。

@@ -5,6 +5,16 @@ conformance checks against any RuntimeAdapter implementation.
 
 Golden vectors are auto-discovered -- no manual maintenance.
 
+H11/H12 (2026-10-31): the runner is **read-only** -- it never generates or
+rewrites the frozen golden vectors during ``ConformanceRunner.run()``
+(``build_golden_vectors()`` compares in memory; only the explicit
+``generate_golden_vectors()`` tooling entry point writes). Each check carries an
+explicit ``status``: ``passed``/``failed`` are real checks, while ``partial``
+and ``skipped`` are reported honestly and never counted as passes. ``certified``
+therefore requires a full-strength pass; a run with partial/skipped checks is
+reported as ``contract_conformant`` only. See
+``docs/governance/REFERENCE_FREEZE_REVIEW.md`` §2.1.
+
 See: docs/specification/CONFORMANCE_SPEC.md
      docs/specification/IMPLEMENTATION_GUIDE.md
 """
@@ -12,12 +22,14 @@ See: docs/specification/CONFORMANCE_SPEC.md
 from __future__ import annotations
 
 import hashlib
+import inspect
 import json
 import re
 from pathlib import Path
 from typing import Any
 
 from .conformance import (
+    CheckStatus,
     ConformanceCategory,
     ConformanceCheckResult,
     ConformanceLayer,
@@ -145,16 +157,14 @@ def _content_hash(*parts: str) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:12]
 
 
-def generate_golden_vectors(output_dir: Path | None = None) -> list[GoldenVector]:
-    """Generate golden vectors by running the Reference Runtime.
+def build_golden_vectors() -> list[GoldenVector]:
+    """Generate golden vectors **in memory** from the Reference Runtime.
 
-    Vectors are auto-discovered from existing example YAML files and
-    contract golden examples. No manual maintenance required.
+    Read-only: the conformance runner calls this to compare against the
+    committed vectors and never writes them (H11). Use
+    ``generate_golden_vectors()`` from an explicit tooling step when a new
+    golden vector set must intentionally be written.
     """
-    if output_dir is None:
-        output_dir = GOLDEN_DIR
-    output_dir.mkdir(parents=True, exist_ok=True)
-
     from .consensus import ConsensusConfig, ConsensusStrategy
     from .engine import RuleEngine
     from .evidence_builder import EvidenceBuilder
@@ -314,16 +324,34 @@ def generate_golden_vectors(output_dir: Path | None = None) -> list[GoldenVector
             )
         )
 
-    # Write golden vectors (LF canonical; ACP-REF-002 conformance EOL fix)
+    return vectors
+
+
+def serialize_golden_vectors(vectors: list[GoldenVector]) -> dict[str, str]:
+    """Layer file name -> canonical LF text (no filesystem access, H11)."""
     by_layer: dict[str, list[dict]] = {}
-    for v in vectors:
-        by_layer.setdefault(v.layer.value, []).append(v.model_dump(mode="json"))
+    for vector in vectors:
+        by_layer.setdefault(vector.layer.value, []).append(vector.model_dump(mode="json"))
+    serialized: dict[str, str] = {}
     for layer, vecs in by_layer.items():
         text = json.dumps(vecs, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-        (output_dir / f"{layer}_vectors.json").write_text(
-            text, encoding="utf-8", newline="\n"
-        )
+        serialized[f"{layer}_vectors.json"] = text
+    return serialized
 
+
+def generate_golden_vectors(output_dir: Path | None = None) -> list[GoldenVector]:
+    """Explicit write path for tooling only.
+
+    The conformance runner is read-only (H11) and must never call this: it uses
+    ``build_golden_vectors()`` + ``serialize_golden_vectors()`` to compare
+    against the committed files in memory.
+    """
+    if output_dir is None:
+        output_dir = GOLDEN_DIR
+    output_dir.mkdir(parents=True, exist_ok=True)
+    vectors = build_golden_vectors()
+    for name, text in serialize_golden_vectors(vectors).items():
+        (output_dir / name).write_text(text, encoding="utf-8", newline="\n")
     return vectors
 
 
@@ -365,11 +393,24 @@ class ConformanceRunner:
         )
 
         vectors = load_golden_vectors(self._golden_dir)
-        if not vectors:
-            vectors = generate_golden_vectors(self._golden_dir)
-
-        for v in vectors:
-            self._check_vector(adapter, v, result)
+        if vectors:
+            for vector in vectors:
+                self._check_vector(adapter, vector, result)
+        else:
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id="CF-GOLDEN-MISSING",
+                    category=ConformanceCategory.GOLDEN_JSON,
+                    name="golden_vectors_present",
+                    passed=False,
+                    status=CheckStatus.FAILED,
+                    message=(
+                        "No golden vectors on disk. The conformance runner is "
+                        "read-only (H11) and will not generate or rewrite them; "
+                        "run generate_golden_vectors() in a dedicated tooling step."
+                    ),
+                )
+            )
 
         self._check_contract_diff(result)
         self._check_behavior_coverage(result)
@@ -407,7 +448,7 @@ class ConformanceRunner:
                 self._check_ordering(vector, result)
                 self._check_hash(vector, result)
                 self._check_null(vector, result)
-                self._check_enum(vector, result)
+                self._check_enum(actual, vector, result)
         except Exception as exc:
             result.add_check(
                 ConformanceCheckResult(
@@ -477,42 +518,204 @@ class ConformanceRunner:
             )
 
     def _check_ordering(self, vector: GoldenVector, result: ConformanceResult) -> None:
+        """CF-010 ordering: not independently verified (H11).
+
+        An independent ordering check needs a second implementation or an
+        ordering oracle; the golden equality already covers the committed
+        order, so this is reported as ``skipped`` instead of a fake pass.
+        """
         result.add_check(
             ConformanceCheckResult(
                 check_id=f"CF-SORT-{vector.vector_id}",
                 category=ConformanceCategory.STABLE_ORDERING,
                 layer=vector.layer,
                 name=f"sort:{vector.name}",
-                passed=True,
-                message="Ordering stability derived from the golden match (not independently re-verified)",
+                passed=False,
+                status=CheckStatus.SKIPPED,
+                message=(
+                    "Not independently re-verified: no second implementation / "
+                    "ordering oracle. Golden equality covers only the committed "
+                    "vector order (H11)."
+                ),
             )
         )
 
     def _check_hash(self, vector: GoldenVector, result: ConformanceResult) -> None:
+        """CF-011 deterministic hash: not independently verified (H11)."""
         result.add_check(
             ConformanceCheckResult(
                 check_id=f"CF-HASH-{vector.vector_id}",
                 category=ConformanceCategory.DETERMINISTIC_HASH,
                 layer=vector.layer,
                 name=f"hash:{vector.name}",
-                passed=True,
-                message="Hash stability derived from the golden match (not independently re-verified)",
+                passed=False,
+                status=CheckStatus.SKIPPED,
+                message=(
+                    "Not independently re-verified: hashing the adapter output "
+                    "against itself is not a second implementation. Golden "
+                    "equality only (H11)."
+                ),
             )
         )
 
     def _check_null(self, vector: GoldenVector, result: ConformanceResult) -> None:
+        """CF-012 null handling: not independently verified (H11)."""
         result.add_check(
             ConformanceCheckResult(
                 check_id=f"CF-NULL-{vector.vector_id}",
                 category=ConformanceCategory.NULL_HANDLING,
                 layer=vector.layer,
                 name=f"null:{vector.name}",
-                passed=True,
-                message="Null handling derived from the golden match (not independently re-verified)",
+                passed=False,
+                status=CheckStatus.SKIPPED,
+                message=(
+                    "Not independently re-verified: null paths are covered by the "
+                    "golden equality; no independent null oracle exists (H11)."
+                ),
             )
         )
 
-    def _check_enum(self, vector: GoldenVector, result: ConformanceResult) -> None:
+    #: Enum-valued JSON fields checked by ``_check_enum`` (independent of the
+    #: golden expected output: it validates the *serialized shape* against the
+    #: Reference enums).
+    _ENUM_FIELDS: dict[str, tuple[str, ...]] = {
+        "node_type": (
+            "wuxing",
+            "ten_god",
+            "heavenly_stem",
+            "earthly_branch",
+            "palace",
+            "main_star",
+            "auxiliary_star",
+            "shen_sha",
+            "pattern",
+            "career",
+            "personality",
+            "marriage",
+            "health",
+            "wealth",
+            "annual_fortune",
+            "major_luck",
+            "yong_shen",
+            "xi_shen",
+            "ji_shen",
+            "tiao_hou",
+        ),
+        "relation_type": (
+            "sheng",
+            "ke",
+            "chong",
+            "xing",
+            "he",
+            "hai",
+            "fuzhu",
+            "zhiyue",
+            "duiying",
+            "yingxiang",
+            "zengqiang",
+            "xueroo",
+            "zhixiang",
+            "shuyu",
+            "yinyong",
+        ),
+        "ref_type": (
+            "classic_text",
+            "school_commentary",
+            "modern_interpretation",
+            "oral_tradition",
+        ),
+        "target_type": ("node", "relation"),
+        "strategy": ("retain_all", "highest_confidence", "majority"),
+        "evidence_type": ("rule", "pattern", "knowledge_node", "relation"),
+        "operator": (
+            "equals",
+            "not_equals",
+            "contains",
+            "not_contains",
+            "in",
+            "not_in",
+            "greater_than",
+            "less_than",
+            "exists",
+            "not_exists",
+            "matches",
+        ),
+    }
+
+    def _check_enum(self, actual: str, vector: GoldenVector, result: ConformanceResult) -> None:
+        """CF-013 enum serialization: real property check on the adapter output.
+
+        Walks the adapter JSON and asserts every known enum-valued field is a
+        *string* whose value is one of the Reference enum members. This is
+        independent of ``expected_output`` (it does not compare values to the
+        golden vector), so it is a genuine check; if the vector contains no
+        enum-valued field the result is ``partial`` rather than passed.
+        """
+        try:
+            parsed = json.loads(actual)
+        except (TypeError, json.JSONDecodeError) as exc:
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id=f"CF-ENUM-{vector.vector_id}",
+                    category=ConformanceCategory.ENUM_SERIALIZATION,
+                    layer=vector.layer,
+                    name=f"enum:{vector.name}",
+                    passed=False,
+                    status=CheckStatus.FAILED,
+                    message=f"adapter output is not valid JSON: {exc}",
+                )
+            )
+            return
+
+        checked = 0
+        violations: list[str] = []
+
+        def walk(node: Any, path: str) -> None:
+            nonlocal checked
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    child = f"{path}.{key}" if path else key
+                    if key in self._ENUM_FIELDS:
+                        if value is None:
+                            # nullable enum fields serialise as JSON null; that is
+                            # valid and is covered by the golden equality.
+                            continue
+                        if not isinstance(value, str) or value not in self._ENUM_FIELDS[key]:
+                            violations.append(f"{child}={value!r}")
+                        else:
+                            checked += 1
+                    walk(value, child)
+            elif isinstance(node, list):
+                for index, value in enumerate(node):
+                    walk(value, f"{path}[{index}]")
+
+        walk(parsed, "")
+        if violations:
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id=f"CF-ENUM-{vector.vector_id}",
+                    category=ConformanceCategory.ENUM_SERIALIZATION,
+                    layer=vector.layer,
+                    name=f"enum:{vector.name}",
+                    passed=False,
+                    status=CheckStatus.FAILED,
+                    message=f"enum fields not serialized as declared strings: {violations[:5]}",
+                )
+            )
+            return
+        if checked == 0:
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id=f"CF-ENUM-{vector.vector_id}",
+                    category=ConformanceCategory.ENUM_SERIALIZATION,
+                    layer=vector.layer,
+                    name=f"enum:{vector.name}",
+                    passed=False,
+                    status=CheckStatus.PARTIAL,
+                    message="No known enum-valued field in this vector's output; nothing to verify.",
+                )
+            )
+            return
         result.add_check(
             ConformanceCheckResult(
                 check_id=f"CF-ENUM-{vector.vector_id}",
@@ -520,34 +723,79 @@ class ConformanceRunner:
                 layer=vector.layer,
                 name=f"enum:{vector.name}",
                 passed=True,
-                message="Enum serialization verified via golden match",
+                status=CheckStatus.PASSED,
+                message=f"Validated {checked} enum-valued field(s) as declared string enums.",
             )
         )
 
     def _check_contract_diff(self, result: ConformanceResult) -> None:
+        """CF-013: contract files must match the Reference models (real diff).
+
+        H11: previous implementation only checked that two keys existed. It now
+        validates required top-level keys, the contract version, non-empty
+        golden examples, and — for every declared model — that its ``required``
+        and ``field_types`` fields actually exist on the corresponding Reference
+        pydantic model (unresolved models are failures, not silent passes).
+        """
         for cf in sorted(CONTRACTS_DIR.glob("*.json")):
+            problems: list[str] = []
             try:
                 contract = json.loads(cf.read_text(encoding="utf-8"))
-                passed = "contract_version" in contract and "golden_examples" in contract
-                result.add_check(
-                    ConformanceCheckResult(
-                        check_id=f"CF-CONTRACT-{cf.stem}",
-                        category=ConformanceCategory.CONTRACT_DIFF,
-                        name=cf.stem,
-                        passed=passed,
-                        message="Contract valid" if passed else "Contract invalid",
+                for key in ("contract_name", "contract_version", "golden_examples", "models"):
+                    if key not in contract:
+                        problems.append(f"missing top-level key {key}")
+                if contract.get("contract_version") != self.CONTRACT_VERSION:
+                    problems.append(
+                        f"contract_version {contract.get('contract_version')!r} "
+                        f"!= suite {self.CONTRACT_VERSION!r}"
                     )
-                )
+                examples = contract.get("golden_examples")
+                if not isinstance(examples, list) or not examples:
+                    problems.append("golden_examples must be a non-empty list")
+                models = contract.get("models")
+                if not isinstance(models, dict) or not models:
+                    problems.append("models must be a non-empty object")
+                else:
+                    for model_name, spec in models.items():
+                        model = _resolve_reference_model(model_name)
+                        if model is None:
+                            problems.append(f"model {model_name!r} has no Reference model")
+                            continue
+                        fields = set(model.model_fields)
+                        required = set(spec.get("required") or [])
+                        if not required:
+                            problems.append(f"model {model_name!r}: empty required list")
+                        missing_required = sorted(required - fields)
+                        if missing_required:
+                            problems.append(
+                                f"model {model_name!r}: required fields missing on "
+                                f"Reference model: {missing_required}"
+                            )
+                        field_types = set(spec.get("field_types") or {})
+                        unknown_types = sorted(field_types - fields)
+                        if unknown_types:
+                            problems.append(
+                                f"model {model_name!r}: field_types declare unknown fields: "
+                                f"{unknown_types}"
+                            )
             except Exception as exc:
-                result.add_check(
-                    ConformanceCheckResult(
-                        check_id=f"CF-CONTRACT-{cf.stem}",
-                        category=ConformanceCategory.CONTRACT_DIFF,
-                        name=cf.stem,
-                        passed=False,
-                        message=str(exc),
-                    )
+                problems.append(f"unreadable contract: {exc}")
+
+            passed = not problems
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id=f"CF-CONTRACT-{cf.stem}",
+                    category=ConformanceCategory.CONTRACT_DIFF,
+                    name=cf.stem,
+                    passed=passed,
+                    status=CheckStatus.PASSED if passed else CheckStatus.FAILED,
+                    message=(
+                        "Contract models/required fields match the Reference models"
+                        if passed
+                        else "; ".join(problems)
+                    ),
                 )
+            )
 
     def _behavior_representation(self, result: ConformanceResult) -> dict[str, tuple[bool, str]]:
         """Resolve every CF-015 required ID to an EXECUTED representation.
@@ -569,13 +817,16 @@ class ConformanceRunner:
         """
         rep: dict[str, tuple[bool, str]] = {}
 
+        def real_checks_ok(checks: list[ConformanceCheckResult]) -> bool:
+            """Only real checks count; skipped/partial checks cannot vouch for a layer."""
+            real = [c for c in checks if c.status in (CheckStatus.PASSED, CheckStatus.FAILED)]
+            return bool(real) and all(c.status == CheckStatus.PASSED for c in real)
+
         def layer_ok(layer: ConformanceLayer) -> bool:
-            checks = [c for c in result.checks if c.layer == layer]
-            return bool(checks) and all(c.passed for c in checks)
+            return real_checks_ok([c for c in result.checks if c.layer == layer])
 
         def category_ok(category: ConformanceCategory) -> bool:
-            checks = [c for c in result.checks if c.category == category]
-            return bool(checks) and all(c.passed for c in checks)
+            return real_checks_ok([c for c in result.checks if c.category == category])
 
         # -- BC-* : rule/pattern/evidence behaviors exercised by the vectors --
         rep["BC-RE-001"] = (layer_ok(ConformanceLayer.RULE), "executed rule-layer golden checks")
@@ -692,7 +943,15 @@ class ConformanceRunner:
     def _check_architecture_boundary(
         self, adapter: RuntimeAdapter, result: ConformanceResult
     ) -> None:
-        forbidden = [
+        """CF-ARCH-001: adapter must not carry I/O / LLM / DB capabilities.
+
+        H11: the old check only looked for forbidden *methods* on the adapter
+        object. It now also scans the adapter's module source for imports of
+        network/DB/LLM/production-runtime packages. When the source is not
+        available (e.g. C extension adapter) the check is reported ``partial``
+        instead of passing on the attribute check alone.
+        """
+        forbidden_methods = [
             "call_llm",
             "query_database",
             "call_graph_db",
@@ -700,17 +959,69 @@ class ConformanceRunner:
             "rag_search",
             "call_ollama",
         ]
-        passed = not any(hasattr(adapter, m) for m in forbidden)
+        forbidden_modules = (
+            "httpx",
+            "requests",
+            "urllib",
+            "socket",
+            "sqlalchemy",
+            "psycopg",
+            "qdrant_client",
+            "openai",
+            "anthropic",
+            "ollama",
+            "langchain",
+            "langgraph",
+            "openmetaphysics",
+        )
+        problems: list[str] = [
+            f"forbidden method {method!r}"
+            for method in forbidden_methods
+            if hasattr(adapter, method)
+        ]
+        status = CheckStatus.PARTIAL
+        source_note = "adapter source unavailable; attribute check only"
+        try:
+            source_path = inspect.getsourcefile(type(adapter))
+        except (TypeError, OSError):
+            source_path = None
+        if source_path:
+            try:
+                source = Path(source_path).read_text(encoding="utf-8")
+            except OSError:
+                source = ""
+            if source:
+                import_hits = [
+                    module
+                    for module in forbidden_modules
+                    if re.search(
+                        rf"^\s*(?:import|from)\s+{re.escape(module)}\b", source, re.MULTILINE
+                    )
+                ]
+                problems.extend(f"forbidden import {module!r}" for module in import_hits)
+                # The Reference adapter module is allowed to mention the names
+                # in its own boundary list; only real import statements count.
+                status = CheckStatus.PASSED
+                source_note = f"module source scanned: {Path(source_path).name}"
+        passed = not problems and status == CheckStatus.PASSED
         result.add_check(
             ConformanceCheckResult(
                 check_id="CF-ARCH-001",
                 category=ConformanceCategory.ARCHITECTURE_BOUNDARY,
                 name="architecture_boundary",
                 passed=passed,
-                message="No forbidden methods" if passed else "Forbidden methods found",
+                status=(
+                    CheckStatus.PASSED
+                    if passed
+                    else (CheckStatus.FAILED if problems else CheckStatus.PARTIAL)
+                ),
+                message=(
+                    f"No forbidden methods/imports ({source_note})"
+                    if not problems
+                    else "; ".join(problems) + f" ({source_note})"
+                ),
             )
         )
-
 
     def _check_behavior_immunity(self, result: ConformanceResult) -> None:
         """CF-016: every required behavior ID is declared by the specifications."""
@@ -764,36 +1075,65 @@ class ConformanceRunner:
         )
 
     def _check_golden_reproducibility(self, result: ConformanceResult) -> None:
-        """CF-018: regenerating golden vectors yields identical vectors."""
-        loaded = {
-            v.vector_id: _canonical_json(v.expected_output)
-            for v in load_golden_vectors(self._golden_dir)
-        }
-        fresh_vectors = generate_golden_vectors(self._golden_dir)
-        fresh = {
-            v.vector_id: _canonical_json(v.expected_output) for v in fresh_vectors
-        }
-        passed = loaded == fresh
+        """CF-018: regenerating golden vectors in memory equals the committed bytes.
+
+        H11: this used to call ``generate_golden_vectors(self._golden_dir)``,
+        which **rewrote** the frozen golden files during a conformance run (and
+        could silently "repair" a drifted vector). It now generates in memory
+        and compares the serialized bytes with the files on disk; nothing is
+        written.
+        """
+        loaded_text: dict[str, str] = {}
+        try:
+            for path in sorted(self._golden_dir.glob("*_vectors.json")):
+                loaded_text[path.name] = path.read_text(encoding="utf-8")
+        except OSError as exc:
+            result.add_check(
+                ConformanceCheckResult(
+                    check_id="CF-018",
+                    category=ConformanceCategory.GOLDEN_JSON,
+                    name="golden_reproducibility",
+                    passed=False,
+                    status=CheckStatus.FAILED,
+                    message=f"cannot read golden files: {exc}",
+                )
+            )
+            return
+        fresh_text = serialize_golden_vectors(build_golden_vectors())
+        passed = loaded_text == fresh_text
+        if passed:
+            message = (
+                f"regenerated {len(fresh_text)} layer files byte-identical to disk "
+                "(read-only; no files written)"
+            )
+        else:
+            missing = sorted(set(fresh_text) - set(loaded_text))
+            extra = sorted(set(loaded_text) - set(fresh_text))
+            changed = sorted(
+                name
+                for name in set(fresh_text) & set(loaded_text)
+                if fresh_text[name] != loaded_text[name]
+            )
+            message = (
+                "regenerated golden vectors differ from disk "
+                f"(missing={missing}, extra={extra}, changed={changed}); "
+                "files were NOT rewritten (H11)"
+            )
         result.add_check(
             ConformanceCheckResult(
                 check_id="CF-018",
                 category=ConformanceCategory.GOLDEN_JSON,
                 name="golden_reproducibility",
                 passed=passed,
-                message=(
-                    f"regenerated {len(fresh)} vectors identical"
-                    if passed
-                    else f"regenerated vectors differ: loaded={len(loaded)} fresh={len(fresh)}"
-                ),
+                status=CheckStatus.PASSED if passed else CheckStatus.FAILED,
+                message=message,
             )
         )
 
     def _check_layer_coverage(self, result: ConformanceResult) -> None:
         """CF-019: every conformance layer has at least one golden vector."""
         present = {v.layer for v in load_golden_vectors(self._golden_dir)}
-        missing = sorted(
-            layer.value for layer in ConformanceLayer if layer not in present
-        )
+        missing = sorted(layer.value for layer in ConformanceLayer if layer not in present)
         passed = not missing
         result.add_check(
             ConformanceCheckResult(
@@ -834,4 +1174,36 @@ def certify(result: ConformanceResult) -> ConformanceManifest:
             }
         ),
         certified=result.certified,
+        contract_conformant=result.contract_conformant,
     )
+
+
+def _resolve_reference_model(name: str) -> type | None:
+    """Resolve a contract model name to its Reference pydantic model class."""
+    from . import (
+        consensus,
+        evidence,
+        knowledge,
+        knowledge_query,
+        models,
+        pattern_matcher,
+        patterns,
+    )
+
+    for module in (
+        models,
+        knowledge,
+        knowledge_query,
+        evidence,
+        consensus,
+        patterns,
+        pattern_matcher,
+    ):
+        candidate = getattr(module, name, None)
+        if (
+            isinstance(candidate, type)
+            and hasattr(candidate, "model_fields")
+            and candidate.__module__ == module.__name__
+        ):
+            return candidate
+    return None

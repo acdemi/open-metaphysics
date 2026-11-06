@@ -86,14 +86,15 @@ def test_ollama_embed_missing_embedding(monkeypatch: pytest.MonkeyPatch) -> None
 
 
 def test_openai_generate_request_shape_and_response(monkeypatch: pytest.MonkeyPatch) -> None:
-    calls = _capture_post(
-        monkeypatch, {"choices": [{"message": {"content": "  解释文本  "}}]}
-    )
+    calls = _capture_post(monkeypatch, {"choices": [{"message": {"content": "  解释文本  "}}]})
     provider = OpenAICompatibleProvider(
         "deepseek", "https://api.deepseek.com/", "sk-test", timeout=12.0
     )
 
-    assert provider.generate("prompt", model="deepseek-chat", temperature=0.3, max_tokens=128) == "解释文本"
+    assert (
+        provider.generate("prompt", model="deepseek-chat", temperature=0.3, max_tokens=128)
+        == "解释文本"
+    )
 
     url, kwargs = calls[0]
     assert url == "https://api.deepseek.com/chat/completions"

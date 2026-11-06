@@ -9,7 +9,7 @@
     "domain": "liuyao",
     "pipeline": "knowledge/pipeline.py (P2.4 Liuyao Knowledge Enrichment II; frozen v1.0.0)",
     "source_digests": {
-      "source_liuyao_01.yaml": "7bcdd0b77d1cdf0dc15dbf8932f9aca3403707b5712770fe58a2047214630255"
+      "source_liuyao_01.yaml": "1b31a4bdf06bc71c414ec3698c3e780455027cd20d6dab2cd4c06e343b4bac39"
     },
     "status": "frozen",
     "version": "1.0.0"

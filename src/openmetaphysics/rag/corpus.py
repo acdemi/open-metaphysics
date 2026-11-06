@@ -38,10 +38,14 @@ import json
 from pathlib import Path
 from typing import Any
 
+from ..core.paths import data_path, describe_layout
 from .retriever import KnowledgeChunk, KnowledgeRetriever
 
-# repository root: src/openmetaphysics/rag/corpus.py -> parents[3]
-DEFAULT_CORPUS_PATH = Path(__file__).resolve().parents[3] / "knowledge" / "ziwei_corpus.json"
+# Resolved without assuming the repository layout: OM_KNOWLEDGE_DIR, bundled
+# package data, an upward marker search, then the current directory. After a
+# plain wheel/pip install only the env variable / bundled data exist, so the
+# legacy ``parents[3]`` assumption silently pointed at a nonexistent path.
+DEFAULT_CORPUS_PATH = data_path("ziwei_corpus.json")
 
 # Every domain corpus indexed by the default retriever, in deterministic order.
 # The file names are resolved relative to the default corpus directory, so an
@@ -238,6 +242,24 @@ def load_evidence_chunks(base: str | Path | None = None) -> list[KnowledgeChunk]
                 seen.add(chunk.id)
                 chunks.append(chunk)
     return chunks
+
+
+def knowledge_status() -> dict[str, Any]:
+    """Where the corpora resolved from and which domain files are present.
+
+    Exposed for diagnostics/health: a wheel or Docker install with a wrong or
+    missing ``OM_KNOWLEDGE_DIR`` shows up here instead of silently producing an
+    empty knowledge index.
+    """
+    directory = resolve_corpus_path().parent
+    present = [name for name in DOMAIN_CORPUS_FILES if (directory / name).is_file()]
+    return {
+        "dir": str(directory),
+        "available": bool(present),
+        "present": present,
+        "missing": [name for name in DOMAIN_CORPUS_FILES if name not in present],
+        "layout": describe_layout(),
+    }
 
 
 def corpus_stats(base: str | Path | None = None) -> list[dict[str, Any]]:

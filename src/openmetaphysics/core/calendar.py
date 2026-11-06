@@ -4,8 +4,18 @@ Solar-term times are computed from the Sun's apparent geocentric ecliptic
 longitude (Meeus, truncated). No ephemeris files, no network, no LLM. All
 results are reproducible from input alone.
 
-Accuracy of the solar longitude is ~0.01 deg (well under a minute of time),
-which is ample for day-level Bazi boundaries.
+Accuracy (measured, not asserted): over 1900-2100 the truncated series differs
+from the high-precision 寿星天文历 reference (``sxtwl``, also used for the lunar
+conversion below) by a median ~180 s and a measured worst case of 780.6 s
+(~13 min) for all 4824 solar terms; that is consistent with the truncation
+error of ~0.01 deg of solar longitude (the Sun moves ~0.041 deg/hour, so
+0.01 deg ~ 14.6 min). **This is not sub-minute accuracy**: a birth within
+roughly +/-15 min of a true solar-term boundary can be classified on the other
+side of that boundary. The declared bound lives in
+``SOLAR_TERM_MAX_ERROR_SECONDS`` and is enforced by
+``tests/test_solar_term_precision.py``.
+
+No ephemeris files, no network, no LLM; all results reproducible offline.
 """
 
 from __future__ import annotations
@@ -17,6 +27,23 @@ from functools import lru_cache
 from .models import BAZI_MONTH_BOUNDARIES, SOLAR_TERMS_24
 
 UTC = timezone.utc
+
+# ---------------------------------------------------------------------------
+# Declared solar-term precision (H6) -- measured, not aspirational.
+#
+# Reference: ``sxtwl`` (寿星天文历, BSD; already a runtime dependency for
+# ``solar_to_lunar``; ~0.5 MB compiled extension, fully offline). Full sweep
+# 1900-2100 x 24 terms = 4824 samples:
+#   median |error| 180.4 s, worst |error| 780.6 s (1981 大暑).
+# The bound below is the measured worst case rounded up; tests fail if the
+# implementation ever drifts past it.
+# ---------------------------------------------------------------------------
+SOLAR_TERM_MAX_ERROR_SECONDS = 781
+SOLAR_TERM_TYPICAL_ERROR_SECONDS = 180
+SOLAR_TERM_PRECISION = (
+    "meeus_truncated: |err| <= "
+    f"{SOLAR_TERM_MAX_ERROR_SECONDS} s (median ~{SOLAR_TERM_TYPICAL_ERROR_SECONDS} s, 1900-2100)"
+)
 
 
 # ---------------------------------------------------------------------------
@@ -74,7 +101,11 @@ def _wrapped_diff(jd: float, target_lon: float) -> float:
 
 
 def solar_term_time(year: int, target_lon: int) -> datetime:
-    """UTC datetime in `year` when the Sun reaches `target_lon` degrees."""
+    """UTC datetime in `year` when the Sun reaches `target_lon` degrees.
+
+    Precision is the declared ``SOLAR_TERM_MAX_ERROR_SECONDS`` (781 s measured
+    worst case 1900-2100), not sub-minute; see the module docstring.
+    """
     start = datetime(year, 1, 1, tzinfo=UTC)
     for day in range(0, 367):
         t0 = start + timedelta(days=day)
@@ -156,6 +187,9 @@ def bazi_year_index(born_at: datetime) -> tuple[int, datetime]:
 
 __all__ = [
     "UTC",
+    "SOLAR_TERM_MAX_ERROR_SECONDS",
+    "SOLAR_TERM_TYPICAL_ERROR_SECONDS",
+    "SOLAR_TERM_PRECISION",
     "julian_day_number",
     "julian_day",
     "solar_longitude",

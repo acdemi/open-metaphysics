@@ -112,15 +112,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "knowledge":
         from .rag.retriever import search_knowledge
 
-        chunks = search_knowledge(
-            args.query, k=args.k, include_evidence=args.include_evidence
-        )
-        _print(
-            [
-                {"id": c.id, "text": c.text, "source": c.source, "tags": c.tags}
-                for c in chunks
-            ]
-        )
+        chunks = search_knowledge(args.query, k=args.k, include_evidence=args.include_evidence)
+        _print([{"id": c.id, "text": c.text, "source": c.source, "tags": c.tags} for c in chunks])
         return 0
 
     if args.command == "consensus":

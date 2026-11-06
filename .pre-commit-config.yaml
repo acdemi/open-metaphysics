@@ -29,15 +29,28 @@ repos:
         types: [markdown]
         args: ["--prose-wrap=always", "--print-width=120"]
 
+  # --- Knowledge corpus validation (H10) ---
+  # Prevents a silent PASS: runs the same structural + source-registry +
+  # frozen-corpus + registered-coverage gate as `python knowledge/validate.py`
+  # (default mode; use --strict for the full-evidence gate).
+  - repo: local
+    hooks:
+      - id: knowledge-validate
+        name: knowledge validator (coverage report, no silent PASS)
+        entry: python knowledge/validate.py
+        language: system
+        files: ^knowledge/
+        pass_filenames: false
+
   # --- Python (ruff) ---
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.6
+    rev: v0.16.2
     hooks:
       - id: ruff
         args: ["--fix"]
-        files: ^(src|tests|reference)/
+        files: ^(src|tests|reference|scripts)/
       - id: ruff-format
-        files: ^(src|tests|reference)/
+        files: ^(src|tests|reference|scripts)/
 
   # --- Rust ---
   - repo: local

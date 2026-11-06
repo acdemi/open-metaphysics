@@ -59,7 +59,7 @@
 | 晚子时流派分歧 | Deferred | **Resolved / Frozen**（C.1 裁定） |
 | 大运算法变体 | Deferred | **Resolved / Frozen**（C.2 裁定） |
 | UNKNOWN 性别处理 | Frozen candidate | **Frozen**（B6 + 2 单元测试） |
-| 节气时刻误差 | Infrastructure dependency | 维持（Meeus ~0.01°, 监控） |
+| 节气时刻误差 | Infrastructure dependency | 维持（Meeus 截断；实测 \|Δ\| ≤ 780.6 s / 中位 ~180 s，1900–2100，见 `SOLAR_TERM_PRECISION`；2026-10-31 H6 更正精度声明，算法未变） |
 | 时区回退链 | Implemented | **Frozen**（B4 行为锁定; 注: 回退为静默, 不产生警告 —— 任务书"warning capture"预期与实现不符, 已按实际行为测试并记录） |
 
 ---

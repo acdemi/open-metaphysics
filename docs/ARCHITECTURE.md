@@ -243,7 +243,7 @@ open-metaphysics/                    # Monorepo（单仓多语言）
 ## 9. 可观测性与可解释性
 
 - 每个 AgentOutput 都携带 reasoning_trace：有序的 ReasoningStep 记录（规则引用、输入、输出、描述）。这是审计追踪。
-- confidence 被分解 (ConfidenceScore: 值 + 方法 + 因子)，因此用户可以看到为什么一个数字是例如 0.82，而不仅仅知道它是。
+- confidence 被分解 (ConfidenceScore: 值 + 方法 + 因子)，但当前值是**声明式基线**（`value=0.95`, `method="placeholder_baseline"`, `factors["calibrated"]=0.0`）：它不是统计概率，也不是规则覆盖率。四个确定性域都走完整固定规则管线，没有校准用 ground truth；Consensus 的 weighted 权重使用该值，因此在替换为真正校准评分前，weighted 等价于等权。
 - LangGraph 将状态转换作为事件发出，用于追踪/调试。
 
 ## 10. 安全边界
