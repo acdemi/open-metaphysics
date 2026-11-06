@@ -220,11 +220,33 @@ class Explainer:
         return " ".join(ordered)
 
     def retrieve(self, output: AgentOutput, *, k: int = 3) -> list[Any]:
-        """Retrieve authoritative knowledge for this output; never raises."""
+        """Retrieve authoritative knowledge for this output; never raises.
+
+        Candidates are restricted to the agent's own domain tags first: a Ziwei
+        explanation must not cite BaZi-only knowledge. ``k`` candidates are
+        over-fetched before filtering so the domain still fills the quota when
+        adjacent domains rank higher on raw character overlap. If no
+        domain-tagged candidate exists (sparse corpus), retrieval degrades to
+        the unfiltered result instead of dropping its context.
+
+        Restored from the domain-isolation fix already present on ``main``
+        (commit ``e84464d``): one retriever pools every domain corpus, so the
+        domain distinction lives in ``KnowledgeChunk.tags`` (the corpus
+        ``systems`` values). ``/knowledge/search`` keeps its cross-domain
+        ``search_knowledge`` path and is intentionally not filtered here.
+        """
         if self.retriever is None:
             return []
         try:
-            return list(self.retriever.retrieve(self.build_query(output), k=k))
+            query = self.build_query(output)
+            domain = str(getattr(output, "agent", "") or "")
+            candidates = list(self.retriever.retrieve(query, k=max(k * 20, 60)))
+            domain_chunks = [
+                chunk for chunk in candidates if domain and domain in getattr(chunk, "tags", [])
+            ]
+            if domain_chunks:
+                return domain_chunks[:k]
+            return candidates[:k]
         except Exception:
             return []
 
@@ -283,6 +305,15 @@ class Explainer:
 
     # -- providers ----------------------------------------------------------
 
+    def _provider_model(self) -> str:
+        """Chat model for the attached provider (per-provider settings, H7).
+
+        A DeepSeek/Qwen provider must receive *its* model, not the Ollama model
+        that used to be passed unconditionally from the explainer paths.
+        """
+        provider_name = getattr(self.provider, "name", "") if self.provider is not None else ""
+        return get_settings().llm_model_for(str(provider_name))
+
     def _build_prompt(
         self,
         output: AgentOutput,
@@ -299,7 +330,9 @@ class Explainer:
         payload = json.dumps(Explainer.evidence_of(output), ensure_ascii=False)
         prompt = (
             f"You are explaining a deterministic metaphysics result in {style} prose.\n"
-            f"Agent: {output.agent}\nConfidence: {output.confidence.value}\n\n"
+            f"Agent: {output.agent}\n"
+            f"Confidence: {output.confidence.value} ({output.confidence.method}; "
+            f"declared baseline, not a calibrated probability)\n\n"
             f"{PROMPT_FACTS_HEADER}\n{payload}\n\n"
         )
         if chunks:
@@ -326,7 +359,7 @@ class Explainer:
             return self._fallback(output, style, chunks=chunks)
         return self.provider.generate(
             self._build_prompt(output, style, chunks),
-            model=s.ollama_model,
+            model=self._provider_model(),
             temperature=s.explain_temperature,
             max_tokens=s.explain_max_tokens,
         )
@@ -339,7 +372,10 @@ class Explainer:
         chunks: list[Any] | tuple[Any, ...] = (),
     ) -> str:
         head = f"[{output.agent}] deterministic result (engine {output.engine_version}, "
-        head += f"confidence {output.confidence.value:.2f})."
+        head += (
+            f"confidence {output.confidence.value:.2f} {output.confidence.method}, "
+            "declared baseline)."
+        )
         # Render from the fact layer only: including the envelope's wall-clock
         # timestamp would make the same request yield different explanations.
         body = json.dumps(Explainer.evidence_of(output), ensure_ascii=False)[:400]
