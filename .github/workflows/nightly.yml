@@ -1,0 +1,115 @@
+name: Nightly
+
+# P2.5 CI layering: PR jobs stay fast (pytest -m "not slow", lint, frontend,
+# conformance); heavy/optional checks run here:
+#   * wheel/plain-pip install path regression
+#   * Docker image build + in-image healthcheck + API smoke
+#   * real-browser E2E (CDP Chrome)
+# Every job tees its output to a log and uploads it when the job fails.
+
+on:
+  schedule:
+    - cron: "0 18 * * *" # 02:00 Asia/Shanghai (next day)
+  workflow_dispatch:
+
+jobs:
+  wheel-install:
+    name: Wheel install path (slow)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - run: uv sync --all-extras
+      - name: pip install into temp venv + data-dir checks
+        run: |
+          set -o pipefail
+          uv run pytest -q -m "slow and not docker" 2>&1 | tee wheel-install.log
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-install-logs
+          path: wheel-install.log
+          if-no-files-found: warn
+
+  docker-smoke:
+    name: Docker image smoke (slow)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - run: uv sync --all-extras
+      - name: Docker build + healthcheck + API smoke
+        run: |
+          set -o pipefail
+          uv run pytest -q -m "slow and docker" 2>&1 | tee docker-smoke.log
+      - name: Collect docker diagnostics on failure
+        if: failure()
+        run: |
+          docker info 2>&1 | tee docker-info.log
+          docker images 2>&1 | tee -a docker-info.log
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-smoke-logs
+          path: |
+            docker-smoke.log
+            docker-info.log
+          if-no-files-found: warn
+
+  e2e:
+    name: Browser E2E (nightly, not on PR)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: astral-sh/setup-uv@v4
+      - run: uv sync --all-extras
+      - run: npm ci --prefix frontend
+      - id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          install-chromedriver: false
+      - name: Start backend
+        run: |
+          OM_CORS_ORIGINS=http://127.0.0.1:5173 uv run openmetaphysics > backend.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:8000/health >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          echo "backend did not become ready" >&2
+          cat backend.log >&2
+          exit 1
+      - name: Start frontend dev server
+        run: |
+          npm run dev --prefix frontend -- --host 127.0.0.1 --port 5173 > frontend.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:5173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          echo "frontend dev server did not become ready" >&2
+          cat frontend.log >&2
+          exit 1
+      - name: Run CDP E2E smoke (Chrome, not PR-gating)
+        run: |
+          set -o pipefail
+          uv run python frontend/tests/e2e_smoke.py \
+            --frontend-url "http://127.0.0.1:5173/?api=http://127.0.0.1:8000" \
+            --chrome "${{ steps.chrome.outputs.chrome-path }}" \
+            --screenshot-dir frontend/.artifacts 2>&1 | tee e2e.log
+      - name: Preserve logs/screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-logs
+          path: |
+            e2e.log
+            backend.log
+            frontend.log
+            frontend/.artifacts
+          if-no-files-found: warn
