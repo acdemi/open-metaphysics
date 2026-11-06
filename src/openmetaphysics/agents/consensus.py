@@ -12,6 +12,13 @@ The frozen Reference contract ``reference/contracts/consensus_contract.json``
 ``retain_all`` / ``highest_confidence`` / ``majority`` adjudication strategies.
 Neither capability implements the other; they are deliberately not merged.
 See ``docs/CONSENSUS_CAPABILITY_CLARIFICATION.md``.
+
+H8 note: the ``weighted`` strategy uses ``AgentOutput.confidence.value`` as the
+weight. All four deterministic domains currently emit the **declared placeholder
+baseline** 0.95 (``method="placeholder_baseline"``), so weighted consensus is
+numerically identical to equal weighting and must NOT be read as a statistical
+probability. If a calibrated scorer ever replaces the placeholder, the weighted
+strategy and its tests must be re-derived together (the value would change).
 """
 
 from __future__ import annotations

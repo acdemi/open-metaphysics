@@ -75,10 +75,35 @@ class ReasoningStep(BaseModel):
 
 
 class ConfidenceScore(BaseModel):
+    """Confidence envelope for a deterministic result — declared, not measured.
+
+    ``value`` is a **declared baseline** (currently ``0.95`` from
+    ``core.engines``), not a statistical probability and not a measured
+    rule-coverage ratio: the deterministic engines have no calibrated ground
+    truth. The current value is tagged ``method="placeholder_baseline"`` with
+    ``factors["calibrated"] == 0.0``. Consumers (Consensus weighted strategy,
+    Explain prompts) must not present it as a probability.
+    """
+
     model_config = ConfigDict(extra="forbid")
-    value: float = Field(ge=0.0, le=1.0)
-    method: str  # e.g. "rule_coverage" | "data_quality"
-    factors: dict[str, float] = Field(default_factory=dict)
+    value: float = Field(
+        ge=0.0,
+        le=1.0,
+        description="Declared baseline in [0,1]; NOT a calibrated probability or coverage ratio.",
+    )
+    method: str = Field(
+        description=(
+            'How the value was produced. "placeholder_baseline" means a declared '
+            "constant, not measured rule coverage or statistics."
+        )
+    )
+    factors: dict[str, float] = Field(
+        default_factory=dict,
+        description=(
+            "Explainability signals; factors['calibrated'] == 0.0 means the value "
+            "is not calibrated against ground truth."
+        ),
+    )
 
 
 class AgentOutput(BaseModel):

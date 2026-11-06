@@ -64,9 +64,13 @@ class ReasoningStep(BaseModel):
     outputs: dict[str, str | int | float]
 
 class ConfidenceScore(BaseModel):
-    value: float = Field(ge=0.0, le=1.0)
-    method: str                       # "rule_coverage" | "data_quality" | ...
-    factors: dict[str, float]         # 例如 {"solar_term_resolution": 0.98}
+    value: float = Field(ge=0.0, le=1.0)  # 声明式基线；不是统计概率/规则覆盖率
+    method: str                       # "placeholder_baseline"（当前）| 未来校准评分方法
+    factors: dict[str, float]         # 解释性信号；"calibrated" == 0.0 表示未校准
+
+# 当前四个确定性域统一输出 value=0.95, method="placeholder_baseline",
+# factors={"steps": N, "calibrated": 0.0}：这是声明式基线（H8），
+# 不是统计置信度，也不得当作规则覆盖率或概率解读。
 
 class AgentOutput(BaseModel):
     request_id: str
