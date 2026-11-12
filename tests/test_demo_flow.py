@@ -171,6 +171,7 @@ def test_demo_task_over_cli_matches_http(capsys) -> None:
         assert cli_out["confidence"] == http_out["confidence"]
     assert via_cli["consensus"]["result"] == via_http["consensus"]["result"]
     assert via_cli["explanation"] == via_http["explanation"]
-    assert via_cli["explanation_detail"]["bazi"]["knowledge"] == (
-        via_http["explanation_detail"]["bazi"]["knowledge"]
+    assert (
+        via_cli["explanation_detail"]["bazi"]["knowledge"]
+        == (via_http["explanation_detail"]["bazi"]["knowledge"])
     )
