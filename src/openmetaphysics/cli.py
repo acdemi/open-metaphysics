@@ -72,7 +72,9 @@ def main(argv: list[str] | None = None) -> int:
     consensus = sub.add_parser("consensus", help="Evidence[] + config -> ConsensusReport")
     consensus.add_argument("--input", required=True, help="JSON with evidence[] and config")
 
-    orch = sub.add_parser("orchestrate", help="run multiple agents + cross-modal consensus + explain")
+    orch = sub.add_parser(
+        "orchestrate", help="run multiple agents + cross-modal consensus + explain"
+    )
     orch.add_argument("--input", required=True, help="OrchestrationRequest JSON")
 
     args = parser.parse_args(argv)

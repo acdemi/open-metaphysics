@@ -94,9 +94,7 @@ def test_path1_invalid_inputs_return_structured_422() -> None:
         assert response.status_code == 422, name
         assert response.json()["error"]["kind"] == "invalid_request", name
 
-    bad_casts = client.post(
-        "/agents/liuyao/compute", json={**PAYLOAD, "casts": [7, 7, 7]}
-    )
+    bad_casts = client.post("/agents/liuyao/compute", json={**PAYLOAD, "casts": [7, 7, 7]})
     assert bad_casts.status_code == 422
     assert bad_casts.json()["error"]["kind"] == "invalid_request"
 
@@ -263,9 +261,7 @@ def test_path4_compute_consistent_across_api_mcp_cli(capsys) -> None:
 def test_path4_knowledge_search_consistent_across_surfaces(capsys) -> None:
     query = {"query": "紫微", "k": 3}
     via_api = [c["id"] for c in client.post("/knowledge/search", json=query).json()["chunks"]]
-    via_mcp = [
-        c["id"] for c in _mcp_tool_call("knowledge_search", {"query": "紫微", "k": 3})
-    ]
+    via_mcp = [c["id"] for c in _mcp_tool_call("knowledge_search", {"query": "紫微", "k": 3})]
 
     assert cli_main(["knowledge", "--query", "紫微", "--k", "3"]) == 0
     via_cli = [c["id"] for c in json.loads(capsys.readouterr().out)]
@@ -297,9 +293,7 @@ def test_path4_explain_accepts_responses_with_attached_explain(capsys) -> None:
 
 def test_path4_mcp_http_and_stdio_share_the_same_tool_surface() -> None:
     stdio_list = handle_message({"jsonrpc": "2.0", "id": 5, "method": "tools/list"})
-    http_list = client.post(
-        "/mcp", json={"jsonrpc": "2.0", "id": 5, "method": "tools/list"}
-    )
+    http_list = client.post("/mcp", json={"jsonrpc": "2.0", "id": 5, "method": "tools/list"})
     assert http_list.status_code == 200
     assert http_list.json() == stdio_list
 
@@ -366,9 +360,7 @@ def test_path5_store_failure_does_not_break_compute() -> None:
     app.state.session_store = _BrokenStore()
     local = TestClient(app)
 
-    response = local.post(
-        "/agents/bazi/compute", json={**PAYLOAD, "request_id": "broken-store"}
-    )
+    response = local.post("/agents/bazi/compute", json={**PAYLOAD, "request_id": "broken-store"})
     assert response.status_code == 200
     assert response.json()["result"]["pillars"]
     assert local.get("/sessions/broken-store").status_code == 404

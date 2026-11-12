@@ -152,9 +152,7 @@ def test_calc_ziwei_matches_frozen_vector() -> None:
     assert result["wuxing_ju"] == expected["wuxing_ju"]
     assert result["fate_palace_index"] == expected["fate_palace_index"]
     assert result["body_palace_index"] == expected["body_palace_index"]
-    assert [
-        (p["name"], p["earthly_branch"], p["main_stars"]) for p in result["palaces"]
-    ] == [
+    assert [(p["name"], p["earthly_branch"], p["main_stars"]) for p in result["palaces"]] == [
         (p["name"], p["earthly_branch"], p["main_stars"]) for p in expected["palaces"]
     ]
 
@@ -250,9 +248,9 @@ def test_boundary_ziwei_hour_window_changes_fate_palace() -> None:
 
     assert result_before["fate_palace_index"] == before["expected"]["chart"]["fate_palace_index"]
     assert result_after["fate_palace_index"] == after["expected"]["chart"]["fate_palace_index"]
-    assert abs(
-        result_before["fate_palace_index"] - result_after["fate_palace_index"]
-    ) == 1, "the 23:00 hour window must move the fate palace by one"
+    assert abs(result_before["fate_palace_index"] - result_after["fate_palace_index"]) == 1, (
+        "the 23:00 hour window must move the fate palace by one"
+    )
 
 
 def test_boundary_ziwei_leap_month_is_flagged() -> None:
