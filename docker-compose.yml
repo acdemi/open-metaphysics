@@ -15,7 +15,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: openmetaphysics
     ports:
-      - "${OM_POSTGRES_BIND:-127.0.0.1}:5432:5432"
+      - "${OMP_POSTGRES_BIND:-127.0.0.1}:5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
@@ -31,8 +31,8 @@ services:
     environment:
       QDRANT__SERVICE__GRPC_PORT: "6334"
     ports:
-      - "${OM_QDRANT_HTTP_BIND:-127.0.0.1}:6333:6333"
-      - "${OM_QDRANT_GRPC_BIND:-127.0.0.1}:6334:6334"
+      - "${OMP_QDRANT_HTTP_BIND:-127.0.0.1}:6333:6333"
+      - "${OMP_QDRANT_GRPC_BIND:-127.0.0.1}:6334:6334"
     volumes:
       - qdrant_data:/qdrant/storage
     healthcheck:
@@ -46,7 +46,7 @@ services:
     container_name: om-valkey
     restart: unless-stopped
     ports:
-      - "${OM_VALKEY_BIND:-127.0.0.1}:6379:6379"
+      - "${OMP_VALKEY_BIND:-127.0.0.1}:6379:6379"
     volumes:
       - valkey_data:/data
     healthcheck:
@@ -67,7 +67,7 @@ services:
       OM_RAG_ENABLED: "false"
       OM_ENABLE_EXPLAINER: "false"
     ports:
-      - "${OM_API_BIND:-127.0.0.1}:8000:8000"
+      - "${OMP_API_BIND:-127.0.0.1}:8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -80,7 +80,7 @@ services:
     profiles: ["llm"]
     restart: unless-stopped
     ports:
-      - "${OM_OLLAMA_BIND:-127.0.0.1}:11434:11434"
+      - "${OMP_OLLAMA_BIND:-127.0.0.1}:11434:11434"
     volumes:
       - ollama_data:/root/.ollama
     healthcheck:
